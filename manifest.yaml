@@ -1,0 +1,49 @@
+# TheraSIK Academic Writing Suite -- MCP Server Manifest
+# =======================================================
+# Place this file wherever your MCP client expects it, or point the client
+# directly at scripts/mcp_server.py.
+
+name: therasik-academic-writing-suite
+version: "1.0.0"
+description: >
+  Academic writing QA and RAG pipeline for biomedical manuscripts.
+  Provides manuscript workflow automation, literature database search,
+  journal requirement lookup, and QA gate execution.
+
+# How to start the server (adjust python path as needed)
+command:
+  - python
+  - scripts/mcp_server.py
+
+# Working directory: the skill root
+cwd: "."
+
+# Environment variables (optional overrides)
+env:
+  THERASIK_DIR: "."   # Override if running from a different directory
+
+# Transport: stdio (MCP standard)
+transport: stdio
+
+# Tools provided
+tools:
+  # Manuscript workflow
+  - create_manuscript_project
+  - run_manuscript_workflow
+  - get_manuscript_status
+  - run_qa_gate
+
+  # Literature database (RAG knowledge base)
+  - search_literature
+  - add_paper_by_doi
+  - add_paper_by_pmid
+  - get_paper
+  - import_pdf_full_text
+  - export_references_csv
+
+  # Journal requirements
+  - get_journal_requirements
+  - list_journals
+
+  # System
+  - validate_skill_installation

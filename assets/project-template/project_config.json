@@ -1,0 +1,119 @@
+{
+  "project_id": "synthetic_template",
+  "mode": "revision_rescue",
+  "article_type": "review",
+  "target_journal": "Frontiers in Pharmacology",
+  "language": "en",
+  "inputs": {
+    "manuscript": "01_manuscript/manuscript.md",
+    "source_papers": [],
+    "figures": [],
+    "data_files": [],
+    "journal_guidelines": []
+  },
+  "outputs": {
+    "manuscript_md": "01_manuscript/manuscript.md",
+    "docx": "02_outputs/manuscript.docx",
+    "pdf": "02_outputs/manuscript.pdf",
+    "qa_dir": "03_QA",
+    "database_dir": "00_project_database"
+  },
+  "workflow_steps": [
+    {
+      "name": "manuscript_source",
+      "type": "check_path",
+      "path": "01_manuscript/manuscript.md"
+    },
+    {
+      "name": "reference_database",
+      "type": "check_path",
+      "path": "00_project_database/references.csv"
+    },
+    {
+      "name": "claim_database",
+      "type": "check_path",
+      "path": "00_project_database/claims.csv"
+    },
+    {
+      "name": "reference_claim_qa",
+      "type": "qa_script",
+      "script": "run_reference_claim_qa.py",
+      "args": [],
+      "timeout": 60,
+      "description": "Verify every claim has a supporting reference with a valid identifier"
+    },
+    {
+      "name": "figure_contract_qa",
+      "type": "qa_script",
+      "script": "run_figure_contract_qa.py",
+      "args": [],
+      "timeout": 30,
+      "description": "Verify every figure has a declared contract: core conclusion, evidence chain, export format"
+    },
+    {
+      "name": "paragraph_structure_qa",
+      "type": "qa_script",
+      "script": "run_paragraph_structure_qa.py",
+      "args": [],
+      "timeout": 30,
+      "description": "Detect fragmented paragraphs and uniform AI sentence rhythm"
+    },
+    {
+      "name": "ai_style_qa",
+      "type": "qa_script",
+      "script": "run_ai_style_qa.py",
+      "args": [],
+      "timeout": 30,
+      "description": "Detect hedge-word overuse, transition-word density, and bullet contamination"
+    },
+    {
+      "name": "render_basic_outputs",
+      "type": "render_outputs",
+      "description": "Render manuscript to DOCX and PDF"
+    },
+    {
+      "name": "docx_output",
+      "type": "check_path",
+      "path": "02_outputs/manuscript.docx"
+    },
+    {
+      "name": "pdf_output",
+      "type": "check_path",
+      "path": "02_outputs/manuscript.pdf"
+    }
+  ],
+  "strict_release_artifacts": {
+    "reference_claim_support_QA": {
+      "path": "03_QA/reference_claim_support_QA.md",
+      "required_status": "PASS",
+      "purpose": "Claims must be supported by cited sources with valid identifiers."
+    },
+    "figure_contract_QA": {
+      "path": "03_QA/figure_contract_QA.md",
+      "required_status": "PASS",
+      "purpose": "Every figure must have a declared contract before generation or inclusion."
+    },
+    "ai_style_human_voice_QA": {
+      "path": "03_QA/ai_style_human_voice_QA.md",
+      "required_status": "PASS",
+      "purpose": "AI-style artifacts must be below threshold."
+    },
+    "paragraph_structure_QA": {
+      "path": "03_QA/paragraph_structure_QA.md",
+      "required_status": "PASS",
+      "purpose": "Paragraph rhythm must be review-like, not fragmented or uniformly AI-generated."
+    },
+    "workflow_execution_audit_QA": {
+      "path": "03_QA/workflow_execution_audit_QA.md",
+      "required_status": "PASS",
+      "human_boundary": true,
+      "purpose": "Author must review workflow_execution_audit_vN.json and set Status: PASS."
+    },
+    "author_declarations_QA": {
+      "path": "03_QA/author_declarations_QA.md",
+      "required_status": "PASS",
+      "human_boundary": true,
+      "purpose": "Author fields (affiliations, funding, COI, CRediT) must be completed by the author."
+    }
+  }
+}

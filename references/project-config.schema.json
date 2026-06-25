@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "required": ["project_id", "mode", "article_type", "target_journal", "language"],
+  "properties": {
+    "project_id": {"type": "string"},
+    "mode": {"enum": ["from_scratch", "revision_rescue", "format_only"]},
+    "article_type": {"enum": ["review", "research", "case_report", "thesis_chapter", "grant"]},
+    "target_journal": {"type": ["string", "null"]},
+    "language": {"enum": ["en", "zh", "bilingual"]},
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "manuscript": {"type": ["string", "null"]},
+        "source_papers": {"type": "array", "items": {"type": "string"}},
+        "figures": {"type": "array", "items": {"type": "string"}},
+        "data_files": {"type": "array", "items": {"type": "string"}},
+        "journal_guidelines": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "outputs": {
+      "type": "object",
+      "properties": {
+        "manuscript_md": {"type": "string"},
+        "docx": {"type": "string"},
+        "pdf": {"type": "string"},
+        "qa_dir": {"type": "string"},
+        "database_dir": {"type": "string"}
+      }
+    }
+  }
+}

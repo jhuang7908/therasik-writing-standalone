@@ -1,0 +1,14 @@
+# TheraSIK MCP Server dependencies
+# Install with: pip install -r requirements-mcp.txt
+
+# MCP protocol (required)
+mcp>=1.0.0
+
+# PDF full-text extraction (optional but recommended)
+pdfplumber>=0.10.0
+
+# Numerical computing for TF-IDF search (usually pre-installed)
+numpy>=1.24.0
+
+# HTTP requests are handled via stdlib urllib -- no extra dep needed
+# SQLite is bundled with Python (no install needed)

@@ -1,0 +1,60 @@
+name: Fix Unidentified Journal Submission Systems
+
+on:
+  # Run manually from GitHub Actions tab
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: 'Max journals to process (0 = all unidentified)'
+        required: false
+        default: '0'
+      no_crossref:
+        description: 'Skip CrossRef API (faster, less coverage)'
+        required: false
+        default: 'false'
+
+  # Run after journal DB build completes (chain)
+  workflow_run:
+    workflows: ["Build Journal Requirements Database"]
+    types: [completed]
+
+jobs:
+  fix-systems:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120   # 2 hours (CrossRef API calls are slow)
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run system identifier
+        run: |
+          LIMIT="${{ github.event.inputs.limit || '0' }}"
+          NO_CROSSREF="${{ github.event.inputs.no_crossref || 'false' }}"
+
+          ARGS="--limit $LIMIT"
+          if [ "$NO_CROSSREF" = "true" ]; then
+            ARGS="$ARGS --no-crossref"
+          fi
+
+          python scripts/fix_journal_systems.py $ARGS
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      - name: Show summary
+        run: python scripts/fix_journal_systems.py --report --no-crossref || true
+
+      - name: Commit updated journal files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/journal_requirements/
+          git diff --cached --quiet || git commit -m "chore: fix unidentified journal submission systems [skip ci]"
+          git push

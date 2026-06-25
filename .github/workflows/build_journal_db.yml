@@ -1,0 +1,54 @@
+name: Build Journal Requirements Database
+
+on:
+  # Run manually from GitHub Actions tab
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: 'Max journals to process (0 = all ~5600)'
+        required: false
+        default: '0'
+      delay:
+        description: 'Delay between requests in seconds'
+        required: false
+        default: '1.0'
+
+  # Also run on a schedule: first day of each month at 2am UTC
+  schedule:
+    - cron: '0 2 1 * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360   # 6 hours max
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run journal database builder
+        run: |
+          python scripts/build_journal_db.py \
+            --limit ${{ github.event.inputs.limit || '0' }} \
+            --delay ${{ github.event.inputs.delay || '1.0' }} \
+            --verbose
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/journal_requirements/
+          git diff --cached --quiet || git commit -m "chore: update journal requirements database [skip ci]"
+          git push

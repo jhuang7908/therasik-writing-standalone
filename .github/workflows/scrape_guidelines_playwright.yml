@@ -1,0 +1,100 @@
+name: Scrape Journal Guidelines (Playwright)
+
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: 'Max journals to process (0 = all with empty guidelines)'
+        required: false
+        default: '200'
+      publisher:
+        description: 'Filter by publisher (e.g. "Elsevier", "Wiley", "" = all)'
+        required: false
+        default: ''
+      delay:
+        description: 'Seconds between requests (be polite to servers)'
+        required: false
+        default: '2.5'
+
+  # Run once a week on Sunday night — fills in gaps as new journals are added
+  schedule:
+    - cron: '0 3 * * 0'
+
+jobs:
+  # ── Job 1: Journal-specific guidelines (Playwright) ───────────────────────
+  scrape-journals:
+    name: Scrape journal guidelines
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install playwright
+          playwright install chromium
+          playwright install-deps chromium
+
+      - name: Scrape journal submission guidelines
+        run: |
+          python scripts/scrape_guidelines_playwright.py \
+            --limit  "${{ github.event.inputs.limit  || '200' }}" \
+            --publisher "${{ github.event.inputs.publisher || '' }}" \
+            --delay  "${{ github.event.inputs.delay  || '2.5' }}"
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      - name: Commit updated journal files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/journal_requirements/
+          git diff --cached --quiet || \
+            git commit -m "chore: scrape journal submission guidelines (Playwright) [skip ci]"
+          git push
+
+  # ── Job 2: Platform-level submission guides ───────────────────────────────
+  scrape-platforms:
+    name: Scrape submission platform guides
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install playwright
+          playwright install chromium
+          playwright install-deps chromium
+
+      - name: Scrape submission platform guides
+        run: python scripts/scrape_platform_guides.py
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      - name: Commit platform guide files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/submission_system_guides/
+          git diff --cached --quiet || \
+            git commit -m "chore: update submission platform guides [skip ci]"
+          git push
