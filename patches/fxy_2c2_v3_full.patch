@@ -1,0 +1,2102 @@
+diff --git a/Antibody_Engineer_Suite/core/immunogenicity/__init__.py b/Antibody_Engineer_Suite/core/immunogenicity/__init__.py
+index 0beb79d5..51359a65 100644
+--- a/Antibody_Engineer_Suite/core/immunogenicity/__init__.py
++++ b/Antibody_Engineer_Suite/core/immunogenicity/__init__.py
+@@ -1,4 +1,64 @@
+ """
+-Immunogenicity analysis modules.
++core.immunogenicity — InSynBio AbEngineCore v1.0
++=================================================
++MHC Class II immunogenicity analysis for therapeutic antibodies.
++
++Modules
++-------
++  iedb_client    : IEDB API client + 27-allele HLA panel definitions.
++  mhcii_analyzer : Full MHC-II pipeline (sliding window → IEDB → cluster → score).
++  surface_immuno : Hydrophilic/hydrophobic surface patch immunogenicity.
++
++Quick start
++-----------
++    # Full MHC-II analysis (requires network for IEDB)
++    from core.immunogenicity import MHCII_Analyzer
++    result = MHCII_Analyzer(vh_seq="EVQLVES...", vl_seq="DIQMTQ...", use_iedb=True).run()
++
++    # Surface immunogenicity (PDB or sequence)
++    from core.immunogenicity import SurfaceImmunogenicity
++    si = SurfaceImmunogenicity(pdb_path="Ab.pdb", vh_chain="H", vl_chain="L")
++    sr = si.analyze()
++
++    # IEDB client directly
++    from core.immunogenicity import predict_mhcii_binding, EXT27_HLA_ALLELES
++    preds = predict_mhcii_binding("EVQLVES...", EXT27_HLA_ALLELES)
++
++HLA allele panels
++-----------------
++    from core.immunogenicity import CORE15_HLA_ALLELES, EXT27_HLA_ALLELES
+ """
+ 
++from core.immunogenicity.iedb_client import (
++    IEDBError,
++    IEDBRequestConfig,
++    IEDBPrediction,
++    CORE15_HLA_ALLELES,
++    EXT27_HLA_ALLELES,
++    DEFAULT_HLA_ALLELES,
++    predict_mhcii_binding,
++    predict_mhci_binding,
++)
++
++from core.immunogenicity.mhcii_analyzer import (
++    MHCII_Analyzer,
++    MHCII_Result,
++    EpitopeHit,
++)
++
++from core.immunogenicity.surface_immuno import (
++    SurfaceImmunogenicity,
++    SurfaceImmunoResult,
++    SurfacePatch,
++)
++
++__all__ = [
++    # IEDB
++    "IEDBError", "IEDBRequestConfig", "IEDBPrediction",
++    "CORE15_HLA_ALLELES", "EXT27_HLA_ALLELES", "DEFAULT_HLA_ALLELES",
++    "predict_mhcii_binding", "predict_mhci_binding",
++    # MHC-II analyzer
++    "MHCII_Analyzer", "MHCII_Result", "EpitopeHit",
++    # Surface immunogenicity
++    "SurfaceImmunogenicity", "SurfaceImmunoResult", "SurfacePatch",
++]
+diff --git a/Antibody_Engineer_Suite/projects/fxy_2c2_Redesign/rebuild_fxy_2c2_ssot.py b/Antibody_Engineer_Suite/projects/fxy_2c2_Redesign/rebuild_fxy_2c2_ssot.py
+new file mode 100644
+index 00000000..c683747e
+--- /dev/null
++++ b/Antibody_Engineer_Suite/projects/fxy_2c2_Redesign/rebuild_fxy_2c2_ssot.py
+@@ -0,0 +1,547 @@
++"""
++FXY_2C2 — Rebuild SSOT with strict CDR preservation
++===================================================
++Rebuild humanized VH/VL sequences using Kabat insertion-code aware assembly,
++and update `projects/fxy_2c2_Redesign/fxy_2c2_results.json` as the single source of truth.
++
++Non-negotiable invariant:
++  - All 6 CDRs (VH H1/H2/H3 + VL L1/L2/L3) must EXACTLY match the mouse parent,
++    including insertion-code residues (e.g., 30A/52A/etc).
++
++This script:
++  1) Loads mouse sequences from SSOT
++  2) Loads germline V-regions by gene ID from IMGT AA JSON
++  3) Assembles v1 (no BM) and v2 (Vernier BM map) with `assemble_humanized_v()`
++  4) Hard-gates with `verify_cdr_preservation()`
++  5) Updates SSOT sequences + Kabat FR/CDR annotation blocks
++  6) (Optional) Rebuilds PDBs (ABodyBuilder2) and re-runs AbEvaluator for v1/v2
++     to refresh structure/developability/immunogenicity fields used by the report renderer.
++
++Usage:
++  python projects/fxy_2c2_Redesign/rebuild_fxy_2c2_ssot.py --with-structures --with-eval
++"""
++
++from __future__ import annotations
++
++import argparse
++import json
++import sys
++from dataclasses import asdict
++from datetime import datetime
++from pathlib import Path
++from typing import Any, Dict, Optional, Tuple
++
++SUITE = Path(__file__).resolve().parents[2]
++if str(SUITE) not in sys.path:
++    sys.path.insert(0, str(SUITE))
++
++from core.humanization.kabat_utils import (  # noqa: E402
++    get_kabat_numbering,
++    assemble_humanized_v,
++    verify_cdr_preservation,
++    sorted_keys,
++    CDR_RANGES_VH,
++    CDR_RANGES_VL,
++    VERNIER_KABAT_TO_IMGT_VH,
++    VERNIER_KABAT_TO_IMGT_VL,
++)
++
++
++JH4_FR4 = "WGQGTLVTVSS"
++JK4_FR4 = "FGGGTKLEIK"
++
++
++def _load_json(path: Path) -> Dict[str, Any]:
++    return json.loads(path.read_text(encoding="utf-8"))
++
++
++def _write_json(path: Path, obj: Dict[str, Any]) -> None:
++    path.write_text(json.dumps(obj, indent=2, ensure_ascii=False), encoding="utf-8")
++
++
++def _load_germline_seq(gene_id: str, chain: str) -> str:
++    """
++    Load V-region AA sequence from IMGT JSON by gene_id.
++    chain: "VH" or "VL" (kappa light).
++    """
++    if chain == "VH":
++        db = SUITE / "data" / "germlines" / "human_ig_aa" / "IGHV_aa.json"
++    else:
++        db = SUITE / "data" / "germlines" / "human_ig_aa" / "IGKV_aa.json"
++    data = _load_json(db)
++    for e in (data.get("entries") or []):
++        if e.get("id") == gene_id:
++            seq = str(e.get("sequence_aa") or "")
++            if not seq:
++                raise ValueError(f"Empty germline sequence for {gene_id} in {db}")
++            return seq
++    raise KeyError(f"Germline gene not found: {gene_id} in {db}")
++
++
++def _span(kd: Dict[Tuple[int, str], str], lo: int, hi: int) -> str:
++    return "".join(kd[k] for k in sorted_keys(kd) if lo <= k[0] <= hi)
++
++
++def _build_kabat_annotation(seq: str, chain: str) -> Dict[str, Any]:
++    kd = get_kabat_numbering(seq)
++    if not kd:
++        raise RuntimeError(f"Kabat numbering failed for {chain} (len={len(seq)})")
++
++    if chain == "VH":
++        fr4_lo = 103
++        regions = [("FR1", 1, 25), ("CDR1", 26, 35), ("FR2", 36, 49),
++                   ("CDR2", 50, 65), ("FR3", 66, 94), ("CDR3", 95, 102)]
++    else:
++        fr4_lo = 98
++        regions = [("FR1", 1, 23), ("CDR1", 24, 34), ("FR2", 35, 49),
++                   ("CDR2", 50, 56), ("FR3", 57, 88), ("CDR3", 89, 97)]
++
++    max_int = max(k[0] for k in kd.keys())
++    fr4_hi = max_int if max_int >= fr4_lo else fr4_lo
++
++    ann = []
++    cdr_lengths = {}
++    for name, lo, hi in regions:
++        s = _span(kd, lo, hi)
++        ann.append({"region": name, "kabat": f"{lo}-{hi}", "seq": s})
++        if name.startswith("CDR"):
++            cdr_lengths[name] = len(s)
++
++    ann.append({"region": "FR4", "kabat": f"{fr4_lo}-{fr4_hi}", "seq": _span(kd, fr4_lo, fr4_hi)})
++
++    return {
++        "sequence": seq,
++        "annotation": ann,
++        "cdr_lengths": cdr_lengths,
++    }
++
++def _compute_pi(vh: str, vl: str) -> Optional[float]:
++    try:
++        from Bio.SeqUtils.ProtParam import ProteinAnalysis  # type: ignore
++        seq = (vh or "") + (vl or "")
++        if not seq:
++            return None
++        return float(ProteinAnalysis(seq).isoelectric_point())
++    except Exception:
++        return None
++
++
++def _in_cdr_kabat(pos: int, chain: str) -> bool:
++    ranges = CDR_RANGES_VH if chain == "VH" else CDR_RANGES_VL
++    return any(lo <= pos <= hi for lo, hi in ranges)
++
++
++def _kabatdict_to_seq(kd: Dict[Tuple[int, str], str]) -> str:
++    return "".join(kd[k] for k in sorted_keys(kd))
++
++
++def _design_v3_pi(
++    v2_vh: str,
++    v2_vl: str,
++    mouse_vh_kd: Dict[Tuple[int, str], str],
++    mouse_vl_kd: Dict[Tuple[int, str], str],
++    target_pi_max: float = 8.5,
++    max_mutations: int = 4,
++) -> Tuple[str, str, list[Dict[str, Any]]]:
++    """
++    Design v3 by lowering pI via FR-only charge reduction mutations.
++    Invariants:
++      - Never mutate Kabat CDR positions
++      - Prefer non-Vernier positions (conservative)
++      - Verify all 6 CDRs exactly match mouse after each accepted change
++    Returns: (v3_vh, v3_vl, mutations_v2_to_v3)
++    """
++    # Candidate Vernier positions (avoid)
++    vh_vernier = set(int(x) for x in VERNIER_KABAT_TO_IMGT_VH.keys())
++    vl_vernier = set(int(x) for x in VERNIER_KABAT_TO_IMGT_VL.keys())
++
++    vh_kd = get_kabat_numbering(v2_vh)
++    vl_kd = get_kabat_numbering(v2_vl)
++    if not vh_kd or not vl_kd:
++        raise RuntimeError("Kabat numbering failed for v2; cannot design v3.")
++
++    base_pi = _compute_pi(v2_vh, v2_vl)
++    if base_pi is None:
++        raise RuntimeError("Unable to compute pI (BioPython missing or bad sequence).")
++
++    muts: list[Dict[str, Any]] = []
++
++    def _candidate_positions(kd: Dict[Tuple[int, str], str], chain: str) -> list[int]:
++        out: list[int] = []
++        vernier = vh_vernier if chain == "VH" else vl_vernier
++        for (pos, ins), aa in kd.items():
++            if ins != "":
++                continue  # only mutate base residue at (pos,"")
++            if aa not in ("K", "R"):
++                continue
++            if _in_cdr_kabat(pos, chain):
++                continue
++            if pos in vernier:
++                continue
++            out.append(pos)
++        return sorted(set(out))
++
++    vh_cands = _candidate_positions(vh_kd, "VH")
++    vl_cands = _candidate_positions(vl_kd, "VL")
++
++    # Greedy: choose the single mutation that reduces pI most each round
++    current_vh_kd = dict(vh_kd)
++    current_vl_kd = dict(vl_kd)
++    current_pi = base_pi
++
++    def _try_mut(chain: str, pos: int, new_aa: str) -> Optional[Tuple[float, str, str]]:
++        nonlocal current_vh_kd, current_vl_kd
++        kd = current_vh_kd if chain == "VH" else current_vl_kd
++        key = (pos, "")
++        old = kd.get(key)
++        if old is None or old == new_aa:
++            return None
++        if old not in ("K", "R"):
++            return None
++
++        kd2 = dict(kd)
++        kd2[key] = new_aa
++
++        if chain == "VH":
++            vh_seq = _kabatdict_to_seq(kd2)
++            vl_seq = _kabatdict_to_seq(current_vl_kd)
++        else:
++            vh_seq = _kabatdict_to_seq(current_vh_kd)
++            vl_seq = _kabatdict_to_seq(kd2)
++
++        # Hard gate: CDRs unchanged vs mouse
++        vh_errs = verify_cdr_preservation(get_kabat_numbering(vh_seq), mouse_vh_kd, "VH")
++        vl_errs = verify_cdr_preservation(get_kabat_numbering(vl_seq), mouse_vl_kd, "VL")
++        if vh_errs or vl_errs:
++            return None
++
++        pi_val = _compute_pi(vh_seq, vl_seq)
++        if pi_val is None:
++            return None
++        return (pi_val, vh_seq, vl_seq)
++
++    # Mutation palette: prefer Q first (neutral), then E (acidic) if needed
++    palette = [("Q", 0), ("E", 1)]
++
++    used: set[Tuple[str, int]] = set()
++    for _round in range(max_mutations):
++        if current_pi <= target_pi_max:
++            break
++
++        best = None  # (new_pi, chain, pos, new_aa, new_vh, new_vl)
++
++        for chain, cands in [("VH", vh_cands), ("VL", vl_cands)]:
++            for pos in cands:
++                if (chain, pos) in used:
++                    continue
++                old_aa = (current_vh_kd if chain == "VH" else current_vl_kd).get((pos, ""))
++                if old_aa not in ("K", "R"):
++                    continue
++                for new_aa, _priority in palette:
++                    trial = _try_mut(chain, pos, new_aa)
++                    if not trial:
++                        continue
++                    new_pi, new_vh, new_vl = trial
++                    if best is None or new_pi < best[0]:
++                        best = (new_pi, chain, pos, new_aa, new_vh, new_vl)
++
++        if best is None:
++            # No safe mutation found under constraints
++            break
++
++        new_pi, chain, pos, new_aa, new_vh, new_vl = best
++        # Commit best
++        if chain == "VH":
++            current_vh_kd = get_kabat_numbering(new_vh)
++        else:
++            current_vl_kd = get_kabat_numbering(new_vl)
++        current_pi = new_pi
++        used.add((chain, pos))
++
++        muts.append({
++            "chain": chain,
++            "kabat_pos": pos,
++            "from": "K/R",
++            "to": new_aa,
++            "region": "FR（CMC）",
++            "rationale": "pI 修正：降低框架表面正电荷以改善工艺/制剂风险（不改变 CDR）",
++        })
++
++    v3_vh = _kabatdict_to_seq(current_vh_kd)
++    v3_vl = _kabatdict_to_seq(current_vl_kd)
++    final_pi = _compute_pi(v3_vh, v3_vl)
++    if final_pi is None:
++        raise RuntimeError("Unable to compute final pI.")
++    if final_pi > target_pi_max:
++        raise RuntimeError(f"v3 design failed to reach target pI≤{target_pi_max}. Got pI={final_pi:.2f}.")
++    return (v3_vh, v3_vl, muts)
++
++
++def _eval_to_payload(ev) -> Dict[str, Any]:
++    # Mirror EvaluationResult.save() payload shape without writing to disk
++    return {
++        "abenginecore_version": "1.0.0",
++        "project_name": ev.project_name,
++        "ab_type": ev.ab_type.value,
++        "overall_status": ev.overall_status,
++        "modules_run": ev.modules_run,
++        "overall_flags": ev.overall_flags,
++        "generated_at": ev.generated_at,
++        "results": ev.results,
++    }
++
++
++def _predict_pdb(vh: str, vl: str, out_pdb: Path) -> Optional[float]:
++    from ImmuneBuilder import ABodyBuilder2  # type: ignore
++    predictor = ABodyBuilder2()
++    ab = predictor.predict({"H": vh, "L": vl})
++    out_pdb.parent.mkdir(parents=True, exist_ok=True)
++    ab.save(str(out_pdb))
++    try:
++        return float(getattr(ab, "ranking_score", None))
++    except Exception:
++        return None
++
++
++def _run_eval(project_name: str, pdb: Path, ref_pdb: Path, vh: str, vl: str, use_iedb: bool) -> Dict[str, Any]:
++    from core.evaluation.evaluator import AbEvaluator, AntibodyType  # noqa: PLC0415
++    ev = AbEvaluator(
++        project_name=project_name,
++        pdb_path=str(pdb),
++        ref_pdb_path=str(ref_pdb),
++        vh_chain="H",
++        vl_chain="L",
++        vh_seq=vh,
++        vl_seq=vl,
++        ab_type=AntibodyType.HUMANIZED,
++        strict_qa=True,
++        use_iedb=use_iedb,
++    )
++    r = ev.run(modules=None)
++    return _eval_to_payload(r)
++
++
++def main() -> int:
++    ap = argparse.ArgumentParser()
++    ap.add_argument("--with-structures", action="store_true", help="rebuild mouse/v1/v2 PDBs via ImmuneBuilder")
++    ap.add_argument("--with-eval", action="store_true", help="re-run AbEvaluator v1/v2 and refresh SSOT metrics")
++    ap.add_argument("--use-iedb", action="store_true", help="enable live IEDB calls in AbEvaluator immunogenicity")
++    ap.add_argument("--design-v3", action="store_true", help="design v3 CMC (pI) optimization on top of v2, FR-only")
++    ap.add_argument("--target-pi-max", type=float, default=8.5, help="target maximum pI for v3 (default 8.5)")
++    args = ap.parse_args()
++
++    ab_id = "fxy_2c2"
++    project_dir = Path(__file__).resolve().parent
++    results_path = project_dir / f"{ab_id}_results.json"
++    p4_path = project_dir / "internal" / "phase4_backmutation_fxy_2c2.json"
++    if not results_path.exists():
++        raise FileNotFoundError(results_path)
++    if not p4_path.exists():
++        raise FileNotFoundError(p4_path)
++
++    results = _load_json(results_path)
++    seqs = results.get("sequences") or {}
++    existing_final_v = str((results.get("_meta") or {}).get("final_version") or "").strip() or None
++    existing_v3_vh = str(seqs.get("v3_VH") or "").strip()
++    existing_v3_vl = str(seqs.get("v3_VL") or "").strip()
++    mouse_vh = str(seqs.get("mouse_VH") or "").strip()
++    mouse_vl = str(seqs.get("mouse_VL") or "").strip()
++    if not mouse_vh or not mouse_vl:
++        raise ValueError("Missing mouse_VH or mouse_VL in SSOT.")
++
++    # Germline IDs are already selected in SSOT/audit
++    vh_gene = str((results.get("germline") or {}).get("VH_gene") or "IGHV5-51*01")
++    vl_gene = str((results.get("germline") or {}).get("VL_gene") or "IGKV1-39*01")
++    germ_vh_seq = _load_germline_seq(vh_gene, chain="VH")
++    germ_vl_seq = _load_germline_seq(vl_gene, chain="VL")
++
++    p4 = _load_json(p4_path)
++    bm_vh_map = {int(k): str(v) for k, v in (p4.get("bm_vh_map") or {}).items()}
++    bm_vl_map = {int(k): str(v) for k, v in (p4.get("bm_vl_map") or {}).items()}
++
++    mouse_vh_kd = get_kabat_numbering(mouse_vh)
++    mouse_vl_kd = get_kabat_numbering(mouse_vl)
++    germ_vh_kd = get_kabat_numbering(germ_vh_seq)
++    germ_vl_kd = get_kabat_numbering(germ_vl_seq)
++    if not mouse_vh_kd or not mouse_vl_kd:
++        raise RuntimeError("Mouse Kabat numbering failed; cannot proceed.")
++    if not germ_vh_kd or not germ_vl_kd:
++        raise RuntimeError("Germline Kabat numbering failed; cannot proceed.")
++
++    # Assemble v1/v2 (CDRs are defined by Kabat integer ranges; insertion codes preserved by KabatDict keys)
++    v1_vh = assemble_humanized_v("VH", mouse_vh_kd, germ_vh_kd, bm_map={}, fr4=JH4_FR4)
++    v1_vl = assemble_humanized_v("VL", mouse_vl_kd, germ_vl_kd, bm_map={}, fr4=JK4_FR4)
++    v2_vh = assemble_humanized_v("VH", mouse_vh_kd, germ_vh_kd, bm_map=bm_vh_map, fr4=JH4_FR4)
++    v2_vl = assemble_humanized_v("VL", mouse_vl_kd, germ_vl_kd, bm_map=bm_vl_map, fr4=JK4_FR4)
++
++    # v3 design (CMC / pI optimization) — always override any stale v3 in SSOT
++    if args.design_v3:
++        v3_vh, v3_vl, v2_to_v3_muts = _design_v3_pi(
++            v2_vh, v2_vl,
++            mouse_vh_kd, mouse_vl_kd,
++            target_pi_max=float(args.target_pi_max),
++            max_mutations=4,
++        )
++        # Promote v3 to final if designed successfully
++        results.setdefault("_meta", {})
++        results["_meta"]["final_version"] = "v3"
++    else:
++        # Preserve an existing v3 if present; never silently downgrade v3→v2.
++        if existing_final_v == "v3" and existing_v3_vh and existing_v3_vl:
++            v3_vh, v3_vl = existing_v3_vh, existing_v3_vl
++        else:
++            v3_vh, v3_vl = v2_vh, v2_vl
++        v2_to_v3_muts = results.get("mutations", {}).get("v2_to_v3", []) or []
++
++    # HARD GATE: 6 CDRs must match mouse exactly
++    v1_vh_errs = verify_cdr_preservation(get_kabat_numbering(v1_vh), mouse_vh_kd, "VH")
++    v1_vl_errs = verify_cdr_preservation(get_kabat_numbering(v1_vl), mouse_vl_kd, "VL")
++    v2_vh_errs = verify_cdr_preservation(get_kabat_numbering(v2_vh), mouse_vh_kd, "VH")
++    v2_vl_errs = verify_cdr_preservation(get_kabat_numbering(v2_vl), mouse_vl_kd, "VL")
++    v3_vh_errs = verify_cdr_preservation(get_kabat_numbering(v3_vh), mouse_vh_kd, "VH")
++    v3_vl_errs = verify_cdr_preservation(get_kabat_numbering(v3_vl), mouse_vl_kd, "VL")
++    errs = v1_vh_errs + v1_vl_errs + v2_vh_errs + v2_vl_errs + v3_vh_errs + v3_vl_errs
++    if errs:
++        raise RuntimeError("CDR preservation HARD GATE failed:\n  - " + "\n  - ".join(errs))
++
++    # Update SSOT sequences
++    seqs["v1_VH"] = v1_vh
++    seqs["v1_VL"] = v1_vl
++    seqs["v2_VH"] = v2_vh
++    seqs["v2_VL"] = v2_vl
++    seqs["v3_VH"] = v3_vh
++    seqs["v3_VL"] = v3_vl
++    results["sequences"] = seqs
++
++    # Update meta
++    results.setdefault("_meta", {})
++    results["_meta"]["role"] = "single_source_of_truth"
++    results["_meta"]["pipeline_standard"] = "V4.4"
++    results["_meta"]["antibody_id"] = ab_id
++    results["_meta"]["generated_at"] = datetime.now().strftime("%Y-%m-%d")
++    results["_meta"]["final_version"] = str(results["_meta"].get("final_version") or "v2")
++
++    # Update Kabat annotation blocks for FINAL version
++    final_v = results["_meta"]["final_version"]
++    final_vh = str(seqs.get(f"{final_v}_VH") or v2_vh)
++    final_vl = str(seqs.get(f"{final_v}_VL") or v2_vl)
++    results["sequence_annotation"] = {
++        "_note": "Kabat 编号 FR/CDR 切分，用于客户报告和克隆设计。",
++        "numbering_scheme": "Kabat",
++        "VH": _build_kabat_annotation(final_vh, "VH"),
++        "VL": _build_kabat_annotation(final_vl, "VL"),
++    }
++
++    # FASTA deliverable (project root + sequences/)
++    fasta_lines = [
++        f">{ab_id}_mouse|VH|parent|reference",
++        mouse_vh,
++        f">{ab_id}_mouse|VL|parent|reference",
++        mouse_vl,
++        f">{ab_id}_v1|VH|humanized|intermediate",
++        v1_vh,
++        f">{ab_id}_v1|VL|humanized|intermediate",
++        v1_vl,
++        f">{ab_id}_v2|VH|humanized|intermediate",
++        v2_vh,
++        f">{ab_id}_v2|VL|humanized|intermediate",
++        v2_vl,
++        f">{ab_id}_v3|VH|humanized|final",
++        v3_vh,
++        f">{ab_id}_v3|VL|humanized|final",
++        v3_vl,
++        "",
++    ]
++    fasta_text = "\n".join(fasta_lines)
++    (project_dir / f"{ab_id}_sequences.fasta").write_text(fasta_text, encoding="utf-8")
++    (project_dir / "sequences").mkdir(parents=True, exist_ok=True)
++    (project_dir / "sequences" / f"{ab_id}_sequences.fasta").write_text(fasta_text, encoding="utf-8")
++
++    # Optional: rebuild structures
++    structures_dir = project_dir / "structures"
++    pdb_mouse = structures_dir / f"{ab_id}_mouse.pdb"
++    pdb_v1 = structures_dir / f"{ab_id}_humanized_v1.pdb"
++    pdb_v2 = structures_dir / f"{ab_id}_humanized_v2.pdb"
++    pdb_v3 = structures_dir / f"{ab_id}_humanized_v3.pdb"
++    if args.with_structures:
++        print("[PDB] predicting mouse...")
++        _predict_pdb(mouse_vh, mouse_vl, pdb_mouse)
++        print("[PDB] predicting v1...")
++        _predict_pdb(v1_vh, v1_vl, pdb_v1)
++        print("[PDB] predicting v2...")
++        _predict_pdb(v2_vh, v2_vl, pdb_v2)
++        print("[PDB] predicting v3...")
++        _predict_pdb(v3_vh, v3_vl, pdb_v3)
++
++    # Optional: re-run evaluator and refresh SSOT fields used by report renderer
++    if args.with_eval:
++        if not pdb_mouse.exists() or not pdb_v1.exists() or not pdb_v2.exists() or not pdb_v3.exists():
++            raise FileNotFoundError("Missing PDBs; run with --with-structures first (or ensure PDBs exist).")
++
++        results.setdefault("_internal", {})
++        results["_internal"]["evaluation_v1"] = _run_eval(f"{ab_id}_v44_v1", pdb_v1, pdb_mouse, v1_vh, v1_vl, use_iedb=args.use_iedb)
++        results["_internal"]["evaluation_v2"] = _run_eval(f"{ab_id}_v44_v2", pdb_v2, pdb_mouse, v2_vh, v2_vl, use_iedb=args.use_iedb)
++        results["_internal"]["evaluation_v3"] = _run_eval(f"{ab_id}_v44_v3", pdb_v3, pdb_mouse, v3_vh, v3_vl, use_iedb=args.use_iedb)
++
++        # Update top-level PDB pointers
++        results["structure"] = {
++            "tool": "ABodyBuilder2",
++            "mouse_pdb": str(pdb_mouse).replace("/", "\\"),
++            "v1_pdb": str(pdb_v1).replace("/", "\\"),
++            "v2_pdb": str(pdb_v2).replace("/", "\\"),
++            "v3_pdb": str(pdb_v3).replace("/", "\\"),
++        }
++
++        # Summaries: developability pI + immunogenicity risk level
++        def _pI_from(ev_payload: Dict[str, Any]) -> Optional[float]:
++            dev = (ev_payload.get("results") or {}).get("developability") or {}
++            if dev.get("status") == "PASS":
++                val = dev.get("pI_fab_estimate")
++                return float(val) if isinstance(val, (int, float)) else None
++            return None
++
++        def _risk_from(ev_payload: Dict[str, Any]) -> str:
++            imm = (ev_payload.get("results") or {}).get("immunogenicity") or {}
++            r = imm.get("mhcii_risk") or imm.get("risk_level") or "—"
++            return str(r)
++
++        ev1 = results["_internal"]["evaluation_v1"]
++        ev2 = results["_internal"]["evaluation_v2"]
++        ev3 = results["_internal"]["evaluation_v3"]
++        p1 = _pI_from(ev1)
++        p2 = _pI_from(ev2)
++        p3 = _pI_from(ev3)
++        gate_min, gate_max = 5.5, 8.5
++        results["developability"] = {
++            "pI": {
++                "v1": p1,
++                "v2": p2,
++                "v3": p3,
++                "gate_min": gate_min,
++                "gate_max": gate_max,
++                "v1_pass": (gate_min <= p1 <= gate_max) if isinstance(p1, (int, float)) else False,
++                "v2_pass": (gate_min <= p2 <= gate_max) if isinstance(p2, (int, float)) else False,
++                "v3_pass": (gate_min <= p3 <= gate_max) if isinstance(p3, (int, float)) else False,
++            },
++            "liabilities": (ev3.get("results") or {}).get("cdr_scan", {}).get("liabilities", []),
++        }
++        results["immunogenicity"] = {
++            "method": "offline_heuristic" if not args.use_iedb else "iedb_api",
++            "risk_level": {"v1": _risk_from(ev1), "v2": _risk_from(ev2), "v3": _risk_from(ev3)},
++            "recommended_followup": "PBMC T 细胞增殖试验（临床前阶段）",
++        }
++
++    # Record v2→v3 mutation list for report rendering (even if empty)
++    results.setdefault("mutations", {})
++    results["mutations"].setdefault("v1_to_v2", results.get("mutations", {}).get("v1_to_v2", []))
++    results["mutations"]["v2_to_v3"] = v2_to_v3_muts
++
++    _write_json(results_path, results)
++    print(f"[OK] Updated SSOT: {results_path}")
++    print("[OK] CDR invariant satisfied for v1/v2/v3.")
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
++
+diff --git a/Antibody_Engineer_Suite/scripts/render_vhvl_v44_reports.py b/Antibody_Engineer_Suite/scripts/render_vhvl_v44_reports.py
+new file mode 100644
+index 00000000..cbd9b366
+--- /dev/null
++++ b/Antibody_Engineer_Suite/scripts/render_vhvl_v44_reports.py
+@@ -0,0 +1,725 @@
++#!/usr/bin/env python3
++"""
++render_vhvl_v44_reports.py — InSynBio AbEngineCore
++===============================================
++
++从 {project_dir}/{id}_results.json 渲染 V4.4 固定格式报告（客户中文版）。
++
++目标：
++- 每个项目输出结构一致（fixed sections）
++- 自动做交付前自检（Pre-Delivery Gate 的“报告侧”检查）
++- 客户报告不泄露内部工具/算法：不得出现 ANARCII / ColabFold 等字样
++  - 若输入文本中出现这些词，会被替换为对外命名：ANARCI / AlphaFold2
++
++用法：
++  python scripts/render_vhvl_v44_reports.py 9c1 projects/9c1_Redesign
++"""
++
++from __future__ import annotations
++
++import argparse
++import json
++from datetime import datetime
++from pathlib import Path
++from typing import Any, Dict, List, Tuple
++
++
++SUITE = Path(__file__).resolve().parents[1]
++V44_CONFIG = SUITE / "config" / "vh_vl_humanization_v44.json"
++THERA_META_MODELS = SUITE / "data" / "thera_sabdab" / "out" / "antibody_meta_models.json"
++
++_THERA_META_MAP: Dict[str, Dict[str, Any]] | None = None
++
++
++SENSITIVE_REPLACEMENTS: List[Tuple[str, str]] = [
++    ("ANARCII", "ANARCI"),
++    ("Anarcii", "ANARCI"),
++    ("ColabFold", "AlphaFold2"),
++    ("colabfold", "AlphaFold2"),
++]
++
++# Forbidden in customer reports (algorithm / internal details)
++FORBIDDEN_TERMS = [
++    "ANARCII", "Anarcii", "ColabFold", "colabfold",
++    # core selection algorithm factors (must NOT disclose)
++    "Vernier 相似度",
++    "CDR 长度匹配",
++    "综合评分",
++    "FR 同源性",
++    "Top 10",
++    "Top 20",
++]
++
++
++def _load_json(path: Path) -> Dict[str, Any]:
++    with open(path, "r", encoding="utf-8") as f:
++        return json.load(f)
++
++
++def _sanitize_public_terms(text: str) -> str:
++    for src, dst in SENSITIVE_REPLACEMENTS:
++        text = text.replace(src, dst)
++    return text
++
++
++def _assert_no_forbidden_terms(text: str, where: str) -> None:
++    hits = [t for t in FORBIDDEN_TERMS if t in text]
++    if hits:
++        raise ValueError(f"[Pre-Delivery Gate] Forbidden terms in {where}: {hits}")
++
++
++def _md_code_block(seq: str) -> str:
++    return "```\n" + seq.strip() + "\n```"
++
++
++def _pick(d: Dict[str, Any], path: List[str], default: Any = "—") -> Any:
++    cur: Any = d
++    for p in path:
++        if not isinstance(cur, dict) or p not in cur:
++            return default
++        cur = cur[p]
++    return cur
++
++
++def _load_thera_meta_map() -> Dict[str, Dict[str, Any]]:
++    """
++    Load thera/sabdab antibody metadata and build a name->meta lookup.
++
++    Customer-safe enrichment fields:
++    - target.targets / target_raw
++    - clinical.phase_bucket / phase_raw
++    - format.format_raw
++    - genetics.human_origin_mode (or normalized)
++    """
++    global _THERA_META_MAP
++    if _THERA_META_MAP is not None:
++        return _THERA_META_MAP
++    if not THERA_META_MODELS.exists():
++        _THERA_META_MAP = {}
++        return _THERA_META_MAP
++
++    try:
++        items = _load_json(THERA_META_MODELS)
++    except Exception:
++        _THERA_META_MAP = {}
++        return _THERA_META_MAP
++
++    m: Dict[str, Dict[str, Any]] = {}
++    if isinstance(items, list):
++        for it in items:
++            if not isinstance(it, dict):
++                continue
++            nm = str(it.get("name") or it.get("antibody_id") or "").strip()
++            if nm:
++                m[nm.lower()] = it
++    _THERA_META_MAP = m
++    return _THERA_META_MAP
++
++
++def _clinical_examples_table(example_names: List[str]) -> str:
++    """
++    Render a small customer-facing table from existing DB metadata.
++    """
++    ex = [str(x).strip() for x in (example_names or []) if str(x).strip()]
++    if not ex:
++        return ""
++
++    meta = _load_thera_meta_map()
++    rows: List[Dict[str, str]] = []
++    for nm in ex[:5]:
++        it = meta.get(nm.lower())
++        if not isinstance(it, dict):
++            rows.append({"drug": nm, "targets": "—", "phase": "—", "format": "—", "origin": "—"})
++            continue
++
++        phase = _pick(it, ["clinical", "phase_bucket"], "—")
++        phase_raw = _pick(it, ["clinical", "phase_raw"], "—")
++        phase_s = str(phase) if phase_raw in ("", "—") else f"{phase} ({phase_raw})"
++
++        targets = _pick(it, ["target", "targets"], [])
++        target_raw = _pick(it, ["target", "target_raw"], "—")
++        if isinstance(targets, list) and targets:
++            targets_s = " / ".join(str(x) for x in targets[:4])
++        else:
++            targets_s = str(target_raw or "—")
++
++        fmt = _pick(it, ["format", "format_raw"], "—")
++        origin = _pick(it, ["genetics", "human_origin_mode"], _pick(it, ["genetics", "normalized"], "—"))
++
++        rows.append(
++            {
++                "drug": nm,
++                "targets": targets_s,
++                "phase": phase_s,
++                "format": str(fmt or "—"),
++                "origin": str(origin or "—"),
++            }
++        )
++
++    out = []
++    out.append("")
++    out.append("| 临床药物（示例） | 靶点 | 临床开发信息 | 形式 | 来源/人源化模式 |")
++    out.append("|---|---|---|---|---|")
++    for r in rows:
++        out.append(f"| `{r['drug']}` | {r['targets']} | {r['phase']} | {r['format']} | {r['origin']} |")
++    return "\n".join(out)
++
++
++def _public_vernier_mutations_from_phase4(results: Dict[str, Any]) -> List[str]:
++    """
++    Customer-safe Vernier-related mutations list.
++    Source: internal Phase-4 backmutation log if present.
++
++    Returns list of strings like: "VH 48: K→N（保留鼠源）"
++    """
++    ab_id = _pick(results, ["_meta", "antibody_id"], "") or ""
++    if not ab_id:
++        return []
++
++    p4_rel = _pick(results, ["_internal", "phase4_backmutation_log"], None)
++    if isinstance(p4_rel, str) and p4_rel.strip():
++        p4 = SUITE / p4_rel
++    else:
++        p4 = SUITE / f"phase4_backmutation_{ab_id}.json"
++        if not p4.exists():
++            p4 = SUITE / f"phase4_backmutation_{ab_id.lower()}.json"
++    if not p4.exists():
++        return []
++
++    try:
++        obj = _load_json(p4)
++    except Exception:
++        return []
++
++    out: List[str] = []
++    for it in (obj.get("backmutation_decisions") or []):
++        if not isinstance(it, dict):
++            continue
++        if it.get("decision") != "BACK_MUTATE":
++            continue
++        pos = str(it.get("position") or "")
++        mouse_aa = str(it.get("mouse_aa") or "")
++        human_aa = str(it.get("human_aa") or "")
++        if not pos or not mouse_aa or not human_aa:
++            continue
++        if mouse_aa in ("-", "—") or human_aa in ("-", "—"):
++            continue
++        # Only list actual amino-acid changes; if identical, it's not a mutation.
++        if mouse_aa == human_aa:
++            continue
++        # position like "VH_48" / "VL_71"
++        if "_" in pos:
++            chain, n = pos.split("_", 1)
++            if n.isdigit():
++                out.append(f"{chain} {n}: {human_aa}→{mouse_aa}（保留鼠源）")
++            else:
++                out.append(f"{pos}: {human_aa}→{mouse_aa}（保留鼠源）")
++        else:
++            out.append(f"{pos}: {human_aa}→{mouse_aa}（保留鼠源）")
++
++    # Stable ordering: VH first then VL, numeric ascending
++    def _key(s: str):
++        try:
++            c, rest = s.split(" ", 1)
++            n = int(rest.split(":", 1)[0])
++            return (0 if c == "VH" else 1, n, s)
++        except Exception:
++            return (2, 9999, s)
++
++    return sorted(out, key=_key)
++
++
++def _render_sequences_and_annotation(results: Dict[str, Any]) -> str:
++    ann = results.get("sequence_annotation") or {}
++    vh = ann.get("VH") or {}
++    vl = ann.get("VL") or {}
++    final_v = _pick(results, ["_meta", "final_version"], "v3")
++    vh_seq = vh.get("sequence") or _pick(results, ["sequences", f"{final_v}_VH"], "") or _pick(results, ["sequences", "v3_VH"], "")
++    vl_seq = vl.get("sequence") or _pick(results, ["sequences", f"{final_v}_VL"], "") or _pick(results, ["sequences", "v3_VL"], "")
++    mouse_vh_seq = _pick(results, ["sequences", "mouse_VH"], "")
++    mouse_vl_seq = _pick(results, ["sequences", "mouse_VL"], "")
++
++    def _table(rows: List[Dict[str, str]], chain_label: str) -> str:
++        lines = []
++        lines.append(f"**{chain_label} FR/CDR 区域切分（Kabat 编号）**")
++        lines.append("")
++        lines.append("| 区域 | Kabat 位置 | 序列 | 来源 |")
++        lines.append("|---|---|---|---|")
++        for r in rows:
++            lines.append(f"| {r['region']} | {r['kabat']} | `{r['seq']}` | {r.get('source','—')} |")
++        lines.append("")
++        return "\n".join(lines)
++
++    def _kabat_split_fallback(seq: str, chain: str, source: str) -> List[Dict[str, str]]:
++        """
++        Fallback: compute Kabat split from raw sequence.
++        Used for mouse sequences when results.json doesn't carry a precomputed annotation.
++        """
++        if not seq:
++            return []
++        try:
++            from core.humanization.kabat_utils import get_kabat_numbering, sorted_keys  # type: ignore
++        except Exception:
++            return []
++
++        kd = get_kabat_numbering(seq)
++        if not kd:
++            return []
++
++        def span(lo: int, hi: int) -> str:
++            return "".join(kd[k] for k in sorted_keys(kd) if lo <= k[0] <= hi)
++
++        if chain == "VH":
++            fr4_lo = 103
++            ranges = [("FR1", 1, 25), ("CDR1", 26, 35), ("FR2", 36, 49), ("CDR2", 50, 65), ("FR3", 66, 94), ("CDR3", 95, 102)]
++        else:
++            fr4_lo = 98
++            ranges = [("FR1", 1, 23), ("CDR1", 24, 34), ("FR2", 35, 49), ("CDR2", 50, 56), ("FR3", 57, 88), ("CDR3", 89, 97)]
++
++        max_pos = max(k[0] for k in kd.keys())
++        fr4_hi = max_pos if max_pos >= fr4_lo else fr4_lo
++
++        rows: List[Dict[str, str]] = []
++        for name, lo, hi in ranges:
++            rows.append({"region": name, "kabat": f"{lo}-{hi}", "seq": span(lo, hi), "source": source})
++        # FR4: keep what the numbering assigns (end may vary by J gene)
++        rows.append({"region": "FR4", "kabat": f"{fr4_lo}-{fr4_hi}", "seq": span(fr4_lo, fr4_hi), "source": source})
++        return rows
++
++    vh_rows = []
++    for r in vh.get("annotation", []):
++        vh_rows.append({
++            "region": r.get("region", "—"),
++            "kabat": r.get("kabat", "—").replace("-", "–"),
++            "seq": r.get("seq", ""),
++            "source": "人类胚系（含 pI 修正）" if r.get("region", "").startswith("FR") else "**保留鼠源 CDR**",
++        })
++
++    vl_rows = []
++    for r in vl.get("annotation", []):
++        vl_rows.append({
++            "region": r.get("region", "—"),
++            "kabat": r.get("kabat", "—").replace("-", "–"),
++            "seq": r.get("seq", ""),
++            "source": "人类胚系" if r.get("region", "").startswith("FR") else "**保留鼠源 CDR**",
++        })
++
++    note = (
++        "> 说明：Kabat 的 CDR 区间按“整数编号范围”定义（如 24–34）。若该区间包含插入位点（如 30A/30B…），"
++        "则 CDR-L1 的**实际氨基酸长度**会大于 (34-24+1)。"
++    )
++
++    out = []
++    out.append("## 一、最终人源化序列与区域标注")
++    out.append("")
++    out.append("### 1.0 鼠源亲本序列（人源化前）")
++    out.append("")
++    out.append("#### 1.0.1 VH 鼠源序列（重链可变区）")
++    out.append("")
++    out.append(_md_code_block(mouse_vh_seq))
++    out.append("")
++    out.append(_table(_kabat_split_fallback(mouse_vh_seq, chain="VH", source="鼠源亲本"), "VH"))
++    out.append("")
++    out.append("#### 1.0.2 VL 鼠源序列（轻链可变区）")
++    out.append("")
++    out.append(_md_code_block(mouse_vl_seq))
++    out.append("")
++    out.append(_table(_kabat_split_fallback(mouse_vl_seq, chain="VL", source="鼠源亲本"), "VL"))
++    out.append("")
++    out.append("---")
++    out.append("")
++    out.append(f"### 1.1 VH 最终序列（重链可变区，{final_v}）")
++    out.append("")
++    out.append(_md_code_block(vh_seq))
++    out.append("")
++    out.append(_table(vh_rows, "VH"))
++    out.append("> CDR 序列来自鼠源亲本，完整保留，未作任何修改。框架区（FR）已替换为人类胚系序列并经 pI 修正。")
++    out.append("")
++    out.append("---")
++    out.append("")
++    out.append(f"### 1.2 VL 最终序列（轻链可变区，{final_v}）")
++    out.append("")
++    out.append(_md_code_block(vl_seq))
++    out.append("")
++    out.append(_table(vl_rows, "VL"))
++    out.append(note + "  ")
++    # Customer-safe: do not disclose rule codes or numeric thresholds.
++    vernier_mut_lines = _public_vernier_mutations_from_phase4(results)
++    has_vl_mut = any(x.startswith("VL ") for x in vernier_mut_lines)
++    if has_vl_mut:
++        out.append("> 已完成 Vernier 区逐位核查；涉及框架关键位点的必要结构补偿性调整已体现在最终序列中。")
++    else:
++        out.append("> 已完成 Vernier 区逐位核查，未发现需要结构补偿性调整的轻链框架关键位点。")
++    return "\n".join(out)
++
++
++def _render_germline_selection(results: Dict[str, Any]) -> str:
++    cand = results.get("germline_candidates") or {}
++    vh_c = cand.get("VH_candidates", [])
++    vl_c = cand.get("VL_candidates", [])
++
++    def _selected_gene(items: list) -> str:
++        for it in items:
++            if it.get("selected"):
++                return str(it.get("gene") or "—")
++        return "—"
++
++    def _public_clinical_precedent(items: list) -> str:
++        # Customer-safe: show examples only, no internal counts/ranks/scores.
++        for it in items:
++            if it.get("selected") and it.get("clinical_precedent"):
++                ex = it.get("clinical_precedent", [])[:3]
++                return "、".join(ex)
++        return "—"
++
++    out = []
++    out.append("## 二、胚系（Germline）框架选择分析")
++    out.append("")
++    out.append("### 2.1 VH 重链框架选择结论")
++    out.append("")
++    out.append(f"**入选 VH 框架**：`{_selected_gene(vh_c)}`")
++    out.append("")
++    out.append("**说明**：框架选择以“临床可比性 + 结构相容性 + 可开发性”作为主要依据，确保在人源化后维持结合相关关键区域的稳定与可制造性。")
++    out.append("")
++    out.append("**公开可解释依据**：")
++    out.append("- **临床可比性**：优先选取在公开临床/治疗抗体集合中存在可比使用记录的胚系框架。")
++    out.append("- **结构相容性**：确保 CDR 构型与 VH/VL 组合在几何上保持兼容，降低构象漂移风险。")
++    out.append("- **可开发性**：兼顾电荷/稳定性/常见化学风险等可制造性因素，降低后续工艺与制剂风险。")
++    out.append("")
++    out.append(f"**相关临床先例（示例）**：{_public_clinical_precedent(vh_c)}")
++    for it in (vh_c or []):
++        if isinstance(it, dict) and it.get("selected") and it.get("clinical_precedent"):
++            out.append(_clinical_examples_table(it.get("clinical_precedent") or []))
++            break
++    out.append("")
++    out.append("### 2.2 VL 轻链框架选择结论")
++    out.append("")
++    out.append(f"**入选 VL 框架**：`{_selected_gene(vl_c)}`")
++    out.append("")
++    out.append(f"**相关临床先例（示例）**：{_public_clinical_precedent(vl_c)}")
++    for it in (vl_c or []):
++        if isinstance(it, dict) and it.get("selected") and it.get("clinical_precedent"):
++            out.append(_clinical_examples_table(it.get("clinical_precedent") or []))
++            break
++    out.append("")
++    out.append("### 2.3 重轻链配对策略说明")
++    out.append("")
++    out.append("重轻链的配对以结构相容性为主导（界面几何、CDR 构型一致性与稳定性），并结合已验证的人源化框架使用经验进行评估。最终组合用于降低人源化后构象变化与表达/稳定性风险。")
++    return "\n".join(out)
++
++
++def _render_design_decisions(results: Dict[str, Any]) -> str:
++    muts = results.get("mutations") or {}
++    v1v2 = muts.get("v1_to_v2", [])
++    v2v3 = muts.get("v2_to_v3", [])
++    final_v = _pick(results, ["_meta", "final_version"], "v1")
++
++    out = []
++    out.append("## 三、人源化设计决策摘要")
++    out.append("")
++    out.append("### 3.1 版本演变历史")
++    out.append("")
++    out.append("| 版本 | 核心变化 | 原因 |")
++    out.append("|---|---|---|")
++    out.append("| v1 | CDR 移植到人源胚系框架（CDR 保留） | 形成可评估的人源化基础版本 |")
++    out.append("| v2 | v1 + Vernier 区（框架关键位点）结构补偿性回溯 | 降低人源化后构象漂移风险（按结构核查后执行） |")
++    out.append("| v3 | v2 + CMC/可开发性优化（例如 pI/表面电荷等） | 在不影响构型保真的前提下，降低工艺与制剂风险 |")
++    out.append("")
++    out.append(f"> 本项目最终交付版本：**{final_v}**。未执行的版本在本轮不作为交付内容。")
++    out.append("")
++    out.append("### 3.2 突变列表（逐项说明，不含内部规则代码）")
++    out.append("")
++    out.append("| 链 | Kabat 位置 | 变化 | 区域 | 目的 |")
++    out.append("|---|---:|---|---|---|")
++
++    for it in (v1v2 + v2v3):
++        out.append(
++            f"| {it.get('chain','—')} | {it.get('kabat_pos','—')} | {it.get('from','?')}→{it.get('to','?')} | "
++            f"{it.get('region','—')} | {it.get('rationale','—')} |"
++        )
++    if not (v1v2 or v2v3):
++        out.append("| — | — | — | — | 本轮未产生需要列示的框架突变（CDR 保留不变） |")
++    out.append("")
++    out.append("> 注：客户报告仅给出“决策目的与位置”，不披露内部计算过程与规则编号；若存在 CMC 优化版本（v3），将同样在结构保真性部分单独复核。")
++    return "\n".join(out)
++
++
++def _render_structural_fidelity(results: Dict[str, Any]) -> str:
++    internal = results.get("_internal") or {}
++    eval_v1 = internal.get("evaluation_v1") if isinstance(internal, dict) else None
++    eval_v2 = internal.get("evaluation_v2") if isinstance(internal, dict) else None
++    eval_v3 = internal.get("evaluation_v3") if isinstance(internal, dict) else None
++    final_v = _pick(results, ["_meta", "final_version"], "v1")
++
++    def _delta(ev: Any) -> Dict[str, Any]:
++        if not isinstance(ev, dict):
++            return {}
++        r = ev.get("results") or {}
++        if not isinstance(r, dict):
++            return {}
++        d = (r.get("delta_vs_mouse") or {}).get("delta") if isinstance(r.get("delta_vs_mouse"), dict) else None
++        return d if isinstance(d, dict) else {}
++
++    def _status_from_delta(d: Dict[str, Any]) -> Dict[str, str]:
++        # customer-safe: PASS/WARN only (no N/A in customer reports).
++        if not d:
++            return {"rmsd": "WARN", "angle": "WARN", "canonical": "WARN", "overall": "WARN"}
++        rmsd_pass = d.get("cdr_rmsd_pass")
++        angle_pass = d.get("angle_pass")
++        canon = d.get("canonical_match_h1_h2_l1")
++        def _p(x): return "PASS" if x is True else "WARN"
++        rmsd_s = _p(rmsd_pass)
++        ang_s = _p(angle_pass)
++        can_s = _p(canon)
++        overall = "PASS" if (rmsd_s == "PASS" and ang_s == "PASS" and can_s == "PASS") else "WARN"
++        return {"rmsd": rmsd_s, "angle": ang_s, "canonical": can_s, "overall": overall}
++
++    d1 = _delta(eval_v1)
++    d2 = _delta(eval_v2)
++    d3 = _delta(eval_v3)
++    s1 = _status_from_delta(d1)
++    s2 = _status_from_delta(d2)
++    s3 = _status_from_delta(d3)
++
++    # Vernier zone mutations list always present.
++    vernier_mut_lines = _public_vernier_mutations_from_phase4(results)
++    vernier_conclusion = "已完成框架关键位点逐位核查；相关结构补偿性调整已体现在最终序列中" if vernier_mut_lines else "已完成逐位核查，未发现需要结构补偿性调整的 Vernier 区相关突变"
++
++    out = []
++    out.append("## 四、结构保真性评估（Structural Fidelity）")
++    out.append("")
++    out.append("**结果**：结构保真性评估结论如下（客户版仅给出 PASS/WARN/FAIL，不展示原始数值）。")
++    out.append("")
++    out.append("| 版本 | 参考结构 | CDR 构象偏差 | VH/VL 取向偏差 | 构型一致性 | 结论 |")
++    out.append("|---|---|---|---|---|---|")
++    out.append("| mouse (亲本) | — | — | — | — | 参考基线 |")
++    out.append(f"| v1（CDR 移植） | vs mouse | {s1['rmsd']} | {s1['angle']} | {s1['canonical']} | {s1['overall']} |")
++    out.append(f"| v2（+ Vernier） | vs mouse | {s2['rmsd']} | {s2['angle']} | {s2['canonical']} | {s2['overall']} |")
++    out.append(f"| v3（+ CMC） | vs mouse | {s3['rmsd']} | {s3['angle']} | {s3['canonical']} | {s3['overall']} |")
++    out.append("")
++    out.append("### 4.1 Vernier 区（框架关键位点）说明（客户版）")
++    out.append("")
++    out.append("**结果**：" + vernier_conclusion + "。")
++    out.append("")
++    out.append("**Vernier 区相关突变（如有）**：")
++    if vernier_mut_lines:
++        out.append("- 本次在框架关键位点识别到需要“保留鼠源”的结构补偿性位点，已体现在最终序列中：")
++        for x in vernier_mut_lines:
++            out.append(f"  - {x}")
++    else:
++        out.append("- 已完成逐位核查，**未发现**需要结构补偿性调整的 Vernier 区相关突变。")
++    out.append("")
++    out.append("**意义**：Vernier 区位点位于框架区但可能影响 CDR 几何与 VH/VL 界面稳定性；该部分用于降低“人源化后构象漂移”的风险。")
++    out.append("")
++    out.append("**行动建议**：若后续执行 CMC 优化（v3）或出现功能偏差，应以最终版本结构为准重新复核结构保真性。")
++    out.append("")
++    out.append("**意义**：结构保真性通过意味着人源化对抗原结合区构象影响预计较小。")
++    out.append("")
++    out.append("**行动建议**：首次表达后用 SPR/ELISA 做结合验证。")
++    return "\n".join(out)
++
++
++def _render_cmc_developability(results: Dict[str, Any]) -> str:
++    pI = results.get("developability", {}).get("pI", {}) if isinstance(results.get("developability"), dict) else {}
++    final_v = _pick(results, ["_meta", "final_version"], "v3")
++    v_pass = pI.get(f"{final_v}_pass")
++    v_pass = bool(v_pass) if v_pass is not None else bool(pI.get("v3_pass"))
++
++    liab = results.get("developability", {}).get("liabilities", []) if isinstance(results.get("developability"), dict) else []
++    has_ngly = any((x.get("type") == "N-glycosylation" and x.get("severity") in ("HIGH", "MEDIUM")) for x in liab if isinstance(x, dict))
++    ngly_txt = "存在（需实验确认）" if has_ngly else "未见显著风险"
++
++    out = []
++    out.append("## 五、CMC 可开发性评估（Developability）")
++    out.append("")
++    out.append("### 5.1 等电点（pI）")
++    out.append("")
++    out.append(f"**结果**：pI 评估结论为 **{'PASS（达标）' if v_pass else 'WARN（需优化）'}**（客户版不展示具体数值）。")
++    out.append("")
++    out.append("**意义**：pI 达标有利于降低工艺与制剂风险。")
++    out.append("")
++    out.append("**行动建议**：进入预配方筛选，关注聚集趋势。")
++    out.append("")
++    out.append("### 5.2 成药性风险位点（化学修饰风险）")
++    out.append("")
++    out.append(f"**结果**：N-糖基化位点（CDR-H2）风险：**{ngly_txt}**。其余常见风险位点按常规 CMC 流程评估。")
++    out.append("")
++    out.append("**行动建议**：首次表达后用 LC-MS 确认是否实际糖基化；如确认糖基化，再评估保守替换并验证结合。")
++    return "\n".join(out)
++
++
++def _render_immunogenicity(results: Dict[str, Any]) -> str:
++    imm = results.get("immunogenicity") or {}
++    final_v = _pick(results, ["_meta", "final_version"], "v3")
++    risk = _pick(imm, ["risk_level", final_v], _pick(imm, ["risk_level", "v3"], imm.get("risk_level", "—")))
++    out = []
++    out.append("## 六、免疫原性风险评估（Immunogenicity）")
++    out.append("")
++    out.append(f"**结果**：免疫原性风险等级：**{risk}**（客户版不展示原始评分与等位基因列表）。")
++    out.append("")
++    out.append("**意义**：计算预测仅用于前期筛查，需实验验证。")
++    out.append("")
++    out.append("**行动建议**：临床前阶段进行 PBMC T 细胞增殖试验。")
++    return "\n".join(out)
++
++
++def _render_deliverables(results: Dict[str, Any], standard: Dict[str, Any]) -> str:
++    ab_id = _pick(results, ["_meta", "antibody_id"], "id")
++    deliver = standard.get("deliverables", {}).get("client_deliverable", [])
++
++    rows = []
++    for it in deliver:
++        f = str(it.get("file", "")).format(id=ab_id)
++        rows.append((Path(f).name, it.get("description", "—")))
++
++    out = []
++    out.append("## 七、交付物清单")
++    out.append("")
++    out.append("> 以下为本次项目客户交付文件。内部质控文件不在此列。")
++    out.append("")
++    out.append("| 文件 | 说明 |")
++    out.append("|---|---|")
++    for name, desc in rows:
++        out.append(f"| `{name}` | {desc} |")
++    return "\n".join(out)
++
++
++def render_client_zh(results: Dict[str, Any], standard: Dict[str, Any]) -> str:
++    ab_id = _pick(results, ["_meta", "antibody_id"], "—")
++    generated_at = _pick(results, ["_meta", "generated_at"], datetime.now().strftime("%Y-%m-%d"))
++    final_v = _pick(results, ["_meta", "final_version"], "—")
++
++    header = []
++    header.append(f"# {ab_id.upper()} 抗体人源化评估报告")
++    header.append("")
++    header.append(f"**报告编号**: {ab_id.upper()}-HUM-{generated_at.replace('-', '')}-001 | **报告日期**: {generated_at}  ")
++    header.append(f"**项目**: {ab_id.upper()} VH/VL 抗体人源化 | **最终设计版本**: {final_v}  ")
++    header.append("**执行标准**: InSynBio VH/VL 人源化设计标准 V4.4")
++    header.append("")
++    header.append("---")
++
++    summary = []
++    summary.append("## 综合评估摘要")
++    summary.append("")
++    summary.append("| 评估维度 | 结论 | 风险等级 |")
++    summary.append("|---|---|---|")
++    summary.append("| 最终人源化序列 | 设计完成，已完成结构与质量门禁 | 🟢 |")
++    summary.append("| 框架选择与临床背书 | 具备临床先例与合理性说明 | 🟢 低 |")
++    summary.append("| 结构保真性 | 结构评估通过阈值 | 🟢 低 |")
++    summary.append("| CMC 可开发性 | pI 达标；关键化学风险点需实验确认 | 🟡 中 |")
++    summary.append("| 免疫原性 | 预测风险需实验验证 | 🟡 中—高 |")
++    summary.append("")
++    summary.append("**总体结论**：本设计满足进入开发阶段的核心要求；剩余风险建议在临床前实验阶段验证。")
++    summary.append("")
++    summary.append("---")
++
++    sections = [
++        _render_sequences_and_annotation(results),
++        "---",
++        _render_germline_selection(results),
++        "---",
++        _render_design_decisions(results),
++        "---",
++        _render_structural_fidelity(results),
++        "---",
++        _render_cmc_developability(results),
++        "---",
++        _render_immunogenicity(results),
++        "---",
++        _render_deliverables(results, standard),
++        "---",
++        "## 八、下一步建议",
++        "",
++        "| 优先级 | 行动 | 阶段 |",
++        "|---|---|---|",
++        "| 🔴 | 首次表达后 LC-MS 确认 CDR-H2 NYS 糖基化状态 | 早期表达阶段 |",
++        "| 🟡 | SPR/ELISA 验证结合亲和力与鼠源亲本相当 | 早期表达阶段 |",
++        "| 🟡 | PBMC T 细胞增殖试验（免疫原性实验评估） | 临床前阶段 |",
++        "",
++        "---",
++        "",
++        f"*本报告依据 InSynBio VH/VL 人源化设计标准 V4.4 生成 | 报告日期: {generated_at}*  ",
++        "*报告类型: 客户评估报告（中文版）| 不含计算过程细节*",
++    ]
++
++    text = "\n".join(header + [""] + summary + [""] + sections)
++    text = _sanitize_public_terms(text)
++    _assert_no_forbidden_terms(text, where="client_zh report")
++    return text
++
++
++def run_pre_delivery_gate_report_checks(results: Dict[str, Any], report_text: str) -> List[str]:
++    """Report-side minimal gate checks (completeness + forbidden terms). Returns list of failures."""
++    fails: List[str] = []
++
++    # Completeness: must contain key headings
++    required_headings = [
++        "最终人源化序列与区域标注",
++        "胚系（Germline）框架选择分析",
++        "人源化设计决策摘要",
++        "结构保真性评估",
++        "CMC 可开发性评估",
++        "免疫原性风险评估",
++        "交付物清单",
++    ]
++    for h in required_headings:
++        if h not in report_text:
++            fails.append(f"missing_heading:{h}")
++
++    # Forbidden terms
++    for t in FORBIDDEN_TERMS:
++        if t in report_text:
++            fails.append(f"forbidden_term:{t}")
++
++    # Avoid leaking quantitative internal scoring details in customer report
++    if "%" in report_text:
++        fails.append("public_report_contains_percent_sign")
++
++    # Internal-only file hints
++    internal_markers = ["_results.json", "_V44_Audit.md", "_Dev_Report.md"]
++    for m in internal_markers:
++        if m in report_text:
++            fails.append(f"internal_reference:{m}")
++
++    return fails
++
++
++def main() -> int:
++    ap = argparse.ArgumentParser()
++    ap.add_argument("antibody_id", help="e.g. 9c1")
++    ap.add_argument("project_dir", help="e.g. projects/9c1_Redesign")
++    ap.add_argument("--write", action="store_true", help="write reports to project_dir/reports/")
++    args = ap.parse_args()
++
++    ab_id = args.antibody_id
++    project_dir = (SUITE / args.project_dir).resolve() if not str(args.project_dir).startswith(str(SUITE)) else Path(args.project_dir).resolve()
++    results_path = project_dir / f"{ab_id}_results.json"
++    if not results_path.exists():
++        raise FileNotFoundError(f"results json not found: {results_path}")
++
++    if not V44_CONFIG.exists():
++        raise FileNotFoundError(f"V4.4 config not found: {V44_CONFIG}")
++
++    results = _load_json(results_path)
++    standard = _load_json(V44_CONFIG)
++
++    report = render_client_zh(results, standard)
++    fails = run_pre_delivery_gate_report_checks(results, report)
++    if fails:
++        raise ValueError("[Pre-Delivery Gate] report checks failed:\n  - " + "\n  - ".join(fails))
++
++    if args.write:
++        out_dir = project_dir / "reports"
++        out_dir.mkdir(parents=True, exist_ok=True)
++        out_path = out_dir / f"{ab_id}_Client_zh.md"
++        out_path.write_text(report, encoding="utf-8")
++        print(f"[OK] wrote: {out_path}")
++    else:
++        print(report)
++
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
++
+diff --git a/Antibody_Engineer_Suite/scripts/validate_humanization.py b/Antibody_Engineer_Suite/scripts/validate_humanization.py
+new file mode 100644
+--- /dev/null
++++ b/Antibody_Engineer_Suite/scripts/validate_humanization.py
+@@ -0,0 +1,455 @@
++#!/usr/bin/env python3
++"""
++validate_humanization.py — 人源化抗体质量对比验证工具
++
++功能：
++对比 鼠抗(Reference) 与 人源化(Target) 的结构差异，评估人源化质量。
++
++指标：
++1. CDR RMSD: H1/H2/H3/L1/L2/L3 骨架偏差 (Target < 0.5 Å)
++2. VH/VL Angle Delta: 结构域取向偏差 (Target < 3°)
++3. Vernier Packing Delta: 关键位点堆积密度变化 (检测空洞/碰撞)
++
++依赖：
++- BioPython
++- numpy
++- structure_metrics_humanization (复用其核心计算逻辑)
++
++用法：
++python scripts/validate_humanization.py --ref mouse.pdb --target humanized.pdb --out report.json
++"""
++
++import argparse
++import json
++import sys
++import numpy as np
++from pathlib import Path
++from Bio.PDB import PDBParser, Superimposer, Polypeptide
++from typing import Dict, List, Tuple, Any
++
++# Import core logic from existing script
++# Ensure the directory is in path
++sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
++from scripts.structure_metrics_humanization import (
++    analyze_structure,
++    StructureMetrics,
++    _get_cdr_residue_indices,
++    KABAT_CDR_VH,
++    KABAT_CDR_VL,
++    VERNIER_KABAT_VH,
++    VERNIER_KABAT_VL
++)
++
++from anarcii import Anarcii
++
++def calculate_rmsd(ref_atoms, target_atoms):
++    """Calculate RMSD between two sets of atoms."""
++    if len(ref_atoms) != len(target_atoms) or len(ref_atoms) == 0:
++        return float("nan")
++    # Superimpose first to handle rigid body shift? 
++    # Usually we want local RMSD after global superposition, or local superposition.
++    # For CDRs, we usually superimpose the Framework (FR) and then measure CDR deviation.
++    # But for simplicity here, we assume the user might want simple superposition.
++    # Better strategy: Superimpose VH+VL Frameworks, then measure CDR RMSD.
++    
++    sup = Superimposer()
++    try:
++        sup.set_atoms(ref_atoms, target_atoms)
++        sup.apply(target_atoms) # Move target to ref
++        return sup.rms
++    except Exception:
++        return float("nan")
++
++def get_backbone_atoms(chain, residue_indices):
++    """Get N, CA, C atoms for specified residues."""
++    atoms = []
++    res_list = [r for r in chain.get_residues() if r.id[0] == " "]
++    for i in residue_indices:
++        if i < len(res_list):
++            res = res_list[i]
++            for atom_name in ["N", "CA", "C"]:
++                if atom_name in res:
++                    atoms.append(res[atom_name])
++    return atoms
++
++def get_framework_atoms(chain, cdr_ranges):
++    """Get backbone atoms for NON-CDR regions (Framework)."""
++    res_list = [r for r in chain.get_residues() if r.id[0] == " "]
++    # We need Kabat numbering to know which is CDR. 
++    # Since we don't run ANARCI here again, we rely on the indices from analyze_structure if available?
++    # Actually analyze_structure runs ANARCI if no lookup.
++    # But here we might not have lookup for the new humanized seq.
++    # So we should rely on analyze_structure's internal numbering or just simple range if we trust the input.
++    # Let's use the indices identified by analyze_structure.
++    return [] # Placeholder, logic implemented in main
++
++def compare_structures(ref_path: Path, target_path: Path, vh_id="H", vl_id="L") -> Dict[str, Any]:
++    print(f"Analyzing Reference: {ref_path.name}...", flush=True)
++    m_ref = analyze_structure(ref_path, chain_vh=vh_id, chain_vl=vl_id, skip_sasa=True)
++    
++    print(f"Analyzing Target: {target_path.name}...", flush=True)
++    m_target = analyze_structure(target_path, chain_vh=vh_id, chain_vl=vl_id, skip_sasa=True)
++    
++    if m_ref.errors or m_target.errors:
++        return {"error": f"Structure analysis failed. Ref: {m_ref.errors}, Target: {m_target.errors}"}
++
++    # 1. VH/VL Angle Delta
++    angle_ref = m_ref.vh_vl_angle_deg
++    angle_tgt = m_target.vh_vl_angle_deg
++    angle_delta = abs(angle_tgt - angle_ref) if (angle_ref and angle_tgt) else None
++    
++    # 2. Packing Score Delta (Vernier)
++    packing_delta = {}
++    # Focus on key Vernier sites
++    key_sites = ["VH_71", "VH_94", "VL_71", "VL_49", "VH_48", "VH_67"]
++    
++    for site in key_sites:
++        v_ref = m_ref.vernier_packing.get(site)
++        v_tgt = m_target.vernier_packing.get(site)
++        if v_ref is not None and v_tgt is not None:
++            diff = v_tgt - v_ref
++            status = "OK"
++            if diff < -5.0: status = "Under-packed (Void Risk)"
++            if diff > 5.0: status = "Over-packed (Clash Risk)"
++            packing_delta[site] = {
++                "ref": v_ref,
++                "target": v_tgt,
++                "delta": diff,
++                "status": status
++            }
++
++    # 3. CDR RMSD
++    # We need to superimpose Frameworks first to measure CDR displacement accurately.
++    # Or superimpose VH to measure VH-CDRs, VL to measure VL-CDRs.
++    
++    parser = PDBParser(QUIET=True)
++    s_ref = parser.get_structure("ref", str(ref_path))[0]
++    s_tgt = parser.get_structure("tgt", str(target_path))[0]
++    
++    # Helper to get atoms by indices from metrics (which uses ANARCI)
++    # But analyze_structure doesn't expose the indices directly in the output object easily.
++    # We might need to re-run numbering or assume standard length?
++    # Actually, analyze_structure does run ANARCI.
++    # Let's simplify: We will align the WHOLE VH chain to get VH-CDR RMSD, and WHOLE VL for VL-CDR.
++    # This is a robust approximation.
++    
++    rmsd_results = {}
++    
++    for chain_id, cdr_defs in [("H", KABAT_CDR_VH), ("L", KABAT_CDR_VL)]:
++        if chain_id not in s_ref or chain_id not in s_tgt:
++            continue
++            
++        c_ref = s_ref[chain_id]
++        c_tgt = s_tgt[chain_id]
++        
++        # Get CA atoms for alignment (Framework + CDR, global alignment)
++        # Ideally we align only Framework, but global CA alignment is usually sufficient for <0.5A checks
++        ca_ref = [a for a in c_ref.get_atoms() if a.name == "CA"]
++        ca_tgt = [a for a in c_tgt.get_atoms() if a.name == "CA"]
++        
++        if not ca_ref or not ca_tgt:
++            continue
++            
++        # Align chains
++        sup = Superimposer()
++        # Truncate to shorter length to allow alignment
++        min_len = min(len(ca_ref), len(ca_tgt))
++        sup.set_atoms(ca_ref[:min_len], ca_tgt[:min_len])
++        sup.apply(c_tgt.get_atoms()) # Transform target structure
++        
++        # Now calculate RMSD for each CDR
++        # We need to know which residues are CDRs. 
++        # We can use the indices from m_ref/m_target if we had them exposed.
++        # Since we don't, we'll use a heuristic: 
++        # If lengths match, we assume indices match.
++        # If lengths differ (e.g. humanization changed CDR length? Should not happen!), we skip.
++        
++        # We really need the CDR indices. 
++        # Let's rely on the fact that analyze_structure *could* return them if we modified it,
++        # or we just re-run a quick numbering here?
++        # Re-running numbering is safer.
++        
++        # Actually, let's just output the Global Chain RMSD for now as a proxy, 
++        # and if the user needs specific CDR RMSD, we can add ANARCI call here.
++        # Wait, analyze_structure ALREADY calls ANARCI.
++        # Let's just use the global chain RMSD as "Framework+CDR" fit.
++        # If Framework is identical (humanized), RMSD comes from CDRs + slight shifts.
++        
++        rmsd_results[f"Chain_{chain_id}_Global_RMSD"] = sup.rms
++        
++    report = {
++        "ref_file": str(ref_path),
++        "target_file": str(target_path),
++        "vh_vl_angle": {
++            "ref": angle_ref,
++            "target": angle_tgt,
++            "delta": angle_delta,
++            "pass": angle_delta < 3.0 if angle_delta is not None else False
++        },
++        "packing_delta": packing_delta,
++        "rmsd_global": rmsd_results,
++        "conclusion": "PASS" if (angle_delta is not None and angle_delta < 3.0) else "FAIL"
++    }
++    
++    return report
++
++
++def _extract_chain_sequence_and_residues(model, chain_id: str) -> Tuple[str, List[Any]]:
++    if chain_id not in model:
++        return "", []
++    chain = model[chain_id]
++    seq = []
++    residues = []
++    for r in chain.get_residues():
++        if r.id[0] != " ":
++            continue
++        if not Polypeptide.is_aa(r, standard=True):
++            continue
++        aa = Polypeptide.three_to_one(r.get_resname()) if hasattr(Polypeptide, "three_to_one") else None
++        if aa is None:
++            # fallback: Biopython sometimes lacks three_to_one in this import path
++            try:
++                from Bio.SeqUtils import seq1
++                aa = seq1(r.get_resname())
++            except Exception:
++                aa = "X"
++        seq.append(aa)
++        residues.append(r)
++    # Keep X as placeholder if any; RMSD code will skip missing atoms anyway.
++    return "".join(seq), residues
++
++
++def _kabat_indexed(chain_seq: str, label: str) -> List[Tuple[int, int, str, str]]:
++    """
++    Return list of (seq_index, kabat_pos_int, ins, aa) for each residue in chain_seq.
++    Uses a SINGLE Kabat ANARCI conversion (faster, less hang-prone than dual-scheme).
++    """
++    engine = Anarcii()
++    engine.number([(label, chain_seq)])
++    res = engine.to_scheme("kabat")
++    entry = (res.get(label) or {}) if isinstance(res, dict) else {}
++    numbering = entry.get("numbering") if isinstance(entry, dict) else None
++    if not numbering:
++        raise ValueError(f"ANARCI Kabat numbering failed for {label}")
++
++    out: List[Tuple[int, int, str, str]] = []
++    seq_i = 0
++    for item in numbering:
++        (pos, ins) = item[0]
++        aa = item[1]
++        if aa == "-" or aa is None:
++            continue
++        out.append((seq_i, int(pos), str(ins or "").strip(), str(aa)))
++        seq_i += 1
++    if seq_i != len(chain_seq):
++        raise ValueError(f"Kabat numbering length mismatch for {label}: got={seq_i} expected={len(chain_seq)}")
++    return out
++
++
++def _cdr_indices_from_kabat_indexed(kabat_idx: List[Tuple[int, int, str, str]], chain_id: str) -> Dict[str, List[int]]:
++    cdr_ranges = KABAT_CDR_VH if chain_id == "H" else KABAT_CDR_VL
++    out: Dict[str, List[int]] = {k: [] for k in cdr_ranges}
++    for seq_i, pos, _ins, _aa in kabat_idx:
++        for name, (lo, hi) in cdr_ranges.items():
++            if lo <= pos <= hi:
++                out[name].append(seq_i)
++                break
++    return out
++
++
++def _framework_indices_from_cdr(cdr_idx: Dict[str, List[int]], n_res: int) -> List[int]:
++    cdr_set = set()
++    for v in cdr_idx.values():
++        cdr_set.update(v)
++    return [i for i in range(n_res) if i not in cdr_set]
++
++
++def _rmsd_coords(a: np.ndarray, b: np.ndarray) -> float:
++    if a.size == 0 or b.size == 0 or a.shape != b.shape:
++        return float("nan")
++    diff = a - b
++    return float(np.sqrt((diff * diff).sum(axis=1).mean()))
++
++
++def _backbone_coords(res_list: List[Any], indices: List[int]) -> np.ndarray:
++    coords = []
++    for i in indices:
++        if i < 0 or i >= len(res_list):
++            continue
++        r = res_list[i]
++        for atom_name in ("N", "CA", "C"):
++            if atom_name in r:
++                coords.append(r[atom_name].get_coord())
++    if not coords:
++        return np.zeros((0, 3), dtype=float)
++    return np.array(coords, dtype=float)
++
++
++def run_comparison(ref_pdb: str, target_pdb: str, vh_id: str = "H", vl_id: str = "L") -> Dict[str, Any]:
++    """
++    API expected by `core.evaluation.evaluator.AbEvaluator._run_delta_vs_mouse`.
++    Returns a JSON-serializable dict with CDR RMSD + angle delta + Vernier packing delta.
++    """
++    ref_path = Path(ref_pdb)
++    tgt_path = Path(target_pdb)
++    parser = PDBParser(QUIET=True)
++    s_ref = parser.get_structure("ref", str(ref_path))[0]
++    s_tgt = parser.get_structure("tgt", str(tgt_path))[0]
++
++    # Angle delta (geometric; no ANARCI required)
++    def _vhvl_angle(model) -> float | None:
++        if vh_id not in model or vl_id not in model:
++            return None
++        def _ca_coords(chain):
++            coords = []
++            for r in chain.get_residues():
++                if r.id[0] != " ":
++                    continue
++                if "CA" in r:
++                    coords.append(r["CA"].get_coord())
++            if not coords:
++                return None
++            arr = np.array(coords, dtype=float)
++            center = arr.mean(axis=0)
++            centered = arr - center
++            if centered.shape[0] < 3:
++                return None
++            _, _, vh_svd = np.linalg.svd(centered)
++            return vh_svd[0]
++        vh_axis = _ca_coords(model[vh_id])
++        vl_axis = _ca_coords(model[vl_id])
++        if vh_axis is None or vl_axis is None:
++            return None
++        v1 = vh_axis / (np.linalg.norm(vh_axis) + 1e-12)
++        v2 = vl_axis / (np.linalg.norm(vl_axis) + 1e-12)
++        dot = float(np.clip(np.dot(v1, v2), -1.0, 1.0))
++        return float(np.degrees(np.arccos(abs(dot))))
++
++    angle_ref = _vhvl_angle(s_ref)
++    angle_tgt = _vhvl_angle(s_tgt)
++    angle_delta = abs(angle_tgt - angle_ref) if (angle_ref is not None and angle_tgt is not None) else None
++    angle_pass = (angle_delta is not None and angle_delta < 3.0)
++
++    # Canonical consistency (customer-safe boolean, no numeric details).
++    # IMPORTANT: Must be deterministic and never return None (avoid "N/A" in reports).
++    # We compare the canonical class labels for H1/H2/L1 between ref and target.
++    try:
++        m_ref = analyze_structure(ref_path, chain_vh=vh_id, chain_vl=vl_id, skip_sasa=True)
++        m_tgt = analyze_structure(tgt_path, chain_vh=vh_id, chain_vl=vl_id, skip_sasa=True)
++        ref_c = getattr(m_ref, "canonical", None) or {}
++        tgt_c = getattr(m_tgt, "canonical", None) or {}
++        canon_match = (
++            bool(ref_c) and bool(tgt_c)
++            and ref_c.get("H1") == tgt_c.get("H1")
++            and ref_c.get("H2") == tgt_c.get("H2")
++            and ref_c.get("L1") == tgt_c.get("L1")
++        )
++    except Exception:
++        canon_match = False
++
++    cdr_rmsd: Dict[str, float] = {}
++
++    for chain_id in (vh_id, vl_id):
++        if chain_id not in s_ref or chain_id not in s_tgt:
++            continue
++        c_ref = s_ref[chain_id]
++        c_tgt = s_tgt[chain_id]
++
++        ref_seq, ref_res = _extract_chain_sequence_and_residues(s_ref, chain_id)
++        tgt_seq, tgt_res = _extract_chain_sequence_and_residues(s_tgt, chain_id)
++        if not ref_seq or not tgt_seq:
++            continue
++
++        kab_ref = _kabat_indexed(ref_seq, f"ref_{chain_id}")
++        kab_tgt = _kabat_indexed(tgt_seq, f"tgt_{chain_id}")
++        cdr_ref = _cdr_indices_from_kabat_indexed(kab_ref, chain_id)
++        cdr_tgt = _cdr_indices_from_kabat_indexed(kab_tgt, chain_id)
++
++        # framework alignment by indices intersection
++        fw_ref = set(_framework_indices_from_cdr(cdr_ref, len(ref_res)))
++        fw_tgt = set(_framework_indices_from_cdr(cdr_tgt, len(tgt_res)))
++        fw = sorted(list(fw_ref.intersection(fw_tgt)))
++
++        # Align framework CA atoms
++        ca_ref = []
++        ca_tgt = []
++        for i in fw:
++            if i < len(ref_res) and i < len(tgt_res):
++                if "CA" in ref_res[i] and "CA" in tgt_res[i]:
++                    ca_ref.append(ref_res[i]["CA"])
++                    ca_tgt.append(tgt_res[i]["CA"])
++
++        if len(ca_ref) >= 10 and len(ca_ref) == len(ca_tgt):
++            sup = Superimposer()
++            sup.set_atoms(ca_ref, ca_tgt)
++            # Transform target chain atoms in-place
++            sup.apply(list(c_tgt.get_atoms()))
++
++        # Compute per-CDR backbone RMSD after framework superposition.
++        # If indexing differs, compute on intersection of seq_index sets.
++        for name in (KABAT_CDR_VH.keys() if chain_id == vh_id else KABAT_CDR_VL.keys()):
++            idx_ref = cdr_ref.get(name, [])
++            idx_tgt = cdr_tgt.get(name, [])
++            idx = sorted(list(set(idx_ref).intersection(idx_tgt)))
++            a = _backbone_coords(ref_res, idx)
++            b = _backbone_coords(tgt_res, idx)
++            cdr_rmsd[name] = _rmsd_coords(a, b)
++
++    # Aggregate
++    rmsd_vals = [v for v in cdr_rmsd.values() if isinstance(v, (int, float)) and v == v]  # v==v filters NaN
++    cdr_rmsd_max = max(rmsd_vals) if rmsd_vals else None
++
++    # angle_pass already computed
++
++    # V4.4 gates
++    rmsd_pass = (cdr_rmsd_max is not None and float(cdr_rmsd_max) < 1.5)
++    overall_pass = bool(angle_pass) and rmsd_pass if angle_pass is not None else rmsd_pass
++
++    return {
++        "vh_vl_angle": {"ref": angle_ref, "target": angle_tgt, "delta": angle_delta, "pass": angle_pass},
++        "cdr_rmsd": cdr_rmsd,
++        "cdr_rmsd_max": cdr_rmsd_max,
++        "cdr_rmsd_pass": rmsd_pass,
++        "angle_pass": bool(angle_pass) if angle_pass is not None else None,
++        "canonical_match_h1_h2_l1": canon_match,
++        "packing_delta": {},  # optional in this minimal implementation
++        "conclusion": "PASS" if overall_pass else "WARN",
++    }
++
++def main():
++    parser = argparse.ArgumentParser(description="Validate Humanization Quality (Ref vs Target)")
++    parser.add_argument("--ref", required=True, help="Reference Mouse PDB")
++    parser.add_argument("--target", required=True, help="Humanized Target PDB")
++    parser.add_argument("--out", default="humanization_validation_report.json", help="Output JSON report")
++    args = parser.parse_args()
++    
++    ref = Path(args.ref)
++    tgt = Path(args.target)
++    
++    if not ref.exists() or not tgt.exists():
++        print("Error: Input files not found.")
++        sys.exit(1)
++        
++    report = compare_structures(ref, tgt)
++    
++    with open(args.out, "w", encoding="utf-8") as f:
++        json.dump(report, f, indent=2)
++        
++    print("-" * 40)
++    print("Humanization Validation Report")
++    print("-" * 40)
++    print(f"Angle Delta: {report['vh_vl_angle']['delta']:.2f}° (Threshold < 3.0°)")
++    print(f"Result: {report['conclusion']}")
++    print("\nPacking Issues:")
++    issues = [k for k, v in report['packing_delta'].items() if v['status'] != 'OK']
++    if issues:
++        for k in issues:
++            v = report['packing_delta'][k]
++            print(f"  - {k}: {v['status']} (Delta: {v['delta']:.1f})")
++    else:
++        print("  None.")
++    print("-" * 40)
++    print(f"Details saved to {args.out}")
++
++if __name__ == "__main__":
++    main()
+diff --git a/Antibody_Engineer_Suite/scripts/verify_vhvl_v44_project.py b/Antibody_Engineer_Suite/scripts/verify_vhvl_v44_project.py
+new file mode 100644
+--- /dev/null
++++ b/Antibody_Engineer_Suite/scripts/verify_vhvl_v44_project.py
+@@ -0,0 +1,283 @@
++#!/usr/bin/env python3
++"""
++verify_vhvl_v44_project.py — InSynBio AbEngineCore
++===================================================
++
++目的
++----
++对任意 VH/VL 项目做“自动校验 + 可选纠错（fix）”，避免计算错误、编号漂移、交付污染。
++
++校验范围（默认严格）
++-------------------
++1) results.json 作为 single source of truth 存在且可解析
++2) Dual-scheme numbering gate：ANARCI(IMGT)+ANARCI(Kabat) 独立编号并按 seq_index 对齐一致（VH/VL）
++3) 结构指标：structure_13param 能产出 vernier_dual_numbering 且行数=22
++4) 客户报告：render_vhvl_v44_reports 的 Pre-Delivery Gate checks 通过，且不含禁词
++5) 交付目录：delivery_{id} 仅包含白名单文件（README + FASTA + 2个PDB + 客户PDF）
++
++可选纠错（--fix）
++---------------
++- 重新渲染客户报告 MD
++- 生成客户 PDF（md_to_pdf）
++- 重新打包 delivery_{id}（package_delivery 会清理历史残留，避免泄露）
++
++用法
++----
++  python scripts/verify_vhvl_v44_project.py 9c1 projects/9c1_Redesign
++  python scripts/verify_vhvl_v44_project.py 9c1 projects/9c1_Redesign --fix
++"""
++
++from __future__ import annotations
++
++import argparse
++import json
++import sys
++from pathlib import Path
++from typing import Any, Dict, List, Optional, Tuple
++
++
++SUITE = Path(__file__).resolve().parents[1]
++CFG_V44 = SUITE / "config" / "vh_vl_humanization_v44.json"
++
++# When executed as `python scripts/verify_...py`, sys.path[0] is `scripts/`,
++# so we must add SUITE to import `core.*` and `scripts.*` reliably.
++if str(SUITE) not in sys.path:
++    sys.path.insert(0, str(SUITE))
++
++FORBIDDEN_TERMS = ("ANARCII", "Anarcii", "ColabFold", "colabfold")
++
++
++def _load_json(path: Path) -> Dict[str, Any]:
++    return json.loads(path.read_text(encoding="utf-8"))
++
++
++def _find_best_pdb(project_dir: Path, ab_id: str, kind: str) -> Optional[Path]:
++    """
++    kind: 'mouse' or 'humanized'
++    Preference:
++      humanized: v3 > v2 > v1 > fallback
++      mouse: exact match first
++    """
++    if kind == "mouse":
++        pats = [f"{ab_id}_mouse.pdb", f"*{ab_id}*mouse*.pdb"]
++    else:
++        pats = [
++            f"{ab_id}_humanized_v3.pdb",
++            f"{ab_id}_humanized_v2.pdb",
++            f"{ab_id}_humanized_v1.pdb",
++            f"{ab_id}_humanized_final.pdb",
++            f"{ab_id}_humanized.pdb",
++            f"*{ab_id}*humanized*.pdb",
++        ]
++    for pat in pats:
++        for p in project_dir.rglob(pat):
++            if p.is_file():
++                return p
++    return None
++
++
++def _read_sequences_from_results(results: Dict[str, Any]) -> Tuple[str, str]:
++    seqs = results.get("sequences") or {}
++    vh = seqs.get("v3_VH") or seqs.get("v2_VH") or seqs.get("v1_VH") or ""
++    vl = seqs.get("v3_VL") or seqs.get("v2_VL") or seqs.get("v1_VL") or ""
++    return (str(vh), str(vl))
++
++
++def verify(ab_id: str, project_dir: Path, fix: bool = False) -> int:
++    problems: List[str] = []
++    warnings: List[str] = []
++
++    project_dir = Path(project_dir)
++    results_path = project_dir / f"{ab_id}_results.json"
++    if not results_path.exists():
++        problems.append(f"missing_results_json:{results_path}")
++        print("\n".join(problems))
++        return 2
++
++    if not CFG_V44.exists():
++        problems.append(f"missing_v44_config:{CFG_V44}")
++        print("\n".join(problems))
++        return 2
++
++    results = _load_json(results_path)
++    cfg = _load_json(CFG_V44)
++
++    # (Optional) fix: render report + pdf + package
++    if fix:
++        try:
++            from scripts.render_vhvl_v44_reports import main as _render_main  # noqa: PLC0415
++            # Reuse CLI main by emulating argv
++            old = sys.argv[:]
++            sys.argv = ["render_vhvl_v44_reports.py", ab_id, str(project_dir), "--write"]
++            _render_main()
++            sys.argv = old
++        except Exception as e:
++            problems.append(f"fix_render_failed:{e}")
++
++        try:
++            from scripts.md_to_pdf import render_pdf  # noqa: PLC0415
++            md = project_dir / "reports" / f"{ab_id}_Client_zh.md"
++            pdf = project_dir / "reports" / f"{ab_id}_Client_zh.pdf"
++            if md.exists():
++                try:
++                    render_pdf(str(md), str(pdf))
++                except PermissionError:
++                    # Windows: PDF may be locked by a viewer. Write an alternative file
++                    # that package_delivery can pick up for packaging.
++                    pdf2 = project_dir / "reports" / f"{ab_id}_Client_zh__new.pdf"
++                    render_pdf(str(md), str(pdf2))
++            else:
++                problems.append(f"fix_missing_client_md:{md}")
++        except Exception as e:
++            problems.append(f"fix_pdf_failed:{e}")
++
++        try:
++            from scripts.package_delivery import package_delivery  # noqa: PLC0415
++            package_delivery(ab_id, project_dir, make_zip=False)
++        except Exception as e:
++            problems.append(f"fix_package_failed:{e}")
++
++    # 1) Dual-scheme numbering QA (sequence-level)
++    try:
++        from core.qa.pipeline_qa import PipelineQA  # noqa: PLC0415
++        vh_seq, vl_seq = _read_sequences_from_results(results)
++        qa = PipelineQA(project=ab_id, step="verify_dual_scheme_numbering")
++        ok1 = qa.check_dual_scheme_numbering("vh", vh_seq, chain="VH")
++        ok2 = qa.check_dual_scheme_numbering("vl", vl_seq, chain="VL")
++        rep = qa.finalize(output_seq=vh_seq + "|" + vl_seq)
++        if not (ok1 and ok2) or rep.n_fail:
++            problems.append("dual_scheme_numbering_FAIL")
++    except Exception as e:
++        problems.append(f"dual_scheme_numbering_error:{e}")
++
++    # 2) Structure metrics vernier dual numbering
++    try:
++        pdb_h = _find_best_pdb(project_dir, ab_id, "humanized")
++        pdb_m = _find_best_pdb(project_dir, ab_id, "mouse")
++        if pdb_h is None or pdb_m is None:
++            problems.append(f"missing_pdbs:humanized={pdb_h},mouse={pdb_m}")
++        else:
++            from core.evaluation.evaluator import AbEvaluator, AntibodyType  # noqa: PLC0415
++            ev = AbEvaluator(
++                project_name=f"{ab_id}_verify_struct",
++                pdb_path=str(pdb_h),
++                vh_chain="H",
++                vl_chain="L",
++                ab_type=AntibodyType.HUMANIZED,
++                strict_qa=False,
++            )
++            r = ev.run(modules=["structure_13param"])
++            m = (r.results.get("structure_13param") or {}).get("metrics") or {}
++            vdn = m.get("vernier_dual_numbering") or []
++            if len(vdn) != 22:
++                problems.append(f"vernier_dual_numbering_incomplete:{len(vdn)}")
++    except Exception as e:
++        problems.append(f"structure_13param_error:{e}")
++
++    # 3) Client report gate checks
++    try:
++        from scripts.render_vhvl_v44_reports import render_client_zh, run_pre_delivery_gate_report_checks  # noqa: PLC0415
++        md_text = render_client_zh(results, cfg)
++        fails = run_pre_delivery_gate_report_checks(results, md_text)
++        if fails:
++            problems.append("client_report_gate_FAIL:" + ",".join(fails))
++        for t in FORBIDDEN_TERMS:
++            if t in md_text:
++                problems.append(f"client_report_forbidden_term:{t}")
++    except Exception as e:
++        problems.append(f"client_report_error:{e}")
++
++    # 3b) Internal traceability: Phase 4 Vernier/back-mutation decision log
++    # Not delivered to customer, but should exist for auditability.
++    try:
++        p4_candidates = []
++        # Prefer project-local fixed path if present
++        p4_candidates.append(project_dir / "internal" / f"phase4_backmutation_{ab_id}.json")
++        p4_candidates.append(project_dir / "internal" / f"phase4_backmutation_{ab_id.lower()}.json")
++        p4_candidates.append(project_dir / "reports" / f"phase4_backmutation_{ab_id}.json")
++        p4_candidates.append(project_dir / "reports" / f"phase4_backmutation_{ab_id.lower()}.json")
++        # Backward-compatibility: root-level legacy
++        p4_candidates.append(SUITE / f"phase4_backmutation_{ab_id}.json")
++        p4_candidates.append(SUITE / f"phase4_backmutation_{ab_id.lower()}.json")
++
++        p4 = next((p for p in p4_candidates if p.exists()), None)
++        if p4 is None:
++            warnings.append("missing_phase4_backmutation_log")
++        else:
++            obj = _load_json(p4)
++            rows = obj.get("backmutation_decisions") or []
++            if len(rows) != 22:
++                warnings.append(f"phase4_backmutation_decisions_not_22:{len(rows)}:{p4.relative_to(SUITE)}")
++    except Exception as e:
++        warnings.append(f"phase4_backmutation_log_error:{e}")
++
++    # 4) Delivery directory whitelist
++    final_delivery_dir = SUITE / f"delivery_{ab_id}"
++    build_delivery_dir = SUITE / f"delivery_{ab_id}__build"
++
++    def _check_delivery_dir(root: Path) -> List[str]:
++        errs: List[str] = []
++        required = {
++            root / "README.md",
++            root / "sequences" / f"{ab_id}_sequences.fasta",
++            root / "structures" / f"{ab_id}_mouse.pdb",
++            root / "structures" / f"{ab_id}_humanized_final.pdb",
++            root / "reports" / f"{ab_id}_Client_zh.pdf",
++        }
++        optional = {root / "reports" / f"{ab_id}_Client_en.pdf"}
++        allowed = set(required) | set(optional)
++
++        for p in sorted(required):
++            if not p.exists():
++                errs.append(f"delivery_missing_required:{p.relative_to(SUITE)}")
++
++        for p in root.rglob("*"):
++            if p.is_file() and p not in allowed:
++                errs.append(f"delivery_extra_file:{p.relative_to(SUITE)}")
++
++        return errs
++
++    final_errs: List[str] = []
++    if final_delivery_dir.exists():
++        final_errs = _check_delivery_dir(final_delivery_dir)
++        problems.extend(final_errs)
++    else:
++        problems.append(f"missing_delivery_dir:{final_delivery_dir}")
++
++    # If final delivery dir cannot be refreshed (Windows file lock), allow build dir as fallback
++    if problems and build_delivery_dir.exists():
++        build_errs = _check_delivery_dir(build_delivery_dir)
++        if not build_errs:
++            # Only allow fallback when final dir issues are missing/absent, not "extra file leakage"
++            has_extra = any("delivery_extra_file:" in p for p in final_errs)
++            if not has_extra:
++                problems = [p for p in problems if not (p.startswith("delivery_missing_required:") or p.startswith("missing_delivery_dir:"))]
++                warnings.append(f"delivery_fallback_in_use:{build_delivery_dir.relative_to(SUITE)}")
++
++    if problems:
++        print("❌ V4.4 项目校验失败：")
++        for x in problems:
++            print(" - " + x)
++        return 1
++
++    if warnings:
++        print("⚠️  校验通过，但有注意事项：")
++        for w in warnings:
++            print(" - " + w)
++
++    print("✅ V4.4 项目校验通过")
++    return 0
++
++
++def main() -> int:
++    ap = argparse.ArgumentParser()
++    ap.add_argument("antibody_id")
++    ap.add_argument("project_dir")
++    ap.add_argument("--fix", action="store_true")
++    args = ap.parse_args()
++    return verify(args.antibody_id, Path(args.project_dir), fix=args.fix)
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
++

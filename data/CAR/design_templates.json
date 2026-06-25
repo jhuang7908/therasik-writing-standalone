@@ -1,0 +1,267 @@
+{
+  "_metadata": {
+    "description": "12 standard CAR architecture templates with default element selections",
+    "version": "1.0",
+    "generated": "2025-04-01"
+  },
+
+  "templates": {
+
+    "standard_2G_hematologic": {
+      "name": "Standard 2nd Generation (Hematologic)",
+      "description": "Classic 2G CAR for B-cell malignancies. Most clinically validated architecture.",
+      "grammar": "standard_2G",
+      "cell_type": "T",
+      "slots": {
+        "signal_peptide": {"default": "CD8a_SP", "alternatives": ["IgKappa_SP", "GM-CSF_SP"]},
+        "binder":         {"default": null, "category": "Antigen Binder", "note": "User selects based on target"},
+        "hinge":          {"default": "CD8a_Short", "alternatives": ["CD28_Medium", "IgG4_SPLE_Long"]},
+        "transmembrane":  {"default": "CD8a_TM", "alternatives": ["CD28_TM"]},
+        "costimulatory":  {"default": "4-1BB_cyto", "alternatives": ["CD28_cyto"]},
+        "signaling":      {"default": "CD3z_cyto"}
+      },
+      "promoter": {"default": "EF1a_Promoter", "alternatives": ["MSCV_LTR", "PGK_Promoter"]},
+      "vector": "lentiviral",
+      "precedents": ["Kymriah_CTL019", "Yescarta_KTE_C19", "Breyanzi_liso_cel"],
+      "design_notes": "4-1BB costim: longer persistence, lower CRS. CD28 costim: faster expansion, higher peak. CD8a hinge/TM preferred for proximal epitopes. IgG4 spacer for distal."
+    },
+
+    "tandem_bispecific": {
+      "name": "Tandem Bispecific CAR",
+      "description": "Two binders in tandem to prevent antigen-loss escape. Standard for CD19/CD22 dual targeting.",
+      "grammar": "tandem_bispecific",
+      "cell_type": "T",
+      "slots": {
+        "signal_peptide": {"default": "CD8a_SP"},
+        "binder_1":       {"default": null, "note": "Primary target (e.g., CD19)"},
+        "linker_inter":   {"default": "G4S3", "alternatives": ["G4S4", "Whitlow"]},
+        "binder_2":       {"default": null, "note": "Secondary target (e.g., CD22)"},
+        "hinge":          {"default": "CD8a_Short"},
+        "transmembrane":  {"default": "CD8a_TM"},
+        "costimulatory":  {"default": "4-1BB_cyto"},
+        "signaling":      {"default": "CD3z_cyto"}
+      },
+      "promoter": {"default": "EF1a_Promoter"},
+      "vector": "lentiviral",
+      "precedents": ["CD19_CD22_TanCAR_Shah"],
+      "design_notes": "Binder order matters: membrane-distal binder has better accessibility. Test both orientations. Total construct size may exceed packaging limit for some vectors."
+    },
+
+    "armored_4G": {
+      "name": "Armored/TRUCKs 4th Generation",
+      "description": "Standard CAR + secreted/anchored cytokine or checkpoint blocker payload.",
+      "grammar": "armored_4G",
+      "cell_type": "T",
+      "slots": {
+        "signal_peptide": {"default": "CD8a_SP"},
+        "binder":         {"default": null},
+        "hinge":          {"default": "CD8a_Short"},
+        "transmembrane":  {"default": "CD8a_TM"},
+        "costimulatory":  {"default": "4-1BB_cyto"},
+        "signaling":      {"default": "CD3z_cyto"},
+        "2a_peptide":     {"default": "T2A", "alternatives": ["P2A", "GSG_P2A"]},
+        "armor_payload":  {"default": null, "category": "Armored Payload", "note": "IL-15, IL-18, IL-12, anti-PD-L1 scFv, etc."}
+      },
+      "optional_slots": {
+        "anti_exhaustion": {"default": null, "alternatives": ["c_Jun_OE", "BATF_OE"]},
+        "homing":          {"default": null, "alternatives": ["CCR2b", "CXCR3"]}
+      },
+      "promoter": {"default": "EF1a_Promoter"},
+      "vector": "lentiviral",
+      "precedents": ["IL12_Armored_MSLN", "IL18_GD2_Armored", "HER2_CAR_IL15_Armor"],
+      "design_notes": "For solid tumors: combine armor (cytokine) + anti-exhaustion (c-Jun) + homing (CCR2b). Vector size limit ~8kb for LV; consider splitting into two vectors if exceeded."
+    },
+
+    "logic_AND_gate": {
+      "name": "SynNotch AND-Gate",
+      "description": "Two-signal logic: SynNotch senses antigen 1, triggers expression of CAR targeting antigen 2.",
+      "grammar": "logic_AND",
+      "cell_type": "T",
+      "slots": {
+        "signal_peptide_1": {"default": "CD8a_SP"},
+        "synnotch_binder":  {"default": null, "note": "Priming antigen binder"},
+        "synnotch_core":    {"default": "SynNotch_NRR"},
+        "synnotch_tf":      {"default": "Gal4_VP64_TF"},
+        "signal_peptide_2": {"default": "CD8a_SP"},
+        "binder_2":         {"default": null, "note": "Killing antigen binder"},
+        "hinge":            {"default": "CD8a_Short"},
+        "transmembrane":    {"default": "CD8a_TM"},
+        "costimulatory":    {"default": "4-1BB_cyto"},
+        "signaling":        {"default": "CD3z_cyto"}
+      },
+      "promoter": {"default": "EF1a_Promoter"},
+      "vector": "dual_lentiviral",
+      "precedents": ["SynNotch_AND_Gate_UCSF"],
+      "design_notes": "Requires two separate lentiviral vectors or large-capacity SB transposon. SynNotch CAR is OFF until priming antigen engagement. Reduces on-target/off-tumor toxicity."
+    },
+
+    "logic_NOT_gate": {
+      "name": "Inhibitory CAR NOT-Gate",
+      "description": "Activating CAR + inhibitory iCAR. CAR kills target+ cells but spares target+/blocker+ cells.",
+      "grammar": "logic_NOT",
+      "cell_type": "T",
+      "slots": {
+        "signal_peptide": {"default": "CD8a_SP"},
+        "binder":         {"default": null},
+        "hinge":          {"default": "CD8a_Short"},
+        "transmembrane":  {"default": "CD8a_TM"},
+        "costimulatory":  {"default": "4-1BB_cyto"},
+        "signaling":      {"default": "CD3z_cyto"},
+        "icar":           {"default": "iCAR_PSMA", "note": "iCAR recognizing normal tissue antigen"}
+      },
+      "precedents": ["iCAR_NOT_Gate"],
+      "design_notes": "iCAR uses PD-1 or CTLA-4 cytoplasmic tail to deliver inhibitory signal. Requires target+ tumor antigen AND blocker antigen on normal tissue."
+    },
+
+    "allo_universal": {
+      "name": "Allogeneic Universal Off-the-Shelf",
+      "description": "Standard CAR in donor T cells with TCR/MHC knockouts and immune evasion transgenes.",
+      "grammar": "allogeneic",
+      "cell_type": "T",
+      "slots": {
+        "signal_peptide": {"default": "CD8a_SP"},
+        "binder":         {"default": null},
+        "hinge":          {"default": "CD8a_Short"},
+        "transmembrane":  {"default": "CD8a_TM"},
+        "costimulatory":  {"default": "4-1BB_cyto"},
+        "signaling":      {"default": "CD3z_cyto"}
+      },
+      "ko_panel": {
+        "required":    ["TRAC_CRISPR_Target"],
+        "recommended": ["B2M_CRISPR_Target", "CIITA_KO_guide"],
+        "optional":    ["PDCD1_CRISPR_Target", "TIGIT_CRISPR_Target"]
+      },
+      "evasion_transgenes": {
+        "recommended": ["HLA_E_NK_Evasion", "CD47_DontEatMe"]
+      },
+      "safety": {"recommended": ["RQR8"]},
+      "precedents": ["ALLO501_AlloCAR_T", "UCART19_Cellectis"],
+      "design_notes": "TRAC KO is mandatory (prevent GvHD). B2M KO removes MHC-I but triggers NK fratricide → HLA-E transgene rescues. CIITA KO for MHC-II. CD47 prevents macrophage clearance."
+    },
+
+    "car_nk": {
+      "name": "CAR-NK (iPSC or Cord Blood)",
+      "description": "NK cell-optimized CAR with NK-native signaling and persistence cytokine.",
+      "grammar": "car_nk",
+      "cell_type": "NK",
+      "slots": {
+        "signal_peptide": {"default": "CD8a_SP"},
+        "binder":         {"default": null},
+        "hinge":          {"default": "CD8a_Short", "alternatives": []},
+        "transmembrane":  {"default": "NKG2D_TM"},
+        "nk_costim":      {"default": "2B4_cyto", "alternatives": ["DAP10_costim_full"]},
+        "signaling":      {"default": "CD3z_cyto", "alternatives": ["DAP12_signaling"]},
+        "armor":          {"default": "mbIL15_Armor", "alternatives": ["IL21_Armor"]}
+      },
+      "optional_slots": {
+        "adcc":           {"default": "CD16a_TM_cyto", "note": "Retain high-affinity Fc receptor"}
+      },
+      "precedents": ["FT596_iPSC_NK", "UCB_CD19_CARNK_MD_Anderson", "CD70_CAR_AML_iPSC_NK"],
+      "design_notes": "mbIL15 is critical for NK in vivo persistence. 2B4 costim is NK-native. CD16a retains ADCC capacity. iPSC-NK: add BCL11B for T-lineage commitment."
+    },
+
+    "car_treg": {
+      "name": "CAR-Treg (Tolerance Induction)",
+      "description": "CAR in regulatory T cells for autoimmune disease, transplant, or GvHD prevention.",
+      "grammar": "car_treg",
+      "cell_type": "regulatory_T",
+      "slots": {
+        "signal_peptide": {"default": "CD8a_SP"},
+        "binder":         {"default": null, "note": "Target: donor HLA (transplant) or tissue antigen (autoimmune)"},
+        "hinge":          {"default": "CD8a_Short"},
+        "transmembrane":  {"default": "CD8a_TM"},
+        "costimulatory":  {"default": "4-1BB_cyto"},
+        "signaling":      {"default": "CD3z_cyto"},
+        "2a_peptide":     {"default": "P2A"},
+        "treg_payload":   {"default": "FoxP3_TF", "note": "Mandatory for Treg stability"}
+      },
+      "optional_slots": {
+        "treg_enhancer":  {"default": "Helios_OE"},
+        "treg_costim":    {"default": "TNFR2_cyto"}
+      },
+      "precedents": ["CAR_Treg_HLA_A2_Sangamo", "Dsg3_CAAR_Pemphigus"],
+      "design_notes": "FoxP3 overexpression is MANDATORY to maintain Treg identity. Helios co-expression stabilizes under inflammation. AVOID pro-inflammatory payloads (IL-12, c-Jun). TNFR2 costim preferred over CD28 for Treg."
+    },
+
+    "car_macrophage": {
+      "name": "CAR-Macrophage (Phagocytic CAR)",
+      "description": "CAR in macrophages/monocytes for solid tumor phagocytosis and TME remodeling.",
+      "grammar": "car_macrophage",
+      "cell_type": "macrophage",
+      "slots": {
+        "signal_peptide": {"default": "CD8a_SP"},
+        "binder":         {"default": null},
+        "hinge":          {"default": "CD8a_Short"},
+        "transmembrane":  {"default": "CD8a_TM"},
+        "signaling":      {"default": "CD3z_cyto", "alternatives": ["FcgRI_TM_cyto_CARM"]}
+      },
+      "promoter": {"required": "CD68_Promoter_CARM"},
+      "vector": "adenoviral_Ad5f35",
+      "precedents": ["CARM_HER2_Carisma"],
+      "design_notes": "CD68 promoter is MANDATORY for macrophage-restricted expression. CD3z works as phagocytic signal in macrophages. Adenoviral vector preferred (macrophages resist lentiviral transduction). CAR-M remodels TME: M2→M1 polarization."
+    },
+
+    "ipsc_car_t": {
+      "name": "iPSC-Derived CAR-T",
+      "description": "CAR expressed in iPSC-differentiated T cells with lineage programming factors.",
+      "grammar": "standard_2G",
+      "cell_type": "T",
+      "slots": {
+        "signal_peptide": {"default": "CD8a_SP"},
+        "binder":         {"default": null},
+        "hinge":          {"default": "CD8a_Short"},
+        "transmembrane":  {"default": "CD8a_TM"},
+        "costimulatory":  {"default": "4-1BB_cyto"},
+        "signaling":      {"default": "CD3z_cyto"}
+      },
+      "programming_factors": {
+        "required":    ["BCL11B_T_lineage"],
+        "recommended": ["RUNX3_OE"],
+        "note": "BCL11B drives T lineage commitment from iPSC; RUNX3 programs CD8 cytotoxic fate"
+      },
+      "allo_features": {
+        "recommended": ["TRAC_CRISPR_Target", "B2M_CRISPR_Target", "HLA_E_NK_Evasion"]
+      },
+      "precedents": ["CD70_CAR_AML_iPSC_NK", "FT596_iPSC_NK"],
+      "design_notes": "iPSC → hematopoietic progenitor → T cell differentiation requires Notch/DLL4 signaling + BCL11B. All iPSC-CARs are inherently allogeneic → include allo evasion package."
+    },
+
+    "in_vivo_mRNA_car": {
+      "name": "In-Vivo mRNA CAR (LNP Delivery)",
+      "description": "CAR delivered as mRNA in T cell-targeting LNP; no ex vivo manufacturing.",
+      "grammar": "in_vivo_mRNA",
+      "cell_type": "T",
+      "slots": {
+        "targeting_ligand": {"default": "CD5_scFv_InVivo_Targeting", "note": "LNP surface ligand for T cell targeting"},
+        "signal_peptide":   {"default": "CD8a_SP"},
+        "binder":           {"default": null},
+        "hinge":            {"default": "CD8a_Short"},
+        "transmembrane":    {"default": "CD8a_TM"},
+        "costimulatory":    {"default": "4-1BB_cyto"},
+        "signaling":        {"default": "CD3z_cyto"}
+      },
+      "delivery": "LNP_mRNA",
+      "transient": true,
+      "precedents": ["InVivo_CAR_CD5_LNP_Rurik"],
+      "design_notes": "mRNA expression is TRANSIENT (days, not permanent). Safety advantage: no genomic integration risk. For chronic diseases, may need repeated dosing. No safety switch needed (self-limiting). Alternative integrase: SB100X for stable in vivo expression."
+    },
+
+    "autoimmune_car": {
+      "name": "Autoimmune CAR (Plasma Cell/B Cell Depletion)",
+      "description": "CAR targeting pathogenic B cells or plasma cells for autoimmune disease remission.",
+      "grammar": "standard_2G",
+      "cell_type": "T",
+      "slots": {
+        "signal_peptide": {"default": "IgKappa_SP"},
+        "binder":         {"default": "BCMA_scFv_AutoImmune", "alternatives": ["FMC63_scFv", "Rituximab_scFv"]},
+        "hinge":          {"default": "CD8a_Short"},
+        "transmembrane":  {"default": "CD8a_TM"},
+        "costimulatory":  {"default": "4-1BB_cyto"},
+        "signaling":      {"default": "CD3z_cyto"}
+      },
+      "promoter": {"default": "EF1a_Promoter"},
+      "precedents": ["BCMA_CAR_SLE_Erlangen", "Dsg3_CAAR_Pemphigus", "MuSK_CAAR_MG"],
+      "design_notes": "For SLE: BCMA CAR depletes plasma cells producing pathogenic autoantibodies. For pemphigus: CAAR approach (display autoantigen). BCMA preferred over CD19 for long-lived bone marrow plasma cells. Low-dose lymphodepletion is sufficient."
+    }
+  }
+}

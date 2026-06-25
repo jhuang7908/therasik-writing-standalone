@@ -1,0 +1,55 @@
+================================================================================
+SEQUENCE & BOUNDARY VERIFICATION REPORT
+================================================================================
+
+## 1. Reference Sequence Check (Internal vs IMGT Standard)
+Note: We need to verify if our 'FR3' includes part of CDR2.
+------------------------------------------------------------
+OBSERVATION: The FR3 sequences in our dataset start with 'YY...' or 'SY...'
+This suggests they include the C-terminal part of CDR2 (Kabat residues 60-65).
+IMGT FR3 starts at Pos 66 (usually Arg/Lys).
+IMPLICATION: Our 'FR3' analysis actually covers [CDR2-Tail + FR3].
+This is ACCEPTABLE for phylogeny (more signal), but we must be aware of it.
+
+## 2. Sample Boundary Inspection
+ID              | FR2_Tail (47-49) | FR3_Head (Start) | Verdict
+--------------------------------------------------------------------------------
+Brivekimig1     | VAA             | SYADSVKG        | OK
+Brivekimig2     | VSS             | LYADSVKG        | OK
+Caplacizumab    | VAA             | YYPDSVEG        | OK
+Enristomig      | VST             | NYAESVKG        | OK
+Envafolimab     | VAK             | YLADSVKG        | OK
+Erfonrilimab    | VAK             | YLADSVKG        | OK
+Gefurulimab     | VSA             | TYADSVKG        | OK
+Gocatamig2      | VAG             | VYMDSVKG        | OK
+Isecarosmab     | VAG             | YYVDSLKG        | OK
+Letolizumab     | VSG             | YYADSVKG        | OK
+Ozekibart       | VSA             | YYAESVKG        | OK
+Ozoralizumab    | VSE             | KYPDSVKG        | OK
+Podentamig1     | VAA             | LYADSVKG        | OK
+Porustobart     | VSV             | TYADSVKG        | OK
+Rimteravimab    | VAT             | YYTDSVKG        | OK
+Sonelokimab1    | IGA             | YYAVSEKG        | OK
+Sonelokimab2    | VAA             | YYADSVKG        | OK
+Tarperprumig    | VSA             | TYADSVKG        | OK
+Vobarilizumab   | VAG             | SYADSVKG        | OK
+
+## 3. Reference Sequence Validation
+Checking the sequences used in 'run_anchored_phylogeny.py'
+------------------------------------------------------------
+Human IGHV3-23 FR2 Used: MSWVRQAPGKGLEWVSA (17aa)
+  -> Matches IMGT: Yes (M-S-W-V...W-V-S-A)
+Human IGHV3-23 FR3 Used: YYADSVKGRFTISRDNSKNTLYLQMNSLRAEDTAVYYC
+  -> Contains 'RFTIS...' starting at index 8.
+  -> This confirms our FR3 includes the 'YYADSVKG' CDR2 tail.
+
+Alpaca IGHV3-3 FR2 Used: MGWFRQAPGKEREFVAA (17aa)
+  -> Matches VHH Consensus: Yes (F37, E44, R45, F47)
+
+## 4. Conclusion
+1. FR2 boundaries are CORRECT (17aa, ending at 49).
+2. FR3 sequences INCLUDE the C-terminal part of CDR2 (approx 7-9 residues).
+   - This means our 'FR3' analysis is actually 'CDR2-Tail + FR3'.
+   - This explains why FR3 seemed to have some variability (red/green mixing) in earlier plots.
+   - However, the Vernier Zone (Pos 71 etc) is safely inside the 'RFT...' region.
+3. Reference sequences are aligned consistently with the dataset.

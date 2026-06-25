@@ -1,0 +1,147 @@
+{
+  "version": "1.0",
+  "description": "ACTES Appendix A entries that can be auto-fetched; each requires >=2 independent sources for alignment.",
+  "entries": [
+    {
+      "entry_id": "IL2_SP",
+      "name": "IL-2 signal peptide",
+      "uniprot_id": "P60568",
+      "range": [1, 20],
+      "use_uniprot_signal_feature": true,
+      "notes": "Signal peptide; range from UniProt Feature Signal"
+    },
+    {
+      "entry_id": "CD8a_TM",
+      "name": "CD8a transmembrane",
+      "uniprot_id": "P01732",
+      "range": [183, 206],
+      "notes": "CD8α TM; matches functional_domains.json"
+    },
+    {
+      "entry_id": "CD28_TM",
+      "name": "CD28 transmembrane",
+      "uniprot_id": "P10747",
+      "range": [153, 179],
+      "notes": "CD28 TM"
+    },
+    {
+      "entry_id": "CD3z_TM",
+      "name": "CD3ζ transmembrane",
+      "uniprot_id": "P20963",
+      "range": [22, 44],
+      "notes": "CD3Z_HUMAN; TM region"
+    },
+    {
+      "entry_id": "CD8a_Long",
+      "name": "CD8a long hinge (stem+hinge)",
+      "uniprot_id": "P01732",
+      "range": [90, 210],
+      "notes": "Stem + hinge extended"
+    },
+    {
+      "entry_id": "CAR-NK_2B4_cyto",
+      "name": "2B4/CD244 cytoplasmic domain",
+      "uniprot_id": "Q9BZW8",
+      "range": [246, 380],
+      "notes": "Cytoplasmic domain with ITSM; check UniProt features"
+    },
+    {
+      "entry_id": "SLC7A11_OE",
+      "name": "SLC7A11 full",
+      "uniprot_id": "Q9UPY5",
+      "range": null,
+      "notes": "Full length; xCT"
+    },
+    {
+      "entry_id": "FSP1_OE",
+      "name": "FSP1/AIFM2 full",
+      "uniprot_id": "O95890",
+      "range": null,
+      "notes": "Full length; ferroptosis"
+    },
+    {
+      "entry_id": "PGC1a_OE",
+      "name": "PGC-1α/PPARGC1A full",
+      "uniprot_id": "Q9UBK2",
+      "range": null,
+      "notes": "Full length; check isoform"
+    },
+    {
+      "entry_id": "Membrane_IL7",
+      "name": "IL-7 mature (for membrane-anchored)",
+      "uniprot_id": "P13232",
+      "range": [22, 177],
+      "notes": "Mature peptide after signal 1-21"
+    },
+    {
+      "entry_id": "Membrane_IL21",
+      "name": "IL-21 mature",
+      "uniprot_id": "P35225",
+      "range": [24, 162],
+      "notes": "Mature peptide"
+    },
+    {
+      "entry_id": "IL10_Secreted",
+      "name": "IL-10 mature",
+      "uniprot_id": "P22301",
+      "range": [19, 178],
+      "notes": "Mature after signal"
+    },
+    {
+      "entry_id": "TGFb1_Secreted",
+      "name": "TGF-β1 mature (LAP-cleaved)",
+      "uniprot_id": "P01137",
+      "range": [279, 390],
+      "notes": "Active TGF-β1 monomer; precursor 1-390"
+    },
+    {
+      "entry_id": "FoxP3_Induction",
+      "name": "FoxP3 full",
+      "uniprot_id": "Q9BZS1",
+      "range": null,
+      "notes": "Full length"
+    },
+    {
+      "entry_id": "IL2RA_CD25",
+      "name": "CD25/IL2RA full (Stat5_Enhanced ref)",
+      "uniprot_id": "P01589",
+      "range": null,
+      "notes": "Wild-type; high-affinity mutant from literature"
+    },
+    {
+      "entry_id": "FKBP12",
+      "name": "FKBP12 full",
+      "uniprot_id": "P62942",
+      "range": null,
+      "notes": "Rapamycin-binding"
+    },
+    {
+      "entry_id": "FRB_mTOR",
+      "name": "mTOR FRB domain",
+      "uniprot_id": "P42345",
+      "range": [2025, 2124],
+      "notes": "FRB domain ~100 aa; check UniProt domain annotation"
+    },
+    {
+      "entry_id": "PDCD1_cyto",
+      "name": "PD-1 cytoplasmic (Split iCAR)",
+      "uniprot_id": "Q15116",
+      "range": [181, 288],
+      "notes": "PD1_HUMAN cytoplasmic; after TM"
+    }
+  ],
+  "static_sequences": [
+    {
+      "entry_id": "FLAG_Tag",
+      "name": "FLAG epitope",
+      "sequence": "DYKDDDDK",
+      "source": "Canonical FLAG tag"
+    },
+    {
+      "entry_id": "GGSG3",
+      "name": "GGSG×3 linker",
+      "sequence": "GGSGGGSGGGSG",
+      "source": "Synthetic flexible linker 12 aa"
+    }
+  ]
+}

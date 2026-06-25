@@ -1,0 +1,1714 @@
+{
+    "_meta": {
+        "version": "1.7.5",
+        "description": "AbEngineCore data registry: versioning and traceability for all Tier-1, Tier-2, Tier-3 data sources",
+        "created": "2026-04-18",
+        "updated": "2026-05-09",
+        "updated_by": "owner_approval",
+        "binding_standards": [
+            "V1.5.1 Virtual Affinity Maturation",
+            "V5.0.0 VH/VL Humanization",
+            "V1.2.0 Petization Standard (doc) — cohort release_id remains V1.0.0_Petization",
+            "V4.7.2 VH/VL Humanization",
+            "V5.0 VHH Humanization (supersedes V4.0)",
+            "V1.0 Bispecific VHH CMC",
+            "V1.3 VH-to-VHH Conversion",
+            "V5.2 De Novo CDR Design",
+            "V1.6.1 Virtual Affinity Maturation",
+            "V1.3.1 CMC Developability",
+            "V1.0 CrossSpecies Engine",
+            "V5.5.1 VH/VL Humanization"
+        ],
+        "governance_note": "Rules are authored in standard documents; executable thresholds and lookups come from frozen tier_1_data files listed under version_mapping. Bidirectional: each tier_1 entry lists standards[]; each pipeline version lists depends_on file keys. Evolution: new clinical/data batches require registry bump + EVOLUTION_LOG entry; never silent threshold drift."
+    },
+    "pipeline_release_matrix": {
+        "virtual_affinity_maturation": {
+            "release_id": "V1.7_Virtual_Affinity_Maturation",
+            "version_label": "V1.7",
+            "last_updated": "2026-06-02",
+            "role": "Virtual affinity maturation for VH/VL, VHH, protein-antigen, short peptide, and hapten/small-molecule projects",
+            "standard_file": "docs/VIRTUAL_AFFINITY_MATURATION_STANDARD.md",
+            "parent_standard_file": "docs/VIRTUAL_AFFINITY_MATURATION_STANDARD.md",
+            "config_execution": "core/structure/affinity_energy_toolkit.py + core/structure/structural_integrity_veto.py + core/structure/cdr_fingerprint_prior.py + core/cmc/sequence_liability_filter.py + core/structure/relax_and_clash_gate.py + scripts/affinity_energy_cli.py + scripts/run_pag1_vam_postfilter.py + scripts/run_pag1_vam_pipeline.py (unattended orchestrator: ala->saturation->stage4->audit[hard gate]->stage5->rebaseline; human-gated steps excluded) + config/vam_antigen_profile.json + tools/Boltz/colab/run_boltz2_pag1.ipynb",
+            "rules_from_data": "V1.7 (2026-06-02, owner-approved alignment) canonicalizes three project-validated items over V1.6.1: (1) Stage-5 MM/GBSA MUST use per-site WT-self repack baseline (run_mmgbsa_selfref; ddg_corrected = dg(mut) - dg(WT_self@site)); asymmetric WT baseline forbidden (5-8 kcal/mol repack-relief artefact). (2) CHECK 6 fingerprint lookup MUST use IMGT-segmented CDR index (CDR1 27-38 / CDR2 56-65 / CDR3 105-117); union enumeration index forbidden; out-of-range = NOT_RUN. (3) CHECK 7 liability MUST resolve linear position via PDB chain_records; cdr_start+union_index forbidden. Single-frame MM/GBSA on flexible short peptide is corroboration-only (EvoEF2 primary + cross-tool sign agreement). HADDOCK3 optional/non-additive for <=30aa flexible-peptide Scenario A. V1.6 (additive over V1.5.2) adds CHECK 6 CDR Fingerprint Design Prior, CHECK 7 Sequence-Level CMC Liability Pre-Filter, CHECK 8 Relax + vdW Clash Gate. Routes VH/VL projects through AbRef-458 fingerprint (CDR_physchem_thresholds_v1.json) and VHH projects through VHH-71 (CDR_physchem_VHH71_v1.json with VHH-42 design-prior fallback). V1.6.1 patch fixes Stage 0 tool selection: Boltz-2 (MIT, commercial-safe) is PRIMARY; AF3 server is HARD-PROHIBITED for production; Chai-1 requires per-org license; short-peptide Scenario A imposes ipTM>=0.80 + PAE_interface<5.0 dual gate. Antigen-type adaptive parameters in config/vam_antigen_profile.json (schema 1.1.0). All V1.5.2 CHECK 1/2/4/5 logic and thresholds preserved unchanged.",
+            "data_must_exist": [
+                "WT complex PDB with antibody chains",
+                "protein antigen chains or hapten HETATM resnames",
+                "tool registry entries for EvoEF2, ThermoMPNN, OpenMM MM/GBSA, Boltz-2",
+                "data/reference/CDR_physchem_thresholds_v1.json",
+                "data/reference/CDR_physchem_VHH71_v1.json",
+                "config/vam_antigen_profile.json",
+                "tools/Boltz/colab/run_boltz2_pag1.ipynb"
+            ],
+            "bidirectional_link": "V1.6 standard §2 defines CHECK 6/7/8 modules; §2.4 (V1.6.1) defines Stage 0 tool selection and commercial-safe operation; §3 antigen profile JSON governs scenario A/B/C/D parameters; V1.5.2 CHECK 1/2/4/5 inherited via run_stage2_5. vam_antigen_profile.json is the SSOT for scenario thresholds previously hardcoded in structural_integrity_veto.py.",
+            "evolution_path": "Project-level calibration of min_freq for CHECK 6 (default 0.005), vdW overlap thresholds for CHECK 8 (default 0.4 / 0.6 Å), or Stage 0 ipTM/PAE thresholds requires EVOLUTION_LOG [PROPOSAL] + owner sign-off before drift. Any deviation from Boltz-2 as Stage 0 primary requires logged license artefact for the alternative tool. V1.7 coordinate-system rules (CHECK 6 IMGT-segmented index; CHECK 7 PDB chain_records linear index) and the per-site WT-self MM/GBSA baseline are invariants; any reversion requires owner-approved EVOLUTION_LOG entry.",
+            "supersedes": "V1.6.1_Virtual_Affinity_Maturation"
+        },
+        "regular_antibody_vh_vl_humanization": {
+            "release_id": "V5.5.1_VH_VL_Humanization",
+            "version_label": "V5.5.1",
+            "last_updated": "2026-05-09",
+            "role": "/ VH/VL （Checklist ）",
+            "standard_file": "docs/VH_VL_HUMANIZATION_STANDARD_V4.4.md",
+            "config_execution": "config/vh_vl_humanization_v490.json",
+            "rules_from_data": "Executable thresholds in vh_vl_humanization_v490.json (_meta.version 5.5.1). V5.5.1 is a client-safe reporting patch for the V5.5.0 post-humanization paired Fv naturalness QC gate. Customer-facing outputs use Paired Fv Naturalness QC and show only PASS/WARN/FAIL plus recommended action; internal JSON retains p_abnativ2.paired_humanness and pairing_likelihood. Gate behavior remains: paired_humanness <0.70 = FAIL, 0.70-0.80 = WARN, >=0.80 = PASS, target >=0.83. This is final candidate QC, not a Phase 2 germline pre-filter. Inherits V5.4.3 Balanced CMC Polish and V5.4.0 structure-driven fallback.",
+            "data_must_exist": [
+                "kabat_caches_vh",
+                "kabat_caches_vl_kappa",
+                "kabat_caches_vl_lambda",
+                "clinical_anchor_germline_frequencies",
+                "clinical_germline_anchors",
+                "cmc_abref_458",
+                "clinical_842_9mer_db",
+                "oas_human_9mer_v1"
+            ],
+            "bidirectional_link": "standard ；tier_1_data.*.standards  V4.7.x–V5.5.x；version_mapping.V5.5.1_VH_VL_Humanization.depends_on ；DeepFR-CTX/CMC and 9AA-CTX OAS-Assist datasets resolve through config/clinical_842_9mer_db.json and config/oas_human_9mer_v1.json.gz as recorded in standards_ssot.runtime_policies.murine_vhvl_humanization",
+            "evolution_path": "/ EVOLUTION_LOG [OBSERVATION]/[PROPOSAL]/[EXECUTED]；/（ ABENGINECORE_GOVERNANCE）。DeepFR-CTX/CMC rescue gate and polish rules require owner approval before registry/SSOT drift.",
+            "supersedes": "V5.5.0_VH_VL_Humanization",
+            "supersedes_note": "V5.5.1 preserves V5.5.0 paired_humanness QC behavior and makes checklist/customer reporting client-safe."
+        },
+        "vhh_humanization_path_a": {
+            "release_id": "V5.0_VHH_Humanization",
+            "version_label": "V5.0",
+            "last_updated": "2026-05-16",
+            "role": "/ VHH （Path A） - Structure-driven + DeepFR-CTX",
+            "standard_file": "docs/VHH_HUMANIZATION_DESIGN_STANDARD.md",
+            "config_execution": "config/tier_system_config.json",
+            "rules_from_data": "V5.0 (Owner-approved Evolution Log 2026-05-16): Five mandatory upgrades. (1) Template library is clinical-VHH only (90 VH3-SAFE synthetic templates DEPRECATED). (2) FR identity cutoff lowered 0.70 -> 0.65 (permissive 0.60 with audit log). (3) Hallmark decisions are CDR3-length + SAP/pI driven (FULL/PARTIAL/MINIMAL). (4) Non-Hallmark back-mutation requires IgFold/ABodyBuilder2 + SASA + CDR-distance + DeepFR-CTX 9-mer voting; dynamic Tier per template. (5) No-template fallback uses DeepFR-CTX-VHH 9-aa context voting from clinical_842_9mer_db.json (G/P/C hard-protected). V4.0 prescreen gates retained (CDR3 hard >=25aa, soft >=20aa; SAP hard >0.771, soft >0.714; pI hard >9.5). VHH42 / VHH68_CMC_Benchmark_v1.0 remain LOCKED active_reference.",
+            "data_must_exist": [
+                "vhh68_cmc_benchmark",
+                "vhh42_clinical_reference",
+                "vhh42_cmc_metrics",
+                "vhh42_sap_thresholds",
+                "vhh42_germline_assignments",
+                "vhh42_sabdab_supplement",
+                "vhh_fr3_packing_rules",
+                "vhh_fr3_packing_percentiles",
+                "vhh_database_summary",
+                "clinical_842_9mer_db"
+            ],
+            "structure_prediction_required": true,
+            "structure_predictors": ["IgFold", "ABodyBuilder2"],
+            "deepfr_ctx_integration": {
+                "ctx_guard_module": "core/humanization/ctx_guard.py",
+                "ninemer_db": "config/clinical_842_9mer_db.json",
+                "fallback_surface_reshaping": "9aa_context_voting"
+            },
+            "bidirectional_link": "version_mapping.V5.0_VHH_Humanization.depends_on tier_1; standards VHH_HUMANIZATION_DESIGN_STANDARD_V5.0; cross-references DeepFR-CTX shared with VH/VL humanization V5.5.x",
+            "evolution_path": "EVOLUTION_LOG entry 2026-05-16 [APPROVED] documents the V4.0 -> V5.0 upgrade rationale and five-part change list.",
+            "supersedes": "V4.0_VHH_Humanization"
+        },
+        "de_novo_cdr_design": {
+            "release_id": "V5.2_De_Novo_CDR_Design",
+            "version_label": "V5.2",
+            "last_updated": "2026-05-01",
+            "role": "De Novo CDR Design & Patent Escape (FTO)",
+            "standard_file": "docs/DE_NOVO_CDR_DESIGN_STANDARD.md",
+            "config_execution": "core/structure/cdr_fingerprint_prior.py + config/vam_antigen_profile.json + config/abenginecore_registry.json (multi-file policy bundle)",
+            "rules_from_data": "V5.2 (2026-05-01) alignment with VAM V1.6.1: Boltz-2 Stage 0 primary; mandatory CHECK 6 Fingerprint Prior (FH-358 for VH/VL, VHH-71 for VHH); short-peptide Scenario A dual gate (ipTM>=0.80 + PAE<5.0A); AF3 server prohibited for production. Inherits V5.1 Absci benchmark validation and PRODIGY prohibition.",
+            "data_must_exist": [
+                "WT complex PDB",
+                "ProteinMPNN weights",
+                "data/reference/CDR_physchem_thresholds_v1.json",
+                "data/reference/CDR_physchem_VHH71_v1.json",
+                "config/vam_antigen_profile.json"
+            ],
+            "bidirectional_link": "DE_NOVO_CDR_DESIGN_STANDARD.md §1.1 (AA Priors) and §2.4 (V1.6.1 alignment) define the mandatory use of Boltz-2 and Fingerprint Priors. Shared config/vam_antigen_profile.json ensures consistent thresholds across VAM and De Novo for the same antigen scenario.",
+            "evolution_path": "V5.2 enforces data-driven priors to constrain the massive de novo search space. Any deviation to Chai-1 or AF3 requires logged license confirmation.",
+            "supersedes": "V5.1_De_Novo_CDR_Design"
+        },
+        "vh_to_vhh_conversion_path_b2_c": {
+            "release_id": "V1.8.17_VH_to_VHH_Conversion",
+            "version_label": "V1.8.17",
+            "console_deployment_branch": "V1.8.17.IGHV3",
+            "last_updated": "2026-05-17",
+            "role": " VH  / VH→VHH（Path B2/C）",
+            "standard_file": "docs/VH_TO_VHH_CONVERSION_STANDARD_V1.8.md",
+            "config_execution": "（ + mask；）",
+            "rules_from_data": "V1.8.17 (2026-05-16): Aligns SSOT + registry with VH_TO_VHH_CONVERSION_STANDARD_V1.8.md header V1.8.17. Stealth tier net_basic/pI-conditional (NONE/MINIMAL/STANDARD/FULL); Y91/F91 + W103 monitoring metrics (no mutation). Inherits V1.8.16 VL-safety SASA gate (50 Å² threshold; aa-type-aware hydrophobic check at k45). Inherits V1.8.8 Smart-CMC guards, adaptive pI-tuning (K73Q fallback), Path C2 CDR Cys-Gate (C100AS), V1.8.6 hallmark simplification + Expressibility Verdict Gate. Public API branch V1.8.17.IGHV3 = same rules + IGHV3-family-only pre-flight on /vh_to_vhh endpoints.",
+            "data_must_exist": [
+                "vhh_database_summary",
+                "vhh42_clinical_reference",
+                "vhh42_cmc_metrics",
+                "germline_source_databases",
+                "kabat_caches_vh",
+                "vhh_design_atlas_v3",
+                "glycan_contact_ab_kb_v1.7",
+                "vhh_master_benchmarks_v3",
+                "autonomous_human_vh_cohort_v1"
+            ],
+            "bidirectional_link": " §0  ↔ tier_1 vhh_database_summary.binding_system；version_mapping  depends_on",
+            "evolution_path": "SAbDab/ md/json ； VH/VL/VHH  EVOLUTION_LOG",
+            "supersedes": "V1.8.8_VH_to_VHH_Conversion",
+            "v1_5_addendum": "V1.5 (2026-04-30) Risk-Forward Reporting： V1.4 （Verdict Headline / Risk Attribution Matrix / Success Probability / Action Roadmap）。V1.5.1 ： (Bahrami Dizicheh et al., 2023)  CDR3  FR2(37/47) ； Twist  Option B  Tetravalent VHH-Fc-VHH。；payload ， V1.4 ",
+            "v1_6_addendum": "V1.6 (2026-04-30) Engineered VH Similarity Layer（§6.7）： Atlas-24 （atlas24_v1.0_2026-04-30，n=24  VH ）， engineered_vh_similarity（0–1）。：hallmark_motif(25%) + stealth_pattern(20%) + cdr3_charge(20%) + cdr_hydrophilicity(20%) + cdr3_envelope(15%)， 3  liability 。stealth_departures==0  score_band  medium + Risk Attribution INFO 。， V1.5 success_probability",
+            "v1_7_addendum": "V1.7.1 (2026-04-30) Glycan-Dependent Epitope Risk Layer（§6.8）：：(1)  GLYCAN_CONTACT_AB_KB（v1.7.1_glycan_checker_2026-04-30）（Camrelizumab/PD-1 N58，Liu 2021，Li 2021），KB penalty_factor×0.45 (HIGH_RISK)；(2) CDR-H3  NxS/T （N[STAGCVILMPFYW][ST]）， penalty_factor×0.90 (INFO)。penalty_factor  success_probability  verdict_severity  primary_recommendation  —  V1.7 。：Camrelizumab  1.0  0.45（MODERATE_RISK）。：core/vh2vhh/glycan_dependency_checker.py。"
+        },
+        "crossspecies_engine": {
+            "release_id": "V1.0_CrossSpecies_Engine",
+            "version_label": "V1.0",
+            "last_updated": "2026-05-07",
+            "role": "Engine-layer meta-standard for cross-species antibody engineering — three frozen tracks (SR-1.0 Surface Reshaping, DFR-1.0 DeepFR, AG-1.0 Anchor Graft) and the species adapter contract; parallel to (never replaces) species standards.",
+            "standard_file": "docs/CROSSSPECIES_ENGINE_STANDARD_V1.0.md",
+            "config_execution": "config/crossspecies_adapter_template.json + config/crossspecies_adapters/*.json + scripts/run_petization_pipeline.py (SR-1.0 / AG-1.0) + scripts/run_deep_freq_petization.py (DFR-1.0) + scripts/run_vhh_surface_reshaping_v1.py (SR-1.0)",
+            "rules_from_data": "Tracks frozen at V1.0. SR-1.0: SASA gate + germline-frequency replacement + hard locks (CDR / canonical Cys / Hallmark). DFR-1.0: SR-1.0 substitution gated by 4 structural vetoes — Hallmark / canonical Cys / SASA<5 Å² / CDR-proximal heavy-atom <5 Å. AG-1.0: CDR transplant onto clinically validated acceptor scaffold only (raw germline forbidden as acceptor). Forbidden engine-layer patterns: naive merged mutation union without three-gate re-screen (CMC degradation observed in anti-HSA VHH A6 benchmark, 2026-05-06: ADI 95→90.8, SAP 0.714→0.571); AG-1.0 on dog/cat VHH (no canine/feline single-domain clinical scaffold). 10 concrete adapters shipped with V1.0 covering dog VH/VL, dog VHH, cat VH/VL, cat VHH, camelid VHH→human, rabbit→human, mouse→human, chicken→human, bovine→human, equine→human.",
+            "data_must_exist": [
+                "config/crossspecies_adapter_template.json",
+                "config/crossspecies_adapters/canis_lupus_familiaris__VH_VL.json",
+                "config/crossspecies_adapters/canis_lupus_familiaris__VHH.json",
+                "config/crossspecies_adapters/felis_catus__VH_VL.json",
+                "config/crossspecies_adapters/felis_catus__VHH.json",
+                "config/crossspecies_adapters/camelid__VHH_to_human.json",
+                "config/crossspecies_adapters/oryctolagus_cuniculus__VH_VL_to_human.json",
+                "config/crossspecies_adapters/mus_musculus__VH_VL_to_human.json",
+                "config/crossspecies_adapters/gallus_gallus__VH_VL_to_human.json",
+                "config/crossspecies_adapters/bos_taurus__VH_VL_to_human.json",
+                "config/crossspecies_adapters/equus_caballus__VH_VL_to_human.json"
+            ],
+            "bidirectional_link": "SSOT entry crossspecies_engine ↔ docs/CROSSSPECIES_ENGINE_STANDARD_V1.0.md ↔ version_mapping.V1.0_CrossSpecies_Engine. Engine standard is parallel to species standards; the species standard always wins on conflict.",
+            "evolution_path": "New tracks (e.g., constrained Merged-with-three-gate-rescreen) require [PROPOSAL] in EVOLUTION_LOG + owner approval before V1.1. Adding cross-reference paragraphs into LOCKED species standards requires per-standard approval (not implicit in V1.0).",
+            "supersedes": null
+        },
+        "pet_antibody_petization": {
+            "release_id": "V1.0.0_Petization",
+            "version_label": "V1.0.0",
+            "standard_version": "V1.2.0",
+            "standard_revision_date": "2026-04-29",
+            "version_semantics": "release_id + version_label = frozen data cohort (scaffold JSONs + tier_3_data pointers); standard_version = governing markdown revision (V1.0.1 §2.4 Track A/B; V1.2.0 §3.5 FR4 / UP-FR4 + CLI --fr4-strategy; implementation petization_cli_v1.3.0).",
+            "last_updated": "2026-04-29",
+            "role": "（ + ；3-track ）",
+            "standard_file": "docs/PETIZATION_STANDARD_V1.0.md",
+            "config_execution": "scripts/run_petization_pipeline.py (CLI) + api/routers/petization.py (internal API)",
+            "rules_from_data": ": dog_scaffold_cmc_optimization_tier1_tier2_v1 (V1.1, 5 Tier1 VH + 3 Tier1 VL); : cat_scaffold_cmc_optimization_tier1_tier2_v1 (V1.0.0, 86 VH + 62 VL); :  IgG1a/1b/IgG2 (NCBI ) + IGKC + IGLC1*01 (IMGT000038);  IgG-Bm + IGKC/IGLC;  CMC  §5。",
+            "data_must_exist": [
+                "felis_catus_ig_aa",
+                "canis_lupus_familiaris_ig_aa",
+                "cat_constant_regions_verified",
+                "cat_iglc_imgt_v1",
+                "dog_scaffold_cmc_optimization_tier1_tier2_v1",
+                "cat_scaffold_cmc_optimization_tier1_tier2_v1"
+            ],
+            "supersedes": "feline_antibody_felinization (V1.0.0_Felinization, 2026-04-29 morning release)",
+            "alias_keys": [
+                "feline_antibody_felinization",
+                "canine_antibody_caninization"
+            ]
+        },
+        "feline_antibody_felinization": {
+            "release_id": "V1.0.0_Felinization",
+            "version_label": "V1.0.0",
+            "last_updated": "2026-04-29",
+            "role": "DEPRECATED — superseded by pet_antibody_petization (V1.0.0_Petization). Kept for historical traceability only.",
+            "standard_file": "docs/FELINIZATION_STANDARD_V1.0.md",
+            "config_execution": "config/vh_vl_humanization_v490.json",
+            "deprecated": true,
+            "deprecation_note": "All new feline runs MUST use pet_antibody_petization. This entry is preserved so archived projects produced before 2026-04-29 evening can still resolve their release_id.",
+            "rules_from_data": "(deprecated) VH  Tier1 ；VL  IGKV/IGLV ； IgG2 (LALA) / IGKC。",
+            "data_must_exist": [
+                "felis_catus_ig_aa",
+                "canis_lupus_familiaris_ig_aa",
+                "cat_constant_regions_verified"
+            ]
+        },
+        "cmc_developability_assessment": {
+            "release_id": "V1.4.0_CMC_Developability",
+            "version_label": "V1.4.0",
+            "last_updated": "2026-05-15",
+            "role": "General antibody CMC/developability assessment, FR-only mutation suggestion policy, and regular VH/VL IgG cohort panel (origin-aware gates)",
+            "standard_file": "docs/CMC_DEVELOPABILITY_STANDARD_V1.1.md",
+            "config_execution": "core/evaluation/evaluator.py + core/evaluation/cmc_advisor_module.py + core/cmc/fr_mutation_sites.py + core/cmc/cmc_mutation_policy.py + core/cmc/regular_ab_developability.py + api/routers/cmc.py + data/rules/cmc_mutation_policy_v1_2.json (multi-file policy bundle)",
+            "rules_from_data": "V1.4.0 (2026-05-15): Smart-CMC safety upgrade. (1) Mandatory aggregation-motif lookahead guard. (2) CDR-driven hydrophobic patch detection and suppression. (3) Adaptive pI/net_charge safe-zone trimming (p25-p75). (4) Integrated CDR Fingerprint metrics (all_cdr_gravy) for both VH/VL and VHH. Removed acid_density due to reference data absence. V1.3.2 adds §3H sdAb Cohort Panel.",
+            "data_must_exist": [
+                "cmc_abref_458 (1.0)",
+                "cmc_abref_458_27m (1.0)",
+                "cmc_cdr_physchem_thresholds_v1 (1.0)",
+                "cmc_mutation_policy_v1_2 (1.2.0)",
+                "data/rules/cmc_rules_v1.json",
+                "Natural384_IgG_stats_v1 (1.0)",
+                "AbRef458_27m_stats_v1 (1.0)",
+                "vhh68_cmc_benchmark (1.0)",
+                "vhh_clinical_26 (1.0)",
+                "atlas24_eng_vh (1.0)",
+                "transgenic_sdab (1.0)",
+                "CDR_physchem_AbRef458_v1 (1.0)",
+                "CDR_physchem_VHH71_v1 (1.0)"
+            ],
+            "bidirectional_link": "SSOT entry cmc_developability_assessment ↔ CMC_DEVELOPABILITY_STANDARD_V1.1.md V1.4.0 ↔ version_mapping.V1.4.0_CMC_Developability",
+            "evolution_path": "Changes to cohort gates, hard-gate parameter list, origin routing, protected-position thresholds, or client-reporting disclosure require owner approval and registry/SSOT bump.",
+            "supersedes": "V1.3.2_CMC_Developability"
+        },
+        "sequence_delivery_standard": {
+            "release_id": "V1.0.0_Sequence_Delivery",
+            "version_label": "V1.0.0",
+            "last_updated": "2026-05-01",
+            "role": "Unified sequence retrieval, assembly, codon optimization, and delivery QA workflow",
+            "standard_file": "core/sequence_delivery/__init__.py",
+            "config_execution": "core/sequence_delivery/codon_optimizer.py + scripts/run_sequence_delivery.py",
+            "rules_from_data": "Unified CHO-1.0 codon table; standardized SP+V+C assembly; multi-gate QA (diff/GC/stop/FR4).",
+            "data_must_exist": [
+                "core/sequence_delivery/codon_optimizer.py",
+                "scripts/run_sequence_delivery.py"
+            ],
+            "bidirectional_link": "SSOT entry sequence_delivery_standard ↔ version_mapping.V1.0.0_Sequence_Delivery",
+            "evolution_path": "Changes to codon tables or sequence assembly QA require SSOT + registry update."
+        }
+    },
+    "tier_1_data": {
+        "clinical_anchor_germline_frequencies": {
+            "name": "Clinical Anchor Germline Frequency Database",
+            "file": "data/thera_sabdab/out/thera_germline_mapping.csv",
+            "version": "1.0",
+            "frozen_date": "2026-03-31",
+            "n_entries": 20,
+            "fields": [
+                "chain",
+                "germline",
+                "count"
+            ],
+            "source": "Aggregated from 842_germline_assignment.csv (VH: 11 entries, VL: 9 entries)",
+            "generated_by": "scripts/analyze_70_human_humanized_germline_ada.py",
+            "binding_system": "HumanizationEngine._load_clinical_anchor_counts",
+            "standards": [
+                "V4.7 clinical-anchor-only framework pool"
+            ],
+            "validation_rule": "sum(VH_count) + sum(VL_count) = ~1013 unique clinical molecules",
+            "notes": "Read-only; regenerate only if clinical reference set materially changes (unlikely for V4.7.x)"
+        },
+        "cmc_abref_458": {
+            "name": "AbRef-458 CMC Reference Baseline (458 engineered therapeutic antibodies)",
+            "file": "data/reference/AbRef458_stats_v1.json",
+            "version": "1.0",
+            "frozen_date": "2026-03-31",
+            "n_entries": 458,
+            "metrics": [
+                "pI",
+                "GRAVY",
+                "instability_index",
+                "net_charge_pH7",
+                "hydro_patch_max9",
+                "charge_patch_max7",
+                "agg_motifs",
+                "deamidation_sites",
+                "isomerization_sites"
+            ],
+            "percentile_bands": [
+                "p5",
+                "p25",
+                "p50",
+                "p75",
+                "p95"
+            ],
+            "source": "data/humanization_assay/842_combined_assessment.csv (rows where origin='engineered_458')",
+            "generated_by": "scripts/export_ada_master_final.py",
+            "binding_system": "cmc_advisor_module.py (real-time JSON load)",
+            "standards": [
+                "CMC_DEVELOPABILITY_STANDARD_V1.3.1",
+                "V4.4 Phase 5.1"
+            ],
+            "license": "LOCKED — frozen, never recomputed at runtime",
+            "notes": "Percentile bands are empirical gate thresholds; do NOT recalculate on new data"
+        },
+        "vhh_clinical_26": {
+            "name": "Clinical-26 Non-redundant Humanized VHH Benchmark",
+            "file": "data/reference/VHH_Clinical26_stats_v1.json",
+            "version": "1.0",
+            "frozen_date": "2026-05-08",
+            "n_entries": 26,
+            "composition": "26 unique clinical humanized VHH sequences (de-duplicated from 40 IDs)",
+            "metrics": ["pI", "GRAVY", "instability_index", "net_charge_pH7", "hydro_patch_max9", "charge_patch_max7", "SAP_score", "agg_motifs", "hydro_cluster_count", "glycosylation_sites", "deamidation_sites", "isomerization_sites", "oxidation_sites", "free_cys"],
+            "binding_system": "vhh_cmc_engine.py (sdAb source-matched evaluation)",
+            "standards": ["CMC_DEVELOPABILITY_STANDARD_V1.3.2 §3H"],
+            "license": "LOCKED — frozen non-redundant reference"
+        },
+        "atlas24_eng_vh": {
+            "name": "Atlas-24 Non-redundant Engineered Human VH Benchmark",
+            "file": "data/reference/Atlas24_EngVH_stats_v1.json",
+            "version": "1.0",
+            "frozen_date": "2026-05-08",
+            "n_entries": 24,
+            "composition": "24 unique engineered human autonomous VH sequences",
+            "metrics": ["pI", "GRAVY", "instability_index", "net_charge_pH7", "hydro_patch_max9", "charge_patch_max7", "SAP_score", "agg_motifs", "hydro_cluster_count", "glycosylation_sites", "deamidation_sites", "isomerization_sites", "oxidation_sites", "free_cys"],
+            "binding_system": "vhh_cmc_engine.py (sdAb source-matched evaluation)",
+            "standards": ["CMC_DEVELOPABILITY_STANDARD_V1.3.2 §3H"],
+            "license": "LOCKED — frozen non-redundant reference"
+        },
+        "transgenic_sdab": {
+            "name": "Transgenic sdAb Positive Control (Porustobart)",
+            "file": "data/reference/Transgenic_sdAb_stats_v1.json",
+            "version": "1.0",
+            "frozen_date": "2026-05-08",
+            "n_entries": 1,
+            "composition": "Porustobart (transgenic mouse VH)",
+            "metrics": ["pI", "GRAVY", "instability_index", "net_charge_pH7", "hydro_patch_max9", "charge_patch_max7", "SAP_score", "agg_motifs", "hydro_cluster_count", "glycosylation_sites", "deamidation_sites", "isomerization_sites", "oxidation_sites", "free_cys"],
+            "binding_system": "vhh_cmc_engine.py (sdAb source-matched evaluation)",
+            "standards": ["CMC_DEVELOPABILITY_STANDARD_V1.3.2 §3H"],
+            "license": "LOCKED — frozen positive control"
+        },
+        "vhh68_cmc_benchmark": {
+            "name": "VHH68 CMC Benchmark (40 clinical + 28 Database-B camelid VHH; 1 transgenic mouse VHH labeled separately)",
+            "file": "data/reference/VHH68_reference_stats_v1.json",
+            "version": "1.0",
+            "frozen_date": "2026-05-06",
+            "status": "LOCKED — active_reference; not yet active as hard runtime gate",
+            "n_entries": 69,
+            "n_calibration": 68,
+            "calibration_note": "Threshold calibration uses camelid-only n=68 (Porustobart excluded; platform: transgenic_mouse)",
+            "composition": "40 clinical VHH (incl. Erfonrilimab-VHH2 added 2026-05-06) + 28 Database-B camelid VHH + 1 transgenic mouse VHH (Porustobart, labeled, not excluded from JSON)",
+            "metrics": [
+                "pI", "GRAVY", "instability_index", "net_charge_pH7",
+                "SAP_score", "SAP_proxy", "hydro_patch_max9", "charge_patch_max7",
+                "agg_motifs", "hydro_cluster_count",
+                "glycosylation_sites", "deamidation_sites", "isomerization_sites", "oxidation_sites", "free_cys",
+                "cdr3_length", "cdr3_compactness_ca_dist", "fr2_cdr3_min_dist",
+                "exposed_fr2_hydrophobicity", "abnativ_vhh_score", "nanobert_pll",
+                "adi_score"
+            ],
+            "percentile_bands": ["p2_5", "p5", "p25", "p50", "p75", "p90", "p95", "p97_5"],
+            "active_thresholds": {
+                "cdr3_hard_gate_aa":  25,
+                "cdr3_soft_gate_aa":  20,
+                "sap_hard_gate":      0.771,
+                "sap_soft_gate":      0.714,
+                "pI_hard_gate_high":  9.5,
+                "pI_soft_gate_high":  8.5,
+                "note": "LOCKED reference values; runtime active in VHH_CMC_v1.1 / VHH_HUMANIZATION_V4.0"
+            },
+            "source_data": "data/vhh_structural_union/vhh68_special_cmc_results.json",
+            "generated_by": "scripts/.tmp_vhh68_benchmark_stats.py (2026-05-06)",
+            "standards": [
+                "VHH_HUMANIZATION_DESIGN_STANDARD_V4.0",
+                "CMC_DEVELOPABILITY_STANDARD_V1.3.1"
+            ],
+            "binding_system": "vhh_cmc_engine.py (VHH_CMC_v1.1), VHH humanization prescreen gate (VHH_HUMANIZATION_V4.0)",
+            "supersedes": "vhh42_clinical_reference for future VHH CMC benchmark calibration; VHH42 remains locked historical reference",
+            "license": "LOCKED — frozen active_reference, never recomputed at runtime"
+        },
+        "vhh42_clinical_reference": {
+            "name": "VHH42 Clinical Reference Set (39 clinical + 3 humanized VHH)",
+            "file": "data/reference/VHH42_reference_stats_v1.json",
+            "version": "1.0",
+            "frozen_date": "2026-03-22",
+            "n_entries": 42,
+            "composition": "39 clinical VHH from vhh_39_clinical_atlas/master_table.csv + 3 SAbDab independently humanized",
+            "metrics": [
+                "pI",
+                "GRAVY",
+                "instability_index",
+                "net_charge_pH7",
+                "hydro_patch_max9",
+                "charge_patch_max7",
+                "SAP_score",
+                "agg_motifs",
+                "hydro_cluster_count",
+                "glycosylation_sites",
+                "deamidation_sites",
+                "isomerization_sites",
+                "oxidation_sites",
+                "free_cys"
+            ],
+            "percentile_bands": [
+                "p5",
+                "p25",
+                "p50",
+                "p75",
+                "p95"
+            ],
+            "binding_system": "vhh_cmc_engine.py (real-time JSON load), bispecific_cmc_engine.py",
+            "standards": [
+                "BISPECIFIC_VHH_CMC_STANDARD_V1.0",
+                "VHH_HUMANIZATION_DESIGN_STANDARD_V2.1"
+            ],
+            "license": "LOCKED — frozen",
+            "notes": "ADI score = flag-discrete(PASS/WARN/FAIL) × 25 per category; distinct from AbRef-458 (tent-function ADI); per_antibody tables include 39 clinical + 3 supplement (see vhh42_sabdab_supplement)"
+        },
+        "kabat_caches_vh": {
+            "name": "IGHV Kabat Numbering Cache",
+            "file": "data/germlines/human_ig_aa/_cache/IGHV_kabat_cache.json",
+            "version": "1.1",
+            "frozen_date": "2026-04-18",
+            "n_cached": 447,
+            "n_in_source_db": 458,
+            "fields": [
+                "sequence_aa",
+                "kabat_cdr_lengths",
+                "fr_concat",
+                "vernier_residues"
+            ],
+            "source_db": "data/germlines/human_ig_aa/IGHV_aa.json",
+            "generated_by": "scripts/build_germline_kabat_cache.py (main branch)",
+            "binding_system": "HumanizationEngine._clinical_anchor_candidates — cache lookup for germline scoring",
+            "standards": [
+                "V4.7.x Phase 2 clinical-anchor-only + germline-frequency-weighted scoring"
+            ],
+            "coverage": "447/458 IMGT IGHV genes successfully converted to Kabat",
+            "regeneration": "Run `python scripts/build_germline_kabat_cache.py` yearly or when IMGT updates"
+        },
+        "kabat_caches_vl_kappa": {
+            "name": "IGKV Kabat Numbering Cache (Kappa Light Chain)",
+            "file": "data/germlines/human_ig_aa/_cache/IGKV_kabat_cache.json",
+            "version": "1.1",
+            "frozen_date": "2026-04-18",
+            "n_cached": 129,
+            "n_in_source_db": 129,
+            "fields": [
+                "sequence_aa",
+                "kabat_cdr_lengths",
+                "fr_concat",
+                "vernier_residues"
+            ],
+            "source_db": "data/germlines/human_ig_aa/IGKV_aa.json",
+            "generated_by": "scripts/build_germline_kabat_cache.py (main branch)",
+            "binding_system": "HumanizationEngine._clinical_anchor_candidates — cache lookup for germline scoring",
+            "standards": [
+                "V4.7.x Phase 2 clinical-anchor-only"
+            ],
+            "coverage": "129/129 IMGT IGKV genes (complete coverage)",
+            "vernier_positions": [
+                2,
+                4,
+                36,
+                46,
+                49,
+                69,
+                71,
+                98
+            ],
+            "regeneration": "Run `python scripts/build_germline_kabat_cache.py` yearly or when IMGT updates"
+        },
+        "kabat_caches_vl_lambda": {
+            "name": "IGLV Kabat Numbering Cache (Lambda Light Chain) [NEW V1.1]",
+            "file": "data/germlines/human_ig_aa/_cache/IGLV_kabat_cache.json",
+            "version": "1.1",
+            "frozen_date": "2026-04-18",
+            "n_cached": 115,
+            "n_in_source_db": 118,
+            "fields": [
+                "sequence_aa",
+                "kabat_cdr_lengths",
+                "fr_concat",
+                "vernier_residues"
+            ],
+            "source_db": "data/germlines/human_ig_aa/IGLV_aa.json",
+            "generated_by": "scripts/build_germline_kabat_cache.py (V1.1+ with is_lambda=True branch)",
+            "binding_system": "HumanizationEngine._clinical_anchor_candidates — cache lookup when is_lambda=True",
+            "standards": [
+                "V4.6.0 Lambda-prioritized VL framework selection",
+                "V1.3 Rabbit Humanization Standard"
+            ],
+            "coverage": "115/118 IMGT IGLV genes successfully converted to Kabat",
+            "special_feature": "Vernier positions include λ-specific position 50 (T2 tier for IGLV2/IGLV3)",
+            "vernier_positions": [
+                2,
+                4,
+                36,
+                46,
+                49,
+                50,
+                69,
+                71,
+                98
+            ],
+            "performance_impact": "Eliminates Anarcii fallback for lambda light chain candidates; improves VL-lambda request speed by ~5.6× (8 min → ~3 min per request)",
+            "regeneration": "Run `python scripts/build_germline_kabat_cache.py` yearly or when IMGT updates"
+        },
+        "clinical_germline_anchors": {
+            "name": "Clinical Germline Anchors with ADA Risk Profiling (NEW V1.0) [2026-04-18]",
+            "file": "config/clinical_germline_anchors.json",
+            "version": "1.0",
+            "frozen_date": "2026-04-18",
+            "n_unique_germlines": 82,
+            "source_data": "ada_master_136_curated.csv (138 antibodies with ADA immunogenicity data)",
+            "fields": [
+                "count (clinical freq)",
+                "clinical_examples (top 3 antibodies)",
+                "ada_risk_profile (HIGH/MEDIUM/LOW)"
+            ],
+            "top_anchors": {
+                "VL:IGKV1-39*01": "20 antibodies (Cemiplimab, Benralizumab, Camrelizumab)",
+                "VH:IGHV3-23*04": "13 antibodies (Efalizumab, Atezolizumab, Bevacizumab)",
+                "VL:IGKV3-11*01": "12 antibodies (Golimumab, Necitumumab, Ofatumumab)"
+            },
+            "binding_system": "HumanizationEngine._clinical_anchor_candidates — for ranking germline candidates by clinical prevalence",
+            "standards": [
+                "V4.7.2 VH/VL Humanization — Clinical Anchoring Architecture"
+            ],
+            "design_philosophy": "germline，ADA/CMC/clinical。Not all 500 germlines; only 82 with clinical validation.",
+            "usage_pattern": "1. Input murine sequence → 2. ANARCII numbering → 3. Query clinical_germline_anchors by family → 4. Rank by frequency + ADA risk match",
+            "regeneration": "Update when new ADA/clinical data becomes available; freeze current version as v1.0 baseline",
+            "license": "LOCKED — frozen; do NOT recompute from ada_master without explicit approval"
+        },
+        "vhh42_cmc_metrics": {
+            "name": "VHH42 Per-Sequence CMC Metrics (NEW V1.0) [2026-04-18]",
+            "file": "data/vhh_clinical_39_union/vhh42_cmc_metrics.csv",
+            "version": "1.0",
+            "frozen_date": "2026-04-18",
+            "n_entries": 42,
+            "composition": "39 clinical VHH from vhh_39_clinical_atlas/master_table.csv + 3 Database-B chains from vhh42_sabdab_supplement.json",
+            "metrics": [
+                "pI",
+                "GRAVY",
+                "instability_index",
+                "net_charge_pH7",
+                "hydro_patch_max9",
+                "charge_patch_max7",
+                "agg_motifs",
+                "deamidation_sites",
+                "isomerization_sites",
+                "free_cys",
+                "fr3_contact_fraction",
+                "fr3_buried_mean",
+                "fr3_pack_atom_mean"
+            ],
+            "source_data": "vhh_39_clinical_atlas/master_table.csv + vhh_fr3_vernier_metrics.json + vhh42_sabdab_supplement.json",
+            "generated_by": "scripts/workstream_2_vhh42_cmc_extraction.py",
+            "binding_system": "VHH humanization Phase 2 (template matching by CMC similarity), Phase 5 QC",
+            "standards": [
+                "VHH_HUMANIZATION_DESIGN_STANDARD_V2.1",
+                "CMC_DEVELOPABILITY_STANDARD_V1.1"
+            ],
+            "usage_pattern": "For each new VHH design candidate, score CMC (pI, GRAVY, patches) against VHH42 distribution; flag outliers",
+            "license": "LOCKED — frozen reference; regenerate only if clinical VHH set materially changes",
+            "notes": "Mirrors 840-antibody CMC structure; enables CMC-informed VHH template selection"
+        },
+        "vhh_structural_microenv": {
+            "name": "VHH Structural Microenvironment Analysis (V0.1) [2026-04-19]",
+            "file": "data/vhh_structural_microenv/per_entry.json",
+            "format": "json",
+            "generated_by": "scripts/analyze_structural_microenv.py",
+            "usage_pattern": "Provides 3D spatial evidence (SASA, 5A neighbors, CDR3-FR2 distance) for 68 VHH structures (39 clinical + 29 Database B). Used to validate Hallmark/Stealth rules.",
+            "frozen_date": "2026-04-19"
+        },
+        "vhh42_sap_thresholds": {
+            "name": "VHH42 SAP Three-Tier Thresholds (NEW V1.0) [2026-04-21]",
+            "file": "data/reference/VHH42_sap_thresholds_v1.json",
+            "version": "1.0",
+            "frozen_date": "2026-04-21",
+            "n_entries": 3,
+            "fields": [
+                "p50",
+                "p75",
+                "p90"
+            ],
+            "source": "Derived from VHH42_reference_stats_v1.json (hydro_patch_max9)",
+            "generated_by": "scripts/compute_vhh42_sap_thresholds.py",
+            "binding_system": "VHH humanization Phase 4 (Surface Reshaping Trigger) and Phase 5 QC",
+            "standards": [
+                "VHH_HUMANIZATION_DESIGN_STANDARD_V2.2"
+            ],
+            "validation_rule": "p50 < p75 < p90",
+            "notes": "Couples S1/S2/S3 strategies with physical SAP limits"
+        },
+        "vhh42_germline_assignments": {
+            "name": "VHH42 Human Germline Assignments (NEW V1.0) [2026-04-18]",
+            "file": "data/vhh_clinical_39_union/vhh42_germline_assignments.json",
+            "version": "1.0",
+            "frozen_date": "2026-04-18",
+            "n_entries": 42,
+            "composition": "39 clinical VHH from vhh_39_clinical_atlas/master_table.csv + 3 Database-B chains (Kabat segmentation via ANARCII) from vhh42_sabdab_supplement.json",
+            "fields": [
+                "top_human_germline",
+                "top_score",
+                "top_fr_identity_pct",
+                "top_vernier_similarity",
+                "alternatives"
+            ],
+            "source_data": "vhh_39_clinical_atlas/master_table.csv + IGHV_kabat_cache.json + vhh42_sabdab_supplement.json",
+            "generated_by": "scripts/workstream_1_vhh42_germline_assignment.py",
+            "binding_system": "VHH humanization Phase 2 (template selection and ADA risk lookup)",
+            "standards": [
+                "VHH_HUMANIZATION_DESIGN_STANDARD_V2.1"
+            ],
+            "design_philosophy": "Link each VHH to closest human IGHV germline; enables ADA risk profiling and germline-based CMC anchoring",
+            "usage_pattern": "For each new VHH, query top_human_germline to find ADA risk in clinical_germline_anchors",
+            "license": "LOCKED — frozen; regenerate only if IGHV cache materially changes",
+            "notes": "Enables clinical germline anchoring for VHH (analogous to VH/VL humanization)"
+        },
+        "vhh42_sabdab_supplement": {
+            "name": "VHH42 Database-B Supplement (3 humanized camelid VHH chains)",
+            "file": "data/vhh_clinical_39_union/vhh42_sabdab_supplement.json",
+            "version": "1.0",
+            "frozen_date": "2026-04-19",
+            "n_entries": 3,
+            "composition": "1yzz_A, 3eak_A, 6rnk_B — from data/vhh_structural_union/vhh_structural_union_index.json (database_b_humanized_camelid_nanobuilder)",
+            "source_data": "data/vhh_structural_union/vhh_structural_union_index.json",
+            "generated_by": "frozen manifest; consumed by scripts/workstream_1_vhh42_germline_assignment.py and scripts/workstream_2_vhh42_cmc_extraction.py",
+            "binding_system": "Parity rows for VHH42 per-sequence CSV/JSON alongside 39 clinical sequences",
+            "standards": [
+                "VHH_HUMANIZATION_DESIGN_STANDARD_V2.1"
+            ],
+            "license": "LOCKED — frozen",
+            "notes": "Not clinical therapeutics; pairs with 39 clinical VHH so per-sequence artifacts match aggregate n=42 in VHH42_reference_stats_v1.json"
+        },
+        "vhh_fr3_packing_rules": {
+            "name": "VHH FR3 Packing Rule Framework (NEW V1.0) [2026-04-18]",
+            "file": "data/vhh_clinical_39_union/vhh_fr3_packing_rule.json",
+            "version": "1.0",
+            "frozen_date": "2026-04-18",
+            "n_positions": 38,
+            "tier_composition": {
+                "T1": 4,
+                "T2": 22,
+                "T3": 12
+            },
+            "source_data": "vhh_fr3_vernier_position_summary.csv (39 clinical VHH PDB structures)",
+            "generated_by": "scripts/workstream_3_vhh_fr3_packing_rules.py",
+            "binding_system": "VHH humanization Phase 2 (template ranking by FR3 packing compatibility)",
+            "standards": [
+                "VHH_HUMANIZATION_DESIGN_STANDARD_V2.1"
+            ],
+            "design_philosophy": "Tier-weighted FR3 packing scoring (T1×3 + T2×2 + T3×1), analogous to VH/VL Vernier framework",
+            "usage_pattern": "When ranking VHH templates, score FR3 packing similarity and prefer templates with higher scores (p75+)",
+            "license": "LOCKED — frozen tier definitions; regenerate only if PDB structure set materially changes",
+            "notes": "Provides unified framework for all antibody types (VH/VL + VHH)"
+        },
+        "vhh_fr3_packing_percentiles": {
+            "name": "VHH FR3 Packing Score Percentiles (NEW V1.0) [2026-04-18]",
+            "file": "data/vhh_clinical_39_union/vhh_fr3_packing_percentiles.json",
+            "version": "1.0",
+            "frozen_date": "2026-04-18",
+            "n_entries": 39,
+            "percentile_bands": [
+                "p5",
+                "p25",
+                "p50",
+                "p75",
+                "p95"
+            ],
+            "source_data": "vhh_fr3_vernier_metrics.json (39 clinical VHH)",
+            "generated_by": "scripts/workstream_3_vhh_fr3_packing_rules.py",
+            "binding_system": "VHH humanization Phase 5 QC (outlier detection)",
+            "standards": [
+                "VHH_HUMANIZATION_DESIGN_STANDARD_V2.1"
+            ],
+            "qa_gates": "WARN if FR3 packing < p25; FAIL if < p5",
+            "license": "LOCKED — frozen benchmarks; regenerate only if clinical VHH set materially changes",
+            "notes": "Empirical QC gates for VHH FR3 packing quality assurance"
+        },
+        "germline_source_databases": {
+            "name": "Original IMGT Amino Acid Germline Sequences",
+            "files": [
+                "data/germlines/human_ig_aa/IGHV_aa.json (458 VH genes)",
+                "data/germlines/human_ig_aa/IGKV_aa.json (129 Vκ genes)",
+                "data/germlines/human_ig_aa/IGLV_aa.json (118 Vλ genes)"
+            ],
+            "version": "1.0",
+            "source": "IMGT Official Release",
+            "fields": [
+                "id",
+                "sequence_aa"
+            ],
+            "binding_system": "Source for build_germline_kabat_cache.py input; cached after Kabat conversion",
+            "standards": [
+                "V4.4 Step 2.0 Germline validation — Sequences from IGHV_aa/IGKV_aa only; no FR4"
+            ],
+            "license": "LOCKED — frozen IMGT snapshot; update only when official IMGT releases new V-gene definitions",
+            "metadata_additions": "Each file includes {version, source, generated_date, n_entries, sequence_type, quality_checks}",
+            "notes": "These are the definitive germline pool; all pipeline germline scoring derives from cached versions"
+        },
+        "vhh_database_summary": {
+            "name": "VHH Database Summary — SAbDab-nano Scan Results (4 Databases, V1.0)",
+            "file": "data/vhh_database_summary.md",
+            "version": "1.1",
+            "frozen_date": "2026-04-18",
+            "source": "SAbDab-nano (2422 nanobody entries, downloaded 2026-04); filtered into: Database A (138 autonomous human VH), Database B (29 humanized camelid VHH), Clinical VHH (42), Engineered Human VH (24)",
+            "generated_by": "scripts/analyze_vhh_atlas.py + scripts/analyze_hallmarks_vernier.py",
+            "content": "CDR3×Hallmark distribution table, Stealth mutation frequency (pos35/50/89/94), Vernier zone conservation analysis, FR deviation from IGHV3-23, germline usage patterns across 4 databases",
+            "binding_system": "VH_TO_VHH_CONVERSION_STANDARD_V1.1.md Phase 2 (Hallmark rules), Phase 3 (Stealth frequency table)",
+            "standards": [
+                "V1.1 VH-to-VHH Conversion — Hallmark CDR3-length rules",
+                "V1.1 VH-to-VHH Conversion — Stealth mutation CDR3-graded frequency"
+            ],
+            "key_findings": {
+                "stealth_pos50_freq": "84% (highest; CDR2 position 1, VH-VL interface core)",
+                "stealth_pos35_freq": "72%",
+                "stealth_pos94_freq": "65%",
+                "stealth_pos89_freq": "16% (only CDR3>=17aa)",
+                "hallmark_cdr3_rule": "CDR3>=18aa requires E44+R45; CDR3<=9aa tolerates G44+L45",
+                "dominant_germline_VH_singleDomain": "IGHV3-23 (63%), IGHV3-66 (29%)",
+                "dominant_germline_clinical_VHH": "IGHV3-23 (55%), IGHV3-7 (24%)"
+            },
+            "license": "LOCKED — frozen SAbDab snapshot; update only if SAbDab releases new nanobody structures post-2026-04",
+            "notes": "Primary evidence base for VH-to-VHH conversion rules. Do NOT re-scan SAbDab at runtime; query this file."
+        },
+        "Natural384_IgG_stats_v1": {
+            "path": "data/reference/Natural384_IgG_stats_v1.json",
+            "type": "cmc_baseline_stats",
+            "status": "frozen",
+            "version": "1.0"
+        },
+        "AbRef458_27m_stats_v1": {
+            "path": "data/reference/AbRef458_27m_stats_v1.json",
+            "type": "cmc_baseline_stats",
+            "status": "frozen",
+            "version": "1.0"
+        },
+        "cmc_abref_458_27m": {
+            "name": "AbRef-458 27-metric CMC Reference Baseline",
+            "file": "data/reference/AbRef458_27m_stats_v1.json",
+            "version": "1.0",
+            "frozen_date": "2026-04-24",
+            "n_entries": 458,
+            "source": "data/humanization_assay/842_combined_assessment.csv (origin=engineered_458)",
+            "binding_system": "core/cmc/regular_ab_developability.py structural/sequence parameter panel",
+            "standards": [
+                "CMC_DEVELOPABILITY_STANDARD_V1.3.1"
+            ],
+            "license": "LOCKED — frozen, never recomputed at runtime"
+        },
+        "cmc_cdr_physchem_thresholds_v1": {
+            "name": "CDR Physicochemical Thresholds from AbRef-458 and VHH cohorts",
+            "file": "data/reference/CDR_physchem_thresholds_v1.json",
+            "version": "1.0",
+            "frozen_date": "2026-04-30",
+            "n_entries": 458,
+            "source": "AbRef-458 engineered clinical cohort with per-loop CDR physicochemical thresholds",
+            "binding_system": "CMC CDR advisory policy; VAM/De Novo CDR liability gates",
+            "standards": [
+                "CMC_DEVELOPABILITY_STANDARD_V1.3.1",
+                "V5.2_De_Novo_CDR_Design",
+                "V1.7_Virtual_Affinity_Maturation"
+            ],
+            "license": "LOCKED — frozen, never recomputed at runtime",
+            "notes": "Supports CDR advisory-only interpretation: clinical antibodies can retain CDR liabilities within observed p95/p99 ranges."
+        },
+        "cmc_mutation_policy_v1_2": {
+            "name": "CMC Mutation Policy Rules V1.2",
+            "file": "data/rules/cmc_mutation_policy_v1_2.json",
+            "version": "1.2.0",
+            "frozen_date": "2026-05-04",
+            "type": "mutation_policy_rules",
+            "source": "Owner-approved CMC/developability mutation policy",
+            "binding_system": "core/cmc/cmc_mutation_policy.py + core/cmc/fr_mutation_sites.py",
+            "standards": [
+                "CMC_DEVELOPABILITY_STANDARD_V1.3.1"
+            ],
+            "license": "LOCKED — owner-approved runtime policy"
+        },
+        "human_replacement_profiles_v1": {
+            "name": "Human Amino-Acid Replacement Profiles — Kabat Position Frequencies v1",
+            "version": "1.0.0",
+            "frozen_date": "2026-05-06",
+            "type": "aa_replacement_frequency_table",
+            "output_dir": "data/reference/human_replacement_profiles/v1",
+            "files": {
+                "IGHV": {
+                    "file": "data/reference/human_replacement_profiles/v1/human_ighv_aa_freq_llamanade_ngs_v1.json",
+                    "data_type": "ngs_empirical_cohort",
+                    "n_positions": 150,
+                    "source": "Llamanade ANARCI_Hum_H.json — ~22k human VH NGS sequences (EMBL-Ig cohort)",
+                    "coverage": "full_vh_kabat"
+                },
+                "IGKV": {
+                    "file": "data/reference/human_replacement_profiles/v1/human_igkv_aa_freq_imgt_germline_v1.json",
+                    "data_type": "imgt_germline_frequency",
+                    "n_positions": 101,
+                    "n_genes": 129,
+                    "source": "data/germlines/human_ig_aa/igkv_numbered_cache.json — IMGT functional κ germlines, Kabat-mapped",
+                    "coverage": "full_vk_kabat"
+                },
+                "IGLV": {
+                    "file": "data/reference/human_replacement_profiles/v1/human_iglv_aa_freq_imgt_germline_v1.json",
+                    "data_type": "imgt_germline_frequency",
+                    "n_positions": 8,
+                    "n_genes": 115,
+                    "source": "data/germlines/human_ig_aa/_cache/IGLV_kabat_cache.json — Vernier positions only",
+                    "coverage": "vernier_positions_only",
+                    "todo_v2": "Full-sequence Kabat coverage requires ANARCI re-run on IGLV_aa.json in env anarcii"
+                }
+            },
+            "binding_system": "VH/VL humanization frequency gate; Llamanade-style position frequency lookup; petization scripts",
+            "generated_by": "scripts/build_human_replacement_profiles_v1.py",
+            "standards": [
+                "VH_VL_HUMANIZATION_STANDARD_V5.0",
+                "VHH_HUMANIZATION_DESIGN_STANDARD_V4.0"
+            ],
+            "license": "REGENERATABLE — run scripts/build_human_replacement_profiles_v1.py (no conda required)",
+            "notes": "VH table is NGS-empirical (strongest reference); VK/VL are germline-frequency priors. Do NOT mix NGS and germline tables in the same frequency gate without explicit scaling."
+        },
+        "pet_replacement_profiles_v1": {
+            "name": "Pet (Dog / Cat) Amino-Acid Replacement Profiles — Kabat Position Frequencies v2",
+            "version": "2.0.0",
+            "frozen_date": "2026-05-06",
+            "type": "aa_replacement_frequency_table",
+            "output_dir": "data/reference/pet_replacement_profiles/v2",
+            "generated_by": "scripts/build_dog_numbered_cache.py + scripts/build_cat_numbered_cache.py + scripts/build_pet_profiles_from_cache.py",
+            "format": "flat position_to_aa_fraction_v1 — identical schema to human_replacement_profiles_v1",
+            "validation": "all 6 files OK: bad_sum=0, invalid_aa=0",
+            "species_coverage": ["canis_lupus_familiaris", "felis_catus"],
+            "chains": {
+                "dog_heavy": {
+                    "file": "data/reference/pet_replacement_profiles/v2/dog_ighv_aa_freq_kabat_v2.json",
+                    "species": "Canis lupus familiaris",
+                    "locus": "IGHV",
+                    "n_positions": 100,
+                    "n_genes": 54,
+                    "weighting": "abundance_weighted (in-vivo repertoire frequency where available)",
+                    "numbering_scheme": "Kabat"
+                },
+                "dog_kappa": {
+                    "file": "data/reference/pet_replacement_profiles/v2/dog_igkv_aa_freq_kabat_v2.json",
+                    "species": "Canis lupus familiaris",
+                    "locus": "IGKV",
+                    "n_positions": 101,
+                    "n_genes": 61,
+                    "weighting": "abundance_weighted or CMC-weighted fallback",
+                    "numbering_scheme": "Kabat"
+                },
+                "dog_lambda": {
+                    "file": "data/reference/pet_replacement_profiles/v2/dog_iglv_aa_freq_kabat_v2.json",
+                    "species": "Canis lupus familiaris",
+                    "locus": "IGLV",
+                    "n_positions": 115,
+                    "n_genes": 122,
+                    "weighting": "abundance_weighted or CMC-weighted fallback",
+                    "numbering_scheme": "Kabat"
+                },
+                "cat_heavy": {
+                    "file": "data/reference/pet_replacement_profiles/v2/cat_ighv_aa_freq_kabat_v2.json",
+                    "species": "Felis catus",
+                    "locus": "IGHV",
+                    "n_positions": 128,
+                    "n_genes": 89,
+                    "weighting": "CMC-weighted (no in-vivo abundance data available)",
+                    "numbering_scheme": "Kabat"
+                },
+                "cat_kappa": {
+                    "file": "data/reference/pet_replacement_profiles/v2/cat_igkv_aa_freq_kabat_v2.json",
+                    "species": "Felis catus",
+                    "locus": "IGKV",
+                    "n_positions": 100,
+                    "n_genes": 14,
+                    "weighting": "CMC-weighted (no in-vivo abundance data available)",
+                    "numbering_scheme": "Kabat"
+                },
+                "cat_lambda": {
+                    "file": "data/reference/pet_replacement_profiles/v2/cat_iglv_aa_freq_kabat_v2.json",
+                    "species": "Felis catus",
+                    "locus": "IGLV",
+                    "n_positions": 109,
+                    "n_genes": 49,
+                    "weighting": "CMC-weighted (no in-vivo abundance data available)",
+                    "numbering_scheme": "Kabat"
+                }
+            },
+            "binding_system": "Petization (caninization / felinization) frequency gate for VHH and VH/VL surface humanization",
+            "standards": [
+                "VHH_HUMANIZATION_DESIGN_STANDARD_V3.0 (petization path)"
+            ],
+            "license": "REGENERATABLE — run scripts/build_pet_replacement_tables.py in conda env anarcii",
+            "notes": "Cat tables use CMC-based weighting as proxy for in-vivo abundance (no published cat germline repertoire abundance data). Dog abundance data from published BCR-seq; CMC fallback applied where unavailable."
+        },
+        "harmsen_2024_cross_species_sdabs": {
+            "name": "Harmsen et al. 2024 — Cross-species albumin/IgG-binding sdAbs (sequences + BLI affinities)",
+            "version": "1.0.0",
+            "frozen_date": "2026-05-06",
+            "type": "literature_curated_sdab_bundle",
+            "file": "data/reference/harmsen_2024_cross_species_sdabs/v1/catalog.json",
+            "doi": "10.3389/fimmu.2024.1346328",
+            "article_url": "https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2024.1346328/full",
+            "genbank_accession_range": "PP062726–PP062739",
+            "sequence_provenance": "Supplementary Figure 1 — linear VHH parsed from spaced IMGT alignment (see scripts/parse_supplement_spaced_vhh.py)",
+            "affinity_provenance": "Main text Table 3 (albumin KD), Table 4 (Fab/Fc KD)",
+            "binding_system": "Half-life extension sdAb reference; dog/cat/horse albumin affinity lookup; petization context",
+            "generated_by": "scripts/build_harmsen_2024_sdab_catalog.py",
+            "validation_report": "data/reference/harmsen_2024_cross_species_sdabs/v1/validation_pdf_extract_vs_catalog.json",
+            "validation_script": "scripts/compare_harmsen_pdf_vs_catalog.py",
+            "license": "Literature-derived — cite Frontiers article; sequences attributed to authors’ supplementary material",
+            "notes": "Includes all 16 Supplementary Fig.1 clones plus BLI tables. T6T16A12 is a fusion construct (separate sequence in TeNT ref [41]). Re-run compare script against Data Sheet 1.pdf for PDF-vs-catalog cross-check."
+        }
+    },
+    "tier_2_data": {
+        "cdr_numbering_and_segmentation": {
+            "name": "CDR Numbering & Segmentation (IMGT + Kabat Dual System)",
+            "standards": "V4.4 Phase 1.1 — CDR boundary strictly IMGT Union (H1: 26–38, H2: 55–65, H3: 105–117); Kabat used for FR/Vernier annotation only",
+            "note": "IMGT CDR definition is primary for humanization pipeline; Kabat used for germline selection scoring only"
+        },
+        "clinical_ada_reference": {
+            "name": "Clinical ADA Reference (Germline-Associated Historical ADA Rates)",
+            "file": "data/immunogenicity_knowledge_base/master/ada_master_136_curated.csv",
+            "version": "1.0",
+            "n_entries": 136,
+            "binding_system": "HumanizationResult.qc_metrics.clinical_reference.germline_ada_references",
+            "standards": [
+                "V4.7.1 Germline-ADA reference output contract — data_linkage_only, non_predictive"
+            ],
+            "mandatory_boundary_tag": "data_linkage_only: true, non_predictive: true in all reports",
+            "notes": "ADA is clinical trial output; do NOT use as prediction model. Link by germline match only for historical context."
+        }
+    },
+    "tier_3_data": {
+        "cat_iglc_imgt_v1": {
+            "name": "Cat IGLC1*01 lambda constant region (IMGT)",
+            "file": "data/germlines/fc_aa/fc_database/cat/IGLC_cat.fasta",
+            "version": "1.0",
+            "frozen_date": "2026-04-29",
+            "n_entries": 1,
+            "source": "IMGT/GENE-DB IMGT000038, Felis catus Abyssinian, IGLC1*01 (Functional, 106aa)",
+            "standards": [
+                "V1.0.0_Petization §2.3"
+            ],
+            "notes": "Replaces 2026-02 placeholder file (V-region masquerading as constant region). Other functional IGLC alleles (IGLC2/4/5/9) available from IMGT for multi-allele coverage if needed."
+        },
+        "dog_scaffold_cmc_optimization_tier1_tier2_v1": {
+            "name": "Dog scaffold CMC optimization tier1/tier2 registry",
+            "file": "data/germlines/canis_lupus_familiaris_ig_aa/dog_scaffold_cmc_optimization_tier1_tier2_v1.json",
+            "version": "1.1",
+            "frozen_date": "2026-04-14",
+            "standards": [
+                "V1.1 Caninization Standard",
+                "V1.0.0_Petization §2.1"
+            ],
+            "notes": "5 Tier1 VH (Cirevetmab/Izenivetmab/Lokivetmab/Bedinvetmab/Landogrozumab anchors) + 3 Tier1 VL; 4 Tier2 VH (Ranevetmab/Gilvetmab/etc.)."
+        },
+        "cat_scaffold_cmc_optimization_tier1_tier2_v1": {
+            "name": "Cat scaffold CMC optimization tier1/tier2 registry",
+            "file": "data/germlines/felis_catus_ig_aa/cat_scaffold_cmc_optimization_tier1_tier2_v1.json",
+            "version": "1.0.0",
+            "frozen_date": "2026-04-29",
+            "n_entries": 148,
+            "breakdown": {
+                "VH": 86,
+                "VL": 62,
+                "tier1": 22,
+                "tier2": 37,
+                "tier3": 89
+            },
+            "source": "VH from NCBI Protein feline IGHV records (Kabat-normalized); VL from IMGT Felis catus IGKV (14) + IGLV (49)",
+            "generated_by": "scripts/build_cat_production_germline_library_v2.py",
+            "standards": [
+                "V1.0.0_Petization §2.2",
+                "V1.0.1 Petization §2.4 (Track B full-feline Fv uses this registry for VH+VL)"
+            ],
+            "limitation": "VH source is NCBI Protein, not IMGT germline reference; structural validation recommended before clinical use",
+            "audit_file": "data/germlines/felis_catus_ig_aa/cat_scaffold_cmc_optimization_tier1_tier2_v1_audit.json"
+        },
+        "structure_pdb_atlas": {
+            "name": "Structure PDB Atlas (840 Antibody Structural Benchmarks)",
+            "files": [
+                "data/thera_sabdab/features/",
+                "data/thera_sabdab/world_model/"
+            ],
+            "content": "PDB paths, VH-VL angles, RMSD statistics, packing angles for 840 engineered + natural antibodies",
+            "standards": [
+                "V4.5.1 VH/VL Angle Reporting",
+                "V4.7 Phase 5 QC"
+            ],
+            "use_case": "Offline QC, clinical benchmarking, structural distribution analysis",
+            "note": "Planned consolidation: generate atlas_structure_summary.json as single query source"
+        },
+        "canonical_class_distribution": {
+            "name": "CDR Canonical Class Distribution (840 Antibodies)",
+            "file": "data/humanization_assay/842_combined_assessment.csv",
+            "current_status": "H3/L1 have real distribution; H1/H2 are placeholders (all H1=H1-10-1, all H2=H2-16-?)",
+            "standards": [
+                "V4.4 Phase 1.2 — North canonical class & 458 library structure matching",
+                "V4.7 Phase 5.2b canonical class verification"
+            ],
+            "planned_action": "Recompute H1/H2 North canonical from IMGT numbering; freeze as canonical_class_840_full.json"
+        }
+    },
+    "version_mapping": {
+        "V5.5.1_VH_VL_Humanization": {
+            "depends_on": [
+                "clinical_anchor_germline_frequencies (1.0)",
+                "kabat_caches_vh (1.1)",
+                "kabat_caches_vl_kappa (1.1)",
+                "kabat_caches_vl_lambda (1.1)",
+                "clinical_germline_anchors (1.0)",
+                "structure_pdb_atlas (tier3)",
+                "canonical_class_distribution (tier3)",
+                "cmc_abref_458 (1.0)",
+                "clinical_842_9mer_db",
+                "oas_human_9mer_v1",
+                "core/humanization/ctx_guard.py",
+                "core/humanization/contextual_substitution_engine.py",
+                "core/humanization/p_abnativ_layer.py",
+                "data/humanization_assay/pabnativ2_scores_842.json",
+                "scripts/deepfr_ctx_cm_rat_campath.py",
+                "projects/rabbit_m8b_humanization/apply_balanced_polish_rabbit.py"
+            ],
+            "released": "2026-05-09",
+            "standard_file": "docs/VH_VL_HUMANIZATION_STANDARD_V4.4.md",
+            "notes": "V5.5.1 preserves V5.5.0 post-humanization paired humanness QC behavior and patches checklist/customer reporting labels to be client-safe. Customer-facing outputs use Paired Fv Naturalness QC and show only PASS/WARN/FAIL plus recommended action. Internal JSON retains p_abnativ2.paired_humanness and pairing_likelihood. Supersedes V5.5.0_VH_VL_Humanization.",
+            "supersedes": "V5.5.0_VH_VL_Humanization"
+        },
+        "V5.5.0_VH_VL_Humanization": {
+            "depends_on": [
+                "clinical_anchor_germline_frequencies (1.0)",
+                "kabat_caches_vh (1.1)",
+                "kabat_caches_vl_kappa (1.1)",
+                "kabat_caches_vl_lambda (1.1)",
+                "clinical_germline_anchors (1.0)",
+                "structure_pdb_atlas (tier3)",
+                "canonical_class_distribution (tier3)",
+                "cmc_abref_458 (1.0)",
+                "clinical_842_9mer_db",
+                "oas_human_9mer_v1",
+                "core/humanization/ctx_guard.py",
+                "core/humanization/contextual_substitution_engine.py",
+                "core/humanization/p_abnativ_layer.py",
+                "data/humanization_assay/pabnativ2_scores_842.json",
+                "scripts/deepfr_ctx_cm_rat_campath.py",
+                "projects/rabbit_m8b_humanization/apply_balanced_polish_rabbit.py"
+            ],
+            "released": "2026-05-09",
+            "standard_file": "docs/VH_VL_HUMANIZATION_STANDARD_V4.4.md",
+            "notes": "V5.5.0 adds post-humanization p-AbNatiV2 paired humanness QC gate. paired_humanness <0.70 = FAIL, 0.70-0.80 = WARN, >=0.80 = PASS, target >=0.83. The gate is applied after VH/VL assembly and may trigger deterministic repair or fallback germline/pair retry when available. It is not a Phase 2 germline pre-filter. pairing_likelihood remains auxiliary and has no 0.70 absolute threshold. Supersedes V5.4.3_VH_VL_Humanization.",
+            "supersedes": "V5.4.3_VH_VL_Humanization"
+        },
+        "V5.4.3_VH_VL_Humanization": {
+            "depends_on": [
+                "clinical_anchor_germline_frequencies (1.0)",
+                "kabat_caches_vh (1.1)",
+                "kabat_caches_vl_kappa (1.1)",
+                "kabat_caches_vl_lambda (1.1)",
+                "clinical_germline_anchors (1.0)",
+                "structure_pdb_atlas (tier3)",
+                "canonical_class_distribution (tier3)",
+                "cmc_abref_458 (1.0)",
+                "clinical_842_9mer_db",
+                "oas_human_9mer_v1",
+                "core/humanization/ctx_guard.py",
+                "core/humanization/contextual_substitution_engine.py",
+                "scripts/deepfr_ctx_cm_rat_campath.py",
+                "projects/rabbit_m8b_humanization/apply_balanced_polish_rabbit.py"
+            ],
+            "released": "2026-05-08",
+            "standard_file": "docs/VH_VL_HUMANIZATION_STANDARD_V4.4.md",
+            "notes": "V5.4.3 formalizes Balanced CMC Polish for DeepFR-CTX-CMC. Prioritizes ADI score maximization and clinical-range GRAVY (-0.5 to -0.2) over raw instability minimization. Rabbit M8b-B1 benchmark: ADI 87.05, GRAVY -0.34, Instab 38.2. Supersedes V5.4.2_VH_VL_Humanization.",
+            "supersedes": "V5.4.2_VH_VL_Humanization"
+        },
+        "V5.4.2_VH_VL_Humanization": {
+            "depends_on": [
+                "clinical_anchor_germline_frequencies (1.0)",
+                "kabat_caches_vh (1.1)",
+                "kabat_caches_vl_kappa (1.1)",
+                "kabat_caches_vl_lambda (1.1)",
+                "clinical_germline_anchors (1.0)",
+                "structure_pdb_atlas (tier3)",
+                "canonical_class_distribution (tier3)",
+                "cmc_abref_458 (1.0)",
+                "clinical_842_9mer_db",
+                "oas_human_9mer_v1",
+                "core/humanization/ctx_guard.py",
+                "core/humanization/contextual_substitution_engine.py",
+                "scripts/deepfr_ctx_cm_rat_campath.py"
+            ],
+            "released": "2026-05-07",
+            "standard_file": "docs/VH_VL_HUMANIZATION_STANDARD_V4.4.md",
+            "notes": "V5.4.2 freezes DeepFR-CTX-CMC (display name; internal id deepfr_ctx_cmc) as a developability-optimized variant of DeepFR-CTX. It applies an FR-only CMC polish layer to minimize Instability Index and maximize ADI score. Rat Campath benchmark: ADI 63.69, Instab 46.7. Supersedes V5.4.1_VH_VL_Humanization.",
+            "supersedes": "V5.4.1_VH_VL_Humanization"
+        },
+        "V5.4.1_VH_VL_Humanization": {
+            "depends_on": [
+                "clinical_anchor_germline_frequencies (1.0)",
+                "kabat_caches_vh (1.1)",
+                "kabat_caches_vl_kappa (1.1)",
+                "kabat_caches_vl_lambda (1.1)",
+                "clinical_germline_anchors (1.0)",
+                "structure_pdb_atlas (tier3)",
+                "canonical_class_distribution (tier3)",
+                "cmc_abref_458 (1.0)",
+                "clinical_842_9mer_db",
+                "oas_human_9mer_v1",
+                "core/humanization/ctx_guard.py",
+                "core/humanization/contextual_substitution_engine.py"
+            ],
+            "released": "2026-05-07",
+            "standard_file": "docs/VH_VL_HUMANIZATION_STANDARD_V4.4.md",
+            "notes": "V5.4.1 freezes DeepFR-CTX (display name; internal id deepfr_ctx) as the preferred balanced VH/VL humanization strategy. DeepFR proposes high-humanness FR substitutions; 9AA-CTX clinical/OAS guard-and-rescue keeps OAS-supported DeepFR residues and rolls back only hard structure/CMC vetoes to donor. Implementation entry point: core/humanization/ctx_guard.py::apply_deepfr_ctx. Rat Campath benchmark: DeepFR-CTX angle 86.3° (Δ -0.1° vs donor), RMSD 0.352 Å, ADI 60.02, ChgPatch7 2.1, FvAsym 2.918. Supersedes V5.4.0_VH_VL_Humanization.",
+            "supersedes": "V5.4.0_VH_VL_Humanization"
+        },
+        "V1.0_CrossSpecies_Engine": {
+            "depends_on": [
+                "config/crossspecies_adapter_template.json",
+                "config/crossspecies_adapters/*.json",
+                "scripts/run_petization_pipeline.py",
+                "scripts/run_deep_freq_petization.py",
+                "scripts/run_vhh_surface_reshaping_v1.py"
+            ],
+            "released": "2026-05-07",
+            "standard_file": "docs/CROSSSPECIES_ENGINE_STANDARD_V1.0.md",
+            "notes": "V1.0 promoted from V0.1 by owner approval (' CrossSpecies Engine V1.0', 2026-05-07). Three frozen tracks: SR-1.0, DFR-1.0, AG-1.0. 10 concrete species adapters shipped (dog/cat VH-VL/VHH, camelid VHH→human, rabbit/mouse/chicken/bovine/equine→human). Cross-reference paragraphs into LOCKED species standards deferred to per-standard approval."
+        },
+        "V1.5.1_Virtual_Affinity_Maturation": {
+            "depends_on": [
+                "WT complex PDB with antibody chains",
+                "protein antigen chains or hapten HETATM resnames",
+                "tools_registry.json entries for EvoEF2, ThermoMPNN, OpenMM MM/GBSA"
+            ],
+            "released": "2026-04-30",
+            "standard_file": "docs/VIRTUAL_AFFINITY_MATURATION_STANDARD.md",
+            "notes": "V1.5.1: Stage 2.5 CHECK 4 Antigen Contact Preservation Veto; HETATM-aware contact map; critical contact non-conservative substitutions trigger VETO_AFFINITY; candidate-scoped audit prevents cross-candidate mutation-key audit leakage."
+        },
+        "V4.7.2_VH_VL_Humanization": {
+            "depends_on": [
+                "clinical_anchor_germline_frequencies (1.0)",
+                "kabat_caches_vh (1.1)",
+                "kabat_caches_vl_kappa (1.1)",
+                "kabat_caches_vl_lambda (1.1)",
+                "clinical_germline_anchors (1.0)",
+                "structure_pdb_atlas (tier3)",
+                "canonical_class_distribution (tier3)"
+            ],
+            "released": "2026-04-15",
+            "standard_file": "docs/VH_VL_HUMANIZATION_STANDARD_V4.4.md",
+            "notes": "Standard file title: VH/VL  V4.7.2; includes V4.4 checklist + V4.5.x/V4.6.0/V4.7.x incremental revisions"
+        },
+        "V5.0.0_VH_VL_Humanization": {
+            "depends_on": [
+                "clinical_anchor_germline_frequencies (1.0)",
+                "kabat_caches_vh (1.1)",
+                "kabat_caches_vl_kappa (1.1)",
+                "kabat_caches_vl_lambda (1.1)",
+                "clinical_germline_anchors (1.0)",
+                "structure_pdb_atlas (tier3)",
+                "canonical_class_distribution (tier3)",
+                "cmc_abref_458 (1.0)"
+            ],
+            "released": "2026-04-28",
+            "standard_file": "docs/VH_VL_HUMANIZATION_STANDARD_V4.4.md",
+            "notes": "V5.0.0: primary config config/vh_vl_humanization_v490.json (_meta.version 5.0.0); Phase 5 structural QC — per-CDR RMSD, global Fv RMSD, VH/VL angle gate, FR identity floors; deliverables omit 9-mer humanness proxy. Supersedes pipeline row V4.8.0_VH_VL_Humanization. SSOT alignment 2026-04-28.",
+            "superseded_by": "V5.1.0_VH_VL_Humanization",
+            "deprecation_note": "V5.0.0 used strict Chothia grafting (VH H1=26-32, H2=52-56), which silently humanized paratope-adjacent residues 33-35 / 50-51 / 57-65 (R5-307 case, 2026-05-01). Demoted to allowed_override; new runs MUST use V5.1.0 Union grafting."
+        },
+        "V5.1.0_VH_VL_Humanization": {
+            "depends_on": [
+                "clinical_anchor_germline_frequencies (1.0)",
+                "kabat_caches_vh (1.1)",
+                "kabat_caches_vl_kappa (1.1)",
+                "kabat_caches_vl_lambda (1.1)",
+                "clinical_germline_anchors (1.0)",
+                "structure_pdb_atlas (tier3)",
+                "canonical_class_distribution (tier3)",
+                "cmc_abref_458 (1.0)"
+            ],
+            "released": "2026-05-01",
+            "standard_file": "docs/VH_VL_HUMANIZATION_STANDARD_V4.4.md",
+            "notes": "V5.1.0: primary config config/vh_vl_humanization_v490.json (_meta.version 5.1.0). Strategy upgrade: Union (Kabat ∪ Chothia ∪ AbM) CDR grafting — VH H1=26-35, H2=50-65, H3=95-102; VL unchanged. P0 Bugfix: verify_cdr_preservation activated as HARD gate after Phase 4 assembly (replaces hardcoded cdr_integrity_check=True). Same Union ruler used for graft, BM forbidden region, CDR diff QA, and FR identity. Trigger: R5-307/Wemol cross-comparison (2026-05-01). Supersedes V5.0.0_VH_VL_Humanization.",
+            "superseded_by": "V5.3.0_VH_VL_Humanization"
+        },
+        "V5.3.1_VH_VL_Humanization": {
+            "depends_on": [
+                "clinical_anchor_germline_frequencies (1.0)",
+                "kabat_caches_vh (1.1)",
+                "kabat_caches_vl_kappa (1.1)",
+                "kabat_caches_vl_lambda (1.1)",
+                "clinical_germline_anchors (1.0)",
+                "structure_pdb_atlas (tier3)",
+                "canonical_class_distribution (tier3)",
+                "cmc_abref_458 (1.0)",
+                "humanization_clinical_842_framework_db (1.0)"
+            ],
+            "released": "2026-05-03",
+            "notes": "V5.3.1 patch (2026-05-03): multi-species QA audit for rat/rabbit. (D1) Fix-A/B: progressive CDR-length tolerance (0→1→2→999) in _clinical_anchor_candidates + retry loop in _phase2_real for rat/rabbit — rabbit Kabat H2=22 aa (vs human ~5 aa) now triggers gate-skip at tol=999; rat matched at tol=0. (D2) 7 new V5.3 fields added to qc_metrics['framework_selection'] dict (duplicate phase2_degraded key removed). (D3) Fix-D: 7 new V5.3 fields plumbed from engine output into HTTP API payload. (D4) Fix-E: species-specific phase2_attention_message + red §0 banner on degraded fallback. (D5) Rabbit Phase 4.8 CDR integrity gate demoted from HARD ABORT to WARN for rabbit — Kabat H2 boundary mismatch is a known limitation; V5.4 will implement IMGT-based CDR grafting for rabbit. Rat result: IGHV3-72*01 selected (FR=74%, +4.2pp vs V5.3.0 IGHV3-23*01), framework CMC scan enabled. Rabbit result: IGHV2-70*01 selected (0 CMC liabilities), pipeline completes for first time. Supersedes V5.3.0_VH_VL_Humanization.",
+            "supersedes": "V5.3.0_VH_VL_Humanization",
+            "standard_file": "docs/VH_VL_HUMANIZATION_STANDARD_V4.4.md"
+        },
+        "V5.3.0_VH_VL_Humanization": {
+            "depends_on": [
+                "clinical_anchor_germline_frequencies (1.0)",
+                "kabat_caches_vh (1.1)",
+                "kabat_caches_vl_kappa (1.1)",
+                "kabat_caches_vl_lambda (1.1)",
+                "clinical_germline_anchors (1.0)",
+                "structure_pdb_atlas (tier3)",
+                "canonical_class_distribution (tier3)",
+                "cmc_abref_458 (1.0)",
+                "humanization_clinical_842_framework_db (1.0)"
+            ],
+            "released": "2026-05-02",
+            "superseded_by": "V5.3.1_VH_VL_Humanization",
+            "standard_file": "docs/VH_VL_HUMANIZATION_STANDARD_V4.4.md",
+            "notes": "V5.3.0 (2026-05-02): minor version bump combining (i) P0 algorithm bugfix, (ii) new strict back-mutation decision policy, (iii) full report-format overhaul with anti-distillation pass. (a) P0 Bugfix in core/humanization/engine.py::_apply_bm — insertion-code key mismatch silently dropped algorithm-decided AUTO_APPLY back-mutations on positions whose ANARCII numbering returned (pos,' ') instead of (pos,''); fix iterates over both ('','space') key forms; same fix applied in _audit_one. (b) Strict two-tier back-mutation decision policy — config/vh_vl_humanization_v490.json adds decision_mode field on every HC*/Vernier-T* hard- and soft-constraint rule (AUTO_APPLY = algorithm decides and applies; PENDING_HUMAN = surfaced for customer choice; AUTO_APPLY_IF_TRIGGERED = applied only when downstream signal fires). Engine emits structured bm_decisions_vh/vl, bm_pending_vh/vl, bm_decisions_audit. (c) New per-rule audit pass cross-checks every config rule against the final assembled sequence and tags one of {RULE_NOT_TRIGGERED, EXECUTED_AS_RULED, RULE_VETOED_BY_DOWNSTREAM, RULE_PENDING_HUMAN}. (d) Report format: §5 split into §5a Applied / §5b Pending review / §5c FR4 J-segment retemplating; §10 full-length sequences default-visible + FASTA copy block. (e) Anti-distillation client-facing pass — internal rule names, mask-scheme strings, threshold numbers in attention-block titles, and model name (AbLang2) are removed from rendered HTML; clinical-framework cohort label uses neutral wording. (f) §3 fallback joins selected germlines against the 842 clinical-framework reference cohort when curated precedents are missing. Inherits V5.1.0 — Union (Kabat ∪ Chothia ∪ AbM) CDR grafting boundary, verify_cdr_preservation HARD gate, clinical anchor germline frequencies, ADA association, Phase 5 structure QC. Trigger: R5-307 client delivery audit (2026-05-02) revealing AUTO_APPLY back-mutations were proposed but not applied. Supersedes V5.1.0_VH_VL_Humanization."
+        },
+        "V1.1_CMC_Developability": {
+            "depends_on": [
+                "cmc_abref_458 (1.0)"
+            ],
+            "released": "2026-04-06",
+            "superseded_by": "V1.2_CMC_Developability"
+        },
+        "V1.0_VHH_Humanization": {
+            "depends_on": [
+                "vhh42_clinical_reference (1.0)"
+            ],
+            "released": "2026-01-03",
+            "superseded_by": "V2.0_VHH_Humanization"
+        },
+        "V2.0_VHH_Humanization": {
+            "depends_on": [
+                "vhh42_clinical_reference (1.0)",
+                "vhh42_germline_assignments (1.0)",
+                "vhh42_cmc_metrics (1.0)",
+                "vhh_fr3_packing_rules (1.0)",
+                "vhh_fr3_packing_percentiles (1.0)",
+                "vhh_database_summary (1.0)"
+            ],
+            "released": "2026-04-18",
+            "standard_file": "docs/VHH_HUMANIZATION_DESIGN_STANDARD.md",
+            "notes": "Adds: clinical VHH template protocol (§3), CDR3-aware Vernier tier adjustment (§3.3), germline anchoring + FR3 packing scoring (§3.2a), surface reshaping trigger (§4)",
+            "superseded_by": "V2.1_VHH_Humanization"
+        },
+        "V2.1_VHH_Humanization": {
+            "depends_on": [
+                "vhh42_clinical_reference (1.0)",
+                "vhh42_germline_assignments (1.0)",
+                "vhh42_cmc_metrics (1.0)",
+                "vhh42_sabdab_supplement (1.0)",
+                "vhh_fr3_packing_rules (1.0)",
+                "vhh_fr3_packing_percentiles (1.0)",
+                "vhh_database_summary (1.0)"
+            ],
+            "released": "2026-04-19",
+            "standard_file": "docs/VHH_HUMANIZATION_DESIGN_STANDARD.md",
+            "notes": "V2.1: IMGT 55 / Kabat 50 long-CDR2 boundary (split_regions); VHH42 per-sequence parity 42 rows; tier_1 vhh42_sabdab_supplement; optional vhh42_benchmark on humanize_vhh success path",
+            "superseded_by": "V2.4_VHH_Humanization"
+        },
+        "V2.3_VHH_Humanization": {
+            "depends_on": [
+                "vhh42_clinical_reference (1.0)",
+                "vhh42_germline_assignments (1.0)",
+                "vhh42_cmc_metrics (1.0)",
+                "vhh42_sap_thresholds (1.0)",
+                "vhh42_sabdab_supplement (1.0)",
+                "vhh_fr3_packing_rules (1.0)",
+                "vhh_fr3_packing_percentiles (1.0)",
+                "vhh_database_summary (1.0)"
+            ],
+            "released": "2026-04-21",
+            "standard_file": "docs/VHH_HUMANIZATION_DESIGN_STANDARD.md",
+            "notes": "V2.3: Hallmark Auto-Correction, SAP-driven auto strategy, integrated NanoBodyBuilder2 modeling, relaxed QA thresholds.",
+            "superseded_by": "V2.4_VHH_Humanization"
+        },
+        "V2.4_VHH_Humanization": {
+            "depends_on": [
+                "vhh42_clinical_reference (1.0)",
+                "vhh42_germline_assignments (1.0)",
+                "vhh42_cmc_metrics (1.0)",
+                "vhh42_sap_thresholds (1.0)",
+                "vhh42_sabdab_supplement (1.0)",
+                "vhh_fr3_packing_rules (1.0)",
+                "vhh_fr3_packing_percentiles (1.0)",
+                "vhh_database_summary (1.0)"
+            ],
+            "released": "2026-04-22",
+            "standard_file": "docs/VHH_HUMANIZATION_DESIGN_STANDARD.md",
+            "notes": "V2.4: Hallmark definition corrected to 3 positions (IMGT 44/45/47 FR2 only). IMGT 37 is CDR1, removed from hallmark set. IMGT 45 canonical default changed from R to A (97.6% clinical norm based on 42 approved VHHs). Tier 0 reduced from 7 to 6 positions.",
+            "superseded_by": "V2.5_VHH_Humanization"
+        },
+        "V2.5_VHH_Humanization": {
+            "depends_on": [
+                "vhh42_clinical_reference (1.0)",
+                "vhh42_germline_assignments (1.0)",
+                "vhh42_cmc_metrics (1.0)",
+                "vhh42_sap_thresholds (1.0)",
+                "vhh42_sabdab_supplement (1.0)",
+                "vhh_fr3_packing_rules (1.0)",
+                "vhh_fr3_packing_percentiles (1.0)",
+                "vhh_database_summary (1.0)"
+            ],
+            "released": "2026-04-22",
+            "standard_file": "docs/VHH_HUMANIZATION_DESIGN_STANDARD.md",
+            "notes": "V2.5: ranking stability policy tiering (A/B/C/D) introduced for delivery decisions; short-board structural-risk guard remains active; report now includes policy recommendation with swap_risk-aware consensus guidance.",
+            "superseded_by": "V2.8_VHH_Humanization"
+        },
+        "V2.7_VHH_Humanization": {
+            "depends_on": [
+                "vhh42_clinical_reference (1.0)",
+                "vhh42_germline_assignments (1.0)",
+                "vhh42_cmc_metrics (1.0)",
+                "vhh42_sap_thresholds (1.0)",
+                "vhh42_sabdab_supplement (1.0)",
+                "vhh_fr3_packing_rules (1.0)",
+                "vhh_fr3_packing_percentiles (1.0)",
+                "vhh_database_summary (1.0)"
+            ],
+            "released": "2026-04-23",
+            "standard_file": "docs/VHH_HUMANIZATION_DESIGN_STANDARD.md",
+            "notes": "V2.7 comparison build: deterministic rescue now treats structure / RMSD / mini-CMC evaluation failure as hard-gate failure; if a backup candidate is promoted, downstream report fields switch to the promoted lead only; original Top-1 SAP is suppressed unless recomputed for the promoted lead.",
+            "superseded_by": "V2.8_VHH_Humanization"
+        },
+        "V2.8_VHH_Humanization": {
+            "depends_on": [
+                "vhh42_clinical_reference (1.0)",
+                "vhh42_germline_assignments (1.0)",
+                "vhh42_cmc_metrics (1.0)",
+                "vhh42_sap_thresholds (1.0)",
+                "vhh42_sabdab_supplement (1.0)",
+                "vhh_fr3_packing_rules (1.0)",
+                "vhh_fr3_packing_percentiles (1.0)",
+                "vhh_database_summary (1.0)"
+            ],
+            "released": "2026-04-22",
+            "standard_file": "docs/VHH_HUMANIZATION_DESIGN_STANDARD.md",
+            "notes": "V2.8 production release: (1) _get_score 0.0 falsy bug fixed; (2) QA flags carry explicit Rank-1 provenance notice when rescue promotes backup lead; (3) hallmark fallback logs explicit warning flag instead of silently reusing Rank-1 hallmarks; (4) checklist_status upgraded to WARN when all rescue candidates fail hard gates; (5) cdr_rmsd_empty treated as advisory, not hard-gate failure.",
+            "superseded_by": "V3.0_VHH_Humanization"
+        },
+        "V3.0_VHH_Humanization": {
+            "depends_on": [
+                "vhh42_clinical_reference (1.0)",
+                "vhh42_germline_assignments (1.0)",
+                "vhh42_cmc_metrics (1.0)",
+                "vhh42_sap_thresholds (1.0)",
+                "vhh42_sabdab_supplement (1.0)",
+                "vhh_fr3_packing_rules (1.0)",
+                "vhh_fr3_packing_percentiles (1.0)",
+                "vhh_database_summary (1.0)"
+            ],
+            "released": "2026-04-22",
+            "standard_file": "docs/VHH_HUMANIZATION_DESIGN_STANDARD.md",
+            "notes": "V3.0 production release: (1) Feasibility Pre-screen Gate (_vhh_feasibility_prescreen) — CDR3/CDR1 length + SAP + Instability upfront check; (2) CMC Optimization Advisory §9 — rule-based offline service recommendations for Instability/SAP/CDR-RMSD; (3) VHH Surface Reshaping Script (scripts/run_vhh_surface_reshaping_v1.py) — §4 algorithm, IMGT coords, deterministic conservative substitution; (4) SAP_proxy added to _vhh_mini_cmc donor baseline.",
+            "superseded_by": "V4.0_VHH_Humanization"
+        },
+        "V4.0_VHH_Humanization": {
+            "depends_on": [
+                "vhh68_cmc_benchmark (1.0)",
+                "vhh42_clinical_reference (1.0)",
+                "vhh42_germline_assignments (1.0)",
+                "vhh42_cmc_metrics (1.0)",
+                "vhh42_sabdab_supplement (1.0)",
+                "vhh_fr3_packing_rules (1.0)",
+                "vhh_fr3_packing_percentiles (1.0)",
+                "vhh_database_summary (1.0)"
+            ],
+            "released": "2026-05-06",
+            "standard_file": "docs/VHH_HUMANIZATION_DESIGN_STANDARD.md",
+            "notes": "V4.0 activates VHH68_CMC_Benchmark_v1.0 reference values for VHH Path A pre-screening: CDR3 hard gate >=25 aa, CDR3 soft gate >=20 aa, SAP hard >0.771, SAP soft >0.714; pI hard >9.5 unchanged. AbNatiV/nanoBERT remain soft reference metrics, not hard FAIL gates.",
+            "superseded_by": "V5.0_VHH_Humanization"
+        },
+        "V5.0_VHH_Humanization": {
+            "depends_on": [
+                "vhh68_cmc_benchmark (1.0)",
+                "vhh42_clinical_reference (1.0)",
+                "vhh42_germline_assignments (1.0)",
+                "vhh42_cmc_metrics (1.0)",
+                "vhh42_sabdab_supplement (1.0)",
+                "vhh_fr3_packing_rules (1.0)",
+                "vhh_fr3_packing_percentiles (1.0)",
+                "vhh_database_summary (1.0)",
+                "clinical_842_9mer_db (1.0)"
+            ],
+            "released": "2026-05-16",
+            "standard_file": "docs/VHH_HUMANIZATION_DESIGN_STANDARD.md",
+            "notes": "V5.0 (Owner-approved Evolution Log 2026-05-16): Structure-driven + DeepFR-CTX upgrade. Five mandatory changes: (1) Drop 90 synthetic VH3-SAFE templates, clinical VHH only. (2) FR identity cutoff 0.70 -> 0.65 (permissive 0.60 audit-logged). (3) Hallmark CDR3+SAP/pI decision tree (FULL/PARTIAL/MINIMAL preservation). (4) Mandatory IgFold/ABodyBuilder2 structure prediction + SASA + CDR-distance + DeepFR-CTX 9-mer voting drives dynamic Tier per template. (5) No-template fallback uses DeepFR-CTX-VHH 9-aa context voting from clinical_842_9mer_db.json (G/P/C hard-protected). V4.0 prescreen gates retained.",
+            "supersedes": "V4.0_VHH_Humanization"
+        },
+        "V1.0_VH_to_VHH_Conversion": {
+            "depends_on": [
+                "vhh_database_summary (1.0)",
+                "vhh42_clinical_reference (1.0)",
+                "vhh42_cmc_metrics (1.0)",
+                "germline_source_databases (1.1)"
+            ],
+            "released": "2026-04-16",
+            "standard_file": "docs/VH_TO_VHH_CONVERSION_STANDARD_V1.0.md",
+            "applies_to": [
+                "Path B2 (Murine VH Dual Engineering)",
+                "Path C (Conventional VH/VL to VHH Conversion)"
+            ],
+            "notes": "Hallmark CDR3-length rules and Stealth mutation frequency derived from SAbDab-nano 138-entry database scan (vhh_database_summary v1.0). Rules are frozen; do NOT re-scan at runtime.",
+            "superseded_by": "V1.3_VH_to_VHH_Conversion"
+        },
+        "V1.3_VH_to_VHH_Conversion": {
+            "depends_on": [
+                "vhh_database_summary (1.0)",
+                "vhh42_clinical_reference (1.0)",
+                "vhh42_cmc_metrics (1.0)",
+                "germline_source_databases (1.1)"
+            ],
+            "released": "2026-04-22",
+            "standard_file": "docs/VH_TO_VHH_CONVERSION_STANDARD_V1.4.md",
+            "applies_to": [
+                "Path C2 (Murine VH Dual Engineering)",
+                "Path C1 (Conventional VH/VL to VHH Conversion)"
+            ],
+            "notes": "V1.3: Aligned with VHH Humanization V2.4. Hallmark set reduced to 44/45/47. IMGT 37 removed from mandatory camelization hallmarks to preserve CDR1 conformation.",
+            "superseded_by": "V1.7_VH_to_VHH_Conversion"
+        },
+        "V1.8.4_VH_to_VHH_Conversion": {
+            "depends_on": [
+                "vhh_database_summary (1.0)",
+                "vhh42_clinical_reference (1.0)",
+                "vhh42_cmc_metrics (1.0)",
+                "germline_source_databases (1.1)",
+                "vhh_design_atlas_v3 (atlas24_v1.0_2026-04-30)",
+                "glycan_contact_ab_kb (v1.7.1_glycan_checker_2026-04-30)",
+                "NanoBodyBuilder2 structure QA",
+                "radius_of_gyration_gate",
+                "abnativ_delta_gate (-0.074)",
+                "cdr3_compactness_gate (6.5A)"
+            ],
+            "released": "2026-05-14",
+            "standard_file": "docs/VH_TO_VHH_CONVERSION_STANDARD_V1.8.md",
+            "applies_to": [
+                "Path C2 (Murine VH Dual Engineering)",
+                "Path C1 (Conventional VH/VL to VHH Conversion)"
+            ],
+            "supersedes": "V1.8_VH_to_VHH_Conversion",
+            "notes": "V1.8.4 (2026-05-14): Formalizes AbNatiV Δ hard gate (-0.074), mandatory Hallmark for short/non-compact CDR3 (> 6.5 Å), and target pI 5.5-8.5 regulation. Validated against vhh_master_benchmarks_v1 (n=103)."
+        },
+        "V1.8_VH_to_VHH_Conversion": {
+            "depends_on": [
+                "vhh_database_summary (1.0)",
+                "vhh42_clinical_reference (1.0)",
+                "vhh42_cmc_metrics (1.0)",
+                "germline_source_databases (1.1)",
+                "vhh_design_atlas_v3 (atlas24_v1.0_2026-04-30)",
+                "glycan_contact_ab_kb (v1.7.1_glycan_checker_2026-04-30)",
+                "NanoBodyBuilder2 structure QA",
+                "radius_of_gyration_gate"
+            ],
+            "released": "2026-05-07",
+            "standard_file": "docs/VH_TO_VHH_CONVERSION_STANDARD_V1.8.md",
+            "applies_to": [
+                "Path C2 (Murine VH Dual Engineering)",
+                "Path C1 (Conventional VH/VL to VHH Conversion)"
+            ],
+            "supersedes": "V1.7_VH_to_VHH_Conversion",
+            "notes": "V1.8 adds §2 Phase 4.5 pI Tuning & sdAb Adaptation (L18S, F68Y) plus Phase 5 Mandatory Structure QA with Radius of Gyration gate (13.0–15.5 Å). V1.7 glycan risk layer and V1.6 engineered VH similarity layer are preserved."
+        },
+        "V1.7_VH_to_VHH_Conversion": {
+            "depends_on": [
+                "vhh_database_summary (1.0)",
+                "vhh42_clinical_reference (1.0)",
+                "vhh42_cmc_metrics (1.0)",
+                "germline_source_databases (1.1)",
+                "vhh_design_atlas_v3 (atlas24_v1.0_2026-04-30)",
+                "glycan_contact_ab_kb (v1.7.1_glycan_checker_2026-04-30)"
+            ],
+            "released": "2026-04-30",
+            "standard_file": "docs/VH_TO_VHH_CONVERSION_STANDARD_V1.7.md",
+            "applies_to": [
+                "Path C2 (Murine VH Dual Engineering)",
+                "Path C1 (Conventional VH/VL to VHH Conversion)"
+            ],
+            "supersedes": "V1.6_VH_to_VHH_Conversion",
+            "superseded_by": "V1.8_VH_to_VHH_Conversion",
+            "notes": "V1.7 Glycan-Dependent Epitope Risk Layer (§6.8): two-pathway detection — (1) Frozen KB GLYCAN_CONTACT_AB_KB (v1.7_glycan_checker_2026-04-30): Camrelizumab NSN/PD-1 N58 GlcNAc (Liu et al. 2021 Nat.Commun.; Li et al. 2021 Cell Res.), penalty_factor×0.60; (2) CDR-H3 tip NxS/T motif scan (N[STAGCVILMPFYW][ST], Kabat 95-106 mid-segment), penalty_factor×0.75 for unknown antibodies. Compound: 0.60×0.75=0.45 (risk_level=HIGH). Penalty multiplied into success_probability (post V1.5/V1.6); triggers verdict_severity and primary_recommendation upgrades — ONLY V1.7 change with decision impact. Trigger case: Camrelizumab 1.0→0.45 correction. Implemented in core/vh2vhh/glycan_dependency_checker.py. V1.5 and V1.6 layers fully preserved.",
+            "owner_approval": "2026-04-30 — see EVOLUTION_LOG.md [EXECUTED] entry"
+        },
+        "V1.6_VH_to_VHH_Conversion": {
+            "depends_on": [
+                "vhh_database_summary (1.0)",
+                "vhh42_clinical_reference (1.0)",
+                "vhh42_cmc_metrics (1.0)",
+                "germline_source_databases (1.1)",
+                "vhh_design_atlas_v3 (atlas24_v1.0_2026-04-30)"
+            ],
+            "released": "2026-04-30",
+            "standard_file": "docs/VH_TO_VHH_CONVERSION_STANDARD_V1.6.md",
+            "applies_to": [
+                "Path C2 (Murine VH Dual Engineering)",
+                "Path C1 (Conventional VH/VL to VHH Conversion)"
+            ],
+            "supersedes": "V1.5_VH_to_VHH_Conversion",
+            "superseded_by": "V1.7_VH_to_VHH_Conversion",
+            "notes": "V1.6 Engineered VH Similarity Layer (§6.7): additive scoring layer against Atlas-24 frozen prior (n=24 published engineered human VH single-domain antibodies, atlas24_v1.0_2026-04-30). 5 scoring components (hallmark_motif 25% / stealth_pattern 20% / cdr3_charge 20% / cdr_hydrophilicity 20% / cdr3_envelope 15%) + 3 liability penalties. stealth_departures==0 gate forces score_band→medium and injects INFO row. V1.5 decision tree fully preserved. Known limitation: no glycan-dependent epitope penalty (corrected in V1.7).",
+            "owner_approval": "2026-04-30 — see EVOLUTION_LOG.md [EXECUTED] entry"
+        },
+        "V1.5_VH_to_VHH_Conversion": {
+            "depends_on": [
+                "vhh_database_summary (1.0)",
+                "vhh42_clinical_reference (1.0)",
+                "vhh42_cmc_metrics (1.0)",
+                "germline_source_databases (1.1)"
+            ],
+            "released": "2026-04-30",
+            "standard_file": "docs/VH_TO_VHH_CONVERSION_STANDARD_V1.5.md",
+            "applies_to": [
+                "Path C2 (Murine VH Dual Engineering)",
+                "Path C1 (Conventional VH/VL to VHH Conversion)"
+            ],
+            "supersedes": "V1.3_VH_to_VHH_Conversion",
+            "superseded_by": "V1.7_VH_to_VHH_Conversion",
+            "notes": "V1.5 Risk-Forward Reporting: adds §0 Verdict Headline (color-coded severity + success_probability + primary_blocker + recommended_action), §1.5 Risk Attribution Matrix (5-column structured table with severity grades BLOCKER/WARN/INFO), §5.5 Action Roadmap (mandatory 3-option STOP/RESCUE/PROCEED decision tree). Algorithm decision tree inherits V1.4, but adds a Conformational Mismatch Risk penalty for long CDR3s lacking aromatic FR2 anchors (Kabat 37/47) based on Bahrami Dizicheh et al., 2023. Option B upgraded to Tetravalent VHH-Fc-VHH based on Twist Bioscience 2024. Payload extends V1.4 with: success_probability (float 0–1), confidence_band, verdict_severity, primary_blocker, primary_recommendation, risk_attribution[], action_roadmap. Backward-compatible: V1.4 clients can ignore new fields without parse errors.",
+            "owner_approval": "2026-04-30 — see EVOLUTION_LOG.md [APPROVED] entry"
+        },
+        "V1.0.0_Petization": {
+            "depends_on": [
+                "felis_catus_ig_aa (1.0)",
+                "canis_lupus_familiaris_ig_aa (1.1)",
+                "cat_constant_regions_verified (1.0)",
+                "cat_iglc_imgt_v1 (1.0)",
+                "dog_scaffold_cmc_optimization_tier1_tier2_v1 (1.1)",
+                "cat_scaffold_cmc_optimization_tier1_tier2_v1 (1.0.0)"
+            ],
+            "released": "2026-04-29",
+            "standard_file": "docs/PETIZATION_STANDARD_V1.0.md",
+            "standard_version": "V1.2.0",
+            "supersedes": "V1.0.0_Felinization",
+            "notes": "Unified petization standard (dog + cat). Data cohort frozen under release_id V1.0.0_Petization. Standard document V1.0.1 adds §2.4 felinization Track A vs Track B (B default for new cat programs). V1.2.0 adds §3.5 FR4 (UP-FR4 defaults; CLI --fr4-strategy). Implements 3-track auto-routing (graft_vernier / surface_reshaping / deep_fr_anchor), Phase 1–7 pipeline, species-aware CMC (cat/dog × VH/VL-κ/VL-λ pI ranges + Met/Trp oxidation + CDR3 NG deamidation), internal-only API surface (/internal/petization/run, /internal/pet-console)."
+        },
+        "V1.0.0_Felinization": {
+            "depends_on": [
+                "felis_catus_ig_aa (1.0)",
+                "canis_lupus_familiaris_ig_aa (1.1)",
+                "cat_constant_regions_verified (1.0)"
+            ],
+            "released": "2026-04-29",
+            "standard_file": "docs/FELINIZATION_STANDARD_V1.0.md",
+            "deprecated": true,
+            "superseded_by": "V1.0.0_Petization",
+            "notes": "DEPRECATED 2026-04-29 evening — superseded by V1.0.0_Petization. Original cross-species feline release retained for archival traceability."
+        },
+        "V1.0_Bispecific_VHH_CMC": {
+            "depends_on": [
+                "vhh42_clinical_reference (1.0)"
+            ],
+            "released": "2026-04-01"
+        },
+        "V1.3_Rabbit_Humanization": {
+            "depends_on": [
+                "kabat_caches_vl_lambda (1.1)",
+                "clinical_anchor_germline_frequencies (1.0)"
+            ],
+            "released": "2026-04-15"
+        },
+        "V1.0.0_Sequence_Delivery": {
+            "depends_on": [
+                "scripts/run_sequence_delivery.py",
+                "core/sequence_delivery/codon_optimizer.py"
+            ],
+            "released": "2026-05-01",
+            "role": "、、 QA ",
+            "notes": "； CHO-1.0 ； QA 。"
+        },
+        "V5.2_De_Novo_CDR_Design": {
+            "depends_on": [
+                "WT complex PDB",
+                "ProteinMPNN weights",
+                "data/reference/CDR_physchem_thresholds_v1.json",
+                "data/reference/CDR_physchem_VHH71_v1.json",
+                "config/vam_antigen_profile.json"
+            ],
+            "released": "2026-05-01",
+            "standard_file": "docs/DE_NOVO_CDR_DESIGN_STANDARD.md",
+            "notes": "V5.2 (2026-05-01) alignment with VAM V1.6.1: Boltz-2 Stage 0 primary; mandatory CHECK 6 Fingerprint Prior (FH-358 for VH/VL, VHH-71 for VHH); short-peptide Scenario A dual gate (ipTM>=0.80 + PAE<5.0A); AF3 server prohibited for production. Inherits V5.1 Absci benchmark validation and PRODIGY prohibition."
+        },
+        "V1.2_CMC_Developability": {
+            "depends_on": [
+                "cmc_abref_458 (1.0)",
+                "cmc_abref_458_27m (1.0)",
+                "cmc_cdr_physchem_thresholds_v1 (1.0)",
+                "cmc_mutation_policy_v1_2 (1.2.0)",
+                "data/rules/cmc_rules_v1.json",
+                "core/cmc/cmc_mutation_policy.py",
+                "core/cmc/fr_mutation_sites.py"
+            ],
+            "released": "2026-05-04",
+            "superseded_by": "V1.3_CMC_Developability",
+            "standard_file": "docs/CMC_DEVELOPABILITY_STANDARD_V1.1.md",
+            "notes": "V1.2 adds formal CMC Mutation Policy: FR-only automated suggestions, CDR advisory-only handling, surface-class routing, and structure-aware protection of CDR/interface-neighbor and buried-core positions."
+        },
+        "V1.3_CMC_Developability": {
+            "depends_on": [
+                "cmc_abref_458 (1.0)",
+                "cmc_abref_458_27m (1.0)",
+                "cmc_cdr_physchem_thresholds_v1 (1.0)",
+                "cmc_mutation_policy_v1_2 (1.2.0)",
+                "data/rules/cmc_rules_v1.json",
+                "core/cmc/cmc_mutation_policy.py",
+                "core/cmc/fr_mutation_sites.py",
+                "core/cmc/regular_ab_developability.py",
+                "Natural384_IgG_stats_v1 (1.0)",
+                "AbRef458_27m_stats_v1 (1.0)"
+            ],
+            "released": "2026-05-04",
+            "superseded_by": "V1.3.1_CMC_Developability",
+            "standard_file": "docs/CMC_DEVELOPABILITY_STANDARD_V1.1.md",
+            "notes": "V1.3 adds §3G regular VH/VL IgG cohort panel with origin-aware references, gate vocabulary, hard-gate parameters, and abenginecore_version 1.3.0 output stamp; supersedes V1.2 while retaining mutation policy JSON v1.2."
+        },
+        "V1.3.1_CMC_Developability": {
+            "depends_on": [
+                "cmc_abref_458 (1.0)",
+                "cmc_abref_458_27m (1.0)",
+                "cmc_cdr_physchem_thresholds_v1 (1.0)",
+                "cmc_mutation_policy_v1_2 (1.2.0)",
+                "data/rules/cmc_rules_v1.json",
+                "core/cmc/cmc_mutation_policy.py",
+                "core/cmc/fr_mutation_sites.py",
+                "core/cmc/regular_ab_developability.py",
+                "core/cmc/vhh_cmc_engine.py",
+                "Natural384_IgG_stats_v1 (1.0)",
+                "AbRef458_27m_stats_v1 (1.0)",
+                "vhh68_cmc_benchmark (1.0)"
+            ],
+            "released": "2026-05-06",
+            "standard_file": "docs/CMC_DEVELOPABILITY_STANDARD_V1.1.md",
+            "notes": "V1.3.1 activates VHH_CMC_v1.1 gates for VHH SAP_score and hydro_patch_max9 using VHH68_CMC_Benchmark_v1.0; regular VH/VL IgG V1.3 gates unchanged.",
+            "superseded_by": "V1.4.0_CMC_Developability"
+        },
+        "V1.4.0_CMC_Developability": {
+            "depends_on": [
+                "cmc_abref_458 (1.0)",
+                "cmc_abref_458_27m (1.0)",
+                "cmc_cdr_physchem_thresholds_v1 (1.0)",
+                "cmc_mutation_policy_v1_2 (1.2.0)",
+                "data/rules/cmc_rules_v1.json",
+                "core/cmc/cmc_mutation_policy.py",
+                "core/cmc/fr_mutation_sites.py",
+                "core/cmc/regular_ab_developability.py",
+                "core/cmc/vhh_cmc_engine.py",
+                "Natural384_IgG_stats_v1 (1.0)",
+                "AbRef458_27m_stats_v1 (1.0)",
+                "vhh68_cmc_benchmark (1.0)",
+                "CDR_physchem_AbRef458_v1 (1.0)",
+                "CDR_physchem_VHH71_v1 (1.0)"
+            ],
+            "released": "2026-05-15",
+            "standard_file": "docs/CMC_DEVELOPABILITY_STANDARD_V1.1.md",
+            "notes": "V1.4.0 (2026-05-15): Smart-CMC safety upgrade. (1) Mandatory aggregation-motif lookahead guard. (2) CDR-driven hydrophobic patch detection and suppression. (3) Adaptive pI/net_charge safe-zone trimming (p25-p75). (4) Integrated CDR Fingerprint metrics (all_cdr_gravy) for both VH/VL and VHH. Removed acid_density due to reference data absence."
+        },
+        "V1.8.6_VH_to_VHH_Conversion": {
+            "depends_on": [
+                "vhh_database_summary",
+                "vhh42_clinical_reference",
+                "vhh42_cmc_metrics",
+                "germline_source_databases",
+                "kabat_caches_vh",
+                "vhh_design_atlas_v3",
+                "glycan_contact_ab_kb_v1.7",
+                "vhh_master_benchmarks_v3",
+                "autonomous_human_vh_cohort_v1"
+            ],
+            "released": "2026-05-14",
+            "standard_file": "docs/VH_TO_VHH_CONVERSION_STANDARD_V1.8.md",
+            "notes": "V1.8.6 (2026-05-14): Algorithm simplification based on AutonomousHumanVH_Cohort_v1 (n=36, Kabat scheme). (1) K45R only default hallmark; K44E/K47F rescue-only (CDR3>=15 AND compactness>6.5A). (2) Stealth K-gate: positions 35/50/89/94 trigger only when original==K. (3) L18S disabled; F68Y only when K68==F. (4) Reverts V1.8.5 K50 R/K Natural Mimetic rule (coordinate misuse). (5) [NEW] Expressibility Verdict Gate: CDR3 length + compactness + AbNatiV Delta three-dimensional composite gate; FAIL sequences not publishable.",
+            "superseded_by": "V1.8.8_VH_to_VHH_Conversion"
+        },
+        "V1.8.8_VH_to_VHH_Conversion": {
+            "depends_on": [
+                "vhh_database_summary",
+                "vhh42_clinical_reference",
+                "vhh42_cmc_metrics",
+                "germline_source_databases",
+                "kabat_caches_vh",
+                "vhh_design_atlas_v3",
+                "glycan_contact_ab_kb_v1.7",
+                "vhh_master_benchmarks_v3",
+                "autonomous_human_vh_cohort_v1"
+            ],
+            "released": "2026-05-15",
+            "standard_file": "docs/VH_TO_VHH_CONVERSION_STANDARD_V1.8.md",
+            "notes": "V1.8.8 (2026-05-15): Integration of Smart-CMC safety guards (aggregation-motif lookahead, CDR-driven hydrophobic patch detection) and adaptive pI-tuning (K73Q fallback). Supports Path C2 CDR Cys-Gate (C100AS). Inherits V1.8.6 algorithm simplification and Expressibility Verdict Gate.",
+            "superseded_by": "V1.8.17_VH_to_VHH_Conversion"
+        },
+        "V1.8.17_VH_to_VHH_Conversion": {
+            "depends_on": [
+                "vhh_database_summary",
+                "vhh42_clinical_reference",
+                "vhh42_cmc_metrics",
+                "germline_source_databases",
+                "kabat_caches_vh",
+                "vhh_design_atlas_v3",
+                "glycan_contact_ab_kb_v1.7",
+                "vhh_master_benchmarks_v3",
+                "autonomous_human_vh_cohort_v1"
+            ],
+            "released": "2026-05-16",
+            "standard_file": "docs/VH_TO_VHH_CONVERSION_STANDARD_V1.8.md",
+            "notes": "V1.8.17 (2026-05-16): SSOT-aligned release id for VH→VHH conversion. Stealth tier net_basic/pI-conditional; structural audit CD3 Fv panel (ABodyBuilder2); Y91/F91 + W103 monitoring; inherits V1.8.16 SASA gate + V1.8.8 Smart-CMC/pI/Cys layers. Console/API deployment branch label V1.8.17.IGHV3 documents IGHV3-only gateway without changing algorithm rulebook."
+        }
+    }
+}

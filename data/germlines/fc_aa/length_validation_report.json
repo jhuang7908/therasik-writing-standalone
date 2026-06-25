@@ -1,0 +1,256 @@
+{
+  "human": {
+    "species": "human",
+    "IGHC": {
+      "count": 426,
+      "suspicious_count": 9,
+      "suspicious": [
+        {
+          "header": "Human_IGHG3_CH1_IGHG3*02_11aa",
+          "type": "CH1",
+          "length": 11,
+          "expected": [
+            97,
+            98
+          ],
+          "issue": "CH1: 11aa (97-98aa)"
+        },
+        {
+          "header": "Human_IGHG3_CH2_IGHG3*02_17aa",
+          "type": "CH2",
+          "length": 17,
+          "expected": [
+            107,
+            110
+          ],
+          "issue": "CH2: 17aa (107-110aa)"
+        },
+        {
+          "header": "Human_IGHG3_CH3_IGHG3*02_11aa",
+          "length": 11,
+          "type": "CH3",
+          "expected": [
+            107,
+            110
+          ],
+          "issue": "CH3: 11aa (107-110aa)"
+        },
+        {
+          "header": "Human_IGHG?_CH3_IGHGP*01_106aa",
+          "length": 106,
+          "type": "CH3",
+          "expected": [
+            107,
+            110
+          ],
+          "issue": "CH3: 106aa (107-110aa)"
+        },
+        {
+          "header": "Human_IGHG?_CH3_IGHGP*02_26aa",
+          "length": 26,
+          "type": "CH3",
+          "expected": [
+            107,
+            110
+          ],
+          "issue": "CH3: 26aa (107-110aa)"
+        },
+        {
+          "header": "Human_IGHG?_CH3_IGHGP*04_106aa",
+          "length": 106,
+          "type": "CH3",
+          "expected": [
+            107,
+            110
+          ],
+          "issue": "CH3: 106aa (107-110aa)"
+        },
+        {
+          "header": "Human_IGHG?_CH3_IGHGP*06_106aa",
+          "length": 106,
+          "type": "CH3",
+          "expected": [
+            107,
+            110
+          ],
+          "issue": "CH3: 106aa (107-110aa)"
+        },
+        {
+          "header": "Human_IGHG?_CH3_IGHGP*07_106aa",
+          "length": 106,
+          "type": "CH3",
+          "expected": [
+            107,
+            110
+          ],
+          "issue": "CH3: 106aa (107-110aa)"
+        },
+        {
+          "header": "Human_IGHG?_CH3_IGHGP*08_106aa",
+          "length": 106,
+          "type": "CH3",
+          "expected": [
+            107,
+            110
+          ],
+          "issue": "CH3: 106aa (107-110aa)"
+        }
+      ]
+    },
+    "IGKC": {
+      "count": 5,
+      "suspicious_count": 0,
+      "suspicious": []
+    },
+    "IGLC": {
+      "count": 4,
+      "suspicious_count": 1,
+      "suspicious": [
+        {
+          "header": "Human_IGLC*04_12aa",
+          "length": 12,
+          "expected": [
+            105,
+            106
+          ],
+          "issue": "IGLC: 12aa (105-106aa)"
+        }
+      ]
+    }
+  },
+  "mouse": {
+    "species": "mouse",
+    "IGHC": {
+      "count": 98,
+      "suspicious_count": 7,
+      "suspicious": [
+        {
+          "header": "Mouse_IGHG2_Unknown_IGHG2B*01_22aa",
+          "type": "C_terminal",
+          "length": 22,
+          "expected": [
+            27,
+            71
+          ],
+          "issue": "C: 22aa (27aa)"
+        },
+        {
+          "header": "Mouse_IGHG2_Unknown_IGHG2B*02_22aa",
+          "type": "C_terminal",
+          "length": 22,
+          "expected": [
+            27,
+            71
+          ],
+          "issue": "C: 22aa (27aa)"
+        },
+        {
+          "header": "Mouse_IGHG2_Unknown_IGHG2B*03_22aa",
+          "type": "C_terminal",
+          "length": 22,
+          "expected": [
+            27,
+            71
+          ],
+          "issue": "C: 22aa (27aa)"
+        },
+        {
+          "header": "Mouse_IGHG2_Unknown_IGHG2B*04_22aa",
+          "type": "C_terminal",
+          "length": 22,
+          "expected": [
+            27,
+            71
+          ],
+          "issue": "C: 22aa (27aa)"
+        },
+        {
+          "header": "Mouse_IGHG2_Unknown_IGHG2C*01_21aa",
+          "type": "C_terminal",
+          "length": 21,
+          "expected": [
+            27,
+            71
+          ],
+          "issue": "C: 21aa (27aa)"
+        },
+        {
+          "header": "Mouse_IGHG2_Unknown_IGHG2C*02_21aa",
+          "type": "C_terminal",
+          "length": 21,
+          "expected": [
+            27,
+            71
+          ],
+          "issue": "C: 21aa (27aa)"
+        },
+        {
+          "header": "Mouse_IGHG2_Unknown_IGHG2C*03_21aa",
+          "type": "C_terminal",
+          "length": 21,
+          "expected": [
+            27,
+            71
+          ],
+          "issue": "C: 21aa (27aa)"
+        }
+      ]
+    },
+    "IGKC": {
+      "count": 3,
+      "suspicious_count": 0,
+      "suspicious": []
+    },
+    "IGLC": {
+      "count": 2,
+      "suspicious_count": 0,
+      "suspicious": []
+    }
+  },
+  "dog": {
+    "species": "dog",
+    "IGHC": {
+      "count": 22,
+      "suspicious_count": 0,
+      "suspicious": []
+    },
+    "IGKC": {
+      "count": 2,
+      "suspicious_count": 0,
+      "suspicious": []
+    },
+    "IGLC": {
+      "count": 1,
+      "suspicious_count": 0,
+      "suspicious": []
+    }
+  },
+  "cat": {
+    "species": "cat",
+    "IGHC": {
+      "count": 1,
+      "suspicious_count": 0,
+      "suspicious": []
+    },
+    "IGKC": {
+      "count": 1,
+      "suspicious_count": 0,
+      "suspicious": []
+    },
+    "IGLC": {
+      "count": 1,
+      "suspicious_count": 1,
+      "suspicious": [
+        {
+          "header": "Cat_IGLC*01_PLACEHOLDER_NEEDS_VERIFICATION",
+          "length": 0,
+          "expected": [
+            105,
+            106
+          ],
+          "issue": "IGLC: 0aa (105-106aa)"
+        }
+      ]
+    }
+  }
+}

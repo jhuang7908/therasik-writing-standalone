@@ -1,0 +1,238 @@
+{
+  "_meta": {
+    "standard": "HAPTEN_VAM_STANDARD_V1.0",
+    "version": "1.0",
+    "date": "2026-04-06",
+    "scope": "hapten_vam",
+    "description": "Half-antigen (small molecule < 500 Da) Virtual Affinity Maturation. VH/VL and VHH. See docs/HAPTEN_VAM_STANDARD_V1.0.md.",
+    "locked": true,
+    "governance": "docs/ABENGINECORE_GOVERNANCE.md"
+  },
+
+  "environments": {
+    "structure": {
+      "conda_env": "anarcii",
+      "python": "d:/Users/NextVivo/miniconda3/envs/anarcii/python.exe",
+      "purpose": "ABodyBuilder2 structure prediction, CMC, ANARCI numbering, report generation"
+    },
+    "energetics": {
+      "conda_env": "affmat",
+      "python": "d:/Users/NextVivo/miniconda3/envs/affmat/python.exe",
+      "purpose": "EvoEF2, ThermoMPNN, OpenMM MM/GBSA"
+    },
+    "docking": {
+      "type": "WSL",
+      "distribution": "Ubuntu-22.04",
+      "vina_path": "/home/insynbio/.local/bin/vina",
+      "purpose": "AutoDock Vina docking, Meeko receptor/ligand preparation"
+    },
+    "ligand_param": {
+      "type": "WSL",
+      "distribution": "Ubuntu-22.04",
+      "conda_base": "/home/insynbio/miniconda3",
+      "tools": ["antechamber", "parmchk2", "tleap"],
+      "purpose": "GAFF2 ligand parameterization for MM/GBSA"
+    }
+  },
+
+  "tools": {
+    "abodybuilder2": {
+      "package": "ImmuneBuilder",
+      "env": "anarcii",
+      "function": "Dual-chain Fv structure prediction (VH+VL), IMGT numbering",
+      "required": true,
+      "call": "from ImmuneBuilder import ABodyBuilder2"
+    },
+    "vina": {
+      "version": "1.2.7",
+      "path_wsl": "/home/insynbio/.local/bin/vina",
+      "env": "WSL",
+      "function": "Small-molecule docking, binding pose generation",
+      "required": true,
+      "known_limitations": [
+        "--log option not supported in 1.2.7",
+        "Use single-line shell script via WSL for robust execution"
+      ]
+    },
+    "meeko": {
+      "package": "meeko",
+      "env": "WSL",
+      "function": "Receptor and ligand PDBQT preparation",
+      "required": true,
+      "call": "mk_prepare_receptor.py"
+    },
+    "evoef2": {
+      "exe": "tools/EvoEF2_src/EvoEF2.exe",
+      "env": "affmat",
+      "function": "ddG_bind prediction (fast, Tier-1 screening)",
+      "required": true,
+      "call": "AffinityEnergyToolkit.run_evoef2()",
+      "known_limitations": [
+        "Charged residues (K/R/D/E): long-range electrostatics inaccurate",
+        "|ddG| > 5 kcal/mol: possible structural artifact from IMGT-numbered PDB",
+        "Returns same ddG for all 19 AA at contact_count=0 positions"
+      ]
+    },
+    "thermompnn": {
+      "dir": "tools/ThermoMPNN",
+      "model": "ThermoMPNN_default.pt",
+      "env": "affmat",
+      "function": "Stability veto (ddG_stability > +0.5 -> exclude)",
+      "required": false,
+      "recommended": true,
+      "call": "AffinityEnergyToolkit.run_thermompnn()",
+      "known_limitations": [
+        "Returns None for IMGT-numbered PDB (residue indices out of training distribution)",
+        "Measures stability (ddG_fold), NOT binding affinity (ddG_bind)",
+        "If None fraction > 50%, stability veto is silently bypassed — must log explicitly"
+      ]
+    },
+    "cmc_biopython": {
+      "package": "biopython>=1.79",
+      "env": "anarcii",
+      "function": "pI, Instability Index (II), GRAVY via ProteinAnalysis",
+      "required": true,
+      "call": "from Bio.SeqUtils.ProtParam import ProteinAnalysis"
+    },
+    "openmm_mmgbsa": {
+      "version": "8.5.0",
+      "env": "affmat",
+      "function": "Physics-based ddG refinement for top candidates (GAFF2 + OBC2)",
+      "required": false,
+      "recommended": true,
+      "call": "AffinityEnergyToolkit.run_mmgbsa()",
+      "minimization_steps": 500,
+      "known_limitations": [
+        "Requires GAFF2 ligand parameters from AmberTools (WSL) as prerequisite",
+        "ddG results for charged mutations (e.g. N116E) unreliable due to rapid EvoEF2 BuildMutant distortions",
+        "Each batch MUST include WT control; cross-batch absolute values incomparable",
+        "Positive dG_bind (>0) is expected for implicit solvent without full equilibration"
+      ]
+    },
+    "ambertools": {
+      "version": "22",
+      "env": "WSL",
+      "conda_env_wsl": "ambertools",
+      "function": "GAFF2 ligand parameterization (antechamber, parmchk2, tleap)",
+      "required_for": "MM/GBSA",
+      "wsl_activation": "export PATH=/home/insynbio/miniconda3/bin:$PATH && conda activate ambertools"
+    },
+    "hallucination_guard": {
+      "module": "core/integrity/hallucination_guard.py",
+      "env": "anarcii or affmat",
+      "function": "Computation integrity verification",
+      "required": true,
+      "standard": "docs/HALLUCINATION_GUARD_STANDARD.md"
+    }
+  },
+
+  "numbering": {
+    "scheme": "IMGT",
+    "structure_output": "ABodyBuilder2 uses IMGT numbering in PDB output",
+    "mapping_function": "build_imgt_to_linear_map(pdb_path)",
+    "forbidden": "Do NOT hardcode linear positions. Always derive from PDB parsing.",
+    "vh_known_gaps": [1, 10, 31, 32, 33, 34, 60, 61, 62, 73, 82, 83, 110, 111, 112, 113],
+    "vl_known_gaps": [111, 112],
+    "reference_case": {
+      "antibody": "Ab278",
+      "H107_imgt": 107,
+      "H107_linear_1idx": 95,
+      "H107_linear_0idx": 94,
+      "H107_aa": "W",
+      "L116_imgt": 116,
+      "L116_linear_1idx": 100,
+      "L116_linear_0idx": 99,
+      "L116_aa": "N"
+    }
+  },
+
+  "cdr_definitions_imgt": {
+    "HCDR1": [27, 38],
+    "HCDR2": [56, 65],
+    "HCDR3": [105, 117],
+    "LCDR1": [27, 38],
+    "LCDR2": [56, 65],
+    "LCDR3": [105, 117]
+  },
+
+  "thresholds": {
+    "docking": {
+      "vina_score_hapten_min_kcal": -12.0,
+      "vina_score_hapten_max_kcal": -3.0,
+      "contact_distance_angstrom": 4.0,
+      "cdr_contact_ratio_min": 0.5,
+      "search_box_size_angstrom": 24,
+      "exhaustiveness": 32,
+      "num_modes": 10
+    },
+    "ala_scan": {
+      "hotspot_ddg_kcal": 1.0,
+      "negative_contributor_ddg_kcal": -1.0
+    },
+    "saturation_scan": {
+      "beneficial_ddg_kcal": -0.3
+    },
+    "combo_scan": {
+      "beneficial_ddg_kcal": 0.0
+    },
+    "stability": {
+      "thermompnn_veto_ddg_kcal": 0.5,
+      "thermompnn_none_fraction_warn": 0.5
+    },
+    "cmc_detection_antibody": {
+      "_note": "Relaxed thresholds for in-vitro detection antibodies (not injected into patients)",
+      "pi_lo": 4.0,
+      "pi_hi": 9.5,
+      "ii_max": 45.0,
+      "immunogenicity_required": false
+    },
+    "evoef2_artifact": {
+      "abs_ddg_warn_kcal": 5.0
+    },
+    "mmgbsa": {
+      "minimization_steps": 500,
+      "cross_batch_comparison": "FORBIDDEN — include WT in every batch"
+    }
+  },
+
+  "hallucination_guard": {
+    "abort_on": ["SEQ_BACK_CHECK", "MUTANT_DIFF"],
+    "warn_on": ["CDR_CONTACT_RATIO", "EVOEF2_ARTIFACT", "DOCKING_SCORE", "THERMOMPNN_SILENT"],
+    "audit_file": "_hallucination_audit.json",
+    "mandatory_phases": {
+      "phase_1_docking": ["DOCKING_SCORE"],
+      "phase_2_contacts": ["CDR_CONTACT_RATIO"],
+      "phase_3_ala_scan": ["SEQ_BACK_CHECK", "EVOEF2_ARTIFACT", "THERMOMPNN_SILENT"],
+      "phase_4_sat_scan": ["SEQ_BACK_CHECK", "EVOEF2_ARTIFACT", "MUTANT_DIFF"],
+      "phase_5_combo_scan": ["SEQ_BACK_CHECK", "EVOEF2_ARTIFACT", "MUTANT_DIFF"],
+      "phase_7_reporting": ["MUTANT_DIFF"]
+    }
+  },
+
+  "report_requirements": {
+    "fasta_verification": "Every FASTA sequence must pass check_mutant_diff before writing",
+    "dual_numbering_table": "HTML and PDF reports must include IMGT-to-linear CDR3 mapping table",
+    "thermompnn_note": "If ThermoMPNN None fraction > 50%, report must state: 'Stability veto bypassed — II < 45 used as proxy'",
+    "mmgbsa_note": "If MM/GBSA shows |dG_bind| > 500 kcal/mol for charged mutations, report must note structural distortion limitation",
+    "audit_log": "_hallucination_audit.json must be included in project deliverables"
+  },
+
+  "compliance_rules": {
+    "must_do": [
+      "Run build_imgt_to_linear_map() from PDB — never hardcode linear positions",
+      "Call HallucinationGuard.check_sequence_positions() before every scan loop",
+      "Call HallucinationGuard.check_mutant_diff() before writing FASTA",
+      "Call HallucinationGuard.write_audit() at end of every pipeline step",
+      "Include CDR3 dual-numbering table in every client report",
+      "State explicitly if ThermoMPNN stability veto was bypassed"
+    ],
+    "must_not_do": [
+      "Use IMGT residue numbers as direct sequence indices",
+      "Compute linear_pos = imgt_resnum - constant (any hardcoded offset)",
+      "Skip HallucinationGuard on the grounds that 'results look correct'",
+      "Use PRODIGY for hapten antigens (no protein-protein interface)",
+      "Cross-compare MM/GBSA absolute values across different batches",
+      "Deliver FASTA sequences without sequence back-check verification"
+    ]
+  }
+}

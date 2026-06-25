@@ -1,0 +1,147 @@
+================================================================================
+FR4-CDR3 Relationship Analysis: Does FR4 Vary with CDR3 Length?
+================================================================================
+
+Hypothesis: FR4 may need to adapt structurally to accommodate different CDR3 lengths
+
+## 1. Overall FR4 and CDR3 Statistics
+
+FR4 length:
+  - Range: 11-11aa
+  - Median: 11aa
+  - Unique lengths: 1
+
+CDR3 length:
+  - Range: 5-21aa
+  - Median: 16aa
+  - Unique lengths: 10
+
+FR4 length vs CDR3 length correlation:
+  - Spearman's rho: nan
+  - P-value: nan
+  ✗ No significant correlation
+
+## 2. FR4 Sequences Grouped by CDR3 Length
+
+CDR3 short (≤10) (n=3):
+  FR4 lengths: 11aa
+  FR4 consensus: SGQGTLVTVSS
+    Brivekimig2         : CDR3= 8aa, FR4=11aa, SSQGTLVTVSS
+    Enristomig          : CDR3= 5aa, FR4=11aa, WGQGTLVTVKP
+    Ozoralizumab        : CDR3= 8aa, FR4=11aa, RGQGTLVTVSS
+CDR3 medium (11-15) (n=5):
+  FR4 lengths: 11aa
+  FR4 consensus: WGQGTLVTVSS
+    Gocatamig2          : CDR3=11aa, FR4=11aa, WGQGTLVTVSS
+    Letolizumab         : CDR3=11aa, FR4=11aa, RGQGTLVTVSS
+    Podentamig1         : CDR3=14aa, FR4=11aa, WGQGTQVTVSS
+    Porustobart         : CDR3=13aa, FR4=11aa, WGQGTMVTVSS
+    Vobarilizumab       : CDR3=15aa, FR4=11aa, WGQGTLVTVSS
+CDR3 long (16-20) (n=8):
+  FR4 lengths: 11aa
+  FR4 consensus: WGQGTLVTVSS
+    Brivekimig1         : CDR3=16aa, FR4=11aa, WGQGTLVTVSS
+    Gefurulimab         : CDR3=17aa, FR4=11aa, WGQGTLVTVSS
+    Isecarosmab         : CDR3=17aa, FR4=11aa, WGQGTLVTVSS
+    Ozekibart           : CDR3=16aa, FR4=11aa, WGQGTLVTVKP
+    Rimteravimab        : CDR3=18aa, FR4=11aa, WGQGTLVTVSS
+    Sonelokimab1        : CDR3=16aa, FR4=11aa, WGQGTLVTVSS
+    Sonelokimab2        : CDR3=17aa, FR4=11aa, WGQGTLVTVSS
+    Tarperprumig        : CDR3=17aa, FR4=11aa, WGQGTLVTVSS
+CDR3 very_long (>20) (n=3):
+  FR4 lengths: 11aa
+  FR4 consensus: WGQGTLVTVSS
+    Caplacizumab        : CDR3=21aa, FR4=11aa, WGQGTQVTVSS
+    Envafolimab         : CDR3=21aa, FR4=11aa, WGQGTLVTVSS
+    Erfonrilimab        : CDR3=21aa, FR4=11aa, WGQGTLVTVSS
+
+## 3. FR4 Conservation by CDR3 Length Category
+
+CDR3 short (≤10):
+  FR4 pairwise identity: 72.7% (range: 63.6-81.8%)
+CDR3 medium (11-15):
+  FR4 pairwise identity: 90.0% (range: 81.8-100.0%)
+CDR3 long (16-20):
+  FR4 pairwise identity: 95.5% (range: 81.8-100.0%)
+CDR3 very_long (>20):
+  FR4 pairwise identity: 93.9% (range: 90.9-100.0%)
+
+## 4. FR4 Position-by-Position Conservation
+
+FR4 position conservation (total 11 positions):
+  Pos  1: W (84%) | W:16, R:2, S:1
+  Pos  2: G (95%) | G:18, S:1
+  Pos  6: L (84%) | L:16, Q:2, M:1
+  Pos 10: S (89%) | S:17, K:2
+  Pos 11: S (89%) | S:17, P:2
+
+## 5. CDR3-FR4 Junction Residues
+
+Last 2 residues of CDR3 and first 2 residues of FR4:
+  Brivekimig1         : CDR3[...DY] → FR4[WG...] (CDR3=16aa)
+  Brivekimig2         : CDR3[...SR] → FR4[SS...] (CDR3= 8aa)
+  Caplacizumab        : CDR3[...TF] → FR4[WG...] (CDR3=21aa)
+  Enristomig          : CDR3[...EY] → FR4[WG...] (CDR3= 5aa)
+  Envafolimab         : CDR3[...QY] → FR4[WG...] (CDR3=21aa)
+  Erfonrilimab        : CDR3[...QY] → FR4[WG...] (CDR3=21aa)
+  Gefurulimab         : CDR3[...DY] → FR4[WG...] (CDR3=17aa)
+  Gocatamig2          : CDR3[...PY] → FR4[WG...] (CDR3=11aa)
+  Isecarosmab         : CDR3[...AY] → FR4[WG...] (CDR3=17aa)
+  Letolizumab         : CDR3[...DY] → FR4[RG...] (CDR3=11aa)
+  Ozekibart           : CDR3[...DY] → FR4[WG...] (CDR3=16aa)
+  Ozoralizumab        : CDR3[...FN] → FR4[RG...] (CDR3= 8aa)
+  Podentamig1         : CDR3[...VY] → FR4[WG...] (CDR3=14aa)
+  Porustobart         : CDR3[...DI] → FR4[WG...] (CDR3=13aa)
+  Rimteravimab        : CDR3[...DY] → FR4[WG...] (CDR3=18aa)
+  Sonelokimab1        : CDR3[...EY] → FR4[WG...] (CDR3=16aa)
+  Sonelokimab2        : CDR3[...EN] → FR4[WG...] (CDR3=17aa)
+  Tarperprumig        : CDR3[...DY] → FR4[WG...] (CDR3=17aa)
+  Vobarilizumab       : CDR3[...RY] → FR4[WG...] (CDR3=15aa)
+
+FR4 first residue distribution:
+  W: 16 (84.2%)
+  R: 2 (10.5%)
+  S: 1 (5.3%)
+
+## 6. FR4 Variation by Strategy
+
+BM (n=8):
+  CDR3 length: 12aa (range: 5-17)
+  FR4 length: 11aa (range: 11-11)
+  FR4 pairwise identity: 83.4%
+SR (n=7):
+  CDR3 length: 18aa (range: 8-21)
+  FR4 length: 11aa (range: 11-11)
+  FR4 pairwise identity: 94.8%
+Native (n=4):
+  CDR3 length: 16aa (range: 14-17)
+  FR4 length: 11aa (range: 11-11)
+  FR4 pairwise identity: 95.5%
+
+## 7. Key Findings
+
+1. FR4 length is INVARIANT: all molecules have 11aa FR4
+
+2. WEAK/NO correlation between FR4 and CDR3 length (rho=nan, p=nan)
+   → FR4 length is INDEPENDENT of CDR3 length
+
+3. FR4 sequence conservation: 90.9% median pairwise identity
+   → FR4 is HIGHLY CONSERVED despite CDR3 length variation
+
+## 8. FINAL VERDICT: Does FR4 Adapt to CDR3 Length?
+
+✗ NO - FR4 length is independent of CDR3 length
+
+Evidence:
+  - Spearman correlation: nan (p=nan, not significant)
+  - FR4 median identity: 90.9%
+
+Interpretation:
+  FR4 uses a fixed-length scaffold regardless of CDR3 variation.
+  FR4 sequence diversity is driven by:
+    a) Junction optimization (CDR3-FR4 interface)
+    b) Constant region compatibility
+    c) Expression/stability requirements
+    d) Individual molecule-specific engineering
+
+================================================================================

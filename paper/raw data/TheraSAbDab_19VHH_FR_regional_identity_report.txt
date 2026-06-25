@@ -1,0 +1,217 @@
+================================================================================
+FR Regional Germline Identity Analysis (19 Clinical VHHs)
+================================================================================
+
+Hypothesis Test:
+  - FR4 should be predominantly human (constant region interface)
+  - FR2 should retain camelid features (VHH hallmark positions)
+  - FR1+FR3 should differentiate BM/SR/Native strategies
+
+## 1. Regional Identity Summary (All 19 Molecules)
+
+| Region  | Human Identity (%) | Vicugna Identity (%) | Delta (Human-Vicugna) |
+|---------|-------------------|----------------------|----------------------|
+| FR1     |              96.0 |                 96.0 |                  4.0 |
+| FR2     |              17.6 |                 11.8 |                  5.9 |
+| FR3     |              14.3 |                 10.3 |                  3.9 |
+| FR4     |               9.1 |                  0.0 |                  9.1 |
+| FR1+FR3 |              46.6 |                 46.4 |                  0.2 |
+
+## 2. Hypothesis Validation
+
+### FR4 (Constant Region Interface):
+  - Human identity: 9.1%
+  - Vicugna identity: 0.0%
+  ✓ FR4 is MORE human-like (delta=+9.1%)
+
+### FR2 (VHH Hallmark Region):
+  - Human identity: 17.6%
+  - Vicugna identity: 11.8%
+  ✗ FR2 is NOT more camelid-like (delta=+5.9%)
+
+## 3. Strategy Differentiation by FR1+FR3 Identity
+
+### BM (n=8)
+  FR1+FR3 human identity: median=46.6%, range=44.8-50.0%
+  FR1+FR3 vicugna identity: median=46.4%, range=44.6-48.2%
+  FR1+FR3 delta (H-V): median=0.2%
+
+### SR (n=7)
+  FR1+FR3 human identity: median=48.3%, range=46.6-48.3%
+  FR1+FR3 vicugna identity: median=46.4%, range=44.6-48.2%
+  FR1+FR3 delta (H-V): median=0.1%
+
+### Native (n=4)
+  FR1+FR3 human identity: median=44.8%, range=44.8-46.6%
+  FR1+FR3 vicugna identity: median=43.8%, range=42.9-46.4%
+  FR1+FR3 delta (H-V): median=1.1%
+
+## 4. Individual Molecule Regional Profiles
+
+Gefurulimab (BM, H2-9-1):
+  FR1: H=100.0%, V=96.0%, Δ=+4.0%
+  FR2: H=17.6%, V=17.6%, Δ=+0.0%
+  FR3: H=15.2%, V=12.1%, Δ=+3.0%
+  FR4: H=9.1%, V=0.0%, Δ=+9.1%
+  FR1+FR3: H=50.0%, V=48.2%, Δ=+1.8%
+  Global: 90.0%
+
+Gocatamig2 (BM, H2-9-1):
+  FR1: H=96.0%, V=96.0%, Δ=+0.0%
+  FR2: H=17.6%, V=17.6%, Δ=+0.0%
+  FR3: H=14.3%, V=9.1%, Δ=+5.2%
+  FR4: H=9.1%, V=0.0%, Δ=+9.1%
+  FR1+FR3: H=48.3%, V=46.4%, Δ=+1.8%
+  Global: 86.2%
+
+Tarperprumig (BM, H2-9-1):
+  FR1: H=100.0%, V=96.0%, Δ=+4.0%
+  FR2: H=17.6%, V=17.6%, Δ=+0.0%
+  FR3: H=15.2%, V=12.1%, Δ=+3.0%
+  FR4: H=9.1%, V=0.0%, Δ=+9.1%
+  FR1+FR3: H=48.3%, V=48.2%, Δ=+0.1%
+  Global: 90.0%
+
+Brivekimig2 (BM, H2-10-1):
+  FR1: H=100.0%, V=96.0%, Δ=+4.0%
+  FR2: H=17.6%, V=11.8%, Δ=+5.9%
+  FR3: H=14.3%, V=10.3%, Δ=+3.9%
+  FR4: H=0.0%, V=0.0%, Δ=+0.0%
+  FR1+FR3: H=46.6%, V=46.4%, Δ=+0.1%
+  Global: 92.5%
+
+Letolizumab (BM, H2-10-1):
+  FR1: H=100.0%, V=96.0%, Δ=+4.0%
+  FR2: H=23.5%, V=17.6%, Δ=+5.9%
+  FR3: H=14.3%, V=10.3%, Δ=+3.9%
+  FR4: H=9.1%, V=0.0%, Δ=+9.1%
+  FR1+FR3: H=46.6%, V=46.4%, Δ=+0.1%
+  Global: 96.2%
+
+Enristomig (BM, H2-9-1):
+  FR1: H=96.0%, V=92.0%, Δ=+4.0%
+  FR2: H=11.8%, V=11.8%, Δ=+0.0%
+  FR3: H=15.8%, V=9.1%, Δ=+6.7%
+  FR4: H=9.1%, V=0.0%, Δ=+9.1%
+  FR1+FR3: H=44.8%, V=44.6%, Δ=+0.2%
+  Global: 87.5%
+
+Ozekibart (BM, H2-10-1):
+  FR1: H=96.0%, V=92.0%, Δ=+4.0%
+  FR2: H=11.8%, V=11.8%, Δ=+0.0%
+  FR3: H=15.8%, V=9.1%, Δ=+6.7%
+  FR4: H=9.1%, V=0.0%, Δ=+9.1%
+  FR1+FR3: H=44.8%, V=44.6%, Δ=+0.2%
+  Global: 88.8%
+
+Porustobart (BM, H2-9-1):
+  FR1: H=96.0%, V=92.0%, Δ=+4.0%
+  FR2: H=17.6%, V=11.8%, Δ=+5.9%
+  FR3: H=14.3%, V=13.8%, Δ=+0.5%
+  FR4: H=9.1%, V=0.0%, Δ=+9.1%
+  FR1+FR3: H=44.8%, V=44.6%, Δ=+0.2%
+  Global: 97.5%
+
+Sonelokimab1 (Native, H2-10-1):
+  FR1: H=96.0%, V=96.0%, Δ=+0.0%
+  FR2: H=11.8%, V=11.8%, Δ=+0.0%
+  FR3: H=14.3%, V=10.3%, Δ=+3.9%
+  FR4: H=9.1%, V=0.0%, Δ=+9.1%
+  FR1+FR3: H=46.6%, V=46.4%, Δ=+0.1%
+  Global: 85.0%
+
+Brivekimig1 (Native, H2-10-1):
+  FR1: H=96.0%, V=92.0%, Δ=+4.0%
+  FR2: H=17.6%, V=5.9%, Δ=+11.8%
+  FR3: H=14.3%, V=10.3%, Δ=+3.9%
+  FR4: H=9.1%, V=0.0%, Δ=+9.1%
+  FR1+FR3: H=44.8%, V=42.9%, Δ=+2.0%
+  Global: 85.0%
+
+Isecarosmab (Native, H2-10-1):
+  FR1: H=96.0%, V=92.0%, Δ=+4.0%
+  FR2: H=17.6%, V=11.8%, Δ=+5.9%
+  FR3: H=14.3%, V=10.3%, Δ=+3.9%
+  FR4: H=9.1%, V=0.0%, Δ=+9.1%
+  FR1+FR3: H=44.8%, V=42.9%, Δ=+2.0%
+  Global: 85.0%
+
+Podentamig1 (Native, unknown):
+  FR1: H=96.0%, V=92.0%, Δ=+4.0%
+  FR2: H=17.6%, V=5.9%, Δ=+11.8%
+  FR3: H=14.3%, V=9.1%, Δ=+5.2%
+  FR4: H=9.1%, V=0.0%, Δ=+9.1%
+  FR1+FR3: H=44.8%, V=44.6%, Δ=+0.2%
+  Global: 85.0%
+
+Caplacizumab (SR, H2-10-1):
+  FR1: H=100.0%, V=100.0%, Δ=+0.0%
+  FR2: H=17.6%, V=11.8%, Δ=+5.9%
+  FR3: H=14.3%, V=3.4%, Δ=+10.8%
+  FR4: H=9.1%, V=0.0%, Δ=+9.1%
+  FR1+FR3: H=48.3%, V=44.6%, Δ=+3.7%
+  Global: 87.5%
+
+Ozoralizumab (SR, H2-10-1):
+  FR1: H=100.0%, V=100.0%, Δ=+0.0%
+  FR2: H=17.6%, V=11.8%, Δ=+5.9%
+  FR3: H=14.3%, V=9.1%, Δ=+5.2%
+  FR4: H=9.1%, V=0.0%, Δ=+9.1%
+  FR1+FR3: H=48.3%, V=48.2%, Δ=+0.1%
+  Global: 92.5%
+
+Sonelokimab2 (SR, H2-10-1):
+  FR1: H=100.0%, V=100.0%, Δ=+0.0%
+  FR2: H=17.6%, V=5.9%, Δ=+11.8%
+  FR3: H=14.3%, V=10.3%, Δ=+3.9%
+  FR4: H=9.1%, V=0.0%, Δ=+9.1%
+  FR1+FR3: H=48.3%, V=48.2%, Δ=+0.1%
+  Global: 91.2%
+
+Vobarilizumab (SR, H2-9-1):
+  FR1: H=100.0%, V=100.0%, Δ=+0.0%
+  FR2: H=17.6%, V=17.6%, Δ=+0.0%
+  FR3: H=14.3%, V=9.1%, Δ=+5.2%
+  FR4: H=9.1%, V=0.0%, Δ=+9.1%
+  FR1+FR3: H=48.3%, V=48.2%, Δ=+0.1%
+  Global: 90.0%
+
+Envafolimab (SR, H2-10-1):
+  FR1: H=96.0%, V=100.0%, Δ=-4.0%
+  FR2: H=17.6%, V=11.8%, Δ=+5.9%
+  FR3: H=14.3%, V=10.3%, Δ=+3.9%
+  FR4: H=9.1%, V=0.0%, Δ=+9.1%
+  FR1+FR3: H=46.6%, V=46.4%, Δ=+0.1%
+  Global: 88.8%
+
+Erfonrilimab (SR, H2-10-1):
+  FR1: H=96.0%, V=100.0%, Δ=-4.0%
+  FR2: H=17.6%, V=11.8%, Δ=+5.9%
+  FR3: H=14.3%, V=10.3%, Δ=+3.9%
+  FR4: H=9.1%, V=0.0%, Δ=+9.1%
+  FR1+FR3: H=46.6%, V=46.4%, Δ=+0.1%
+  Global: 88.8%
+
+Rimteravimab (SR, H2-10-1):
+  FR1: H=96.0%, V=96.0%, Δ=+0.0%
+  FR2: H=17.6%, V=5.9%, Δ=+11.8%
+  FR3: H=21.4%, V=6.9%, Δ=+14.5%
+  FR4: H=9.1%, V=0.0%, Δ=+9.1%
+  FR1+FR3: H=46.6%, V=44.6%, Δ=+1.9%
+  Global: 86.2%
+
+## 5. Key Findings
+
+1. FR1+FR3 human identity by strategy:
+   - BM: 46.6%
+   - SR: 48.3%
+   - Native: 44.8%
+
+✗ FR1+FR3 does NOT separate strategies (all ~30%, similar to full FR)
+   → Conclusion: There may be NO true 'Native' strategy
+   → All molecules likely underwent some level of humanization
+
+2. Overall regional bias (|Human-Vicugna| delta):
+   - Median absolute delta: 4.6%
+
+================================================================================

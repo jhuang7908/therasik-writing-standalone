@@ -1,0 +1,67 @@
+{
+  "L1_Muyldermans2013_23495938": {
+    "topic": "VHH general review — heavy-chain-only antibodies, VHH structure, applications",
+    "relevance_to_humanization": "MEDIUM",
+    "specific_contribution": "Defines VHH structural hallmarks (pos44/45/47) and their role in solubility. Covers VH vs VHH differences. No humanization data.",
+    "rule_linked": [
+      "R1_hallmark"
+    ],
+    "limitation": "Review article — synthesizes literature rather than providing original data on humanization outcomes"
+  },
+  "L2_Vincke2009_19010777": {
+    "topic": "VHH humanization experimental study — CAbLys3 humanization with 3 plans",
+    "relevance_to_humanization": "HIGH — DIRECT",
+    "specific_contribution": "The DEFINITIVE humanization reference. Provides: (1) 4 hallmark positions (42,49,50,52 in Chothia = 37,44,45,47 in Kabat/Mitchell); (2) Result: 49→G improves stability but reduces solubility;     52→W is DETRIMENTAL (affinity loss); (3) Universal humanized scaffold (Plan A = 3DWT, Plan B = 3EAK). PDB structures 3DWT + 3EAK are now in our database.",
+    "rule_linked": [
+      "R1_hallmark",
+      "R5_germline_template"
+    ],
+    "limitation": "Only 1 VHH target (anti-lysozyme CAbLys3). 3 humanization plans. No immunogenicity data."
+  },
+  "L3_Mitchell2018_29569425": {
+    "topic": "Comparative sequence/structure analysis — 90 VHH crystal structures",
+    "relevance_to_humanization": "HIGH",
+    "specific_contribution": "Largest systematic analysis of VHH at time of publication. Key data: (1) FR regions are MORE conserved in VHH than VH; (2) CDR1/H1 and CDR2/H2 show greater structural diversity than VH counterparts; (3) H3 loop (CDR3) is longer on average; (4) VHH tetrad positions 37,44,45,47 composition analysis.",
+    "rule_linked": [
+      "R2_fr_invariance",
+      "R3_cdr3_fr4_junction",
+      "R4_cdr_lengths",
+      "R6_vernier_calibration"
+    ],
+    "limitation": "Uses non-humanized VHH structures (camelid-derived). Does NOT include humanized sequences. JOURNAL WAS WRONG: Proteins, not PLoS Comput Biol."
+  },
+  "L4_Spinelli1996_8784347": {
+    "topic": "Crystal structure of llama heavy chain variable domain (structural letter)",
+    "relevance_to_humanization": "LOW",
+    "specific_contribution": "One of the first structural observations of VHH domain. Short letter — minimal mechanistic data.",
+    "rule_linked": [],
+    "limitation": "1996 letter — no sequence analysis. Superseded by L5 (Desmyter 1996) and L3 (Mitchell 2018)."
+  },
+  "L5_Desmyter1996_8784355": {
+    "topic": "Crystal structure of camel VHH in complex with lysozyme — 2.5Å",
+    "relevance_to_humanization": "MEDIUM",
+    "specific_contribution": "First full structural analysis of VHH. Key finding: FR2 region that contacts VL in conventional VH is RESHAPED in VHH to increase hydrophilicity. CDR3 is long and folds OVER the VL-contact surface. This provides structural rationale for why pos44/45/47 are hydrophilic in VHH.",
+    "rule_linked": [
+      "R1_hallmark"
+    ],
+    "limitation": "Single camelid VHH — Camelus dromedarius. No humanization data."
+  },
+  "L6_North2011_21035459": {
+    "topic": "CDR loop clustering analysis — >300 antibody structures",
+    "relevance_to_humanization": "MEDIUM",
+    "specific_contribution": "Canonical CDR loop clusters for H1/H2/H3. Used for CDR fold type classification (H1-8, H2-8-1 etc.) in R4.",
+    "rule_linked": [
+      "R4_cdr_lengths"
+    ],
+    "limitation": "Focused on conventional VH/VL — VHH CDR loops not explicitly classified. Rule R4 uses this for CDR fold type only."
+  },
+  "L7_Spinelli2000_10684599": {
+    "topic": "VHH structure against hapten (RR6 azo dye) — CDR loop contributions",
+    "relevance_to_humanization": "LOW",
+    "specific_contribution": "Shows FR3 Vernier zone and CDR loop interactions. CDR1/CDR2/CDR3 all contribute to hapten binding. Structural rationale for FR3 Vernier positions.",
+    "rule_linked": [
+      "R6_vernier_calibration"
+    ],
+    "limitation": "Hapten binding — different from protein antigen. No humanization data."
+  }
+}

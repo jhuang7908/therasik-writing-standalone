@@ -1,0 +1,87 @@
+{
+  "version": "1.1",
+  "last_updated": "2026-04-08T12:02:38.964692",
+  "projects_processed": [
+    "fgf 23_phase4_mmgbsa_results.csv"
+  ],
+  "logic_performance": {
+    "Cavity_Filling": {
+      "count": 3,
+      "avg_ddg": -24.150000000000002,
+      "success_rate": 0.0
+    },
+    "Electrostatic_Patching": {
+      "count": 1,
+      "avg_ddg": -19.72,
+      "success_rate": 0.0
+    },
+    "Conformational_Locking": {
+      "count": 0,
+      "avg_ddg": 0.0,
+      "success_rate": 0.0
+    },
+    "Polar_Network": {
+      "count": 2,
+      "avg_ddg": -18.759999999999998,
+      "success_rate": 0.0
+    }
+  },
+  "tool_biases": {
+    "Polar_Network": [
+      3.90625,
+      6.662721893491124
+    ],
+    "Electrostatic_Patching": [
+      5.634285714285714
+    ],
+    "Cavity_Filling": [
+      4.518737672583827,
+      4.775147928994083,
+      5.47084233261339
+    ]
+  },
+  "site_patterns": [
+    {
+      "project": "fgf 23",
+      "mutation": "N52M",
+      "logic": "Polar_Network",
+      "mmgbsa_ddg": -15.0,
+      "timestamp": "2026-04-08T12:02:38.838437"
+    },
+    {
+      "project": "fgf 23",
+      "mutation": "N52E",
+      "logic": "Electrostatic_Patching",
+      "mmgbsa_ddg": -19.72,
+      "timestamp": "2026-04-08T12:02:38.840452"
+    },
+    {
+      "project": "fgf 23",
+      "mutation": "N52Q",
+      "logic": "Polar_Network",
+      "mmgbsa_ddg": -22.52,
+      "timestamp": "2026-04-08T12:02:38.840452"
+    },
+    {
+      "project": "fgf 23",
+      "mutation": "N52W",
+      "logic": "Cavity_Filling",
+      "mmgbsa_ddg": -22.91,
+      "timestamp": "2026-04-08T12:02:38.840452"
+    },
+    {
+      "project": "fgf 23",
+      "mutation": "N52W",
+      "logic": "Cavity_Filling",
+      "mmgbsa_ddg": -24.21,
+      "timestamp": "2026-04-08T12:02:38.840452"
+    },
+    {
+      "project": "fgf 23",
+      "mutation": "N52L",
+      "logic": "Cavity_Filling",
+      "mmgbsa_ddg": -25.33,
+      "timestamp": "2026-04-08T12:02:38.840452"
+    }
+  ]
+}

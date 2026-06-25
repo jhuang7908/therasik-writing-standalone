@@ -1,0 +1,336 @@
+{
+  "library_id": "dog_production_germline_library_v1",
+  "species": "Canis_lupus_familiaris",
+  "built_at": "2026-02-22 12:23:44",
+  "sources": {
+    "clinical_refs_in_repo": [
+      "Bedinvetmab",
+      "Lokivetmab",
+      "Landogrozumab"
+    ],
+    "clinical_ref_pdbs": [
+      "projects\\Llama_Humanization_Project\\semi_auto_workflow\\inputs\\Bedinvetmab.pdb",
+      "projects\\Llama_Humanization_Project\\semi_auto_workflow\\inputs\\Lokivetmab.pdb",
+      "data\\structures\\engineered\\Landogrozumab.pdb"
+    ],
+    "imgt_germline_catalog_dir": "data\\germlines\\canis_lupus_familiaris_ig_aa",
+    "population_stats_file": "data\\germlines\\canis_lupus_familiaris_ig_aa\\dog_repertoire_and_dla_stats.json",
+    "population_stats_meta": {
+      "description": "Canine BCR Repertoire Stats and DLA Allele Frequencies for Engineering",
+      "version": "1.0",
+      "date": "2026-02-21",
+      "sources": [
+        "Molecular characterization of the VH repertoire in Canis familiaris (VH usage)",
+        "Frequency and distribution of alleles of canine MHC-II ... in 25 AKC breeds (DLA)",
+        "IMGT Repertoire (IG and TR)"
+      ]
+    }
+  },
+  "inference_parameters": {
+    "v_prefilter": {
+      "method": "prefix_identity_topk_then_kabat_fr_only",
+      "top_k_prefix": 60,
+      "top_k_kabat": 3,
+      "prefix_len": 80
+    },
+    "j_match": {
+      "entries": "IMGT functional only",
+      "method": "longest_common_suffix",
+      "min_suffix_len": 4,
+      "fr4_tail_len": 12
+    }
+  },
+  "population_support": {
+    "vh_gene_usage": {
+      "summary": "Canine VH repertoire is dominated by the VH1 family (approx. 80 genes), with limited usage of VH2 and VH3. Diversity is driven mainly by CDR3 junctional diversity and SHM rather than V-gene variety.",
+      "dominant_family": "VH1",
+      "high_frequency_genes": [
+        {
+          "gene": "VH1-62",
+          "human_homolog": "VH3-21",
+          "note": "High frequency in multiple breeds; preferred scaffold candidate."
+        },
+        {
+          "gene": "VH1-44",
+          "human_homolog": "VH3-23",
+          "note": "High frequency in multiple breeds; preferred scaffold candidate."
+        }
+      ]
+    },
+    "dla_core_panel": {
+      "description": "High-frequency, cross-breed shared alleles for broad coverage immunogenicity assessment. These alleles represent the 'common denominators' across major dog breeds.",
+      "alleles": [
+        {
+          "locus": "DLA-DRB1",
+          "allele": "DLA-DRB1*00101",
+          "frequency_note": "Shared by 16/25 AKC breeds"
+        },
+        {
+          "locus": "DLA-DRB1",
+          "allele": "DLA-DRB1*01501",
+          "frequency_note": "Shared by 19/25 AKC breeds"
+        },
+        {
+          "locus": "DLA-DQA1",
+          "allele": "DLA-DQA1*00101",
+          "frequency_note": "Major allele, monoallelic in some breeds (e.g., English Setter)"
+        },
+        {
+          "locus": "DLA-DQA1",
+          "allele": "DLA-DQA1*00601",
+          "frequency_note": "Widely shared across breeds"
+        },
+        {
+          "locus": "DLA-DQB1",
+          "allele": "DLA-DQB1*00201",
+          "frequency_note": "Shared by 17/25 AKC breeds"
+        },
+        {
+          "locus": "DLA-DQB1",
+          "allele": "DLA-DQB1*02301",
+          "frequency_note": "Shared by 18/25 AKC breeds"
+        }
+      ]
+    }
+  },
+  "clinical_reference_records": [
+    {
+      "name": "Bedinvetmab",
+      "pdb_path": "projects\\Llama_Humanization_Project\\semi_auto_workflow\\inputs\\Bedinvetmab.pdb",
+      "chains": {
+        "VH": "H",
+        "VL": "L"
+      },
+      "extracted_sequences": {
+        "VH": "EVQLVESGGDLVKPGGSLRLSCVASGFTFSSHGMHWVRQSPGKGLQWVAVINSGGSSTYYTDAVKGRFTISRDNAKNTVYLQMNSLRAEDTAMYYCAKESVGGWEGVLQPHFDYWGQGTLVIVSS",
+        "VL": "QSVLTQPTSVSGSLGQRVTISCSGSTNNIGILGASWYQLFPGKAPKLLVYGNGNRPSGVPDRFSGADSGDSVTLTITGLQAEDEADYYCQSFDTTLGAHVFGGGTHLTVL"
+      },
+      "kabat_fr4_tail_best_effort": {
+        "VH": "YWGQGTLVIVSS",
+        "VL": "HVFGGGTHLTVL"
+      },
+      "inferred_germline": {
+        "VH_V_gene": {
+          "gene": "IGHV3-19*01",
+          "identity": 0.9412,
+          "n_compared": 68,
+          "catalog_aa": "EVQLVESGGDLVKPAGSLRLSCVASGFTFSSYSMSWVRQAPEKGLQLVAGINSGGSSTYYTDAVKGRFTISRDNAKNTVYLQMNSLRAEDTAMYYCAK",
+          "raw_header": "IMGT000001|IGHV3-19*01|Canis lupus familiaris_boxer|F|V-REGION|884529..884824|296 nt|1| | | | |296+24=320| | |"
+        },
+        "VH_J_gene_best_effort": {
+          "gene": null,
+          "overlap_len": 0,
+          "overlap_seq": null,
+          "catalog_aa": null,
+          "raw_header": null
+        },
+        "VL_V_gene": {
+          "gene": "IGLV1-162*01",
+          "identity": 0.913,
+          "n_compared": 69,
+          "catalog_aa": "QSVLTQPTSVSGSLGQRVTISCSGSTNNIGIVGASWYQQLPGKAPKLLVYSDGDRPSGVPDRFSGSNSGNSDTLTITGLQAEDEADYYCQSFDTTLDA",
+          "raw_header": "IMGT000003|IGLV1-162*01|Canis lupus familiaris_boxer|F|V-REGION|1012..1307|296 nt|1| | | | |296+57=353| | |",
+          "locus": "IGL"
+        },
+        "VL_J_gene_best_effort": {
+          "gene": null,
+          "overlap_len": 0,
+          "overlap_seq": null,
+          "catalog_aa": null,
+          "raw_header": null
+        }
+      },
+      "inference_parameters": {
+        "v_prefilter": {
+          "method": "prefix_identity_topk_then_kabat_fr_only",
+          "top_k_prefix": 60,
+          "top_k_kabat": 3,
+          "prefix_len": 80
+        },
+        "j_match": {
+          "entries": "IMGT functional only",
+          "method": "longest_common_suffix",
+          "min_suffix_len": 4,
+          "fr4_tail_len": 12
+        }
+      }
+    },
+    {
+      "name": "Lokivetmab",
+      "pdb_path": "projects\\Llama_Humanization_Project\\semi_auto_workflow\\inputs\\Lokivetmab.pdb",
+      "chains": {
+        "VH": "H",
+        "VL": "L"
+      },
+      "extracted_sequences": {
+        "VH": "EVQLVESGGDLVKPGGSLRLSCVASGFTFSNYGMSWVRQAPGKGLQWVATISYGGSYTYYPDNIKGRFTISRDNAKNTLYLQMNSLRAEDTAMYYCVRGYGYDTMDYWGQGTLVTVSS",
+        "VL": "EIVMTQSPASLSLSQEEKVTITCKASQSVSFAGTGLMHWYQQKPGQAPKLLIYRASNLEAGVPSRFSGSGSGTDFSFTISSLEPEDVAVYYCQQSREYPWTFGQGTKLEIK"
+      },
+      "kabat_fr4_tail_best_effort": {
+        "VH": "YWGQGTLVTVSS",
+        "VL": "WTFGQGTKLEIK"
+      },
+      "inferred_germline": {
+        "VH_V_gene": {
+          "gene": "IGHV3-35*01",
+          "identity": 0.9559,
+          "n_compared": 68,
+          "catalog_aa": "EVQLVESGGDLVKPVGSLRLSCVASGFTFSSYDMNWVRQAPGKGLQWVAYISSGGSSTYYADAVKGRFTISRDNAKNTLYLQMNSLRAEDTAMYYCAG",
+          "raw_header": "IMGT000001|IGHV3-35*01|Canis lupus familiaris_boxer|F|V-REGION|676291..676586|296 nt|1| | | | |296+24=320| | |"
+        },
+        "VH_J_gene_best_effort": {
+          "gene": null,
+          "overlap_len": 0,
+          "overlap_seq": null,
+          "catalog_aa": null,
+          "raw_header": null
+        },
+        "VL_V_gene": {
+          "gene": "IGKV3-18*02",
+          "identity": 1.0,
+          "n_compared": 70,
+          "catalog_aa": "EIVMTQSPASLSLSQEEKVTITCRASQSVSSYLAWYQQKPGQAPKLLIYGTSNRATGVPSRFSGSGSGTDFSFTISSLEPEDVAVYYCQQYNSGY",
+          "raw_header": "IMGT000002|IGKV3-18*02|Canis lupus familiaris_Boxer|F|V-REGION|307021..307306|286 nt|1| | | | |286+48=334| |rev-compl|",
+          "locus": "IGK"
+        },
+        "VL_J_gene_best_effort": {
+          "gene": null,
+          "overlap_len": 0,
+          "overlap_seq": null,
+          "catalog_aa": null,
+          "raw_header": null
+        }
+      },
+      "inference_parameters": {
+        "v_prefilter": {
+          "method": "prefix_identity_topk_then_kabat_fr_only",
+          "top_k_prefix": 60,
+          "top_k_kabat": 3,
+          "prefix_len": 80
+        },
+        "j_match": {
+          "entries": "IMGT functional only",
+          "method": "longest_common_suffix",
+          "min_suffix_len": 4,
+          "fr4_tail_len": 12
+        }
+      }
+    },
+    {
+      "name": "Landogrozumab",
+      "pdb_path": "data\\structures\\engineered\\Landogrozumab.pdb",
+      "chains": {
+        "VH": "H",
+        "VL": "L"
+      },
+      "extracted_sequences": {
+        "VH": "EVQLVESGGGLVQPGGSLRLSCAASGLTFSRYPMSWVRQAPGKGLVWVSAITSSGGSTYYSDTVKGRFTISRDNAKNTLYLQMNSLRAEDTAVYYCARLPDYWGQGTLVTVSS",
+        "VL": "EIVLTQSPGTLSLSPGERATLSCRASSSVSSSYLHWYQQKPGQAPRLLIYSTSNLVAGIPDRFSGSGSGTDFTLTISRLEPEDFAVYYCQHHSGYHFTFGGGTKVEIK"
+      },
+      "kabat_fr4_tail_best_effort": {
+        "VH": "YWGQGTLVTVSS",
+        "VL": "FTFGGGTKVEIK"
+      },
+      "inferred_germline": {
+        "VH_V_gene": {
+          "gene": "IGHV3-9*01",
+          "identity": 0.9265,
+          "n_compared": 68,
+          "catalog_aa": "EVQLVESGGDLVKPGGSLRLSCVASGFTFSSYDMDWVRQAPGKGLQWLSEISSSGSSTYYADAVKGRFTISRDNAKNTLYLQMNSLRAEDTAVYYCAR",
+          "raw_header": "IMGT000001|IGHV3-9*01|Canis lupus familiaris_boxer|F|V-REGION|1087006..1087301|296 nt|1| | | | |296+24=320| | |"
+        },
+        "VH_J_gene_best_effort": {
+          "gene": null,
+          "overlap_len": 0,
+          "overlap_seq": null,
+          "catalog_aa": null,
+          "raw_header": null
+        },
+        "VL_V_gene": {
+          "gene": "IGKV2-11*01",
+          "identity": 0.7,
+          "n_compared": 70,
+          "catalog_aa": "DIVMTQTPLSLSVSPGETASISCRASQSLLHSNGNTYLYWFRQKPGQSPQRLIYLVSNRDAGVPDRFSGSGSGTDFTLRISRVEADDAGVYYCGQGIQDP",
+          "raw_header": "IMGT000067|IGKV2-11*01|Canis lupus familiaris_Basenji|F|V-REGION|168282..168583|302 nt|1| | | | |302+33=335| | |",
+          "locus": "IGK"
+        },
+        "VL_J_gene_best_effort": {
+          "gene": null,
+          "overlap_len": 0,
+          "overlap_seq": null,
+          "catalog_aa": null,
+          "raw_header": null
+        }
+      },
+      "inference_parameters": {
+        "v_prefilter": {
+          "method": "prefix_identity_topk_then_kabat_fr_only",
+          "top_k_prefix": 60,
+          "top_k_kabat": 3,
+          "prefix_len": 80
+        },
+        "j_match": {
+          "entries": "IMGT functional only",
+          "method": "longest_common_suffix",
+          "min_suffix_len": 4,
+          "fr4_tail_len": 12
+        }
+      }
+    }
+  ],
+  "production_scaffolds_vh_v": [
+    {
+      "gene": "IGHV3-35*01",
+      "seen_in": [
+        "Lokivetmab"
+      ],
+      "best_identity": 0.9559
+    },
+    {
+      "gene": "IGHV3-19*01",
+      "seen_in": [
+        "Bedinvetmab"
+      ],
+      "best_identity": 0.9412
+    },
+    {
+      "gene": "IGHV3-9*01",
+      "seen_in": [
+        "Landogrozumab"
+      ],
+      "best_identity": 0.9265
+    }
+  ],
+  "production_scaffolds_vl_v": [
+    {
+      "locus": "IGK",
+      "gene": "IGKV3-18*02",
+      "seen_in": [
+        "Lokivetmab"
+      ],
+      "best_identity": 1.0
+    },
+    {
+      "locus": "IGL",
+      "gene": "IGLV1-162*01",
+      "seen_in": [
+        "Bedinvetmab"
+      ],
+      "best_identity": 0.913
+    },
+    {
+      "locus": "IGK",
+      "gene": "IGKV2-11*01",
+      "seen_in": [
+        "Landogrozumab"
+      ],
+      "best_identity": 0.7
+    }
+  ],
+  "policy_notes": [
+    "This v1 library is anchored on in-repo clinical canine antibodies + IMGT functional annotation, not population frequencies.",
+    "If population-level repertoire / DLA frequency priors are available, they are recorded under sources.population_stats_file and payload.population_support.",
+    "Use-case: choose a small set of production-capable dog V-gene scaffolds for caninization / surface reshaping workflows.",
+    "J-gene mapping is best-effort because IMGT J-REGION translations may not align 1:1 with FR4 definitions in every pipeline."
+  ]
+}

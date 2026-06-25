@@ -1,0 +1,109 @@
+version: "3.9"
+
+# Creative Studio — isolated from InSynBio/Therasik stacks.
+# Default ports: API 8100, Flower 5555, Postgres 5432 (internal), Redis 6379 (internal).
+
+services:
+  # ── FastAPI ────────────────────────────────────────────────────────────────
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: creative_api
+    restart: unless-stopped
+    ports:
+      - "8100:8000"
+    env_file: .env
+    environment:
+      DATABASE_URL: "postgresql://creative:creative@postgres:5432/creative_db"
+      REDIS_URL: "redis://redis:6379/0"
+      CELERY_BROKER_URL: "redis://redis:6379/1"
+      CELERY_RESULT_BACKEND: "redis://redis:6379/2"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    volumes:
+      - ./outputs:/app/outputs
+
+  # ── Celery worker ──────────────────────────────────────────────────────────
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: creative_worker
+    restart: unless-stopped
+    command: celery -A worker.tasks.celery_app worker --loglevel=info -Q fast -c 2
+    env_file: .env
+    environment:
+      DATABASE_URL: "postgresql://creative:creative@postgres:5432/creative_db"
+      REDIS_URL: "redis://redis:6379/0"
+      CELERY_BROKER_URL: "redis://redis:6379/1"
+      CELERY_RESULT_BACKEND: "redis://redis:6379/2"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    volumes:
+      - ./outputs:/app/outputs
+
+  # ── Celery Flower (monitor) ────────────────────────────────────────────────
+  flower:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: creative_flower
+    restart: unless-stopped
+    command: celery -A worker.tasks.celery_app flower --port=5555
+    ports:
+      - "5555:5555"
+    env_file: .env
+    environment:
+      CELERY_BROKER_URL: "redis://redis:6379/1"
+    depends_on:
+      - redis
+      - worker
+
+  # ── PostgreSQL ────────────────────────────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    container_name: creative_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: creative
+      POSTGRES_PASSWORD: creative
+      POSTGRES_DB: creative_db
+    volumes:
+      - creative_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U creative"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    # Internal only — not exposed externally by default
+    # ports:
+    #   - "5434:5432"
+
+  # ── Redis ─────────────────────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: creative_redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - creative_redis_data:/data
+    # Internal only
+    # ports:
+    #   - "6380:6379"
+
+volumes:
+  creative_pgdata:
+    name: creative_pgdata
+  creative_redis_data:
+    name: creative_redis_data
+
+networks:
+  default:
+    name: creative_studio_net

@@ -1,0 +1,34 @@
+# Template Selection Policy v1
+# 
+
+template_selection_policy:
+  VH:
+    priority:
+      - cdr_length_match
+      - canonical_class
+      - fr_identity
+    tolerances:
+      cdr3_length_delta: 1
+      fr_identity_min: 0.80
+      cdr1_cdr2_exact_match: true
+  
+  VL:
+    priority:
+      - fr_identity
+      - cdr1_cdr2_match
+      - cdr3_length
+    tolerances:
+      cdr3_length_delta: 2
+      fr_identity_min: 0.85
+      cdr1_cdr2_exact_match: true
+  
+  VHH:
+    priority:
+      - hallmark_score
+      - fr_identity
+      - cdr3_length
+    tolerances:
+      hallmark_min: 0.6
+      fr_identity_min: 0.75
+      cdr3_length_delta: 3
+

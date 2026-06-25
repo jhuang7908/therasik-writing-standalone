@@ -1,0 +1,16 @@
+HLA-DRB1 panel coverage (approximate; validate with AFND + IEDB Population Coverage)
+========================================================================
+Superpopulations: EUR (European), EAS (East Asian), AFR (Sub-Saharan proxy),
+                  AMR (Latin American admixed proxy), SAS (South Asian proxy).
+
+P(carry ≥1 panel allele) = 1 - (1 - F)^2  with F = summed freq of panel alleles
+(RESIDUAL_OTHER_DRB1 captures non-panel chromosomal frequency mass).
+
+EUR:  F_panel27=0.800  coverage27=0.960  |  F_panel35=0.886  coverage35=0.987  (Δcov vs27: +0.027)
+EAS:  F_panel27=0.690  coverage27=0.904  |  F_panel35=0.774  coverage35=0.949  (Δcov vs27: +0.045)
+AFR:  F_panel27=0.594  coverage27=0.835  |  F_panel35=0.690  coverage35=0.904  (Δcov vs27: +0.069)
+AMR:  F_panel27=0.674  coverage27=0.894  |  F_panel35=0.750  coverage35=0.938  (Δcov vs27: +0.044)
+SAS:  F_panel27=0.719  coverage27=0.921  |  F_panel35=0.793  coverage35=0.957  (Δcov vs27: +0.036)
+
+Frequency table: data\reference\hla_mhcii_panels\drb1_frequency_by_superpopulation.tsv
+Panels: data\reference\hla_mhcii_panels/panel_drb1_27.txt, panel_drb1_35.txt

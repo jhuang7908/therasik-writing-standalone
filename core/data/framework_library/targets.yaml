@@ -1,0 +1,172 @@
+# ============================================================
+# Antibody Framework Build Targets
+# Definition:
+# - Framework = FR1–FR3 derived from V germline only
+# - CDR3 excluded by definition
+# - FR4/J handled separately
+# - Alleles must be traceable to IMGT reference FASTA
+# ============================================================
+
+version: "1.0"
+maintainer: "antibody_engineering_team"
+last_updated: "2026-01-09"
+
+# ------------------------------
+# Human Heavy Chain (VH)
+# Tier-1 and Tier-2 drug-grade frameworks
+# ------------------------------
+human_vh_targets:
+
+  - germline: "IGHV3-23*01"
+    tier: "tier1"
+    tags: ["super_scaffold", "high_expression", "high_stability"]
+    notes: "Clinical dominant VH framework"
+
+  - germline: "IGHV3-7*01"
+    tier: "tier1"
+    tags: ["high_stability", "pI_tuning"]
+    notes: "Near-neighbor of 3-23, charge tuning"
+
+  - germline: "IGHV3-11*01"
+    tier: "tier1"
+    tags: ["compact", "scFv_friendly"]
+    notes: "Tight framework, good for bispecifics"
+
+  - germline: "IGHV3-21*01"
+    tier: "tier1"
+    tags: ["solubility_support", "cdr1_flexible"]
+    notes: "Distinct FR3 geometry"
+
+  - germline: "IGHV1-46*01"
+    tier: "tier1"
+    tags: ["vh1_reference", "flat_interface"]
+    notes: "VH1 benchmark scaffold"
+
+  - germline: "IGHV1-2*01"
+    tier: "tier1"
+    tags: ["fully_human", "low_immunogenicity"]
+    notes: "Common in fully human libraries"
+
+  - germline: "IGHV1-69*01"
+    tier: "tier1"
+    tags: ["hydrophobic_cdr2", "viral_epitope"]
+    notes: "Hydrophobic CDR2 support"
+
+  - germline: "IGHV1-18*01"
+    tier: "tier2"
+    tags: ["vh1_alternative"]
+    notes: "Fallback when 1-46 incompatible"
+
+  - germline: "IGHV4-39*01"
+    tier: "tier1"
+    tags: ["long_cdr3_support", "wide_framework"]
+    notes: "Supports long H3"
+
+  - germline: "IGHV4-59*01"
+    tier: "tier1"
+    tags: ["flexible_framework"]
+    notes: "Alternative to 4-39"
+
+  - germline: "IGHV5-51*01"
+    tier: "tier2"
+    tags: ["rare_family", "compact_geometry"]
+    notes: "Used when VH1/VH3 fail"
+
+
+# ------------------------------
+# Human Light Chain (VL)
+# Kappa and Lambda
+# ------------------------------
+human_vl_targets:
+
+  - germline: "IGKV1-39*01"
+    chain: "kappa"
+    tier: "tier1"
+    tags: ["super_scaffold", "high_usage"]
+    notes: "Dominant kappa framework"
+
+  - germline: "IGKV3-20*01"
+    chain: "kappa"
+    tier: "tier1"
+    tags: ["high_expression", "industrial_standard"]
+    notes: "Excellent manufacturability"
+
+  - germline: "IGKV1-33*01"
+    chain: "kappa"
+    tier: "tier2"
+    tags: ["patent_avoidance"]
+    notes: "Alternative to 1-39"
+
+  - germline: "IGKV3-11*01"
+    chain: "kappa"
+    tier: "tier2"
+    tags: ["vh3_pairing"]
+    notes: "Often paired with VH3"
+
+  - germline: "IGKV4-1*01"
+    chain: "kappa"
+    tier: "tier2"
+    tags: ["long_cdr1_support"]
+    notes: "Long L1 framework"
+
+  - germline: "IGKV2-28*01"
+    chain: "kappa"
+    tier: "tier2"
+    tags: ["special_geometry"]
+    notes: "Distinct CDR-L1 curvature"
+
+  - germline: "IGLV2-14*01"
+    chain: "lambda"
+    tier: "tier1"
+    tags: ["lambda_reference", "aggregation_rescue"]
+    notes: "Primary lambda scaffold"
+
+  - germline: "IGLV1-44*01"
+    chain: "lambda"
+    tier: "tier2"
+    tags: ["lambda_stable"]
+    notes: "Stable lambda alternative"
+
+  - germline: "IGLV3-1*01"
+    chain: "lambda"
+    tier: "tier2"
+    tags: ["diversity_extension"]
+    notes: "Expand VL diversity"
+
+
+# ------------------------------
+# Dog (Canine) Framework Targets
+# Alleles to be confirmed against IMGT Dog IG tables
+# ------------------------------
+dog_vh_targets:
+
+  - germline: "dVH3-38*TODO"
+    tier: "tier1"
+    tags: ["canine_super_scaffold"]
+    notes: "Closest analog to human IGHV3-23"
+
+  - germline: "dVH1-13*TODO"
+    tier: "tier2"
+    tags: ["expression_rescue"]
+    notes: "Used when stability is poor"
+
+
+dog_vl_targets:
+
+  - germline: "dVK2-4*TODO"
+    chain: "kappa"
+    tier: "tier1"
+    tags: ["canine_kappa_reference"]
+    notes: "Closest analog to IGKV1-39"
+
+
+# ------------------------------
+# Build Constraints (machine-readable)
+# ------------------------------
+constraints:
+  framework_definition: "FR1-FR3 only"
+  exclude_regions: ["CDR3", "FR4"]
+  numbering_systems: ["IMGT", "Kabat"]
+  segmentation_tool: "ANARCII"
+  fail_on_missing_allele: true
+  allow_todo_allele: true

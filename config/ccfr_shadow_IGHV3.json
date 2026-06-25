@@ -1,0 +1,552 @@
+{
+  "_meta": {
+    "tool": "shadow_ccfr_vhvl.py",
+    "version": "v1.0",
+    "generated_at": "2026-05-07T13:19:17.055475+00:00",
+    "vh_germline": "IGHV3-23",
+    "family": "IGHV3"
+  },
+  "summary": {
+    "family": "IGHV3",
+    "fr_positions_total": 80,
+    "triggered": 12,
+    "confirmed": 4,
+    "changed": 1,
+    "no_data": 4,
+    "deep_boundary_skip": 3,
+    "agreement_rate": 0.333,
+    "change_rate": 0.083
+  },
+  "per_position": [
+    {
+      "fr_segment": "FR1",
+      "fr_pos": 3,
+      "from_aa": "L",
+      "old_first": "S",
+      "old_candidates": [
+        "S",
+        "T",
+        "Q"
+      ],
+      "cc_fr_best_aa": "S",
+      "cc_fr_freq": 0.0,
+      "cc_fr_candidates": [
+        {
+          "aa": "S",
+          "freq": 0.0
+        },
+        {
+          "aa": "T",
+          "freq": 0.0
+        },
+        {
+          "aa": "Q",
+          "freq": 0.0
+        }
+      ],
+      "aa_top5_clinical": [
+        "L",
+        "V"
+      ],
+      "aa_freq_clinical": {
+        "L": 0.9895,
+        "V": 0.0105
+      },
+      "position_type": "deep_boundary",
+      "boundary_dist": 3,
+      "support_level": "L1",
+      "n_family": 382,
+      "n_used": 382,
+      "changed": false,
+      "status": "KEEP_OLD_BOUNDARY",
+      "recommendation": "Keep old rule (S) — deep_boundary position"
+    },
+    {
+      "fr_segment": "FR1",
+      "fr_pos": 10,
+      "from_aa": "L",
+      "old_first": "S",
+      "old_candidates": [
+        "S",
+        "T",
+        "Q"
+      ],
+      "cc_fr_best_aa": "S",
+      "cc_fr_freq": 0.0052,
+      "cc_fr_candidates": [
+        {
+          "aa": "S",
+          "freq": 0.0052
+        },
+        {
+          "aa": "T",
+          "freq": 0.0
+        },
+        {
+          "aa": "Q",
+          "freq": 0.0
+        }
+      ],
+      "aa_top5_clinical": [
+        "L",
+        "V",
+        "S",
+        "A",
+        "F"
+      ],
+      "aa_freq_clinical": {
+        "L": 0.788,
+        "V": 0.199,
+        "S": 0.0052,
+        "A": 0.0026,
+        "F": 0.0026,
+        "W": 0.0026
+      },
+      "position_type": "pure_fr",
+      "boundary_dist": 10,
+      "support_level": "L1",
+      "n_family": 382,
+      "n_used": 382,
+      "changed": false,
+      "status": "CONFIRMED",
+      "recommendation": "CC-FR confirms S (freq=0.005, n=382, L1)"
+    },
+    {
+      "fr_segment": "FR1",
+      "fr_pos": 17,
+      "from_aa": "L",
+      "old_first": "S",
+      "old_candidates": [
+        "S",
+        "T",
+        "Q"
+      ],
+      "cc_fr_best_aa": "Q",
+      "cc_fr_freq": 0.0052,
+      "cc_fr_candidates": [
+        {
+          "aa": "Q",
+          "freq": 0.0052
+        },
+        {
+          "aa": "S",
+          "freq": 0.0
+        },
+        {
+          "aa": "T",
+          "freq": 0.0
+        }
+      ],
+      "aa_top5_clinical": [
+        "L",
+        "M",
+        "Q",
+        "V",
+        "R"
+      ],
+      "aa_freq_clinical": {
+        "L": 0.9817,
+        "M": 0.0079,
+        "Q": 0.0052,
+        "V": 0.0026,
+        "R": 0.0026
+      },
+      "position_type": "boundary",
+      "boundary_dist": 7,
+      "support_level": "L1",
+      "n_family": 382,
+      "n_used": 382,
+      "changed": true,
+      "status": "CC_FR_DIFFERS",
+      "recommendation": "CC-FR suggests Q (freq=0.005, n=382, L1) vs old rule S"
+    },
+    {
+      "fr_segment": "FR1",
+      "fr_pos": 19,
+      "from_aa": "L",
+      "old_first": "S",
+      "old_candidates": [
+        "S",
+        "T",
+        "Q"
+      ],
+      "cc_fr_best_aa": "S",
+      "cc_fr_freq": 0.0,
+      "cc_fr_candidates": [
+        {
+          "aa": "S",
+          "freq": 0.0
+        },
+        {
+          "aa": "T",
+          "freq": 0.0
+        },
+        {
+          "aa": "Q",
+          "freq": 0.0
+        }
+      ],
+      "aa_top5_clinical": [
+        "L",
+        "I",
+        "V"
+      ],
+      "aa_freq_clinical": {
+        "L": 0.9895,
+        "I": 0.0052,
+        "V": 0.0052
+      },
+      "position_type": "boundary",
+      "boundary_dist": 5,
+      "support_level": "L1",
+      "n_family": 382,
+      "n_used": 382,
+      "changed": false,
+      "status": "KEEP_OLD_NO_MATCH",
+      "recommendation": "Keep old rule (S) — no clinical match for candidates"
+    },
+    {
+      "fr_segment": "FR2",
+      "fr_pos": 0,
+      "from_aa": "M",
+      "old_first": "L",
+      "old_candidates": [
+        "L",
+        "Q"
+      ],
+      "cc_fr_best_aa": "L",
+      "cc_fr_freq": 0.0157,
+      "cc_fr_candidates": [
+        {
+          "aa": "L",
+          "freq": 0.0157
+        },
+        {
+          "aa": "Q",
+          "freq": 0.0
+        }
+      ],
+      "aa_top5_clinical": [
+        "M",
+        "I",
+        "V",
+        "L",
+        "W"
+      ],
+      "aa_freq_clinical": {
+        "M": 0.8455,
+        "I": 0.0864,
+        "V": 0.0314,
+        "L": 0.0157,
+        "W": 0.0105,
+        "Y": 0.0079,
+        "A": 0.0026
+      },
+      "position_type": "deep_boundary",
+      "boundary_dist": 0,
+      "support_level": "L1",
+      "n_family": 382,
+      "n_used": 382,
+      "changed": false,
+      "status": "KEEP_OLD_BOUNDARY",
+      "recommendation": "Keep old rule (L) — deep_boundary position"
+    },
+    {
+      "fr_segment": "FR2",
+      "fr_pos": 11,
+      "from_aa": "L",
+      "old_first": "S",
+      "old_candidates": [
+        "S",
+        "T",
+        "Q"
+      ],
+      "cc_fr_best_aa": "S",
+      "cc_fr_freq": 0.0,
+      "cc_fr_candidates": [
+        {
+          "aa": "S",
+          "freq": 0.0
+        },
+        {
+          "aa": "T",
+          "freq": 0.0
+        },
+        {
+          "aa": "Q",
+          "freq": 0.0
+        }
+      ],
+      "aa_top5_clinical": [
+        "L",
+        "P"
+      ],
+      "aa_freq_clinical": {
+        "L": 0.9948,
+        "P": 0.0052
+      },
+      "position_type": "boundary",
+      "boundary_dist": 5,
+      "support_level": "L1",
+      "n_family": 382,
+      "n_used": 382,
+      "changed": false,
+      "status": "KEEP_OLD_NO_MATCH",
+      "recommendation": "Keep old rule (S) — no clinical match for candidates"
+    },
+    {
+      "fr_segment": "FR3",
+      "fr_pos": 9,
+      "from_aa": "F",
+      "old_first": "Y",
+      "old_candidates": [
+        "Y"
+      ],
+      "cc_fr_best_aa": "Y",
+      "cc_fr_freq": 0.0,
+      "cc_fr_candidates": [
+        {
+          "aa": "Y",
+          "freq": 0.0
+        }
+      ],
+      "aa_top5_clinical": [
+        "F",
+        "V",
+        "A",
+        "L",
+        "S"
+      ],
+      "aa_freq_clinical": {
+        "F": 0.9503,
+        "V": 0.0131,
+        "A": 0.0105,
+        "L": 0.0079,
+        "S": 0.0079,
+        "R": 0.0079,
+        "T": 0.0026
+      },
+      "position_type": "pure_fr",
+      "boundary_dist": 9,
+      "support_level": "L1",
+      "n_family": 382,
+      "n_used": 382,
+      "changed": false,
+      "status": "KEEP_OLD_NO_MATCH",
+      "recommendation": "Keep old rule (Y) — no clinical match for candidates"
+    },
+    {
+      "fr_segment": "FR3",
+      "fr_pos": 11,
+      "from_aa": "I",
+      "old_first": "V",
+      "old_candidates": [
+        "V"
+      ],
+      "cc_fr_best_aa": "V",
+      "cc_fr_freq": 0.0131,
+      "cc_fr_candidates": [
+        {
+          "aa": "V",
+          "freq": 0.0131
+        }
+      ],
+      "aa_top5_clinical": [
+        "I",
+        "F",
+        "L",
+        "V",
+        "M"
+      ],
+      "aa_freq_clinical": {
+        "I": 0.9346,
+        "F": 0.0209,
+        "L": 0.0157,
+        "V": 0.0131,
+        "M": 0.0079,
+        "T": 0.0079
+      },
+      "position_type": "pure_fr",
+      "boundary_dist": 11,
+      "support_level": "L1",
+      "n_family": 382,
+      "n_used": 382,
+      "changed": false,
+      "status": "CONFIRMED",
+      "recommendation": "CC-FR confirms V (freq=0.013, n=382, L1)"
+    },
+    {
+      "fr_segment": "FR3",
+      "fr_pos": 22,
+      "from_aa": "L",
+      "old_first": "S",
+      "old_candidates": [
+        "S",
+        "T",
+        "Q"
+      ],
+      "cc_fr_best_aa": "S",
+      "cc_fr_freq": 0.0,
+      "cc_fr_candidates": [
+        {
+          "aa": "S",
+          "freq": 0.0
+        },
+        {
+          "aa": "T",
+          "freq": 0.0
+        },
+        {
+          "aa": "Q",
+          "freq": 0.0
+        }
+      ],
+      "aa_top5_clinical": [
+        "L",
+        "F",
+        "M",
+        "Y"
+      ],
+      "aa_freq_clinical": {
+        "L": 0.9843,
+        "F": 0.0052,
+        "M": 0.0052,
+        "Y": 0.0052
+      },
+      "position_type": "pure_fr",
+      "boundary_dist": 15,
+      "support_level": "L1",
+      "n_family": 382,
+      "n_used": 382,
+      "changed": false,
+      "status": "KEEP_OLD_NO_MATCH",
+      "recommendation": "Keep old rule (S) — no clinical match for candidates"
+    },
+    {
+      "fr_segment": "FR3",
+      "fr_pos": 24,
+      "from_aa": "M",
+      "old_first": "L",
+      "old_candidates": [
+        "L",
+        "Q"
+      ],
+      "cc_fr_best_aa": "L",
+      "cc_fr_freq": 0.0209,
+      "cc_fr_candidates": [
+        {
+          "aa": "L",
+          "freq": 0.0209
+        },
+        {
+          "aa": "Q",
+          "freq": 0.0079
+        }
+      ],
+      "aa_top5_clinical": [
+        "M",
+        "L",
+        "Q",
+        "V"
+      ],
+      "aa_freq_clinical": {
+        "M": 0.9686,
+        "L": 0.0209,
+        "Q": 0.0079,
+        "V": 0.0026
+      },
+      "position_type": "pure_fr",
+      "boundary_dist": 13,
+      "support_level": "L1",
+      "n_family": 382,
+      "n_used": 382,
+      "changed": false,
+      "status": "CONFIRMED",
+      "recommendation": "CC-FR confirms L (freq=0.021, n=382, L1)"
+    },
+    {
+      "fr_segment": "FR3",
+      "fr_pos": 27,
+      "from_aa": "L",
+      "old_first": "S",
+      "old_candidates": [
+        "S",
+        "T",
+        "Q"
+      ],
+      "cc_fr_best_aa": "S",
+      "cc_fr_freq": 0.0079,
+      "cc_fr_candidates": [
+        {
+          "aa": "S",
+          "freq": 0.0079
+        },
+        {
+          "aa": "T",
+          "freq": 0.0
+        },
+        {
+          "aa": "Q",
+          "freq": 0.0
+        }
+      ],
+      "aa_top5_clinical": [
+        "L",
+        "S",
+        "V",
+        "M"
+      ],
+      "aa_freq_clinical": {
+        "L": 0.9869,
+        "S": 0.0079,
+        "V": 0.0026,
+        "M": 0.0026
+      },
+      "position_type": "pure_fr",
+      "boundary_dist": 10,
+      "support_level": "L1",
+      "n_family": 382,
+      "n_used": 382,
+      "changed": false,
+      "status": "CONFIRMED",
+      "recommendation": "CC-FR confirms S (freq=0.008, n=382, L1)"
+    },
+    {
+      "fr_segment": "FR3",
+      "fr_pos": 36,
+      "from_aa": "F",
+      "old_first": "Y",
+      "old_candidates": [
+        "Y"
+      ],
+      "cc_fr_best_aa": "Y",
+      "cc_fr_freq": 0.9529,
+      "cc_fr_candidates": [
+        {
+          "aa": "Y",
+          "freq": 0.9529
+        }
+      ],
+      "aa_top5_clinical": [
+        "Y",
+        "F",
+        "H",
+        "I"
+      ],
+      "aa_freq_clinical": {
+        "Y": 0.9529,
+        "F": 0.0393,
+        "H": 0.0052,
+        "I": 0.0026
+      },
+      "position_type": "deep_boundary",
+      "boundary_dist": 1,
+      "support_level": "L1",
+      "n_family": 382,
+      "n_used": 382,
+      "changed": false,
+      "status": "KEEP_OLD_BOUNDARY",
+      "recommendation": "Keep old rule (Y) — deep_boundary position"
+    }
+  ]
+}

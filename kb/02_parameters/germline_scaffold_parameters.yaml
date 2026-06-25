@@ -1,0 +1,119 @@
+meta:
+  id: "PARAM_GERMLINE_TEMPLATES_V1"
+  title: "Germline/Scaffold Template Parameters"
+  scope: [vhh, vhvl, rabbit, canine, bsab, general]
+  confidence: "A"
+  owner: "antibody_engineering"
+  reviewer: "computational_structures"
+  created: "2025-12-14"
+  updated: "2025-12-14"
+  status: "active"
+
+parameters:
+  - id: "SCAFFOLD_CANDIDATE_FIELDS"
+    name: "Required scaffold candidate metadata fields"
+    scope: [general]
+    units: "schema"
+    recommended:
+      required_fields:
+        - scaffold_id
+        - species
+        - family
+        - format
+        - fr_sequence_source
+        - known_proteinA_compatibility
+        - stability_prior
+        - developability_prior
+        - cdr_length_profile
+        - notes
+    red_flag:
+      missing_fields_any_of: ["cdr_length_profile", "stability_prior"]
+    notes: "Candidates without metadata can be shown but must be de-ranked and explicitly labeled in report."
+    confidence: "S"
+    tags: ["schema", "germline"]
+
+  - id: "GERMLINE_TOPN_DEFAULT"
+    name: "Default Top-N scaffolds to surface"
+    scope: [general]
+    units: "count"
+    recommended:
+      topn: 5
+    red_flag:
+      topn_lt: 3
+    notes: " Top-N + ；1。"
+    confidence: "S"
+    tags: ["report", "selection"]
+
+  - id: "SCAFFOLD_RANKING_WEIGHTS"
+    name: "Scaffold ranking weights"
+    scope: [general]
+    units: "weights"
+    recommended:
+      weights:
+        cdr_length_compatibility: 0.35
+        structural_motif_compatibility: 0.20
+        fr_identity: 0.15
+        stability_prior: 0.10
+        developability_prior: 0.10
+        proteinA_preference: 0.05
+        expression_prior: 0.05
+    red_flag:
+      any_weight_gt: 0.60
+    notes: "CDR/FR identity； casebook 。"
+    confidence: "A"
+    tags: ["ranking"]
+
+  - id: "PROTEINA_POLICY"
+    name: "Protein A requirement policy"
+    scope: [vhvl, bsab, general]
+    units: "policy"
+    recommended:
+      if_requires_proteinA: "prefer_VH3_family"
+      else: "no_family_bias"
+    red_flag:
+      if_requires_proteinA: "ignore"
+    notes: "Protein A，。"
+    confidence: "A"
+    tags: ["CMC", "process"]
+
+  - id: "VHH_HALLMARK_POLICY"
+    name: "VHH hallmark as scaffold gating signal"
+    scope: [vhh]
+    units: "policy"
+    recommended:
+      min_hallmark_score: 0.60
+      below_min_action: "include_as_candidate_but_warn_and_require_manual_review"
+    red_flag:
+      min_hallmark_score: 0.40
+    notes: "hallmark，。"
+    confidence: "B"
+    tags: ["vhh", "hallmark"]
+
+evidence:
+  rationale: "Provide deterministic scaffold selection behavior: top-N candidates, ranking weights, and process-driven constraints."
+  sources:
+    - type: "internal"
+      ref: "Your scaffold provenance and EGFR_7D12 benchmark outputs"
+    - type: "public"
+      ref: "Industry practice: compatibility and developability priors dominate simple identity heuristics"
+  internal_validation:
+    status: "partial"
+    notes: "Finalize weights after at least 5-10 casebook regressions using expression/SEC/DSF outcomes."
+
+governance:
+  change_log:
+    - change_type: "create"
+      change_summary: "Initial schema + ranking weights for scaffold selection."
+      owner: "antibody_engineering"
+      reviewer: "computational_structures"
+      date: "2025-12-14"
+
+
+
+
+
+
+
+
+
+

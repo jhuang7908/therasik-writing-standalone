@@ -1,0 +1,65 @@
+{
+  "version": "2.0",
+  "calibration_date": "2026-04-03",
+  "calibration_panel": "CLEAN-129 Tier A+B (n=124)",
+  "spearman_rho_ada": 0.1896,
+  "spearman_rho_log_ada": 0.1896,
+  "balanced_accuracy_10pct": 0.5697,
+  "components": {
+    "G_germline_distance": {
+      "weight": 0.4,
+      "formula": "1 - VH_germline_identity"
+    },
+    "F_inverse_exposure": {
+      "weight": 0.3,
+      "formula": "1 - frac_exposed_vh"
+    },
+    "I_interface_density": {
+      "weight": 0.05,
+      "formula": "min(n_pairs/scale, 1)",
+      "scale": 60
+    },
+    "E_high_epitopes": {
+      "weight": 0.15,
+      "formula": "min(n_high/scale, 1)",
+      "scale": 40
+    },
+    "C_cluster_density": {
+      "weight": 0.0,
+      "formula": "min(n_clusters/5, 1)"
+    },
+    "P_surface_patches": {
+      "weight": 0.1,
+      "formula": "min(n_patches/scale, 1)",
+      "scale": 14
+    }
+  },
+  "synergy_terms": {
+    "GxF": 0.1,
+    "GxI": 0.05
+  },
+  "vl_modulator": {
+    "natural": -0.05,
+    "engineered": 0.15,
+    "reference_point_natural": 0.95,
+    "reference_point_engineered": 0.9
+  },
+  "cmc_veto_gates": {
+    "instability_index": {
+      "gate": 42,
+      "penalty": 0.04
+    },
+    "hydro_patch_max9": {
+      "gate": 0.7,
+      "penalty": 0.07
+    }
+  },
+  "sigmoid": {
+    "slope": 3.0,
+    "midpoint": 0.25
+  },
+  "thresholds": {
+    "high": 0.67,
+    "medium": 0.64
+  }
+}

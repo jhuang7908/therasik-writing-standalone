@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="robots" content="noindex, nofollow, noarchive"/>
+  <title>InSynBio — Internal pet antibody engineering</title>
+  <style>
+    :root {
+      --bg: #0c1118;
+      --panel: #141c28;
+      --border: #243044;
+      --text: #e6edf5;
+      --muted: #8b9cb3;
+      --accent: #6eb5ff;
+      --warn: #f0c674;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 14px/1.45 system-ui, Segoe UI, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    header {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      background: var(--panel);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    header p {
+      margin: 6px 0 0;
+      font-size: 12px;
+      color: var(--warn);
+      max-width: 720px;
+    }
+    main { padding: 18px 20px 40px; max-width: 960px; }
+    label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 6px; }
+    textarea, input[type="text"], select {
+      width: 100%;
+      background: #0a0f14;
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 6px;
+      padding: 10px 12px;
+      font-family: ui-monospace, Consolas, monospace;
+      font-size: 12px;
+    }
+    textarea { min-height: 88px; resize: vertical; }
+    .grid { display: grid; gap: 14px; }
+    @media (min-width: 720px) {
+      .grid-seq { grid-template-columns: 1fr 1fr; }
+    }
+    .row-inline { display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-end; }
+    .row-inline > div { flex: 1 1 160px; }
+    button {
+      background: linear-gradient(180deg, #2a5080, #1e3a5c);
+      border: 1px solid #3d6aa8;
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    #out {
+      margin-top: 18px;
+      background: #080c12;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      overflow: auto;
+      max-height: 60vh;
+      font-family: ui-monospace, Consolas, monospace;
+      font-size: 11px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .err { color: #f85149; }
+    .ok { color: #56d364; }
+    footer {
+      margin-top: 24px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Internal workspace — Pet VH/VL engineering (canine / feline)</h1>
+    <p>
+      Not for third-party clinical evaluation or public demo. Isolated from the standard VH/VL humanization console.
+      Requires server flag <code>INSYNBIO_INTERNAL_PET_CONSOLE=1</code>.
+    </p>
+  </header>
+  <main>
+    <div class="grid">
+      <div>
+        <label for="token">Optional internal token (only if server sets INSYNBIO_INTERNAL_PET_TOKEN)</label>
+        <input type="text" id="token" autocomplete="off" placeholder="Paste token; stored in sessionStorage for this tab"/>
+      </div>
+      <div class="grid grid-seq">
+        <div>
+          <label for="vh">VH sequence</label>
+          <textarea id="vh" spellcheck="false" placeholder="VH amino acids"></textarea>
+        </div>
+        <div>
+          <label for="vl">VL sequence</label>
+          <textarea id="vl" spellcheck="false" placeholder="VL amino acids"></textarea>
+        </div>
+      </div>
+      <div class="row-inline">
+        <div>
+          <label for="species">Species</label>
+          <select id="species">
+            <option value="dog">Dog (caninization)</option>
+            <option value="cat">Cat (felinization)</option>
+          </select>
+        </div>
+        <div>
+          <label for="strategy">Strategy</label>
+          <select id="strategy">
+            <option value="auto">auto</option>
+            <option value="graft_vernier">graft_vernier</option>
+            <option value="surface_reshaping">surface_reshaping</option>
+            <option value="deep_fr_anchor">deep_fr_anchor</option>
+          </select>
+        </div>
+      </div>
+      <div class="row-inline">
+        <div>
+          <label for="vh_anchor">VH anchor positions (Kabat FR, comma-separated, optional)</label>
+          <input type="text" id="vh_anchor" placeholder="e.g. 48,49,71"/>
+        </div>
+        <div>
+          <label for="vl_anchor">VL anchor positions (optional)</label>
+          <input type="text" id="vl_anchor" placeholder="e.g. 46,49"/>
+        </div>
+      </div>
+      <div>
+        <button type="button" id="run">Run petization</button>
+      </div>
+    </div>
+    <div id="out" aria-live="polite">Ready.</div>
+    <footer>
+      API: <code>POST /internal/petization/run</code> · Status: <code>GET /internal/petization/status</code>
+    </footer>
+  </main>
+  <script>
+(function(){
+  var TOKEN_KEY = "insynbio_internal_pet_token";
+  var tokenEl = document.getElementById("token");
+  var out = document.getElementById("out");
+  try {
+    tokenEl.value = sessionStorage.getItem(TOKEN_KEY) || "";
+  } catch (e) {}
+  tokenEl.addEventListener("change", function() {
+    try { sessionStorage.setItem(TOKEN_KEY, tokenEl.value.trim()); } catch (e) {}
+  });
+
+  document.getElementById("run").addEventListener("click", function() {
+    var btn = document.getElementById("run");
+    var vh = document.getElementById("vh").value;
+    var vl = document.getElementById("vl").value;
+    var headers = { "Content-Type": "application/json" };
+    var tok = tokenEl.value.trim();
+    if (tok) headers["X-Internal-Pet-Token"] = tok;
+
+    btn.disabled = true;
+    out.textContent = "Running…";
+    out.className = "";
+
+    fetch(window.location.origin + "/internal/petization/run", {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify({
+        vh: vh,
+        vl: vl,
+        species: document.getElementById("species").value,
+        strategy: document.getElementById("strategy").value,
+        vh_anchor_positions: document.getElementById("vh_anchor").value,
+        vl_anchor_positions: document.getElementById("vl_anchor").value
+      })
+    })
+    .then(function(r) {
+      return r.text().then(function(t) {
+        var parsed;
+        try { parsed = JSON.parse(t); } catch (e) { parsed = t; }
+        if (!r.ok) {
+          out.className = "err";
+          out.textContent = typeof parsed === "object" && parsed.detail
+            ? JSON.stringify(parsed, null, 2)
+            : (t || r.statusText);
+          return;
+        }
+        out.className = "ok";
+        out.textContent = JSON.stringify(parsed, null, 2);
+      });
+    })
+    .catch(function(e) {
+      out.className = "err";
+      out.textContent = String(e);
+    })
+    .finally(function() { btn.disabled = false; });
+  });
+})();
+  </script>
+</body>
+</html>

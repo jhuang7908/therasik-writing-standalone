@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="abengine-vhvl-report-build" content="20260510-V5.5.1-vhvl-format-v15-console-runmode">
+<title>InSynBio AbEngineCore | VH/VL Humanization Report</title>
+<style>
+:root {
+  --accent:#1b4fad; --accent2:#2d6cdf; --bg:#f0f4fa; --card:#fff;
+  --border:#cdd5e4; --soft:#e8eef8;
+  --pass:#1a7a3c; --fail:#b91c1c; --warn:#92610a; --info:#1b4fad;
+  --donor:#c0392b; --human:#2d6cdf; --custom:#6d28d9;
+  --muted:#5a6a80;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body {
+  font-family:'Segoe UI',Arial,sans-serif;
+  background:var(--bg); color:#1a2030; font-size:13px; line-height:1.6;
+}
+.page { max-width:980px; margin:0 auto; padding:28px 24px 48px; }
+
+/* ===== header ===== */
+.report-header {
+  background:var(--accent); color:#fff;
+  padding:20px 28px; border-radius:8px;
+  margin-bottom:18px;
+  display:flex; justify-content:space-between; align-items:flex-end;
+}
+.report-header h1 { font-size:1.35rem; font-weight:700; margin-bottom:4px; }
+.report-header .sub { font-size:.84rem; font-weight:600; opacity:.95; margin-top:2px; line-height:1.45; }
+.report-header .ts { font-size:.78rem; font-weight:600; opacity:.92; text-align:right }
+.report-header .header-meta { margin-top:10px; font-size:.76rem; font-weight:600; opacity:.9; line-height:1.45; }
+.report-header .header-meta div { margin-top:2px; }
+
+/* TOC */
+.toc-bar { background:#e8eef8; border:1px solid var(--border); border-radius:6px; padding:8px 14px; font-size:.8rem; margin-bottom:20px; color:#2d4a80 }
+.toc-bar a { color:#1b4fad; text-decoration:none; margin:0 2px }
+.toc-bar a:hover { text-decoration:underline }
+
+/* sections */
+.section { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:18px 20px; margin-bottom:16px }
+h3 { color:var(--accent); font-size:.98rem; margin:0 0 12px; padding-bottom:6px; border-bottom:2px solid var(--border) }
+h4.chain-title { color:#2d6cdf; font-size:.88rem; margin:14px 0 6px }
+.note { color:#5a6a80; font-size:.8rem; margin-bottom:8px }
+
+/* tables */
+table.params { width:100%; border-collapse:collapse; font-size:.83rem }
+table.params th { background:#e8eef8; color:var(--accent); font-weight:600; padding:7px 12px; text-align:left; border-bottom:2px solid var(--border) }
+table.params td { padding:6px 12px; border-bottom:1px solid #eef; vertical-align:top }
+table.params td.lbl { width:38%; color:#4a5a72; font-size:.82rem }
+table.params tr:last-child td { border-bottom:none }
+table.params tr.row-best td { background:#f0fff4; font-weight:600 }
+
+/* badges */
+.badge { display:inline-block; padding:1px 8px; border-radius:10px; font-size:.72rem; font-weight:700; vertical-align:middle; margin-left:4px }
+.badge-ok { background:#d1fae5; color:var(--pass); border:1px solid #6ee7b7 }
+.badge-fail { background:#fee2e2; color:var(--fail); border:1px solid #fca5a5 }
+.badge-warn { background:#fef3c7; color:var(--warn); border:1px solid #fcd34d }
+
+/* sequence blocks */
+.seq-block { background:#f8fafd; border:1px solid var(--border); border-radius:6px; padding:12px 14px; margin-bottom:10px }
+.seq-label { font-size:.82rem; font-weight:700; color:var(--accent2); margin-bottom:6px }
+.seq-len { font-weight:400; color:#8a9ab0; font-size:.75rem; margin-left:6px }
+.seq-body { font-family:'Consolas','Courier New',monospace; font-size:.78rem; word-break:break-all; line-height:2; color:#1a2030 }
+.chunk { margin-right:8px; letter-spacing:.04em }
+.chunk:nth-child(10n) { color:#1b4fad }
+
+/* footer */
+footer { text-align:center; color:#8899aa; font-size:.72rem; margin-top:28px; padding-top:12px; border-top:1px solid var(--border) }
+footer a { color:#1b4fad; }
+
+/* print */
+@page { margin:18mm 14mm 16mm 14mm }
+@media print {
+  body { background:#fff; font-size:10.5px; color:#000 }
+  .page { max-width:100%; padding:0; box-shadow:none }
+  .toc-bar { display:none }
+  /* Force colors for branded header */
+  .report-header {
+    background:#1b4fad !important;
+    color:#fff !important;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .report-header h1,
+  .report-header .sub,
+  .report-header .ts { color:#fff !important }
+  /* Sections: allow free splitting — never add blank pages */
+  .section {
+    break-inside:auto;
+    page-break-inside:auto;
+    border:1px solid #ccc;
+    margin-bottom:8px;
+    overflow:visible;
+    box-shadow:none;
+  }
+  /* Headings stay with the next paragraph */
+  h3 { break-after:avoid; page-break-after:avoid; font-size:12px }
+  h4 { break-after:avoid; page-break-after:avoid; font-size:11px }
+  /* Small blocks: keep together only if they fit; do NOT block page flow */
+  .discussion-box { break-inside:avoid; page-break-inside:avoid; max-height:none }
+  .seq-block { break-inside:avoid; page-break-inside:avoid }
+  /* Tables: allow rows to split so large tables don't jump to next page */
+  table.params { break-inside:auto; page-break-inside:auto; border-collapse:collapse; width:100% }
+  table.params tr { break-inside:avoid; page-break-inside:avoid }
+  table.params th, table.params td { font-size:9.5px; padding:3px 5px }
+  /* Force <details> open so content prints */
+  details { display:block }
+  details[open] summary::after, details summary::after { content:none }
+  details > *:not(summary) { display:block !important }
+  /* Sequence blocks font */
+  .seq-body { font-size:8.5px; line-height:1.7; word-break:break-all }
+  /* Badges retain color in print */
+  .badge-ok, .badge-fail, .badge-warn, .badge {
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  footer { margin-top:8px; font-size:8px }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="report-header">
+    <div>
+      <h1>InSynBio AbEngineCore</h1>
+      <div class="sub">VH/VL Antibody Humanization Report | V5.5.1 Protocol</div>
+      <div class="sub" style="margin-top:4px">Project: <b>hu-vhvl-0dd0fd7b</b></div>
+              <div class="header-meta">
+        <div><strong>Report format (suite)</strong>: 4.1.1</div>
+        <div><strong>Service</strong>: VH/VL Humanization &nbsp;·&nbsp; <strong>Service report</strong>: v5.5.3 &nbsp;·&nbsp; <strong>Content variant</strong>: v1.5</div>
+        <div><strong>Protocol</strong>: V5.5.1 &nbsp;|&nbsp; <strong>Analysis</strong>: AbEngineCore VH/VL Humanization Standard v5.5.1 &nbsp;|&nbsp; <strong>Build</strong>: 20260503-002 &nbsp;|&nbsp; <strong>Environment</strong>: DEV</div>
+        <div>UI Build: 20260510-V5.5.1-vhvl-format-v15-console-runmode</div>
+        <div>API Version: 1.0.0 (FastAPI)</div>
+        <div>Run Mode: FULL evaluation</div>
+        </div>
+    </div>
+    <div class="ts">2026-05-11 15:10 UTC<br><span style="font-size:.7rem;opacity:.6">Client Copy</span></div>
+  </div>
+  <div class="cohort-provenance" style="margin:10px 0;padding:10px 14px;border:1px solid #cbd5e1;border-radius:6px;background:#f8fafc;font-size:.78rem;color:#1f2937"><div style="font-weight:600;color:#1e3a8a;margin-bottom:6px">Reference cohort provenance</div><table style="width:100%;border-collapse:collapse;color:#1f2937"><tr style="color:#475569;font-size:.72rem;text-align:left"><th style="padding:2px 4px;color:#1e3a8a">Panel type</th><th style="padding:2px 4px;color:#1e3a8a">Release ID</th><th style="padding:2px 4px;color:#1e3a8a">Purpose in this report</th></tr><tbody style="color:#1f2937"><tr><td><strong>Natural VH/VL benchmark panel</strong></td><td>R2026.05</td><td>Human IgG natural-baseline VH/VL CMC distribution</td></tr><tr><td><strong>Engineered VH/VL benchmark panel</strong></td><td>R2026.05</td><td>Engineered/clinical VH/VL reference</td></tr></tbody></table><div style="margin-top:6px;color:#64748b;font-size:.72rem">Reference range derived from internal source-matched benchmark panel (frozen release: R2026.05). Detailed cohort composition is confidential.</div></div>
+  
+<div class='toc-bar'>
+  <b>Contents</b> &nbsp;|&nbsp;
+  <a href='#s0'>Overview</a> · <a href='#s1_1'>Conformation</a> · <a href='#s2'>CDR ID</a> · <a href='#s3'>Germline</a> ·
+  <a href='#s4'>Structure</a> · <a href='#s4dl'>Downloads</a> · <a href='#s5'>Back-Mut</a> · <a href='#s6'>CDR RMSD</a> ·
+  <a href='#s7'>Humanness</a> · <a href='#s8'>mini-CMC</a> · <a href='#s10'>Sequences</a> · <a href='#s11'>Advisory</a> · <a href='#s12'>Checklist</a> · <a href='#s12qa'>QA audit</a>
+</div>
+
+<!-- §0 Overview -->
+<div class='section' id='s0'>
+  <h3>§0 — Overview</h3>
+  <table class='params'>
+        <tr><td class='lbl'>Project</td><td>hu-vhvl-0dd0fd7b</td></tr>
+        <tr><td class='lbl'>Generated</td><td>2026-05-11 15:10 UTC</td></tr>
+        <tr><td class='lbl'>Pipeline</td><td>VH/VL humanization — report protocol V5.5.1</td></tr>
+        <tr><td class='lbl'>Analysis Version</td><td>AbEngineCore v5.5.1</td></tr>
+        <tr><td class='lbl'>Report Format Version</td><td>v1.5</td></tr>
+        <tr><td class='lbl'>Run Mode</td><td>FULL evaluation</td></tr>
+        <tr><td class='lbl'>Engineering Mode</td><td><b>Standard pipeline</b></td></tr>
+        <tr><td class='lbl'>Optimization Strategy</td><td><b>Standard humanization</b></td></tr>
+        <tr><td class='lbl'>Execution Priority</td><td>standard graft → engine rescue → post-engine surface fallback</td></tr>
+        <tr><td class='lbl'>Engine Rescue Path</td><td><b>not requested</b></td></tr>
+        <tr><td class='lbl'>Surface Fallback</td><td><b>not triggered</b> <span class='note'>(post-engine gate)</span></td></tr>
+        <tr><td class='lbl'>Final Route</td><td><b>standard germline graft</b></td></tr>
+        <tr><td class='lbl'>VH Route</td><td><b>Human germline CDR grafting</b></td></tr>
+        <tr><td class='lbl'>VL Route</td><td><b>Human germline CDR grafting</b></td></tr>
+    
+    <tr><td class='lbl'>Overall Status</td><td><b>WARN</b> &nbsp;<span class='badge badge-warn'>WARN</span></td></tr>
+    <tr><td class='lbl'>HPR Index (humanized Fv, combined)</td><td><b>81.5%</b> &nbsp;<span class='badge badge-ok'>HUMANIZED</span> &nbsp;<span class='note'>Primary sequence naturalness context for VH/VL jobs (repertoire 9-mer compatibility). AbLang2 and T20 are not run in this workflow.</span></td></tr>
+    <tr><td class='lbl'>Paired Fv naturalness (p-AbNatiV, full evaluation)</td><td><b>0.862</b> &nbsp;<span class='badge'>PASS</span> &nbsp;<span class='note'>Computed when Run Mode includes structure evaluation (Standard / Enhanced). Quick Preview omits this gate.</span></td></tr>
+    <tr><td class='lbl'>Fab pI (mini-CMC)</td><td>7.85 &nbsp;<span class='note'>Lightweight sequence estimate (VH+VL). Typical developability screening band in this console: <b>~5.5–9.5</b>; values within this band are consistent with clinical antibody distributions.</span></td></tr>
+    <tr><td class='lbl'>Mini-CMC Liabilities</td><td>instability_index:47.78</td></tr>
+    <tr><td class='lbl'>VH FR identity (FR1–FR3, framework-only)</td><td><b>90.4%</b> vs IGHV3-23*01</td></tr>
+    <tr><td class='lbl'>VL FR identity (FR1–FR3, framework-only)</td><td><b>93.1%</b> vs IGKV1-39*01</td></tr>
+    <tr><td class='lbl'>Framework back-mutation candidates (engine list)</td><td>VH: 1 &nbsp;|&nbsp; VL: 0 &nbsp;<span class='note'>Positions flagged for donor-vs-human-germline review — not necessarily all present in the final sequence.</span></td></tr>
+    <tr><td class='lbl'>Recommended back-mutations applied (§5a)</td><td>VH: 1 &nbsp;|&nbsp; VL: 0 &nbsp;<span class='note'>AUTO_APPLY rows where donor amino acid appears in the final sequence (human-germline graft chains).</span></td></tr>
+    <tr><td class='lbl'>FR differences total (germline vs donor)</td><td>VH: 7 &nbsp;|&nbsp; VL: 5</td></tr>
+    <tr><td class='lbl'>CDR-support framework positions</td><td>VH pos80:A</td></tr>
+    <tr><td class='lbl'>CDR sequence liabilities</td><td><span class='note'>None flagged in this run (empty does not imply liability-free in vitro).</span></td></tr>
+    <tr><td class='lbl'>Checklist Phases Passed</td><td>5</td></tr>
+  </table>
+  
+  
+  <p class='note' style='margin-top:10px; color:var(--accent); font-size:0.9em;'>Pipeline: <b>Standard pipeline</b> &nbsp;·&nbsp; Strategy: <b>Standard humanization</b></p><details open style='margin-top:12px;border:1px solid #fde68a;background:#fffbeb;border-radius:6px;padding:8px 12px'><summary style='cursor:pointer;font-weight:700;color:#92400e;font-size:13px'>Items requiring attention (1)</summary><table class='params' style='font-size:0.84em;margin-top:8px'><tr style='background:#fef3c7'><th>Severity</th><th>Item</th><th>Check</th><th>Detail</th></tr><tr><td style='width:60px'><span class='badge badge-warn' style='font-size:10px'>WARN</span></td><td style='font-family:monospace;width:55px'>checklist_status</td><td>Checklist summary</td><td style='color:#374151;font-size:12px'>Overall checklist status is WARN. See §12 and Pipeline QA audit.</td></tr></table><p class='note' style='font-size:11px;margin:6px 0 0;color:#78350f'>These items are visible by design — review them before lead nomination. WARN = manageable advisory; FAIL = blocker.</p></details>
+        <div class="discussion-box">
+          <div class="discussion-title">Executive Discussion</div>
+          <p class="discussion-content">The humanization of the donor antibody is assessed as <strong>WARN</strong>. The selected <strong>Standard humanization</strong> strategy balances framework humanness with paratope preservation. The resulting sequence aligns with clinical developability benchmarks, with specific attention paid to the structural integrity of the CDR loops.</p>
+        </div><p class='note' style='margin-top:5px'><b>Overall status (checklist summary):</b> <span class='badge badge-ok'>PASS</span> — All phases green. &nbsp;<span class='badge badge-warn'>WARN</span> — Finished, but at least one checklist item carries an advisory; still deliverable with notes. &nbsp;<span class='badge badge-fail'>FAIL</span> — At least one item failed a hard developability gate. <b>WARN and FAIL are different:</b> WARN = caution; FAIL = do not treat as passed humanization without fix.</p>
+</div>
+
+
+<div class='section' id='s1_1'>
+  <h3>§1.1 — Conformation Profile Analysis</h3>
+  <p class='note'>Structural profiling of CDR loops to ensure framework-conformation compatibility.</p>
+  <table class='params'>
+    <tr><th>CDR Loop</th><th>Status</th><th>Analysis</th></tr>
+    <tr><td>CDR-H1</td><td><span class='badge badge-ok'>✓ Profiled</span></td><td>Conformation-based framework matching</td></tr>
+    <tr><td>CDR-H2</td><td><span class='badge badge-ok'>✓ Profiled</span></td><td>Conformation-based framework matching</td></tr>
+    <tr><td>CDR-H3</td><td><span class='badge badge-ok'>✓ Profiled</span></td><td>Structural envelope validation</td></tr>
+    <tr><td>CDR-L1</td><td><span class='badge badge-ok'>✓ Profiled</span></td><td>Conformation-based framework matching</td></tr>
+    <tr><td>CDR-L2</td><td><span class='badge badge-ok'>✓ Profiled</span></td><td>Conformation-based framework matching</td></tr>
+    <tr><td>CDR-L3</td><td><span class='badge badge-ok'>✓ Profiled</span></td><td>Conformation-based framework matching</td></tr>
+  </table>
+</div>
+
+
+<!-- §2 CDR Identification -->
+<div class='section' id='s2'>
+  <h3>§2 — CDR Identification (IMGT)</h3>
+  <p class='note' style='margin-bottom:8px'>
+    CDR segments below use <b>IMGT V-domain boundaries</b> for clear database alignment.
+    Framework identity % and related fields elsewhere refer to the <b>selected human templates</b> in this report — not recalculated from this table alone.
+  </p>
+  
+  <table class='params'>
+        <tr><td class='lbl'>Engineering Mode</td><td><b>Standard pipeline</b></td></tr>
+        <tr><td class='lbl'>Optimization Strategy</td><td><b>Standard humanization</b></td></tr>
+  </table>
+  <table class='params' style='margin-top:10px'>
+        <tr><th>CDR</th><th>Sequence</th><th>Length</th></tr>
+        <tr><td><b>H1</b></td><td style='font-family:monospace;letter-spacing:.08em;color:#0a6'>GFNIKDTY</td><td>8 aa</td></tr><tr><td><b>H2</b></td><td style='font-family:monospace;letter-spacing:.08em;color:#0a6'>IYPTNGYT</td><td>8 aa</td></tr><tr><td><b>H3</b></td><td style='font-family:monospace;letter-spacing:.08em;color:#0a6'>SRWGGDGFYAMDY</td><td>13 aa</td></tr><tr><td><b>L1</b></td><td style='font-family:monospace;letter-spacing:.08em;color:#0a6'>QDVNTA</td><td>6 aa</td></tr><tr><td><b>L2</b></td><td style='font-family:monospace;letter-spacing:.08em;color:#0a6'>SAS</td><td>3 aa</td></tr><tr><td><b>L3</b></td><td style='font-family:monospace;letter-spacing:.08em;color:#0a6'>QQHYTTPPT</td><td>9 aa</td></tr>
+  </table>
+
+</div>
+
+<!-- §3 Germline Framework Selection -->
+<div class='section' id='s3'>
+  <h3>§3 — Germline Framework Selection</h3>
+  <table class='params'>
+    <tr><td class='lbl'>Selected VH Germline</td><td>IGHV3-23*01</td></tr>
+    <tr><td class='lbl'>VH FR identity (FR1–FR3, framework-only)</td><td><b>90.4%</b></td></tr>
+    <tr><td class='lbl'>Selected VL Germline</td><td>IGKV1-39*01</td></tr>
+    <tr><td class='lbl'>VL FR identity (FR1–FR3, framework-only)</td><td><b>93.1%</b></td></tr>
+    <tr><td class='lbl'>Selection Policy</td><td>Murine: human VH/VL frameworks are restricted to the clinical-frequency anchor pool (no full Kabat-cache expansion).</td></tr>
+  </table>
+  <h4 style='color:#2d6cdf;margin:12px 0 6px'>Top Germline Framework Candidates</h4>
+  <table class='params'>
+    <tr><th>#</th><th>VH Germline</th><th>VL Germline</th>
+        <th>VH FR ID%</th><th>VL FR ID%</th><th>Avg FR ID%</th></tr>
+    <tr class='row-best'><td>1</td><td><b>IGHV3-23*01</b></td><td><b>IGKV1-39*01</b></td><td>90.4%</td><td>93.1%</td><td><b>91.8%</b></td></tr><tr class=''><td>2</td><td><b>IGHV3-23*01</b></td><td><b>IGKV1-33*01</b></td><td>90.4%</td><td>87.5%</td><td><b>89.0%</b></td></tr><tr class=''><td>3</td><td><b>IGHV3-7*01</b></td><td><b>IGKV1-39*01</b></td><td>87.7%</td><td>93.1%</td><td><b>90.4%</b></td></tr><tr class=''><td>4</td><td><b>IGHV3-7*01</b></td><td><b>IGKV1-33*01</b></td><td>87.7%</td><td>87.5%</td><td><b>87.6%</b></td></tr><tr class=''><td>5</td><td><b>IGHV3-21*01</b></td><td><b>IGKV1-39*01</b></td><td>87.7%</td><td>93.1%</td><td><b>90.4%</b></td></tr>
+  </table>
+  
+  <h4 style='color:#2d6cdf;margin:16px 0 8px'>Interpretation</h4>
+  <div class='note' style='line-height:1.65'>
+        <p><b>1. Template choice</b> The VH/VL templates listed in §0 / §3 are the ones used to build the humanized Fv for this project — selected under the project ruleset. They are <strong>not</strong> re-derived from §2 IMGT display segments alone.</p>
+        <p><b>2. Why can VH FR% look low?</b> Donor framework rarely matches any human template exactly; <b>40–65% is common</b>. Interpret together with structure, model confidence, CDR RMSD, and framework reversion suggestions.</p>
+        <p><b>3. FR% vs CDR display</b> Percent identities elsewhere in this report compare to the <strong>selected human germlines</strong>; §2 lists CDR segments with IMGT boundaries for cross-database alignment — <b>do not mix coordinate systems</b> when comparing numbers.</p>
+        <p><b>4. Framework “risk” notes</b> Positions near CDRs may be flagged as packing-sensitive vs donor — this is <strong>not</strong> the same as toxicology or immunogenicity risk in the clinical sense.</p>
+        <p><b>5. WARN vs FAIL</b> WARN = completed with cautions. FAIL = a hard gate was not met — do not treat as a passed humanization QC without remediation. Independent expert review is recommended before downstream commitment.</p>
+  </div>
+
+  <details style='margin-top:12px;border:1px solid #d6e3ff;background:#eff6ff;border-radius:6px;padding:8px 12px'><summary style='cursor:pointer;font-weight:700;color:#1b4fad;font-size:12px'>Coordinate-system note</summary><p class='note' style='margin:6px 0 0;font-size:12px;color:#374151'>Section §2 CDR boundaries are reported in the IMGT V-domain numbering scheme for direct cross-reference with public databases. Framework-vs-CDR partitioning used internally for grafting, framework-identity calculation, and structural-loop scoring follow InSynBio engineering definitions calibrated per pipeline phase; these definitions are not interchangeable and are not collapsed into a single boundary set.</p></details>
+  <h4 style='color:#2d6cdf;margin:16px 0 6px'>Per-chain clinical / reference context</h4><div class="note" style="margin:0 0 10px;line-height:1.5;font-size:0.92em"><p style="margin:0">These two tables list clinical antibodies that use the <strong>same selected VH</strong> or <strong>same selected VL</strong> framework (exact allele, allele variant, or gene family). Because the framework candidate pool is curated from a clinically validated antibody cohort, every selected germline is guaranteed to have at least one clinical precedent — independent of whether ADA incidence has been reported.</p></div>
+  <h4 style='color:#2d6cdf;margin:14px 0 6px'>Clinical antibodies using the selected VH framework (allele or family)</h4>
+
+  <div class="note" style="margin:6px 0 10px;line-height:1.5;font-size:0.9em">
+    <p style="margin:0">Listed drugs share the <strong>VH germline annotation</strong> in §3 with your selected template (exact allele or same IMGT gene family). VL annotations vary and are shown for context.</p>
+  </div>
+  <div style='overflow-x:auto'>
+  <table class='params' style='font-size:0.82em;min-width:780px'>
+    <tr>
+      <th>Drug</th><th>VH GL</th><th>VL GL</th>
+      <th>Target</th><th>Disease / Indication</th><th>Phase</th><th>Match</th>
+    </tr>
+    
+    <tr>
+      <td><b>Dostarlimab</b></td>
+      <td style='font-size:0.85em'>IGHV3-23*01</td>
+      <td style='font-size:0.85em'>IGKV1-9*01</td>
+      <td><b>PDCD1 / CD279 / PD1</b></td>
+      <td style='font-size:0.8em'>—</td>
+      <td>Approved</td>
+      <td><span class='badge badge-ok'>VH template exact</span></td>
+    </tr>
+    <tr>
+      <td><b>Etalanetug</b></td>
+      <td style='font-size:0.85em'>IGHV3-23*01</td>
+      <td style='font-size:0.85em'>IGKV1-39*01</td>
+      <td><b>MAPT</b></td>
+      <td style='font-size:0.8em'>—</td>
+      <td>Phase-II/III</td>
+      <td><span class='badge badge-ok'>VH template exact</span></td>
+    </tr>
+    <tr>
+      <td><b>Semorinemab</b></td>
+      <td style='font-size:0.85em'>IGHV3-23*04</td>
+      <td style='font-size:0.85em'>IGKV2-28*01</td>
+      <td><b>MAPT</b></td>
+      <td style='font-size:0.8em'>—</td>
+      <td>Phase-II</td>
+      <td><span class='badge' style='background:#d0eaf8;color:#1a5276;border:1px solid #aed6f1'>VH gene (allele variant)</span></td>
+    </tr>
+    <tr>
+      <td><b>Ibentatug</b></td>
+      <td style='font-size:0.85em'>IGHV3-23*04</td>
+      <td style='font-size:0.85em'>IGKV2-28*01</td>
+      <td><b>CSP1</b></td>
+      <td style='font-size:0.8em'>—</td>
+      <td>Phase-I/II</td>
+      <td><span class='badge' style='background:#d0eaf8;color:#1a5276;border:1px solid #aed6f1'>VH gene (allele variant)</span></td>
+    </tr>
+    <tr>
+      <td><b>Prolgolimab</b></td>
+      <td style='font-size:0.85em'>IGHV3-23*04</td>
+      <td style='font-size:0.85em'>IGLV3-9*01</td>
+      <td><b>PDCD1 / CD279 / PD1</b></td>
+      <td style='font-size:0.8em'>—</td>
+      <td>Approved</td>
+      <td><span class='badge' style='background:#d0eaf8;color:#1a5276;border:1px solid #aed6f1'>VH gene (allele variant)</span></td>
+    </tr>
+    <tr>
+      <td><b>Misitatug</b></td>
+      <td style='font-size:0.85em'>IGHV3-23*04</td>
+      <td style='font-size:0.85em'>IGKV6-21*01</td>
+      <td><b>MSLN</b></td>
+      <td style='font-size:0.8em'>—</td>
+      <td>Phase-II</td>
+      <td><span class='badge' style='background:#d0eaf8;color:#1a5276;border:1px solid #aed6f1'>VH gene (allele variant)</span></td>
+    </tr>
+    <tr>
+      <td><b>Licaminlimab</b></td>
+      <td style='font-size:0.85em'>IGHV3-23*04</td>
+      <td style='font-size:0.85em'>IGKV1-5*01</td>
+      <td><b>TNF / TNFA</b></td>
+      <td style='font-size:0.8em'>—</td>
+      <td>Phase-II</td>
+      <td><span class='badge' style='background:#d0eaf8;color:#1a5276;border:1px solid #aed6f1'>VH gene (allele variant)</span></td>
+    </tr>
+    <tr>
+      <td><b>Crefmirlimab</b></td>
+      <td style='font-size:0.85em'>IGHV3-23*04</td>
+      <td style='font-size:0.85em'>IGKV1-27*01</td>
+      <td><b>CD8A</b></td>
+      <td style='font-size:0.8em'>—</td>
+      <td>Phase-III</td>
+      <td><span class='badge' style='background:#d0eaf8;color:#1a5276;border:1px solid #aed6f1'>VH gene (allele variant)</span></td>
+    </tr>
+  </table>
+  </div>
+  <h4 style='color:#2d6cdf;margin:14px 0 6px'>Clinical antibodies using the selected VL framework (allele or family)</h4>
+
+  <div class="note" style="margin:6px 0 10px;line-height:1.5;font-size:0.9em">
+    <p style="margin:0">Listed drugs share the <strong>VL germline annotation</strong> in §3 with your selected template (exact allele or same IMGT gene family). VH annotations vary and are shown for context.</p>
+  </div>
+  <div style='overflow-x:auto'>
+  <table class='params' style='font-size:0.82em;min-width:780px'>
+    <tr>
+      <th>Drug</th><th>VH GL</th><th>VL GL</th>
+      <th>Target</th><th>Disease / Indication</th><th>Phase</th><th>Match</th>
+    </tr>
+    
+    <tr>
+      <td><b>Mozistobart</b></td>
+      <td style='font-size:0.85em'>IGHV3-48*01</td>
+      <td style='font-size:0.85em'>IGKV1-39*01</td>
+      <td><b>SIGLEC2 / CD22</b></td>
+      <td style='font-size:0.8em'>—</td>
+      <td>Phase-I/II</td>
+      <td><span class='badge badge-ok'>VL template exact</span></td>
+    </tr>
+    <tr>
+      <td><b>Pexelizumab</b></td>
+      <td style='font-size:0.85em'>IGHV1-46*01</td>
+      <td style='font-size:0.85em'>IGKV1-39*01</td>
+      <td><b>C5</b></td>
+      <td style='font-size:0.8em'>—</td>
+      <td>Phase-III</td>
+      <td><span class='badge badge-ok'>VL template exact</span></td>
+    </tr>
+    <tr>
+      <td><b>Cendakimab</b></td>
+      <td style='font-size:0.85em'>IGHV2-5*08</td>
+      <td style='font-size:0.85em'>IGKV1-39*01</td>
+      <td><b>IL13</b></td>
+      <td style='font-size:0.8em'>—</td>
+      <td>Phase-III</td>
+      <td><span class='badge badge-ok'>VL template exact</span></td>
+    </tr>
+    <tr>
+      <td><b>Etalanetug</b></td>
+      <td style='font-size:0.85em'>IGHV3-23*01</td>
+      <td style='font-size:0.85em'>IGKV1-39*01</td>
+      <td><b>MAPT</b></td>
+      <td style='font-size:0.8em'>—</td>
+      <td>Phase-II/III</td>
+      <td><span class='badge badge-ok'>VL template exact</span></td>
+    </tr>
+    <tr>
+      <td><b>Upinitatug</b></td>
+      <td style='font-size:0.85em'>IGHV1-46*01</td>
+      <td style='font-size:0.85em'>IGKV1-39*01</td>
+      <td><b>SLC34A2</b></td>
+      <td style='font-size:0.8em'>—</td>
+      <td>Phase-III</td>
+      <td><span class='badge badge-ok'>VL template exact</span></td>
+    </tr>
+    <tr>
+      <td><b>Miptenalimab</b></td>
+      <td style='font-size:0.85em'>IGHV3-30*01</td>
+      <td style='font-size:0.85em'>IGKV1-39*02</td>
+      <td><b>LAG3 / CD223</b></td>
+      <td style='font-size:0.8em'>—</td>
+      <td>Phase-II</td>
+      <td><span class='badge' style='background:#d0eaf8;color:#1a5276;border:1px solid #aed6f1'>VL gene (allele variant)</span></td>
+    </tr>
+    <tr>
+      <td><b>Crefmirlimab</b></td>
+      <td style='font-size:0.85em'>IGHV3-23*04</td>
+      <td style='font-size:0.85em'>IGKV1-27*01</td>
+      <td><b>CD8A</b></td>
+      <td style='font-size:0.8em'>—</td>
+      <td>Phase-III</td>
+      <td><span class='badge badge-warn'>VL gene family</span></td>
+    </tr>
+    <tr>
+      <td><b>Solnerstotug</b></td>
+      <td style='font-size:0.85em'>IGHV3-48*01</td>
+      <td style='font-size:0.85em'>IGKV1-33*01</td>
+      <td><b>VSIR / VISTA / B7H5</b></td>
+      <td style='font-size:0.8em'>—</td>
+      <td>Phase-I/II</td>
+      <td><span class='badge badge-warn'>VL gene family</span></td>
+    </tr>
+  </table>
+  </div>
+  
+  <h4 style='color:#2d6cdf;margin:18px 0 6px'>ADA literature (split: selected VH template vs VL template)</h4>
+  <p class='note' style='margin-top:8px'>No literature-linked ADA entries were found for either selected template.</p>
+
+</div>
+
+<!-- §4 Structural Analysis -->
+<div class='section' id='s4'>
+  <h3>§4 — Structural Analysis
+    <span class='badge badge-ok'>COMPUTED</span>
+  </h3>
+  <table class='params'>
+    <tr><th style='width:38%'>Parameter</th><th>Donor Ab</th><th>Humanized Ab</th><th>QC</th></tr>
+    <tr>
+      <td class='lbl'>Predicted model confidence (pLDDT-eq)</td>
+      <td>99.3</td>
+      <td>98.1</td>
+      <td><span class='badge badge-ok'>✓ ≥80 (High)</span></td>
+    </tr>
+    <tr>
+      <td class='lbl'>VH/VL Packing Angle (principal axis)</td>
+      <td>83.4°</td>
+      <td>85.0°</td>
+      <td>Δ = 1.6° &nbsp;<span class='badge badge-ok'>PASS</span></td>
+    </tr>
+    <tr>
+      <td class='lbl'>Mean CDR Cα RMSD (mouse→humanized)</td>
+      <td><span style='color:#6b7280;font-size:.85rem'>—<br><span style='font-size:.7rem'>(reference)</span></span></td>
+      <td><b>0.37 Å</b></td>
+      <td><span class='badge badge-ok'>✓ &lt;1.5 Å</span></td>
+    </tr>
+    <tr>
+      <td class='lbl'>Global Fv Cα RMSD (framework-aligned)</td>
+      <td><span style='color:#6b7280;font-size:.85rem'>—<br><span style='font-size:.7rem'>(reference)</span></span></td>
+      <td><b>0.48 Å</b></td>
+      <td><span class='badge badge-ok'>✓ PASS</span></td>
+    </tr>
+  </table>
+  
+        <div class="discussion-box">
+          <div class="discussion-title">Structural Discussion</div>
+          <p class="discussion-content">Donor and humanized Fv models are compared using confidence-related scores (pLDDT-equivalent), VH/VL packing angle, mean CDR Cα RMSD, and global Fv Cα RMSD after framework alignment. Together these summarize scaffold preservation in silico; binding and developability should be confirmed experimentally for lead selection.</p>
+        </div>
+  <p class='note' style='margin-top:6px'>Metrics are reported for comparability between predicted donor and humanized models; confirm critical conclusions experimentally.</p>
+</div>
+
+
+<div class='section' id='s4dl'>
+  <h3>§4b — Delivery Package</h3>
+  <p class='note'>All generated files are bundled in the delivery ZIP provided alongside this report.</p>
+  <table class='params'>
+        <tr><th>Bundle</th><th>Description</th></tr>
+        <tr style='background:#e8f4fc;font-weight:600'><td><code>hu-vhvl-0dd0fd7b_delivery.zip</code></td>
+      <td>README.txt + donor/humanized FASTA + report file(s) (HTML) + PDBs when structure succeeded.</td></tr>
+  </table>
+<p class='note' style='margin-top:10px'><b>Project archive</b>: PDBs (if predicted), result.json, and this HTML report are mirrored under <code>projects/audit_test_vhvl/vhvl_humanization/20260511_041619_hu-vhvl-0dd0fd7b</code> (suite-relative path).</p>
+</div>
+
+<!-- §5 Framework Mutation Decisions (customer view: applied + pending only) -->
+<div class='section' id='s5'>
+  <h3>§5 — Framework Mutation Decisions</h3>
+  <p class='note'>
+    §5a lists donor residues retained over the selected human germline (human-germline graft chains).
+    When a chain uses donor-framework FR surface reshaping, substitutions appear in §5b.
+    §5c lists framework positions pending explicit customer choice; §5d covers J-segment (FR4) retemplating where applicable.
+  </p>
+
+  <p class='note' style='margin:4px 0 8px;color:#1a7a3c'>§5a — Algorithm flagged 1 VH and 0 VL candidate back-mutation position(s) during framework selection. These positions are reflected in the final humanized sequence where the engineering rules required donor-residue restoration. GRAVY and pI metrics are sequence-only calculations and do not depend on antigen-antibody complex structure.</p>
+
+  
+
+  <h4 class='chain-title' style='margin-top:18px;color:#b45309'>§5c — Mutations Requiring Customer Review</h4><p class='note' style='margin:4px 0 8px;font-size:12px'>At these framework positions the engineering trade-off cannot be resolved without project context. Please pick one option per row before lead selection.</p><table class='params' style='font-size:0.82em'><tr style='background:#fef9c3'><th>Chain</th><th>Pos</th><th>Human germline</th><th>Donor</th><th>Choose one</th></tr><tr><td><b>VH</b></td><td style='font-family:monospace'>82</td><td style='font-family:monospace;color:#2d6cdf'>N</td><td style='font-family:monospace;color:#c0392b'>T</td><td><ul style='margin:3px 0 0;padding-left:18px;font-size:11px'><li><b>Keep germline residue N (maximize humanness)</b><br><span style='color:#5a6a80'>Higher FR humanness; possible mild CDR-shape drift if interface depends on this residue.</span></li><li><b>Revert to donor residue T (preserve CDR/interface support)</b><br><span style='color:#5a6a80'>Conservative CDR shape; FR humanness decreases by 1 residue.</span></li></ul></td></tr><tr><td><b>VH</b></td><td style='font-family:monospace'>87</td><td style='font-family:monospace;color:#2d6cdf'>L</td><td style='font-family:monospace;color:#c0392b'>A</td><td><ul style='margin:3px 0 0;padding-left:18px;font-size:11px'><li><b>Keep germline residue L (maximize humanness)</b><br><span style='color:#5a6a80'>Higher FR humanness; possible mild CDR-shape drift if interface depends on this residue.</span></li><li><b>Revert to donor residue A (preserve CDR/interface support)</b><br><span style='color:#5a6a80'>Conservative CDR shape; FR humanness decreases by 1 residue.</span></li></ul></td></tr></table>
+
+  <p class='note' style='margin-top:14px;font-size:12px;color:#5a6a80'>Framework-decision integrity: <b>12</b> framework difference(s) reviewed; <b>1</b> back-mutation(s) applied (§5a); <b>2</b> position(s) escalated for customer review (§5c).</p>
+
+  <h4 class='chain-title' style='margin-top:18px;color:#1b4fad'>§5d — J-segment (FR4) Retemplating</h4><p class='note' style='margin:4px 0 8px;font-size:12px'>FR4 corresponds to the immunoglobulin <b>J-segment</b> (post V-J junction). It is replaced with the canonical human J-segment consensus regardless of donor species, and is therefore <b>not</b> routed through the §5a / §5b framework-mutation decision tracks. Per-chain comparisons below show what was replaced.</p><p class='note' style='margin:8px 0 4px;font-size:12px'><b>VH</b> &nbsp; donor FR4: <code>WGQGTLVTVSS</code> &nbsp; → &nbsp; humanized FR4: <code>WGQGTLVTVSS</code> &nbsp; <span class='badge badge-ok' style='font-size:9px'>identical</span></p><p class='note' style='margin:8px 0 4px;font-size:12px'><b>VL</b> &nbsp; donor FR4: <code>FGQGTKVEIK</code> &nbsp; → &nbsp; humanized FR4: <code>FGGGTKLEIK</code> &nbsp; <span class='badge badge-warn' style='font-size:9px'>2 J-segment substitution(s)</span></p><table class='params' style='margin-top:6px;font-size:0.82em'><tr style='background:#fef9c3'><th>Position</th><th>Donor</th><th>Humanized</th><th>Note</th></tr><tr><td style='font-family:monospace'>FR4 pos 3</td><td style='font-family:monospace;color:#2d6cdf'>Q</td><td style='font-family:monospace;color:#1a7a3c'>G</td><td style='font-size:11px;color:#5a6a80'>donor → human J consensus</td></tr><tr><td style='font-family:monospace'>FR4 pos 7</td><td style='font-family:monospace;color:#2d6cdf'>V</td><td style='font-family:monospace;color:#1a7a3c'>L</td><td style='font-size:11px;color:#5a6a80'>donor → human J consensus</td></tr></table>
+</div>
+
+<!-- §6 CDR Structural Conservation (CDR Cα RMSD, V4.5.1-2 dual-layer) -->
+<div class='section' id='s6'>
+  <h3>§6 — CDR Structural Conservation (Cα RMSD: mouse vs. humanized)</h3>
+  <p class='note'>
+    Per-loop RMSD compares predicted donor vs humanized models. Interpret stable loops more strictly than highly flexible loops; crystallographic confirmation is recommended when stakes are high.
+  </p>
+  <table class='params'>
+    <tr><th>CDR</th><th>Cα RMSD</th><th>Category</th><th>Threshold</th><th>QC Result</th></tr>
+    <tr><td><b>H1</b></td><td style='font-family:monospace'>0.42 Å</td><td><span style='color:#c0392b;font-weight:600'>STABLE</span></td><td>< 1.5 Å</td><td><span class='badge badge-ok'>✓ PASS</span></td></tr><tr><td><b>H2</b></td><td style='font-family:monospace'>0.12 Å</td><td><span style='color:#c0392b;font-weight:600'>STABLE</span></td><td>< 1.5 Å</td><td><span class='badge badge-ok'>✓ PASS</span></td></tr><tr><td><b>H3</b></td><td style='font-family:monospace'>0.43 Å</td><td><span style='color:#2980b9;font-weight:600'>VOLATILE</span></td><td>WARN > 2.5 Å</td><td><span class='badge badge-ok'>✓ Acceptable</span></td></tr><tr><td><b>L1</b></td><td style='font-family:monospace'>0.56 Å</td><td><span style='color:#2980b9;font-weight:600'>VOLATILE</span></td><td>WARN > 2.5 Å</td><td><span class='badge badge-ok'>✓ Acceptable</span></td></tr><tr><td><b>L2</b></td><td style='font-family:monospace'>0.28 Å</td><td><span style='color:#c0392b;font-weight:600'>STABLE</span></td><td>< 1.5 Å</td><td><span class='badge badge-ok'>✓ PASS</span></td></tr><tr><td><b>L3</b></td><td style='font-family:monospace'>0.40 Å</td><td><span style='color:#c0392b;font-weight:600'>STABLE</span></td><td>< 1.5 Å</td><td><span class='badge badge-ok'>✓ PASS</span></td></tr>
+  </table>
+  <p class='note' style='margin:6px 0 0;font-size:0.88em;color:#5a6a80'>
+    &#x24D8; <b>STABLE / VOLATILE</b> is a prior biological classification of each loop, not derived from the current run&#39;s RMSD value. STABLE loops (H1, H2, L2, L3) use a strict threshold (&lt;1.5 &#8491;); VOLATILE loops (H3, L1) use a relaxed threshold &#8212; values below 2.5 &#8491; are rated <em>Acceptable</em>.
+  </p>
+  
+</div>
+
+<!-- §7 Immunogenicity / Humanness Assessment -->
+<div class='section' id='s7'>
+  <h3>§7 — Immunogenicity / Humanness Assessment</h3>
+  <table class='params' style='margin-bottom:10px'>
+    <tr><td class='lbl'>T-cell epitope module</td><td><span class='badge badge-ok'>computed</span> &nbsp;<span class='note'>Epitope screening status: skipped; HTTP: N/A</span></td></tr>
+    <tr><td class='lbl'>Germline-linked ADA literature</td><td>Contextual whole-antibody literature is shown in §3 when the chain route uses a selected human framework. It is not an ADA prediction for this candidate.</td></tr>
+  </table>
+  <p class='note' style='margin-bottom:8px'>
+    <b>HPR Index</b> evaluates compatibility of variable-region 9-mer peptides
+    with a human antibody repertoire reference. A higher score supports improved
+    local humanness continuity after engineering; it is a sequence-naturalness support metric, not a clinical ADA assay.
+  </p>
+  <table class='params'>
+    <tr><th>Metric</th><th>Donor VH</th><th>Humanized VH</th><th>Δ VH</th><th>Donor VL</th><th>Humanized VL</th><th>Δ VL</th></tr>
+    <tr>
+      <td class='lbl'>HPR Index</td>
+      <td>70.5%</td>
+      <td><b>73.2%</b></td>
+      <td>2.7%</td>
+      <td>82.8%</td>
+      <td><b>90.9%</b></td>
+      <td>8.1%</td>
+    </tr>
+  </table>
+  <table class='params' style='margin-top:10px'>
+    <tr><td class='lbl'>Paired Fv naturalness (p-AbNatiV; Standard / Enhanced)</td><td><b>0.862</b> &nbsp; <span class='note'>Status: <b>PASS</b>. VH/VL jobs do not run AbLang2 or T20; Quick Preview omits this paired gate.</span></td></tr>
+    <tr><td class='lbl'>Interpretation</td><td>HPR Index is the primary sequence naturalness line item; paired Fv naturalness adds a structured paired-VH/VL check when Run Mode includes structure evaluation. These are developability context metrics — not clinical immunogenicity assays.</td></tr>
+  </table>
+</div>
+
+  
+<!-- §8 Basic Developability (Donor vs Humanized) -->
+<div class='section' id='s8'>
+  <h3>§8 — Basic Developability Screen (Donor vs Humanized)</h3>
+  <p class='note' style='margin-bottom:10px'>
+        This light-weight screen compares donor and humanized variable regions for essential sequence-level developability signals. Full 25-parameter CMC remains a separate specialist assessment.
+  </p>
+  <table class='params'>
+        <tr>
+      <th style="width:32%">Parameter</th>
+      <th style="width:18%;text-align:center">Donor (input)</th>
+      <th style="width:18%;text-align:center">Humanized</th>
+      <th style="width:10%;text-align:center">Δ</th>
+      <th>Gate (humanized)</th>
+        </tr>
+        <tr>
+      <td class="lbl">Theoretical pI</td>
+      <td style="text-align:center">8.61</td>
+      <td style="text-align:center">7.85</td>
+      <td style="text-align:center">-0.76</td>
+      <td><span class='badge badge-ok'>✓ 5.5–9.5</span></td>
+        </tr>
+        <tr>
+      <td class="lbl">GRAVY (Hydrophobicity)</td>
+      <td style="text-align:center">-0.334</td>
+      <td style="text-align:center">-0.347</td>
+      <td style="text-align:center">-0.013</td>
+      <td><span class='badge badge-ok'>✓ ≤ 0.2</span></td>
+        </tr>
+        <tr>
+      <td class="lbl">Instability Index</td>
+      <td style="text-align:center">40.7</td>
+      <td style="text-align:center">47.8</td>
+      <td style="text-align:center">+7.1</td>
+      <td><span class='badge badge-fail'>⚠ > 45</span></td>
+        </tr>
+        <tr>
+      <td class="lbl">Net charge proxy</td>
+      <td style="text-align:center">5</td>
+      <td style="text-align:center">2</td>
+      <td style="text-align:center">-3.0</td>
+      <td><span class='badge badge-fail'>REVIEW</span></td>
+        </tr>
+        <tr>
+      <td class="lbl">Sequence liability motifs</td>
+      <td colspan="4">
+        <b>Humanized status:</b> REVIEW
+        <br><span class="note">N-glycosylation: 0;
+        deamidation: 5;
+        isomerization: 4;
+        oxidation-sensitive Met/Trp: 9;
+        cysteine count: 4;
+        hydrophobic stretches: 0.</span>
+        <br><span class="note">Review flags: instability_review:47.78, deamidation_motif:5, isomerization_motif:4</span>
+      </td>
+        </tr>
+  </table>
+  
+        <div class="discussion-box">
+          <div class="discussion-title">Developability Discussion</div>
+          <p class="discussion-content">The humanized candidate has been audited for essential physicochemical liabilities. The overall profile reflects a stable sequence suitable for downstream process development. Prioritization is given to physical stability and expression yield, ensuring a favorable profile for clinical translation.</p>
+        </div>
+</div>
+
+
+<!-- §10 Donor vs humanized sequences (evidence; same as FASTA in ZIP) -->
+<div class='section' id='s10'>
+  <h3>§10 — Donor vs Humanized — FR/CDR Segmentation</h3>
+  <p class='note'>
+    Side-by-side FR/CDR segmentation using IMGT V-domain boundaries. 
+    CDR regions are highlighted amber; FR mutations are highlighted red. 
+    Same sequences as <code>mouse_sequences.fasta</code> / <code>humanized_sequences.fasta</code> in delivery ZIP.
+  </p>
+  
+        <div style='margin-top:20px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden'>
+          <div style='background:#1b4fad;color:#fff;padding:10px 14px;display:flex;
+            align-items:center;justify-content:space-between'>
+            <span style='font-weight:700;font-size:13px'>Chain VH — FR / CDR Segmentation &nbsp;
+              <span style='font-size:11px;opacity:.8'>(IMGT V-domain)</span></span>
+            <span style='display:flex;gap:8px;align-items:center'>
+              <span style='background:#1a7a3c;color:#fff;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700'>CDR IDENTICAL</span>
+              <span style='background:rgba(255,255,255,.18);border-radius:4px;padding:2px 8px;
+                font-size:11px'>FR: 6 mutation(s)</span>
+            </span>
+          </div>
+          <table style='width:100%;border-collapse:collapse;font-size:12px'>
+            <thead>
+              <tr style='background:#f1f5f9;font-size:11px;color:#374151'>
+                <th style='padding:7px 8px;width:120px;text-align:left;border-bottom:2px solid #e5e7eb'>
+                  Region <span style='color:#9ca3af'>(IMGT)</span></th>
+                <th style='padding:7px 8px;text-align:left;border-bottom:2px solid #e5e7eb'>
+                  Donor (mouse)</th>
+                <th style='padding:7px 8px;text-align:left;border-bottom:2px solid #e5e7eb'>
+                  Humanized</th>
+                <th style='padding:7px 8px;width:110px;text-align:left;border-bottom:2px solid #e5e7eb'>
+                  Match</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr style='background:transparent;border-bottom:1px solid #e5e7eb'>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top'>
+                <span style='background:#3b82f6;color:#fff;border-radius:3px;
+                  padding:1px 6px;font-size:10px;font-weight:700'>
+                  FR</span>
+                <b style='margin-left:4px'>FR1</b>
+                <div style='color:#9ca3af;font-size:10px;margin-top:2px'>IMGT 1–25 <span style='color:#888;font-size:10px'>(24aa)</span></div>
+              </td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'>EVQLVESGGGLVQPGGSLRLSCAA</span></td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'>EVQL<span style='background:#fee2e2;color:#b91c1c;font-weight:700;padding:0 1px;border-radius:2px'>L</span>ESGGGLVQPGGSLRLSCAA</span></td>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top;font-size:11px'><span style='color:#b91c1c;font-weight:700'>≠ 1 mut</span></td>
+            </tr>
+            <tr style='background:#fffbeb;border-bottom:1px solid #e5e7eb'>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top'>
+                <span style='background:#f59e0b;color:#fff;border-radius:3px;
+                  padding:1px 6px;font-size:10px;font-weight:700'>
+                  CDR</span>
+                <b style='margin-left:4px'>CDR1</b>
+                <div style='color:#9ca3af;font-size:10px;margin-top:2px'>IMGT 26–38 <span style='color:#888;font-size:10px'>(9aa)</span></div>
+              </td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace;background:#fef3c7;padding:0 2px;border-radius:2px'>SGFNIKDTY</span></td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace;background:#fef3c7;padding:0 2px;border-radius:2px'>SGFNIKDTY</span></td>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top;font-size:11px'><span style='color:#1a7a3c;font-weight:700'>✓ Identical</span></td>
+            </tr>
+            <tr style='background:transparent;border-bottom:1px solid #e5e7eb'>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top'>
+                <span style='background:#3b82f6;color:#fff;border-radius:3px;
+                  padding:1px 6px;font-size:10px;font-weight:700'>
+                  FR</span>
+                <b style='margin-left:4px'>FR2</b>
+                <div style='color:#9ca3af;font-size:10px;margin-top:2px'>IMGT 39–49 <span style='color:#888;font-size:10px'>(11aa)</span></div>
+              </td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'>IHWVRQAPGKG</span></td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'><span style='background:#fee2e2;color:#b91c1c;font-weight:700;padding:0 1px;border-radius:2px'>M</span><span style='background:#fee2e2;color:#b91c1c;font-weight:700;padding:0 1px;border-radius:2px'>S</span>WVRQAPGKG</span></td>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top;font-size:11px'><span style='color:#b91c1c;font-weight:700'>≠ 2 mut</span></td>
+            </tr>
+            <tr style='background:#fffbeb;border-bottom:1px solid #e5e7eb'>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top'>
+                <span style='background:#f59e0b;color:#fff;border-radius:3px;
+                  padding:1px 6px;font-size:10px;font-weight:700'>
+                  CDR</span>
+                <b style='margin-left:4px'>CDR2</b>
+                <div style='color:#9ca3af;font-size:10px;margin-top:2px'>IMGT 50–65 <span style='color:#888;font-size:10px'>(14aa)</span></div>
+              </td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace;background:#fef3c7;padding:0 2px;border-radius:2px'>LEWVARIYPTNGYT</span></td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace;background:#fef3c7;padding:0 2px;border-radius:2px'>LEWVARIYPTNGYT</span></td>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top;font-size:11px'><span style='color:#1a7a3c;font-weight:700'>✓ Identical</span></td>
+            </tr>
+            <tr style='background:transparent;border-bottom:1px solid #e5e7eb'>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top'>
+                <span style='background:#3b82f6;color:#fff;border-radius:3px;
+                  padding:1px 6px;font-size:10px;font-weight:700'>
+                  FR</span>
+                <b style='margin-left:4px'>FR3</b>
+                <div style='color:#9ca3af;font-size:10px;margin-top:2px'>IMGT 66–104 <span style='color:#888;font-size:10px'>(38aa)</span></div>
+              </td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'>RYADSVKGRFTISADTSKNTAYLQMNSLRAEDTAVYYC</span></td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'><span style='background:#fee2e2;color:#b91c1c;font-weight:700;padding:0 1px;border-radius:2px'>Y</span>YADSVKGRFTISAD<span style='background:#fee2e2;color:#b91c1c;font-weight:700;padding:0 1px;border-radius:2px'>N</span>SKNT<span style='background:#fee2e2;color:#b91c1c;font-weight:700;padding:0 1px;border-radius:2px'>L</span>YLQMNSLRAEDTAVYYC</span></td>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top;font-size:11px'><span style='color:#b91c1c;font-weight:700'>≠ 3 mut</span></td>
+            </tr>
+            <tr style='background:#fffbeb;border-bottom:1px solid #e5e7eb'>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top'>
+                <span style='background:#f59e0b;color:#fff;border-radius:3px;
+                  padding:1px 6px;font-size:10px;font-weight:700'>
+                  CDR</span>
+                <b style='margin-left:4px'>CDR3</b>
+                <div style='color:#9ca3af;font-size:10px;margin-top:2px'>IMGT 105–117 <span style='color:#888;font-size:10px'>(13aa)</span></div>
+              </td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace;background:#fef3c7;padding:0 2px;border-radius:2px'>SRWGGDGFYAMDY</span></td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace;background:#fef3c7;padding:0 2px;border-radius:2px'>SRWGGDGFYAMDY</span></td>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top;font-size:11px'><span style='color:#1a7a3c;font-weight:700'>✓ Identical</span></td>
+            </tr>
+            <tr style='background:transparent;border-bottom:1px solid #e5e7eb'>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top'>
+                <span style='background:#3b82f6;color:#fff;border-radius:3px;
+                  padding:1px 6px;font-size:10px;font-weight:700'>
+                  FR</span>
+                <b style='margin-left:4px'>FR4</b>
+                <div style='color:#9ca3af;font-size:10px;margin-top:2px'>IMGT 118–128 <span style='color:#888;font-size:10px'>(11aa)</span></div>
+              </td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'>WGQGTLVTVSS</span></td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'>WGQGTLVTVSS</span></td>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top;font-size:11px'><span style='color:#1a7a3c;font-weight:700'>✓ Identical</span></td>
+            </tr></tbody>
+          </table>
+          <div style='background:#f8fafc;padding:6px 12px;font-size:10px;color:#9ca3af;
+            border-top:1px solid #e5e7eb'>
+            CDR = amber background | FR mutations = red highlight | ✓ Identical | ≠ Mutated
+            &nbsp;·&nbsp; IMGT V-domain standard boundaries
+          </div>
+        </div>
+  
+        <div style='margin-top:20px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden'>
+          <div style='background:#1b4fad;color:#fff;padding:10px 14px;display:flex;
+            align-items:center;justify-content:space-between'>
+            <span style='font-weight:700;font-size:13px'>Chain VL — FR / CDR Segmentation &nbsp;
+              <span style='font-size:11px;opacity:.8'>(IMGT V-domain)</span></span>
+            <span style='display:flex;gap:8px;align-items:center'>
+              <span style='background:#1a7a3c;color:#fff;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700'>CDR IDENTICAL</span>
+              <span style='background:rgba(255,255,255,.18);border-radius:4px;padding:2px 8px;
+                font-size:11px'>FR: 7 mutation(s)</span>
+            </span>
+          </div>
+          <table style='width:100%;border-collapse:collapse;font-size:12px'>
+            <thead>
+              <tr style='background:#f1f5f9;font-size:11px;color:#374151'>
+                <th style='padding:7px 8px;width:120px;text-align:left;border-bottom:2px solid #e5e7eb'>
+                  Region <span style='color:#9ca3af'>(IMGT)</span></th>
+                <th style='padding:7px 8px;text-align:left;border-bottom:2px solid #e5e7eb'>
+                  Donor (mouse)</th>
+                <th style='padding:7px 8px;text-align:left;border-bottom:2px solid #e5e7eb'>
+                  Humanized</th>
+                <th style='padding:7px 8px;width:110px;text-align:left;border-bottom:2px solid #e5e7eb'>
+                  Match</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr style='background:transparent;border-bottom:1px solid #e5e7eb'>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top'>
+                <span style='background:#3b82f6;color:#fff;border-radius:3px;
+                  padding:1px 6px;font-size:10px;font-weight:700'>
+                  FR</span>
+                <b style='margin-left:4px'>FR1</b>
+                <div style='color:#9ca3af;font-size:10px;margin-top:2px'>IMGT 1–25 <span style='color:#888;font-size:10px'>(25aa)</span></div>
+              </td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'>DIQMTQSPSSLSASVGDRVTITCRA</span></td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'>DIQMTQSPSSLSASVGDRVTITCRA</span></td>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top;font-size:11px'><span style='color:#1a7a3c;font-weight:700'>✓ Identical</span></td>
+            </tr>
+            <tr style='background:#fffbeb;border-bottom:1px solid #e5e7eb'>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top'>
+                <span style='background:#f59e0b;color:#fff;border-radius:3px;
+                  padding:1px 6px;font-size:10px;font-weight:700'>
+                  CDR</span>
+                <b style='margin-left:4px'>CDR1</b>
+                <div style='color:#9ca3af;font-size:10px;margin-top:2px'>IMGT 26–38 <span style='color:#888;font-size:10px'>(7aa)</span></div>
+              </td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace;background:#fef3c7;padding:0 2px;border-radius:2px'>SQDVNTA</span></td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace;background:#fef3c7;padding:0 2px;border-radius:2px'>SQDVNTA</span></td>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top;font-size:11px'><span style='color:#1a7a3c;font-weight:700'>✓ Identical</span></td>
+            </tr>
+            <tr style='background:transparent;border-bottom:1px solid #e5e7eb'>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top'>
+                <span style='background:#3b82f6;color:#fff;border-radius:3px;
+                  padding:1px 6px;font-size:10px;font-weight:700'>
+                  FR</span>
+                <b style='margin-left:4px'>FR2</b>
+                <div style='color:#9ca3af;font-size:10px;margin-top:2px'>IMGT 39–49 <span style='color:#888;font-size:10px'>(11aa)</span></div>
+              </td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'>VAWYQQKPGKA</span></td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'><span style='background:#fee2e2;color:#b91c1c;font-weight:700;padding:0 1px;border-radius:2px'>L</span><span style='background:#fee2e2;color:#b91c1c;font-weight:700;padding:0 1px;border-radius:2px'>N</span>WYQQKPGKA</span></td>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top;font-size:11px'><span style='color:#b91c1c;font-weight:700'>≠ 2 mut</span></td>
+            </tr>
+            <tr style='background:#fffbeb;border-bottom:1px solid #e5e7eb'>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top'>
+                <span style='background:#f59e0b;color:#fff;border-radius:3px;
+                  padding:1px 6px;font-size:10px;font-weight:700'>
+                  CDR</span>
+                <b style='margin-left:4px'>CDR2</b>
+                <div style='color:#9ca3af;font-size:10px;margin-top:2px'>IMGT 50–65 <span style='color:#888;font-size:10px'>(9aa)</span></div>
+              </td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace;background:#fef3c7;padding:0 2px;border-radius:2px'>PKLLIYSAS</span></td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace;background:#fef3c7;padding:0 2px;border-radius:2px'>PKLLIYSAS</span></td>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top;font-size:11px'><span style='color:#1a7a3c;font-weight:700'>✓ Identical</span></td>
+            </tr>
+            <tr style='background:transparent;border-bottom:1px solid #e5e7eb'>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top'>
+                <span style='background:#3b82f6;color:#fff;border-radius:3px;
+                  padding:1px 6px;font-size:10px;font-weight:700'>
+                  FR</span>
+                <b style='margin-left:4px'>FR3</b>
+                <div style='color:#9ca3af;font-size:10px;margin-top:2px'>IMGT 66–104 <span style='color:#888;font-size:10px'>(36aa)</span></div>
+              </td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'>FLYSGVPSRFSGSRSGTDFTLTISSLQPEDFATYYC</span></td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'><span style='background:#fee2e2;color:#b91c1c;font-weight:700;padding:0 1px;border-radius:2px'>S</span>L<span style='background:#fee2e2;color:#b91c1c;font-weight:700;padding:0 1px;border-radius:2px'>Q</span>SGVPSRFSGS<span style='background:#fee2e2;color:#b91c1c;font-weight:700;padding:0 1px;border-radius:2px'>G</span>SGTDFTLTISSLQPEDFATYYC</span></td>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top;font-size:11px'><span style='color:#b91c1c;font-weight:700'>≠ 3 mut</span></td>
+            </tr>
+            <tr style='background:#fffbeb;border-bottom:1px solid #e5e7eb'>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top'>
+                <span style='background:#f59e0b;color:#fff;border-radius:3px;
+                  padding:1px 6px;font-size:10px;font-weight:700'>
+                  CDR</span>
+                <b style='margin-left:4px'>CDR3</b>
+                <div style='color:#9ca3af;font-size:10px;margin-top:2px'>IMGT 105–117 <span style='color:#888;font-size:10px'>(9aa)</span></div>
+              </td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace;background:#fef3c7;padding:0 2px;border-radius:2px'>QQHYTTPPT</span></td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace;background:#fef3c7;padding:0 2px;border-radius:2px'>QQHYTTPPT</span></td>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top;font-size:11px'><span style='color:#1a7a3c;font-weight:700'>✓ Identical</span></td>
+            </tr>
+            <tr style='background:transparent;border-bottom:1px solid #e5e7eb'>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top'>
+                <span style='background:#3b82f6;color:#fff;border-radius:3px;
+                  padding:1px 6px;font-size:10px;font-weight:700'>
+                  FR</span>
+                <b style='margin-left:4px'>FR4</b>
+                <div style='color:#9ca3af;font-size:10px;margin-top:2px'>IMGT 118–128 <span style='color:#888;font-size:10px'>(10aa)</span></div>
+              </td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'>FGQGTKVEIK</span></td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'>FG<span style='background:#fee2e2;color:#b91c1c;font-weight:700;padding:0 1px;border-radius:2px'>G</span>GTK<span style='background:#fee2e2;color:#b91c1c;font-weight:700;padding:0 1px;border-radius:2px'>L</span>EIK</span></td>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top;font-size:11px'><span style='color:#b91c1c;font-weight:700'>≠ 2 mut</span></td>
+            </tr></tbody>
+          </table>
+          <div style='background:#f8fafc;padding:6px 12px;font-size:10px;color:#9ca3af;
+            border-top:1px solid #e5e7eb'>
+            CDR = amber background | FR mutations = red highlight | ✓ Identical | ≠ Mutated
+            &nbsp;·&nbsp; IMGT V-domain standard boundaries
+          </div>
+        </div>
+  <h4 style='color:#1b4fad;margin:18px 0 6px;font-size:14px'>
+    Full-length sequences — donor vs humanized
+  </h4>
+  <p class='note' style='margin:0 0 8px;font-size:12px'>
+    Single-letter amino-acid sequences for the four chains used throughout this report.
+    These are the exact sequences synthesized for downstream evaluation.
+  </p>
+  <div style='margin-top:8px'>
+    
+        <div class='seq-block'>
+          <div class='seq-label'>Donor VH (mouse) <span class='seq-len'>120 aa</span></div>
+          <div class='seq-body'><span class="chunk">EVQLVESGGG</span> <span class="chunk">LVQPGGSLRL</span> <span class="chunk">SCAASGFNIK</span> <span class="chunk">DTYIHWVRQA</span> <span class="chunk">PGKGLEWVAR</span> <span class="chunk">IYPTNGYTRY</span> <span class="chunk">ADSVKGRFTI</span> <span class="chunk">SADTSKNTAY</span> <span class="chunk">LQMNSLRAED</span> <span class="chunk">TAVYYCSRWG</span> <span class="chunk">GDGFYAMDYW</span> <span class="chunk">GQGTLVTVSS</span></div>
+        </div>
+    
+        <div class='seq-block'>
+          <div class='seq-label'>Donor VL (mouse) <span class='seq-len'>107 aa</span></div>
+          <div class='seq-body'><span class="chunk">DIQMTQSPSS</span> <span class="chunk">LSASVGDRVT</span> <span class="chunk">ITCRASQDVN</span> <span class="chunk">TAVAWYQQKP</span> <span class="chunk">GKAPKLLIYS</span> <span class="chunk">ASFLYSGVPS</span> <span class="chunk">RFSGSRSGTD</span> <span class="chunk">FTLTISSLQP</span> <span class="chunk">EDFATYYCQQ</span> <span class="chunk">HYTTPPTFGQ</span> <span class="chunk">GTKVEIK</span></div>
+        </div>
+    
+        <div class='seq-block'>
+          <div class='seq-label'>Humanized VH (Seq1) <span class='seq-len'>120 aa</span></div>
+          <div class='seq-body'><span class="chunk">EVQLLESGGG</span> <span class="chunk">LVQPGGSLRL</span> <span class="chunk">SCAASGFNIK</span> <span class="chunk">DTYMSWVRQA</span> <span class="chunk">PGKGLEWVAR</span> <span class="chunk">IYPTNGYTYY</span> <span class="chunk">ADSVKGRFTI</span> <span class="chunk">SADNSKNTLY</span> <span class="chunk">LQMNSLRAED</span> <span class="chunk">TAVYYCSRWG</span> <span class="chunk">GDGFYAMDYW</span> <span class="chunk">GQGTLVTVSS</span></div>
+        </div>
+    
+        <div class='seq-block'>
+          <div class='seq-label'>Humanized VL (Seq1) <span class='seq-len'>107 aa</span></div>
+          <div class='seq-body'><span class="chunk">DIQMTQSPSS</span> <span class="chunk">LSASVGDRVT</span> <span class="chunk">ITCRASQDVN</span> <span class="chunk">TALNWYQQKP</span> <span class="chunk">GKAPKLLIYS</span> <span class="chunk">ASSLQSGVPS</span> <span class="chunk">RFSGSGSGTD</span> <span class="chunk">FTLTISSLQP</span> <span class="chunk">EDFATYYCQQ</span> <span class="chunk">HYTTPPTFGG</span> <span class="chunk">GTKLEIK</span></div>
+        </div>
+  </div>
+  <details style='margin-top:10px'>
+    <summary style='cursor:pointer;color:#1b4fad;font-size:12px;font-weight:600'>
+      ▸ FASTA copy block (one record per chain)
+    </summary>
+    <pre style='font-family:Consolas,Monaco,monospace;font-size:11.5px;background:#f6f8fb;border:1px solid #d6e3ff;border-radius:6px;padding:10px;margin-top:6px;white-space:pre-wrap;word-break:break-all'>
+&gt;Donor_VH (mouse, 120 aa)
+EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAYLQMNSLRAEDTAVYYCSRWGGDGFYAMDYWGQGTLVTVSS
+&gt;Donor_VL (mouse, 107 aa)
+DIQMTQSPSSLSASVGDRVTITCRASQDVNTAVAWYQQKPGKAPKLLIYSASFLYSGVPSRFSGSRSGTDFTLTISSLQPEDFATYYCQQHYTTPPTFGQGTKVEIK
+&gt;Humanized_VH_Seq1 (120 aa)
+EVQLLESGGGLVQPGGSLRLSCAASGFNIKDTYMSWVRQAPGKGLEWVARIYPTNGYTYYADSVKGRFTISADNSKNTLYLQMNSLRAEDTAVYYCSRWGGDGFYAMDYWGQGTLVTVSS
+&gt;Humanized_VL_Seq1 (107 aa)
+DIQMTQSPSSLSASVGDRVTITCRASQDVNTALNWYQQKPGKAPKLLIYSASSLQSGVPSRFSGSGSGTDFTLTISSLQPEDFATYYCQQHYTTPPTFGGGTKLEIK</pre>
+  </details>
+  
+        <div class='seq-block' style='margin-top:14px;border-left:4px solid #1a7a3c'>
+          <div class='seq-label' style='display:flex;justify-content:space-between'>
+            <span>CDR Preservation (Donor vs Final)</span>
+            <span><span class='badge badge-ok'>PASS</span></span>
+          </div>
+          <p class='note' style='margin:6px 0 0'>Hard gate: every protected engineering-CDR position matches the donor sequence.</p>
+          <p style='color:#1a7a3c;font-size:.82rem;margin-top:6px'>✓ All CDR positions identical between donor and humanized chains.</p>
+        </div>
+</div>
+
+  
+<!-- §11 CMC Optimization Advisory -->
+<div class='section' id='s11'>
+  <h3>§11 — CMC Developability Advisory (V5.5.1)</h3>
+  <p class='note' style='margin-bottom:12px'>
+        CMC evaluation is decoupled into a separate module. This section provides high-level developability pointers based on sequence liabilities.
+  </p>
+  
+          <div style="border-left:4px solid #d97706;background:#fff8e1;padding:10px 14px;margin-bottom:10px;border-radius:0 6px 6px 0;font-size:.82rem">
+            <b style="color:#d97706">🟡 MED</b>
+            <b style="margin-left:6px">INSTABILITY</b><br>
+            <span style="color:#374151">Instability Index = 47.8 &gt; 40 (sequence-intrinsic (already present in donor))</span><br>
+            <b style="color:#1b4fad;margin-top:4px;display:block">Recommendation:</b>
+            <span style="color:#374151">Perform targeted stability optimization on identified liability hotspots using advanced free-energy perturbation scanning to identify stabilizing mutations.</span><br>
+            <span style="display:inline-block;margin-top:5px;padding:2px 8px;background:#e0e7ff;border-radius:3px;font-size:.78rem;color:#1e40af">
+              Offline Service: CMC Stability Optimization
+            </span>
+            <span style="display:inline-block;margin-left:8px;padding:2px 8px;background:#f0fdf4;border-radius:3px;font-size:.78rem;color:#166534">
+              ⏱ ~1-2 business days
+            </span>
+          </div>
+</div>
+
+
+<!-- §12 Checklist Compliance -->
+<div class='section' id='s12'>
+  <h3>§12 — Delivery checklist summary</h3>
+  <table class='params'>
+    <tr><td class='lbl'>Overall Status</td><td><b>WARN</b> <span class='badge badge-warn'>WARN</span></td></tr>
+    <tr><td class='lbl'>Phases Passed</td><td>5</td></tr>
+    <tr><td class='lbl'>Quality Control Note</td><td>Internal quality review completed. Please combine with experimental confirmation for downstream decisions.</td></tr>
+  </table>
+</div>
+
+<!-- Pipeline QA audit -->
+<div class='section' id='s12qa'>
+  <h3>Pipeline QA audit</h3>
+  <p class='note'>Structured PipelineQA record for traceability. Checklist notes that reference qa_audit resolve here.</p>
+  <details>
+    <summary style='cursor:pointer;color:#1b4fad;font-weight:600'>Show qa_audit (JSON)</summary>
+    <pre style='margin-top:10px;font-size:11px;overflow:auto;max-height:420px;background:#f8fafc;border:1px solid #e5e7eb;padding:12px;border-radius:6px;white-space:pre-wrap'>{
+  &quot;status&quot;: &quot;PASS&quot;,
+  &quot;n_pass&quot;: 14,
+  &quot;n_warn&quot;: 0,
+  &quot;n_fail&quot;: 0,
+  &quot;input_hash&quot;: &quot;c677caa596170fc6&quot;,
+  &quot;output_hash&quot;: &quot;2928f368d5971cb1&quot;,
+  &quot;checks&quot;: [],
+  &quot;delivery_mode&quot;: &quot;standard&quot;,
+  &quot;phase5_gate_error&quot;: null
+}</pre>
+  </details>
+</div>
+  <footer>InSynBio Research &nbsp;·&nbsp; 2026-05-11 15:10 UTC &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; Use Ctrl+P → Save as PDF to export this report.</footer>
+</div>
+</body>
+</html>

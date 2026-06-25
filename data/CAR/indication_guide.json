@@ -1,0 +1,250 @@
+{
+  "_metadata": {
+    "description": "Maps target antigens and disease indications to recommended CAR elements and templates",
+    "version": "1.0",
+    "generated": "2025-04-01"
+  },
+
+  "by_indication": {
+
+    "B_ALL": {
+      "name": "B-Cell Acute Lymphoblastic Leukemia",
+      "preferred_binders": ["FMC63_scFv", "CD22_scFv"],
+      "tandem_recommended": true,
+      "preferred_template": "standard_2G_hematologic",
+      "preferred_costim": "4-1BB_cyto",
+      "recommended_engineering": [],
+      "safety_switch": "recommended",
+      "notes": "CD19 loss in 30-45% of relapses; tandem CD19/CD22 reduces to <10%. 4-1BB for persistence."
+    },
+
+    "DLBCL": {
+      "name": "Diffuse Large B-Cell Lymphoma",
+      "preferred_binders": ["FMC63_scFv"],
+      "preferred_template": "standard_2G_hematologic",
+      "preferred_costim": "CD28_cyto",
+      "recommended_engineering": [],
+      "notes": "CD28 costim (Yescarta) shows faster responses; 4-1BB (Kymriah/Breyanzi) shows durability."
+    },
+
+    "multiple_myeloma": {
+      "name": "Multiple Myeloma",
+      "preferred_binders": ["BCMA_scFv", "JNJ68284528_VHH", "GPRC5D_VHH"],
+      "preferred_template": "standard_2G_hematologic",
+      "preferred_costim": "4-1BB_cyto",
+      "recommended_engineering": [],
+      "notes": "BCMA is standard target. Carvykti (biepitopic VHH) shows 98% ORR. GPRC5D for BCMA-loss."
+    },
+
+    "AML": {
+      "name": "Acute Myeloid Leukemia",
+      "preferred_binders": ["CD123_scFv", "FLT3_scFv", "CD70_scFv", "CD44v6_scFv"],
+      "preferred_template": "standard_2G_hematologic",
+      "preferred_costim": "CD28_cyto",
+      "safety_switch": "required",
+      "recommended_engineering": [],
+      "notes": "AML targets overlap with normal HSCs → safety switch MANDATORY. CD123, FLT3, CD70 under active investigation."
+    },
+
+    "CLL": {
+      "name": "Chronic Lymphocytic Leukemia",
+      "preferred_binders": ["FMC63_scFv", "ROR1_scFv"],
+      "preferred_template": "standard_2G_hematologic",
+      "preferred_costim": "4-1BB_cyto",
+      "notes": "ROR1 is CLL-selective; CD19 also effective but slower responses than in ALL."
+    },
+
+    "gastric_cancer": {
+      "name": "Gastric / GEJ Adenocarcinoma",
+      "preferred_binders": ["CLDN18_2_scFv"],
+      "preferred_template": "armored_4G",
+      "preferred_costim": "4-1BB_cyto",
+      "recommended_engineering": ["CCR2b", "c_Jun_OE", "TGFbRII_DN"],
+      "notes": "CLDN18.2 is isoform-specific, minimal normal expression. Solid tumor → add homing + anti-exhaustion."
+    },
+
+    "hepatocellular_carcinoma": {
+      "name": "Hepatocellular Carcinoma (HCC)",
+      "preferred_binders": ["GPC3_scFv", "AFP_scFv"],
+      "preferred_template": "armored_4G",
+      "preferred_costim": "4-1BB_cyto",
+      "recommended_engineering": ["CCR2b", "c_Jun_OE"],
+      "recommended_armor": ["IL18_Armor", "TIGIT_Blocker_scFv"],
+      "notes": "GPC3 expressed in 70-80% HCC. AFP secondary target. Solid tumor package recommended."
+    },
+
+    "glioblastoma": {
+      "name": "Glioblastoma Multiforme (GBM)",
+      "preferred_binders": ["IL13_Mutein_GBM", "Cetuximab_scFv"],
+      "preferred_template": "armored_4G",
+      "preferred_costim": "4-1BB_cyto",
+      "recommended_engineering": ["c_Jun_OE", "CXCR3"],
+      "recommended_armor": ["Secreted_IL12"],
+      "notes": "IL-13Rα2 (IL13 mutein binder) most clinically advanced for GBM. Intracranial delivery bypasses BBB. EGFRvIII for subset."
+    },
+
+    "mesothelioma": {
+      "name": "Mesothelioma",
+      "preferred_binders": ["SS1_scFv", "Mesothelin_scFv_v2"],
+      "preferred_template": "armored_4G",
+      "preferred_costim": "4-1BB_cyto",
+      "recommended_engineering": ["c_Jun_OE", "CCR2b", "TGFbRII_DN"],
+      "recommended_armor": ["Secreted_IL12", "IL18_Armor"],
+      "notes": "Mesothelin is validated target. c-Jun + CCR2b combination showed best preclinical results."
+    },
+
+    "ovarian_cancer": {
+      "name": "Ovarian Cancer",
+      "preferred_binders": ["FOLR1_scFv", "SS1_scFv", "Anti_FRa_MOv19_scFv"],
+      "preferred_template": "armored_4G",
+      "preferred_costim": "4-1BB_cyto",
+      "recommended_engineering": ["CCR2b", "c_Jun_OE"],
+      "notes": "FOLR1 (FRα) expressed in >90% high-grade serous ovarian. Mesothelin (SS1) also relevant."
+    },
+
+    "pancreatic_cancer": {
+      "name": "Pancreatic Ductal Adenocarcinoma",
+      "preferred_binders": ["SS1_scFv", "CLDN18_2_scFv", "PSCA_scFv"],
+      "preferred_template": "armored_4G",
+      "preferred_costim": "4-1BB_cyto",
+      "recommended_engineering": ["c_Jun_OE", "CCR2b", "TGFbRII_DN", "PTPN2_KO_guide"],
+      "recommended_armor": ["HPSE_Secreted", "TGFb_Trap_Armor"],
+      "notes": "Dense stroma → add heparanase (ECM degradation). TGFβ dominant in PDAC TME → DN or trap."
+    },
+
+    "prostate_cancer": {
+      "name": "Prostate Cancer (CRPC)",
+      "preferred_binders": ["PSMA_scFv", "PSCA_scFv"],
+      "preferred_template": "armored_4G",
+      "preferred_costim": "4-1BB_cyto",
+      "recommended_engineering": ["TGFbRII_DN"],
+      "notes": "PSMA most validated. TGFβRII-DN in Phase I (NCT03089671). PSCA for PSMA-negative."
+    },
+
+    "colorectal_cancer": {
+      "name": "Colorectal Cancer",
+      "preferred_binders": ["CEA_scFv", "EpCAM_scFv"],
+      "preferred_template": "armored_4G",
+      "preferred_costim": "4-1BB_cyto",
+      "recommended_engineering": ["c_Jun_OE", "CXCR3", "CD39_KO_guide"],
+      "notes": "CEA widely expressed but also on normal GI epithelium → lower expression threshold CAR."
+    },
+
+    "breast_cancer_HER2": {
+      "name": "HER2+ Breast Cancer",
+      "preferred_binders": ["Trastuzumab_scFv", "Pertuzumab_scFv"],
+      "preferred_template": "armored_4G",
+      "preferred_costim": "CD28_cyto",
+      "safety_switch": "required",
+      "recommended_engineering": ["CCR2b"],
+      "recommended_armor": ["Membrane_IL15"],
+      "notes": "HER2 on cardiac tissue → safety switch MANDATORY. Trastuzumab scFv most validated."
+    },
+
+    "neuroblastoma": {
+      "name": "Neuroblastoma (Pediatric)",
+      "preferred_binders": ["GD2_scFv", "14G2a_hu_scFv"],
+      "preferred_template": "armored_4G",
+      "preferred_costim": "4-1BB_cyto",
+      "recommended_armor": ["IL18_Armor"],
+      "recommended_engineering": ["CCR2b"],
+      "notes": "GD2 is standard neuroblastoma target. IL-18 armor showed impressive preclinical data."
+    },
+
+    "SCLC": {
+      "name": "Small Cell Lung Cancer",
+      "preferred_binders": ["DLL3_scFv"],
+      "preferred_template": "armored_4G",
+      "preferred_costim": "4-1BB_cyto",
+      "recommended_engineering": ["c_Jun_OE"],
+      "notes": "DLL3 is highly SCLC-selective. Neuroendocrine-specific expression."
+    },
+
+    "SLE": {
+      "name": "Systemic Lupus Erythematosus",
+      "preferred_binders": ["BCMA_scFv_AutoImmune", "FMC63_scFv"],
+      "preferred_template": "autoimmune_car",
+      "preferred_costim": "4-1BB_cyto",
+      "notes": "BCMA depletes long-lived plasma cells (autoantibody source). CD19 depletes B cells. Mackensen 2022: 3/3 drug-free remission."
+    },
+
+    "pemphigus_vulgaris": {
+      "name": "Pemphigus Vulgaris",
+      "preferred_binders": ["Dsg3_ECD_CAAR"],
+      "preferred_template": "autoimmune_car",
+      "notes": "CAAR approach: display Dsg3 ECD as 'bait' for anti-Dsg3 B cells."
+    },
+
+    "myasthenia_gravis": {
+      "name": "MuSK+ Myasthenia Gravis",
+      "preferred_binders": ["MuSK_ECD_CAAR"],
+      "preferred_template": "autoimmune_car",
+      "notes": "MuSK-CAAR targets anti-MuSK B cells. Phase I ongoing."
+    },
+
+    "transplant_rejection": {
+      "name": "Solid Organ Transplant Rejection",
+      "preferred_binders": ["OKT3_hu_scFv"],
+      "preferred_template": "car_treg",
+      "notes": "CAR-Treg recognizes donor HLA to induce local tolerance at graft site."
+    },
+
+    "GvHD": {
+      "name": "Graft-versus-Host Disease",
+      "preferred_binders": ["FMC63_scFv"],
+      "preferred_template": "car_treg",
+      "notes": "CD19 CAR-Treg suppresses allo-reactive B cell antigen presentation. Alternative: donor HLA-specific CAR-Treg."
+    }
+  },
+
+  "by_target_antigen": {
+    "CD19":       {"binders": ["FMC63_scFv", "SJ25C1_scFv", "c11D5_3_scFv"], "indications": ["B_ALL", "DLBCL", "CLL", "SLE"]},
+    "CD22":       {"binders": ["CD22_scFv", "m971_scFv"], "indications": ["B_ALL"]},
+    "BCMA":       {"binders": ["BCMA_scFv", "JNJ68284528_VHH", "BCMA_scFv_AutoImmune"], "indications": ["multiple_myeloma", "SLE"]},
+    "GPRC5D":     {"binders": ["GPRC5D_VHH"], "indications": ["multiple_myeloma"]},
+    "CD123":      {"binders": ["CD123_scFv"], "indications": ["AML"]},
+    "FLT3":       {"binders": ["FLT3_scFv"], "indications": ["AML"]},
+    "CD70":       {"binders": ["CD70_scFv"], "indications": ["AML"]},
+    "HER2":       {"binders": ["Trastuzumab_scFv", "Pertuzumab_scFv"], "indications": ["breast_cancer_HER2"]},
+    "Mesothelin":  {"binders": ["SS1_scFv", "Mesothelin_scFv_v2"], "indications": ["mesothelioma", "ovarian_cancer", "pancreatic_cancer"]},
+    "GPC3":       {"binders": ["GPC3_scFv"], "indications": ["hepatocellular_carcinoma"]},
+    "CLDN18.2":   {"binders": ["CLDN18_2_scFv"], "indications": ["gastric_cancer", "pancreatic_cancer"]},
+    "FOLR1":      {"binders": ["FOLR1_scFv", "Anti_FRa_MOv19_scFv"], "indications": ["ovarian_cancer"]},
+    "GD2":        {"binders": ["GD2_scFv", "14G2a_hu_scFv", "ch14_18_GD2_scFv"], "indications": ["neuroblastoma"]},
+    "PSMA":       {"binders": ["PSMA_scFv"], "indications": ["prostate_cancer"]},
+    "PSCA":       {"binders": ["PSCA_scFv"], "indications": ["prostate_cancer", "pancreatic_cancer"]},
+    "EpCAM":      {"binders": ["EpCAM_scFv"], "indications": ["colorectal_cancer"]},
+    "CEA":        {"binders": ["CEA_scFv"], "indications": ["colorectal_cancer"]},
+    "DLL3":       {"binders": ["DLL3_scFv"], "indications": ["SCLC"]},
+    "ROR1":       {"binders": ["ROR1_scFv"], "indications": ["CLL"]},
+    "CD44v6":     {"binders": ["CD44v6_scFv"], "indications": ["AML"]},
+    "EGFR":       {"binders": ["Cetuximab_scFv"], "indications": ["glioblastoma"]},
+    "IL13Ra2":    {"binders": ["IL13_Mutein_GBM"], "indications": ["glioblastoma"]},
+    "NKG2D_ligands": {"binders": ["NKG2D_Full_CAR_NK", "NKG2D_Ligand_Binder"], "indications": ["AML"]},
+    "TROP2":      {"binders": ["TROP2_scFv"], "indications": ["breast_cancer_HER2"]}
+  },
+
+  "solid_tumor_engineering_package": {
+    "description": "Recommended additional engineering for any solid tumor CAR",
+    "tiers": {
+      "essential": {
+        "anti_exhaustion": ["c_Jun_OE"],
+        "costim": "4-1BB_cyto",
+        "note": "4-1BB + c-Jun OE is minimum for solid tumor persistence"
+      },
+      "recommended": {
+        "homing": ["CCR2b", "CXCR3"],
+        "tgfb_resistance": ["TGFbRII_DN"],
+        "checkpoint_ko": ["PDCD1_CRISPR_Target"],
+        "note": "Add homing receptors and TGFβ resistance for hostile TME"
+      },
+      "advanced": {
+        "adenosine_resistance": ["CD39_KO_guide"],
+        "epigenetic": ["DNMT3A_KO_guide"],
+        "phosphatase": ["PTPN2_KO_guide"],
+        "additional_armor": ["IL18_Armor", "TIGIT_Blocker_scFv"],
+        "note": "Latest 2024 elements; limited clinical data but strong preclinical rationale"
+      }
+    }
+  }
+}

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Therasik Console — Login</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { height: 100%; }
+body {
+  min-height: 100%;
+  background: radial-gradient(circle at top right, rgba(33,199,217,.10), transparent 30%), #090d16;
+  color: #f0f6fc; font: 500 14px/1.6 "Inter", -apple-system, "Segoe UI", system-ui, sans-serif;
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 40px 16px 40px;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+.gate-panel {
+  width: min(400px, 100%);
+  background: #0f1726; border: 1px solid #2a3a55; border-radius: 12px;
+  padding: 30px 26px; box-shadow: 0 24px 64px rgba(0,0,0,.6);
+  /* Allow form to start at the top so the logo is always visible */
+  align-self: flex-start;
+}
+.gate-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; }
+.gate-mark {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1.5px solid #21c7d9; color: #21c7d9; background: rgba(33,199,217,0.08);
+  display: flex; align-items: center; justify-content: center;
+  font: 700 14px "JetBrains Mono", monospace; flex-shrink: 0;
+}
+.gate-title { color: #21c7d9; font-weight: 700; font-size: 17px; letter-spacing: 0.2px; }
+.gate-sub { color: #c5d1e0; font-size: 12px; font-weight: 500; margin-top: 3px; }
+label { display: block; font-size: 11.5px; font-weight: 700; color: #c5d1e0; margin-bottom: 5px; text-transform: uppercase; letter-spacing: .07em; }
+input {
+  width: 100%; padding: 10px 12px; border-radius: 7px;
+  border: 1px solid #2a3a55; background: #0a1119; color: #f0f6fc;
+  font: 500 13.5px "JetBrains Mono", "Consolas", monospace; margin-bottom: 14px;
+  outline: none; transition: border .2s, box-shadow .2s;
+}
+input:focus { border-color: #21c7d9; box-shadow: 0 0 0 3px rgba(33,199,217,0.15); }
+input::placeholder { color: #6b7c94; font-weight: 400; }
+.gate-btn {
+  width: 100%; padding: 11px; border-radius: 7px; border: none;
+  background: #21c7d9; color: #090d16; font: 700 14px "Inter", system-ui, sans-serif;
+  cursor: pointer; transition: background .2s, transform .15s;
+  letter-spacing: 0.2px;
+}
+.gate-btn:hover { background: #29d5e8; transform: translateY(-1px); }
+.gate-btn:active { transform: translateY(0); }
+.gate-err { font-size: 12px; font-weight: 600; color: #f85149; margin-top: 10px; min-height: 1.3em; text-align: center; }
+.gate-ok  { font-size: 12px; font-weight: 600; color: #3fb950; margin-top: 10px; min-height: 1.3em; text-align: center; }
+.gate-note { font-size: 11px; font-weight: 500; color: #a0b1c8; margin-top: 16px; text-align: center; line-height: 1.6; }
+.gate-links { margin-top: 14px; text-align: center; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.gate-link { color: #21c7d9; text-decoration: none; font-size: 12px; font-weight: 600; }
+.gate-link:hover { text-decoration: underline; }
+.check-row { display: flex; gap: 8px; align-items: flex-start; color: #c5d1e0; font-size: 12px; font-weight: 500; margin: 6px 0 14px; text-transform: none; letter-spacing: 0; }
+.check-row input { width: auto; margin: 2px 0 0; }
+</style>
+</head>
+<body>
+<form class="gate-panel" id="gate-form" onsubmit="return doLogin(event)">
+  <div class="gate-logo">
+    <div class="gate-mark">IS</div>
+    <div>
+      <div class="gate-title">Therasik Console</div>
+      <div class="gate-sub" id="gate-sub-text">授权评估访问 / Authorized Evaluation Access</div>
+    </div>
+  </div>
+  <div id="login-fields">
+    <label for="user">用户名 / Username</label>
+    <input id="user" name="user" type="text" autocomplete="username" placeholder="e.g. zhanglab" autofocus />
+    <label for="pass">密码 / Password</label>
+    <div style="position:relative; margin-bottom:8px">
+      <input id="pass" name="pass" type="password" autocomplete="current-password" placeholder="••••••••••" style="padding-right:38px; margin-bottom:0" />
+      <button type="button" onclick="togglePassVis()" tabindex="-1"
+        style="position:absolute;right:9px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#8ea0b8;font-size:15px;line-height:1;padding:2px"
+        title="Show / hide password" id="pass-vis-btn">👁</button>
+    </div>
+    <label class="check-row" style="margin-top:0"><input id="login-remember" type="checkbox" checked /> 7天内免密登录 / Remember me for 7 days</label>
+  </div>
+  <div id="register-fields" style="display:none">
+    <div style="font-size:11.5px; color:#a0b1c8; margin-bottom:10px; line-height:1.55">
+      注册即赠 Credits 并可使用 AI 助手与全部分析模块。
+      <a class="gate-link" href="/pricing" target="_blank" rel="noopener" style="font-weight:600">查看定价与赠送规则 →</a>
+    </div>
+    <label for="reg-email">邮箱地址 / Email</label>
+    <input id="reg-email" type="email" placeholder="email@example.com" />
+    <label for="reg-user">用户名 / Username</label>
+    <input id="reg-user" type="text" placeholder="3-32 chars" />
+    <label for="reg-password">密码 / Password (8-64 chars)</label>
+    <div style="position:relative">
+      <input id="reg-password" type="password" placeholder="letters, numbers, @#$%^&+=!?._-" style="padding-right:38px" />
+      <button type="button" onclick="toggleAnyPassVis('reg-password', 'reg-pass-vis-btn')" tabindex="-1"
+        style="position:absolute;right:9px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#8ea0b8;font-size:15px;line-height:1;padding:2px"
+        title="Show / hide password" id="reg-pass-vis-btn">👁</button>
+    </div>
+    <label for="reg-confirm">确认密码 / Confirm</label>
+    <div style="position:relative">
+      <input id="reg-confirm" type="password" placeholder="repeat password" style="padding-right:38px" />
+      <button type="button" onclick="toggleAnyPassVis('reg-confirm', 'reg-confirm-vis-btn')" tabindex="-1"
+        style="position:absolute;right:9px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#8ea0b8;font-size:15px;line-height:1;padding:2px"
+        title="Show / hide password" id="reg-confirm-vis-btn">👁</button>
+    </div>
+    <label for="reg-coupon">优惠码 / Coupon (选填)</label>
+    <input id="reg-coupon" type="text" placeholder="官方优惠码 或 微信码 WECHAT" />
+    <label class="check-row"><input id="reg-terms" type="checkbox" /> <span>我已阅读并同意 <a class="gate-link" href="/terms" target="_blank" rel="noopener">服务条款</a> 和 <a class="gate-link" href="/privacy" target="_blank" rel="noopener">隐私政策</a>。</span></label>
+    <label class="check-row"><input id="reg-marketing" type="checkbox" /> 接收 Therasik 产品更新通知（可随时退订）。</label>
+    <label class="check-row"><input id="reg-news" type="checkbox" /> 接受关联企业及合作伙伴的新闻服务。</label>
+  </div>
+  <div id="verify-fields" style="display:none">
+    <p style="font-size:11px; color:#8ea0b8; margin-bottom:10px">请输入发送至您邮箱的 6 位验证码。</p>
+    <label for="verify-user-display">账号 / Account</label>
+    <input id="verify-user-display" type="text" readonly style="opacity:.85;cursor:default;margin-bottom:10px" />
+    <label for="verify-code">验证码 / Verification Code</label>
+    <input id="verify-code" type="text" placeholder="6-digit code" inputmode="numeric" autocomplete="one-time-code" />
+  </div>
+  <div id="forgot-user-fields" style="display:none">
+    <p style="font-size:11px; color:#8ea0b8; margin-bottom:10px">输入注册邮箱，我们将发送包含用户名的邮件。</p>
+    <label for="forgot-email">邮箱地址 / Email Address</label>
+    <input id="forgot-email" type="email" placeholder="email@example.com" />
+  </div>
+  <div id="forgot-password-fields" style="display:none">
+    <p style="font-size:11px; color:#8ea0b8; margin-bottom:10px">输入用户名或邮箱，我们将发送重置验证码。</p>
+    <label for="reset-id">用户名或邮箱 / Username or Email</label>
+    <input id="reset-id" type="text" placeholder="username or email@example.com" />
+  </div>
+  <div id="reset-password-fields" style="display:none">
+    <p id="reset-target-hint" style="font-size:11px;color:#8ea0b8;margin-bottom:10px;line-height:1.5">
+      请输入邮件中的 6 位验证码，并设置新密码。如未收到邮件，可点击下方「重新发送验证码」。
+    </p>
+    <label for="reset-id-display">账号 / Account</label>
+    <input id="reset-id-display" type="text" readonly style="opacity:.85;cursor:default" />
+    <label for="reset-code">重置验证码 / Reset Code</label>
+    <input id="reset-code" type="text" placeholder="6-digit code" />
+    <label for="reset-password">新密码 / New Password</label>
+    <div style="position:relative">
+      <input id="reset-password" type="password" placeholder="letters, numbers, @#$%^&+=!?._-" style="padding-right:38px" />
+      <button type="button" onclick="toggleAnyPassVis('reset-password', 'reset-pass-vis-btn')" tabindex="-1"
+        style="position:absolute;right:9px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#8ea0b8;font-size:15px;line-height:1;padding:2px"
+        title="Show / hide password" id="reset-pass-vis-btn">👁</button>
+    </div>
+    <label for="reset-confirm">确认新密码 / Confirm New Password</label>
+    <div style="position:relative">
+      <input id="reset-confirm" type="password" placeholder="repeat password" style="padding-right:38px" />
+      <button type="button" onclick="toggleAnyPassVis('reset-confirm', 'reset-confirm-vis-btn')" tabindex="-1"
+        style="position:absolute;right:9px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#8ea0b8;font-size:15px;line-height:1;padding:2px"
+        title="Show / hide password" id="reset-confirm-vis-btn">👁</button>
+    </div>
+  </div>
+
+  <button type="submit" id="submit-btn" class="gate-btn">登录控制台 / Access Console</button>
+  <button type="button" id="resend-verify-btn" class="gate-btn" style="display:none;margin-top:8px;background:#0f1726;color:#21c7d9;border:1px solid #21c7d9" onclick="resendVerifyCode(); return false;">重新发送验证码 / Resend Code</button>
+  <button type="button" id="resend-reset-btn" class="gate-btn" style="display:none;margin-top:8px;background:#0f1726;color:#21c7d9;border:1px solid #21c7d9" onclick="resendResetCode(); return false;">重新发送验证码 / Resend Code</button>
+  <div id="reg-link-container" class="gate-links">
+    <a href="javascript:void(0)" id="switch-mode-link" class="gate-link" onclick="toggleMode()">注册新账号 / Register</a>
+    <a href="javascript:void(0)" id="forgot-user-link" class="gate-link" style="display:none" onclick="showForgotUsername()">忘记用户名？</a>
+    <a href="javascript:void(0)" id="forgot-pass-link" class="gate-link" style="display:none" onclick="showForgotPassword()">忘记密码？</a>
+  </div>
+  <div id="err" class="gate-err"></div>
+  <div class="gate-note">
+    仅限授权算法评估。<br>禁止未经授权的访问。<br>
+    Authorized algorithm evaluation only.
+  </div>
+</form>
+<script>
+var LS_AUTH = "insynbio_gate_auth";
+var LS_ROLE = "insynbio_gate_role";
+var mode = "login"; // login, register, verify, forgotUser, forgotPassword, resetPassword
+var _resetIdentity = "";
+var LS_PENDING_VERIFY = "therasik_pending_verify_user";
+
+function authFetch(url, options) {
+  options = options || {};
+  var headers = Object.assign({ "X-Public-Site": "therasik" }, options.headers || {});
+  return fetch(url, Object.assign({}, options, { headers: headers }));
+}
+
+function localizeAuthError(msg) {
+  var s = String(msg || "");
+  var map = {
+    "Username already taken": "该用户名已在 Therasik 站点注册（与 InSynBio 账号独立，请直接登录或更换用户名）",
+    "Email already registered": "该邮箱已在 Therasik 站点注册（与 InSynBio 账号独立，请直接登录或更换邮箱）",
+    "Username or email already taken": "用户名或邮箱已在 Therasik 站点占用（与 InSynBio 账号独立）",
+    "Invalid username or PIN": "用户名或密码错误",
+    "Email verification required before login": "请先完成邮箱验证后再登录",
+    "Registration disabled": "注册功能已关闭",
+  };
+  for (var k in map) {
+    if (s.indexOf(k) >= 0) return map[k];
+  }
+  return s;
+}
+
+function togglePassVis() {
+  var inp = document.getElementById("pass");
+  var btn = document.getElementById("pass-vis-btn");
+  if (!inp) return;
+  if (inp.type === "password") { inp.type = "text"; btn.textContent = "🙈"; }
+  else { inp.type = "password"; btn.textContent = "👁"; }
+}
+
+function toggleAnyPassVis(inputId, btnId) {
+  var inp = document.getElementById(inputId);
+  var btn = document.getElementById(btnId);
+  if (!inp) return;
+  if (inp.type === "password") { inp.type = "text"; btn.textContent = "🙈"; }
+  else { inp.type = "password"; btn.textContent = "👁"; }
+}
+
+function hideAllModes() {
+  ["login-fields", "register-fields", "verify-fields", "forgot-user-fields", "forgot-password-fields", "reset-password-fields"].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = "none";
+  });
+  var resendBtn = document.getElementById("resend-reset-btn");
+  if (resendBtn) resendBtn.style.display = "none";
+  var resendVerifyBtn = document.getElementById("resend-verify-btn");
+  if (resendVerifyBtn) resendVerifyBtn.style.display = "none";
+}
+
+function setRecoveryLinksVisible(visible) {
+  document.getElementById("forgot-user-link").style.display = visible ? "inline" : "none";
+  document.getElementById("forgot-pass-link").style.display = visible ? "inline" : "none";
+}
+
+function setMode(next) {
+  mode = next;
+  document.getElementById("err").textContent = "";
+  hideAllModes();
+  setRecoveryLinksVisible(false);
+  if (next === "login") {
+    document.getElementById("login-fields").style.display = "block";
+    document.getElementById("gate-sub-text").textContent = "Authorized Evaluation Access Only";
+    document.getElementById("submit-btn").textContent = "Access Console";
+    document.getElementById("switch-mode-link").textContent = "Register New Account";
+    setRecoveryLinksVisible(true);
+  } else if (next === "register") {
+    document.getElementById("register-fields").style.display = "block";
+    document.getElementById("gate-sub-text").textContent = "Create your trial account";
+    document.getElementById("submit-btn").textContent = "Send Verification Code";
+    document.getElementById("switch-mode-link").textContent = "Back to Login";
+  } else if (next === "verify") {
+    document.getElementById("verify-fields").style.display = "block";
+    document.getElementById("submit-btn").textContent = "Verify & Complete";
+    document.getElementById("switch-mode-link").textContent = "Back to Login";
+    var pending = sessionStorage.getItem(LS_PENDING_VERIFY) || document.getElementById("reg-user").value.trim();
+    if (pending) {
+      document.getElementById("verify-user-display").value = pending;
+      sessionStorage.setItem(LS_PENDING_VERIFY, pending);
+    }
+    var resendVerifyBtn = document.getElementById("resend-verify-btn");
+    if (resendVerifyBtn) resendVerifyBtn.style.display = "block";
+  } else if (next === "forgotUser") {
+    document.getElementById("forgot-user-fields").style.display = "block";
+    document.getElementById("gate-sub-text").textContent = "Recover username";
+    document.getElementById("submit-btn").textContent = "Send Username";
+    document.getElementById("switch-mode-link").textContent = "Back to Login";
+  } else if (next === "forgotPassword") {
+    document.getElementById("forgot-password-fields").style.display = "block";
+    document.getElementById("gate-sub-text").textContent = "Reset password / 重置密码";
+    document.getElementById("submit-btn").textContent = "发送重置验证码 / Send Reset Code";
+    document.getElementById("switch-mode-link").textContent = "返回登录 / Back to Login";
+  } else if (next === "resetPassword") {
+    document.getElementById("reset-password-fields").style.display = "block";
+    document.getElementById("gate-sub-text").textContent = "Set new password / 设置新密码";
+    document.getElementById("submit-btn").textContent = "更新密码 / Update Password";
+    document.getElementById("switch-mode-link").textContent = "返回登录 / Back to Login";
+    var disp = document.getElementById("reset-id-display");
+    if (disp) disp.value = _resetIdentity || "";
+    var resendBtn = document.getElementById("resend-reset-btn");
+    if (resendBtn) resendBtn.style.display = "block";
+  }
+}
+
+function toggleMode() {
+  setMode(mode === "login" ? "register" : "login");
+}
+
+function showForgotUsername() { setMode("forgotUser"); }
+function showForgotPassword() { setMode("forgotPassword"); }
+
+function requestResetCode(identity, onDone) {
+  var err = document.getElementById("err");
+  var rid = String(identity || "").trim();
+  if (!rid) {
+    err.className = "gate-err";
+    err.textContent = "请输入用户名或邮箱。";
+    return;
+  }
+  _resetIdentity = rid;
+  authFetch("/api/auth/forgot-password", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username_or_email: rid })
+  }).then(parseJsonResponse)
+    .then(function(res) {
+      if (res.ok) {
+        setMode("resetPassword");
+        err.className = "gate-ok";
+        err.textContent = res.data.message || "如账号存在，重置验证码已发送至注册邮箱，请查收（含垃圾箱）。";
+        if (typeof onDone === "function") onDone(true);
+      } else {
+        err.className = "gate-err";
+        err.textContent = localizeAuthError(res.data.detail || "Reset request failed.");
+        if (typeof onDone === "function") onDone(false);
+      }
+    }).catch(function(e) {
+      err.className = "gate-err";
+      err.textContent = "Server error: " + e;
+      if (typeof onDone === "function") onDone(false);
+    });
+}
+
+function resendResetCode() {
+  requestResetCode(_resetIdentity || (document.getElementById("reset-id-display") || {}).value || (document.getElementById("reset-id") || {}).value);
+}
+
+function pendingVerifyUser() {
+  return sessionStorage.getItem(LS_PENDING_VERIFY)
+    || (document.getElementById("verify-user-display") ? document.getElementById("verify-user-display").value.trim() : "")
+    || document.getElementById("reg-user").value.trim();
+}
+
+function resendVerifyCode() {
+  var err = document.getElementById("err");
+  var u = pendingVerifyUser();
+  if (!u) {
+    err.className = "gate-err";
+    err.textContent = "缺少账号信息，请返回注册页重新发送验证码。";
+    setMode("register");
+    return;
+  }
+  authFetch("/api/auth/resend-verification", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username: u })
+  }).then(parseJsonResponse)
+    .then(function(res) {
+      err.className = "gate-ok";
+      err.textContent = res.ok
+        ? "验证码已重新发送，请查收邮件。"
+        : (localizeAuthError(res.data.detail) || "发送失败，请稍后重试。");
+    }).catch(function(e) { err.textContent = "Server error: " + e; });
+}
+
+function parseJsonResponse(r) {
+  return r.json().then(function(d) { return {ok: r.ok, data: d}; });
+}
+
+function doLogin(ev) {
+  if (ev) ev.preventDefault();
+  var err = document.getElementById("err");
+  err.className = "gate-err"; err.textContent = "";
+
+  if (mode === "login") {
+    var u = (document.getElementById("user").value || "").trim().toLowerCase();
+    var p = document.getElementById("pass").value || "";
+    if (!u || !p) { err.textContent = "Please enter both username and password."; return false; }
+
+    authFetch("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username: u, password: p })
+    }).then(parseJsonResponse)
+      .then(function(res) {
+        if (res.ok) {
+          var remember = document.getElementById("login-remember").checked;
+          var storage = remember ? localStorage : sessionStorage;
+          // Clear both first just in case
+          sessionStorage.removeItem(LS_AUTH); sessionStorage.removeItem(LS_ROLE); sessionStorage.removeItem("insynbio_access_token");
+          localStorage.removeItem(LS_AUTH); localStorage.removeItem(LS_ROLE); localStorage.removeItem("insynbio_access_token");
+          
+          storage.setItem(LS_AUTH, u);
+          storage.setItem(LS_ROLE, res.data.role || "user");
+          storage.setItem("insynbio_access_token", res.data.access_token);
+          
+          err.className = "gate-ok"; err.textContent = "Authenticated. Loading console...";
+          setTimeout(function() { window.location.href = "/"; }, 400);
+        } else {
+          err.textContent = localizeAuthError(res.data.detail || "Invalid credentials.");
+          setRecoveryLinksVisible(true);
+        }
+      }).catch(function(e) { err.textContent = "Server error: " + e; setRecoveryLinksVisible(true); });
+
+  } else if (mode === "register") {
+    var e = document.getElementById("reg-email").value.trim();
+    var u = document.getElementById("reg-user").value.trim();
+    var p = document.getElementById("reg-password").value.trim();
+    var cp = document.getElementById("reg-confirm").value.trim();
+    var coupon = (document.getElementById("reg-coupon") ? document.getElementById("reg-coupon").value.trim() : "");
+    var terms = document.getElementById("reg-terms").checked;
+    var marketing = document.getElementById("reg-marketing").checked;
+    var newsEl = document.getElementById("reg-news");
+    var news = newsEl ? newsEl.checked : false;
+    if (!e || !u || !p || !cp) { err.textContent = "请填写全部字段 / Please fill all fields."; return false; }
+    if (p !== cp) { err.textContent = "两次输入的密码不一致 / Passwords do not match."; return false; }
+    if (!terms) { err.textContent = "请勾选同意服务条款和隐私政策。"; return false; }
+
+    authFetch("/api/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: e,
+        username: u,
+        password: p,
+        confirm_password: cp,
+        coupon_code: coupon,
+        accept_terms: terms,
+        marketing_opt_in: marketing,
+        news_opt_in: news
+      })
+    }).then(parseJsonResponse)
+      .then(function(res) {
+        if (res.ok) {
+          sessionStorage.setItem(LS_PENDING_VERIFY, u);
+          document.getElementById("verify-user-display").value = u;
+          setMode("verify");
+          err.className = "gate-ok"; err.textContent = "Code sent! Check your email.";
+        } else {
+          err.textContent = localizeAuthError(res.data.detail || "Registration failed.");
+        }
+      }).catch(function(e) { err.textContent = "Server error: " + e; });
+
+  } else if (mode === "verify") {
+    var u = pendingVerifyUser();
+    var c = document.getElementById("verify-code").value.replace(/\D/g, "");
+    if (!u) { err.textContent = "缺少账号信息，请返回注册页。"; setMode("register"); return false; }
+    if (!c || c.length !== 6) { err.textContent = "请输入 6 位验证码。"; return false; }
+
+    authFetch("/api/auth/verify-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username: u, code: c })
+    }).then(parseJsonResponse)
+      .then(function(res) {
+        if (res.ok) {
+          sessionStorage.removeItem(LS_PENDING_VERIFY);
+          err.className = "gate-ok";
+          var msg = "邮箱验证成功，请登录。 / Verified! You can now log in.";
+          var d = res.data || {};
+          if (d.coupon_applied && d.coupon_bonus) {
+            msg = "验证成功，优惠码 " + (d.coupon_code || "") + " 已激活，额外赠送 " +
+                  d.coupon_bonus.toLocaleString() + " credits。";
+          }
+          err.textContent = msg;
+          setTimeout(function() { setMode("login"); }, d.coupon_applied ? 2200 : 1500);
+        } else {
+          err.textContent = res.data.detail || "Verification failed.";
+        }
+      }).catch(function(e) { err.textContent = "Server error: " + e; });
+  } else if (mode === "forgotUser") {
+    var fe = document.getElementById("forgot-email").value.trim();
+    if (!fe) { err.textContent = "Please enter your email."; return false; }
+    authFetch("/api/auth/forgot-username", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: fe })
+    }).then(parseJsonResponse)
+      .then(function(res) {
+        err.className = "gate-ok";
+        err.textContent = res.data.message || "If the email is registered, account details were sent.";
+      }).catch(function(e) { err.textContent = "Server error: " + e; });
+  } else if (mode === "forgotPassword") {
+    var rid = document.getElementById("reset-id").value.trim();
+    if (!rid) { err.textContent = "请输入用户名或邮箱。"; return false; }
+    requestResetCode(rid);
+  } else if (mode === "resetPassword") {
+    var rid2 = _resetIdentity || document.getElementById("reset-id-display").value.trim() || document.getElementById("reset-id").value.trim();
+    var code = document.getElementById("reset-code").value.trim();
+    var np = document.getElementById("reset-password").value.trim();
+    var ncp = document.getElementById("reset-confirm").value.trim();
+    if (!rid2) { err.textContent = "缺少账号信息，请先返回上一步发送验证码。"; setMode("forgotPassword"); return false; }
+    if (!code) { err.textContent = "请输入邮件中的 6 位重置验证码。"; return false; }
+    if (!np || !ncp) { err.textContent = "请输入并确认新密码。"; return false; }
+    if (np !== ncp) { err.textContent = "两次输入的新密码不一致。"; return false; }
+    authFetch("/api/auth/reset-password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username_or_email: rid2, code: code, password: np, confirm_password: ncp })
+    }).then(parseJsonResponse)
+      .then(function(res) {
+        if (res.ok) {
+          err.className = "gate-ok";
+          err.textContent = "Password updated. You can now log in.";
+          setTimeout(function() { setMode("login"); }, 1500);
+        } else {
+          err.textContent = res.data.detail || "Password reset failed.";
+        }
+      }).catch(function(e) { err.textContent = "Server error: " + e; });
+  }
+  return false;
+}
+
+if (sessionStorage.getItem(LS_AUTH) || localStorage.getItem(LS_AUTH)) {
+  window.location.replace("/");
+}
+</script>
+</body>
+</html>

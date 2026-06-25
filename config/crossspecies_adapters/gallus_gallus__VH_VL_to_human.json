@@ -1,0 +1,69 @@
+{
+  "_meta": {
+    "schema_id": "crossspecies_adapter",
+    "schema_version": "V1.0",
+    "status": "LOCKED",
+    "governing_standard": "docs/CROSSSPECIES_ENGINE_STANDARD_V1.0.md",
+    "last_updated": "2026-05-07",
+    "note": "Chicken (IgY) → human VH/VL humanization. NON_TRADITIONAL_SPECIES_HUMANIZATION_GUIDE V1.0 prescribes CDR-graft into IGHV3-23 + IGKV1-39/IGLV3-1 with 5–8 retained Vernier residues + surface reshaping + mandatory structure QA."
+  },
+
+  "species_id": "gallus_gallus_to_human",
+  "common_name": "Chicken → human",
+  "format": "VH_VL",
+  "numbering_scheme": "kabat",
+  "data_tier": "Tier-Mid",
+
+  "hallmarks_kabat": {
+    "positions": []
+  },
+
+  "cys_topology": {
+    "canonical_pairs": [[22, 92]],
+    "extra_protected_cys": []
+  },
+
+  "cdr_boundary_rules": {
+    "scheme": "union_kabat_chothia",
+    "regions": {
+      "VH": {"H1": [26, 35], "H2": [50, 65], "H3": [95, 102]},
+      "VL": {"L1": [24, 34], "L2": [50, 56], "L3": [89, 97]}
+    },
+    "source_standard": "docs/NON_TRADITIONAL_SPECIES_HUMANIZATION_GUIDE_V1.0.md"
+  },
+
+  "reference_source": {
+    "germline_freq_path": "data/germlines/gallus_gallus_ig_aa/IGHV_aa.json",
+    "germline_freq_release_id": "gallus_gallus_IGHV_v1_2026-05-01",
+    "auxiliary_freq_paths": {
+      "VL_lambda": "data/germlines/gallus_gallus_ig_aa/IGLV_aa.json"
+    },
+    "clinical_acceptors": [
+      {"acceptor_id": "IGHV3-23",   "scaffold_kind": "VH", "source_drug_or_id": "NON_TRADITIONAL_SPECIES_HUMANIZATION_GUIDE V1.0 §chicken", "tier": "Tier1"},
+      {"acceptor_id": "IGKV1-39",   "scaffold_kind": "VL", "source_drug_or_id": "NON_TRADITIONAL_SPECIES_HUMANIZATION_GUIDE V1.0 §chicken", "tier": "Tier1"},
+      {"acceptor_id": "IGLV3-1",    "scaffold_kind": "VL", "source_drug_or_id": "NON_TRADITIONAL_SPECIES_HUMANIZATION_GUIDE V1.0 §chicken", "tier": "Tier1"}
+    ]
+  },
+
+  "track_priority": {
+    "order": ["AG-1.0", "DFR-1.0", "SR-1.0"],
+    "forbidden_tracks": []
+  },
+
+  "engine_tunables": {
+    "surface_sasa_threshold_A2": 20.0,
+    "deep_buried_sasa_cutoff_A2": 5.0,
+    "cdr_proximity_threshold_A": 5.0,
+    "vernier_retain_min": 5,
+    "vernier_retain_max": 8
+  },
+
+  "qa_pointer": {
+    "governing_standard_path": "docs/NON_TRADITIONAL_SPECIES_HUMANIZATION_GUIDE_V1.0.md",
+    "secondary_standard_paths": ["docs/VH_VL_HUMANIZATION_STANDARD_V4.4.md"],
+    "mandatory_qa_modules": [
+      "core/evaluation/evaluator.py | AbEvaluator",
+      "core/cmc/regular_ab_developability.py"
+    ]
+  }
+}

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<title>VHH Humanization — Full Comparison (Structure, CMC, AbNatiV) | InSynBio</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f8fafc;color:#1e293b;font-size:14px;line-height:1.6}
+.wrap{max-width:1020px;margin:0 auto;padding:24px 16px}
+.hdr{background:linear-gradient(135deg,#1e3a5f,#2563eb);color:#fff;border-radius:10px 10px 0 0;padding:26px 30px 18px}
+.hdr h1{font-size:21px;font-weight:700}
+.hdr .sub{font-size:12.5px;opacity:.85;margin-top:4px}
+.meta-bar{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.mp{background:rgba(255,255,255,.15);border-radius:20px;padding:3px 11px;font-size:11.5px}
+.prov{background:#f0f4ff;border:1px solid #c7d7f7;border-radius:0 0 8px 8px;padding:9px 18px;font-size:12px;color:#334155;display:flex;flex-wrap:wrap;gap:14px;margin-bottom:16px}
+.sec{background:#fff;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:14px;overflow:hidden}
+.sh{background:#f1f5f9;border-bottom:1px solid #e2e8f0;padding:9px 18px;font-weight:700;font-size:13px;color:#1e3a5f}
+.sb{padding:16px 18px}
+.badge{display:inline-block;border-radius:12px;padding:2px 9px;font-size:11.5px;font-weight:700}
+.pass{background:#dcfce7;color:#166534}.warn{background:#fef3c7;color:#92400e}
+.fail{background:#fee2e2;color:#991b1b}.info{background:#e0f2fe;color:#075985}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{background:#f1f5f9;padding:7px 9px;text-align:left;border-bottom:2px solid #e2e8f0;font-weight:700;color:#334155}
+td{padding:6px 9px;border-bottom:1px solid #f1f5f9}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#f8fafc}
+.cmp3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+.mc{border:1px solid #e2e8f0;border-radius:6px;padding:10px 12px;background:#fafafa}
+.ml{font-size:11px;color:#64748b;margin-bottom:3px}
+.mv{font-size:15px;font-weight:700}
+.ms{font-size:11px;color:#94a3b8;margin-top:2px}
+.seq{font-family:Consolas,monospace;font-size:12.5px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:5px;padding:10px 12px;word-break:break-all;line-height:1.9;margin-top:4px}
+.leg{font-size:11px;color:#64748b;margin-top:4px}
+.aw{background:#fef3c7;border-left:4px solid #f59e0b;color:#78350f;border-radius:5px;padding:9px 12px;margin:6px 0;font-size:12.5px}
+.ap{background:#dcfce7;border-left:4px solid #22c55e;color:#14532d;border-radius:5px;padding:9px 12px;margin:6px 0;font-size:12.5px}
+.ai{background:#e0f2fe;border-left:4px solid #0ea5e9;color:#0c4a6e;border-radius:5px;padding:9px 12px;margin:6px 0;font-size:12.5px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hl-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:10px 14px;margin-top:8px;font-size:12.5px}
+hr{border:none;border-top:1px solid #e2e8f0;margin:10px 0}
+.delta-pos{color:#166534;font-weight:700}
+.delta-neg{color:#dc2626;font-weight:700}
+.delta-neu{color:#64748b}
+@media print{body{background:#fff}.sec{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hdr">
+  <h1>VHH Humanization — Full Comparison Report</h1>
+  <div class="sub">Structure (RMSD, pLDDT) · CMC Developability · AbNatiV2 Naturalness · HPR Index</div>
+  <div class="meta-bar">
+    <span class="mp">Protocol: VHH-Humanization V4.0</span>
+    <span class="mp">AbEngineCore v5.5.1</span>
+    <span class="mp">Report Format: V4.1</span>
+    <span class="mp">Generated: 2026-05-11 22:48</span>
+  </div>
+</div>
+<div class="prov">
+  <span>Donor: Camelid VHH (120 aa)</span>
+  <span>Candidate: Humanized VHH (F37Y variant)</span>
+  <span>Analysis: Comparative Audit (Structure + CMC + AbNatiV)</span>
+</div>
+
+<!-- SUMMARY SCORECARD -->
+<div class="sec">
+  <div class="sh">§0 &nbsp;Summary Scorecard — Donor vs Candidate</div>
+  <div class="sb">
+    <table>
+      <tr>
+        <th>Dimension</th>
+        <th style="text-align:center">Donor VHH</th>
+        <th style="text-align:center">Candidate (F37Y)</th>
+        <th>Interpretation</th>
+      </tr>
+      <tr>
+        <td>Overall status</td>
+        <td colspan="2" style="text-align:center"><span class="badge warn">WARN</span></td>
+        <td>Provisional outcome; review structure</td>
+      </tr>
+      <tr>
+        <td>AbNatiV2 Delta (VHH2-VH2)</td>
+        <td style="text-align:center">0.0998 <span class="badge pass">EXCELLENT</span></td>
+        <td style="text-align:center"><strong>0.1126</strong> <span class="badge pass">EXCELLENT</span></td>
+        <td><span class="delta-pos">+0.0128 (Stronger VHH character)</span></td>
+      </tr>
+      <tr>
+        <td>Instability Index</td>
+        <td style="text-align:center">40.4 <span class="badge warn">WARN</span></td>
+        <td style="text-align:center"><strong>39.0</strong> <span class="badge pass">PASS</span></td>
+        <td><span class="delta-pos">−1.4 (Improved stability)</span></td>
+      </tr>
+      <tr>
+        <td>Fv pI (sequence)</td>
+        <td style="text-align:center">8.64</td>
+        <td style="text-align:center">8.62</td>
+        <td><span class="delta-neu">Minimal shift</span></td>
+      </tr>
+      <tr>
+        <td>HPR Index (Immunogenicity)</td>
+        <td style="text-align:center">0.8214</td>
+        <td style="text-align:center">0.7679</td>
+        <td><span class="delta-neg">−0.0535 (Minor loss in 9-mer humanness)</span></td>
+      </tr>
+      <tr>
+        <td>Max CDR RMSD (Å)</td>
+        <td style="text-align:center">—</td>
+        <td style="text-align:center"><strong>2.66</strong> <span class="badge warn">WARN</span></td>
+        <td><span class="delta-neg">Significant deviation in H3</span></td>
+      </tr>
+      <tr>
+        <td>pLDDT Confidence</td>
+        <td style="text-align:center">89.6</td>
+        <td style="text-align:center">88.0</td>
+        <td><span class="delta-neu">High confidence maintained</span></td>
+      </tr>
+    </table>
+    <div class="aw" style="margin-top:10px;font-weight:700">
+      Candidate shows improved CMC stability and excellent single-domain naturalness (AbNatiV2), but exhibits significant structural deviation in CDR-H3 (RMSD 2.66 Å) likely due to the F37Y hallmark mutation.
+    </div>
+  </div>
+</div>
+
+<!-- §1 ABNATIV NATURALNESS -->
+<div class="sec">
+  <div class="sh">§1 &nbsp;AbNatiV2 Naturalness — VH2 / VHH2 Dual Score</div>
+  <div class="sb">
+    <p class="note" style="margin-bottom:12px">
+      AbNatiV2 evaluates the "naturalness" of the sequence against two independent models: <strong>VH2</strong> (regular paired VH) and <strong>VHH2</strong> (single-domain VHH). 
+      The <strong>Delta (&Delta;)</strong> = VHH2 &minus; VH2 confirms the single-domain character.
+    </p>
+    <table>
+      <tr>
+        <th>Score Component</th>
+        <th style="text-align:center">Donor VHH</th>
+        <th style="text-align:center">Candidate (F37Y)</th>
+        <th>Interpretation</th>
+      </tr>
+      <tr>
+        <td><strong>VHH2 Score</strong> (as VHH)</td>
+        <td style="text-align:center">0.9309</td>
+        <td style="text-align:center">0.9265</td>
+        <td>Excellent VHH-like character in both</td>
+      </tr>
+      <tr>
+        <td><strong>VH2 Score</strong> (as regular VH)</td>
+        <td style="text-align:center">0.8311</td>
+        <td style="text-align:center">0.8139</td>
+        <td>Lower VH2 is better for autonomous VHH</td>
+      </tr>
+      <tr>
+        <td><strong>Delta (&Delta;)</strong></td>
+        <td style="text-align:center">0.0998</td>
+        <td style="text-align:center"><strong>0.1126</strong></td>
+        <td><span class="badge pass">EXCELLENT</span> (VHH-biased)</td>
+      </tr>
+    </table>
+    <div class="ai" style="margin-top:10px">
+      <strong>Verdict:</strong> Both sequences show strong single-domain potential. The candidate's slightly higher Delta suggests the humanization and F37Y mutation have further reinforced the VHH-specific sequence features.
+    </div>
+  </div>
+</div>
+
+<!-- §2 CMC DEVELOPABILITY -->
+<div class="sec">
+  <div class="sh">§2 &nbsp;CMC Developability — Developability Comparison</div>
+  <div class="sb">
+    <div class="cmp3">
+      <div class="mc">
+        <div class="ml">pI (sequence)</div>
+        <div class="mv">Donor: 8.64</div>
+        <div class="ms">Candidate: 8.62</div>
+        <div class="ms"><span class="badge pass">PASS</span></div>
+      </div>
+      <div class="mc">
+        <div class="ml">Instability Index</div>
+        <div class="mv">Donor: 40.4</div>
+        <div class="ms">Candidate: 39.0</div>
+        <div class="ms"><span class="badge pass">PASS</span> (Improved)</div>
+      </div>
+      <div class="mc">
+        <div class="ml">GRAVY</div>
+        <div class="mv">Donor: -0.339</div>
+        <div class="ms">Candidate: -0.373</div>
+        <div class="ms"><span class="badge pass">PASS</span> (More hydrophilic)</div>
+      </div>
+    </div>
+    <br>
+    <strong>Liability Scan Summary</strong>
+    <table style="margin-top:6px">
+      <tr><th>Liability</th><th>Donor VHH</th><th>Candidate (F37Y)</th><th>Status</th></tr>
+      <tr>
+        <td>Oxidation (M/W/C)</td>
+        <td>5 sites (33, 35, 82, 105, 109)</td>
+        <td>5 sites (inherited)</td>
+        <td><span class="badge warn">MONITOR</span></td>
+      </tr>
+      <tr>
+        <td>Deamidation (NG/NS)</td>
+        <td>1 site (pos 83)</td>
+        <td>1 site (inherited)</td>
+        <td><span class="badge pass">LOW RISK</span></td>
+      </tr>
+      <tr>
+        <td>Isomerization (DG/DS/DT)</td>
+        <td>1 site (pos 61)</td>
+        <td>1 site (inherited)</td>
+        <td><span class="badge pass">LOW RISK</span></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- §3 STRUCTURAL QUALITY -->
+<div class="sec">
+  <div class="sh">§3 &nbsp;Structural Quality — RMSD &amp; Confidence</div>
+  <div class="sb">
+    <div class="hl-box">
+      <strong>Basis:</strong> Comparative structural modeling using NanoBodyBuilder2. RMSD measures the C&alpha; backbone deviation of the candidate from the donor structure.
+    </div>
+    <table style="margin-top:8px">
+      <tr><th>Parameter</th><th>Donor VHH</th><th>Candidate (F37Y)</th><th>Assessment</th></tr>
+      <tr><td>pLDDT Confidence</td><td>89.6</td><td>88.0</td><td><span class="badge pass">HIGH</span></td></tr>
+      <tr><td>CDR-H1 RMSD (Å)</td><td>—</td><td>1.21</td><td>Significant deviation</td></tr>
+      <tr><td>CDR-H2 RMSD (Å)</td><td>—</td><td>0.12</td><td><span class="badge pass">Minimal</span></td></tr>
+      <tr><td>CDR-H3 RMSD (Å)</td><td>—</td><td><strong>2.66</strong></td><td><span class="badge fail">Extreme deviation</span></td></tr>
+    </table>
+    <div class="aw" style="margin-top:10px">
+      <strong>Structural Risk:</strong> The 2.66 Å RMSD in CDR-H3 is highly unusual for a VHH humanization. This is likely caused by the <strong>F37Y</strong> mutation in FR2, which alters the packing environment of the H3 base.
+    </div>
+  </div>
+</div>
+
+<!-- §4 IMMUNOGENICITY -->
+<div class="sec">
+  <div class="sh">§4 &nbsp;Immunogenicity — HPR Index</div>
+  <div class="sb">
+    <p class="note">HPR Index evaluates compatibility of variable-region 9-mer peptides with a human antibody repertoire reference.</p>
+    <table>
+      <tr><th>Metric</th><th>Donor VHH</th><th>Candidate (F37Y)</th><th>Delta</th></tr>
+      <tr><td>HPR Index (VH)</td><td>0.8214</td><td>0.7679</td><td>-0.0535</td></tr>
+      <tr><td>Found 9-mers</td><td>92 / 112</td><td>86 / 112</td><td>-6</td></tr>
+    </table>
+    <p class="note" style="margin-top:8px">Candidate shows a slight reduction in HPR index, indicating that the F37Y variant introduces a few 9-mers not commonly found in the human repertoire reference.</p>
+  </div>
+</div>
+
+<!-- §5 FINAL SEQUENCES -->
+<div class="sec">
+  <div class="sh">§5 &nbsp;Final Sequences — Side-by-Side</div>
+  <div class="sb">
+    <div class="seq-block">
+      <div class="seq-label">Donor VHH <span class="seq-len">120 aa</span></div>
+      <div class="seq-body">QVQLQESGGG SVQAGGSLRL SCAASGRTFS SYAMGW<span style="color:#c0392b;font-weight:700">F</span>RQA PGKEREGVAA ISSSGGSTYY ADSVKGRFTI SRDNAKNTVY LQMNSLKPED TAVYYCAAAG LGSSTWLDYW GQGTQVTVSS</div>
+    </div>
+    <div class="seq-block">
+      <div class="seq-label">Candidate VHH (F37Y) <span class="seq-len">120 aa</span></div>
+      <div class="seq-body">QVQLQESGGG SVQAGGSLRL SCAASGRTFS SYAMGW<span style="color:#2563eb;font-weight:700">Y</span>RQA PGKEREGVAA ISSSGGSTYY ADSVKGRFTI SRDNAKNTVY LQMNSLKPED TAVYYCAAAG LGSSTWLDYW GQGTQVTVSS</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div style="text-align:center;color:#94a3b8;font-size:11px;padding:14px 0 6px;border-top:1px solid #e2e8f0;margin-top:8px">
+  InSynBio AbEngineCore · Internal Engineering Workspace · 2026-05-11 ·
+  VHH-Humanization V4.0 · AbEngineCore v5.5.1 · Report Format V4.1<br>
+  <span style="color:#ef4444">NOT FOR DISTRIBUTION — CONFIDENTIAL</span>
+</div>
+</div>
+<!-- abenginecore-report-qc: WARN -->
+<div style='position:fixed;bottom:10px;right:12px;z-index:9999;background:#fff;border:2px solid #d97706;border-radius:8px;padding:4px 10px;font-size:.72rem;font-weight:700;color:#d97706;box-shadow:0 2px 8px rgba(0,0,0,.12);cursor:default' title='AbEngineCore Report QC — WARN&#10;FAIL: 0  WARN: 1'>QC: WARN</div>
+<!-- abenginecore-qc-details -->
+<div style='display:none' id='_abenginecore_qc_details'><div style='font-size:.68rem;color:#6b7280;margin-top:2px'>[WARN] J/summary_rows_missing: Executive summary (§0) is missing required status rows: overall</div></div>
+
+<!-- abenginecore-report-qc: PASS -->
+<div style='position:fixed;bottom:10px;right:12px;z-index:9999;background:#fff;border:2px solid #059669;border-radius:8px;padding:4px 10px;font-size:.72rem;font-weight:700;color:#059669;box-shadow:0 2px 8px rgba(0,0,0,.12);cursor:default' title='AbEngineCore Report QC — PASS&#10;FAIL: 0  WARN: 0'>QC: PASS</div>
+</body></html>

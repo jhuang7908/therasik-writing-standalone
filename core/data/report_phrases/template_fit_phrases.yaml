@@ -1,0 +1,51 @@
+version: 0.1.0
+updated_at: "2026-01-10"
+
+# “”/，
+class_narratives:
+  CLASS_I:
+    cn: |
+      （Low-tuning scaffold）。，CDR，/。，“（minimal back-mutation）”：，，Vernier。
+    en: |
+      The selected scaffold falls into a high-compatibility (low-tuning) class. Such scaffolds are repeatedly validated in therapeutic development, generally tolerant to diverse CDR combinations, and less dependent on extreme epitope geometry constraints. Based on the current sequence-to-scaffold similarity, we recommend a minimal back-mutation strategy: preserve human-framework consistency and apply conservative Vernier-related back-mutations only if functional drift or geometry risk signals emerge.
+
+  CLASS_II:
+    cn: |
+      （Moderate-tuning scaffold）。，CDR。“（partitioned refinement）”：FR2Vernier，；，FR1/FR3，。
+    en: |
+      The selected scaffold is a moderate-tuning class. These scaffolds are frequently used for conformational or angle-of-approach–sensitive epitopes, where FR–CDR coupling is stronger. We recommend a partitioned refinement strategy: lock key conformational positions in FR2/Vernier regions to avoid unnecessary substitutions, and apply limited optimizations to non-critical positions in FR1/FR3 to balance developability and functional fidelity.
+
+  CLASS_III:
+    cn: |
+      （High-tuning / structure-coupled scaffold），paratope。，“”。“ + ”：、/；VernierCDR，。
+    en: |
+      The scaffold is a structure-coupled (high-tuning) class, where framework residues may contribute directly to paratope geometry. Wholesale framework-swap humanization is not recommended. We propose a localized humanization plus point back-mutation path: apply conservative substitutions only on surface, non-conformational positions with clear immunogenicity/stability benefits, and treat Vernier/CDR-supporting positions as locked unless supported by structural models or experimental evidence.
+
+# “//”
+context_openers:
+  cn:
+    SOLUBLE_PROTEIN: "。"
+    MEMBRANE_ECD: "（ECD）。"
+    MULTI_PASS_MEMBRANE: "（GPCR//）。"
+    ENZYME_ACTIVE_SITE: "/。"
+    VIRAL_FUSION_DYNAMIC: "。"
+    UNKNOWN: "。"
+  en:
+    SOLUBLE_PROTEIN: "The target is a soluble protein antigen."
+    MEMBRANE_ECD: "The target is a membrane protein extracellular domain (ECD)."
+    MULTI_PASS_MEMBRANE: "The target is a multi-pass membrane protein (e.g., GPCR/ion channel/transporter)."
+    ENZYME_ACTIVE_SITE: "The epitope is consistent with an enzyme active site or a deep-pocket geometry."
+    VIRAL_FUSION_DYNAMIC: "The antigen exhibits notable conformational dynamics (e.g., viral fusion proteins)."
+    UNKNOWN: "The antigen class is not fully specified."
+
+# delta identity，“”
+tail_risk_appendix:
+  cn: |
+    ，（p90–p99），–CDR。，/。
+  en: |
+    Notably, the scaffold deviation falls into the tail region of the distribution (approximately p90–p99), which typically indicates stronger FR–CDR coupling and elevated developability risk. We recommend a staged iteration strategy and early validation of key conformational positions for binding specificity/affinity.
+
+# “/”
+minimal_edit_summary:
+  cn: "/，CMC。"
+  en: "A minimal or no-back-mutation humanization path is plausible; prioritize CMC and immunogenicity risk control."

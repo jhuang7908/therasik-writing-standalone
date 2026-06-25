@@ -1,0 +1,184 @@
+{
+  "schema_version": "1.0",
+  "schema_name": "data_platform_schema_v1",
+  "description": "Canonical schema for public online drug R&D records and linked internal extensions.",
+  "entity_types": [
+    "antibody_program",
+    "adc_program",
+    "car_program",
+    "car_component",
+    "vaccine_record",
+    "fc_variant",
+    "immunogenicity_record",
+    "clinical_program"
+  ],
+  "visibility_levels": [
+    "public_ok",
+    "protected_sequence",
+    "internal_only",
+    "partner_confidential"
+  ],
+  "source_types": [
+    "label",
+    "clinical_paper",
+    "trial_registry",
+    "patent",
+    "company_presentation",
+    "database_import",
+    "curated_inference",
+    "computed"
+  ],
+  "required_shared_fields": {
+    "entity_id": "Stable ID across public and internal systems.",
+    "entity_type": "One of entity_types.",
+    "canonical_name": "Primary public name.",
+    "aliases": "Alternative names, brand names, and internal aliases.",
+    "modality": "High-level modality classification.",
+    "development_stage": "Discovery, preclinical, phase1, phase2, phase3, approved, withdrawn, etc.",
+    "target": "Primary target or target family.",
+    "indications": "List of disease contexts or approved labels.",
+    "company_or_sponsor": "Owning or sponsoring organization.",
+    "visibility": "One of visibility_levels.",
+    "review_status": "draft, reviewed, verified, deprecated."
+  },
+  "linked_blocks": {
+    "evidence": {
+      "required": [
+        "evidence_tier",
+        "primary_source_type",
+        "source_ids",
+        "last_reviewed"
+      ],
+      "optional": [
+        "reviewer",
+        "source_quote",
+        "provenance_note",
+        "version_tag"
+      ]
+    },
+    "clinical_outcomes": {
+      "optional": [
+        "trial_phase",
+        "trial_ids",
+        "trial_context",
+        "sample_size",
+        "efficacy",
+        "safety",
+        "pk_pd",
+        "immunogenicity"
+      ]
+    },
+    "design_features": {
+      "optional": [
+        "format",
+        "species_or_humanization",
+        "isotype",
+        "fc_engineering",
+        "germline",
+        "epitope_note",
+        "sequence_status",
+        "platform",
+        "architecture"
+      ]
+    },
+    "cmc_developability": {
+      "optional": [
+        "expression_titer",
+        "aggregation_risk",
+        "viscosity_risk",
+        "stability_tm",
+        "pi",
+        "hydrophobicity_patch",
+        "ptm_liabilities",
+        "manufacturing_note",
+        "formulation_note"
+      ]
+    },
+    "visibility_control": {
+      "optional": [
+        "sequence_policy",
+        "field_level_redactions",
+        "partner_scope"
+      ]
+    }
+  },
+  "modality_extensions": {
+    "antibody_program": {
+      "preferred_fields": [
+        "heavy_chain_status",
+        "light_chain_status",
+        "germline_family",
+        "ada_incidence",
+        "nab_status",
+        "route",
+        "dose_schedule"
+      ]
+    },
+    "adc_program": {
+      "preferred_fields": [
+        "binder_name",
+        "binder_format",
+        "linker_name",
+        "linker_type",
+        "payload_name",
+        "payload_class",
+        "dar_mean",
+        "conjugation_technology",
+        "bystander_effect_note",
+        "resistance_note",
+        "failure_analysis"
+      ]
+    },
+    "car_program": {
+      "preferred_fields": [
+        "binder_source",
+        "hinge",
+        "transmembrane",
+        "costimulatory_domain",
+        "signaling_domain",
+        "safety_switch",
+        "cell_type",
+        "manufacturing_model"
+      ]
+    },
+    "car_component": {
+      "preferred_fields": [
+        "category",
+        "subcategory",
+        "sequence_status",
+        "regulatory_tier",
+        "approval_products",
+        "clinical_trials",
+        "gene_annotation"
+      ]
+    },
+    "vaccine_record": {
+      "preferred_fields": [
+        "antigen_class",
+        "epitope_class",
+        "hla_relevance",
+        "platform",
+        "adjuvant",
+        "delivery_system",
+        "benchmark_assays"
+      ]
+    },
+    "fc_variant": {
+      "preferred_fields": [
+        "mutation",
+        "mechanism_class",
+        "fcgr_effect",
+        "fcrn_effect",
+        "half_life_note",
+        "clinical_examples"
+      ]
+    }
+  },
+  "data_lineage_rules": {
+    "public_records_must_include_evidence": true,
+    "computed_values_must_be_labeled": true,
+    "clinical_observations_must_not_be_implied_from_computed_scores": true,
+    "same_entity_may_have_multiple_source_records": true,
+    "all_records_should_link_to_canonical_entity_id": true
+  }
+}

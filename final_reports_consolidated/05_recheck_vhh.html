@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<meta name="abengine-recheck-report-build" content="recheck-html-v6-rich-content-20260510">
+<title>InSynBio AbEngineCore | VHH Recheck Report</title>
+<style>
+:root {
+  --accent:#1b4fad; --accent2:#2d6cdf; --bg:#f0f4fa; --card:#fff;
+  --border:#cdd5e4; --soft:#e8eef8;
+  --pass:#1a7a3c; --fail:#b91c1c; --warn:#92610a; --info:#1b4fad;
+  --donor:#c0392b; --human:#2d6cdf; --custom:#6d28d9;
+  --muted:#5a6a80;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body {
+  font-family:'Segoe UI',Arial,sans-serif;
+  background:var(--bg); color:#1a2030; font-size:13px; line-height:1.6;
+}
+.page { max-width:980px; margin:0 auto; padding:28px 24px 48px; }
+
+.report-header {
+  background:var(--accent); color:#fff;
+  padding:20px 28px; border-radius:8px;
+  margin-bottom:18px;
+  display:flex; justify-content:space-between; align-items:flex-end;
+}
+.report-header h1 { font-size:1.35rem; font-weight:700; margin-bottom:4px; }
+.report-header .sub { font-size:.84rem; font-weight:600; opacity:.95; margin-top:2px; line-height:1.45; }
+.report-header .ts { font-size:.78rem; font-weight:600; opacity:.92; text-align:right }
+.report-header .header-meta { margin-top:10px; font-size:.76rem; font-weight:600; opacity:.9; line-height:1.45; }
+.report-header .header-meta div { margin-top:2px; }
+
+.toc-bar { background:#e8eef8; border:1px solid var(--border); border-radius:6px; padding:8px 14px; font-size:.8rem; margin-bottom:20px; color:#2d4a80 }
+.toc-bar a { color:#1b4fad; text-decoration:none; margin:0 2px }
+.toc-bar a:hover { text-decoration:underline }
+
+.section { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:18px 20px; margin-bottom:16px }
+h3 { color:var(--accent); font-size:.98rem; margin:0 0 12px; padding-bottom:6px; border-bottom:2px solid var(--border) }
+h4.chain-title { color:#2d6cdf; font-size:.88rem; margin:14px 0 6px }
+.note { color:#5a6a80; font-size:.8rem; margin-bottom:8px }
+
+table.params { width:100%; border-collapse:collapse; font-size:.83rem }
+table.params th { background:#e8eef8; color:var(--accent); font-weight:600; padding:7px 12px; text-align:left; border-bottom:2px solid var(--border) }
+table.params td { padding:6px 12px; border-bottom:1px solid #eef; vertical-align:top }
+table.params td.lbl { width:38%; color:#4a5a72; font-size:.82rem }
+table.params tr:last-child td { border-bottom:none }
+table.params tr.row-best td { background:#f0fff4; font-weight:600 }
+
+.badge { display:inline-block; padding:1px 8px; border-radius:10px; font-size:.72rem; font-weight:700; vertical-align:middle; margin-left:4px }
+.badge-ok { background:#d1fae5; color:var(--pass); border:1px solid #6ee7b7 }
+.badge-fail { background:#fee2e2; color:var(--fail); border:1px solid #fca5a5 }
+.badge-warn { background:#fef3c7; color:var(--warn); border:1px solid #fcd34d }
+
+pre { margin:8px 0 0; background:#f8fafd; border:1px solid var(--border); border-radius:6px; padding:12px; overflow:auto; font-size:12px; line-height:1.5; }
+
+.seq-block { background:#f8fafd; border:1px solid var(--border); border-radius:6px; padding:12px 14px; margin-bottom:10px }
+.seq-label { font-size:.82rem; font-weight:700; color:var(--accent2); margin-bottom:6px }
+.seq-len { font-weight:400; color:#8a9ab0; font-size:.75rem; margin-left:6px }
+.seq-body { font-family:'Consolas','Courier New',monospace; font-size:.78rem; word-break:break-all; line-height:2; color:#1a2030 }
+.chunk { margin-right:8px; letter-spacing:.04em }
+.chunk:nth-child(10n) { color:#1b4fad }
+
+footer { text-align:center; color:#8899aa; font-size:.72rem; margin-top:28px; padding-top:12px; border-top:1px solid var(--border) }
+footer a { color:#1b4fad; }
+
+@page { margin:18mm 14mm 16mm 14mm }
+@media print {
+  body { background:#fff; font-size:10.5px; color:#000 }
+  .page { max-width:100%; padding:0; box-shadow:none }
+  .toc-bar { display:none }
+  .report-header {
+    background:#1b4fad !important;
+    color:#fff !important;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .report-header h1,
+  .report-header .sub,
+  .report-header .ts,
+  .report-header .header-meta { color:#fff !important }
+  .section {
+    break-inside:auto;
+    page-break-inside:auto;
+    border:1px solid #ccc;
+    margin-bottom:8px;
+    overflow:visible;
+    box-shadow:none;
+  }
+  h3 { break-after:avoid; page-break-after:avoid; font-size:12px }
+  h4 { break-after:avoid; page-break-after:avoid; font-size:11px }
+  table.params { break-inside:auto; page-break-inside:auto; border-collapse:collapse; width:100% }
+  table.params tr { break-inside:avoid; page-break-inside:avoid }
+  table.params th, table.params td { font-size:9.5px; padding:3px 5px }
+  pre { break-inside:auto; page-break-inside:auto; font-size:9px }
+  .badge-ok, .badge-fail, .badge-warn, .badge {
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+    border:1px solid #ccc !important;
+  }
+  footer { margin-top:8px; font-size:8px }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="report-header">
+    <div>
+      <h1>InSynBio AbEngineCore</h1>
+      <div class="sub">VHH Customer Recheck Report | Recheck-Protocol v1.0</div>
+      <div class="sub" style="margin-top:4px">Project: <b>recheck-vhh-ff565511-regen</b> &nbsp;·&nbsp; Overall: <span class="badge badge-warn">WARN</span></div>
+              <div class="header-meta">
+        <div><strong>Report format (suite)</strong>: 4.1.1</div>
+        <div><strong>Service</strong>: VHH Customer Recheck &nbsp;·&nbsp; <strong>Service report</strong>: v6.2 &nbsp;·&nbsp; <strong>Content variant</strong>: v1.0-13section</div>
+        <div><strong>Protocol</strong>: Recheck-Protocol v1.0 &nbsp;|&nbsp; <strong>Analysis</strong>: recheck_v1 &nbsp;|&nbsp; <strong>Build</strong>: 20260503-002 &nbsp;|&nbsp; <strong>Environment</strong>: DEV</div>
+        <div>Recheck build: recheck-html-v6-rich-content-20260510</div>
+        <div>API release: 1.0.0</div>
+        <div>Structure QC: requested</div>
+        <div>Delivery ZIP URL: /files/recheck-vhh-ce9d104a/recheck-vhh-ce9d104a_recheck_delivery.zip</div>
+        </div>
+<div class="cohort-provenance" style="margin:10px 0;padding:10px 14px;border:1px solid #cbd5e1;border-radius:6px;background:#f8fafc;font-size:.78rem;color:#1f2937"><div style="font-weight:600;color:#1e3a8a;margin-bottom:6px">Reference cohort provenance</div><table style="width:100%;border-collapse:collapse;color:#1f2937"><tr style="color:#475569;font-size:.72rem;text-align:left"><th style="padding:2px 4px;color:#1e3a8a">Panel type</th><th style="padding:2px 4px;color:#1e3a8a">Release ID</th><th style="padding:2px 4px;color:#1e3a8a">Purpose in this report</th></tr><tbody style="color:#1f2937"><tr><td><strong>Clinical VHH benchmark panel</strong></td><td>R2026.05</td><td>Clinical/approved VHH cohort</td></tr><tr><td><strong>Structural VHH benchmark panel</strong></td><td>R2026.05</td><td>Extended VHH structural context</td></tr></tbody></table><div style="margin-top:6px;color:#64748b;font-size:.72rem">Reference range derived from internal source-matched benchmark panel (frozen release: R2026.05). Detailed cohort composition is confidential.</div></div>
+    </div>
+    <div class="ts">2026-05-12 01:55 UTC<br><span style="font-size:.7rem;opacity:.6">CONFIDENTIAL</span></div>
+  </div>
+
+  <div class="toc-bar" id="toc">
+    <b>Contents</b> &nbsp;|&nbsp;
+    <a href="#s0">§0</a> · <a href="#s1">§1</a> · <a href="#s2">§2</a> · <a href="#s3">§3</a> ·
+    <a href="#s4">§4</a> · <a href="#s5">§5</a> · <a href="#s6">§6</a> · <a href="#s7">§7</a> ·
+    <a href="#s8">§8</a> · <a href="#s9">§9</a> · <a href="#s10">§10</a> · <a href="#s11">§11</a> ·
+    <a href="#s12">§12</a> · <a href="#s13">§13</a>
+  </div>
+
+  <div class="section" id="s0">
+    <h3>§0 — Overview</h3>
+    <p class="note">Donor versus candidate assessment for customer QA. Section index aligns with standard reports (§0–§13).</p>
+    <table class="params">
+      <tr><td class="lbl">Overall status</td><td><span class="badge badge-warn">WARN</span></td></tr>
+      <tr><td class="lbl">Input QC</td><td><span class="badge badge-ok">PASS</span></td></tr>
+      <tr><td class="lbl">Structure QC</td><td><span class="badge badge-warn">WARN</span> </td></tr>
+      <tr><td class="lbl">mini-CMC</td><td><span class="badge badge-ok">PASS</span></td></tr>
+      <tr><td class="lbl">Naturalness</td><td><span class="badge badge-warn">WARN</span></td></tr>
+      <tr><td class="lbl">Immunogenicity (HPR)</td><td><span class="badge badge-ok">PASS</span></td></tr>
+      <tr><td class="lbl">Recommendation</td><td>Provisional outcome with cautions; review structural and developability notes before portfolio progression.</td></tr>
+    </table>
+  </div>
+
+  <div class="section" id="s1"><h3>§1 — Input QC</h3><p class="note">Length, alphabet, IMGT-style numbering, and conserved-framework pattern checks.</p><table class="params"><tr><th>Chain</th><th>Length</th><th>Length gate</th><th>Alphabet OK</th><th>Notes</th></tr><tr><td>donor_vhh</td><td>120</td><td>PASS</td><td>Yes</td><td>—</td></tr><tr><td>candidate_vhh</td><td>120</td><td>PASS</td><td>Yes</td><td>—</td></tr></table><h4 class="chain-title" style="margin-top:12px">Numbering summary</h4><table class="params"><tr><th>Chain</th><th>Numbering</th><th>Type</th><th>Class OK</th><th>Conserved pattern</th><th>Notes</th></tr><tr><td>candidate_vhh</td><td>Yes</td><td>H</td><td>Yes</td><td>Yes</td><td>—</td></tr><tr><td>donor_vhh</td><td>Yes</td><td>H</td><td>Yes</td><td>Yes</td><td>—</td></tr></table></div>
+  <div class="section" id="s2"><h3>§2 — CDR Identification</h3><p class="note">Conserved anchor residues confirmed; see §1 for details.</p></div>
+  <div class="section" id="s3"><h3>§3 — Donor vs Candidate Comparison</h3><p class="note">Global sequence identity (full VHH variable region) between donor and candidate. CDR-only mutations indicate conservative grafting; FR mutations affect humanization profile.</p><table class="params"><tr><th>Domain</th><th>Donor length</th><th>Candidate length</th><th>Global identity</th></tr><tr><td><b>VHH</b></td><td>120 aa</td><td>120 aa</td><td><b>99.2%</b></td></tr></table><div style="margin-top:12px"><strong style="font-size:.82rem;color:var(--accent)">Position-level mutations (1 substitutions)</strong><table class="params" style="margin-top:6px"><tr><th>Position</th><th>Donor</th><th>Candidate</th></tr><tr><td>37</td><td style='font-family:monospace'>F</td><td style='font-family:monospace;color:var(--info)'>Y</td></tr></table></div></div>
+  <div class="section" id="s4"><h3>§4 — Vernier zone / FR2 hallmark</h3>
+    <p class='note'>VHH format: FR2 hallmark tetrad (Kabat 37/44/45/47) replaces VH-VL Vernier zone as the primary framework quality gate. Tetrad status is reported in §1 numbering summary. Conventional Vernier positions are not applicable to single-domain format.</p>
+  </div>
+  <div class="section" id="s5"><h3>§5 — Hallmark check</h3>
+    <p class='note'>VHH framework hallmark context: FR2 hydrophilic substitutions at Kabat 37/44/45/47 prevent self-aggregation without a VL partner. Canonical VHH tetrad residues (Phe/Leu at 37, Glu/Gln at 44, Arg at 45, Gly at 47) are checked via ANARCI numbering and reported under §1. Non-canonical residues at these positions increase aggregation risk.</p>
+  </div>
+  <div class="section" id="s6"><h3>§6 — CMC liabilities (light)</h3><p class="note" style="margin-bottom:8px">Sequence-level variable-region screen. Candidate highlights — full IgG CMC assessment is a separate workflow.</p><table class="params"><tr><td class='lbl'>Status</td><td><span class="badge badge-ok">PASS</span></td></tr><tr><td class='lbl'>pI (Fab, sequence estimate)</td><td>8.62</td></tr><tr><td class='lbl'>GRAVY</td><td>-0.373</td></tr><tr><td class='lbl'>Instability index</td><td>38.98</td></tr><tr><td class='lbl'>Aromaticity</td><td>0.108</td></tr><tr><td class='lbl'>Flags</td><td><span style="color:#6b7280">None</span></td></tr></table><h4 class="chain-title" style="margin-top:14px">Donor vs Candidate — Developability Comparison</h4><table class="params"><tr><th>Metric</th><th>Donor</th><th>Candidate</th><th>Delta</th></tr><tr><td class='lbl'>Status</td><td><span class="badge badge-ok">PASS</span></td><td><span class="badge badge-ok">PASS</span></td><td>—</td></tr><tr><td class='lbl'>pI</td><td>8.64</td><td>8.62</td><td>-0.02</td></tr><tr><td class='lbl'>GRAVY</td><td>-0.339</td><td>-0.373</td><td>-0.034</td></tr><tr><td class='lbl'>Instability index</td><td>40.39</td><td>38.98</td><td>-1.41</td></tr><tr><td class='lbl'>Net charge proxy</td><td>1.49</td><td>1.48</td><td>—</td></tr></table><h4 class="chain-title" style="margin-top:14px">Candidate Liability Motifs</h4><table class="params"><tr><th>Category</th><th>Sites</th></tr><tr><td class='lbl'>Deamidation (NG/NS)</td><td><span style="color:#6b7280">None detected</span></td></tr><tr><td class='lbl'>Isomerization (DG/DS/DT)</td><td><span style="color:#6b7280">None detected</span></td></tr><tr><td class='lbl'>Oxidation-sensitive (W/M/C)</td><td><span style="color:#6b7280">None detected</span></td></tr><tr><td class='lbl'>N-glycosylation (NxS/T)</td><td><span style="color:#6b7280">None detected</span></td></tr><tr><td class='lbl'>Cysteine count</td><td>2</td></tr><tr><td class='lbl'>Free Cys review flag</td><td><span style="color:#6b7280">No</span></td></tr><tr><td class='lbl'>Hydrophobic stretches</td><td><span style="color:#6b7280">None detected</span></td></tr></table></div>
+  <div class="section" id="s7"><h3>§7 — Immunogenicity context</h3><p class="note" style="margin-bottom:8px">HPR Index evaluates compatibility of variable-region 9-mer peptides with a human antibody repertoire reference. A higher score supports improved local humanness continuity after humanization.</p><table class="params"><tr><th>Domain</th><th>Metric</th><th>Donor</th><th>Candidate</th><th>Delta</th></tr><tr><td><b>VH</b></td><td>HPR Index (112 9-mers)</td><td>0.8214</td><td>0.7679</td><td>—</td></tr><tr><td><b>VL</b></td><td>HPR Index</td><td>—</td><td>—</td><td>—</td></tr><tr><td><b>Combined</b></td><td>HPR Index</td><td>0.8214</td><td>0.7679</td><td>-0.0535</td></tr></table><p class="note" style="margin-top:6px">HPR Index range: 0.0–1.0. Higher score = better compatibility with human antibody repertoire 9-mer landscape. Delta = candidate − donor; positive values indicate humanization-driven gain.</p></div>
+  <div class="section" id="s8"><h3>§8 — Developability / structure</h3><p class="note">Comparative structure QC when requested; metrics support developability review without replacing experiments.</p><table class="params"><tr><td class='lbl'>Overall</td><td><span class="badge badge-warn">WARN</span></td></tr><tr><td class='lbl'>Issues</td><td>max_cdr_rmsd=2.66</td></tr><tr><td class='lbl'>pLDDT — donor / candidate</td><td>89.6 &nbsp;/&nbsp; 88.0</td></tr></table><h4 class="chain-title" style="margin-top:12px">CDR Backbone RMSD — Donor vs Candidate (Å)</h4><table class="params"><tr><th>Loop</th><th>Cα RMSD (Å)</th><th>Assessment</th></tr><tr><td><b>H1</b></td><td>1.21</td><td><span style="color:#b91c1c;font-weight:600">Significant — structural investigation recommended</span></td></tr><tr><td><b>H2</b></td><td>0.12</td><td><span style="color:#1a7a3c;font-weight:600">Minimal deviation</span></td></tr><tr><td><b>H3</b></td><td>2.66</td><td><span style="color:#b91c1c;font-weight:600">Significant — structural investigation recommended</span></td></tr></table></div>
+  <div class="section" id="s9"><h3>§9 — Mutation tiers</h3><p class="note">Not applicable in recheck evaluation mode.</p></div>
+  <div class="section" id="s10"><h3>§10 — Final sequences</h3><p class="note">Full variable-region sequences after optional intake normalization. Sequences are also archived in delivery FASTA.</p><div class="seq-block"><div class="seq-label">Donor VHH (single-domain)<span class="seq-len">120 aa</span></div><div class="seq-body"><span class='chunk'>QVQLQESGGG</span><span class='chunk'>SVQAGGSLRL</span><span class='chunk'>SCAASGRTFS</span><span class='chunk'>SYAMGWFRQA</span><span class='chunk'>PGKEREGVAA</span><span class='chunk'>ISSSGGSTYY</span><span class='chunk'>ADSVKGRFTI</span><span class='chunk'>SRDNAKNTVY</span><span class='chunk'>LQMNSLKPED</span><span class='chunk'>TAVYYCAAAG</span><span class='chunk'>LGSSTWLDYW</span><span class='chunk'>GQGTQVTVSS</span></div></div><div class="seq-block"><div class="seq-label">Candidate VHH (single-domain)<span class="seq-len">120 aa</span></div><div class="seq-body"><span class='chunk'>QVQLQESGGG</span><span class='chunk'>SVQAGGSLRL</span><span class='chunk'>SCAASGRTFS</span><span class='chunk'>SYAMGWYRQA</span><span class='chunk'>PGKEREGVAA</span><span class='chunk'>ISSSGGSTYY</span><span class='chunk'>ADSVKGRFTI</span><span class='chunk'>SRDNAKNTVY</span><span class='chunk'>LQMNSLKPED</span><span class='chunk'>TAVYYCAAAG</span><span class='chunk'>LGSSTWLDYW</span><span class='chunk'>GQGTQVTVSS</span></div></div></div>
+  <div class="section" id="s11"><h3>§11 — Mutation menu</h3><p class="note">Engineered mutation tables require the primary humanization or IgG CMC workflows.</p></div>
+  <div class="section" id="s12"><h3>§12 — Recommendation</h3><p class="note" style="font-size:.9rem;margin-bottom:10px"><strong>Provisional outcome with cautions; review structural and developability notes before portfolio progression.</strong></p><div style="border:1px solid #fde68a;background:#fffbeb;border-radius:6px;padding:10px 14px;margin-top:8px"><p style="color:#92400e;font-size:.84rem;margin:0"><strong>Interpretation guidance</strong></p><ul style="color:#78350f;font-size:.82rem;margin:6px 0 0 18px;line-height:1.7"><li><strong>WARN</strong> = virtual checks completed with cautions; item is deliverable but requires confirmatory experimental assays before lead nomination.</li><li><strong>PASS</strong> = no blocking virtual cautions; experimental confirmation remains required.</li><li>Naturalness WARN reflects an unusual VH/VL pairing likelihood in silico — does not predict binding loss.</li><li>mini-CMC REVIEW flags sequence-level liability motifs; their impact requires wet-lab confirmation.</li></ul></div><h4 class="chain-title">Naturalness snapshot</h4><table class="params"><tr><td class='lbl'>Metric</td><td>Single-domain naturalness</td></tr><tr><td class='lbl'>Status</td><td><span class="badge badge-warn">WARN</span></td></tr><tr><td class='lbl'>HPR index (candidate)</td><td>0.7679</td></tr></table><p class="note" style="margin-top:6px">Paired Fv naturalness scores the VH/VL pairing plausibility against human repertoire context. WARN reflects an uncommon pairing likelihood; it does not imply functional deficiency — experimental VH/VL affinity profiling is the definitive test.</p></div>
+  <div class="section" id="s13"><h3>§13 — Glossary</h3><ul style="margin:8px 0 0 18px;font-size:.85rem;color:var(--muted);line-height:1.9"><li><strong>HPR</strong> — Human Peptide Repertoire Index: compatibility of variable-region 9-mers with a human antibody repertoire reference.</li><li><strong>mini-CMC</strong> — light developability descriptors: pI, GRAVY, instability, liability motifs. Not equivalent to full formulation CMC.</li><li><strong>Paired Fv naturalness</strong> — paired AbLang2-based plausibility of VH/VL co-occurrence in human repertoire.</li><li><strong>CDR RMSD</strong> — Cα backbone deviation between donor and candidate modeled structures.</li><li><strong>Delivery ZIP</strong> — README + FASTA (donor &amp; candidate) + HTML report + result.json + optional Fv PDBs.</li></ul></div>
+
+  <footer>InSynBio Research &nbsp;·&nbsp; <a href="https://www.insynbio.com">https://www.insynbio.com</a> &nbsp;·&nbsp; 2026-05-12 01:55 UTC &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; Use Ctrl+P → Save as PDF to export this report.</footer>
+</div>
+</body>
+</html>

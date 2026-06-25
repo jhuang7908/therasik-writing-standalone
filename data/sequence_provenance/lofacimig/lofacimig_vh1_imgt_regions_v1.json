@@ -1,0 +1,41 @@
+{
+  "inn": "Lofacimig",
+  "note_ncats_modality": "Therapeutic is tandem VH-VH-G1 (homodimer); this artifact is VH1 single-domain extract only — see data/_reconciliation/LOFACIMIG_STATUS.md.",
+  "sources": {
+    "vh1_primary": {
+      "path": "reports\\Comparison_TwoVHH_contiguous\\Lofacimig\\meta.json",
+      "seq_len_recorded": 130,
+      "format": "Bispecific Tandem VH Domains fused to G1 Constant Domain"
+    },
+    "esmfold_construct_line": {
+      "path": "data\\design_rules\\multispecific_linker_pipeline\\esmfold_input.fasta",
+      "full_raw_upper": "QVQLVESGGGSVQAGGSLRLSCAASGHTYSSNYCMAWFRQAPGKEREGVAAIYSDGSTSYADSVKGRFTISKDNSKNTLYLQMNSLRAEDTAVYYCAATAYEGSWTGKQPLCLLYEYTYWGQGTLVTVSSGGGGSGGGGSGGGGSNA",
+      "vh1_prefix": "QVQLVESGGGSVQAGGSLRLSCAASGHTYSSNYCMAWFRQAPGKEREGVAAIYSDGSTSYADSVKGRFTISKDNSKNTLYLQMNSLRAEDTAVYYCAATAYEGSWTGKQPLCLLYEYTYWGQGTLVTVSS",
+      "post_linker_tail": "NA",
+      "post_linker_status": "invalid_or_placeholder"
+    }
+  },
+  "canonical_vh1_sequence": {
+    "amino_acids": "QVQLVESGGGSVQAGGSLRLSCAASGHTYSSNYCMAWFRQAPGKEREGVAAIYSDGSTSYADSVKGRFTISKDNSKNTLYLQMNSLRAEDTAVYYCAATAYEGSWTGKQPLCLLYEYTYWGQGTLVTVSS",
+    "length": 130,
+    "imgt_numbered_residue_rows": 130
+  },
+  "imgt_regions_vh1": {
+    "FR1": "QVQLVESGGGSVQAGGSLRLSCAAS",
+    "CDR1": "GHTYSSNYC",
+    "FR2": "MAWFRQAPGKEREGVAA",
+    "CDR2": "IYSDGST",
+    "FR3": "SYADSVKGRFTISKDNSKNTLYLQMNSLRAEDTAVYYC",
+    "CDR3": "AATAYEGSWTGKQPLCLLYEYTY",
+    "FR4": "WGQGTLVTVSS"
+  },
+  "cdr_lengths": {
+    "CDR1": 9,
+    "CDR2": 7,
+    "CDR3": 23
+  },
+  "warnings": [
+    "VH2 + CH1 domains not available from linked FASTA (post-linker tail incomplete).",
+    "Do not promote into VHH42 aggregate stats without explicit standard approval."
+  ]
+}

@@ -1,0 +1,958 @@
+{
+  "version": "2.0.0",
+  "updated": "2026-06-11",
+  "retention_days": 30,
+  "horizon_days": 7,
+  "scrape_timezone": "America/New_York",
+  "boroughs_preferred": ["Queens", "Brooklyn", "Manhattan"],
+  "neighborhood_keywords": [
+    "Flushing", "法拉盛", "Chinatown", "华埠", "Elmhurst", "艾姆赫斯特",
+    "Bayside", "贝赛", "Forest Hills", "Corona", "Jackson Heights",
+    "Sunset Park", "日落公园", "Bensonhurst", "本森赫斯特",
+    "Woodside", "Rego Park", "Fresh Meadows", "Little Neck",
+    "East Broadway", "Canal Street", "8th Ave Brooklyn"
+  ],
+  "major_score_threshold": 50,
+  "digest_max_items": 25,
+  "exclude_routine_from_major": true,
+  "curated_seed_path": "data/community_events/curated_seed.json",
+
+  "sources": [
+    {
+      "id": "nyc_parks_festivals",
+      "name_en": "NYC Parks — Festivals, Concerts & Free Events (PRIMARY SOURCE)",
+      "name_zh": "纽约市公园局 — 节庆、音乐会及免费活动（主力来源）",
+      "category": "entertainment",
+      "type": "html_list",
+      "urls": [
+        "https://www.nycgovparks.org/events/free",
+        "https://www.nycgovparks.org/events/festivals",
+        "https://www.nycgovparks.org/events/concerts",
+        "https://www.nycgovparks.org/events/arts-and-crafts",
+        "https://www.nycgovparks.org/events/fitness",
+        "https://www.nycgovparks.org/events/nature",
+        "https://www.nycgovparks.org/events/history",
+        "https://www.nycgovparks.org/events/sports",
+        "https://www.nycgovparks.org/events/family",
+        "https://www.nycgovparks.org/events/seniors",
+        "https://www.nycgovparks.org/events/film",
+        "https://www.nycgovparks.org/events/volunteer"
+      ],
+      "scrape_frequency": "daily",
+      "borough_scope": "all",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.nyc_parks",
+      "timeout_seconds": 30,
+      "notes": "PRIMARY: Official NYC Parks events with exact dates, locations, links. 400+ events/run. Reliable, verified, free. Covers all 5 boroughs including Queens/Brooklyn Chinese neighborhoods."
+    },
+    {
+      "id": "qpl_flushing",
+      "name_en": "Queens Public Library - Flushing Branch (Chinese Community)",
+      "name_zh": "皇后区图书馆法拉盛分馆（华人社区主要图书馆）",
+      "category": "education",
+      "type": "html_list",
+      "urls": [
+        "https://www.queenslibrary.org/programs?location=flushing",
+        "https://www.queenslibrary.org/programs/new-americans",
+        "https://www.queenslibrary.org/programs/english-language-learning",
+        "https://www.queenslibrary.org/programs/citizenship"
+      ],
+      "scrape_frequency": "daily",
+      "borough_scope": "Queens",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.queens_library",
+      "timeout_seconds": 30,
+      "notes": "Flushing branch is the largest Chinese-serving public library in Queens. ESL, citizenship, job readiness, Chinese New Year events."
+    },
+    {
+      "id": "qpl_elmhurst",
+      "name_en": "Queens Public Library - Elmhurst & Jackson Heights (Multilingual Hub)",
+      "name_zh": "皇后区图书馆艾姆赫斯特/杰克逊高地分馆（多语言中心）",
+      "category": "education",
+      "type": "html_list",
+      "urls": [
+        "https://www.queenslibrary.org/programs?location=elmhurst",
+        "https://www.queenslibrary.org/programs?location=jackson-heights"
+      ],
+      "scrape_frequency": "daily",
+      "borough_scope": "Queens",
+      "priority": 2,
+      "chinese_relevance": "medium",
+      "parse_module": "parsers.queens_library",
+      "timeout_seconds": 30,
+      "notes": "Multilingual community programming; ESL, workforce development, GED prep."
+    },
+    {
+      "id": "nypl_chatham_square",
+      "name_en": "NYPL - Chatham Square Branch (Manhattan Chinatown)",
+      "name_zh": "纽约公共图书馆唐人街分馆（曼哈顿华人社区核心图书馆）",
+      "category": "education",
+      "type": "html_list",
+      "urls": [
+        "https://www.nypl.org/locations/chatham-square",
+        "https://www.nypl.org/events?location=chatham-square"
+      ],
+      "scrape_frequency": "daily",
+      "borough_scope": "Manhattan",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.nypl",
+      "timeout_seconds": 30,
+      "notes": "Chatham Square / East Broadway — central Manhattan Chinatown. Chinese-language books, ESOL, citizenship, computer classes."
+    },
+    {
+      "id": "nypl_flushing",
+      "name_en": "NYPL - Flushing Branch (Queens Chinese Community)",
+      "name_zh": "纽约公共图书馆法拉盛分馆（皇后区华人社区）",
+      "category": "education",
+      "type": "html_list",
+      "urls": [
+        "https://www.nypl.org/locations/flushing",
+        "https://www.nypl.org/events?location=flushing"
+      ],
+      "scrape_frequency": "daily",
+      "borough_scope": "Queens",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.nypl",
+      "timeout_seconds": 30,
+      "notes": "NYPL Flushing branch: large Chinese collection, ESL, senior programs, digital literacy."
+    },
+    {
+      "id": "bpl_sunset_park",
+      "name_en": "Brooklyn Public Library - Sunset Park Branch (Brooklyn Chinatown)",
+      "name_zh": "布鲁克林图书馆日落公园分馆（布鲁克林华人社区）",
+      "category": "education",
+      "type": "html_list",
+      "urls": [
+        "https://www.bklynlibrary.org/locations/sunset-park",
+        "https://www.bklynlibrary.org/calendar/upcoming?branch=sunset-park"
+      ],
+      "scrape_frequency": "daily",
+      "borough_scope": "Brooklyn",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.bpl",
+      "timeout_seconds": 30,
+      "notes": "Sunset Park / 8th Ave area — Brooklyn's largest Chinese community. Mandarin/Cantonese programs, legal clinics, citizenship prep."
+    },
+    {
+      "id": "bpl_rss",
+      "name_en": "Brooklyn Public Library - Events RSS Feed",
+      "name_zh": "布鲁克林图书馆活动RSS订阅",
+      "category": "education",
+      "type": "rss",
+      "urls": [
+        "https://www.bklynlibrary.org/calendar/upcoming.rss",
+        "https://www.bklynlibrary.org/calendar/upcoming?format=rss"
+      ],
+      "scrape_frequency": "daily",
+      "borough_scope": "Brooklyn",
+      "priority": 1,
+      "chinese_relevance": "medium",
+      "parse_module": "parsers.rss",
+      "timeout_seconds": 20,
+      "notes": "BPL RSS feed for upcoming events — includes adult programming, workshops, community events."
+    },
+    {
+      "id": "access_nyc",
+      "name_en": "ACCESS NYC - Benefits & Programs",
+      "name_zh": "ACCESS NYC - 福利申请和政府项目",
+      "category": "benefits",
+      "type": "html_list",
+      "urls": [
+        "https://access.nyc.gov/programs/"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.access_nyc",
+      "notes": "Central portal for 80+ city/state/federal benefits. SNAP, Medicaid, housing vouchers, childcare."
+    },
+    {
+      "id": "nyc_moia",
+      "name_en": "Mayor's Office of Immigrant Affairs",
+      "name_zh": "纽约市长移民事务办公室",
+      "category": "immigration",
+      "type": "html_list",
+      "urls": [
+        "https://www.nyc.gov/site/immigrants/index.page",
+        "https://www.nyc.gov/site/immigrants/help/legal-services.page"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.nyc_gov_generic",
+      "notes": "Free legal services, IDNYC, language access, Know Your Rights workshops."
+    },
+    {
+      "id": "nyc_doe_family",
+      "name_en": "NYC DOE - Family & Community",
+      "name_zh": "纽约市教育局 - 家庭和社区",
+      "category": "education",
+      "type": "html_list",
+      "urls": [
+        "https://www.schools.nyc.gov/enrollment/enroll-grade-by-grade",
+        "https://www.schools.nyc.gov/learning/multilingual-learners",
+        "https://www.schools.nyc.gov/school-life/food/free-meals"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.nyc_gov_generic",
+      "notes": "School enrollment, free meals, multilingual resources, after-school programs."
+    },
+    {
+      "id": "nyc_health_hospitals",
+      "name_en": "NYC Health + Hospitals",
+      "name_zh": "纽约市公立医院系统",
+      "category": "healthcare",
+      "type": "html_list",
+      "urls": [
+        "https://www.nychealthandhospitals.org/services/",
+        "https://www.nychealthandhospitals.org/nyc-care/"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.nyc_health",
+      "notes": "NYC Care (uninsured coverage), free clinics, vaccination events, community health fairs."
+    },
+    {
+      "id": "nyc_hra",
+      "name_en": "NYC HRA/DSS - Human Resources Administration",
+      "name_zh": "纽约市人力资源管理局",
+      "category": "benefits",
+      "type": "html_list",
+      "urls": [
+        "https://www.nyc.gov/site/hra/help/snap-benefits-food-program.page",
+        "https://www.nyc.gov/site/hra/help/cash-assistance.page"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 2,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.nyc_gov_generic",
+      "notes": "SNAP/Food stamps, cash assistance, emergency rental assistance."
+    },
+    {
+      "id": "nypd_community",
+      "name_en": "NYPD Community Affairs & Crime Prevention",
+      "name_zh": "纽约市警察局社区事务",
+      "category": "safety",
+      "type": "html_list",
+      "urls": [
+        "https://www.nyc.gov/site/nypd/bureaus/patrol/community-affairs.page",
+        "https://www.nyc.gov/site/nypd/services/see-something-say-something.page"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 2,
+      "chinese_relevance": "medium",
+      "parse_module": "parsers.nyc_gov_generic",
+      "notes": "Community precinct meetings, safety workshops, hate crime reporting, Neighborhood Coordination Officers."
+    },
+    {
+      "id": "nyc_council",
+      "name_en": "NYC Council - Community Events",
+      "name_zh": "纽约市议会 - 社区活动",
+      "category": "government",
+      "type": "html_list",
+      "urls": [
+        "https://council.nyc.gov/events/",
+        "https://council.nyc.gov/district-20/",
+        "https://council.nyc.gov/district-1/"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 2,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.nyc_council",
+      "notes": "District 20 covers Flushing, District 1 covers Chinatown. Town halls, free legal clinics, resource fairs."
+    },
+    {
+      "id": "nyc_dfta",
+      "name_en": "NYC DFTA - Dept for the Aging",
+      "name_zh": "纽约市老龄局",
+      "category": "benefits",
+      "type": "html_list",
+      "urls": [
+        "https://www.nyc.gov/site/dfta/services/programs.page",
+        "https://www.nyc.gov/site/dfta/services/senior-centers.page"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 2,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.nyc_gov_generic",
+      "notes": "Senior centers (many in Flushing/Chinatown), SCRIE rent freeze, meal delivery, benefits counseling."
+    },
+    {
+      "id": "nyc_hpd",
+      "name_en": "NYC HPD - Housing Preservation",
+      "name_zh": "纽约市住房保护局",
+      "category": "housing",
+      "type": "html_list",
+      "urls": [
+        "https://www.nyc.gov/site/hpd/services-and-information/tenant-rights.page",
+        "https://www.nyc.gov/site/hpd/services-and-information/affordable-housing.page",
+        "https://housingconnect.nyc.gov/"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.nyc_gov_generic",
+      "notes": "Affordable housing lottery, tenant protection, rent stabilization info, ERAP."
+    },
+    {
+      "id": "nyc_workforce1",
+      "name_en": "NYC Workforce1 Career Centers",
+      "name_zh": "纽约市就业中心 Workforce1",
+      "category": "employment",
+      "type": "html_list",
+      "urls": [
+        "https://www.nyc.gov/site/sbs/careers/find-a-job.page",
+        "https://www.nyc.gov/site/sbs/businesses/training.page"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 2,
+      "chinese_relevance": "medium",
+      "parse_module": "parsers.nyc_gov_generic",
+      "notes": "Free job training, resume workshops, career fairs, industry-specific programs."
+    },
+    {
+      "id": "nyc_free_tax",
+      "name_en": "NYC Free Tax Prep (VITA/TCE)",
+      "name_zh": "纽约市免费报税服务",
+      "category": "benefits",
+      "type": "html_list",
+      "urls": [
+        "https://www.nyc.gov/site/dca/consumers/file-your-taxes-for-free.page"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 2,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.nyc_gov_generic",
+      "notes": "Seasonal (Jan-Apr peak) but available year-round for some locations. Chinese-speaking volunteers."
+    },
+    {
+      "id": "mta_service",
+      "name_en": "MTA - Service Changes & Accessibility",
+      "name_zh": "MTA 大都会交通局 - 服务变更",
+      "category": "transportation",
+      "type": "html_list",
+      "urls": [
+        "https://new.mta.info/alerts",
+        "https://new.mta.info/accessibility"
+      ],
+      "scrape_frequency": "daily",
+      "borough_scope": "all",
+      "priority": 3,
+      "chinese_relevance": "medium",
+      "parse_module": "parsers.mta",
+      "notes": "Weekend service changes, new ADA stations, reduced/free fare programs (Fair Fares NYC)."
+    },
+    {
+      "id": "cpc_chinese_planning",
+      "name_en": "Chinese-American Planning Council (CPC)",
+      "name_zh": "华人策划协会 (CPC)",
+      "category": "community",
+      "type": "html_list",
+      "urls": [
+        "https://www.cpc-nyc.org/events",
+        "https://www.cpc-nyc.org/programs"
+      ],
+      "scrape_frequency": "twice_weekly",
+      "borough_scope": "all",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.community_org",
+      "notes": "Largest Asian American social services org. ESL, job training, youth programs, senior services."
+    },
+    {
+      "id": "aafny",
+      "name_en": "Asian American Federation of New York",
+      "name_zh": "亚美联盟",
+      "category": "community",
+      "type": "html_list",
+      "urls": [
+        "https://www.aafederation.org/events/",
+        "https://www.aafederation.org/resources/"
+      ],
+      "scrape_frequency": "twice_weekly",
+      "borough_scope": "all",
+      "priority": 2,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.community_org",
+      "notes": "Census outreach, voter registration, anti-hate advocacy, community grants."
+    },
+    {
+      "id": "tzu_chi_ny",
+      "name_en": "Tzu Chi Foundation - NY",
+      "name_zh": "慈济纽约分会",
+      "category": "community",
+      "type": "html_list",
+      "urls": [
+        "https://tzuchi.us/events",
+        "https://tzuchi.us/blog"
+      ],
+      "scrape_frequency": "twice_weekly",
+      "borough_scope": "Queens",
+      "priority": 2,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.community_org",
+      "notes": "Free medical clinics, food distribution, disaster relief, community service events."
+    },
+    {
+      "id": "ccba",
+      "name_en": "Chinese Consolidated Benevolent Association",
+      "name_zh": "中华公所",
+      "category": "community",
+      "type": "html_list",
+      "urls": [
+        "https://www.ccbanyc.org/"
+      ],
+      "scrape_frequency": "twice_weekly",
+      "borough_scope": "Manhattan",
+      "priority": 2,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.community_org",
+      "notes": "Chinatown community events, Chinese school registration, cultural festivals."
+    },
+    {
+      "id": "flushing_chamber",
+      "name_en": "Flushing Chinese Business Association",
+      "name_zh": "法拉盛华人工商促进会",
+      "category": "community",
+      "type": "html_list",
+      "urls": [
+        "https://www.flushingchamber.org/events"
+      ],
+      "scrape_frequency": "twice_weekly",
+      "borough_scope": "Queens",
+      "priority": 2,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.community_org",
+      "notes": "Business networking, Lunar New Year events, community job fairs."
+    },
+    {
+      "id": "legal_aid_society",
+      "name_en": "The Legal Aid Society - Free Legal Services",
+      "name_zh": "法律援助协会 - 免费法律服务",
+      "category": "legal",
+      "type": "html_list",
+      "urls": [
+        "https://legalaidnyc.org/get-help/",
+        "https://legalaidnyc.org/programs-projects-units/"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.legal_services",
+      "notes": "Free legal help: immigration, housing, employment, family court. Chinese interpreters available."
+    },
+    {
+      "id": "nyc_courts_free",
+      "name_en": "NYC Courts - Free Legal Help Programs",
+      "name_zh": "纽约法院 - 免费法律帮助",
+      "category": "legal",
+      "type": "html_list",
+      "urls": [
+        "https://www.nycourts.gov/courthelp/",
+        "https://www.nycourts.gov/courts/nyc/housing/rap.shtml"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 2,
+      "chinese_relevance": "medium",
+      "parse_module": "parsers.nyc_gov_generic",
+      "notes": "Housing court help center, small claims assistance, tenant defense."
+    },
+    {
+      "id": "cuny_continuing_ed",
+      "name_en": "CUNY — Continuing Education, ESL & Adult Learning",
+      "name_zh": "纽约市立大学 — 继续教育、英语课及成人学习",
+      "category": "education",
+      "type": "html_list",
+      "urls": [
+        "https://www.qcc.cuny.edu/ce/",
+        "https://www.laguardia.edu/ce/",
+        "https://www.bmcc.cuny.edu/academics/faculty-affairs/continuing-education/",
+        "https://www.kingsborough.edu/ce/"
+      ],
+      "scrape_frequency": "daily",
+      "borough_scope": "all",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.education",
+      "timeout_seconds": 20,
+      "notes": "CUNY network: QCC (Queens, near Flushing), LaGuardia CC (Queens), BMCC (Manhattan/Chinatown), Kingsborough (Brooklyn), Hostos (Bronx). Free/low-cost ESL, GED, workforce training, CUNY ASAP for immigrants."
+    },
+    {
+      "id": "nyc_adult_literacy",
+      "name_en": "NYC Adult Education & Literacy Programs",
+      "name_zh": "纽约市成人教育及识字项目",
+      "category": "education",
+      "type": "html_list",
+      "urls": [
+        "https://www.nyc.gov/site/immigrants/index.page",
+        "https://www.bklynlibrary.org/adult-learning"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.education",
+      "timeout_seconds": 20,
+      "notes": "NYC official adult education: ESL, GED/TASC, literacy, vocational. Covers programs in all 5 boroughs including Queens and Brooklyn Chinese neighborhoods. Free for income-eligible residents."
+    },
+    {
+      "id": "nyc_libraries_esl",
+      "name_en": "NYC Public Libraries — Free ESL, Citizenship & Digital Literacy",
+      "name_zh": "纽约公共图书馆系统 — 免费英语课、入籍准备及数字技能",
+      "category": "education",
+      "type": "html_list",
+      "urls": [
+        "https://www.queenslibrary.org/",
+        "https://www.bklynlibrary.org/adult-learning"
+      ],
+      "scrape_frequency": "daily",
+      "borough_scope": "all",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.education",
+      "timeout_seconds": 25,
+      "notes": "Queens Library, NYPL, BPL system-wide ESL and citizenship prep. Flushing, Elmhurst, Chatham Square, Sunset Park branches most used by Chinese community. All programs free with library card."
+    },
+    {
+      "id": "nyc_immigrant_services_edu",
+      "name_en": "NYC Immigrant Services — Education & Skills Programs",
+      "name_zh": "纽约市移民服务局 — 教育培训及技能提升",
+      "category": "education",
+      "type": "html_list",
+      "urls": [
+        "https://www.nyc.gov/site/immigrants/index.page"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.education",
+      "timeout_seconds": 20,
+      "notes": "Official NYC government immigrant education resources: English classes, job training, citizenship prep, professional license recognition. All services free or low-cost."
+    },
+    {
+      "id": "nyc_cultural_affairs",
+      "name_en": "NYC Dept of Cultural Affairs - Free Events",
+      "name_zh": "纽约市文化局 - 免费文化活动",
+      "category": "entertainment",
+      "type": "html_list",
+      "urls": [
+        "https://www.nyc.gov/site/dcla/programs/programs.page"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 3,
+      "chinese_relevance": "medium",
+      "parse_module": "parsers.nyc_gov_generic",
+      "notes": "Free museum days, public art, cultural festivals, community arts grants."
+    },
+    {
+      "id": "met_museum_free",
+      "name_en": "The Metropolitan Museum of Art - Free Programs",
+      "name_zh": "大都会博物馆 - 免费项目",
+      "category": "entertainment",
+      "type": "html_list",
+      "urls": [
+        "https://www.metmuseum.org/events"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "Manhattan",
+      "priority": 3,
+      "chinese_relevance": "medium",
+      "parse_module": "parsers.museum_events",
+      "notes": "Free for NYC residents. Special exhibitions, educational programs, family activities."
+    },
+    {
+      "id": "nyc_311_services",
+      "name_en": "NYC 311 - City Services Guide",
+      "name_zh": "纽约市 311 - 城市服务指南",
+      "category": "government",
+      "type": "html_list",
+      "urls": [
+        "https://portal.311.nyc.gov/"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 3,
+      "chinese_relevance": "medium",
+      "parse_module": "parsers.nyc_gov_generic",
+      "notes": "Comprehensive city service lookup. Noise complaints, street issues, utility help."
+    },
+    {
+      "id": "idnyc",
+      "name_en": "IDNYC - Free City ID Card",
+      "name_zh": "IDNYC - 免费市民卡",
+      "category": "immigration",
+      "type": "html_list",
+      "urls": [
+        "https://www.nyc.gov/site/idnyc/index.page"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 2,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.nyc_gov_generic",
+      "notes": "Free city ID regardless of immigration status. Free museum/zoo memberships included."
+    },
+    {
+      "id": "nyc_community_boards",
+      "name_en": "NYC Community Boards - Monthly Meetings",
+      "name_zh": "纽约市社区委员会 - 月度会议",
+      "category": "government",
+      "type": "html_list",
+      "urls": [
+        "https://www.nyc.gov/site/queenscb7/meetings/meetings.page",
+        "https://www.nyc.gov/site/manhattancb1/meetings/meetings.page",
+        "https://www.nyc.gov/site/manhattancb3/meetings/meetings.page"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 3,
+      "chinese_relevance": "medium",
+      "parse_module": "parsers.nyc_gov_generic",
+      "notes": "CB7 Queens covers Flushing. CB1/CB3 Manhattan covers Chinatown. Zoning, permits, community input."
+    },
+    {
+      "id": "nyc_consumer_worker_protection",
+      "name_en": "NYC DCWP - Consumer & Worker Protection",
+      "name_zh": "纽约市消费者和工人保护局",
+      "category": "legal",
+      "type": "html_list",
+      "urls": [
+        "https://www.nyc.gov/site/dca/workers/workersrights/know-your-rights.page",
+        "https://www.nyc.gov/site/dca/consumers/get-help.page"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 2,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.nyc_gov_generic",
+      "notes": "Paid sick leave, wage theft protection, consumer fraud complaints, worker rights in Chinese."
+    },
+    {
+      "id": "nyc_health_dept",
+      "name_en": "NYC DOHMH - Dept of Health",
+      "name_zh": "纽约市卫生局",
+      "category": "healthcare",
+      "type": "html_list",
+      "urls": [
+        "https://www.nyc.gov/site/doh/health/health-topics/vaccines.page",
+        "https://www.nyc.gov/site/doh/services/mental-health.page",
+        "https://www.nyc.gov/site/doh/health/neighborhood-health/community-health-centers.page"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.nyc_gov_generic",
+      "notes": "Free vaccinations, mental health services (988 in Chinese), community health centers, lead testing."
+    },
+    {
+      "id": "nyc_small_business",
+      "name_en": "NYC SBS - Small Business Services",
+      "name_zh": "纽约市小企业服务局",
+      "category": "employment",
+      "type": "html_list",
+      "urls": [
+        "https://www.nyc.gov/site/sbs/businesses/businesses.page",
+        "https://www.nyc.gov/site/sbs/businesses/minority-women-owned-business.page"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 3,
+      "chinese_relevance": "medium",
+      "parse_module": "parsers.nyc_gov_generic",
+      "notes": "Free business courses, M/WBE certification, storefront improvement grants."
+    },
+    {
+      "id": "charles_b_wang_health",
+      "name_en": "Charles B. Wang Community Health Center",
+      "name_zh": "王嘉廉社区医疗中心",
+      "category": "healthcare",
+      "type": "html_list",
+      "urls": [
+        "https://www.cbwchc.org/events/",
+        "https://www.cbwchc.org/services/"
+      ],
+      "scrape_frequency": "twice_weekly",
+      "borough_scope": "all",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.community_org",
+      "notes": "Bilingual Chinese healthcare: primary care, pediatrics, mental health. Locations in Flushing & Chinatown."
+    },
+    {
+      "id": "asian_americans_advancing_justice",
+      "name_en": "Asian Americans Advancing Justice",
+      "name_zh": "亚裔美国人正义促进会",
+      "category": "legal",
+      "type": "html_list",
+      "urls": [
+        "https://www.aaldef.org/programs/",
+        "https://www.aaldef.org/events/"
+      ],
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 2,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.community_org",
+      "notes": "Free immigration legal clinics, voting rights, anti-discrimination, worker rights for Asian Americans."
+    },
+    {
+      "id": "nyc_emergency_mgmt",
+      "name_en": "NYC Emergency Management - Preparedness",
+      "name_zh": "纽约市应急管理局",
+      "category": "safety",
+      "type": "html_list",
+      "urls": [
+        "https://www.nyc.gov/site/em/ready/alerts-notifications.page",
+        "https://www.nyc.gov/site/em/ready/ready-new-york.page"
+      ],
+      "scrape_frequency": "daily",
+      "borough_scope": "all",
+      "priority": 2,
+      "chinese_relevance": "medium",
+      "parse_module": "parsers.nyc_gov_generic",
+      "notes": "Emergency alerts, cooling/warming centers, hurricane prep, Notify NYC in Chinese."
+    },
+    {
+      "id": "eventbrite_chinese_nyc",
+      "name_en": "Eventbrite — NYC Chinese Community Organizations",
+      "name_zh": "Eventbrite 纽约华人社区组织活动汇总",
+      "category": "community",
+      "type": "html_list",
+      "urls": [
+        "https://www.eventbrite.com/o/chinese-american-planning-council-cpc-9649413527",
+        "https://www.eventbrite.com/o/oca-new-york-chapter-2254428127",
+        "https://www.eventbrite.com/o/committee-of-100-5765843773",
+        "https://www.eventbrite.com/o/asian-american-bar-association-of-new-york-aabany-15099742781",
+        "https://www.eventbrite.com/o/asian-americans-advancing-justice-aajc-4685042939",
+        "https://www.eventbrite.com/d/ny--new-york/chinese-community--events/"
+      ],
+      "scrape_frequency": "daily",
+      "borough_scope": "all",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.community_org",
+      "timeout_seconds": 20,
+      "notes": "Eventbrite pages for verified Chinese/Asian American orgs: CPC, OCA-NY, Committee of 100, AABANY, AAJC. Also searches Chinese community events in NYC. Links are always accurate."
+    },
+    {
+      "id": "eventbrite_flushing",
+      "name_en": "Eventbrite — Flushing & Queens Chinese Events",
+      "name_zh": "Eventbrite 法拉盛及皇后区华人活动",
+      "category": "community",
+      "type": "html_list",
+      "urls": [
+        "https://www.eventbrite.com/d/ny--flushing/chinese--events/",
+        "https://www.eventbrite.com/d/ny--queens/mandarin--events/",
+        "https://www.eventbrite.com/d/ny--new-york/flushing--events/"
+      ],
+      "scrape_frequency": "daily",
+      "borough_scope": "Queens",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "parse_module": "parsers.community_org",
+      "timeout_seconds": 20,
+      "notes": "Eventbrite geographic search for Flushing and Queens Chinese/Mandarin events."
+    },
+
+    {
+      "id": "nyc_dfta_senior",
+      "name_en": "NYC Dept for the Aging — Senior Benefits & Centers",
+      "name_zh": "纽约市老人服务局 — 长者福利与老人中心",
+      "category": "senior",
+      "type": "html_list",
+      "urls": [
+        "https://www.nyc.gov/site/dfta/services/benefits-screenings.page",
+        "https://www.nyc.gov/site/dfta/services/home-care.page",
+        "https://www.nyc.gov/site/dfta/services/case-management.page",
+        "https://www.nyc.gov/site/dfta/services/senior-centers.page",
+        "https://www.nyc.gov/site/dfta/services/legal-services.page"
+      ],
+      "parse_module": "_parse_nyc_gov",
+      "scrape_frequency": "daily",
+      "borough_scope": "all",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "timeout_seconds": 15,
+      "notes": "DFTA benefits screening, home care, case management, senior centers, and legal services for seniors."
+    },
+
+    {
+      "id": "nyc_acc_adoption",
+      "name_en": "NYC Animal Care Centers — Adopt a Dog or Cat",
+      "name_zh": "纽约市动物收容所 — 领养猫狗",
+      "category": "pet",
+      "type": "html_list",
+      "urls": [
+        "https://www.nycacc.app/animals?type=D&size=all",
+        "https://www.nycacc.app/animals?type=C&size=all",
+        "https://www.nycacc.app/events"
+      ],
+      "parse_module": "_parse_community_org",
+      "scrape_frequency": "daily",
+      "borough_scope": "all",
+      "priority": 2,
+      "chinese_relevance": "high",
+      "timeout_seconds": 15,
+      "notes": "Official NYC Animal Care Centers pet adoption listings and adoption events. Low-cost or free adoption with full vaccinations."
+    },
+
+    {
+      "id": "mta_service_alerts",
+      "name_en": "MTA Subway & Bus — Service Alerts & Planned Work",
+      "name_zh": "MTA 地铁公交 — 服务通知与施工改线",
+      "category": "transit",
+      "type": "xml_feed",
+      "urls": [
+        "https://www.mta.info/alerts",
+        "http://web.mta.info/status/serviceStatus.txt"
+      ],
+      "parse_module": "_parse_mta_xml",
+      "scrape_frequency": "daily",
+      "borough_scope": "all",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "timeout_seconds": 12,
+      "notes": "MTA real-time service status XML feed. Shows subway line delays, planned work, and bus detours affecting Queens/Brooklyn Chinese neighborhoods."
+    },
+
+    {
+      "id": "nys_unemployment",
+      "name_en": "NYS Dept of Labor — Unemployment Insurance",
+      "name_zh": "纽约州失业保险 — 申请指南与资格要求",
+      "category": "employment_benefit",
+      "type": "html_list",
+      "urls": [
+        "https://dol.ny.gov/unemployment",
+        "https://labor.ny.gov/unemploymentinsurance/apply-for-benefits.shtm",
+        "https://dol.ny.gov/how-file-claim"
+      ],
+      "parse_module": "_parse_nyc_gov",
+      "scrape_frequency": "weekly",
+      "borough_scope": "all",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "timeout_seconds": 15,
+      "notes": "NYS DOL unemployment insurance application guide, eligibility, and benefit rates. Key resource for recently unemployed immigrants."
+    },
+
+    {
+      "id": "nyc_volunteer_service",
+      "name_en": "NYC Service — Volunteer Opportunities",
+      "name_zh": "纽约市义工招募 — 官方志愿者机会",
+      "category": "volunteer",
+      "type": "html_list",
+      "urls": [
+        "https://service.nyc.gov/content/nycservice/en/home.html",
+        "https://www.nyc.gov/site/volunteering/index.page",
+        "https://www.nycgovparks.org/events/volunteer"
+      ],
+      "parse_module": "_parse_nyc_gov",
+      "scrape_frequency": "daily",
+      "borough_scope": "all",
+      "priority": 2,
+      "chinese_relevance": "high",
+      "timeout_seconds": 15,
+      "notes": "NYC Service and Parks volunteer programs. Ideal for new immigrants to build community connections and English skills."
+    },
+
+    {
+      "id": "nyc_medicaid_snap",
+      "name_en": "NYC HRA — Medicaid (White Card) & SNAP Enrollment",
+      "name_zh": "纽约白卡/Medicaid 与粮食券(SNAP)申请",
+      "category": "healthcare",
+      "type": "html_list",
+      "urls": [
+        "https://www.nyc.gov/site/hra/help/medicaid.page",
+        "https://www.nyc.gov/site/hra/help/snap-benefits-food-program.page",
+        "https://www.nyc.gov/site/hra/help/essential-plan.page",
+        "https://www.nyc.gov/site/hra/help/cash-assistance.page",
+        "https://www.nyc.gov/site/hra/help/childcare.page"
+      ],
+      "parse_module": "_parse_nyc_gov",
+      "scrape_frequency": "daily",
+      "borough_scope": "all",
+      "priority": 1,
+      "chinese_relevance": "high",
+      "timeout_seconds": 15,
+      "notes": "HRA Medicaid (白卡), Essential Plan, SNAP (粮食券), cash assistance, and childcare benefit enrollment pages."
+    },
+
+    {
+      "id": "nyc_food_access",
+      "name_en": "NYC Food Access — Food Pantries & Emergency Food",
+      "name_zh": "纽约粮食援助 — 食品银行与免费食物发放",
+      "category": "food_benefit",
+      "type": "html_list",
+      "urls": [
+        "https://www.nyc.gov/site/foodpolicy/food-assistance/food-access.page",
+        "https://www.foodbanknyc.org/get-help/",
+        "https://www.nyc.gov/site/hra/help/food-pantries.page"
+      ],
+      "parse_module": "_parse_nyc_gov",
+      "scrape_frequency": "daily",
+      "borough_scope": "all",
+      "priority": 2,
+      "chinese_relevance": "high",
+      "timeout_seconds": 15,
+      "notes": "NYC food pantry locator, Food Bank NYC emergency food distribution, and HRA food assistance programs."
+    },
+
+    {
+      "id": "nyc_chinese_minibus",
+      "name_en": "NYC DOT & MTA Queens Bus — Route Changes in Chinese Neighborhoods",
+      "name_zh": "纽约华人出行 — 皇后区公交路线变更与小巴信息",
+      "category": "transit",
+      "type": "html_list",
+      "urls": [
+        "https://www.nyc.gov/html/dot/html/motorist/trucks.shtml",
+        "https://new.mta.info/document/58201",
+        "https://www.nyc.gov/html/dot/html/about/news.shtml"
+      ],
+      "parse_module": "_parse_nyc_gov",
+      "scrape_frequency": "daily",
+      "borough_scope": "Queens",
+      "priority": 2,
+      "chinese_relevance": "high",
+      "timeout_seconds": 15,
+      "notes": "NYC DOT and MTA route change notices affecting Queens/Flushing/Elmhurst Chinese community bus and van services."
+    }
+  ],
+
+  "quality_scoring": {
+    "is_free_bonus": 15,
+    "this_week_bonus": 20,
+    "deadline_approaching_bonus": 25,
+    "chinese_language_support_bonus": 20,
+    "chinese_community_relevance_bonus": 15,
+    "official_source_bonus": 10,
+    "not_routine_bonus": 10,
+    "precise_link_bonus": 5,
+    "borough_match_bonus": 10,
+    "penalty_expired": -100,
+    "penalty_vague_link": -10
+  }
+}

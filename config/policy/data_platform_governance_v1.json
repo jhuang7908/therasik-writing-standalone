@@ -1,0 +1,47 @@
+{
+  "policy_version": "1.0",
+  "name": "data_platform_governance_v1",
+  "required_provenance_fields": [
+    "source_label",
+    "primary_source_type",
+    "source_ids",
+    "last_reviewed",
+    "reviewer"
+  ],
+  "allowed_source_labels": [
+    "literature",
+    "computed",
+    "experimental",
+    "curated_inference"
+  ],
+  "visibility_levels": [
+    "public_ok",
+    "protected_sequence",
+    "internal_only",
+    "partner_confidential"
+  ],
+  "rules": {
+    "computed_must_be_labeled": true,
+    "experimental_and_computed_must_not_be_silently_merged": true,
+    "public_records_require_evidence": true,
+    "all_datasets_require_versioning": true,
+    "all_model_datasets_require_documented_split_policy": true,
+    "negative_results_should_be_retained": true,
+    "field_level_visibility_control_required": true
+  },
+  "stable_ids_required": [
+    "entity_id",
+    "construct_id",
+    "sequence_id",
+    "structure_id",
+    "assay_id"
+  ],
+  "dataset_manifest_requirements": [
+    "dataset_id",
+    "dataset_version",
+    "task_type",
+    "prediction_target",
+    "record_sources",
+    "split_policy"
+  ]
+}

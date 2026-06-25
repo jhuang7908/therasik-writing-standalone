@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0.0",
+  "description": "VHH hallmark metadata used to evaluate whether a framework is camelid VHH-like or human VH-like at key FR2 positions, and to annotate engineering changes.",
+  "hallmark_positions_imgt": {
+    "37": {
+      "imgt_pos": 37,
+      "region": "FR2",
+      "role": "VHH hallmark - former VL interface",
+      "typical_vhh_aas": ["F", "Y", "V"],
+      "typical_human_vh_aas": ["V", "I", "L"],
+      "comment": "VHH often has more polar/aromatic residue here to compensate for missing VL."
+    },
+    "44": {
+      "imgt_pos": 44,
+      "region": "FR2",
+      "role": "VHH hallmark - surface polarity",
+      "typical_vhh_aas": ["E", "Q", "D"],
+      "typical_human_vh_aas": ["G"],
+      "comment": "E/Q in VHH makes FR2 more hydrophilic; human VH often has G creating hydrophobic VL interface."
+    },
+    "45": {
+      "imgt_pos": 45,
+      "region": "FR2",
+      "role": "VHH hallmark - surface charge",
+      "typical_vhh_aas": ["R", "K"],
+      "typical_human_vh_aas": ["L"],
+      "comment": "Positive charge (R/K) is characteristic for VHH; human VH prefers hydrophobic L."
+    },
+    "47": {
+      "imgt_pos": 47,
+      "region": "FR2",
+      "role": "VHH structural core",
+      "typical_vhh_aas": ["W"],
+      "typical_human_vh_aas": ["W"],
+      "comment": "Highly conserved W; both VHH and human VH keep this residue."
+    }
+  },
+  "classification_rules": {
+    "vhh_like_threshold": {
+      "min_vhh_hallmarks": 3,
+      "description": "If a framework keeps ≥3 positions in VHH-typical amino acids, VHH-like FR2."
+    },
+    "human_like_threshold": {
+      "max_vhh_hallmarks": 1,
+      "description": "If only 0–1 hallmark positions remain VHH-typical and others are human-like, human-like FR2."
+    },
+    "mixed_state": {
+      "description": "Between thresholds is 'mixed/transition' state, often used in engineered scaffolds."
+    }
+  },
+  "scoring_scheme": {
+    "per_position": {
+      "vhh_typical": 1.0,
+      "human_typical": 0.0,
+      "tolerated_variant": 0.5
+    },
+    "global_score_interpretation": [
+      { "range": ">=3.0", "label": "strong_vhh_like" },
+      { "range": "1.5–2.5", "label": "mixed_transition" },
+      { "range": "<=1.0", "label": "humanized_fr2" }
+    ]
+  },
+  "evaluation_result_schema": {
+    "fields": {
+      "is_vhh_like": "boolean, true if score above vhh_like_threshold.",
+      "is_human_like": "boolean, true if score below human_like_threshold.",
+      "hallmark_score": "numeric, sum of per-position scores.",
+      "per_position_status": "dict: {37: 'vhh_typical'|'human_typical'|'variant', ...}"
+    },
+    "notes": [
+      " N1/H1  scaffold ， scaffold JSON（ vhh_hallmarks ）。",
+      "，： FR2  VHH hallmark。"
+    ]
+  }
+}
+

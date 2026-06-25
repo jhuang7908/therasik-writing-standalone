@@ -1,0 +1,35 @@
+# Run from a server without source checkout — pulls private image from GHCR.
+#
+# Prerequisites:
+#   echo $CR_PAT | docker login ghcr.io -u GITHUB_USERNAME --password-stdin
+#   (PAT needs read:packages)
+#
+# Usage:
+#   export IMAGE=ghcr.io/OWNER/abenginecore:latest
+#   docker compose -f docker-compose.ghcr.yml up -d
+
+services:
+  abenginecore:
+    image: ${IMAGE:-ghcr.io/OWNER/abenginecore:latest}
+    pull_policy: always
+    ports:
+      - "${PORT:-8000}:8000"
+    environment:
+      INSYNBIO_PUBLIC_SITE: ${INSYNBIO_PUBLIC_SITE:-}
+      INSYNBIO_PUBLIC_LOCALE: ${INSYNBIO_PUBLIC_LOCALE:-}
+      INSYNBIO_TRIAL_CREDITS: ${INSYNBIO_TRIAL_CREDITS:-500}
+      INSYNBIO_OWNER_UNLIMITED: ${INSYNBIO_OWNER_UNLIMITED:-1}
+    volumes:
+      - abenginecore_jobs:/app/.job_storage
+      - abenginecore_auth:/app/api/.data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health').read()"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  abenginecore_jobs:
+  abenginecore_auth:

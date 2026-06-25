@@ -1,0 +1,67 @@
+{
+  "asset_type": "germline",
+  "version": "v1_clean",
+  "description": "IMGT-clean germline assets with CDR1/CDR2 canonical proxy scores",
+  "includes": {
+    "canonical_proxy": true,
+    "imgt_numbering": true,
+    "kabat_numbering": true,
+    "segments": ["FR1", "CDR1", "FR2", "CDR2", "FR3"]
+  },
+  "canonical_proxy_definition": {
+    "proxy_score": "0.6 * cluster_percentile + 0.4 * rep_identity",
+    "scope": ["CDR1", "CDR2"],
+    "note": "Sequence-based proxy; no structural canonical class assignment"
+  },
+  "canonical_proxy": {
+    "agg_mode": "min",
+    "weight": 0.10,
+    "formula": "0.6 * percentile + 0.4 * rep_identity",
+    "enabled": true
+  },
+  "scaffold_ranking": {
+    "canonical_proxy_enabled": true,
+    "germline_asset_version": "v1_clean"
+  },
+  "generated_by": {
+    "pipeline": "build_canonical_proxy_assets.py",
+    "date": "2025-12-13"
+  },
+  "statistics": {
+    "total_clean_records": 443,
+    "total_proxy_records": 443,
+    "cdr1_clusters": 48,
+    "cdr2_clusters": 66
+  },
+  "files": {
+    "germline_assets_clean": {
+      "path": "germline_assets_clean.jsonl",
+      "record_count": 443,
+      "description": "Clean germline sequences with IMGT/Kabat numbering and segmentation"
+    },
+    "germline_assets_clean_with_canonical_proxy": {
+      "path": "germline_assets_clean_with_canonical_proxy.jsonl",
+      "record_count": 443,
+      "description": "Clean germline sequences with canonical proxy annotations for CDR1/CDR2"
+    },
+    "clusters": {
+      "cdr1": {
+        "assignments": "clusters/cdr1_cluster_assignments.csv",
+        "summary": "clusters/cdr1_cluster_summary.csv",
+        "representatives": "clusters/cdr1_representatives.fasta"
+      },
+      "cdr2": {
+        "assignments": "clusters/cdr2_cluster_assignments.csv",
+        "summary": "clusters/cdr2_cluster_summary.csv",
+        "representatives": "clusters/cdr2_representatives.fasta"
+      },
+      "description": "CDR1/CDR2 cluster assignments, summaries, and representative sequences"
+    },
+    "qc": {
+      "canonical_proxy_qc": {
+        "path": "qc/canonical_proxy_qc.csv",
+        "description": "Quality control summary for canonical proxy annotations"
+      }
+    }
+  }
+}

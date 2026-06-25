@@ -1,0 +1,114 @@
+# Framework Selection Rules
+# Structured rules for framework and J segment selection in humanization/CDR grafting pipelines.
+# All framework IDs referenced must exist in the framework library.
+# Each rule must contain a 'reason' field for reporting.
+
+framework_selection_rules:
+  version: "v2"
+  description: "Structured framework/J selection rules for humanization and grafting pipelines"
+  
+  # Default success case: standard framework selection
+  default_success:
+    selection:
+      vh:
+        match_type: "prefer_by_tags"  # prefer_by_tags | exact_framework_id | family_gene
+        tags:
+          - "tier1"
+        family_gene: "IGHV3-23"  # Fallback if no tier1 tag match
+        # Note: Framework ID will be resolved from framework library (e.g., "VH:IGHV3-23*01" if exists)
+      vl:
+        match_type: "prefer_by_tags"
+        tags:
+          - "tier1"
+        family_gene: "IGKV1-39"  # Fallback if no tier1 tag match
+        # Note: Framework ID will be resolved from framework library (e.g., "VL:IGKV1-39*01" if exists)
+      fr4:
+        heavy_j:
+          j_segment_id: "hJH4"  # Must exist in fr4_j_segments.yaml
+        light_j:
+          j_segment_id: "hJK1"  # Must exist in fr4_j_segments.yaml
+    reason: "Default selection uses tier1 frameworks (prefer VH3-23 for VH, VK1-39 for VL) with standard J segments (hJH4 + hJK1) as a stable baseline for humanization/CDR grafting."
+  
+  # Conditional rules (evaluated in order)
+  rules:
+    - id: "long_h3"
+      priority: 1  # Higher priority rules evaluated first
+      condition:
+        type: "comparison"
+        field: "CDR-H3_length"
+        operator: ">"
+        value: 18
+      action:
+        type: "override_fr4"
+        fr4:
+          heavy_j:
+            j_segment_id: "hJH6"  # Must exist in fr4_j_segments.yaml
+      reason: "Long CDR-H3 (>18 residues) requires space buffering; hJH6 provides longer/compatible heavy J segment to reduce junction strain risk."
+    
+    - id: "high_concentration_or_aggregation"
+      priority: 2
+      condition:
+        type: "logical_or"
+        conditions:
+          - type: "equality"
+            field: "aggregation_risk"
+            operator: "=="
+            value: true
+          - type: "comparison"
+            field: "target_conc_mg_ml"
+            operator: ">="
+            value: 100
+      action:
+        type: "preferences_and_allowances"
+        preferences:
+          vh:
+            require_tags_any: ["high_solubility"]
+          vl:
+            require_tags_any: ["high_solubility"]
+        allowances:
+          light_chain_switch:
+            enabled: true
+            to_lambda:
+              match_type: "family_gene"
+              family_gene: "IGLV2-14"
+              # Note: Framework ID will be resolved (e.g., "VL:IGLV2-14*01" if exists)
+      reason: "High-concentration formulations (>=100 mg/ml) or aggregation risk contexts prioritize high_solubility-tagged frameworks; allow controlled kappa-to-lambda switch (IGLV2-14) if needed for solubility."
+    
+    - id: "pi_tuning"
+      priority: 3
+      condition:
+        type: "comparison"
+        field: "predicted_pI"
+        operator: ">"
+        value: "threshold"  # threshold value should be provided in query or config
+      action:
+        type: "preferences_and_allowances"
+        preferences:
+          vh:
+            prefer_tags_any: ["pI_tuning"]
+            near_neighbor:
+              enabled: true
+              constraints:
+                same_family: true
+                keep_canonical_envelope: true
+          vl:
+            optional_fr4_override:
+              light_j:
+                j_segment_id: "hJK2"  # Must exist in fr4_j_segments.yaml
+      reason: "High predicted pI (>threshold) requires pI tuning; prefer same-family near-neighbor VH frameworks with pI_tuning tag (preserving canonical envelope), optionally try hJK2 for light chain J segment."
+    
+    - id: "scfv_bispecific"
+      priority: 4
+      condition:
+        type: "membership"
+        field: "format"
+        operator: "in"
+        value: ["scFv", "bispecific"]
+      action:
+        type: "preferences"
+        preferences:
+          vh:
+            prefer_tags_any: ["compact"]
+          vl:
+            prefer_tags_any: ["compact"]
+      reason: "scFv and bispecific formats are sensitive to folding/packing constraints; prefer compact-tagged frameworks to minimize steric hindrance and improve folding efficiency."

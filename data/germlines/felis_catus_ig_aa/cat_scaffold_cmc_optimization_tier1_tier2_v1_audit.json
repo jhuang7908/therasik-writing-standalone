@@ -1,0 +1,106 @@
+{
+  "built_at": "2026-04-29T14:33:48",
+  "cleaning_pipeline": [
+    "1_signal_peptide_and_nterm_trim",
+    "2_length_and_kabat_gates",
+    "3_dedupe_by_fr1_fr2_fr3",
+    "4_kabat_segmentation_fr_and_cdr",
+    "5_cmc_and_developability_per_template"
+  ],
+  "inputs": {
+    "vh_fasta": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\data\\germlines\\fc_aa\\fc_database\\cat\\IGHC_cat_vh_candidates.fasta",
+    "igkv_json": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\data\\germlines\\felis_catus_ig_aa\\IGKV_aa.json",
+    "iglv_json": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\data\\germlines\\felis_catus_ig_aa\\IGLV_aa.json"
+  },
+  "rejected": [
+    {
+      "header": "ATI97393.1 IgH variable region, partial [Felis catus]",
+      "reason": "duplicate_fr1_fr2_fr3"
+    },
+    {
+      "header": "ADQ27302.1 immunoglobulin heavy chain variable region, partial [Felis catus]",
+      "reason": "too_short_after_normalization"
+    },
+    {
+      "header": "BAJ83726.1 immunoglobulin heavy chain variable region subgroup 3, partial [Felis catus]",
+      "reason": "duplicate_fr1_fr2_fr3"
+    },
+    {
+      "header": "BAJ83720.1 immunoglobulin heavy chain variable region subgroup 3, partial [Felis catus]",
+      "reason": "duplicate_fr1_fr2_fr3"
+    },
+    {
+      "header": "BAJ83709.1 immunoglobulin heavy chain variable region subgroup 3, partial [Felis catus]",
+      "reason": "duplicate_fr1_fr2_fr3"
+    },
+    {
+      "header": "BAJ83704.1 immunoglobulin heavy chain variable region subgroup 3, partial [Felis catus]",
+      "reason": "duplicate_fr1_fr2_fr3"
+    },
+    {
+      "header": "BAJ83703.1 immunoglobulin heavy chain variable region subgroup 3, partial [Felis catus]",
+      "reason": "duplicate_fr1_fr2_fr3"
+    },
+    {
+      "header": "BAJ83697.1 immunoglobulin heavy chain variable region subgroup 3, partial [Felis catus]",
+      "reason": "duplicate_fr1_fr2_fr3"
+    },
+    {
+      "header": "BAJ83695.1 immunoglobulin heavy chain variable region subgroup 3, partial [Felis catus]",
+      "reason": "duplicate_fr1_fr2_fr3"
+    },
+    {
+      "header": "BAJ83681.1 immunoglobulin heavy chain variable region subgroup 1, partial [Felis catus]",
+      "reason": "duplicate_fr1_fr2_fr3"
+    },
+    {
+      "header": "BAJ83674.1 immunoglobulin heavy chain variable region subgroup 1, partial [Felis catus]",
+      "reason": "duplicate_fr1_fr2_fr3"
+    },
+    {
+      "header": "IGKV1-17*01",
+      "reason": "duplicate_vl_fr1_fr2_fr3"
+    },
+    {
+      "header": "IGKV2-4*01",
+      "reason": "duplicate_vl_fr1_fr2_fr3"
+    },
+    {
+      "header": "IGKV2-5*01",
+      "reason": "duplicate_vl_fr1_fr2_fr3"
+    },
+    {
+      "header": "IGKV2-9*01",
+      "reason": "duplicate_vl_fr1_fr2_fr3"
+    },
+    {
+      "header": "IGLV1-47D*01",
+      "reason": "duplicate_vl_fr1_fr2_fr3"
+    },
+    {
+      "header": "IGLV3-10*01",
+      "reason": "incomplete_variable_domain"
+    },
+    {
+      "header": "IGLV3-20*01",
+      "reason": "duplicate_vl_fr1_fr2_fr3"
+    },
+    {
+      "header": "IGLV5-49*01",
+      "reason": "duplicate_vl_fr1_fr2_fr3"
+    },
+    {
+      "header": "IGLV5-55*01",
+      "reason": "duplicate_vl_fr1_fr2_fr3"
+    }
+  ],
+  "counts": {
+    "rows_total": 143,
+    "vh": 89,
+    "vl": 54,
+    "tier1": 17,
+    "tier2": 37,
+    "tier3": 89,
+    "rejected": 20
+  }
+}

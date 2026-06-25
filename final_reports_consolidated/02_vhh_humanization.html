@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="abenginecore-vhh-report-build" content="20260503-VHH-V3.3-v3.3">
+<title>InSynBio AbEngineCore | VHH Humanization Report</title>
+<style>
+:root {
+  --bg: #f4f7f9;
+  --panel: #ffffff;
+  --text: #2c3e50;
+  --accent: #1b4fad;
+  --accent2: #2d6cdf;
+  --border: #d0d7e2;
+  --pass: #059669;
+  --fail: #dc2626;
+  --warn: #d97706;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg); color: var(--text); margin: 0; padding: 20px; line-height: 1.5;
+}
+.page {
+  max-width: 900px; margin: 0 auto; background: var(--panel);
+  padding: 32px 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+/* Hero bar aligned with VH/VL V5.4.x HTML reports (solid brand blue, white text). */
+.report-header {
+  background: var(--accent);
+  color: #fff;
+  padding: 20px 28px;
+  border-radius: 8px;
+  margin-bottom: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.report-header h1 { margin: 0 0 4px; font-size: 1.35rem; font-weight: 700; color: #fff; letter-spacing: -0.02em; }
+.report-header .sub { font-size: .84rem; font-weight: 600; opacity: .95; margin-top: 2px; line-height: 1.45; color: #fff; }
+.report-header .sub b { color: #fff; }
+.report-header .ts { text-align: right; font-size: .78rem; font-weight: 600; opacity: .92; color: #fff; }
+.report-header .header-meta { margin-top: 10px; font-size: .76rem; font-weight: 600; opacity: .9; line-height: 1.45; }
+.report-header .header-meta div { margin-top: 2px; }
+
+.toc-bar {
+  background: #f8fafd; border: 1px solid var(--border); padding: 8px 14px;
+  border-radius: 6px; font-size: .8rem; margin-bottom: 24px; color: #5a6a80;
+}
+.toc-bar a { color: var(--accent2); text-decoration: none; margin: 0 4px; }
+.toc-bar a:hover { text-decoration: underline; }
+
+.section { margin-bottom: 32px; }
+h3 { color: var(--accent); font-size: .98rem; margin: 0 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--border); }
+.note { color: #5a6a80; font-size: .8rem; margin-bottom: 8px; }
+
+table.params { width: 100%; border-collapse: collapse; font-size: .83rem; }
+table.params th { background: #e8eef8; color: var(--accent); font-weight: 600; padding: 7px 12px; text-align: left; border-bottom: 2px solid var(--border); }
+table.params td { padding: 6px 12px; border-bottom: 1px solid #eef; vertical-align: top; }
+table.params td.lbl { width: 38%; color: #4a5a72; font-size: .82rem; }
+table.params tr:last-child td { border-bottom: none; }
+table.params tr.row-best td { background: #f0fff4; font-weight: 600; }
+
+.badge { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: .72rem; font-weight: 700; vertical-align: middle; margin-left: 4px; }
+.badge-ok { background: #d1fae5; color: var(--pass); border: 1px solid #6ee7b7; }
+.badge-fail { background: #fee2e2; color: var(--fail); border: 1px solid #fca5a5; }
+.badge-warn { background: #fef3c7; color: var(--warn); border: 1px solid #fcd34d; }
+
+.seq-block { background: #f8fafd; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+.seq-label { font-size: .82rem; font-weight: 700; color: var(--accent2); margin-bottom: 6px; }
+.seq-len { font-weight: 400; color: #8a9ab0; font-size: .75rem; margin-left: 6px; }
+.seq-body { font-family: 'Consolas', 'Courier New', monospace; font-size: .78rem; word-break: break-all; line-height: 2; color: #1a2030; }
+.chunk { margin-right: 8px; letter-spacing: .04em; }
+.chunk:nth-child(10n) { color: #1b4fad; }
+
+footer { text-align: center; color: #8899aa; font-size: .72rem; margin-top: 28px; padding-top: 12px; border-top: 1px solid var(--border); }
+footer a { color: #1b4fad; }
+
+.discussion-box { background: #f8fafd; border: 1px solid var(--border); border-left: 4px solid var(--accent2); border-radius: 0 6px 6px 0; padding: 10px 14px; margin: 10px 0; }
+.discussion-title { font-size: .78rem; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+.discussion-content { font-size: .8rem; color: #374151; line-height: 1.6; margin: 0; }
+
+@page { margin: 18mm 14mm 16mm 14mm }
+@media print {
+  body { background: #fff; font-size: 10.5px; color: #000; }
+  .page { max-width: 100%; padding: 0; box-shadow: none; }
+  .toc-bar { display: none; }
+  .report-header {
+    background: #1b4fad !important;
+    color: #fff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .report-header h1,
+  .report-header .sub,
+  .report-header .sub b,
+  .report-header .ts,
+  .report-header .header-meta { color: #fff !important; opacity: 1; }
+  .section {
+    break-inside: auto; page-break-inside: auto;
+    border: 1px solid #ccc; margin-bottom: 8px; overflow: visible; box-shadow: none;
+  }
+  h3 { break-after: avoid; page-break-after: avoid; font-size: 12px; }
+  h4 { break-after: avoid; page-break-after: avoid; font-size: 11px; }
+  .discussion-box { break-inside: avoid; page-break-inside: avoid; }
+  .seq-block { break-inside: avoid; page-break-inside: avoid; }
+  table.params { break-inside: auto; page-break-inside: auto; border-collapse: collapse; width: 100%; }
+  table.params tr { break-inside: avoid; page-break-inside: avoid; }
+  table.params th, table.params td { font-size: 9.5px; padding: 3px 5px; }
+  details { display: block; }
+  details > *:not(summary) { display: block !important; }
+  .seq-body { font-size: 8.5px; line-height: 1.7; word-break: break-all; }
+  .badge-ok, .badge-fail, .badge-warn, .badge {
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  footer { margin-top: 8px; font-size: 8px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="report-header">
+    <div>
+      <h1>InSynBio AbEngineCore</h1>
+      <div class="sub">VHH Antibody Humanization Report | V3.3 Protocol</div>
+      <div class="sub" style="margin-top:4px">Sequence / project name: <b>VHH_QC_Regen</b></div>
+              <div class="header-meta">
+        <div><strong>Report format (suite)</strong>: 4.1.1</div>
+        <div><strong>Service</strong>: VHH Humanization &nbsp;·&nbsp; <strong>Service report</strong>: v3.5 &nbsp;·&nbsp; <strong>Content variant</strong>: v3.3</div>
+        <div><strong>Protocol</strong>: V3.3 &nbsp;|&nbsp; <strong>Analysis</strong>: AbEngineCore VHH Humanization Standard v3.3 &nbsp;|&nbsp; <strong>Build</strong>: 20260503-002 &nbsp;|&nbsp; <strong>Environment</strong>: DEV</div>
+        <div>UI Build: 20260510-V5.5.1-vhvl-format-v15-console-runmode</div>
+        <div>API Version: 1.0.0 (FastAPI)</div>
+        </div>
+    </div>
+    <div class="ts">2026-05-11 19:45 UTC<br><span style="font-size:.7rem;opacity:.6">CONFIDENTIAL</span></div>
+  </div>
+  <div class="cohort-provenance" style="margin:10px 0;padding:10px 14px;border:1px solid #cbd5e1;border-radius:6px;background:#f8fafc;font-size:.78rem;color:#1f2937"><div style="font-weight:600;color:#1e3a8a;margin-bottom:6px">Reference cohort provenance</div><table style="width:100%;border-collapse:collapse;color:#1f2937"><tr style="color:#475569;font-size:.72rem;text-align:left"><th style="padding:2px 4px;color:#1e3a8a">Panel type</th><th style="padding:2px 4px;color:#1e3a8a">Release ID</th><th style="padding:2px 4px;color:#1e3a8a">Purpose in this report</th></tr><tbody style="color:#1f2937"><tr><td><strong>Clinical VHH benchmark panel</strong></td><td>R2026.05</td><td>Clinical/approved VHH developability baseline</td></tr><tr><td><strong>Structural VHH benchmark panel</strong></td><td>R2026.05</td><td>VHH hallmark and structural context</td></tr></tbody></table><div style="margin-top:6px;color:#64748b;font-size:.72rem">Reference range derived from internal source-matched benchmark panel (frozen release: R2026.05). Detailed cohort composition is confidential.</div></div>
+
+  <div class='toc-bar'>
+    <b>Contents</b> &nbsp;|&nbsp;
+    <a href='#s0'>Overview</a> · <a href='#s1'>VHH sites</a> · <a href='#s2'>CDRs</a> ·
+    <a href='#s3'>Framework</a> · <a href='#s4'>Structure</a> · <a href='#s5'>mini-CMC</a> ·
+    <a href='#s5a'>Tier back-mut</a> ·
+    <a href='#s7'>Humanness</a> ·
+    
+    <a href='#s6'>Candidates</a> · <a href='#s10'>Sequences §10</a> ·
+    <a href='#s8'>QA Flags</a> ·
+    <a href='#s9'>CMC Advisory</a> ·
+    <a href='#s11'>Glossary</a>
+  </div>
+
+  <!-- §0 Overview -->
+  <div class='section' id='s0'>
+    <h3>§0 — Overview</h3>
+    
+    
+    <div style="margin-bottom:18px;padding:10px 14px;border-left:5px solid #7c3aed;background:#fef2f2;border-radius:0 6px 6px 0;font-size:.84rem">
+      <b style="color:#7c3aed">Feasibility Pre-screen (V3.2) — Score 75/100</b><br>
+      <span style="font-weight:600">◆ CDR-graft humanization + post-graft pI charge check (borderline cationic)</span>
+      <ul style="margin:6px 0 0 16px;padding:0"><li style="margin-bottom:3px">Isoelectric point (pI=8.96) is in the borderline cationic range. CDR charge is preserved by humanization; human framework substitutions may raise pI further. Post-humanization pI must be verified.</li></ul>
+      <p style="margin:6px 0 0;color:#475569;font-size:.8rem">CDR-graft humanization will be performed first. Donor pI (8.96) is borderline cationic — post-humanization pI must be verified. If humanized pI rises above 9.0, targeted charge-neutralising mutations in the framework (e.g. K→Q/E at exposed positions) will be recommended as a follow-up step.</p>
+    </div>
+    <table class='params'>
+      <tr><td class='lbl'>Sequence / project name</td><td>VHH_QC_Regen</td></tr>
+      <tr><td class='lbl'>Generated</td><td>2026-05-11 19:45 UTC</td></tr>
+      <tr><td class='lbl'>Pipeline</td><td>VHH Humanization — V3.3 Protocol (AbEngineCore)</td></tr>
+      <tr><td class='lbl'>Overall Status</td><td><b>OK</b> &nbsp;<span class='badge badge-ok'>PASS</span></td></tr>
+      <tr><td class='lbl'>VHH Humanness Score (FR Identity)</td><td><b>97.8</b> / 100</td></tr>
+      <tr><td class='lbl'>SAP Hydrophobic Patch Score</td><td>0.556 &nbsp;(green)</td></tr>
+      <tr><td class='lbl'>Best Clinical Germline Match</td><td><b>131I-GMIB-Anti-HER2-VHH1</b></td></tr>
+      <tr><td class='lbl'>Strategy Applied</td><td>A</td></tr>
+      <tr><td class='lbl'>Lead Selection</td><td>Rank 1 passed structural/CMC hard gates; no rescue needed.</td></tr>
+      <tr><td class='lbl'>Ranking Policy Recommendation</td><td><b>Tier B</b> · lead plus consensus<br><span style='color:#475569'>Moderate ranking uncertainty (swap_risk=0.50); keep Top-1 as lead but provide consensus mutations as robust fallback.</span></td></tr>
+    </table>
+    
+        <div class="discussion-box">
+          <div class="discussion-title">Framework Selection Discussion</div>
+          <p class="discussion-content">The selection of human VH3 germline frameworks is based on sequence identity and structural compatibility. The best match (<strong>131I-GMIB-Anti-HER2-VHH1</strong>) provides an optimal balance between high humanness and the preservation of the VHH's unique single-domain architecture.</p>
+        </div>
+  </div>
+
+  <!-- §1 Hallmarks -->
+  <div class='section' id='s1'>
+    <h3>§1 — VHH signature sites (IMGT 37 + FR2: 44/45/47)</h3>
+    <p class='note'>Key framework residues associated with VHH solubility and structure.</p>
+    <table class='params'>
+      <tr><th style="width:15%">IMGT Position</th><th style="width:20%;text-align:center">Residue</th><th>Structural Role</th></tr>
+      <tr><td>37</td><td style="text-align:center"><span style="background:#d1fae5;color:#059669;padding:2px 7px;border-radius:4px;border:1px solid #6ee7b7;font-family:monospace;font-weight:bold">Y</span></td><td>IMGT 37 (CDR1–framework boundary): typically hydrophobic and stabilizes the CDR1 loop. Under <b>FR-only grafting</b>, this site is copied from the donor together with CDR1 (it is not independently re-humanized). This four-row hallmark panel lists IMGT 37 plus FR2 positions 44/45/47; older literature may refer to the same IMGT site as <b>“W37”</b> when tryptophan was common there.</td></tr><tr><td>44</td><td style="text-align:center"><span style="background:#d1fae5;color:#059669;padding:2px 7px;border-radius:4px;border:1px solid #6ee7b7;font-family:monospace;font-weight:bold">Q</span></td><td>FR2 VHH hallmark (solubilizing)</td></tr><tr><td>45</td><td style="text-align:center"><span style="background:#d1fae5;color:#059669;padding:2px 7px;border-radius:4px;border:1px solid #6ee7b7;font-family:monospace;font-weight:bold">A</span></td><td>FR2 VHH hallmark (solubility; A=clinical norm 97.6%)</td></tr><tr><td>47</td><td style="text-align:center"><span style="background:#d1fae5;color:#059669;padding:2px 7px;border-radius:4px;border:1px solid #6ee7b7;font-family:monospace;font-weight:bold">G</span></td><td>FR2 VHH hallmark (packing)</td></tr>
+    </table>
+  </div>
+
+  <!-- §2 CDRs -->
+  <div class='section' id='s2'>
+    <h3>§2 — CDR Sequences (IMGT)</h3>
+    <table class='params'>
+      <tr><th style="width:15%">CDR</th><th>Sequence</th><th style="width:15%">Length</th></tr>
+      <tr><td class="lbl">CDR-H1</td><td style="font-family:monospace">GFTLSSYA</td><td>8 aa</td></tr>
+      <tr><td class="lbl">CDR-H2</td><td style="font-family:monospace">ISGSGGST</td><td>8 aa</td></tr>
+      <tr><td class="lbl">CDR-H3</td><td style="font-family:monospace">AKDRYGSNYGFAY</td><td>13 aa</td></tr>
+    </table>
+  </div>
+
+  <!-- §3 Framework -->
+  <div class='section' id='s3'>
+    <h3>§3 — Framework Selection &amp; Scoring</h3>
+    <table class='params'>
+      <tr><th style="width:38%">Parameter</th><th>Result</th></tr>
+      <tr><td class="lbl">Best Clinical Germline / Template</td><td><code>131I-GMIB-Anti-HER2-VHH1</code></td></tr>
+      <tr><td class="lbl">Overall Framework Identity</td><td><b>97.8%</b></td></tr>
+      <tr><td class="lbl">FR2 Identity</td><td>100.0%</td></tr>
+      <tr><td class="lbl">Combined Score (FR + CDR + CMC)</td><td>0.956</td></tr>
+      <tr><td class="lbl">SAP Score (hydro_patch_max9)</td><td>0.556 &nbsp;(green)</td></tr>
+    </table>
+    
+        <div class="discussion-box">
+          <div class="discussion-title">Framework Selection Discussion</div>
+          <p class="discussion-content">The selection of human VH3 germline frameworks is based on sequence identity and structural compatibility. The best match (<strong>131I-GMIB-Anti-HER2-VHH1</strong>) provides an optimal balance between high humanness and the preservation of the VHH's unique single-domain architecture.</p>
+        </div>
+  </div>
+
+  <!-- §4 Structure -->
+  <div class='section' id='s4'>
+    <h3>§4 — Structural Conservation (NanoBodyBuilder2)</h3>
+    <table class='params'>
+      <tr><th style="width:38%">Metric</th><th>Donor VHH</th><th>Humanized VHH</th><th>QC</th></tr>
+      <tr>
+        <td class="lbl">Mean pLDDT (Confidence)</td>
+        <td>83.0</td>
+        <td>83.7</td>
+        <td><span class='badge badge-ok'>✓ >70</span></td>
+      </tr>
+      <tr><td class="lbl">CDR-H1 Cα RMSD</td><td>—</td><td>0.13 Å</td><td><span class='badge badge-ok'>✓ <2.0 Å</span></td></tr>
+      <tr><td class="lbl">CDR-H2 Cα RMSD</td><td>—</td><td>0.05 Å</td><td><span class='badge badge-ok'>✓ <2.0 Å</span></td></tr>
+      <tr><td class="lbl">CDR-H3 Cα RMSD</td><td>—</td><td>0.25 Å</td><td><span class='badge badge-ok'>✓ <2.0 Å</span></td></tr>
+    </table>
+    
+        <div class="discussion-box">
+          <div class="discussion-title">Structural Discussion</div>
+          <p class="discussion-content">Structural modeling using the <strong>NanoBodyBuilder2</strong> architecture confirms high conformational preservation across the CDR regions. The low RMSD values indicate that the framework substitutions and hallmark engineering have not induced significant backbone shifts in the antigen-binding loops. The high confidence scores (pLDDT) support the feasibility of the engineered fold as a stable single-domain therapeutic candidate.</p>
+        </div>
+  </div>
+
+  <!-- §5 mini-CMC -->
+  <div class='section' id='s5'>
+    <h3>§5 — mini-CMC Developability (Donor vs Humanized)</h3>
+    <p class='note' style='margin-bottom:10px'>
+      <b>Donor baseline</b> is computed on the <b>input sequence before humanization</b>.
+      This comparison proves whether CMC issues are <em>sequence-intrinsic</em> (present in the donor)
+      or <em>introduced by framework substitution</em>.
+      If the donor already fails a gate, the root cause lies in the source sequence — not in the humanization algorithm.
+      A negative Δ (improvement) indicates the humanization algorithm actively reduced the risk.
+    </p>
+    <table class='params'>
+      <tr>
+        <th style="width:32%">Parameter</th>
+        <th style="width:18%;text-align:center">Donor (input)</th>
+        <th style="width:18%;text-align:center">Humanized (lead)</th>
+        <th style="width:10%;text-align:center">Δ (hum−donor)</th>
+        <th style="width:10%;text-align:center">Origin</th>
+        <th>Gate (humanized)</th>
+      </tr>
+      <tr>
+        <td class="lbl">Theoretical pI</td>
+        <td style="text-align:center">8.96</td>
+        <td style="text-align:center">8.62</td>
+        <td style="text-align:center">-0.34</td>
+        <td style="text-align:center">—</td>
+        <td><span class='badge badge-ok'>✓ 5.5–9.5</span></td>
+      </tr>
+      <tr>
+        <td class="lbl">GRAVY (Hydrophobicity)</td>
+        <td style="text-align:center">-0.212</td>
+        <td style="text-align:center">-0.190</td>
+        <td style="text-align:center">+0.022</td>
+        <td style="text-align:center">—</td>
+        <td><span class='badge badge-ok'>✓ ≤ 0</span></td>
+      </tr>
+      <tr>
+        <td class="lbl">Instability Index</td>
+        <td style="text-align:center;">32.0</td>
+        <td style="text-align:center">32.60</td>
+        <td style="text-align:center">+0.6</td>
+        <td style="text-align:center">—</td>
+        <td><span class='badge badge-ok'>✓ ≤ 40 (Stable)</span></td>
+      </tr>
+      <tr>
+        <td class="lbl">SAP score (7-mer proxy)</td>
+        <td style="text-align:center;">0.556</td>
+        <td style="text-align:center">0.556</td>
+        <td style="text-align:center">+0.000</td>
+        <td style="text-align:center">—</td>
+        <td><span class='badge badge-ok'>✓ ≤ 0.639 (p75)</span></td>
+      </tr>
+    </table>
+    
+    
+    
+        <div class="discussion-box">
+          <div class="discussion-title">Developability Discussion</div>
+          <p class="discussion-content">The humanized candidate has been audited for essential physicochemical liabilities. The overall profile reflects a stable sequence suitable for downstream process development. Prioritization is given to physical stability and expression yield, ensuring a favorable profile for clinical translation.</p>
+        </div>
+  </div>
+
+  <!-- §5a Tier-protected back-mutations (engine apply_tier_back_mutations) -->
+  
+  <div class='section' id='s5a'>
+    <h3>§5a — Tier-protected back-mutations (VHH)</h3>
+    <p class='note'>
+      Algorithm: <code>core.vhh_humanization.apply_tier_back_mutations</code> — runs immediately after
+      <code>graft_cdrs_to_template</code>. It restores <b>donor</b> amino acids at Tier-protected framework positions
+      (from <code>config/tier_system_config.json</code>, plus CDR3-length-aware upgrades) when the human scaffold would
+      replace them. Distinct from VH/VL Phase-4 Vernier rescue, but serves the same audit goal: documented reversions
+      for conservation-critical framework sites.
+    </p>
+    <p class='note'><b>No tier-enforced back-mutations on the lead sequence.</b> After CDR graft, every Tier-protected site already matched the donor amino acid (the human template agreed at those positions), so <code>apply_tier_back_mutations</code> made zero edits. Framework differences visible in §10 are ordinary graft substitutions outside the protected set.</p>
+    <table class='params'>
+      <tr><th style='width:12%'>Site (IMGT*)</th><th style='width:8%'>After graft</th><th style='width:10%'>After revert</th><th>Rationale</th></tr>
+      <tr><td colspan='4' style='color:#475569;font-style:italic'>No individual mutations listed.</td></tr>
+    </table>
+    <p class='note' style='margin-top:8px;font-size:.72rem'>
+      * Row key <code>kabat_position</code> is populated from the IMGT numbering stream used inside the tier engine (historical field name).
+    </p>
+  </div>
+
+  
+    <div class='section' id='s7'>
+      <h3>§7 — Humanness Indicators</h3>
+      <p class='note'>
+        Sequence-based indicators of humanness, structural naturalness, and human repertoire compatibility.
+      </p>
+      <table class='params'>
+        <tr><th style='width:38%'>Metric</th><th>Result</th><th>Interpretation</th></tr>
+        <tr>
+          <td class='lbl'>Framework Identity (PRF)</td>
+          <td><b><b>97.8</b> / 100</b></td>
+          <td>Percentage of human-matching residues in the framework regions (FR1-FR4).</td>
+        </tr>
+        <tr>
+          <td class='lbl'>HPR Index</td>
+          <td><b>92.0%</b></td>
+          <td>Human Peptide Repertoire compatibility (9-mer coverage). Donor: 92.0% (Δ: +0.0%).</td>
+        </tr>
+        <tr>
+          <td class='lbl'>Sequence Naturalness Score</td>
+          <td>0.956</td>
+          <td>A composite indicator of sequence-to-template compatibility and structural plausibility.</td>
+        </tr>
+      </table>
+    </div>
+
+  <!-- §6PG Post-Graft Surface Reshaping (humanization_plus_reshape path) -->
+  
+
+  <!-- §6SR Surface Reshaping (auto-populated when CDR-graft was skipped) -->
+  
+
+    # ── §6 Candidates (empty when surface_reshaping_only) ──
+    
+  <div class='section' id='s6'>
+    <h3>§6 — Ranking &amp; Candidates</h3>
+    <table class='params'>
+      <tr><th style="width:4%">#</th><th style="width:16%">Template</th><th style="width:10%">FR Id%</th><th style="width:10%">Score</th><th style="width:12%">Panel</th><th>Humanized Sequence</th></tr>
+      <tr class="row-best"><td>1</td><td><b>131I-GMIB-Anti-HER2-VHH1</b></td><td>97.8%</td><td><b>0.956</b></td><td>Clinical Drug</td><td style="font-family:monospace;font-size:0.78em;word-break:break-all">EVQLVESGGGLVQPGGSLRLSCAASGFTLSSYAMSWVRQAPGKGLEWVSAISGSGGSTYYADSVKGRFTISRDNAKNTLY…</td></tr><tr class=""><td>2</td><td><b>68-GaNOTA-Anti-HER2 VHH1</b></td><td>97.8%</td><td><b>0.956</b></td><td>Clinical Drug</td><td style="font-family:monospace;font-size:0.78em;word-break:break-all">EVQLVESGGGLVQPGGSLRLSCAASGFTLSSYAMSWVRQAPGKGLEWVSAISGSGGSTYYADSVKGRFTISRDNAKNTLY…</td></tr><tr class=""><td>3</td><td><b>CD20 VHH CAR-T</b></td><td>97.8%</td><td><b>0.956</b></td><td>Clinical Drug</td><td style="font-family:monospace;font-size:0.78em;word-break:break-all">EVQLVESGGGLVQPGGSLRLSCAASGFTLSSYAMSWVRQAPGKGLEWVSAISGSGGSTYYADSVKGRFTISRDNAKNTLY…</td></tr>
+    </table>
+  </div>
+
+    <!-- §10 FR/CDR segmentation then full-length sequences (VH/VL V5.4.x §10 order) -->
+    <div class='section' id='s10'>
+      <h3>§10 — Donor vs Humanized — FR/CDR Segmentation (IMGT)</h3>
+      
+    <p class='note' style='margin-bottom:12px'>
+      Side-by-side FR/CDR segmentation using <code>core.vhh_humanization.split_regions</code>
+      (same boundaries as CDR graft / hard QA gate).
+      <b>CDR regions</b> are copied from the donor and must match exactly after successful humanization.
+      <b>FR differences</b> reflect framework substitution to the selected human template plus any tier-protected back-mutations.
+    </p>
+    <div style='margin-top:4px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden'>
+      <div style='background:#1b4fad;color:#fff;padding:10px 14px;display:flex;
+        align-items:center;justify-content:space-between'>
+        <span style='font-weight:700;font-size:13px'>VHH — FR / CDR Segmentation &nbsp;
+          <span style='font-size:11px;opacity:.8'>(IMGT V-domain)</span></span>
+        <span style='display:flex;gap:8px;align-items:center'>
+          <span style='background:#1a7a3c;color:#fff;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700'>CDR IDENTICAL</span>
+          <span style='background:rgba(255,255,255,.18);border-radius:4px;padding:2px 8px;
+            font-size:11px'>FR: 2 substitution(s)</span>
+        </span>
+      </div>
+      <table style='width:100%;border-collapse:collapse;font-size:12px'>
+        <thead>
+          <tr style='background:#f1f5f9;font-size:11px;color:#374151'>
+            <th style='padding:7px 8px;width:120px;text-align:left;border-bottom:2px solid #e5e7eb'>
+              Region <span style='color:#9ca3af'>(IMGT)</span></th>
+            <th style='padding:7px 8px;text-align:left;border-bottom:2px solid #e5e7eb'>Donor VHH</th>
+            <th style='padding:7px 8px;text-align:left;border-bottom:2px solid #e5e7eb'>Humanized VHH</th>
+            <th style='padding:7px 8px;width:110px;text-align:left;border-bottom:2px solid #e5e7eb'>Match</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr style='background:transparent;border-bottom:1px solid #e5e7eb'>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top'>
+                <span style='background:#3b82f6;color:#fff;border-radius:3px;
+                  padding:1px 6px;font-size:10px;font-weight:700'>
+                  FR</span>
+                <b style='margin-left:4px'>FR1</b>
+                <div style='color:#9ca3af;font-size:10px;margin-top:2px'>IMGT 1–26 <span style='color:#888;font-size:10px'>(25 aa)</span></div>
+              </td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'>QVQLVESGGGLVQPGGSLRLSCAAS</span></td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'><span style='background:#fee2e2;color:#b91c1c;font-weight:700;padding:0 1px;border-radius:2px'>E</span>VQLVESGGGLVQPGGSLRLSCAAS</span></td>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top;font-size:11px'><span style='color:#b91c1c;font-weight:700'>≠ 1 aa changed</span></td>
+            </tr>
+            <tr style='background:#fffbeb;border-bottom:1px solid #e5e7eb'>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top'>
+                <span style='background:#f59e0b;color:#fff;border-radius:3px;
+                  padding:1px 6px;font-size:10px;font-weight:700'>
+                  CDR</span>
+                <b style='margin-left:4px'>CDR1</b>
+                <div style='color:#9ca3af;font-size:10px;margin-top:2px'>IMGT 27–38 <span style='color:#888;font-size:10px'>(8 aa)</span></div>
+              </td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace;background:#fef3c7;padding:0 2px;border-radius:2px'>GFTLSSYA</span></td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace;background:#fef3c7;padding:0 2px;border-radius:2px'>GFTLSSYA</span></td>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top;font-size:11px'><span style='color:#1a7a3c;font-weight:700'>✓ Identical</span></td>
+            </tr>
+            <tr style='background:transparent;border-bottom:1px solid #e5e7eb'>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top'>
+                <span style='background:#3b82f6;color:#fff;border-radius:3px;
+                  padding:1px 6px;font-size:10px;font-weight:700'>
+                  FR</span>
+                <b style='margin-left:4px'>FR2</b>
+                <div style='color:#9ca3af;font-size:10px;margin-top:2px'>IMGT 39–55 <span style='color:#888;font-size:10px'>(17 aa)</span></div>
+              </td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'>MSWVRQAPGKGLEWVSA</span></td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'>MSWVRQAPGKGLEWVSA</span></td>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top;font-size:11px'><span style='color:#1a7a3c;font-weight:700'>✓ Identical</span></td>
+            </tr>
+            <tr style='background:#fffbeb;border-bottom:1px solid #e5e7eb'>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top'>
+                <span style='background:#f59e0b;color:#fff;border-radius:3px;
+                  padding:1px 6px;font-size:10px;font-weight:700'>
+                  CDR</span>
+                <b style='margin-left:4px'>CDR2</b>
+                <div style='color:#9ca3af;font-size:10px;margin-top:2px'>IMGT 56–65 (+55→CDR2 when Kabat CDR2≥17aa) <span style='color:#888;font-size:10px'>(8 aa)</span></div>
+              </td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace;background:#fef3c7;padding:0 2px;border-radius:2px'>ISGSGGST</span></td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace;background:#fef3c7;padding:0 2px;border-radius:2px'>ISGSGGST</span></td>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top;font-size:11px'><span style='color:#1a7a3c;font-weight:700'>✓ Identical</span></td>
+            </tr>
+            <tr style='background:transparent;border-bottom:1px solid #e5e7eb'>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top'>
+                <span style='background:#3b82f6;color:#fff;border-radius:3px;
+                  padding:1px 6px;font-size:10px;font-weight:700'>
+                  FR</span>
+                <b style='margin-left:4px'>FR3</b>
+                <div style='color:#9ca3af;font-size:10px;margin-top:2px'>IMGT 66–104 <span style='color:#888;font-size:10px'>(38 aa)</span></div>
+              </td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'>YYADSVKGRFTISRDNSKNTLYLQMNSLRAEDTAVYYC</span></td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'>YYADSVKGRFTISRDN<span style='background:#fee2e2;color:#b91c1c;font-weight:700;padding:0 1px;border-radius:2px'>A</span>KNTLYLQMNSLRAEDTAVYYC</span></td>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top;font-size:11px'><span style='color:#b91c1c;font-weight:700'>≠ 1 aa changed</span></td>
+            </tr>
+            <tr style='background:#fffbeb;border-bottom:1px solid #e5e7eb'>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top'>
+                <span style='background:#f59e0b;color:#fff;border-radius:3px;
+                  padding:1px 6px;font-size:10px;font-weight:700'>
+                  CDR</span>
+                <b style='margin-left:4px'>CDR3</b>
+                <div style='color:#9ca3af;font-size:10px;margin-top:2px'>IMGT 105–117 <span style='color:#888;font-size:10px'>(13 aa)</span></div>
+              </td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace;background:#fef3c7;padding:0 2px;border-radius:2px'>AKDRYGSNYGFAY</span></td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace;background:#fef3c7;padding:0 2px;border-radius:2px'>AKDRYGSNYGFAY</span></td>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top;font-size:11px'><span style='color:#1a7a3c;font-weight:700'>✓ Identical</span></td>
+            </tr>
+            <tr style='background:transparent;border-bottom:1px solid #e5e7eb'>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top'>
+                <span style='background:#3b82f6;color:#fff;border-radius:3px;
+                  padding:1px 6px;font-size:10px;font-weight:700'>
+                  FR</span>
+                <b style='margin-left:4px'>FR4</b>
+                <div style='color:#9ca3af;font-size:10px;margin-top:2px'>IMGT 118–128 <span style='color:#888;font-size:10px'>(11 aa)</span></div>
+              </td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'>WGQGTLVTVSS</span></td>
+              <td style='padding:6px 8px;word-break:break-all;vertical-align:top'><span style='font-family:monospace'>WGQGTLVTVSS</span></td>
+              <td style='padding:6px 8px;white-space:nowrap;vertical-align:top;font-size:11px'><span style='color:#1a7a3c;font-weight:700'>✓ Identical</span></td>
+            </tr></tbody>
+      </table>
+      <div style='background:#f8fafc;padding:6px 12px;font-size:10px;color:#9ca3af;
+        border-top:1px solid #e5e7eb'>
+        Legend: CDR = amber background · FR mutations = red highlight · ✓ Identical · IMGT regions per pipeline IMGT_REGIONS
+      </div>
+    </div>
+      <h4 style='color:#1b4fad;margin:18px 0 6px;font-size:14px'>
+        Full-length sequences — donor vs humanized (lead)
+      </h4>
+      <p class='note' style='margin:0 0 8px;font-size:12px'>
+        Same amino-acid strings as <code>vhh_sequences.fasta</code> for donor and lead humanized chain when applicable.
+        Alternate ranked candidates follow when available.
+      </p>
+      
+        <div class='seq-block'>
+          <div class='seq-label'>Donor (input) VHH <span class='seq-len'>120 aa</span></div>
+          <div class='seq-body'><span class="chunk">QVQLVESGGG</span> <span class="chunk">LVQPGGSLRL</span> <span class="chunk">SCAASGFTLS</span> <span class="chunk">SYAMSWVRQA</span> <span class="chunk">PGKGLEWVSA</span> <span class="chunk">ISGSGGSTYY</span> <span class="chunk">ADSVKGRFTI</span> <span class="chunk">SRDNSKNTLY</span> <span class="chunk">LQMNSLRAED</span> <span class="chunk">TAVYYCAKDR</span> <span class="chunk">YGSNYGFAYW</span> <span class="chunk">GQGTLVTVSS</span></div>
+        </div>
+      
+        <div class='seq-block'>
+          <div class='seq-label'>Lead humanized VHH (Top-1 ranked) <span class='seq-len'>120 aa</span></div>
+          <div class='seq-body'><span class="chunk">EVQLVESGGG</span> <span class="chunk">LVQPGGSLRL</span> <span class="chunk">SCAASGFTLS</span> <span class="chunk">SYAMSWVRQA</span> <span class="chunk">PGKGLEWVSA</span> <span class="chunk">ISGSGGSTYY</span> <span class="chunk">ADSVKGRFTI</span> <span class="chunk">SRDNAKNTLY</span> <span class="chunk">LQMNSLRAED</span> <span class="chunk">TAVYYCAKDR</span> <span class="chunk">YGSNYGFAYW</span> <span class="chunk">GQGTLVTVSS</span></div>
+        </div>
+      <details style='margin-top:10px'>
+        <summary style='cursor:pointer;color:#1b4fad;font-size:12px;font-weight:600'>
+          ▸ FASTA copy block (donor + lead humanized)
+        </summary>
+        <pre style='font-family:Consolas,Monaco,monospace;font-size:11.5px;background:#f6f8fb;border:1px solid #d6e3ff;border-radius:6px;padding:10px;margin-top:6px;white-space:pre-wrap;word-break:break-all'>
+&gt;Donor_VHH (120 aa)
+QVQLVESGGGLVQPGGSLRLSCAASGFTLSSYAMSWVRQAPGKGLEWVSAISGSGGSTYYADSVKGRFTISRDNSKNTLYLQMNSLRAEDTAVYYCAKDRYGSNYGFAYWGQGTLVTVSS
+&gt;Humanized_VHH_Lead (120 aa)
+EVQLVESGGGLVQPGGSLRLSCAASGFTLSSYAMSWVRQAPGKGLEWVSAISGSGGSTYYADSVKGRFTISRDNAKNTLYLQMNSLRAEDTAVYYCAKDRYGSNYGFAYWGQGTLVTVSS</pre>
+      </details>
+    </div>
+
+    <!-- §8 QA Flags -->
+    <div class='section' id='s8'>
+      <h3>§8 — QA Flags &amp; Advisories</h3>
+      <p class='note' lang='en'>Automated QA checks. ⚠ = advisory; ✖ = needs review.</p>
+      <ul lang='en'><li style="margin-bottom:4px"><span style="color:#d97706">⚠ </span>CDR1 length is 8 aa — ensure the VH3 template FR1 context supports this canonical family.</li><li style="margin-bottom:4px"><span style="color:#d97706">⚠ </span>Candidate ranking stability is moderately low (swap_risk=0.50, stability_score=0.50). Manually review template choice or prioritize consensus across top candidates.</li></ul>
+      <p class='note' lang='en' style='margin-top:8px'><b>Ranking policy:</b> Tier B
+      (lead_plus_consensus). Moderate ranking uncertainty (swap_risk=0.50); keep Top-1 as lead but provide consensus mutations as robust fallback.</p>
+      
+    <div style="margin-top:14px;padding:10px 14px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;font-size:.82rem">
+      <b style="color:#0369a1">⚖ Ranking Stability Advisory</b>
+      <p style="margin:6px 0 4px">Top-1 (<b>131I-GMIB-Anti-HER2-VHH1</b>) and Top-2 (<b>68-GaNOTA-Anti-HER2 VHH1</b>) scores are within noise margin
+      (swap_risk=0.50). <b>Consensus mutations</b> shared by both templates are the most
+      reliable changes — consider prioritizing these for synthesis:</p>
+      <code style="font-size:.78rem;color:#0c4a6e">pos 1: Q→E, pos 75: S→A</code>
+      <p style="margin:6px 0 0;color:#475569">If resources allow, synthesize both Top-1 and Top-2 and let
+      SPR/BLI decide. Divergent positions carry template-specific uncertainty.</p>
+    </div>
+    </div>
+
+    <!-- §9 CMC Optimization Advisory -->
+    <div class='section' id='s9'>
+      <h3>§9 — CMC Optimization Advisory (V3.3)</h3>
+      <p class='note' style='margin-bottom:12px'>
+        Automated recommendations for offline CMC optimization services based on identified sequence liabilities.
+      </p>
+    <p style='color:#059669;font-size:.83rem'>✓ No CMC optimization advisory — humanized sequence meets all CMC thresholds.</p>
+  </div>
+
+  
+    <div class='section' id='s11'>
+      <h3>§11 — Glossary &amp; Methodology</h3>
+      <table class='params'>
+        <tr><td class='lbl'>IMGT V-domain</td><td>The international ImMunoGeneTics information system standard for antibody numbering and region definition (FR1-FR4, CDR1-CDR3).</td></tr>
+        <tr><td class='lbl'>VHH Hallmarks</td><td>Specific framework-2 positions (IMGT 44, 45, 47) that distinguish camelid VHH from VH, typically increasing solubility.</td></tr>
+        <tr><td class='lbl'>SAP Score</td><td>Spatial Aggregation Propensity proxy — a sequence-based metric for surface hydrophobicity. Higher scores indicate higher aggregation risk.</td></tr>
+        <tr><td class='lbl'>HPR Index</td><td>Human Peptide Repertoire Compatibility Index — measures 9-mer peptide overlap with a human antibody repertoire reference.</td></tr>
+        <tr><td class='lbl'>Framework Identity</td><td>A framework-only identity metric (PRF) that measures the percentage of human-matching residues in the framework regions, excluding CDRs.</td></tr>
+        <tr><td class='lbl'>CDR Preservation</td><td>A mandatory quality gate ensuring the antigen-binding loops (CDRs) are 100% identical to the donor after framework humanization.</td></tr>
+      </table>
+    </div>
+
+  <footer>InSynBio Research &nbsp;·&nbsp; <a href="https://www.insynbio.com">https://www.insynbio.com</a> &nbsp;·&nbsp; 2026-05-11 19:45 UTC &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; Use Ctrl+P → Save as PDF to export this report.</footer>
+</div>
+
+<!-- abenginecore-report-qc: PASS -->
+<div style='position:fixed;bottom:10px;right:12px;z-index:9999;background:#fff;border:2px solid #059669;border-radius:8px;padding:4px 10px;font-size:.72rem;font-weight:700;color:#059669;box-shadow:0 2px 8px rgba(0,0,0,.12);cursor:default' title='AbEngineCore Report QC — PASS&#10;FAIL: 0  WARN: 0'>QC: PASS</div>
+</body>
+</html>

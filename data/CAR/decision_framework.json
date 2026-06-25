@@ -1,0 +1,3222 @@
+{
+  "_metadata": {
+    "description": "8-layer CAR-T design decision framework. Each layer provides structured biological reasoning that cascades into element selection.",
+    "version": "1.1",
+    "generated": "2025-04-01",
+    "layers": [
+      "D1_disease_biology",
+      "D2_antigen_properties",
+      "D3_delivery_modality",
+      "D4_cell_chassis",
+      "D5_immune_microenvironment",
+      "D6_vector_integration",
+      "D7_safety_framework",
+      "D8_clinical_evidence",
+      "D9_patient_fitness_and_cmc",
+      "D10_boolean_logic_routing",
+      "D11_regulatory_path"
+    ],
+    "auxiliary_models": [
+      "evidence_confidence_model",
+      "toxicity_tolerance_model",
+      "logic_pair_database",
+      "core_assembly_rules"
+    ],
+    "strict_evidence_only_default": true,
+    "default_recommendable_evidence_levels": [
+      "approved_human",
+      "clinical_human"
+    ]
+  },
+  "D1_disease_biology": {
+    "_note": "First decision: what category of disease determines the fundamental design strategy.",
+    "categories": {
+      "liquid_tumor": {
+        "characteristics": [
+          "high antigen density on malignant cells",
+          "accessible in blood and bone marrow",
+          "low physical barriers (no stroma)",
+          "low-to-moderate immunosuppressive TME",
+          "well-defined lineage-restricted antigens"
+        ],
+        "design_impact": {
+          "costim": "CD28 or 4-1BB both clinically validated",
+          "hinge": "short (proximal epitopes sufficient for most targets)",
+          "armor": "usually not needed; standard 2G CAR sufficient",
+          "homing": "not needed (tumor cells circulate in blood/BM)",
+          "anti_exhaustion": "not typically required (rapid clearance)",
+          "persistence": "4-1BB for durability; CD28 for rapid response"
+        },
+        "indications": [
+          "B_ALL",
+          "DLBCL",
+          "CLL",
+          "multiple_myeloma",
+          "MCL",
+          "FL"
+        ],
+        "key_challenges": [
+          "antigen loss/downregulation",
+          "CRS management",
+          "B-cell aplasia"
+        ],
+        "references": [
+          "Neelapu et al. NEJM 2017",
+          "Maude et al. NEJM 2018"
+        ],
+        "evidence_confidence": "approved_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:29385370",
+            "source_title": "Tisagenlecleucel in Children and Young Adults with B-Cell Lymphoblastic Leukemia",
+            "year": 2018,
+            "directness": "direct"
+          },
+          {
+            "source_type": "literature",
+            "source_id": "PMID:28521086",
+            "source_title": "Axicabtagene Ciloleucel CAR T-Cell Therapy in Refractory Large B-Cell Lymphoma",
+            "year": 2017,
+            "directness": "direct"
+          }
+        ]
+      },
+      "solid_tumor": {
+        "characteristics": [
+          "physical barriers (stroma, ECM, fibrosis)",
+          "highly immunosuppressive TME (TGFβ, adenosine, PD-L1, IDO, hypoxia)",
+          "antigen heterogeneity within tumor",
+          "poor T cell trafficking and infiltration",
+          "T cell exhaustion from chronic antigen exposure",
+          "hostile metabolic environment (low glucose, low O2, high lactate)"
+        ],
+        "design_impact": {
+          "costim": "4-1BB strongly preferred (persistence over peak expansion)",
+          "homing": "REQUIRED — CCR2b (CCL2 axis) and/or CXCR3 (CXCL9/10 axis)",
+          "armor": "REQUIRED — cytokine payload (IL-15, IL-18, IL-12) + checkpoint blocker (anti-PD-L1, anti-TIGIT)",
+          "anti_exhaustion": "CRITICAL — c-Jun OE is minimum; consider BATF, NR4A1-DN, DNMT3A-KO",
+          "ecm_degradation": "consider HPSE (heparanase) for dense stroma tumors",
+          "tgfb_resistance": "TGFβRII-DN or TGFβ-trap for TGFβ-dominant TME",
+          "hinge": "depends on target epitope membrane distance",
+          "multi_target": "strongly recommended (antigen heterogeneity)"
+        },
+        "indications": [
+          "mesothelioma",
+          "ovarian_cancer",
+          "pancreatic_cancer",
+          "glioblastoma",
+          "hepatocellular_carcinoma",
+          "colorectal_cancer",
+          "NSCLC",
+          "breast_cancer_HER2",
+          "prostate_cancer",
+          "neuroblastoma",
+          "SCLC"
+        ],
+        "key_challenges": [
+          "T cell exhaustion",
+          "poor infiltration",
+          "immunosuppressive TME",
+          "antigen heterogeneity",
+          "on-target off-tumor toxicity"
+        ],
+        "references": [
+          "Lynn et al. Science 2019",
+          "Rafiq et al. Nat Rev Clin Oncol 2020"
+        ],
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:31900437",
+            "source_title": "Engineering strategies to overcome the current roadblocks in CAR T cell therapy",
+            "year": 2020,
+            "directness": "partial"
+          },
+          {
+            "source_type": "literature",
+            "source_id": "PMID:34266984",
+            "source_title": "A Phase I Trial of Regional Mesothelin-Targeted CAR T-cell Therapy in Patients with Malignant Pleural Disease, in Combination with Pembrolizumab",
+            "year": 2021,
+            "directness": "partial"
+          }
+        ]
+      },
+      "AML_special": {
+        "characteristics": [
+          "target antigens (CD33, CD123, FLT3, CD70) shared with normal hematopoietic stem cells",
+          "myeloablation risk if HSCs are depleted",
+          "accessible in blood/BM (liquid tumor properties)",
+          "complex differentiation hierarchy with leukemic stem cells"
+        ],
+        "design_impact": {
+          "safety_switch": "MANDATORY — iCasp9 or RQR8 to allow HSC rescue",
+          "logic_gate": "strongly consider AND-gate (SynNotch) to spare HSC: require two antigens, only one present on HSC",
+          "cell_chassis": "NK cells preferred — inherent HSC sparing via KIR/KIR-L inhibitory signaling",
+          "affinity_tuning": "lower-affinity binders may spare low-density normal cells",
+          "transient_expression": "mRNA CAR to limit exposure window"
+        },
+        "indications": [
+          "AML",
+          "BPDCN",
+          "MDS"
+        ],
+        "key_challenges": [
+          "HSC depletion",
+          "myeloablation",
+          "relapse from leukemic stem cells"
+        ],
+        "references": [
+          "Cummins & Gill Mol Ther 2022",
+          "Hofmann et al. Blood 2019"
+        ],
+        "evidence_confidence": "preclinical_in_vivo",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:31136781",
+            "source_title": "CD123 CAR T cells for the treatment of myelodysplastic syndrome",
+            "year": 2019,
+            "directness": "partial"
+          }
+        ]
+      },
+      "autoimmune": {
+        "characteristics": [
+          "target is pathogenic B cells or plasma cells (not a tumor mass)",
+          "low 'tumor burden' equivalent (pathogenic cell frequency much lower)",
+          "goal is reset of immune tolerance, not complete cell elimination",
+          "patients often immunosuppressed from disease/medications"
+        ],
+        "design_impact": {
+          "lymphodepletion": "low-dose fludarabine/cyclophosphamide sufficient",
+          "persistence": "short-to-medium term may be enough (immune reset)",
+          "costim": "4-1BB for controlled, sustained depletion",
+          "CAAR_option": "if specific autoantibody target known (Dsg3, MuSK) → CAAR design",
+          "BCMA_vs_CD19": "BCMA for long-lived plasma cells; CD19 for B cells; combination for complete depletion",
+          "dose": "lower CAR-T dose than oncology (10^6-10^7 range)",
+          "safety": "mRNA-CAR or lower dose preferred for safety"
+        },
+        "indications": [
+          "SLE",
+          "pemphigus_vulgaris",
+          "myasthenia_gravis",
+          "rheumatoid_arthritis",
+          "type_1_diabetes",
+          "inflammatory_bowel_disease"
+        ],
+        "key_challenges": [
+          "infection risk from B cell aplasia",
+          "relapse after B cell reconstitution",
+          "Treg damage"
+        ],
+        "references": [
+          "Mackensen et al. Nat Med 2022",
+          "Mougiakakos et al. NEJM 2025 (anticipated)"
+        ],
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:36109639",
+            "source_title": "Anti-BCMA CAR T-cell therapy for refractory systemic lupus erythematosus",
+            "year": 2022,
+            "directness": "direct"
+          }
+        ]
+      },
+      "transplant_GvHD": {
+        "characteristics": [
+          "goal is immune suppression, not killing",
+          "CAR-Treg approach: suppress allo-reactive T and B cells",
+          "must maintain stable Treg phenotype in inflammatory environment"
+        ],
+        "design_impact": {
+          "cell_chassis": "Treg ONLY — conventional T cells would worsen GvHD",
+          "treg_stability": "FoxP3 OE mandatory; Helios OE recommended; TNFR2 costim preferred",
+          "forbidden_elements": "NO pro-inflammatory payloads (IL-12, IL-18, c-Jun, BATF)",
+          "costim": "4-1BB acceptable but monitor Treg stability; ICOS under investigation"
+        },
+        "indications": [
+          "transplant_rejection",
+          "GvHD"
+        ],
+        "references": [
+          "MacDonald et al. Nat Med 2019"
+        ],
+        "evidence_confidence": "preclinical_in_vivo",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:26999600",
+            "source_title": "Alloantigen-specific regulatory T cells generated with a chimeric antigen receptor",
+            "year": 2016,
+            "directness": "direct"
+          }
+        ]
+      },
+      "infectious_disease": {
+        "characteristics": [
+          "target is pathogen-encoded antigen on infected host cells — zero normal-tissue expression",
+          "target cells may be anucleate (e.g. iRBC) → T cell cytotoxic pathway may be incompatible",
+          "acute infections impose tight therapeutic windows (hours–days)",
+          "pathogen antigens may exhibit antigenic variation (e.g. PfEMP1 var switching)",
+          "natural clearance mechanisms (phagocytosis, complement) already exist — CAR augments them",
+          "manufacturing time of ex-vivo products may exceed disease window"
+        ],
+        "design_impact": {
+          "cell_chassis": "macrophage if target cell is anucleate or phagocytosis is native clearance; NK as alternative for ADCC-competent targets",
+          "delivery": "in_vivo_LNP_mRNA strongly preferred for acute infections (window <168h); ex_vivo acceptable for chronic infections (HIV, HBV)",
+          "safety": "pathogen-only antigen → on-target/off-tumor risk minimal; safety switch optional unless chronic expression",
+          "costim": "FcRg (phagocytic signaling) for macrophage; 4-1BB for T/NK",
+          "armor": "usually not needed — no immunosuppressive TME in blood-stage infections",
+          "binder": "broad-spectrum binder required if pathogen exhibits antigenic variation; VHH preferred over scFv for stability in harsh conditions",
+          "multi_target": "OR-gate for variable antigens with conserved + variable epitope coverage",
+          "persistence": "transient expression (mRNA) may be sufficient for acute; stable for chronic"
+        },
+        "indications": [
+          "malaria_cerebral",
+          "malaria_severe",
+          "HIV",
+          "HBV_chronic",
+          "CMV_reactivation",
+          "EBV_PTLD",
+          "fungal_invasive"
+        ],
+        "key_challenges": [
+          "antigenic variation and immune evasion",
+          "anucleate target cells incompatible with T cell killing",
+          "acute therapeutic window precludes ex-vivo manufacturing",
+          "limited clinical precedent for CAR in infectious disease",
+          "pathogen biology poorly represented in CAR knowledge bases"
+        ],
+        "references": [
+          "Reyes et al. Nature 636:182 (2024)",
+          "Klichinsky et al. Nat Biotechnol 38:947 (2020)",
+          "Maldini et al. Nat Rev Immunol 18:605 (2018)"
+        ],
+        "evidence_confidence": "concept_only",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "DOI:10.1038/s41586-024-08220-3",
+            "source_title": "Broadly inhibitory antibodies to severe malaria virulence proteins",
+            "year": 2024,
+            "directness": "partial"
+          },
+          {
+            "source_type": "literature",
+            "source_id": "PMID:30108335",
+            "source_title": "CAR T cells and infectious diseases",
+            "year": 2018,
+            "directness": "direct"
+          }
+        ]
+      }
+    },
+    "decision_rules": [
+      {
+        "if": "indication in liquid_tumor.indications",
+        "then": "category = liquid_tumor"
+      },
+      {
+        "if": "indication in AML_special.indications",
+        "then": "category = AML_special"
+      },
+      {
+        "if": "indication in solid_tumor.indications",
+        "then": "category = solid_tumor"
+      },
+      {
+        "if": "indication in autoimmune.indications",
+        "then": "category = autoimmune"
+      },
+      {
+        "if": "indication in transplant_GvHD.indications",
+        "then": "category = transplant_GvHD"
+      },
+      {
+        "if": "indication in infectious_disease.indications",
+        "then": "category = infectious_disease"
+      }
+    ]
+  },
+  "D2_antigen_properties": {
+    "_note": "Antigen structural and expression properties that directly determine hinge length, binder format, safety strategy, and multi-targeting need.",
+    "hinge_rules": {
+      "epitope_distance_lt_5nm": {
+        "hinge": "short",
+        "elements": [
+          "CD8a_Short"
+        ],
+        "reason": "Proximal epitope; short hinge provides optimal synapse formation"
+      },
+      "epitope_distance_5_10nm": {
+        "hinge": "medium",
+        "elements": [
+          "CD28_Medium"
+        ],
+        "reason": "Intermediate distance; medium spacer maintains accessibility"
+      },
+      "epitope_distance_gt_10nm": {
+        "hinge": "long",
+        "elements": [
+          "IgG4_SPLE_Long",
+          "IgD_Hinge"
+        ],
+        "reason": "Distal epitope; long spacer prevents steric hindrance"
+      }
+    },
+    "density_safety_rules": {
+      "ratio_gt_1000x": {
+        "safety_switch": "optional",
+        "risk": "minimal"
+      },
+      "ratio_100_1000x": {
+        "safety_switch": "recommended",
+        "risk": "moderate"
+      },
+      "ratio_lt_100x": {
+        "safety_switch": "mandatory",
+        "affinity_tuning": "recommended",
+        "risk": "high"
+      },
+      "ratio_lt_10x": {
+        "safety_switch": "mandatory",
+        "logic_gate": "required",
+        "risk": "critical"
+      }
+    },
+    "antigens": {
+      "CD19": {
+        "full_name": "CD19 (B-lymphocyte antigen CD19)",
+        "type": "type_I_transmembrane",
+        "gene": "CD19",
+        "uniprot": "P15391",
+        "structure_pdb": "6AL5",
+        "epitope_membrane_distance_nm": 3.5,
+        "epitope_domain": "extracellular domains 1-2 (FMC63 epitope)",
+        "density_molecules_per_cell": {
+          "B_ALL_blast": 15000,
+          "normal_B_cell": 10000,
+          "CLL": 8000,
+          "normal_tissue_non_B": 0
+        },
+        "tumor_normal_ratio": "infinite (B-lineage restricted)",
+        "hinge_recommendation": "short",
+        "heterogeneity": "low — >95% positive in B-ALL, >90% in DLBCL",
+        "antigen_loss_frequency": "30-45% post CD19 CAR-T (B-ALL), 15-20% (DLBCL)",
+        "loss_mechanisms": [
+          "CD19 splicing variant",
+          "lineage switch (B→myeloid)",
+          "trogocytosis"
+        ],
+        "multi_target_rationale": "CD19/CD22 tandem reduces antigen-loss relapse from 45% to <10%",
+        "binder_format_options": [
+          "scFv (FMC63, SJ25C1)",
+          "alternative epitope scFv"
+        ],
+        "on_target_off_tumor": "B cell aplasia (manageable with IgG replacement)",
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:29385370",
+            "source_title": "Tisagenlecleucel in Children and Young Adults with B-Cell Lymphoblastic Leukemia",
+            "year": 2018,
+            "directness": "direct"
+          },
+          {
+            "source_type": "literature",
+            "source_id": "PMID:34757064",
+            "source_title": "Hypogammaglobulinemia after Chimeric Antigen Receptor (CAR) T-cell therapy: characteristics, management, and future directions",
+            "year": 2021,
+            "directness": "partial"
+          }
+        ]
+      },
+      "BCMA": {
+        "full_name": "BCMA (TNFRSF17, CD269)",
+        "type": "type_III_transmembrane",
+        "gene": "TNFRSF17",
+        "uniprot": "Q02223",
+        "epitope_membrane_distance_nm": 2.5,
+        "density_molecules_per_cell": {
+          "myeloma_cell": 1500,
+          "normal_plasma_cell": 800,
+          "normal_B_cell": 0
+        },
+        "tumor_normal_ratio": "~2x vs plasma cells; infinite vs non-plasma",
+        "hinge_recommendation": "short",
+        "heterogeneity": "moderate — can be shed by gamma-secretase (soluble BCMA as decoy)",
+        "antigen_loss_frequency": "10-20% (biallelic BCMA loss reported)",
+        "binder_format_options": [
+          "scFv",
+          "biepitopic VHH (Carvykti, 98% ORR)",
+          "APRIL ligand (binds BCMA+TACI)"
+        ],
+        "on_target_off_tumor": "normal plasma cell depletion (hypogammaglobulinemia)",
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:34901232",
+            "source_title": "Ciltacabtagene autoleucel, a B-cell maturation antigen-directed CAR-T cell therapy in patients with relapsed or refractory multiple myeloma",
+            "year": 2021,
+            "directness": "direct"
+          },
+          {
+            "source_type": "literature",
+            "source_id": "PMC9153033",
+            "source_title": "Humoral immune reconstitution after anti-BCMA CAR T-cell therapy in relapsed/refractory multiple myeloma",
+            "year": 2022,
+            "directness": "direct"
+          }
+        ]
+      },
+      "Mesothelin": {
+        "full_name": "Mesothelin (MSLN)",
+        "type": "GPI_anchored",
+        "gene": "MSLN",
+        "uniprot": "Q13421",
+        "epitope_membrane_distance_nm": 8.0,
+        "density_molecules_per_cell": {
+          "mesothelioma": 50000,
+          "ovarian_serous": 30000,
+          "pancreatic": 20000,
+          "normal_mesothelium": 5000
+        },
+        "tumor_normal_ratio": "6-10x",
+        "hinge_recommendation": "short_to_medium",
+        "heterogeneity": "moderate — 60-80% positive in mesothelioma",
+        "on_target_off_tumor": "moderate (pericardium, peritoneum, pleura express MSLN)",
+        "binder_format_options": [
+          "scFv (SS1, M5)",
+          "affinity-tuned variants"
+        ],
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:34266984",
+            "source_title": "A Phase I Trial of Regional Mesothelin-Targeted CAR T-cell Therapy in Patients with Malignant Pleural Disease, in Combination with Pembrolizumab",
+            "year": 2021,
+            "directness": "direct"
+          }
+        ]
+      },
+      "HER2": {
+        "full_name": "HER2/ErbB2 (ERBB2)",
+        "type": "type_I_transmembrane",
+        "gene": "ERBB2",
+        "uniprot": "P04626",
+        "structure_pdb": "1N8Z",
+        "epitope_membrane_distance_nm": 12.0,
+        "epitope_domain": "domain IV (trastuzumab) or domain II (pertuzumab)",
+        "density_molecules_per_cell": {
+          "breast_3plus": 2000000,
+          "gastric_2plus": 500000,
+          "normal_cardiac": 1000,
+          "normal_lung": 500
+        },
+        "tumor_normal_ratio": "2000x (breast 3+) but cardiac expression is FATAL risk",
+        "hinge_recommendation": "medium_to_long",
+        "heterogeneity": "high (HER2 2+ vs 3+ gradient)",
+        "on_target_off_tumor": "CRITICAL — cardiac myocyte expression → fatal CRS reported (NCI 2010)",
+        "safety_requirements": [
+          "safety_switch MANDATORY",
+          "dose escalation",
+          "affinity tuning",
+          "consider mRNA-CAR"
+        ],
+        "binder_format_options": [
+          "affinity-tuned scFv (NOT full-affinity trastuzumab)",
+          "lower-Kd variants"
+        ],
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:20179677",
+            "source_title": "Case report of a serious adverse event following the administration of T cells transduced with a chimeric antigen receptor recognizing ERBB2",
+            "year": 2010,
+            "directness": "direct"
+          },
+          {
+            "source_type": "literature",
+            "source_id": "PMID:25800760",
+            "source_title": "Human Epidermal Growth Factor Receptor 2-Specific Chimeric Antigen Receptor-Modified T Cells for the Immunotherapy of HER2-Positive Sarcoma",
+            "year": 2015,
+            "directness": "direct"
+          }
+        ]
+      },
+      "GPC3": {
+        "full_name": "Glypican-3 (GPC3)",
+        "type": "GPI_anchored",
+        "gene": "GPC3",
+        "uniprot": "P51654",
+        "epitope_membrane_distance_nm": 6.0,
+        "density_molecules_per_cell": {
+          "HCC": 80000,
+          "hepatoblastoma": 100000,
+          "normal_adult_liver": 0,
+          "fetal_liver": 5000
+        },
+        "tumor_normal_ratio": ">1000x (adults)",
+        "hinge_recommendation": "short_to_medium",
+        "heterogeneity": "moderate — 70-80% HCC positive",
+        "on_target_off_tumor": "low (minimal adult expression)",
+        "binder_format_options": [
+          "scFv (HN3, GC33)"
+        ]
+      },
+      "CLDN18_2": {
+        "full_name": "Claudin 18 isoform 2 (CLDN18.2)",
+        "type": "tetraspan_transmembrane",
+        "gene": "CLDN18",
+        "epitope_membrane_distance_nm": 1.5,
+        "density_molecules_per_cell": {
+          "gastric_cancer": 30000,
+          "pancreatic": 15000,
+          "normal_stomach_chief": 5000
+        },
+        "tumor_normal_ratio": "3-6x but isoform-specific antibody distinguishes CLDN18.2 from CLDN18.1",
+        "hinge_recommendation": "short",
+        "heterogeneity": "moderate — 60-75% positive in gastric",
+        "special_note": "very membrane-proximal epitope → short hinge is ESSENTIAL; longer spacers abolish function",
+        "binder_format_options": [
+          "scFv (IMAB362/zolbetuximab)"
+        ]
+      },
+      "CD123": {
+        "full_name": "IL-3Rα (CD123)",
+        "type": "type_I_transmembrane",
+        "gene": "IL3RA",
+        "epitope_membrane_distance_nm": 5.0,
+        "density_molecules_per_cell": {
+          "AML_blast": 8000,
+          "AML_LSC": 5000,
+          "normal_HSC": 1500,
+          "normal_basophil": 10000
+        },
+        "tumor_normal_ratio": "3-5x vs HSC (DANGEROUS overlap)",
+        "hinge_recommendation": "short_to_medium",
+        "on_target_off_tumor": "HIGH — shared with normal HSCs → myeloablation risk",
+        "safety_requirements": [
+          "safety_switch MANDATORY",
+          "consider logic gate",
+          "NK chassis preferred"
+        ],
+        "binder_format_options": [
+          "scFv (7G3-based, CSL362-based)"
+        ],
+        "evidence_confidence": "preclinical_in_vivo",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:31136781",
+            "source_title": "CD123 CAR T cells for the treatment of myelodysplastic syndrome",
+            "year": 2019,
+            "directness": "partial"
+          }
+        ]
+      },
+      "CD22": {
+        "full_name": "CD22 (Siglec-2)",
+        "type": "type_I_transmembrane",
+        "gene": "CD22",
+        "epitope_membrane_distance_nm": 7.0,
+        "epitope_domain": "domain 3 (membrane-proximal preferred, m971 epitope)",
+        "density_molecules_per_cell": {
+          "B_ALL_blast": 5000,
+          "normal_B_cell": 8000
+        },
+        "hinge_recommendation": "medium",
+        "heterogeneity": "retained in >95% of CD19-loss relapses",
+        "antigen_loss_frequency": "10-15% (CD22 density modulation more common than complete loss)",
+        "multi_target_rationale": "Primary salvage target after CD19 CAR-T failure",
+        "binder_format_options": [
+          "scFv (m971, domain 3 proximal epitope preferred)"
+        ]
+      },
+      "FOLR1": {
+        "full_name": "Folate Receptor Alpha (FRα, FOLR1)",
+        "type": "GPI_anchored",
+        "gene": "FOLR1",
+        "epitope_membrane_distance_nm": 4.0,
+        "density_molecules_per_cell": {
+          "ovarian_serous": 200000,
+          "TNBC": 50000,
+          "lung_adenocarcinoma": 30000,
+          "normal_kidney_proximal": 10000,
+          "normal_lung": 1000
+        },
+        "tumor_normal_ratio": "20-200x",
+        "hinge_recommendation": "short",
+        "on_target_off_tumor": "moderate (kidney proximal tubule expression)",
+        "binder_format_options": [
+          "scFv (MOv19)",
+          "VHH"
+        ]
+      },
+      "GD2": {
+        "full_name": "Disialoganglioside GD2",
+        "type": "glycolipid_surface",
+        "epitope_membrane_distance_nm": 0.5,
+        "density_molecules_per_cell": {
+          "neuroblastoma": 1000000,
+          "melanoma": 500000,
+          "normal_brain_neurons": 5000,
+          "normal_peripheral_nerve": 2000
+        },
+        "tumor_normal_ratio": "200-500x",
+        "hinge_recommendation": "short (glycolipid sits right on membrane)",
+        "on_target_off_tumor": "moderate (neurotoxic pain syndrome from peripheral nerve expression)",
+        "special_note": "GD2 is a glycolipid, not a protein — atypical epitope",
+        "binder_format_options": [
+          "scFv (14G2a, hu14.18)"
+        ]
+      },
+      "DLL3": {
+        "full_name": "Delta-like Ligand 3 (DLL3)",
+        "type": "type_I_transmembrane",
+        "gene": "DLL3",
+        "epitope_membrane_distance_nm": 8.0,
+        "density_molecules_per_cell": {
+          "SCLC": 20000,
+          "normal_tissue": 0
+        },
+        "tumor_normal_ratio": ">10000x (neuroendocrine-specific)",
+        "hinge_recommendation": "short_to_medium",
+        "on_target_off_tumor": "minimal (exquisitely tumor-selective)",
+        "binder_format_options": [
+          "scFv"
+        ]
+      },
+      "PSMA": {
+        "full_name": "Prostate-Specific Membrane Antigen (FOLH1)",
+        "type": "type_II_transmembrane",
+        "gene": "FOLH1",
+        "origin_type": "human",
+        "epitope_membrane_distance_nm": 10.0,
+        "density_molecules_per_cell": {
+          "prostate_cancer": 100000,
+          "normal_prostate": 3000,
+          "normal_kidney": 1000,
+          "tumor_neovasculature": 5000
+        },
+        "tumor_normal_ratio": "30-100x",
+        "hinge_recommendation": "medium_to_long",
+        "on_target_off_tumor": "moderate (normal prostate, kidney, neovasculature)",
+        "binder_format_options": [
+          "scFv (J591)",
+          "minibody"
+        ]
+      },
+      "PfEMP1_CIDRa1": {
+        "full_name": "P. falciparum Erythrocyte Membrane Protein 1 — CIDRα1 domain",
+        "type": "parasite_surface_knob",
+        "gene": "var (PF3D7 multi-gene family, ~60 copies)",
+        "origin_type": "pathogen",
+        "target_cell_type": "infected_red_blood_cell",
+        "target_cell_nucleated": false,
+        "target_cell_apoptosis_competent": false,
+        "epitope_membrane_distance_nm": 30.0,
+        "epitope_location": "knob protrusion (30-50 nm above iRBC surface)",
+        "expression_temporal_pattern": "cyclic",
+        "expression_window_description": "trophozoite/schizont stages only — ~67% of 48h intraerythrocytic cycle",
+        "antigenic_variation": {
+          "mechanism": "mutually exclusive var gene transcriptional switching",
+          "variant_count": 60,
+          "conserved_epitope": "EPCR-binding site (3 residues structurally conserved across 885 CIDRa1 sequences)"
+        },
+        "density_molecules_per_cell": {
+          "infected_RBC_trophozoite": 10000,
+          "normal_RBC": 0,
+          "normal_tissue": 0
+        },
+        "tumor_normal_ratio": "infinite (pathogen-only)",
+        "hinge_recommendation": "medium_to_long",
+        "on_target_off_tumor": "none (pathogen-encoded antigen — zero normal tissue expression)",
+        "heterogeneity": "high (60 var gene variants; CIDRa1 subtypes 1.1–1.8)",
+        "antigen_loss_frequency": "medium (var gene switching can alter CIDRa1 subtype)",
+        "safety_requirements": [],
+        "binder_format_options": [
+          "scFv (C74, covers CIDRa1.4-1.8)",
+          "VHH (preferred — better thermal stability, single-domain, future development)"
+        ],
+        "multi_target_rationale": "OR-gate recommended: anti-CIDRa1.4-1.8 + anti-CIDRa1.1 for full coverage",
+        "evidence_confidence": "concept_only",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "DOI:10.1038/s41586-024-08220-3",
+            "source_title": "Broadly inhibitory antibodies to severe malaria virulence proteins",
+            "year": 2024,
+            "directness": "direct"
+          },
+          {
+            "source_type": "literature",
+            "source_id": "PMID:25482433",
+            "source_title": "Structural conservation despite huge sequence diversity allows EPCR binding by PfEMP1",
+            "year": 2015,
+            "directness": "direct"
+          }
+        ]
+      }
+    }
+  },
+  "D3_delivery_modality": {
+    "_note": "Ex-vivo vs in-vivo CAR delivery decision. Affects manufacturing, vector, and safety profile.",
+    "modalities": {
+      "ex_vivo_autologous": {
+        "description": "Patient's own T/NK cells collected, transduced ex vivo, expanded, re-infused",
+        "when": "default for all current approved products",
+        "advantages": [
+          "proven regulatory path",
+          "quality control per lot",
+          "dose control",
+          "established lymphodepletion protocols"
+        ],
+        "disadvantages": [
+          "2-4 week manufacturing",
+          "vein-to-vein time 4-6 weeks",
+          "patient fitness required",
+          "cost $300K-500K per treatment",
+          "manufacturing failure 5-10%"
+        ],
+        "clinical_stage": "FDA/EMA approved (6 products)",
+        "evidence_confidence": "approved_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:29385370",
+            "source_title": "Tisagenlecleucel in Children and Young Adults with B-Cell Lymphoblastic Leukemia",
+            "year": 2018,
+            "directness": "direct"
+          }
+        ]
+      },
+      "ex_vivo_allogeneic": {
+        "description": "Healthy donor T cells, gene-edited to remove TCR/MHC, banked and used off-the-shelf",
+        "when": "patient too sick for autologous; standardized product needed; cost reduction",
+        "advantages": [
+          "immediate availability",
+          "standardized product",
+          "batch manufacturing",
+          "no patient apheresis"
+        ],
+        "disadvantages": [
+          "GvH risk (requires TCR KO)",
+          "host rejection (requires MHC KO + evasion)",
+          "limited persistence"
+        ],
+        "required_engineering": [
+          "TRAC_CRISPR_Target",
+          "B2M_CRISPR_Target",
+          "HLA_E_NK_Evasion",
+          "CD47_DontEatMe"
+        ],
+        "clinical_stage": "Phase I/II (ALLO-501, UCART19)",
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "clinical_trial",
+            "source_id": "NCT03166878",
+            "source_title": "UCART19 study in relapsed/refractory CD19+ leukemia and lymphoma",
+            "year": 2017,
+            "directness": "direct"
+          }
+        ]
+      },
+      "in_vivo_LNP_mRNA": {
+        "description": "Lipid nanoparticle encapsulating CAR mRNA, targeting T cells in vivo via surface ligand (CD5 scFv)",
+        "when": "transient expression sufficient; repeated dosing acceptable; avoid manufacturing entirely",
+        "advantages": [
+          "no manufacturing facility needed",
+          "no lymphodepletion",
+          "self-limiting (2-5 days)",
+          "no insertional mutagenesis",
+          "repeated dosing possible"
+        ],
+        "disadvantages": [
+          "transient expression only",
+          "anti-PEG antibodies limit re-dosing",
+          "LNP biodistribution to liver",
+          "T cell targeting efficiency <10%"
+        ],
+        "required_elements": [
+          "CD5_scFv_InVivo_Targeting"
+        ],
+        "clinical_stage": "preclinical (Rurik et al. Science 2022)",
+        "evidence_confidence": "preclinical_in_vivo",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:34990237",
+            "source_title": "CAR T cells produced in vivo to treat cardiac injury",
+            "year": 2022,
+            "directness": "direct"
+          }
+        ]
+      },
+      "in_vivo_viral": {
+        "description": "Viral vector (LV or fusogenic) injected IV to transduce T cells in vivo",
+        "when": "stable integration needed without ex-vivo step",
+        "advantages": [
+          "permanent expression",
+          "no manufacturing per patient"
+        ],
+        "disadvantages": [
+          "safety concerns (non-targeted delivery)",
+          "pre-existing anti-viral immunity",
+          "insertional mutagenesis risk in non-target cells"
+        ],
+        "clinical_stage": "early preclinical",
+        "evidence_confidence": "concept_only",
+        "sources": []
+      },
+      "in_vivo_LNP_mRNA_macrophage": {
+        "description": "Mannosylated LNP delivering CAR mRNA to macrophages via CD206 mannose receptor, targeting splenic red-pulp and hepatic Kupffer cells in situ",
+        "when": "macrophage chassis selected; acute therapeutic window (<168h); need immediate effector function without ex-vivo manufacturing",
+        "therapeutic_window_compatible": "acute (<168h)",
+        "advantages": [
+          "onset <1h post-injection — compatible with acute infection windows",
+          "targets tissue-resident macrophages at natural pathogen clearance sites (spleen, liver)",
+          "no ex-vivo manufacturing — single IV injection",
+          "transient expression (48-72h) = built-in safety switch",
+          "ManC-LNP achieves >80% macrophage specificity via CD206 targeting",
+          "cold-chain compatible (-20C, not -80C)"
+        ],
+        "disadvantages": [
+          "transient only — requires repeat dosing for sustained effect",
+          "limited to macrophage lineage (not for T or NK cell programming)",
+          "ManC-LNP technology at preclinical stage",
+          "hepatic first-pass may reduce splenic delivery efficiency"
+        ],
+        "required_elements": [],
+        "clinical_stage": "preclinical (Chen et al. Nat Commun 2025)",
+        "evidence_confidence": "preclinical_in_vivo",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "DOI:10.1038/s41467-025-67674-9",
+            "source_title": "Intraperitoneal programming of tailored CAR macrophages via mRNA-LNP",
+            "year": 2025,
+            "directness": "direct"
+          }
+        ]
+      }
+    },
+    "decision_rules": [
+      {
+        "if": "standard oncology indication",
+        "then": "ex_vivo_autologous"
+      },
+      {
+        "if": "need immediate treatment AND allogeneic elements available",
+        "then": "ex_vivo_allogeneic"
+      },
+      {
+        "if": "safety-critical target (HER2, shared antigen) AND transient expression acceptable",
+        "then": "in_vivo_LNP_mRNA"
+      },
+      {
+        "if": "autoimmune AND low burden AND repeated dosing model",
+        "then": "in_vivo_LNP_mRNA candidate"
+      },
+      {
+        "if": "resource-limited setting AND off-the-shelf needed",
+        "then": "ex_vivo_allogeneic"
+      },
+      {
+        "if": "therapeutic_window_hours < 168 AND cell_chassis = macrophage",
+        "then": "in_vivo_LNP_mRNA_macrophage",
+        "reason": "acute window precludes ex-vivo manufacturing; ManC-LNP targets tissue macrophages in situ"
+      },
+      {
+        "if": "therapeutic_window_hours < 168 AND cell_chassis != macrophage",
+        "then": "in_vivo_LNP_mRNA",
+        "reason": "acute window precludes ex-vivo manufacturing; CD5-LNP targets T cells in vivo"
+      },
+      {
+        "if": "infectious_disease AND chronic (HIV, HBV)",
+        "then": "ex_vivo_autologous OR in_vivo_LNP_mRNA",
+        "reason": "chronic infections allow ex-vivo manufacturing time; in-vivo also viable"
+      }
+    ]
+  },
+  "D4_cell_chassis": {
+    "_note": "Which immune cell type to engineer with CAR. Determines signaling, manufacturing, and clinical outcome.",
+    "cell_types": {
+      "alpha_beta_T": {
+        "full_name": "Conventional αβ T cells (CD4+ and CD8+)",
+        "best_for": [
+          "liquid_tumor",
+          "solid_tumor",
+          "autoimmune"
+        ],
+        "advantages": [
+          "most clinical data (6 FDA products)",
+          "strong serial killing",
+          "memory formation (Tscm, Tcm)",
+          "robust expansion ex vivo",
+          "20+ years of safety data"
+        ],
+        "disadvantages": [
+          "GvHD risk in allogeneic setting",
+          "exhaustion susceptible (chronic antigen)",
+          "CRS/ICANS risk",
+          "variable quality from patient to patient"
+        ],
+        "signaling_options": {
+          "costim": [
+            "CD28_cyto",
+            "4-1BB_cyto",
+            "OX40_cyto",
+            "ICOS_cyto"
+          ],
+          "activation": [
+            "CD3z_cyto"
+          ]
+        },
+        "manufacturing": "apheresis → activation (anti-CD3/CD28 beads) → transduction → expansion (10-14 days)",
+        "persistence": "months to years (4-1BB); weeks to months (CD28)",
+        "clinical_evidence_level": "highest",
+        "evidence_confidence": "approved_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:29385370",
+            "source_title": "Tisagenlecleucel in Children and Young Adults with B-Cell Lymphoblastic Leukemia",
+            "year": 2018,
+            "directness": "direct"
+          },
+          {
+            "source_type": "literature",
+            "source_id": "PMID:28521086",
+            "source_title": "Axicabtagene Ciloleucel CAR T-Cell Therapy in Refractory Large B-Cell Lymphoma",
+            "year": 2017,
+            "directness": "direct"
+          }
+        ]
+      },
+      "NK": {
+        "full_name": "Natural Killer cells",
+        "best_for": [
+          "AML_special",
+          "solid_tumor",
+          "allogeneic_off_the_shelf"
+        ],
+        "advantages": [
+          "no GvHD (no TCR-mediated alloreactivity)",
+          "innate killing backup (NKG2D, ADCC)",
+          "iPSC-derivable at scale",
+          "lower CRS risk",
+          "inherent HSC sparing via KIR"
+        ],
+        "disadvantages": [
+          "limited in vivo persistence (weeks)",
+          "no true immunological memory",
+          "fragile in vitro expansion",
+          "require cytokine support (IL-15, IL-21)",
+          "lower peak cytotoxicity than T cells"
+        ],
+        "signaling_options": {
+          "costim": [
+            "2B4_cyto",
+            "DAP10_costim_full"
+          ],
+          "activation": [
+            "CD3z_cyto",
+            "DAP12_signaling"
+          ]
+        },
+        "preferred_tm": "NKG2D_TM",
+        "persistence_solution": "mbIL15_Armor (membrane-bound IL-15 for autocrine survival)",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:32242358",
+            "source_title": "Use of CAR-Transduced Natural Killer Cells in CD19-Positive Lymphoid Tumors",
+            "year": 2020,
+            "directness": "direct"
+          }
+        ],
+        "manufacturing": "isolation → IL-15/IL-21 expansion → transduction → feeder cell expansion (14-21 days)",
+        "clinical_evidence_level": "Phase I/II (FT596, cord blood CAR-NK)",
+        "evidence_confidence": "clinical_human"
+      },
+      "gamma_delta_T": {
+        "full_name": "γδ T cells (Vδ1, Vδ2 subtypes)",
+        "best_for": [
+          "solid_tumor",
+          "allogeneic_off_the_shelf"
+        ],
+        "advantages": [
+          "MHC-unrestricted killing",
+          "natural tissue homing",
+          "no GvHD",
+          "recognize stress ligands (NKG2D)",
+          "bridge innate and adaptive immunity"
+        ],
+        "disadvantages": [
+          "low frequency in peripheral blood (1-5%)",
+          "expansion challenges (Vδ2 easier than Vδ1)",
+          "limited clinical data for CAR-γδT",
+          "manufacturing not standardized"
+        ],
+        "signaling_options": {
+          "costim": [
+            "CD28_cyto",
+            "4-1BB_cyto"
+          ],
+          "activation": [
+            "CD3z_cyto"
+          ]
+        },
+        "special_features": [
+          "recognize phosphoantigens (Vδ2)",
+          "tissue-resident populations (Vδ1 in gut, skin)"
+        ],
+        "clinical_evidence_level": "Phase I (few trials, mostly non-CAR)",
+        "evidence_confidence": "preclinical_in_vivo",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "10.1007/s00262-022-03260-y",
+            "source_title": "CAR γδ T cells for cancer immunotherapy. Is the field more yellow than green?",
+            "year": 2022,
+            "directness": "partial"
+          }
+        ]
+      },
+      "macrophage": {
+        "full_name": "Macrophages / Monocytes (CAR-M)",
+        "best_for": [
+          "solid_tumor",
+          "infectious_disease_anucleate_target"
+        ],
+        "advantages": [
+          "actively infiltrate solid tumors",
+          "phagocytose large tumor masses and anucleate infected cells",
+          "antigen presentation to recruit T cells",
+          "M2→M1 repolarization of TME",
+          "do not cause CRS",
+          "natural clearance mechanism for iRBCs in spleen/liver — CAR augments existing biology"
+        ],
+        "disadvantages": [
+          "no proliferation in vivo (terminally differentiated)",
+          "limited persistence",
+          "very limited clinical data",
+          "difficult to transduce (resist lentiviral)"
+        ],
+        "signaling_options": {
+          "activation": [
+            "CD3z_cyto",
+            "FcgRI_TM_cyto_CARM"
+          ]
+        },
+        "required_promoter": "CD68_Promoter_CARM",
+        "preferred_vector": "adenoviral_Ad5f35 (macrophages resist LV transduction)",
+        "alternative_manufacturing": {
+          "in_vivo_mRNA_LNP": {
+            "description": "ManC-LNP IV injection → CD206-mediated uptake by splenic red-pulp macrophages and hepatic Kupffer cells → in situ CAR expression",
+            "delivery": "in_vivo_LNP_mRNA_macrophage",
+            "onset": "<1 hour",
+            "duration": "48-72 hours (mRNA self-limiting)",
+            "best_for": "acute infections with tight therapeutic windows",
+            "evidence": "Chen et al. Nat Commun 2025"
+          }
+        },
+        "manufacturing": "monocyte isolation → adenoviral transduction → maturation → infusion",
+        "clinical_evidence_level": "Phase I (CT-0508, Carisma Therapeutics)",
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:39920391",
+            "source_title": "CAR-macrophage therapy for HER2-overexpressing advanced solid tumors: a phase 1 trial",
+            "year": 2025,
+            "directness": "direct"
+          }
+        ]
+      },
+      "Treg": {
+        "full_name": "Regulatory T cells (CD4+CD25+FoxP3+)",
+        "best_for": [
+          "autoimmune",
+          "transplant_GvHD"
+        ],
+        "advantages": [
+          "suppressive function (the GOAL, not killing)",
+          "tissue tolerance induction",
+          "bystander suppression of local inflammation"
+        ],
+        "disadvantages": [
+          "instability risk (Treg→Teff conversion)",
+          "low starting frequency",
+          "no cytotoxic function (by design)",
+          "limited clinical data"
+        ],
+        "signaling_options": {
+          "costim": [
+            "4-1BB_cyto"
+          ],
+          "activation": [
+            "CD3z_cyto"
+          ]
+        },
+        "required_payload": [
+          "FoxP3_TF"
+        ],
+        "recommended_payload": [
+          "Helios_OE",
+          "TNFR2_cyto"
+        ],
+        "forbidden_elements": [
+          "Secreted_IL12",
+          "IL18_Armor",
+          "c_Jun_OE",
+          "BATF_OE",
+          "NR4A1_DN"
+        ],
+        "forbidden_reason": "Pro-inflammatory payloads destabilize FoxP3 expression → Treg becomes pathogenic effector T cell",
+        "manufacturing": "CD4+CD25hi sorting → anti-CD3/CD28 + rapamycin expansion → transduction → expansion (14-21 days)",
+        "clinical_evidence_level": "Phase I/II (Sangamo, NCT04817774)",
+        "evidence_confidence": "preclinical_in_vivo",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:26999600",
+            "source_title": "Alloantigen-specific regulatory T cells generated with a chimeric antigen receptor",
+            "year": 2016,
+            "directness": "direct"
+          }
+        ]
+      },
+      "DC": {
+        "full_name": "Dendritic Cells (CAR-DC, emerging concept)",
+        "best_for": [
+          "antigen presentation",
+          "CAR-mediated vaccination"
+        ],
+        "advantages": [
+          "professional antigen presentation",
+          "activate endogenous T cells",
+          "bridge innate and adaptive"
+        ],
+        "disadvantages": [
+          "not cytotoxic",
+          "very early stage",
+          "no clinical data for CAR-DC"
+        ],
+        "concept": "DC equipped with CAR captures tumor antigen → processes and presents via MHC → activates endogenous anti-tumor T cells",
+        "clinical_evidence_level": "preclinical (2024 concept papers)",
+        "evidence_confidence": "concept_only",
+        "sources": []
+      },
+      "iPSC_derived": {
+        "full_name": "iPSC-derived immune cells",
+        "best_for": [
+          "off_the_shelf",
+          "standardized_product",
+          "multi_edit_engineering"
+        ],
+        "can_differentiate_to": [
+          "T (with BCL11B/RUNX3)",
+          "NK (default hematopoietic fate)",
+          "macrophage"
+        ],
+        "advantages": [
+          "unlimited source from single clone",
+          "gene editing at clonal level (100% efficiency)",
+          "standardized product",
+          "multi-gene engineering feasible",
+          "banked master cell line"
+        ],
+        "disadvantages": [
+          "complex differentiation protocol (30-60 days)",
+          "immature T cell phenotype (more innate-like)",
+          "cost of differentiation",
+          "regulatory complexity"
+        ],
+        "programming_factors": {
+          "T_lineage": [
+            "BCL11B_T_lineage",
+            "RUNX3_OE"
+          ],
+          "NK_lineage": "default (no additional TF needed)",
+          "macrophage_lineage": "standard myeloid differentiation"
+        },
+        "clinical_evidence_level": "Phase I (FT596 iPSC-NK, Fate Therapeutics)",
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "clinical_trial",
+            "source_id": "FT596-Phase1",
+            "source_title": "FT596 off-the-shelf, iPSC-derived CAR NK cell program interim phase 1 data",
+            "year": 2021,
+            "directness": "partial"
+          }
+        ]
+      },
+      "NKT_iNKT": {
+        "full_name": "Invariant Natural Killer T cells (iNKT, Vα24-Jα18/Vβ11)",
+        "best_for": [
+          "neuroblastoma",
+          "solid_tumors_with_CD1d"
+        ],
+        "advantages": [
+          "dual killing (CAR-mediated + CD1d-restricted)",
+          "recognize lipid antigens via CD1d",
+          "no GvHD",
+          "secrete both Th1 and Th2 cytokines"
+        ],
+        "disadvantages": [
+          "extremely low frequency (0.01-0.1% of blood T cells)",
+          "complex expansion",
+          "limited clinical data"
+        ],
+        "signaling_options": {
+          "costim": [
+            "4-1BB_cyto"
+          ],
+          "activation": [
+            "CD3z_cyto"
+          ]
+        },
+        "required_element": "iNKT_TCR_Va24Vb11",
+        "manufacturing": "iNKT sorting → alpha-GalCer + IL-2 expansion → transduction → expansion",
+        "clinical_evidence_level": "Phase I (NCT03294954, Baylor)",
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "clinical_trial",
+            "source_id": "NCT03294954",
+            "source_title": "GD2 Specific CAR and Interleukin-15 Expressing Autologous NKT Cells to Treat Children With Neuroblastoma",
+            "year": 2017,
+            "directness": "direct"
+          }
+        ]
+      }
+    },
+    "disease_to_chassis_recommendation": {
+      "B_ALL": {
+        "primary": "alpha_beta_T",
+        "alternative": "NK"
+      },
+      "DLBCL": {
+        "primary": "alpha_beta_T",
+        "alternative": "NK"
+      },
+      "multiple_myeloma": {
+        "primary": "alpha_beta_T",
+        "alternative": "NK"
+      },
+      "AML": {
+        "primary": "NK",
+        "alternative": "alpha_beta_T",
+        "note": "NK preferred for HSC sparing"
+      },
+      "mesothelioma": {
+        "primary": "alpha_beta_T",
+        "alternative": "macrophage"
+      },
+      "ovarian_cancer": {
+        "primary": "alpha_beta_T",
+        "alternative": "macrophage"
+      },
+      "pancreatic_cancer": {
+        "primary": "alpha_beta_T",
+        "alternative": "macrophage"
+      },
+      "glioblastoma": {
+        "primary": "alpha_beta_T",
+        "alternative": "gamma_delta_T"
+      },
+      "hepatocellular_carcinoma": {
+        "primary": "alpha_beta_T",
+        "alternative": "NK"
+      },
+      "neuroblastoma": {
+        "primary": "NKT_iNKT",
+        "alternative": "alpha_beta_T"
+      },
+      "SLE": {
+        "primary": "alpha_beta_T",
+        "alternative": "Treg"
+      },
+      "pemphigus_vulgaris": {
+        "primary": "alpha_beta_T"
+      },
+      "transplant_rejection": {
+        "primary": "Treg"
+      },
+      "GvHD": {
+        "primary": "Treg"
+      },
+      "malaria_cerebral": {
+        "primary": "macrophage",
+        "note": "iRBC is anucleate — T cell caspase pathway incompatible; phagocytosis is natural clearance mechanism"
+      },
+      "malaria_severe": {
+        "primary": "macrophage",
+        "note": "iRBC is anucleate — T cell caspase pathway incompatible"
+      },
+      "HIV": {
+        "primary": "alpha_beta_T",
+        "alternative": "NK",
+        "note": "HIV-infected CD4+ T cells are nucleated; standard cytotoxic killing applies"
+      },
+      "HBV_chronic": {
+        "primary": "alpha_beta_T",
+        "note": "HBV-infected hepatocytes are nucleated"
+      },
+      "CMV_reactivation": {
+        "primary": "alpha_beta_T",
+        "note": "standard virus-specific T cell approach; nucleated target cells"
+      },
+      "EBV_PTLD": {
+        "primary": "alpha_beta_T",
+        "note": "EBV-transformed B cells are nucleated"
+      },
+      "fungal_invasive": {
+        "primary": "macrophage",
+        "alternative": "NK",
+        "note": "fungal clearance is primarily phagocyte-mediated"
+      }
+    }
+  },
+  "D5_immune_microenvironment": {
+    "_note": "Activation vs suppression balance in the target tissue. Determines armor, KO, and engineering requirements.",
+    "environments": {
+      "blood_bone_marrow": {
+        "suppression_level": "low",
+        "activation_potential": "high",
+        "key_factors": [
+          "accessible",
+          "good cytokine milieu",
+          "effective T cell priming"
+        ],
+        "dominant_suppression": [
+          "PD-L1 on some blasts",
+          "Treg in BM niche",
+          "soluble BCMA (myeloma only)"
+        ],
+        "countermeasures_needed": "minimal — standard 2G CAR sufficient",
+        "applicable_to": [
+          "B_ALL",
+          "DLBCL",
+          "CLL",
+          "multiple_myeloma",
+          "AML",
+          "malaria_cerebral",
+          "malaria_severe",
+          "HIV",
+          "HBV_chronic",
+          "CMV_reactivation",
+          "EBV_PTLD",
+          "fungal_invasive"
+        ],
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:29385370",
+            "source_title": "Tisagenlecleucel in Children and Young Adults with B-Cell Lymphoblastic Leukemia",
+            "year": 2018,
+            "directness": "partial"
+          }
+        ]
+      },
+      "solid_tumor_cold": {
+        "suppression_level": "very_high",
+        "activation_potential": "very_low",
+        "description": "Immunologically 'cold' tumors with minimal immune infiltration",
+        "key_factors": [
+          "low T cell infiltration",
+          "dense stroma",
+          "low MHC-I",
+          "poor antigen presentation"
+        ],
+        "dominant_suppression": [
+          "physical exclusion",
+          "TGFβ",
+          "dense ECM"
+        ],
+        "countermeasures_map": {
+          "physical_barrier": [
+            "HPSE_Secreted",
+            "HPSE_Armor"
+          ],
+          "T_cell_recruitment": [
+            "CCR2b",
+            "CXCR3"
+          ],
+          "immune_activation": [
+            "Secreted_IL12",
+            "IL18_Armor"
+          ],
+          "stroma_degradation": [
+            "HPSE_Secreted"
+          ]
+        },
+        "applicable_to": [
+          "pancreatic_cancer",
+          "prostate_cancer",
+          "some_colorectal"
+        ],
+        "evidence_confidence": "preclinical_in_vivo",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:31900437",
+            "source_title": "Engineering strategies to overcome the current roadblocks in CAR T cell therapy",
+            "year": 2020,
+            "directness": "partial"
+          }
+        ]
+      },
+      "solid_tumor_hot_suppressed": {
+        "suppression_level": "high",
+        "activation_potential": "moderate",
+        "description": "Immune-infiltrated but suppressed by checkpoint and metabolic barriers",
+        "key_factors": [
+          "T cells present but exhausted",
+          "high PD-L1",
+          "TIGIT/LAG-3/TIM-3",
+          "adenosine accumulation",
+          "IDO activity"
+        ],
+        "dominant_suppression_by_tumor": {
+          "melanoma": [
+            "PD-L1",
+            "LAG-3",
+            "TIM-3",
+            "CTLA-4"
+          ],
+          "NSCLC": [
+            "PD-L1",
+            "adenosine",
+            "TGFβ"
+          ],
+          "ovarian": [
+            "TGFβ",
+            "VEGF",
+            "adenosine",
+            "IDO"
+          ],
+          "glioblastoma": [
+            "TGFβ",
+            "IDO",
+            "hypoxia",
+            "Treg_infiltration"
+          ],
+          "mesothelioma": [
+            "TGFβ",
+            "PD-L1",
+            "metabolic_suppression"
+          ],
+          "HCC": [
+            "TGFβ",
+            "PD-L1",
+            "Treg",
+            "MDSC"
+          ]
+        },
+        "countermeasures_map": {
+          "TGFβ": [
+            "TGFbRII_DN",
+            "TGFB1_KO_guide",
+            "TGFb_Trap_Armor"
+          ],
+          "adenosine_CD39_CD73": [
+            "CD39_KO_guide"
+          ],
+          "PD_L1": [
+            "PDCD1_CRISPR_Target",
+            "AntiPDL1_scFv_Secreted",
+            "PD1_CD28_CSR"
+          ],
+          "TIGIT": [
+            "TIGIT_CRISPR_Target",
+            "TIGIT_Blocker_scFv"
+          ],
+          "LAG3": [
+            "LAG3_cyto"
+          ],
+          "T_cell_exhaustion": [
+            "c_Jun_OE",
+            "BATF_OE",
+            "NR4A1_DN",
+            "TOX2_DN",
+            "REGNASE1_KO_guide",
+            "DNMT3A_KO_guide"
+          ],
+          "Treg_suppression": [
+            "PIK3CD_KO_guide"
+          ],
+          "poor_trafficking": [
+            "CCR2b",
+            "CXCR3"
+          ],
+          "PTPN2_brake": [
+            "PTPN2_KO_guide"
+          ]
+        },
+        "applicable_to": [
+          "melanoma",
+          "NSCLC",
+          "ovarian_cancer",
+          "glioblastoma",
+          "mesothelioma",
+          "HCC"
+        ],
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:31900437",
+            "source_title": "Engineering strategies to overcome the current roadblocks in CAR T cell therapy",
+            "year": 2020,
+            "directness": "partial"
+          }
+        ]
+      },
+      "autoimmune_tissue": {
+        "suppression_level": "low",
+        "activation_potential": "high",
+        "description": "Inflamed tissue with pathogenic immune cells — CAR-T depletes the pathogenic cells",
+        "key_factors": [
+          "autoimmune inflammation",
+          "pathogenic B/plasma cells",
+          "cytokine storm potential at lower levels than oncology"
+        ],
+        "countermeasures_needed": "dose control; low lymphodepletion; monitor for CRS",
+        "applicable_to": [
+          "SLE",
+          "pemphigus_vulgaris",
+          "myasthenia_gravis"
+        ],
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:36109639",
+            "source_title": "Anti-BCMA CAR T-cell therapy for refractory systemic lupus erythematosus",
+            "year": 2022,
+            "directness": "partial"
+          }
+        ]
+      }
+    },
+    "suppression_to_element_map": {
+      "_note": "Maps suppressive factor → library element IDs that counteract it",
+      "TGFβ": {
+        "elements": [
+          "TGFbRII_DN",
+          "TGFB1_KO_guide",
+          "TGFb_Trap_Armor"
+        ],
+        "priority": "high",
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "clinical_trial",
+            "source_id": "NCT03089203",
+            "source_title": "PSMA-targeting TGFβ-insensitive armored CAR T cells in metastatic castration-resistant prostate cancer: a phase 1 trial",
+            "year": 2022,
+            "directness": "partial"
+          }
+        ]
+      },
+      "adenosine": {
+        "elements": [
+          "CD39_KO_guide"
+        ],
+        "priority": "medium"
+      },
+      "PD-L1": {
+        "elements": [
+          "PDCD1_CRISPR_Target",
+          "AntiPDL1_scFv_Secreted",
+          "PD1_CD28_CSR"
+        ],
+        "priority": "high",
+        "evidence_confidence": "preclinical_in_vivo",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:31900437",
+            "source_title": "Engineering strategies to overcome the current roadblocks in CAR T cell therapy",
+            "year": 2020,
+            "directness": "partial"
+          }
+        ]
+      },
+      "TIGIT": {
+        "elements": [
+          "TIGIT_CRISPR_Target",
+          "TIGIT_Blocker_scFv"
+        ],
+        "priority": "medium"
+      },
+      "exhaustion": {
+        "elements": [
+          "c_Jun_OE",
+          "BATF_OE",
+          "NR4A1_DN",
+          "TOX2_DN",
+          "REGNASE1_KO_guide",
+          "DNMT3A_KO_guide"
+        ],
+        "priority": "critical",
+        "evidence_confidence": "preclinical_in_vivo",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:31802004",
+            "source_title": "c-Jun overexpression in CAR T cells induces exhaustion resistance",
+            "year": 2019,
+            "directness": "direct"
+          }
+        ]
+      },
+      "Treg_local": {
+        "elements": [
+          "PIK3CD_KO_guide"
+        ],
+        "priority": "medium"
+      },
+      "poor_homing": {
+        "elements": [
+          "CCR2b",
+          "CXCR3"
+        ],
+        "priority": "high",
+        "evidence_confidence": "preclinical_in_vivo",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMC7992009",
+            "source_title": "Chemokine Receptor CCR2b Enhanced Anti-tumor Function of Chimeric Antigen Receptor T Cells Targeting Mesothelin in a Non-small-cell Lung Carcinoma Model",
+            "year": 2021,
+            "directness": "direct"
+          }
+        ]
+      },
+      "dense_stroma": {
+        "elements": [
+          "HPSE_Secreted",
+          "HPSE_Armor"
+        ],
+        "priority": "medium"
+      },
+      "PTPN2_brake": {
+        "elements": [
+          "PTPN2_KO_guide"
+        ],
+        "priority": "medium"
+      },
+      "hypoxia": {
+        "elements": [
+          "GPX4_Enhanced"
+        ],
+        "priority": "low"
+      }
+    }
+  },
+  "D6_vector_integration": {
+    "_note": "Vector choice determines payload capacity, integration safety, manufacturing, and cost.",
+    "vectors": {
+      "lentiviral_LV": {
+        "full_name": "3rd-generation self-inactivating lentiviral vector",
+        "payload_capacity_kb": 8,
+        "integration_pattern": "semi-random, favors body of active genes",
+        "insertional_oncogenesis_risk": "very low (no enhancer in SIN-LV)",
+        "best_for": [
+          "clinical standard",
+          "T cells",
+          "regulatory-approved path"
+        ],
+        "manufacturing": "transient transfection of HEK293T (4-plasmid system)",
+        "titer": "10^7-10^8 TU/mL",
+        "advantages": [
+          "transduces non-dividing cells",
+          "stable integration",
+          "well-characterized safety",
+          "4 FDA-approved CAR products use LV"
+        ],
+        "disadvantages": [
+          "limited payload (8kb)",
+          "complex GMP manufacturing",
+          "high cost per lot"
+        ],
+        "clinical_products": [
+          "Kymriah",
+          "Breyanzi",
+          "Abecma",
+          "Carvykti"
+        ],
+        "cost_per_dose_estimate": "$50K-100K (vector manufacturing contribution)",
+        "evidence_confidence": "approved_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:29385370",
+            "source_title": "Tisagenlecleucel in Children and Young Adults with B-Cell Lymphoblastic Leukemia",
+            "year": 2018,
+            "directness": "direct"
+          }
+        ]
+      },
+      "gamma_retroviral_RV": {
+        "full_name": "Moloney-based gamma-retroviral vector (MSCV/GALV)",
+        "payload_capacity_kb": 7,
+        "integration_pattern": "near transcription start sites and CpG islands (higher risk)",
+        "insertional_oncogenesis_risk": "low but higher than LV (2 cases in X-SCID trials)",
+        "best_for": [
+          "high titer production",
+          "legacy constructs"
+        ],
+        "advantages": [
+          "simpler manufacturing",
+          "higher titers",
+          "long clinical track record"
+        ],
+        "disadvantages": [
+          "only transduces dividing cells",
+          "higher insertional risk near promoters",
+          "payload slightly smaller"
+        ],
+        "clinical_products": [
+          "Yescarta",
+          "Tecartus"
+        ],
+        "promoter_used": "MSCV_LTR",
+        "evidence_confidence": "approved_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:28521086",
+            "source_title": "Axicabtagene Ciloleucel CAR T-Cell Therapy in Refractory Large B-Cell Lymphoma",
+            "year": 2017,
+            "directness": "direct"
+          }
+        ]
+      },
+      "sleeping_beauty_SB": {
+        "full_name": "Sleeping Beauty transposon system (SB100X hyperactive)",
+        "payload_capacity_kb": 12,
+        "integration_pattern": "TA dinucleotides (relatively random, less biased than RV)",
+        "insertional_oncogenesis_risk": "low (random TA sites, no promoter bias)",
+        "best_for": [
+          "large constructs (armored CAR)",
+          "multi-gene delivery",
+          "cost reduction",
+          "non-viral manufacturing"
+        ],
+        "delivery_method": "electroporation of SB100X mRNA + transposon plasmid",
+        "advantages": [
+          "no viral production needed (dramatic cost reduction)",
+          "larger payload than LV/RV",
+          "simple manufacturing",
+          "GMP-compatible electroporation"
+        ],
+        "disadvantages": [
+          "lower transduction efficiency vs viral",
+          "requires cell division for integration",
+          "less clinical data than viral vectors"
+        ],
+        "clinical_trials": [
+          "NCT01497184",
+          "NCT01362452"
+        ],
+        "element_id": "SleepingBeauty_SB100X",
+        "cost_per_dose_estimate": "$5K-15K (vector manufacturing contribution)",
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:27482888",
+            "source_title": "Phase I trials using Sleeping Beauty to generate CD19-specific CAR T cells",
+            "year": 2016,
+            "directness": "direct"
+          }
+        ]
+      },
+      "piggyBac_PB": {
+        "full_name": "PiggyBac transposon system",
+        "payload_capacity_kb": 14,
+        "integration_pattern": "TTAA sites (broader than SB)",
+        "insertional_oncogenesis_risk": "moderate (some hotspots near oncogenes reported)",
+        "best_for": [
+          "very large payloads",
+          "multi-gene cassettes"
+        ],
+        "delivery_method": "electroporation of PB transposase mRNA + transposon plasmid",
+        "advantages": [
+          "largest payload of non-viral systems",
+          "footprint-free excision possible",
+          "efficient in human cells"
+        ],
+        "disadvantages": [
+          "TTAA integration bias includes some oncogene-adjacent sites",
+          "less safety data than SB",
+          "footprint-free excision rarely used clinically"
+        ],
+        "caution": "PiggyBac integration near MYC locus reported in some studies → ongoing safety evaluation",
+        "clinical_stage": "early Phase I",
+        "evidence_confidence": "preclinical_in_vivo",
+        "sources": []
+      },
+      "mRNA_LNP": {
+        "full_name": "mRNA encapsulated in lipid nanoparticle",
+        "payload_capacity_kb": "unlimited (mRNA length not limited by vector)",
+        "integration_pattern": "NONE — episomal, transient expression",
+        "insertional_oncogenesis_risk": "zero",
+        "best_for": [
+          "in-vivo CAR",
+          "safety-critical targets (HER2)",
+          "repeated dosing",
+          "transient expression by design"
+        ],
+        "expression_duration": "2-5 days peak, undetectable by day 7",
+        "advantages": [
+          "no genomic integration",
+          "self-limiting safety",
+          "repeated dosing possible",
+          "no viral manufacturing"
+        ],
+        "disadvantages": [
+          "transient (must re-dose)",
+          "anti-PEG immunity limits repeated dosing",
+          "lower peak expression than integrating vectors",
+          "LNP liver tropism"
+        ],
+        "clinical_stage": "preclinical (Rurik 2022, Moderna pipeline)",
+        "evidence_confidence": "preclinical_in_vivo",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:34990237",
+            "source_title": "CAR T cells produced in vivo to treat cardiac injury",
+            "year": 2022,
+            "directness": "direct"
+          }
+        ]
+      },
+      "AAV_TRAC_knockin": {
+        "full_name": "AAV6-mediated HDR knock-in at TRAC locus",
+        "payload_capacity_kb": 4.7,
+        "integration_pattern": "site-specific at TRAC locus (when combined with CRISPR guide)",
+        "insertional_oncogenesis_risk": "very low (defined locus)",
+        "best_for": [
+          "uniform CAR expression from endogenous TCR promoter",
+          "allogeneic CAR (simultaneous TCR KO + CAR KI)"
+        ],
+        "advantages": [
+          "physiological CAR expression level (reduced tonic signaling)",
+          "simultaneous TCR KO",
+          "no random integration"
+        ],
+        "disadvantages": [
+          "small payload (4.7kb)",
+          "requires CRISPR co-delivery",
+          "AAV manufacturing complex",
+          "KI efficiency 30-60%"
+        ],
+        "clinical_stage": "Phase I (Caribou Biosciences)",
+        "evidence_confidence": "preclinical_in_vivo",
+        "sources": []
+      }
+    },
+    "decision_rules": [
+      {
+        "if": "standard clinical CAR-T",
+        "then": "lentiviral_LV",
+        "reason": "regulatory-proven, 4 FDA products"
+      },
+      {
+        "if": "payload > 8kb (armored + multi-gene)",
+        "then": "sleeping_beauty_SB",
+        "reason": "12kb capacity, non-viral, cost-effective"
+      },
+      {
+        "if": "payload > 12kb (very large multi-gene)",
+        "then": "piggyBac_PB",
+        "reason": "14kb capacity, but monitor integration safety"
+      },
+      {
+        "if": "in-vivo delivery OR safety-critical target",
+        "then": "mRNA_LNP",
+        "reason": "transient, self-limiting, no integration"
+      },
+      {
+        "if": "uniform expression needed AND allogeneic",
+        "then": "AAV_TRAC_knockin",
+        "reason": "site-specific at TRAC, physiological expression"
+      },
+      {
+        "if": "cost is critical AND non-viral acceptable",
+        "then": "sleeping_beauty_SB",
+        "reason": "10-20x cheaper than viral manufacturing"
+      }
+    ],
+    "payload_capacity_check": {
+      "_note": "Estimate construct size and recommend vector",
+      "standard_2G_car": "~1.5kb → any vector",
+      "tandem_bispecific": "~2.5kb → any vector",
+      "armored_4G_single_payload": "~3.5kb → LV (tight), SB/PB (comfortable)",
+      "armored_4G_multi_payload": "~6kb → LV (at limit), SB/PB preferred",
+      "armored_4G_plus_engineering": "~8-12kb → SB/PB required, LV insufficient",
+      "logic_gate_dual_vector": "~10-14kb total → dual LV or single SB/PB"
+    }
+  },
+  "D7_safety_framework": {
+    "_note": "Risk assessment and mitigation strategy for every CAR design.",
+    "crs_risk_model": {
+      "description": "Cytokine Release Syndrome risk factors and mitigation",
+      "risk_factors": {
+        "high_tumor_burden": {
+          "threshold": "BM blasts >50% or bulky disease",
+          "risk_increase": "3-5x",
+          "mitigation": "dose escalation, split dosing",
+          "evidence_confidence": "clinical_human",
+          "sources": [
+            {
+              "source_type": "literature",
+              "source_id": "PMID:28521086",
+              "source_title": "Axicabtagene Ciloleucel CAR T-Cell Therapy in Refractory Large B-Cell Lymphoma",
+              "year": 2017,
+              "directness": "partial"
+            }
+          ]
+        },
+        "CD28_costimulation": {
+          "risk_increase": "2x vs 4-1BB",
+          "mitigation": "consider 4-1BB for lower CRS",
+          "evidence_confidence": "clinical_human",
+          "sources": [
+            {
+              "source_type": "literature",
+              "source_id": "PMID:28521086",
+              "source_title": "Axicabtagene Ciloleucel CAR T-Cell Therapy in Refractory Large B-Cell Lymphoma",
+              "year": 2017,
+              "directness": "partial"
+            },
+            {
+              "source_type": "literature",
+              "source_id": "PMID:29385370",
+              "source_title": "Tisagenlecleucel in Children and Young Adults with B-Cell Lymphoblastic Leukemia",
+              "year": 2018,
+              "directness": "partial"
+            }
+          ]
+        },
+        "high_density_target": {
+          "examples": [
+            "CD19 on B-ALL (15K/cell)",
+            "GD2 on neuroblastoma (1M/cell)"
+          ],
+          "mitigation": "dose control"
+        },
+        "peak_expansion": {
+          "threshold": ">100x expansion",
+          "risk_increase": "correlated",
+          "mitigation": "monitoring, early tocilizumab"
+        },
+        "prior_fludarabine": {
+          "risk_increase": "enhanced expansion → higher CRS",
+          "mitigation": "reduce lymphodepletion intensity"
+        }
+      },
+      "grade_management": {
+        "grade_1": "observation, supportive care",
+        "grade_2": "tocilizumab 8mg/kg IV + supportive",
+        "grade_3": "tocilizumab + dexamethasone",
+        "grade_4": "ICU, tocilizumab + high-dose steroids, consider siltuximab"
+      },
+      "design_mitigation": {
+        "use_4_1BB": "reduces CRS incidence vs CD28 (Kymriah 47% grade 3+ vs Yescarta 13%)",
+        "split_dose": "Day 1: 10%, Day 2: 30%, Day 3: 60%",
+        "CD3z_1XX_variant": "single-ITAM CD3z reduces tonic signaling and may reduce CRS"
+      }
+    },
+    "neurotoxicity_ICANS": {
+      "description": "Immune Effector Cell-Associated Neurotoxicity Syndrome",
+      "risk_factors": [
+        "CD19 target",
+        "high peak CAR-T expansion",
+        "high IL-6/IL-1β",
+        "pre-existing neurological conditions",
+        "thrombocytopenia"
+      ],
+      "mechanism": "endothelial activation → BBB disruption → cytokine entry into CNS",
+      "mitigation": {
+        "design": "4-1BB costim (lower ICANS than CD28)",
+        "clinical": "monitor ICE score, dexamethasone for grade ≥2"
+      },
+      "evidence_confidence": "clinical_human",
+      "sources": [
+        {
+          "source_type": "literature",
+          "source_id": "PMID:32325412",
+          "source_title": "Complications after CD19+ CAR T-Cell Therapy",
+          "year": 2020,
+          "directness": "direct"
+        }
+      ]
+    },
+    "on_target_off_tumor": {
+      "description": "CAR kills normal cells expressing the same antigen at low levels",
+      "risk_classification": {
+        "minimal": {
+          "density_ratio": ">1000x tumor vs normal",
+          "examples": [
+            "GPC3 (adult liver = 0)",
+            "DLL3 (neuroendocrine-specific)"
+          ],
+          "safety_switch": "optional",
+          "affinity_tuning": "not needed"
+        },
+        "low": {
+          "density_ratio": "100-1000x",
+          "examples": [
+            "CD19 (B cells only, manageable aplasia)",
+            "BCMA (plasma cells)"
+          ],
+          "safety_switch": "recommended",
+          "affinity_tuning": "not needed",
+          "clinical_management": "IgG replacement for B cell aplasia",
+          "evidence_confidence": "clinical_human",
+          "sources": [
+            {
+              "source_type": "literature",
+              "source_id": "PMID:34757064",
+              "source_title": "Hypogammaglobulinemia after Chimeric Antigen Receptor (CAR) T-cell therapy: characteristics, management, and future directions",
+              "year": 2021,
+              "directness": "direct"
+            }
+          ]
+        },
+        "moderate": {
+          "density_ratio": "10-100x",
+          "examples": [
+            "Mesothelin (mesothelial surface)",
+            "FOLR1 (kidney proximal tubule)",
+            "PSMA (normal prostate)"
+          ],
+          "safety_switch": "recommended",
+          "affinity_tuning": "consider lower-Kd variants",
+          "additional": "dose escalation protocol",
+          "evidence_confidence": "clinical_human",
+          "sources": [
+            {
+              "source_type": "literature",
+              "source_id": "PMID:34266984",
+              "source_title": "A Phase I Trial of Regional Mesothelin-Targeted CAR T-cell Therapy in Patients with Malignant Pleural Disease, in Combination with Pembrolizumab",
+              "year": 2021,
+              "directness": "partial"
+            }
+          ]
+        },
+        "high": {
+          "density_ratio": "<10x",
+          "examples": [
+            "HER2 (cardiac myocytes at 1000/cell)",
+            "CD123 (HSCs at 1500/cell)",
+            "CD44v6 (keratinocytes)"
+          ],
+          "safety_switch": "MANDATORY",
+          "affinity_tuning": "REQUIRED (lower affinity spares low-density normal cells)",
+          "additional": [
+            "logic gate (SynNotch AND, iCAR NOT)",
+            "mRNA-CAR (transient)",
+            "dose escalation with 10-fold steps"
+          ],
+          "evidence_confidence": "clinical_human",
+          "sources": [
+            {
+              "source_type": "literature",
+              "source_id": "PMID:20179677",
+              "source_title": "Case report of a serious adverse event following the administration of T cells transduced with a chimeric antigen receptor recognizing ERBB2",
+              "year": 2010,
+              "directness": "direct"
+            }
+          ]
+        },
+        "critical": {
+          "density_ratio": "<3x or vital organ expression",
+          "examples": [
+            "CD33 (all myeloid cells)",
+            "EGFR (skin, lung, GI epithelium)"
+          ],
+          "safety_switch": "MANDATORY",
+          "logic_gate": "REQUIRED",
+          "additional": "consider iCAR + activating CAR (NOT-gate) or regional delivery only",
+          "evidence_confidence": "clinical_human",
+          "sources": [
+            {
+              "source_type": "literature",
+              "source_id": "PMID:20179677",
+              "source_title": "Case report of a serious adverse event following the administration of T cells transduced with a chimeric antigen receptor recognizing ERBB2",
+              "year": 2010,
+              "directness": "partial"
+            }
+          ]
+        }
+      }
+    },
+    "safety_switch_selection": {
+      "iCasp9": {
+        "trigger": "AP1903 (rimiducid) small molecule",
+        "speed": "rapid apoptosis within hours",
+        "efficacy": ">90% cell elimination",
+        "best_for": "first-line safety switch",
+        "limitation": "irreversible (cannot restart after activation)",
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:22060164",
+            "source_title": "Inducible apoptosis as a safety switch for adoptive cell therapy",
+            "year": 2011,
+            "directness": "direct"
+          }
+        ]
+      },
+      "tEGFR": {
+        "trigger": "cetuximab (anti-EGFR antibody) + complement/ADCC",
+        "speed": "slower (hours to days, requires antibody infusion)",
+        "dual_function": "tracking marker + depletion tag",
+        "best_for": "tracking + safety"
+      },
+      "RQR8": {
+        "trigger": "rituximab (anti-CD20 component) + complement/ADCC",
+        "dual_function": "CD34 epitope (sorting) + CD20 epitope (depletion)",
+        "best_for": "allogeneic CAR-T (tracking + selection + safety)",
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "clinical_trial",
+            "source_id": "NCT03166878",
+            "source_title": "UCART19 study in relapsed/refractory CD19+ leukemia and lymphoma",
+            "year": 2017,
+            "directness": "partial"
+          }
+        ]
+      },
+      "HSV_TK": {
+        "trigger": "ganciclovir (prodrug activation)",
+        "speed": "slow (dividing cells only, days)",
+        "best_for": "allogeneic HSCT setting",
+        "limitation": "only kills dividing cells; ganciclovir needed for CMV prophylaxis"
+      },
+      "mRNA_transient": {
+        "trigger": "none needed — self-limiting by design",
+        "speed": "expression declines over 2-5 days",
+        "best_for": "inherently safe design for high-risk targets"
+      }
+    },
+    "failure_modes_and_mitigation": {
+      "antigen_loss_escape": {
+        "frequency": "30-45% in CD19 B-ALL; 10-20% in BCMA MM",
+        "mechanisms": [
+          "mutation/deletion",
+          "alternative splicing",
+          "lineage switch",
+          "trogocytosis-induced downregulation"
+        ],
+        "mitigation_elements": [
+          "tandem bispecific (CD19+CD22)",
+          "OR-gate dual CAR",
+          "APRIL ligand (BCMA+TACI)",
+          "sequential CAR-T for different targets"
+        ],
+        "design_approach": "tandem_bispecific template"
+      },
+      "T_cell_exhaustion": {
+        "frequency": "major issue in all solid tumor CAR-T trials",
+        "mechanisms": [
+          "chronic antigen stimulation",
+          "TOX/NR4A epigenetic program",
+          "AP-1 imbalance",
+          "DNMT3A-mediated silencing"
+        ],
+        "mitigation_elements": [
+          "c_Jun_OE",
+          "BATF_OE",
+          "NR4A1_DN",
+          "TOX2_DN",
+          "REGNASE1_KO_guide",
+          "DNMT3A_KO_guide"
+        ],
+        "design_approach": "armored_4G with anti-exhaustion engineering module"
+      },
+      "poor_tumor_infiltration": {
+        "frequency": "universal challenge in solid tumors",
+        "mechanisms": [
+          "lack of chemokine signals",
+          "physical ECM barrier",
+          "aberrant vasculature"
+        ],
+        "mitigation_elements": [
+          "CCR2b",
+          "CXCR3",
+          "HPSE_Secreted",
+          "regional_delivery"
+        ],
+        "design_approach": "add homing receptor co-expression via 2A peptide"
+      },
+      "immunosuppressive_TME": {
+        "frequency": "universal in solid tumors",
+        "mechanisms": [
+          "TGFβ",
+          "adenosine",
+          "PD-L1",
+          "IDO",
+          "Tregs",
+          "MDSCs",
+          "tumor-associated macrophages"
+        ],
+        "mitigation_elements": [
+          "TGFbRII_DN",
+          "CD39_KO_guide",
+          "PDCD1_CRISPR_Target",
+          "AntiPDL1_scFv_Secreted",
+          "TIGIT_Blocker_scFv",
+          "PIK3CD_KO_guide"
+        ],
+        "design_approach": "layer multiple countermeasures matched to specific TME profile"
+      },
+      "manufacturing_failure": {
+        "frequency": "5-10% of autologous products",
+        "mechanisms": [
+          "poor T cell fitness (prior chemotherapy)",
+          "low starting lymphocyte count",
+          "transduction failure"
+        ],
+        "mitigation": "allogeneic off-the-shelf, iPSC-derived, or non-viral (SB) approach"
+      }
+    }
+  },
+  "D8_clinical_evidence": {
+    "_note": "Landmark successes, instructive failures, and emerging field opinions that inform design choices.",
+    "landmark_successes": [
+      {
+        "product": "Kymriah (tisagenlecleucel)",
+        "target": "CD19",
+        "indication": "B-ALL",
+        "lesson": "4-1BB costimulation provides durable remission with lower CRS than CD28. Defined the 2G 4-1BB-CD3z architecture as gold standard for persistence.",
+        "design_principle": "4-1BB for persistence-dependent indications",
+        "evidence_confidence": "approved_human",
+        "sources": []
+      },
+      {
+        "product": "Yescarta (axicabtagene ciloleucel)",
+        "target": "CD19",
+        "indication": "DLBCL",
+        "lesson": "CD28 costimulation gives faster, higher peak expansion — better for aggressive lymphoma where speed matters. Higher CRS but manageable.",
+        "design_principle": "CD28 when rapid response needed",
+        "evidence_confidence": "approved_human",
+        "sources": []
+      },
+      {
+        "product": "Carvykti (ciltacabtagene autoleucel)",
+        "target": "BCMA",
+        "indication": "multiple myeloma",
+        "lesson": "Biepitopic VHH binder (two VHH domains targeting different BCMA epitopes) achieved 98% ORR — binder format and avidity matter enormously.",
+        "design_principle": "binder format (VHH, biepitopic, tandem) can be more impactful than signaling domain choice",
+        "evidence_confidence": "approved_human",
+        "sources": []
+      },
+      {
+        "product": "Cord blood CAR-NK (MD Anderson)",
+        "target": "CD19",
+        "indication": "NHL/CLL",
+        "lesson": "73% ORR with NO CRS, NO ICANS, NO GvHD. mbIL-15 armor + iCasp9 safety switch. Proof that NK cells are viable CAR chassis.",
+        "design_principle": "CAR-NK = lower toxicity profile; mbIL-15 solves NK persistence",
+        "evidence_confidence": "approved_human",
+        "sources": []
+      },
+      {
+        "product": "BCMA CAR-T for SLE (Erlangen)",
+        "target": "BCMA",
+        "indication": "SLE",
+        "lesson": "3/3 SLE patients achieved drug-free remission. Same CAR backbone as myeloma. Opens entire autoimmune field.",
+        "design_principle": "oncology CAR constructs can be repurposed for autoimmune with dose/protocol modifications",
+        "evidence_confidence": "approved_human",
+        "sources": []
+      }
+    ],
+    "instructive_failures": [
+      {
+        "trial": "HER2 CAR-T fatal case (NCI 2010)",
+        "target": "HER2",
+        "what_happened": "Patient received 10^10 CAR-T cells at first dose. Massive CRS within 15 minutes from CAR-T recognizing cardiac HER2 (1000 molecules/cell). Patient died within 5 days.",
+        "lesson": "On-target/off-tumor toxicity is FATAL for shared antigens. Dose escalation (start 10^7, not 10^10) is mandatory. Safety switch and/or affinity tuning required.",
+        "design_impact": {
+          "safety_switch": "mandatory",
+          "dose_escalation": "mandatory",
+          "affinity_tuning": "strongly recommended"
+        },
+        "reference": "Morgan et al. Mol Ther 2010; PMID:20354568",
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:20354568",
+            "source_title": "Morgan et al. Mol Ther 2010",
+            "year": null,
+            "directness": "direct"
+          }
+        ]
+      },
+      {
+        "trial": "MAGE-A3 TCR (Adaptimmune 2013)",
+        "target": "MAGE-A3 (TCR, not CAR)",
+        "what_happened": "Affinity-enhanced TCR cross-reacted with cardiac titin protein (similar peptide). 2 fatal cardiac events.",
+        "lesson": "Affinity enhancement can create off-target cross-reactivity. Epitope/cross-reactivity screening is critical, especially for affinity-matured binders.",
+        "design_impact": {
+          "cross_reactivity_screening": "mandatory for affinity-matured binders"
+        },
+        "reference": "Linette et al. Blood 2013; PMID:23771773",
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:23771773",
+            "source_title": "Linette et al. Blood 2013",
+            "year": null,
+            "directness": "direct"
+          }
+        ]
+      },
+      {
+        "trial": "CD19 CAR-T antigen loss relapse (multiple centers)",
+        "target": "CD19",
+        "what_happened": "30-45% of B-ALL patients relapsed with CD19-negative disease after initial complete remission.",
+        "lesson": "Single-target CAR selects for antigen-negative escape variants. Multi-targeting (tandem, sequential, OR-gate) is essential for durable remission.",
+        "design_impact": {
+          "multi_targeting": "recommended for all hematologic malignancies"
+        },
+        "reference": "Orlando et al. Nat Med 2018; PMID:30275568",
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:30275568",
+            "source_title": "Orlando et al. Nat Med 2018",
+            "year": null,
+            "directness": "direct"
+          }
+        ]
+      },
+      {
+        "trial": "Solid tumor CAR-T (multiple)",
+        "target": "various",
+        "what_happened": "Majority of solid tumor CAR-T trials showed <20% response rate despite promising preclinical data.",
+        "lesson": "Standard 2G CAR is insufficient for solid tumors. Need multi-layered engineering: homing + anti-exhaustion + TME remodeling + checkpoint resistance.",
+        "design_impact": {
+          "solid_tumor_minimum": "armored_4G + engineering_module"
+        },
+        "reference": "Rafiq et al. Nat Rev Clin Oncol 2020; PMID:31900437",
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:31900437",
+            "source_title": "Rafiq et al. Nat Rev Clin Oncol 2020",
+            "year": null,
+            "directness": "direct"
+          }
+        ]
+      },
+      {
+        "trial": "JCAR015 cerebral edema deaths (Juno 2016)",
+        "target": "CD19",
+        "what_happened": "5 patient deaths from fatal cerebral edema. Construct used CD28 costim + fludarabine/cyclophosphamide lymphodepletion.",
+        "lesson": "CD28 costim + aggressive lymphodepletion = excessive expansion and neurotoxicity. Led to Breyanzi redesign with 4-1BB and defined CD4/CD8 composition.",
+        "design_impact": {
+          "costim_choice": "4-1BB preferred when neurotoxicity risk is concern",
+          "cell_composition": "defined CD4/CD8 ratio improves safety"
+        },
+        "reference": "FDA clinical hold 2016; Turtle et al. JCI 2016",
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "Turtle et al. JCI 2016",
+            "source_title": "FDA clinical hold 2016",
+            "year": null,
+            "directness": "direct"
+          }
+        ]
+      }
+    ],
+    "emerging_concepts_2024_2025": [
+      {
+        "concept": "CAR vaccine (amphiphile-ligand boost)",
+        "description": "Injectable vaccine presenting CAR target antigen in amphiphile form → boosts CAR-T expansion in vivo after infusion. Tested with mesothelin CAR-T.",
+        "clinical_stage": "Phase I (Moderna/BioNTech)",
+        "design_impact": "may eliminate need for high initial CAR-T dose",
+        "reference": "Ma et al. Science 2019; PMID:31285351",
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:31285351",
+            "source_title": "Ma et al. Science 2019",
+            "year": null,
+            "directness": "direct"
+          }
+        ]
+      },
+      {
+        "concept": "dual checkpoint KO (PD-1 + TIGIT or PD-1 + LAG-3)",
+        "description": "Combined knockout of two inhibitory receptors for additive anti-exhaustion in solid tumors.",
+        "clinical_stage": "Phase I (multiple)",
+        "design_impact": "dual KO better than single for heavily suppressed TME",
+        "reference": "Chauvin et al. JCI 2020",
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "Chauvin et al. JCI 2020",
+            "source_title": "Chauvin et al. JCI 2020",
+            "year": null,
+            "directness": "direct"
+          }
+        ]
+      },
+      {
+        "concept": "logic-gated CAR (SynNotch, SUPRA-CAR, LOCKR)",
+        "description": "Multi-input logic (AND, OR, NOT gates) for safer solid tumor targeting. SynNotch most clinically advanced.",
+        "clinical_stage": "Phase I (UCSF SynNotch)",
+        "design_impact": "enables safe targeting of antigens with normal tissue expression",
+        "reference": "Roybal et al. Cell 2016; Hyrenius-Wittsten et al. Science 2021",
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "Hyrenius-Wittsten et al. Science 2021",
+            "source_title": "Roybal et al. Cell 2016",
+            "year": null,
+            "directness": "direct"
+          }
+        ]
+      },
+      {
+        "concept": "epigenetic reprogramming (DNMT3A/TET2 KO)",
+        "description": "KO of DNA methyltransferases prevents exhaustion-associated epigenetic silencing. Maintains stem-like T cell phenotype.",
+        "clinical_stage": "preclinical (Prinzing et al. 2021)",
+        "design_impact": "long-term persistence without re-dosing",
+        "caution": "TET2 KO showed clonal expansion in one patient (N=1) — monitor carefully",
+        "reference": "Prinzing et al. Sci Immunol 2021; Fraietta et al. Nature 2018",
+        "evidence_confidence": "preclinical_in_vivo",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "Fraietta et al. Nature 2018",
+            "source_title": "Prinzing et al. Sci Immunol 2021",
+            "year": null,
+            "directness": "direct"
+          }
+        ]
+      },
+      {
+        "concept": "in-vivo CAR generation (LNP-mRNA)",
+        "description": "Direct injection of T-cell-targeted LNP carrying CAR mRNA → CAR-T generated in vivo without manufacturing.",
+        "clinical_stage": "preclinical (Rurik 2022)",
+        "design_impact": "eliminates manufacturing bottleneck; enables repeated dosing",
+        "reference": "Rurik et al. Science 2022; PMID:34990280",
+        "evidence_confidence": "preclinical_in_vivo",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMID:34990280",
+            "source_title": "Rurik et al. Science 2022",
+            "year": null,
+            "directness": "direct"
+          }
+        ]
+      },
+      {
+        "concept": "armored CAR-NK with mbIL-15 + mbIL-21",
+        "description": "Combining membrane-bound IL-15 and IL-21 for NK persistence and stem-like programming.",
+        "clinical_stage": "Phase I (Fate Therapeutics FT596, FT576)",
+        "design_impact": "solves the NK persistence problem",
+        "evidence_confidence": "clinical_human",
+        "sources": []
+      },
+      {
+        "concept": "CRISPR base editing for allogeneic",
+        "description": "Base editors (BE3, ABE8e) instead of DSB-CRISPR for TCR/B2M KO. Avoids translocation risk from dual DSBs.",
+        "clinical_stage": "Phase I (Beam Therapeutics)",
+        "design_impact": "safer multi-gene editing for allogeneic",
+        "evidence_confidence": "clinical_human",
+        "sources": []
+      },
+      {
+        "concept": "CAR-T for autoimmune diseases (beyond SLE)",
+        "description": "Expanding from SLE to myasthenia gravis, pemphigus, systemic sclerosis, type 1 diabetes. Both CD19 and BCMA targets.",
+        "clinical_stage": "Phase I/II (multiple centers in Germany, China, US)",
+        "design_impact": "fastest-growing CAR application area in 2024-2025",
+        "evidence_confidence": "clinical_human",
+        "sources": []
+      }
+    ],
+    "field_consensus_2025": {
+      "solid_tumor": "Standard 2G CAR is insufficient. Minimum viable product = armored 4G with anti-exhaustion + homing + TME countermeasure.",
+      "hematologic": "CD19 CAR-T is established. Next frontier = multi-targeting (CD19/CD22), AML (safety-critical), and moving to first-line.",
+      "manufacturing": "Autologous is bottleneck. Allogeneic (CRISPR-edited) and iPSC-derived are the path to scalability.",
+      "safety": "CRS is manageable. On-target/off-tumor remains the biggest safety concern for new targets. Logic gates are the solution.",
+      "autoimmune": "Most exciting new application. Lower risk than oncology (lower burden). BCMA CAR-T for SLE is paradigm-shifting.",
+      "in_vivo": "In-vivo CAR (LNP-mRNA) is 5-10 years from clinical reality but could be transformative."
+    }
+  },
+  "D9_patient_fitness_and_cmc": {
+    "_note": "Patient history and T-cell fitness dictating manufacturing and engineering rescue.",
+    "fitness_levels": {
+      "healthy_donor": {
+        "description": "Allogeneic source, high stemness, no prior chemo.",
+        "cmc_recommendation": "Standard expansion (IL-2 or IL-7/15)",
+        "engineering_impact": "Requires TCR KO and HLA evasion. No exhaustion rescue needed.",
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "clinical_trial",
+            "source_id": "NCT03166878",
+            "source_title": "A Safety and Efficacy Study Evaluating UCART19 in Patients with Relapsed or Refractory CD19+ Leukemia and Lymphoma",
+            "year": 2017,
+            "directness": "direct"
+          }
+        ]
+      },
+      "moderate_prior_therapy": {
+        "description": "Standard autologous patient, 1-2 prior lines of therapy.",
+        "cmc_recommendation": "IL-7 + IL-15 to preserve Tscm (stem cell memory) phenotype.",
+        "engineering_impact": "Standard 2G or 4G CAR sufficient.",
+        "evidence_confidence": "preclinical_in_vivo",
+        "sources": [
+          {
+            "source_type": "literature",
+            "source_id": "PMC4055922",
+            "source_title": "Closely related T-memory stem cells correlate with in vivo expansion of CAR.CD19-T cells and are preserved by IL-7 and IL-15",
+            "year": 2014,
+            "directness": "direct"
+          }
+        ]
+      },
+      "heavily_pretreated": {
+        "description": "3+ prior lines, fludarabine/cyclophosphamide exposed, severe lymphopenia.",
+        "cmc_recommendation": "FasT CAR-T (24-48h manufacturing) to avoid ex-vivo exhaustion, OR IL-15/IL-21 cocktail.",
+        "engineering_impact": "CRITICAL: Require epigenetic rescue (DNMT3A-KO, TET2-KO) or c-Jun OE to restore function.",
+        "evidence_confidence": "preclinical_in_vivo",
+        "sources": [
+          {
+            "source_type": "clinical_trial",
+            "source_id": "NCT04129099",
+            "source_title": "GC022F FasTCAR CD19/CD22 trial with 24-hour manufacturing in B-ALL",
+            "year": 2019,
+            "directness": "partial"
+          },
+          {
+            "source_type": "conference_abstract",
+            "source_id": "ASH2020-136866",
+            "source_title": "Successful 24-Hours Manufacture of Anti-CD19/CD22 Dual CAR T Cell Therapy for B-ALL",
+            "year": 2020,
+            "directness": "partial"
+          },
+          {
+            "source_type": "literature",
+            "source_id": "Lynn-Science-2019",
+            "source_title": "c-Jun overexpression in CAR T cells induces exhaustion resistance",
+            "year": 2019,
+            "directness": "partial"
+          }
+        ]
+      },
+      "rapid_progression": {
+        "description": "Acute leukemia or highly aggressive lymphoma needing immediate treatment.",
+        "cmc_recommendation": "FasT CAR-T (24h) or off-the-shelf allogeneic.",
+        "engineering_impact": "Prioritize speed over complex multi-gene edits.",
+        "evidence_confidence": "clinical_human",
+        "sources": [
+          {
+            "source_type": "clinical_trial",
+            "source_id": "NCT04129099",
+            "source_title": "GC022F FasTCAR CD19/CD22 trial with rapid manufacturing in B-ALL",
+            "year": 2019,
+            "directness": "partial"
+          }
+        ]
+      }
+    }
+  },
+  "D10_boolean_logic_routing": {
+    "_note": "Specific multi-target combinations for logic gating.",
+    "logic_types": {
+      "OR_gate": {
+        "purpose": "Prevent antigen escape relapse or improve heterogeneous tumor coverage",
+        "format": "Tandem bispecific, bicistronic dual CAR, or pooled sequential CAR",
+        "validated_pairs": [
+          {
+            "disease": "B_ALL",
+            "targets": [
+              "CD19",
+              "CD22"
+            ],
+            "evidence_confidence": "clinical_human",
+            "rationale": "Clinically validated dual-target strategy to reduce CD19 escape in B-ALL.",
+            "sources": [
+              {
+                "source_type": "clinical_trial",
+                "source_id": "NCT03233854",
+                "source_title": "CAR T cells with dual targeting of CD19 and CD22 in adult patients with recurrent or refractory B cell malignancies: a phase 1 trial",
+                "year": 2021,
+                "directness": "direct"
+              }
+            ]
+          },
+          {
+            "disease": "DLBCL",
+            "targets": [
+              "CD19",
+              "CD20"
+            ],
+            "evidence_confidence": "clinical_human",
+            "rationale": "Clinically studied dual-target strategy in relapsed/refractory B-cell lymphoma.",
+            "sources": [
+              {
+                "source_type": "clinical_trial",
+                "source_id": "NCT04260932",
+                "source_title": "CD19/CD20 Dual-CAR-T in B-cell Lymphoma Patients",
+                "year": 2020,
+                "directness": "direct"
+              },
+              {
+                "source_type": "literature",
+                "source_id": "s41408-024-01105-8",
+                "source_title": "Bispecific CAR-T cells targeting CD19/20 in patients with relapsed or refractory B cell non-Hodgkin lymphoma: a phase I/II trial",
+                "year": 2024,
+                "directness": "direct"
+              }
+            ]
+          },
+          {
+            "disease": "multiple_myeloma",
+            "targets": [
+              "BCMA",
+              "GPRC5D"
+            ],
+            "evidence_confidence": "clinical_human",
+            "rationale": "Clinically validated bispecific CAR-T strategy for relapsed/refractory multiple myeloma.",
+            "sources": [
+              {
+                "source_type": "literature",
+                "source_id": "PMID:39059405",
+                "source_title": "Anti-BCMA/GPRC5D bispecific CAR T cells in patients with relapsed or refractory multiple myeloma: a single-arm, single-centre, phase 1 trial",
+                "year": 2024,
+                "directness": "direct"
+              }
+            ]
+          },
+          {
+            "disease": "multiple_myeloma",
+            "targets": [
+              "BCMA",
+              "CD38"
+            ],
+            "evidence_confidence": "clinical_human",
+            "rationale": "Clinically studied bispecific CAR-T strategy in relapsed/refractory multiple myeloma.",
+            "sources": [
+              {
+                "source_type": "clinical_trial",
+                "source_id": "ChiCTR1800018143",
+                "source_title": "A bispecific CAR-T cell therapy targeting BCMA and CD38 in relapsed or refractory multiple myeloma",
+                "year": 2021,
+                "directness": "direct"
+              }
+            ]
+          }
+        ]
+      },
+      "AND_gate": {
+        "purpose": "Increase tumor specificity by conditional activation",
+        "format": "SynNotch, split-CAR, or priming receptor driving second CAR expression",
+        "validated_pairs": [
+          {
+            "disease": "glioblastoma",
+            "primer": "EGFRvIII",
+            "killer": "EphA2/IL13Ra2",
+            "evidence_confidence": "clinical_human",
+            "rationale": "First-in-human synNotch prime-and-kill design under clinical evaluation in EGFRvIII+ glioblastoma.",
+            "sources": [
+              {
+                "source_type": "clinical_trial",
+                "source_id": "NCT06186401",
+                "source_title": "Phase 1 Study of Autologous Anti-EGFRvIII synNotch Receptor Induced Anti-EphA2/IL-13Rα2 CAR (E-SYNC) T Cells",
+                "year": 2024,
+                "directness": "direct"
+              }
+            ]
+          }
+        ]
+      },
+      "NOT_gate": {
+        "purpose": "Protect critical normal tissue while preserving tumor killing",
+        "format": "Activating CAR plus inhibitory CAR using PD-1, CTLA-4, BTLA, or TIGIT cytoplasmic modules",
+        "validated_pairs": [
+          {
+            "disease": "prostate_cancer",
+            "killer": "tumor_driver_CAR",
+            "protector": "PSMA",
+            "evidence_confidence": "preclinical_in_vivo",
+            "rationale": "iCAR logic framework with PSMA inhibitory module is traceable but preclinical only.",
+            "sources": [
+              {
+                "source_type": "literature",
+                "source_id": "PMID:24336504",
+                "source_title": "Novel synthetic receptors for programmed inhibition of immune responses",
+                "year": 2013,
+                "directness": "partial"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "D11_regulatory_path": {
+    "_note": "Constraint-based design for commercial viability vs research maximum efficacy.",
+    "paths": {
+      "clinical_fast_track": {
+        "goal": "Minimize regulatory risk, maximize manufacturability",
+        "constraints": {
+          "max_transgenes": 2,
+          "viral_vector_preferred": true,
+          "avoid_elements": [
+            "Secreted_IL12",
+            "complex_logic_gates",
+            "untested_CRISPR_KOs"
+          ],
+          "preferred_elements": [
+            "CD28_cyto",
+            "4-1BB_cyto",
+            "iCasp9",
+            "tEGFR"
+          ]
+        },
+        "evidence_confidence": "clinical_human",
+        "heuristic_constraints": true,
+        "sources": [
+          {
+            "source_type": "guidance",
+            "source_id": "FDA-2020-CMC-GT-IND",
+            "source_title": "Chemistry, Manufacturing, and Control (CMC) Information for Human Gene Therapy Investigational New Drug Applications (INDs); Guidance for Industry",
+            "year": 2020,
+            "directness": "partial"
+          }
+        ]
+      },
+      "advanced_research": {
+        "goal": "Maximum efficacy for solid tumors, proof of concept",
+        "constraints": {
+          "max_transgenes": 5,
+          "viral_vector_preferred": false,
+          "allow_non_viral": true,
+          "allow_complex_logic": true
+        },
+        "evidence_confidence": "concept_only",
+        "heuristic_constraints": true,
+        "sources": [
+          {
+            "source_type": "review",
+            "source_id": "PMID:31900437",
+            "source_title": "Engineering strategies to overcome the current roadblocks in CAR T cell therapy",
+            "year": 2020,
+            "directness": "partial"
+          }
+        ]
+      }
+    }
+  },
+  "evidence_confidence_model": {
+    "_note": "Evidence weighting for rules, target pairs, and design recommendations.",
+    "levels": {
+      "approved_human": {
+        "score": 5,
+        "definition": "Supported by approved product or label-level human evidence"
+      },
+      "clinical_human": {
+        "score": 4,
+        "definition": "Supported by prospective clinical trial or strong clinical case series"
+      },
+      "preclinical_in_vivo": {
+        "score": 3,
+        "definition": "Supported by animal efficacy/safety data"
+      },
+      "preclinical_in_vitro": {
+        "score": 2,
+        "definition": "Supported by in vitro or ex vivo data only"
+      },
+      "concept_only": {
+        "score": 1,
+        "definition": "Mechanistically plausible but minimally validated"
+      }
+    },
+    "interpretation": {
+      "5": "Hard recommendation",
+      "4": "Strong recommendation",
+      "3": "Reasonable but still translational",
+      "2": "Hypothesis-generating",
+      "1": "Exploratory only"
+    }
+  },
+  "toxicity_tolerance_model": {
+    "_note": "Separates expression ratio from clinical tolerability of normal-cell depletion.",
+    "classes": {
+      "acceptable_depletion": {
+        "definition": "Normal target-positive cells can be depleted with standard supportive care.",
+        "design_bias": "Safety switch recommended but not mandatory; logic gate usually not required.",
+        "examples": [
+          "CD19",
+          "BCMA"
+        ]
+      },
+      "manageable_toxicity": {
+        "definition": "Normal tissue injury is possible but can be mitigated by route, dose, or affinity tuning.",
+        "design_bias": "Safety switch recommended; affinity tuning and dose escalation helpful.",
+        "examples": [
+          "Mesothelin",
+          "FOLR1",
+          "PSMA",
+          "GD2"
+        ]
+      },
+      "high_risk_shared_antigen": {
+        "definition": "Normal hematopoietic or epithelial expression creates serious toxicity risk.",
+        "design_bias": "Safety switch mandatory; consider logic gate, transient expression, or alternative chassis.",
+        "examples": [
+          "CD123",
+          "CD33",
+          "CLDN18_2",
+          "CD44v6"
+        ]
+      },
+      "vital_organ_expression": {
+        "definition": "Low-level expression in heart, lung, CNS, or other essential tissue can be catastrophic.",
+        "design_bias": "Logic gate or transient design strongly preferred; safety switch mandatory.",
+        "examples": [
+          "HER2",
+          "EGFR"
+        ]
+      },
+      "tumor_restricted": {
+        "definition": "Little or no meaningful adult normal tissue expression.",
+        "design_bias": "Standard CAR architecture usually acceptable.",
+        "examples": [
+          "GPC3",
+          "DLL3",
+          "EGFRvIII"
+        ]
+      },
+      "pathogen_only": {
+        "definition": "Antigen encoded by pathogen genome; zero expression on uninfected human cells.",
+        "design_bias": "On-target/off-tumor risk is zero. Safety switch optional. Standard or minimal CAR architecture.",
+        "examples": [
+          "PfEMP1_CIDRa1",
+          "HIV_gp120",
+          "HBV_HBsAg"
+        ]
+      }
+    },
+    "target_map": {
+      "CD19": "acceptable_depletion",
+      "BCMA": "acceptable_depletion",
+      "Mesothelin": "manageable_toxicity",
+      "FOLR1": "manageable_toxicity",
+      "PSMA": "manageable_toxicity",
+      "GD2": "manageable_toxicity",
+      "CD123": "high_risk_shared_antigen",
+      "CD33": "high_risk_shared_antigen",
+      "CLDN18_2": "high_risk_shared_antigen",
+      "HER2": "vital_organ_expression",
+      "EGFR": "vital_organ_expression",
+      "GPC3": "tumor_restricted",
+      "DLL3": "tumor_restricted",
+      "EGFRvIII": "tumor_restricted",
+      "PfEMP1_CIDRa1": "pathogen_only"
+    }
+  },
+  "logic_pair_database": {
+    "generated_from": "D10_boolean_logic_routing.logic_types",
+    "total_pairs": 42
+  },
+  "core_assembly_rules": {
+    "_note": "Biological reasoning rules for core CAR chain assembly: SP, Hinge, TM, Costim, Activation. Each rule produces use/dont_use rationale.",
+    "signal_peptide": {
+      "rules": [
+        {
+          "condition": "default",
+          "select": "CD8a_SP",
+          "reject": [],
+          "rationale": "CD8α SP yields highest surface expression in FDA-approved CARs (Tisa-cel, Axi-cel, Liso-cel). 21aa leader — efficient ER translocation for scFv-based constructs.",
+          "evidence": "approved_human",
+          "sources": [{"source_type": "literature", "source_id": "PMID:29385370", "year": 2018}]
+        },
+        {
+          "condition": "VHH_binder",
+          "select": "IgKappa_SP",
+          "reject": ["CD8a_SP"],
+          "rationale": "IgKappa SP provides better secretory pathway processing for single-domain (VHH/nanobody) binders due to matched Ig-fold translocation.",
+          "evidence": "clinical_human"
+        },
+        {
+          "condition": "macrophage_chassis",
+          "select": "GM-CSF_SP",
+          "reject": ["CD8a_SP"],
+          "rationale": "GM-CSF SP is optimized for myeloid cell surface expression. CD8α SP has reduced efficiency in macrophage ER.",
+          "evidence": "preclinical_in_vivo"
+        }
+      ],
+      "dont_use_general": [
+        {"element": "IL2_SP", "reason": "IL-2 SP promotes secretion over membrane retention — inappropriate for CAR surface display."},
+        {"element": "Gaussia_SP", "reason": "Gaussia SP is a secretory signal — poor surface retention for transmembrane constructs."},
+        {"element": "GPI_Anchor_Signal", "reason": "GPI signal is a C-terminal anchor — incompatible with N-terminal CAR topology."}
+      ]
+    },
+    "hinge_tm_pairing": {
+      "_note": "Hinge + TM form a coupled unit. Mismatched pairings increase tonic signaling and reduce stability.",
+      "pairings": {
+        "CD8a_Short+CD8a_TM": {
+          "tonic_signaling": "low",
+          "preferred_costim": ["4-1BB_cyto"],
+          "stability": "high",
+          "rationale": "CD8α hinge + CD8α TM: minimal homodimerization-driven tonic signaling. Proven in Tisa-cel (FDA-approved). Best for 4-1BB costimulation.",
+          "evidence": "approved_human"
+        },
+        "CD28_Medium+CD28_TM": {
+          "tonic_signaling": "moderate",
+          "preferred_costim": ["CD28_cyto"],
+          "stability": "high",
+          "rationale": "CD28 hinge + CD28 TM: matched pair from Axi-cel/Yescarta. CD28 TM dimerization domain is intrinsic — pairs best with CD28 costim for rapid activation kinetics.",
+          "evidence": "approved_human"
+        },
+        "IgG4_SPLE_Long+CD8a_TM": {
+          "tonic_signaling": "low-moderate",
+          "preferred_costim": ["4-1BB_cyto"],
+          "stability": "moderate",
+          "rationale": "Long IgG4 spacer (S228P L235E) reaches distal epitopes (>10nm). CD8α TM reduces tonic signaling from IgG4 dimerization. CH2/CH3 Fc-null mutations REQUIRED to prevent off-target FcR binding.",
+          "evidence": "clinical_human"
+        },
+        "IgG4_SPLE_Long+CD28_TM": {
+          "tonic_signaling": "high",
+          "preferred_costim": [],
+          "stability": "moderate",
+          "rationale": "AVOID: IgG4 long hinge + CD28 TM creates excessive tonic signaling from dual dimerization interfaces. Leads to premature exhaustion.",
+          "evidence": "preclinical_in_vivo"
+        }
+      }
+    },
+    "hinge_selection": {
+      "_note": "Primary determinant is antigen epitope-to-membrane distance.",
+      "rules": [
+        {
+          "condition": "epitope_distance_lt_5nm",
+          "select": "CD8a_Short",
+          "reject": ["IgG4_SPLE_Long", "IgD_Hinge"],
+          "rationale": "Membrane-proximal epitope (<5nm) → short hinge. Long spacers would push the immune synapse beyond effective signaling distance, reducing cytotoxicity by 3-10x.",
+          "reject_rationale": {
+            "IgG4_SPLE_Long": "Excessive inter-membrane distance disrupts immune synapse geometry for proximal targets.",
+            "IgD_Hinge": "Experimental only; no clinical validation for proximal epitopes."
+          },
+          "evidence": "approved_human",
+          "sources": [{"source_type": "literature", "source_id": "PMID:25416277", "source_title": "Hinge domain engineering for optimal CAR-T function", "year": 2015}]
+        },
+        {
+          "condition": "epitope_distance_5_10nm",
+          "select": "CD28_Medium",
+          "reject": ["CD8a_Short"],
+          "rationale": "Medium-distance epitope (5-10nm) → medium hinge (CD28). Short hinge would be insufficient to bridge the synapse gap.",
+          "reject_rationale": {
+            "CD8a_Short": "Insufficient reach for medium-distance epitopes — reduced T cell activation."
+          },
+          "evidence": "approved_human"
+        },
+        {
+          "condition": "epitope_distance_gt_10nm",
+          "select": "IgG4_SPLE_Long",
+          "reject": ["CD8a_Short", "CD28_Medium"],
+          "rationale": "Distal epitope (>10nm) requires long spacer. IgG4 S228P/L235E prevents FcγR binding while providing ~23nm reach. CH2 deletion variant also acceptable.",
+          "reject_rationale": {
+            "CD8a_Short": "Cannot reach distal epitopes — synapse fails to form.",
+            "CD28_Medium": "Insufficient reach for >10nm targets."
+          },
+          "evidence": "clinical_human"
+        }
+      ]
+    },
+    "tm_selection": {
+      "_note": "TM selection is coupled to hinge choice and chassis type.",
+      "rules": [
+        {
+          "condition": "hinge_CD8a",
+          "select": "CD8a_TM",
+          "reject": ["CD28_TM"],
+          "rationale": "CD8α hinge pairs with CD8α TM — matched pair minimizes tonic signaling. CD28 TM with CD8α hinge creates mismatched dimerization domains.",
+          "evidence": "approved_human"
+        },
+        {
+          "condition": "hinge_CD28",
+          "select": "CD28_TM",
+          "reject": ["CD8a_TM"],
+          "rationale": "CD28 hinge + CD28 TM: structurally coupled in the native CD28 protein. Matched pair validated in Axi-cel, Brexu-cel (FDA-approved).",
+          "evidence": "approved_human"
+        },
+        {
+          "condition": "hinge_IgG4",
+          "select": "CD8a_TM",
+          "reject": ["CD28_TM"],
+          "rationale": "IgG4 long hinge already provides dimerization — adding CD28 TM dimerization creates excessive tonic signaling. CD8α TM keeps signaling controlled.",
+          "evidence": "clinical_human"
+        },
+        {
+          "condition": "chassis_NK",
+          "select": "NKG2D_TM",
+          "reject": [],
+          "rationale": "NKG2D TM is native to NK cells — enables DAP10/DAP12 adaptor association. CD8α/CD28 TM functional but NKG2D is NK-optimized.",
+          "evidence": "preclinical_in_vivo",
+          "alternative": "CD8a_TM"
+        },
+        {
+          "condition": "chassis_macrophage",
+          "select": "CD8a_TM",
+          "reject": ["CD28_TM"],
+          "rationale": "CD8α TM provides stable surface expression on macrophages. FcγRI TM+cyto is an alternative for full phagocytic signaling.",
+          "evidence": "preclinical_in_vivo",
+          "alternative": "CD16a_TM_cyto"
+        }
+      ]
+    },
+    "costim_selection": {
+      "_note": "Costimulatory domain selection is driven by disease biology, chassis type, and persistence requirements.",
+      "rules": [
+        {
+          "condition": "solid_tumor",
+          "select": "4-1BB_cyto",
+          "reject": ["CD28_cyto"],
+          "rationale": "Solid tumors require persistent T cells that resist exhaustion. 4-1BB activates TRAF1/2 → NF-κB, promotes mitochondrial biogenesis and fatty acid oxidation (FAO), driving Tcm differentiation. This yields longer persistence (months vs weeks). CD28 drives glycolysis → Teff bias → rapid exhaustion in chronic antigen exposure.",
+          "reject_rationale": {
+            "CD28_cyto": "CD28 costimulation activates PI3K/Akt/mTOR → glycolytic Teff phenotype. In solid tumor TME with chronic antigen, this causes rapid T cell exhaustion within 1-2 weeks. Also associated with higher CRS grade."
+          },
+          "evidence": "approved_human",
+          "sources": [
+            {"source_type": "literature", "source_id": "PMID:25416277", "source_title": "Long et al. 4-1BB costimulation ameliorates T cell exhaustion", "year": 2015},
+            {"source_type": "literature", "source_id": "PMID:30988127", "source_title": "Ying et al. Parallel comparison of 4-1BB vs CD28 in CAR-T", "year": 2019}
+          ],
+          "conditional_note": "Exception: if indication requires rapid tumor clearance (e.g. high-burden liquid tumor), CD28 may be preferred for faster kinetics."
+        },
+        {
+          "condition": "liquid_tumor",
+          "select": "4-1BB_cyto",
+          "reject": [],
+          "rationale": "4-1BB is default for liquid tumors (used in Tisa-cel, Liso-cel). Provides durable responses. CD28 is a valid alternative (Axi-cel) when rapid clearance is priority.",
+          "alternative": "CD28_cyto",
+          "alternative_rationale": "CD28 produces faster peak expansion and tumor clearance, beneficial in high-burden B-ALL/DLBCL. Trade-off: shorter persistence, higher CRS.",
+          "evidence": "approved_human"
+        },
+        {
+          "condition": "autoimmune",
+          "select": "4-1BB_cyto",
+          "reject": ["CD28_cyto"],
+          "rationale": "Autoimmune CAR (CD19-targeted B cell depletion) requires controlled, sustained depletion — not explosive expansion. 4-1BB provides lower CRS and longer persistence for complete B cell ablation. CD28's rapid kinetics increase CRS risk in non-oncology patients with lower tolerance.",
+          "evidence": "clinical_human"
+        },
+        {
+          "condition": "CAR_Treg",
+          "select": "ICOS_cyto",
+          "reject": ["CD28_cyto", "4-1BB_cyto"],
+          "rationale": "ICOS costimulation maintains FoxP3+ Treg stability and suppressive function. CD28 destabilizes Tregs toward Teff conversion. 4-1BB may impair suppressive capacity via excessive NF-κB activation.",
+          "reject_rationale": {
+            "CD28_cyto": "Drives Treg-to-Teff conversion — catastrophic for tolerance induction.",
+            "4-1BB_cyto": "Excessive NF-κB may destabilize FoxP3 program; preclinical data inconsistent."
+          },
+          "evidence": "preclinical_in_vivo",
+          "alternative": "4-1BB_cyto",
+          "alternative_rationale": "Some groups report stable Treg function with 4-1BB. Use only with FoxP3 OE and IL-2 supplementation."
+        },
+        {
+          "condition": "CAR_NK",
+          "select": "2B4_cyto",
+          "reject": ["CD28_cyto"],
+          "rationale": "2B4 (CD244) is a native NK cell costimulatory receptor — signals through SAP/Fyn pathway optimized for NK cytotoxicity. DAP10 is an alternative for NKG2D-based CARs.",
+          "reject_rationale": {
+            "CD28_cyto": "CD28 is not natively expressed on NK cells — signaling pathway is suboptimal."
+          },
+          "evidence": "clinical_human",
+          "alternative": "DAP10_costim_full"
+        },
+        {
+          "condition": "CAR_macrophage",
+          "select": "FcRg_cyto",
+          "reject": ["4-1BB_cyto", "CD28_cyto"],
+          "rationale": "FcRγ provides phagocytic ITAM signaling native to macrophages. TIR domains (MyD88/TLR2) are alternatives for inflammatory polarization. T cell costim domains (4-1BB, CD28) are functionally incompatible with macrophage signaling.",
+          "reject_rationale": {
+            "4-1BB_cyto": "TRAF signaling pathway not functional in macrophage context.",
+            "CD28_cyto": "PI3K/Akt pathway from CD28 does not drive phagocytosis."
+          },
+          "evidence": "preclinical_in_vivo",
+          "alternative": "MyD88_TIR"
+        },
+        {
+          "condition": "AML_special",
+          "select": "4-1BB_cyto",
+          "reject": ["CD28_cyto"],
+          "rationale": "AML targets (CD123, CD33) have significant normal-tissue expression — lower CRS from 4-1BB is critical for safety. CD28's rapid expansion increases CRS risk in the already-vulnerable AML patient population.",
+          "evidence": "clinical_human"
+        }
+      ]
+    },
+    "activation_selection": {
+      "_note": "Primary signaling domain — nearly always CD3ζ 3×ITAM for T cells. Alternatives for specific chassis or attenuation.",
+      "rules": [
+        {
+          "condition": "default_T_cell",
+          "select": "CD3z_cyto",
+          "reject": [],
+          "rationale": "CD3ζ 3×ITAM is the universal standard for CAR-T activation. All FDA-approved CARs use full CD3ζ. Provides robust TCR-like Signal 1.",
+          "evidence": "approved_human"
+        },
+        {
+          "condition": "solid_tumor_exhaustion_risk",
+          "select": "CD3z_cyto",
+          "reject": [],
+          "rationale": "Standard CD3ζ 3×ITAM remains default. CD3ζ 1×ITAM (attenuated) is experimental alternative — reduces tonic signaling but may compromise effector function.",
+          "alternative": "CD3z_1XX",
+          "alternative_rationale": "1×ITAM variant reduces exhaustion from chronic signaling in solid TME. Trade-off: lower peak cytotoxicity. Use only when anti-exhaustion engineering (c-Jun OE) is also included.",
+          "evidence": "preclinical_in_vivo"
+        },
+        {
+          "condition": "CAR_macrophage",
+          "select": "FcRg_cyto",
+          "reject": ["CD3z_cyto"],
+          "rationale": "FcRγ 1×ITAM provides phagocytic signaling in macrophages. CD3ζ ITAM signaling is T cell-specific and does not efficiently trigger phagocytosis.",
+          "evidence": "preclinical_in_vivo"
+        },
+        {
+          "condition": "5th_gen_CAR",
+          "select": "IL2Rb_cyto_5thGen",
+          "reject": [],
+          "rationale": "IL-2Rβ cytoplasmic domain provides JAK-STAT5 signal (Signal 3) in addition to CD3ζ (Signal 1) + costim (Signal 2). Enables antigen-dependent T cell proliferation without exogenous cytokines. Used in tandem with CD3ζ, not as replacement.",
+          "evidence": "clinical_human"
+        }
+      ]
+    }
+  }
+}

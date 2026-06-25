@@ -1,0 +1,355 @@
+{
+  "version": "0.1.0",
+  "updated_at": "2026-01-10",
+  "notes": [
+    "：germline/，“”“”。",
+    "（EGFR），/、、、。"
+  ],
+  "enums": {
+    "framework_class": [
+      "CLASS_I",
+      "CLASS_II",
+      "CLASS_III"
+    ],
+    "antigen_type": [
+      "SOLUBLE_PROTEIN",
+      "MEMBRANE_ECD",
+      "MULTI_PASS_MEMBRANE",
+      "ENZYME_ACTIVE_SITE",
+      "VIRAL_FUSION_DYNAMIC",
+      "GLYCAN_RICH",
+      "HAPTEN_SMALL_MOLECULE",
+      "UNKNOWN"
+    ],
+    "epitope_geometry": [
+      "EXPOSED_FLAT",
+      "SHALLOW_GROOVE",
+      "DEEP_POCKET",
+      "CONFORMATIONAL",
+      "DYNAMIC_CONFORMATIONAL",
+      "UNKNOWN"
+    ],
+    "mechanism": [
+      "BLOCKING_NEUTRALIZING",
+      "AGONIST",
+      "DEPLETING_ADCC_CDC",
+      "SIGNAL_BIASING",
+      "T_CELL_ENGAGER",
+      "CHECKPOINT_MODULATION",
+      "PAYLOAD_DELIVERY_ADC",
+      "UNKNOWN"
+    ],
+    "format": [
+      "IGG",
+      "FABS",
+      "SCFV",
+      "VHH",
+      "BISPECIFIC_2PLUS1",
+      "BISPECIFIC_IGG_LIKE",
+      "UNKNOWN"
+    ],
+    "dev_priority": [
+      "FAST_IND",
+      "HIGH_EXPRESSION",
+      "LOW_IMMUNOGENICITY",
+      "MAX_AFFINITY",
+      "MAX_STABILITY",
+      "LOW_POLYREACTIVITY",
+      "UNKNOWN"
+    ]
+  },
+  "framework_class_profiles": {
+    "CLASS_I": {
+      "label_cn": "（Low-tuning scaffold）",
+      "label_en": "High-compatibility scaffold (low-tuning)",
+      "default_policy": {
+        "fr_mutation_budget": "LOW",
+        "vernier_policy": "CONSERVATIVE",
+        "allow_framework_swap": true
+      },
+      "risk_notes_cn": [
+        "/IND。",
+        "CDR，Vernier。"
+      ],
+      "risk_notes_en": [
+        "Well-suited for typical blocking/neutralizing programs and fast-IND paths.",
+        "Tolerant to CDR diversity; avoid unnecessary Vernier perturbations."
+      ]
+    },
+    "CLASS_II": {
+      "label_cn": "（Moderate-tuning scaffold）",
+      "label_en": "Moderate-tuning scaffold",
+      "default_policy": {
+        "fr_mutation_budget": "MEDIUM",
+        "vernier_policy": "STRICT",
+        "allow_framework_swap": "CONDITIONAL"
+      },
+      "risk_notes_cn": [
+        "ECD/；FR–CDR。",
+        "FR2/Vernier，。"
+      ],
+      "risk_notes_en": [
+        "Common for membrane ECD and conformational epitopes; requires FR–CDR co-design.",
+        "FR2/Vernier are sensitive; use partitioned back-mutations and conservative substitutions."
+      ]
+    },
+    "CLASS_III": {
+      "label_cn": "（High-tuning / structure-coupled scaffold）",
+      "label_en": "Structure-coupled scaffold (high-tuning)",
+      "default_policy": {
+        "fr_mutation_budget": "VERY_LOW",
+        "vernier_policy": "LOCKED",
+        "allow_framework_swap": false
+      },
+      "risk_notes_cn": [
+        "paratope；‘’。",
+        "/，。"
+      ],
+      "risk_notes_en": [
+        "Framework contributes to paratope geometry; not suited for wholesale framework swaps.",
+        "Use localized humanization and point edits; prioritize functional fidelity."
+      ]
+    }
+  },
+  "fit_rules": [
+    {
+      "id": "R_SOLUBLE_BLOCKING",
+      "when": {
+        "antigen_type": [
+          "SOLUBLE_PROTEIN"
+        ],
+        "mechanism": [
+          "BLOCKING_NEUTRALIZING"
+        ],
+        "epitope_geometry": [
+          "EXPOSED_FLAT",
+          "SHALLOW_GROOVE",
+          "UNKNOWN"
+        ]
+      },
+      "recommend": {
+        "framework_class_rank": [
+          "CLASS_I",
+          "CLASS_II"
+        ],
+        "rationale_cn": [
+          "/，paratope。",
+          "。"
+        ],
+        "rationale_en": [
+          "Soluble antigens with blocking/neutralizing MoA typically do not require extreme paratope geometry.",
+          "Prefer high-compatibility scaffolds to reduce humanization and developability risk."
+        ]
+      },
+      "policy_overrides": {
+        "CLASS_I": {
+          "fr_backmutation_strategy": "MINIMAL_VERNIER_ONLY_IF_NEEDED"
+        },
+        "CLASS_II": {
+          "fr_backmutation_strategy": "PARTITIONED_FR2_VERNIER_FIRST"
+        }
+      }
+    },
+    {
+      "id": "R_MEMBRANE_ECD_CONFORMATIONAL",
+      "when": {
+        "antigen_type": [
+          "MEMBRANE_ECD"
+        ],
+        "epitope_geometry": [
+          "CONFORMATIONAL",
+          "SHALLOW_GROOVE",
+          "UNKNOWN"
+        ],
+        "mechanism": [
+          "BLOCKING_NEUTRALIZING",
+          "AGONIST",
+          "CHECKPOINT_MODULATION"
+        ]
+      },
+      "recommend": {
+        "framework_class_rank": [
+          "CLASS_II",
+          "CLASS_I"
+        ],
+        "rationale_cn": [
+          "ECD；FR–CDR。",
+          "。"
+        ],
+        "rationale_en": [
+          "Membrane ECD epitopes often impose conformational and angle-of-approach constraints.",
+          "Moderate-tuning scaffolds support controlled edits while preserving geometry."
+        ]
+      },
+      "policy_overrides": {
+        "CLASS_II": {
+          "vernier_policy": "STRICT",
+          "fr_backmutation_strategy": "VERNIER_AND_FR2_LOCK_FIRST"
+        },
+        "CLASS_I": {
+          "fr_backmutation_strategy": "ONLY_IF_FUNCTIONAL_DRIFT"
+        }
+      }
+    },
+    {
+      "id": "R_DEEP_POCKET_ENZYME",
+      "when": {
+        "antigen_type": [
+          "ENZYME_ACTIVE_SITE",
+          "HAPTEN_SMALL_MOLECULE"
+        ],
+        "epitope_geometry": [
+          "DEEP_POCKET"
+        ]
+      },
+      "recommend": {
+        "framework_class_rank": [
+          "CLASS_III",
+          "CLASS_II"
+        ],
+        "rationale_cn": [
+          "paratope；。",
+          "。"
+        ],
+        "rationale_en": [
+          "Deep pockets often require framework contributions to paratope geometry and rigidity.",
+          "Prefer structure-coupled scaffolds and point edits over wholesale swaps."
+        ]
+      },
+      "hard_constraints": {
+        "forbid_framework_swap": true
+      }
+    },
+    {
+      "id": "R_MULTIPASS_MEMBRANE",
+      "when": {
+        "antigen_type": [
+          "MULTI_PASS_MEMBRANE"
+        ],
+        "epitope_geometry": [
+          "DYNAMIC_CONFORMATIONAL",
+          "CONFORMATIONAL",
+          "UNKNOWN"
+        ]
+      },
+      "recommend": {
+        "framework_class_rank": [
+          "CLASS_III",
+          "CLASS_II"
+        ],
+        "rationale_cn": [
+          "，–CDR。"
+        ],
+        "rationale_en": [
+          "Multi-pass membrane targets frequently involve dynamic conformations and constrained epitopes."
+        ]
+      },
+      "hard_constraints": {
+        "forbid_framework_swap": true
+      }
+    },
+    {
+      "id": "R_VIRAL_DYNAMIC_NEUTRALIZATION",
+      "when": {
+        "antigen_type": [
+          "VIRAL_FUSION_DYNAMIC"
+        ],
+        "mechanism": [
+          "BLOCKING_NEUTRALIZING"
+        ],
+        "epitope_geometry": [
+          "DYNAMIC_CONFORMATIONAL",
+          "CONFORMATIONAL"
+        ]
+      },
+      "recommend": {
+        "framework_class_rank": [
+          "CLASS_III",
+          "CLASS_II"
+        ],
+        "rationale_cn": [
+          "；。"
+        ],
+        "rationale_en": [
+          "Neutralization against dynamic antigens often requires precise geometric locking; framework contributions matter."
+        ]
+      },
+      "hard_constraints": {
+        "forbid_framework_swap": true
+      }
+    },
+    {
+      "id": "R_TCELL_ENGAGER_BSAB",
+      "when": {
+        "mechanism": [
+          "T_CELL_ENGAGER"
+        ],
+        "format": [
+          "BISPECIFIC_2PLUS1",
+          "BISPECIFIC_IGG_LIKE",
+          "SCFV",
+          "UNKNOWN"
+        ]
+      },
+      "recommend": {
+        "framework_class_rank": [
+          "CLASS_II",
+          "CLASS_I"
+        ],
+        "rationale_cn": [
+          "/engager；FR–CDR。"
+        ],
+        "rationale_en": [
+          "Bispecifics/engagers are more sensitive to geometry and stability; control FR–CDR coupling and avoid risky edits."
+        ]
+      },
+      "policy_overrides": {
+        "CLASS_II": {
+          "fr_mutation_budget": "LOW",
+          "vernier_policy": "STRICT"
+        }
+      }
+    }
+  ],
+  "dev_priority_overrides": {
+    "FAST_IND": {
+      "global": {
+        "prefer_framework_class": [
+          "CLASS_I",
+          "CLASS_II"
+        ],
+        "tighten_policies": {
+          "fr_mutation_budget": "LOW",
+          "vernier_policy": "STRICT"
+        },
+        "notes_cn": [
+          "IND、。"
+        ],
+        "notes_en": [
+          "Fast-IND favors low-risk, well-validated scaffold space."
+        ]
+      }
+    },
+    "MAX_AFFINITY": {
+      "global": {
+        "allow_framework_class": [
+          "CLASS_II",
+          "CLASS_III"
+        ],
+        "notes_cn": [
+          "FR–CDR，。"
+        ],
+        "notes_en": [
+          "Max-affinity paths often increase FR–CDR coupling and require stricter fidelity strategies."
+        ]
+      }
+    }
+  },
+  "thresholds": {
+    "delta_identity": {
+      "typical_ok": 0.06,
+      "tail_risk": 0.29
+    },
+    "out_of_library_rate_alert": 0.02
+  }
+}

@@ -1,0 +1,1289 @@
+[
+  {
+    "id": "ADC-COMP-L-001",
+    "name": "mc-val-cit-PABC",
+    "type": "cleavable",
+    "mechanism": "Cathepsin B cleavage",
+    "stability": "High in plasma",
+    "solubility": "Moderate",
+    "molecular_structure": {
+      "smiles": "O=C(N[C@H](C(=O)N[C@H](C(=O)Nc1ccc(COC(=O)O)cc1)CCCNC(=O)N)C(C)C)CCCCC(=O)N2CCC(=O)C2",
+      "pubchem_cid": "46931034",
+      "reference_url": "https://pubchem.ncbi.nlm.nih.gov/compound/46931034"
+    },
+    "data_confidence": "high",
+    "evidence_note": "Industry standard protease-cleavable linker. Highly stable in human plasma but rapidly cleaved by lysosomal Cathepsin B. PABC spacer allows self-immolation to release free amine payload.",
+    "key_refs": [
+      "PMID:12873544",
+      "FDA label: Adcetris, Polivy, Padcev"
+    ],
+    "plasma_t12": ">7 days (very stable in human plasma)",
+    "cleavage_enzyme": "Cathepsin B (lysosomal cysteine protease; highly expressed in tumor cells)",
+    "tumor_cleavage_efficiency": "High — Cathepsin B upregulated 2–5× in solid tumors vs normal tissue",
+    "compatible_payload_chemistry": "Free amine required on payload (PABC spacer self-immolates to release NH₂-payload after Cathepsin B cleavage)",
+    "compatible_conjugation_sites": [
+      "Cysteine (maleimide)",
+      "Lysine (NHS ester variant)"
+    ],
+    "hydrophilicity_note": "Moderately hydrophobic (causes aggregation at high DAR >4 without PEGylation); PEG2/PEG4 variants significantly improve solubility",
+    "optimal_dar_range_note": "DAR 3–4 optimal for MMAE; high-DAR variants require PEG spacers",
+    "needs_expert_review": false
+  },
+  {
+    "id": "ADC-COMP-L-002",
+    "name": "GGFG",
+    "type": "cleavable",
+    "mechanism": "Cathepsin cleavage",
+    "stability": "High",
+    "solubility": "High (hydrophilic)",
+    "molecular_structure": {
+      "smiles": "O=C(NCC(=O)N[C@@H](Cc1ccccc1)C(=O)NCC(=O)O)C",
+      "pubchem_cid": "138388570",
+      "reference_url": "https://pubchem.ncbi.nlm.nih.gov/compound/138388570"
+    },
+    "data_confidence": "high",
+    "evidence_note": "Tetrapeptide linker used in Daiichi Sankyo DXd platform. Cleaved by lysosomal cathepsins (upregulated in tumor cells). Highly stable in circulation. Lacks PABC self-immolative group; relies on direct cleavage to release DXd.",
+    "key_refs": [
+      "PMID:26058450",
+      "FDA label: Enhertu, Dato-DXd"
+    ],
+    "plasma_t12": ">7 days (highly stable in human plasma; lysosomal-only cleavage)",
+    "cleavage_enzyme": "Lysosomal cathepsins (B, L, S) — requires complete ADC internalization and lysosomal trafficking",
+    "tumor_cleavage_efficiency": "High — requires full lysosomal delivery; no extracellular cleavage",
+    "compatible_payload_chemistry": "Direct DXd release (no self-immolative group); DXd is released as active free drug after amide bond hydrolysis",
+    "compatible_conjugation_sites": [
+      "Cysteine (maleimide)",
+      "Site-specific (Daiichi Sankyo proprietary)"
+    ],
+    "hydrophilicity_note": "Relatively hydrophilic due to GGFG peptide; supports DAR 7–8 without aggregation (key advantage for high-DAR DXd ADCs)",
+    "optimal_dar_range_note": "Designed for DAR 7–8; supports High-DAR strategy of Daiichi Sankyo platform",
+    "needs_expert_review": false
+  },
+  {
+    "id": "ADC-COMP-P-001",
+    "name": "MMAE",
+    "class": "Tubulin inhibitor",
+    "potency": "High (pM)",
+    "bystander_effect": "Yes",
+    "permeability": "High",
+    "molecular_structure": {
+      "smiles": "CC[C@H](C)[C@@H]([C@@H](CC(=O)N1CCCC1[C@H]([C@@H](C)CC)NC(=O)[C@@H](C)NC(=O)[C@@H](C(C)C)N(C)C)OC)N(C)C(=O)[C@H](C(C)C)NC(=O)[C@H](C(C)C)N(C)C",
+      "pubchem_cid": "11544439",
+      "chembl_id": "CHEMBL3137305",
+      "reference_url": "https://pubchem.ncbi.nlm.nih.gov/compound/11544439"
+    },
+    "data_confidence": "high",
+    "evidence_note": "Monomethyl auristatin E. Highly potent tubulin inhibitor (IC50 ~0.1-1 nM). Membrane-permeable, causing strong bystander killing effect. Dose-limiting toxicity: peripheral neuropathy and neutropenia.",
+    "key_refs": [
+      "PMID:12873544 (original MMAE ADC)",
+      "PMID:22399561 (MMAE DLT)",
+      "FDA label: Adcetris, Polivy, Padcev"
+    ],
+    "ic50_nm": "0.1–1.0",
+    "cell_cycle_dependency": "S/G2/M phase only (mitosis-active cells)",
+    "dlts": [
+      "Peripheral sensory neuropathy",
+      "Neutropenia/febrile neutropenia",
+      "Fatigue"
+    ],
+    "optimal_dar_range": "3–4",
+    "log_p": 3.2,
+    "resistance_mechanisms": [
+      "MDR1/P-gp efflux pump overexpression",
+      "Tubulin-β-III isoform switch",
+      "Anti-apoptotic protein upregulation (Bcl-xL)"
+    ],
+    "compatible_linker_chemistry": "Requires PABC self-immolative spacer releasing free amine; or direct amine conjugation",
+    "moa_detail": "Inhibits tubulin polymerization by binding to β-tubulin at the vinca alkaloid binding site, causing mitotic arrest and apoptosis.",
+    "needs_expert_review": false
+  },
+  {
+    "id": "ADC-COMP-P-002",
+    "name": "DXd",
+    "class": "Topoisomerase I inhibitor",
+    "potency": "Very High",
+    "bystander_effect": "Yes",
+    "permeability": "High",
+    "molecular_structure": {
+      "smiles": "CCC1(C2=C(COC1=O)C(=O)N3CC4=C(C3=C2)N=C5C=CC(=C(C5=C4)F)C",
+      "pubchem_cid": "11250711",
+      "chembl_id": "CHEMBL3989943",
+      "reference_url": "https://pubchem.ncbi.nlm.nih.gov/compound/11250711"
+    },
+    "data_confidence": "high",
+    "evidence_note": "Exatecan derivative (Topoisomerase I inhibitor). IC50 ~0.3 nM. Highly membrane-permeable (strong bystander effect) but has a short systemic half-life, reducing off-target toxicity. DLT: Interstitial lung disease (ILD).",
+    "key_refs": [
+      "PMID:26058450 (DXd drug design)",
+      "PMID:29236700 (DESTINY-Breast01)",
+      "FDA label: Enhertu"
+    ],
+    "ic50_nm": "0.3",
+    "cell_cycle_dependency": "ALL phases (cell-cycle independent)",
+    "dlts": [
+      "Interstitial lung disease (ILD/pneumonitis) — ~10–15% incidence",
+      "Nausea/vomiting",
+      "Myelosuppression"
+    ],
+    "optimal_dar_range": "7–8",
+    "log_p": 1.9,
+    "resistance_mechanisms": [
+      "Topoisomerase I point mutations (rare)",
+      "ABC transporter upregulation",
+      "Altered DNA repair (BRCA)"
+    ],
+    "compatible_linker_chemistry": "Released after complete GGFG linker cleavage by lysosomal cathepsins; no specific functional group required on payload (DXd is the free drug)",
+    "moa_detail": "Topoisomerase I inhibitor. Traps TOP1-DNA cleavage complexes, causing single-strand DNA breaks that lead to double-strand breaks during replication. Active in all cell cycle phases — key advantage over MMAE for low-proliferation tumors.",
+    "needs_expert_review": false
+  },
+  {
+    "id": "ADC-COMP-L-100",
+    "name": "Glucuronide-MMAE",
+    "type": "cleavable",
+    "mechanism": "Various",
+    "data_confidence": "high",
+    "evidence_note": "Cleaved by beta-glucuronidase (highly expressed in lysosomes and tumor microenvironment). Highly hydrophilic, reducing ADC aggregation and improving PK compared to dipeptide linkers.",
+    "key_refs": [
+      "PMID:16955513 (beta-glucuronide linker)",
+      "PMID:21478267"
+    ],
+    "plasma_t12": ">7 days (beta-glucuronidase not present in blood)",
+    "cleavage_enzyme": "β-Glucuronidase (lysosomal UGP; also secreted extracellularly in necrotic tumor regions)",
+    "tumor_cleavage_efficiency": "High in lysosome; also effective in tumor stroma (extracellular β-glucuronidase from necrotic cells promotes bystander killing)",
+    "compatible_payload_chemistry": "Free hydroxyl or amine on payload; typically MMAE or other amine-bearing payloads",
+    "compatible_conjugation_sites": [
+      "Cysteine (maleimide)",
+      "Site-specific variants"
+    ],
+    "hydrophilicity_note": "Highly hydrophilic (glucuronic acid moiety); allows DAR 6–8 without significant aggregation. Superior PK compared to vc-PABC at same DAR.",
+    "optimal_dar_range_note": "DAR 6–8 feasible due to high hydrophilicity",
+    "needs_expert_review": false
+  },
+  {
+    "id": "ADC-COMP-L-101",
+    "name": "PEG4-vc-PABC",
+    "type": "cleavable",
+    "mechanism": "Various",
+    "data_confidence": "moderate",
+    "evidence_note": "General structural class. Specific plasma stability and cleavage kinetics depend on exact conjugate context. Needs expert review.",
+    "needs_expert_review": false,
+    "plasma_t12": ">7 days",
+    "cleavage_enzyme": "Cathepsin B",
+    "tumor_cleavage_efficiency": "High",
+    "compatible_payload_chemistry": "Free amine payload (PABC self-immolation)",
+    "compatible_conjugation_sites": [
+      "Cysteine (maleimide)"
+    ],
+    "hydrophilicity_note": "PEG4 substantially improves hydrophilicity over standard vc-PABC; supports DAR 5–6",
+    "optimal_dar_range_note": "DAR 4–6 feasible"
+  },
+  {
+    "id": "ADC-COMP-L-102",
+    "name": "VA-PABC",
+    "type": "cleavable",
+    "mechanism": "Various",
+    "data_confidence": "high",
+    "evidence_note": "Valine-Alanine dipeptide. Cleaved by Cathepsin B. More hydrophilic and less prone to aggregation than Val-Cit, often used with highly hydrophobic payloads like PBDs.",
+    "key_refs": [
+      "PMID:26700026 (Val-Ala design)",
+      "FDA label: Zynlonta (loncastuximab tesirine uses SG3249 VA linker)"
+    ],
+    "plasma_t12": ">7 days (similar stability to vc-PABC)",
+    "cleavage_enzyme": "Cathepsin B (slightly faster cleavage kinetics than Val-Cit for some substrates)",
+    "tumor_cleavage_efficiency": "High — comparable to vc-PABC",
+    "compatible_payload_chemistry": "Free amine required (PABC self-immolative spacer)",
+    "compatible_conjugation_sites": [
+      "Cysteine (maleimide)",
+      "Site-specific"
+    ],
+    "hydrophilicity_note": "More hydrophilic than vc-PABC (Ala vs Cit); reduces ADC aggregation. Preferred for highly hydrophobic payloads like PBDs and indolinobenzazepines.",
+    "optimal_dar_range_note": "DAR 4 standard; supports slightly higher DAR than vc-PABC due to improved hydrophilicity",
+    "needs_expert_review": false
+  },
+  {
+    "id": "ADC-COMP-L-103",
+    "name": "Pyrophosphate-diester",
+    "type": "cleavable",
+    "mechanism": "Various",
+    "data_confidence": "moderate",
+    "evidence_note": "General structural class. Specific plasma stability and cleavage kinetics depend on exact conjugate context. Needs expert review.",
+    "needs_expert_review": true,
+    "plasma_t12": "Moderate (hours to days; hydrolysis-sensitive)",
+    "cleavage_enzyme": "Phosphodiesterase (intracellular) + spontaneous hydrolysis in lysosomes",
+    "tumor_cleavage_efficiency": "Moderate",
+    "compatible_payload_chemistry": "Hydroxyl-bearing payloads",
+    "compatible_conjugation_sites": [
+      "Lysine"
+    ],
+    "hydrophilicity_note": "Hydrophilic; improves ADC PK",
+    "optimal_dar_range_note": "DAR 4–6"
+  },
+  {
+    "id": "ADC-COMP-L-104",
+    "name": "Legumain-cleavable",
+    "type": "cleavable",
+    "mechanism": "Various",
+    "data_confidence": "moderate",
+    "evidence_note": "General structural class. Specific plasma stability and cleavage kinetics depend on exact conjugate context. Needs expert review.",
+    "needs_expert_review": true,
+    "plasma_t12": ">7 days (legumain not present in blood)",
+    "cleavage_enzyme": "Legumain (Asn-specific cysteine protease; expressed in tumor-associated macrophages and acidic tumor stroma)",
+    "tumor_cleavage_efficiency": "High in tumor microenvironment (TME-specific); activated in hypoxic/acidic tumor regions",
+    "compatible_payload_chemistry": "Free amine payload (Asn-Pro dipeptide with PABC spacer)",
+    "compatible_conjugation_sites": [
+      "Cysteine",
+      "Site-specific"
+    ],
+    "hydrophilicity_note": "Moderate hydrophilicity",
+    "optimal_dar_range_note": "DAR 3–4"
+  },
+  {
+    "id": "ADC-COMP-L-105",
+    "name": "beta-galactoside-cleavable",
+    "type": "cleavable",
+    "mechanism": "Various",
+    "data_confidence": "moderate",
+    "evidence_note": "General structural class. Specific plasma stability and cleavage kinetics depend on exact conjugate context. Needs expert review.",
+    "needs_expert_review": false,
+    "plasma_t12": ">7 days (beta-galactosidase absent from plasma)",
+    "cleavage_enzyme": "β-Galactosidase (lysosomal; also expressed extracellularly by senescent tumor cells)",
+    "tumor_cleavage_efficiency": "High in lysosomes; emerging interest in senolytic ADC strategy",
+    "compatible_payload_chemistry": "Free amine or hydroxyl payload",
+    "compatible_conjugation_sites": [
+      "Cysteine",
+      "Lysine"
+    ],
+    "hydrophilicity_note": "Highly hydrophilic (galactose moiety); excellent for high DAR",
+    "optimal_dar_range_note": "DAR 4–8"
+  },
+  {
+    "id": "ADC-COMP-L-106",
+    "name": "Sulfatase-cleavable",
+    "type": "cleavable",
+    "mechanism": "Various",
+    "data_confidence": "low",
+    "evidence_note": "General structural class. Specific plasma stability and cleavage kinetics depend on exact conjugate context. Needs expert review.",
+    "needs_expert_review": true,
+    "plasma_t12": ">7 days",
+    "cleavage_enzyme": "Sulfatase (lysosomal arylsulfatase A/B)",
+    "tumor_cleavage_efficiency": "Moderate — limited tumor selectivity vs normal lysosomal expression",
+    "compatible_payload_chemistry": "Sulfate ester-bearing payloads",
+    "compatible_conjugation_sites": [
+      "Lysine"
+    ],
+    "hydrophilicity_note": "Highly hydrophilic",
+    "optimal_dar_range_note": "DAR 4–6"
+  },
+  {
+    "id": "ADC-COMP-L-107",
+    "name": "Phosphatase-cleavable",
+    "type": "cleavable",
+    "mechanism": "Various",
+    "data_confidence": "low",
+    "evidence_note": "General structural class. Specific plasma stability and cleavage kinetics depend on exact conjugate context. Needs expert review.",
+    "needs_expert_review": true,
+    "plasma_t12": "Short (hours) — phosphatases present in blood; major stability concern",
+    "cleavage_enzyme": "Alkaline/acid phosphatase (widespread expression — poor tumor selectivity)",
+    "tumor_cleavage_efficiency": "Low selectivity — premature cleavage in blood is the major issue",
+    "compatible_payload_chemistry": "Phosphate ester-bearing payloads",
+    "compatible_conjugation_sites": [
+      "Cysteine",
+      "Lysine"
+    ],
+    "hydrophilicity_note": "Highly hydrophilic",
+    "optimal_dar_range_note": "Experimental only"
+  },
+  {
+    "id": "ADC-COMP-L-108",
+    "name": "Mal-PEG2-V-Cit-PAB",
+    "type": "cleavable",
+    "mechanism": "Various",
+    "data_confidence": "moderate",
+    "evidence_note": "General structural class. Specific plasma stability and cleavage kinetics depend on exact conjugate context. Needs expert review.",
+    "needs_expert_review": false,
+    "plasma_t12": ">7 days",
+    "cleavage_enzyme": "Cathepsin B",
+    "tumor_cleavage_efficiency": "High",
+    "compatible_payload_chemistry": "Free amine (PABC self-immolation)",
+    "compatible_conjugation_sites": [
+      "Cysteine (maleimide)"
+    ],
+    "hydrophilicity_note": "PEG2 spacer significantly improves solubility over standard vc-PABC; allows higher DAR without aggregation",
+    "optimal_dar_range_note": "DAR 4–6 feasible"
+  },
+  {
+    "id": "ADC-COMP-L-109",
+    "name": "Fmoc-vc-PABC",
+    "type": "cleavable",
+    "mechanism": "Various",
+    "data_confidence": "low",
+    "evidence_note": "General structural class. Specific plasma stability and cleavage kinetics depend on exact conjugate context. Needs expert review.",
+    "needs_expert_review": true,
+    "plasma_t12": "Unknown — Fmoc is base-labile; not intended for systemic stability",
+    "cleavage_enzyme": "Cathepsin B (after Fmoc deprotection)",
+    "tumor_cleavage_efficiency": "Low — primarily used as a synthetic intermediate, not for in vivo ADC",
+    "compatible_payload_chemistry": "Free amine payload",
+    "compatible_conjugation_sites": [
+      "Cysteine"
+    ],
+    "hydrophilicity_note": "Hydrophobic (Fmoc group)",
+    "optimal_dar_range_note": "Research/synthesis use only"
+  },
+  {
+    "id": "ADC-COMP-L-110",
+    "name": "Dde-vc-PABC",
+    "type": "cleavable",
+    "mechanism": "Various",
+    "data_confidence": "low",
+    "evidence_note": "General structural class. Specific plasma stability and cleavage kinetics depend on exact conjugate context. Needs expert review.",
+    "needs_expert_review": true,
+    "plasma_t12": "Unknown — Dde is hydrazine-labile protecting group; research use",
+    "cleavage_enzyme": "Cathepsin B (after Dde deprotection)",
+    "tumor_cleavage_efficiency": "Low — research/synthesis intermediate",
+    "compatible_payload_chemistry": "Free amine payload",
+    "compatible_conjugation_sites": [
+      "Cysteine"
+    ],
+    "hydrophilicity_note": "Moderate",
+    "optimal_dar_range_note": "Research/synthesis use only"
+  },
+  {
+    "id": "ADC-COMP-L-111",
+    "name": "Hydrazone-disulfide",
+    "type": "cleavable",
+    "mechanism": "Various",
+    "data_confidence": "moderate",
+    "evidence_note": "General structural class. Specific plasma stability and cleavage kinetics depend on exact conjugate context. Needs expert review.",
+    "needs_expert_review": false,
+    "plasma_t12": "Short (hours) — hydrazone is acid-labile, pH-sensitive. t1/2 ~1–4 h at pH 5.5 (lysosome), ~24–72 h at pH 7.4 (blood). Early ADCs (Mylotarg) used this — premature release was a safety issue.",
+    "cleavage_enzyme": "pH-dependent hydrolysis (no enzyme required); disulfide component also cleaved by intracellular glutathione (GSH)",
+    "tumor_cleavage_efficiency": "Moderate — relies on endosomal/lysosomal acidification; can also cleave extracellularly in acidic TME",
+    "compatible_payload_chemistry": "Ketone or aldehyde group required on payload for hydrazone formation",
+    "compatible_conjugation_sites": [
+      "Lysine (NHS ester)",
+      "Cysteine (disulfide component)"
+    ],
+    "hydrophilicity_note": "Moderate; hydrazone contributes some polarity",
+    "optimal_dar_range_note": "DAR 2–4 (limited by hydrazone instability at higher loading)"
+  },
+  {
+    "id": "ADC-COMP-L-112",
+    "name": "Thioether-cleavable",
+    "type": "cleavable",
+    "mechanism": "Various",
+    "data_confidence": "low",
+    "evidence_note": "General structural class. Specific plasma stability and cleavage kinetics depend on exact conjugate context. Needs expert review.",
+    "needs_expert_review": true,
+    "plasma_t12": "Variable",
+    "cleavage_enzyme": "Intracellular thiol (GSH-mediated reduction)",
+    "tumor_cleavage_efficiency": "Moderate — relies on elevated intracellular GSH (~10 mM) vs extracellular (~2–10 μM); provides selectivity window",
+    "compatible_payload_chemistry": "Thiol-reactive payload",
+    "compatible_conjugation_sites": [
+      "Cysteine",
+      "Engineered Cys"
+    ],
+    "hydrophilicity_note": "Hydrophobic",
+    "optimal_dar_range_note": "DAR 2–4"
+  },
+  {
+    "id": "ADC-COMP-L-113",
+    "name": "Peptide-MMAF",
+    "type": "cleavable",
+    "mechanism": "Various",
+    "data_confidence": "moderate",
+    "evidence_note": "General structural class. Specific plasma stability and cleavage kinetics depend on exact conjugate context. Needs expert review.",
+    "needs_expert_review": false,
+    "plasma_t12": ">7 days",
+    "cleavage_enzyme": "Cathepsin B or other lysosomal peptidases",
+    "tumor_cleavage_efficiency": "High",
+    "compatible_payload_chemistry": "MMAF (charged, membrane-impermeable; no bystander effect)",
+    "compatible_conjugation_sites": [
+      "Cysteine"
+    ],
+    "hydrophilicity_note": "Moderate; MMAF's charge improves overall hydrophilicity vs MMAE linker-payloads",
+    "optimal_dar_range_note": "DAR 2–4"
+  },
+  {
+    "id": "ADC-COMP-L-114",
+    "name": "PEG8-vc-PABC",
+    "type": "cleavable",
+    "mechanism": "Various",
+    "data_confidence": "moderate",
+    "evidence_note": "General structural class. Specific plasma stability and cleavage kinetics depend on exact conjugate context. Needs expert review.",
+    "needs_expert_review": false,
+    "plasma_t12": ">7 days",
+    "cleavage_enzyme": "Cathepsin B",
+    "tumor_cleavage_efficiency": "High",
+    "compatible_payload_chemistry": "Free amine payload (PABC self-immolation)",
+    "compatible_conjugation_sites": [
+      "Cysteine (maleimide)"
+    ],
+    "hydrophilicity_note": "PEG8 provides excellent hydrophilicity; supports DAR 6–8 with minimal aggregation; significant PK improvement over vc-PABC at high DAR",
+    "optimal_dar_range_note": "DAR 6–8 feasible"
+  },
+  {
+    "id": "ADC-COMP-L-115",
+    "name": "Val-Cit-PAB-OH",
+    "type": "cleavable",
+    "mechanism": "Various",
+    "data_confidence": "moderate",
+    "evidence_note": "General structural class. Specific plasma stability and cleavage kinetics depend on exact conjugate context. Needs expert review.",
+    "needs_expert_review": false,
+    "plasma_t12": ">7 days",
+    "cleavage_enzyme": "Cathepsin B",
+    "tumor_cleavage_efficiency": "High",
+    "compatible_payload_chemistry": "Hydroxyl-bearing payload (carbamate or carbonate conjugation)",
+    "compatible_conjugation_sites": [
+      "Cysteine",
+      "Lysine"
+    ],
+    "hydrophilicity_note": "Moderate",
+    "optimal_dar_range_note": "DAR 3–4"
+  },
+  {
+    "id": "ADC-COMP-L-116",
+    "name": "mc-Val-Cit-PAB-PNP",
+    "type": "cleavable",
+    "mechanism": "Various",
+    "data_confidence": "moderate",
+    "evidence_note": "General structural class. Specific plasma stability and cleavage kinetics depend on exact conjugate context. Needs expert review.",
+    "needs_expert_review": false,
+    "plasma_t12": ">7 days",
+    "cleavage_enzyme": "Cathepsin B",
+    "tumor_cleavage_efficiency": "High",
+    "compatible_payload_chemistry": "Activated carbonate; used as reactive intermediate for amine or hydroxyl-bearing payloads",
+    "compatible_conjugation_sites": [
+      "Cysteine (maleimide precursor)"
+    ],
+    "hydrophilicity_note": "Moderate",
+    "optimal_dar_range_note": "DAR 3–4"
+  },
+  {
+    "id": "ADC-COMP-L-117",
+    "name": "Mal-PEG4-NHS",
+    "type": "cleavable",
+    "mechanism": "Various",
+    "data_confidence": "moderate",
+    "evidence_note": "General structural class. Specific plasma stability and cleavage kinetics depend on exact conjugate context. Needs expert review.",
+    "needs_expert_review": false,
+    "plasma_t12": ">7 days (non-cleavable crosslinker with maleimide-NHS heterobifunctional)",
+    "cleavage_enzyme": "None (non-cleavable spacer/crosslinker)",
+    "tumor_cleavage_efficiency": "N/A",
+    "compatible_payload_chemistry": "Amine group on payload (NHS ester) + thiol on Ab (maleimide)",
+    "compatible_conjugation_sites": [
+      "Cysteine + Lysine (heterobifunctional)",
+      "Used in SMAC technology"
+    ],
+    "hydrophilicity_note": "PEG4 provides good hydrophilicity",
+    "optimal_dar_range_note": "DAR 2–4"
+  },
+  {
+    "id": "ADC-COMP-L-118",
+    "name": "SMPEG24",
+    "type": "cleavable",
+    "mechanism": "Various",
+    "data_confidence": "moderate",
+    "evidence_note": "General structural class. Specific plasma stability and cleavage kinetics depend on exact conjugate context. Needs expert review.",
+    "needs_expert_review": false,
+    "plasma_t12": ">7 days (non-cleavable)",
+    "cleavage_enzyme": "None (non-cleavable PEG-maleimide crosslinker)",
+    "tumor_cleavage_efficiency": "N/A — payload released by complete Ab catabolism",
+    "compatible_payload_chemistry": "Thiol-bearing payload",
+    "compatible_conjugation_sites": [
+      "Lysine (NHS ester end)",
+      "Cysteine (maleimide end)"
+    ],
+    "hydrophilicity_note": "PEG24 provides excellent hydrophilicity; enables DAR >8 without aggregation. Used in Zynlonta formulation variants.",
+    "optimal_dar_range_note": "DAR 4–8 feasible"
+  },
+  {
+    "id": "ADC-COMP-L-119",
+    "name": "Sulfo-SMCC",
+    "type": "cleavable",
+    "mechanism": "Various",
+    "data_confidence": "high",
+    "evidence_note": "Classic non-cleavable thioether linker. Requires complete lysosomal degradation of the antibody to release payload (typically as Lys-SMCC-payload adduct). Very high plasma stability.",
+    "key_refs": [
+      "PMID:16814772 (T-DM1 design)",
+      "FDA label: Kadcyla"
+    ],
+    "plasma_t12": ">10 days (non-cleavable thioether; no enzymatic degradation)",
+    "cleavage_enzyme": "None — non-cleavable. Requires complete lysosomal proteolysis of antibody backbone to release Lys-SMCC-payload adduct",
+    "tumor_cleavage_efficiency": "N/A — payload release driven by antibody catabolism rate (t1/2 ~7–21 days)",
+    "compatible_payload_chemistry": "Thiol group required on payload (maleimide-thiol reaction); or amine group with NHS variant",
+    "compatible_conjugation_sites": [
+      "Lysine (NHS-SMCC)",
+      "Cysteine (Sulfo-SMCC)"
+    ],
+    "hydrophilicity_note": "Hydrophobic thioether linker; constrains DAR to 3–4 (DAR >4 causes rapid clearance by increased hydrophobicity)",
+    "optimal_dar_range_note": "DAR 3.5 is the clinical standard for T-DM1/Kadcyla",
+    "needs_expert_review": false
+  },
+  {
+    "id": "ADC-COMP-P-100",
+    "name": "MMAD",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": false,
+    "ic50_nm": "0.1–1.0",
+    "cell_cycle_dependency": "S/G2/M phase only",
+    "dlts": [
+      "Peripheral neuropathy",
+      "Neutropenia"
+    ],
+    "optimal_dar_range": "3–4",
+    "log_p": 3.0,
+    "resistance_mechanisms": [
+      "MDR1/P-gp efflux",
+      "Tubulin mutation"
+    ],
+    "compatible_linker_chemistry": "PABC spacer releasing free amine",
+    "moa_detail": "Auristatin analog, monomethyl dolastatin derivative. Mechanism similar to MMAE (tubulin inhibition at vinca site).",
+    "key_refs": [
+      "PMID:22542113"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-101",
+    "name": "Auristatin F",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "high",
+    "evidence_note": "Charged tubulin inhibitor. Membrane-impermeable (no bystander effect). Lower systemic toxicity than MMAE. DLT: Ocular toxicity (corneal epithelial changes).",
+    "key_refs": [
+      "PMID:16450923 (MMAF vs MMAE mechanism)",
+      "FDA label: Blenrep (belantamab mafodotin)"
+    ],
+    "ic50_nm": "0.5–5.0",
+    "cell_cycle_dependency": "S/G2/M phase only",
+    "dlts": [
+      "Ocular toxicity (corneal epithelial microcysts)",
+      "Thrombocytopenia",
+      "Peripheral neuropathy (less than MMAE)"
+    ],
+    "optimal_dar_range": "2–4",
+    "log_p": 2.5,
+    "resistance_mechanisms": [
+      "MDR1/P-gp efflux (moderate)",
+      "Tubulin-β-III isoform switch"
+    ],
+    "compatible_linker_chemistry": "Free amine required (PABC self-immolative spacer releases NH2-MMAF)",
+    "moa_detail": "Tubulin inhibitor (vinca alkaloid site). Unlike MMAE, contains a charged C-terminal phenylalanine — membrane-impermeable. No bystander killing effect. Lower systemic cytotoxicity due to poor cell penetration.",
+    "needs_expert_review": false
+  },
+  {
+    "id": "ADC-COMP-P-102",
+    "name": "Auristatin E",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "low",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": true
+  },
+  {
+    "id": "ADC-COMP-P-103",
+    "name": "PF-06380101",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": false,
+    "ic50_nm": "0.1–0.5",
+    "cell_cycle_dependency": "S/G2/M phase only",
+    "dlts": [
+      "Nausea",
+      "Peripheral neuropathy"
+    ],
+    "optimal_dar_range": "3–4",
+    "log_p": 2.8,
+    "resistance_mechanisms": [
+      "MDR1/P-gp efflux"
+    ],
+    "compatible_linker_chemistry": "PABC spacer or direct amine conjugation",
+    "moa_detail": "Novel auristatin derivative. Tubulin polymerization inhibitor designed to reduce P-gp efflux susceptibility compared to MMAE.",
+    "key_refs": [
+      "PMID:24867892"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-104",
+    "name": "Tubulysin A",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": false,
+    "ic50_nm": "0.01–0.1",
+    "cell_cycle_dependency": "S/G2/M phase only",
+    "dlts": [
+      "Myelosuppression",
+      "Peripheral neuropathy"
+    ],
+    "optimal_dar_range": "2–4",
+    "log_p": 2.4,
+    "resistance_mechanisms": [
+      "MDR1/P-gp efflux",
+      "Tubulin mutation"
+    ],
+    "compatible_linker_chemistry": "N-terminus amine conjugation",
+    "moa_detail": "Highly potent tubulin polymerization inhibitor from myxobacteria. Binds vinca domain. 10–100× more potent than auristatins.",
+    "key_refs": [
+      "PMID:22765894"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-105",
+    "name": "Tubulysin M",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": false,
+    "ic50_nm": "0.01–0.1",
+    "cell_cycle_dependency": "S/G2/M phase only",
+    "dlts": [
+      "Myelosuppression",
+      "GI toxicity"
+    ],
+    "optimal_dar_range": "2–4",
+    "log_p": 2.6,
+    "resistance_mechanisms": [
+      "MDR1/P-gp efflux"
+    ],
+    "compatible_linker_chemistry": "N-terminus amine conjugation",
+    "moa_detail": "Synthetic tubulysin analog optimized for ADC conjugation.",
+    "key_refs": [
+      "PMID:26068579"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-106",
+    "name": "Cryptophycin 52",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": false,
+    "ic50_nm": "0.001–0.01",
+    "cell_cycle_dependency": "S/G2/M phase only",
+    "dlts": [
+      "Peripheral neuropathy",
+      "Myelosuppression"
+    ],
+    "optimal_dar_range": "2–4",
+    "log_p": 3.5,
+    "resistance_mechanisms": [
+      "MDR1/P-gp efflux (sensitive)",
+      "Tubulin mutation"
+    ],
+    "compatible_linker_chemistry": "Ester or carbamate conjugation at C-2 hydroxyl",
+    "moa_detail": "Ultra-potent tubulin inhibitor isolated from cyanobacteria. P-gp substrate — susceptibility to efflux is a major limitation.",
+    "key_refs": [
+      "PMID:11814056"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-107",
+    "name": "PNU-159682",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": false,
+    "ic50_nm": "0.00001–0.0001",
+    "cell_cycle_dependency": "ALL phases (intercalation + strand breaks)",
+    "dlts": [
+      "Severe myelosuppression",
+      "Cardiotoxicity (anthracycline-class)"
+    ],
+    "optimal_dar_range": "1–2",
+    "log_p": 2.1,
+    "resistance_mechanisms": [
+      "MDR1/P-gp efflux",
+      "Topo II mutation"
+    ],
+    "compatible_linker_chemistry": "Amine conjugation via aldehyde or hydrazone chemistry",
+    "moa_detail": "Ultra-potent nemorubicin metabolite (anthracycline class). IC50 in fM–pM range — among the most potent known ADC payloads. Requires extremely low DAR (1–2) due to toxicity.",
+    "key_refs": [
+      "PMID:21821736"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-108",
+    "name": "DGN462",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Indolinobenzodiazepine DNA-alkylating agent (IGN). Extremely potent (IC50 ~pM range). Causes DNA strand breaks. Associated with veno-occlusive disease (VOD) and delayed toxicities.",
+    "key_refs": [
+      "PMID:26013320 (IGN ADC)",
+      "PMID:31813763 (IMGN632 CD123)"
+    ],
+    "ic50_nm": "0.0001–0.001",
+    "cell_cycle_dependency": "ALL phases (DNA alkylation, replication-independent)",
+    "dlts": [
+      "Veno-occlusive disease (VOD/SOS) — class effect",
+      "Thrombocytopenia",
+      "Delayed hepatotoxicity"
+    ],
+    "optimal_dar_range": "2",
+    "log_p": 3.8,
+    "resistance_mechanisms": [
+      "MGMT DNA repair enzyme overexpression",
+      "ABC transporter (moderate)"
+    ],
+    "compatible_linker_chemistry": "Dimer-linked via disulfide on C2 position; requires site-specific conjugation due to extreme potency",
+    "moa_detail": "Indolinobenzodiazepine (IGN) DNA alkylator. Forms reversible imine bonds in minor groove of DNA — MOA distinct from classic PBD dimers. Effective against quiescent cells. VOD risk requires careful linker stability engineering.",
+    "needs_expert_review": false
+  },
+  {
+    "id": "ADC-COMP-P-109",
+    "name": "Exatecan",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "high",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": false,
+    "ic50_nm": "0.3–3.0",
+    "cell_cycle_dependency": "ALL phases (cell-cycle independent)",
+    "dlts": [
+      "Myelosuppression",
+      "GI toxicity (nausea/diarrhea)",
+      "ILD risk similar to DXd"
+    ],
+    "optimal_dar_range": "4–8",
+    "log_p": 1.5,
+    "resistance_mechanisms": [
+      "TOP1 mutations (rare)",
+      "ABC transporter upregulation"
+    ],
+    "compatible_linker_chemistry": "Free amine or hydroxyl for conjugation; commonly used as precursor to DXd",
+    "moa_detail": "Camptothecin derivative (Topoisomerase I inhibitor). Precursor to DXd. Cell-cycle independent activity. Highly membrane-permeable — strong bystander killing.",
+    "key_refs": [
+      "PMID:26058450 (Exatecan → DXd conversion)"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-110",
+    "name": "Belotecan",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": false,
+    "ic50_nm": "1.0–10.0",
+    "cell_cycle_dependency": "ALL phases (cell-cycle independent)",
+    "dlts": [
+      "Myelosuppression",
+      "GI toxicity"
+    ],
+    "optimal_dar_range": "4–8",
+    "log_p": 1.2,
+    "resistance_mechanisms": [
+      "TOP1 mutations"
+    ],
+    "compatible_linker_chemistry": "Hydroxyl conjugation",
+    "moa_detail": "Korean-developed camptothecin analog. TOP1 inhibitor. Less potent than DXd/exatecan.",
+    "key_refs": [
+      "PMID:20215052"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-111",
+    "name": "Topotecan",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": false,
+    "ic50_nm": "5.0–50.0",
+    "cell_cycle_dependency": "ALL phases (cell-cycle independent)",
+    "dlts": [
+      "Severe myelosuppression"
+    ],
+    "optimal_dar_range": "4–8",
+    "log_p": 0.8,
+    "resistance_mechanisms": [
+      "TOP1 downregulation",
+      "ABC transporter upregulation"
+    ],
+    "compatible_linker_chemistry": "Hydroxyl conjugation",
+    "moa_detail": "Camptothecin analog. Lower potency than exatecan/DXd — limited utility as ADC payload at standard DAR.",
+    "key_refs": [
+      "PMID:24284813"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-112",
+    "name": "Alpha-amanitin",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "RNA Polymerase II inhibitor. Induces apoptosis independent of cell cycle (effective in slow-growing tumors). High potency (pM). Liver toxicity is a major historical concern, requiring stable linkers.",
+    "key_refs": [
+      "PMID:22406981 (Amanitin ADC concept)",
+      "PMID:31697395 (HDP-101 BCMA amanitin ADC)"
+    ],
+    "ic50_nm": "0.001–0.01",
+    "cell_cycle_dependency": "ALL phases (transcription-independent of cell cycle)",
+    "dlts": [
+      "Hepatotoxicity (historical concern with free drug)",
+      "Myelosuppression"
+    ],
+    "optimal_dar_range": "2–4",
+    "log_p": 0.4,
+    "resistance_mechanisms": [
+      "RNA Pol II mutation (Rpb1 Amanitin resistance)",
+      "Upregulation of ABC transporters"
+    ],
+    "compatible_linker_chemistry": "Amine conjugation via γ-hydroxyl or carboxyl modifications; 6'-deoxy-amanitin used for improved linker attachment",
+    "moa_detail": "Inhibits RNA Polymerase II by blocking the bridge helix translocation step. Active against quiescent, non-proliferating tumor cells — major advantage over tubulin inhibitors in slow-growing tumors (pancreatic cancer, prostate cancer).",
+    "needs_expert_review": false
+  },
+  {
+    "id": "ADC-COMP-P-113",
+    "name": "Thailanstatin A",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": false,
+    "ic50_nm": "0.001–0.01",
+    "cell_cycle_dependency": "G2/M arrest (splicing inhibition)",
+    "dlts": [
+      "Myelosuppression",
+      "GI toxicity"
+    ],
+    "optimal_dar_range": "2–4",
+    "log_p": 2.2,
+    "resistance_mechanisms": [
+      "SF3b1 mutation (reduced binding)",
+      "ABC transporter upregulation"
+    ],
+    "compatible_linker_chemistry": "Amine or ester conjugation",
+    "moa_detail": "Spliceosome inhibitor targeting SF3B1 (branch point binding protein). Disrupts pre-mRNA splicing, causing accumulation of aberrant transcripts and cell death via G2/M arrest.",
+    "key_refs": [
+      "PMID:27164163"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-114",
+    "name": "Spliceostatin A",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": false,
+    "ic50_nm": "0.001–0.1",
+    "cell_cycle_dependency": "G2/M arrest",
+    "dlts": [
+      "Myelosuppression"
+    ],
+    "optimal_dar_range": "2–4",
+    "log_p": 2.0,
+    "resistance_mechanisms": [
+      "SF3b1 mutation"
+    ],
+    "compatible_linker_chemistry": "Ester or carbamate conjugation",
+    "moa_detail": "Spliceosome inhibitor (FR901464 analog). Targets SF3B1, disrupting the U2 snRNP-branch point interaction.",
+    "key_refs": [
+      "PMID:17898714"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-115",
+    "name": "KSP71",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": false,
+    "ic50_nm": "1.0–10.0",
+    "cell_cycle_dependency": "S/G2/M phase only (mitotic kinesin)",
+    "dlts": [
+      "Peripheral neuropathy (less than MMAE)",
+      "Myelosuppression"
+    ],
+    "optimal_dar_range": "3–4",
+    "log_p": 2.5,
+    "resistance_mechanisms": [
+      "Eg5 (KIF11) mutations",
+      "Centrosome amplification"
+    ],
+    "compatible_linker_chemistry": "Amine conjugation",
+    "moa_detail": "Kinesin Spindle Protein (Eg5/KIF11) inhibitor. Causes monopolar spindle formation and mitotic arrest. Distinct resistance mechanism from tubulin inhibitors.",
+    "key_refs": [
+      "PMID:31371393"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-116",
+    "name": "SB-743921",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": false,
+    "ic50_nm": "0.1–1.0",
+    "cell_cycle_dependency": "S/G2/M phase only",
+    "dlts": [
+      "Myelosuppression",
+      "GI toxicity"
+    ],
+    "optimal_dar_range": "3–4",
+    "log_p": 2.8,
+    "resistance_mechanisms": [
+      "Eg5 mutation",
+      "MDR1 efflux"
+    ],
+    "compatible_linker_chemistry": "Amine conjugation via carbamate",
+    "moa_detail": "KSP (Eg5) inhibitor. Binds to allosteric ISPK pocket of Eg5. Potent mitotic arrest agent.",
+    "key_refs": [
+      "PMID:17350563"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-117",
+    "name": "Navitoclax-derivative",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": false,
+    "ic50_nm": "1.0–100.0",
+    "cell_cycle_dependency": "ALL phases (apoptosis induction, cycle-independent)",
+    "dlts": [
+      "Thrombocytopenia (Bcl-xL on platelets)",
+      "Neutropenia"
+    ],
+    "optimal_dar_range": "2–4",
+    "log_p": 4.2,
+    "resistance_mechanisms": [
+      "Bcl-2 upregulation",
+      "MCL-1 upregulation (major escape route)"
+    ],
+    "compatible_linker_chemistry": "Amine or carboxyl conjugation; ADC format bypasses platelet toxicity",
+    "moa_detail": "Bcl-xL/Bcl-2 inhibitor (BH3 mimetic). ADC format restricts systemic exposure — eliminates platelet thrombocytopenia that limits free navitoclax. Synergistic with DNA damaging agents.",
+    "key_refs": [
+      "PMID:29212923 (Bcl-xL ADC concept)"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-118",
+    "name": "TLR7-agonist-1",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": false,
+    "ic50_nm": "N/A (immunomodulator, EC50 ~10–100 nM)",
+    "cell_cycle_dependency": "ALL phases (innate immune activation)",
+    "dlts": [
+      "Cytokine release syndrome (CRS)",
+      "Systemic inflammation"
+    ],
+    "optimal_dar_range": "2–4",
+    "log_p": 1.5,
+    "resistance_mechanisms": [
+      "Immunosuppressive TME",
+      "PD-L1 upregulation as adaptive resistance"
+    ],
+    "compatible_linker_chemistry": "Amine conjugation; phosphodiester linkage variants",
+    "moa_detail": "Toll-like receptor 7 agonist (ISAC — Immune-Stimulating Antibody Conjugate). Activates innate immunity in tumor microenvironment. Does not directly kill tumor cells — stimulates anti-tumor T cell response. Efficacy requires immunogenic tumor microenvironment.",
+    "key_refs": [
+      "PMID:33028661 (ISAC concept)",
+      "PMID:34906459 (BDC-1001 HER2 ISAC)"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-119",
+    "name": "STING-agonist-1",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": false,
+    "ic50_nm": "N/A (immunomodulator, EC50 ~1–50 nM)",
+    "cell_cycle_dependency": "ALL phases (innate immune activation)",
+    "dlts": [
+      "CRS",
+      "Systemic STING activation causing autoimmune-like toxicity"
+    ],
+    "optimal_dar_range": "1–2",
+    "log_p": 0.8,
+    "resistance_mechanisms": [
+      "STING loss-of-function mutations in tumor cells",
+      "Immunosuppressive TME"
+    ],
+    "compatible_linker_chemistry": "Ester or phosphate ester; ADC prevents systemic STING activation",
+    "moa_detail": "STING pathway agonist (cyclic dinucleotide analog). Activates cGAS-STING innate immune signaling, inducing type I interferon production and CD8+ T cell recruitment.",
+    "key_refs": [
+      "PMID:35314666 (STING-ADC overview)"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-120",
+    "name": "Thorium-227",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Targeted Alpha Therapy (TAT) payload. High linear energy transfer (LET) causes double-strand DNA breaks independent of cell cycle or oxygenation. Half-life 18.7 days.",
+    "key_refs": [
+      "PMID:26187766 (Thorium-227 Targeted Thorium Conjugates)",
+      "PMID:35219975 (Phase I PSMA-TTC)"
+    ],
+    "ic50_nm": "N/A (alpha emitter, radiation dose-based)",
+    "cell_cycle_dependency": "ALL phases (radiation — double-strand breaks)",
+    "dlts": [
+      "Bone marrow suppression",
+      "Renal toxicity if unbound thorium is released"
+    ],
+    "optimal_dar_range": "1 (1:1 chelator:mAb)",
+    "log_p": "N/A (radiometal chelate)",
+    "resistance_mechanisms": [
+      "Antigen loss/heterogeneity limits delivery",
+      "DNA repair upregulation (limited)"
+    ],
+    "compatible_linker_chemistry": "Chelation chemistry (3,2-HOPO tetradentate chelator or DOTA derivatives; Th4+ specific)",
+    "moa_detail": "Alpha-particle emitter (t1/2 = 18.7 days). High LET (80 keV/μm). Short path length (~40–80 μm) minimizes off-target tissue damage while delivering lethal DNA double-strand breaks. 4 alpha emissions per decay chain.",
+    "needs_expert_review": false
+  },
+  {
+    "id": "ADC-COMP-P-121",
+    "name": "Astatine-211",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": false,
+    "ic50_nm": "N/A (alpha emitter)",
+    "cell_cycle_dependency": "ALL phases",
+    "dlts": [
+      "Thyroid toxicity (requires thyroid protection)",
+      "Bone marrow suppression"
+    ],
+    "optimal_dar_range": "1–2",
+    "log_p": "N/A",
+    "resistance_mechanisms": [
+      "Antigen heterogeneity"
+    ],
+    "compatible_linker_chemistry": "Astatodestannylation (C-At bond formation); succinimide ester conjugation",
+    "moa_detail": "Alpha-emitter (t1/2 = 7.2 hours). Potent DNA strand break induction. Short half-life requires manufacturing close to clinical site (limiting factor).",
+    "key_refs": [
+      "PMID:27048580"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-122",
+    "name": "Radium-223",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": false,
+    "ic50_nm": "N/A (alpha emitter)",
+    "cell_cycle_dependency": "ALL phases",
+    "dlts": [
+      "Bone marrow suppression",
+      "GI toxicity"
+    ],
+    "optimal_dar_range": "1",
+    "log_p": "N/A",
+    "resistance_mechanisms": [
+      "Bone tropism limits solid tumor targeting outside bone mets"
+    ],
+    "compatible_linker_chemistry": "Bis-phosphonate chelation for bone targeting; not standard ADC format",
+    "moa_detail": "Calcium-mimetic alpha emitter. Naturally targets bone. Currently used as free drug (Xofigo) for mCRPC bone metastases — ADC conjugation under exploration.",
+    "key_refs": [
+      "PMID:23700264 (Alpharadin/Xofigo)"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-123",
+    "name": "Lead-212",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": false,
+    "ic50_nm": "N/A (alpha emitter via Bi-212 daughter)",
+    "cell_cycle_dependency": "ALL phases",
+    "dlts": [
+      "Bone marrow suppression",
+      "Renal toxicity"
+    ],
+    "optimal_dar_range": "1–2",
+    "log_p": "N/A",
+    "resistance_mechanisms": [
+      "Antigen heterogeneity",
+      "Pb2+ redistribution after linker cleavage"
+    ],
+    "compatible_linker_chemistry": "TCMC or DOTA macrocycle chelation (stable Pb2+ chelation critical to prevent free lead toxicity)",
+    "moa_detail": "Alpha-in-vivo generator. Decays to Bi-212 (alpha emitter) in vivo. t1/2 = 10.6 hours. Used in AlphaMetralex/Perspective platform.",
+    "key_refs": [
+      "PMID:33303579 (Pb-212 TAT)"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-124",
+    "name": "Bismuth-213",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": false,
+    "ic50_nm": "N/A (alpha emitter)",
+    "cell_cycle_dependency": "ALL phases",
+    "dlts": [
+      "Renal toxicity",
+      "Bone marrow suppression"
+    ],
+    "optimal_dar_range": "1",
+    "log_p": "N/A",
+    "resistance_mechanisms": [
+      "Antigen heterogeneity"
+    ],
+    "compatible_linker_chemistry": "DOTA chelation",
+    "moa_detail": "Alpha emitter (t1/2 = 45.6 min). Requires on-site Ac-225/Bi-213 generator. Very short half-life is a major logistics challenge.",
+    "key_refs": [
+      "PMID:11773748"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-125",
+    "name": "Saporin",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": true,
+    "ic50_nm": "0.001–0.01 (as RIP, ribosome-inactivating protein)",
+    "cell_cycle_dependency": "ALL phases",
+    "dlts": [
+      "Immunogenicity (protein toxin)",
+      "Hepatotoxicity if non-specifically taken up",
+      "Vascular leak syndrome"
+    ],
+    "optimal_dar_range": "1–2 molecules per Ab (protein:protein conjugate)",
+    "log_p": "N/A (protein toxin)",
+    "resistance_mechanisms": [
+      "Endosomal escape failure (major limitation)",
+      "Antibody neutralization (ADA)"
+    ],
+    "compatible_linker_chemistry": "Disulfide (SPDP) or thioether; site-specific bioorthogonal preferred",
+    "moa_detail": "Type I ribosome-inactivating protein (RIP) from soapwort (Saponaria officinalis). N-glycosidase cleaves 28S rRNA, permanently inactivating ribosomes. Requires endosomal escape for cytosolic activity.",
+    "key_refs": [
+      "PMID:2665776 (Saporin immunotoxins)"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-126",
+    "name": "Gelonin",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": true,
+    "ic50_nm": "0.001–0.1",
+    "cell_cycle_dependency": "ALL phases",
+    "dlts": [
+      "Immunogenicity",
+      "Hepatotoxicity",
+      "Vascular leak syndrome"
+    ],
+    "optimal_dar_range": "1–2 (protein:protein)",
+    "log_p": "N/A (protein toxin)",
+    "resistance_mechanisms": [
+      "Endosomal escape failure",
+      "Anti-drug antibody (ADA) neutralization"
+    ],
+    "compatible_linker_chemistry": "Thioether or disulfide; requires endosomal escape mechanism for activity",
+    "moa_detail": "Type I RIP (ribosome-inactivating protein). N-glycosidase inactivates eEF-2 on ribosomes. Requires endosomal escape to access cytosol.",
+    "key_refs": [
+      "PMID:6261600"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-127",
+    "name": "Diphtheria toxin",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "high",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": false,
+    "ic50_nm": "0.0001–0.001",
+    "cell_cycle_dependency": "ALL phases",
+    "dlts": [
+      "Immunogenicity (human anti-DT antibodies common)",
+      "Hepatotoxicity",
+      "Vascular leak syndrome"
+    ],
+    "optimal_dar_range": "1 (fusion protein typically)",
+    "log_p": "N/A (protein toxin)",
+    "resistance_mechanisms": [
+      "HB-EGF receptor loss",
+      "Anti-DT pre-existing immunity"
+    ],
+    "compatible_linker_chemistry": "Genetic fusion protein (no chemical linker); or disulfide chemical conjugation",
+    "moa_detail": "ADP-ribosylates eEF-2 (elongation factor 2), irreversibly inhibiting protein synthesis. Catalytic — one molecule kills a cell. Used in FDA-approved denileukin diftitox (IL-2-DT fusion).",
+    "key_refs": [
+      "PMID:8267523 (DT mechanism)",
+      "FDA label: Ontak (denileukin diftitox)"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-128",
+    "name": "Ricin A chain",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": true,
+    "ic50_nm": "0.0001–0.001",
+    "cell_cycle_dependency": "ALL phases",
+    "dlts": [
+      "Vascular leak syndrome (VLS)",
+      "Severe immunogenicity",
+      "Hemolytic uremic syndrome"
+    ],
+    "optimal_dar_range": "1–2",
+    "log_p": "N/A (protein toxin)",
+    "resistance_mechanisms": [
+      "Ricin internalization pathway modifications",
+      "Anti-ricin antibodies"
+    ],
+    "compatible_linker_chemistry": "Disulfide (SPDP), thioether (SMCC); B-chain must be removed/blocked",
+    "moa_detail": "N-glycosidase that depurinates 28S rRNA. Ricin A chain alone requires carrier for internalization (loses galactose-binding B chain in immunotoxin format). VLS is the major dose-limiting issue.",
+    "key_refs": [
+      "PMID:9092568 (ricin immunotoxins review)"
+    ]
+  },
+  {
+    "id": "ADC-COMP-P-129",
+    "name": "Shiga toxin",
+    "class": "Various",
+    "potency": "High",
+    "data_confidence": "moderate",
+    "evidence_note": "Preclinical or investigational payload. Potency and bystander permeability are estimates. Needs expert review.",
+    "needs_expert_review": true,
+    "ic50_nm": "0.0001–0.01",
+    "cell_cycle_dependency": "ALL phases",
+    "dlts": [
+      "Hemolytic uremic syndrome (HUS)",
+      "Renal toxicity",
+      "Immunogenicity"
+    ],
+    "optimal_dar_range": "1",
+    "log_p": "N/A",
+    "resistance_mechanisms": [
+      "Gb3 receptor loss on target cells",
+      "Anti-toxin immunity"
+    ],
+    "compatible_linker_chemistry": "Genetic fusion or disulfide conjugation",
+    "moa_detail": "N-glycosidase (similar to ricin). A subunit inactivates 28S rRNA. B subunit binds Gb3 glycolipid. Only A subunit used in immunotoxins.",
+    "key_refs": [
+      "PMID:27217292"
+    ]
+  }
+]

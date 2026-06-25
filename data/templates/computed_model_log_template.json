@@ -1,0 +1,28 @@
+{
+  "compute_run_id": "COMP-0001",
+  "entity_id": "EXAMPLE-0001",
+  "construct_id": "CONSTRUCT-0001",
+  "sequence_id": "SEQ-0001",
+  "structure_id": "STR-0001",
+  "pipeline_name": "virtual_affinity_maturation",
+  "tool_name": "OpenMM_MMGBSA",
+  "tool_version": "v1",
+  "score_name": "ddg_binding",
+  "score_value": -2.4,
+  "score_unit": "kcal/mol",
+  "run_context": {
+    "antigen_context": "protein",
+    "structure_source": "AF2_multimer",
+    "mutation_set": [
+      "H:52A->Y"
+    ],
+    "quality_gate_passed": true
+  },
+  "source_label": "computed",
+  "provenance": {
+    "project_id": "PROJECT-0001",
+    "report_path": "",
+    "tool_config_ref": "",
+    "last_reviewed": "2026-04-11"
+  }
+}

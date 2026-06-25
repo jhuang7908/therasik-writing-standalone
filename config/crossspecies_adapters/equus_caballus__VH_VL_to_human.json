@@ -1,0 +1,66 @@
+{
+  "_meta": {
+    "schema_id": "crossspecies_adapter",
+    "schema_version": "V1.0",
+    "status": "LOCKED",
+    "governing_standard": "docs/CROSSSPECIES_ENGINE_STANDARD_V1.0.md",
+    "last_updated": "2026-05-07",
+    "note": "Equine → human VH/VL humanization. NON_TRADITIONAL_SPECIES_HUMANIZATION_GUIDE V1.0 prescribes Oligoclonal Consensus Humanization — common-LC selection + consensus VH framework + pI convergence (<0.5) + YTE half-life extension. AG-1.0 is allowed ONLY when real equine VH/VL clones exist; germline-only inference is forbidden."
+  },
+
+  "species_id": "equus_caballus_to_human",
+  "common_name": "Equine → human",
+  "format": "VH_VL",
+  "numbering_scheme": "kabat",
+  "data_tier": "Tier-Lo-Mid",
+
+  "hallmarks_kabat": {
+    "positions": []
+  },
+
+  "cys_topology": {
+    "canonical_pairs": [[22, 92]],
+    "extra_protected_cys": []
+  },
+
+  "cdr_boundary_rules": {
+    "scheme": "union_kabat_chothia",
+    "regions": {
+      "VH": {"H1": [26, 35], "H2": [50, 65], "H3": [95, 102]},
+      "VL": {"L1": [24, 34], "L2": [50, 56], "L3": [89, 97]}
+    },
+    "source_standard": "docs/NON_TRADITIONAL_SPECIES_HUMANIZATION_GUIDE_V1.0.md"
+  },
+
+  "reference_source": {
+    "germline_freq_path": "data/germlines/equus_caballus_ig_aa/IGHV_aa.json",
+    "germline_freq_release_id": "equus_caballus_IGHV_v1_2026-05-01",
+    "auxiliary_freq_paths": {
+      "VL_kappa": "data/germlines/equus_caballus_ig_aa/IGKV_aa.json"
+    },
+    "clinical_acceptors": [],
+    "clinical_acceptors_note": "Empty by policy: AG-1.0 must NOT be enabled for equine without real equine VH/VL clones; germline reverse-inference is forbidden by NON_TRADITIONAL_SPECIES_HUMANIZATION_GUIDE V1.0 §equine."
+  },
+
+  "track_priority": {
+    "order": ["DFR-1.0", "SR-1.0"],
+    "forbidden_tracks": ["AG-1.0"],
+    "ag_unlock_condition": "Add real equine VH/VL clones to clinical_acceptors before AG-1.0 may be re-enabled. Owner approval required."
+  },
+
+  "engine_tunables": {
+    "surface_sasa_threshold_A2": 20.0,
+    "deep_buried_sasa_cutoff_A2": 5.0,
+    "cdr_proximity_threshold_A": 5.0,
+    "pi_convergence_max_delta": 0.5
+  },
+
+  "qa_pointer": {
+    "governing_standard_path": "docs/NON_TRADITIONAL_SPECIES_HUMANIZATION_GUIDE_V1.0.md",
+    "secondary_standard_paths": ["docs/VH_VL_HUMANIZATION_STANDARD_V4.4.md"],
+    "mandatory_qa_modules": [
+      "core/evaluation/evaluator.py | AbEvaluator",
+      "core/cmc/regular_ab_developability.py"
+    ]
+  }
+}

@@ -1,0 +1,270 @@
+meta:
+  id: "RULES_INPUT_QC_V1"
+  title: "Input QC Rules (numbering, truncation, noncanonical AA, tags/fusions)"
+  scope: [vhh, vhvl, rabbit, canine, bsab, car, tcr, mrna, adc, general]
+  confidence: "S"
+  owner: "bioinformatics"
+  reviewer: "antibody_engineering"
+  created: "2025-12-14"
+  updated: "2025-12-14"
+  status: "active"
+
+rules:
+
+  # ------------------------------------------------------------
+  # 1) Noncanonical amino acids / illegal characters
+  # ------------------------------------------------------------
+  - id: "RULE_QC_001_NONCANONICAL_AA_HARD_FAIL"
+    scope: [general]
+    confidence: "S"
+    trigger:
+      any:
+        - { eq: ["qc.sequence.has_noncanonical_aa", true] }
+        - { eq: ["qc.sequence.has_illegal_chars", true] }
+    decision:
+      set:
+        qc.overall_status: "fail"
+        qc.fail_code: "noncanonical_aa"
+        qc.block_decision_engine: true
+      report:
+        severity: "high"
+        headline: "Input sequence contains non-canonical amino acids or illegal characters."
+        required_user_action:
+          - "Provide corrected amino-acid sequence using 20 canonical residues only (ACDEFGHIKLMNPQRSTVWY)."
+          - "If sequence includes ambiguity codes (X/B/Z), replace with resolved residues or provide nucleotide sequence."
+      trace:
+        params_used: []
+    rationale: "Non-canonical residues break deterministic numbering, liability scanning, and epitope prediction; must be corrected before any downstream decisions."
+    alternatives:
+      - option: "Soft-continue with masking"
+        when: "Only a small number of 'X' and user explicitly requests a best-effort preview"
+        decision:
+          set:
+            qc.overall_status: "partial"
+            qc.fail_code: "noncanonical_aa_masked"
+            qc.block_decision_engine: true
+          report:
+            severity: "high"
+            note: "Masked residues invalidate any actionable mutation plan; results are informational only."
+        rationale: "Allows a preview while preventing false precision."
+        confidence: "B"
+    deprecated: false
+
+  # ------------------------------------------------------------
+  # 2) Numbering failure (ANARCI/abnumber/anarcii)
+  # ------------------------------------------------------------
+  - id: "RULE_QC_010_NUMBERING_FAIL_HARD_FAIL"
+    scope: [general]
+    confidence: "S"
+    trigger:
+      any:
+        - { eq: ["qc.numbering_status", "fail"] }
+        - { eq: ["segmentation.imgt.success", false] }
+    decision:
+      set:
+        qc.overall_status: "fail"
+        qc.fail_code: "numbering_fail"
+        qc.block_decision_engine: true
+      report:
+        severity: "high"
+        headline: "Numbering failed; variable domain could not be localized reliably."
+        required_user_action:
+          - "Provide only the variable domain (V region) amino-acid sequence, without signal peptide/Fc/linkers/tags."
+          - "If sequence is from a construct, also provide construct map (order of domains) or nucleotide sequence."
+        diagnostics_to_show:
+          - "Tool version (anarci/anarcii)"
+          - "Detected length and composition stats"
+      trace:
+        params_used: []
+    rationale: "Without stable IMGT (primary) numbering, all downstream rules (CDR/FR mapping, liability positions, epitope localization) become non-auditable."
+    alternatives:
+      - option: "Fallback to V-region extraction via HMM/local alignment"
+        when: "raw input likely includes tags/fusions and HMM extraction is enabled"
+        decision:
+          set:
+            qc.overall_status: "partial"
+            qc.fail_code: "numbering_fail_fallback_extraction"
+            qc.block_decision_engine: false
+          report:
+            severity: "medium"
+            note: "Used fallback extraction; position mapping may be less reliable. All mutation suggestions will be tagged as 'needs manual review'."
+        rationale: "Allows pipeline continuity while preserving audit flags."
+        confidence: "A"
+    deprecated: false
+
+  # ------------------------------------------------------------
+  # 3) Truncation / partial V domain
+  # ------------------------------------------------------------
+  - id: "RULE_QC_020_TRUNCATED_BEFORE_IMGT104_WARN"
+    scope: [vhh, vhvl, rabbit, canine, bsab, general]
+    confidence: "S"
+    trigger:
+      all:
+        - { eq: ["qc.numbering_status", "truncated"] }
+        - { lt: ["qc.truncation.imgt_max_pos", 104] }
+    decision:
+      set:
+        qc.overall_status: "partial"
+        qc.fail_code: "truncated_before_104"
+        qc.block_decision_engine: true
+      report:
+        severity: "high"
+        headline: "Sequence is truncated before IMGT 104; CDR3/FR4 likely missing."
+        required_user_action:
+          - "Provide full-length V-domain including CDR3 and FR4 (J region)."
+        impacts:
+          - "Germline selection cannot be reliable (CDR3 length missing)."
+          - "Immunogenicity localization and CMC hotspots will be incomplete."
+      trace:
+        params_used: []
+    rationale: "Missing CDR3/FR4 breaks scaffold compatibility scoring and mutation planning; must be corrected."
+    alternatives:
+      - option: "Proceed for FR-only analyses"
+        when: "user explicitly requests FR clustering / partial humanness preview"
+        decision:
+          set:
+            qc.overall_status: "partial"
+            qc.block_decision_engine: true
+          report:
+            severity: "medium"
+            note: "Proceeding with FR1–FR3 metrics only; no variant recommendations will be issued."
+        rationale: "Provides limited value while preventing overreach."
+        confidence: "B"
+    deprecated: false
+
+  - id: "RULE_QC_021_TRUNCATED_BEFORE_IMGT117_WARN"
+    scope: [vhh, vhvl, rabbit, canine, bsab, general]
+    confidence: "S"
+    trigger:
+      all:
+        - { eq: ["qc.numbering_status", "truncated"] }
+        - { between: ["qc.truncation.imgt_max_pos", 104, 117] }
+    decision:
+      set:
+        qc.overall_status: "partial"
+        qc.fail_code: "truncated_before_117"
+        qc.block_decision_engine: false
+      report:
+        severity: "medium"
+        headline: "Sequence may be missing the tail of FR4/J region (IMGT 117+)."
+        impacts:
+          - "FR4/J assignment may be uncertain."
+          - "Variants affecting FR4 will be suppressed unless user supplies full tail."
+      trace:
+        params_used: []
+    rationale: "Many pipelines can still score CDR/FR and propose variants, but FR4-specific edits should be restricted."
+    alternatives:
+      - option: "Hard block if FR4 is required for your construct design"
+        when: "downstream requires FR4/J exactness (e.g., specific Fc-fusion or display format)"
+        decision:
+          set:
+            qc.block_decision_engine: true
+          report:
+            severity: "high"
+            note: "Blocked due to FR4/J exact requirement."
+        rationale: "Prevents incorrect FR4-dependent recommendations."
+        confidence: "A"
+    deprecated: false
+
+  # ------------------------------------------------------------
+  # 4) Tag / fusion / Fc contamination handling
+  # ------------------------------------------------------------
+  - id: "RULE_QC_030_TAG_FUSION_DETECTED_STRIP_AND_RENUMBER"
+    scope: [general]
+    confidence: "A"
+    trigger:
+      any:
+        - { eq: ["qc.sequence.has_common_tag", true] }
+        - { eq: ["qc.sequence.has_fusion_domains", true] }
+        - { eq: ["qc.sequence.has_fc_like_segment", true] }
+        - { eq: ["qc.sequence.has_linker", true] }
+    decision:
+      action:
+        - "extract_variable_domain_best_effort"
+        - "renumber_primary_imgt"
+      set:
+        qc.overall_status: "partial"
+        qc.fail_code: "tag_fusion_stripped"
+        qc.block_decision_engine: false
+      report:
+        severity: "medium"
+        headline: "Detected tags/fusions/linkers; extracted variable domain and re-numbered."
+        diagnostics_to_show:
+          - "Original length vs extracted length"
+          - "Detected patterns (tag/linker/Fc)"
+        caution:
+          - "If extraction boundaries are wrong, epitope and liability mapping will shift."
+      trace:
+        params_used: []
+    rationale: "Real-world customer sequences often include tags/fusions; best-effort extraction improves usability but must be flagged for audit."
+    alternatives:
+      - option: "Require user-provided V-domain only"
+        when: "extraction confidence is low"
+        decision:
+          set:
+            qc.overall_status: "fail"
+            qc.fail_code: "tag_fusion_extraction_low_confidence"
+            qc.block_decision_engine: true
+          report:
+            severity: "high"
+            note: "Extraction confidence low; request clean V-domain sequence."
+        rationale: "Avoids silent boundary errors."
+        confidence: "S"
+    deprecated: false
+
+  # ------------------------------------------------------------
+  # 5) Dual numbering map conflicts (IMGT vs Kabat)
+  # ------------------------------------------------------------
+  - id: "RULE_QC_040_DUAL_NUMBERING_CONFLICT_FLAG"
+    scope: [general]
+    confidence: "S"
+    trigger:
+      all:
+        - { exists: "numbering.dual_map_qc.conflicts" }
+        - { gt: ["numbering.dual_map_qc.conflicts", 0] }
+    decision:
+      set:
+        qc.overall_status: "partial"
+        qc.fail_code: "dual_numbering_conflict"
+        qc.block_decision_engine: false
+      report:
+        severity: "medium"
+        headline: "IMGT↔Kabat mapping conflicts detected (e.g., Kabat position maps to IMGT gap)."
+        required_pipeline_behavior:
+          - "Use IMGT as primary for mutation positioning."
+          - "When a rule references Kabat (legacy), map Kabat->IMGT and record if gap."
+        diagnostics_to_show:
+          - "Conflict count"
+          - "Top conflicting positions"
+      trace:
+        params_used: []
+    rationale: "Conflicts are common around insertions/gaps; must be surfaced so report variants remain truly distinct and auditable."
+    alternatives:
+      - option: "Block if conflict hits hallmark/vernier positions"
+        when: "conflict overlaps critical position sets"
+        decision:
+          set:
+            qc.block_decision_engine: true
+          report:
+            severity: "high"
+            note: "Blocked because conflict overlaps critical hallmark/vernier positions."
+        rationale: "Prevents incorrect hallmark-driven mutations."
+        confidence: "A"
+    deprecated: false
+
+evidence:
+  rationale: "Input QC must deterministically gate downstream decisions and produce audit-friendly report language."
+  sources:
+    - type: "internal"
+      ref: "Your observed failure modes: numbering_fail_empty, truncated_before_104/117, Kabat↔IMGT gap conflicts"
+  internal_validation:
+    status: "in_progress"
+    notes: "Promote/adjust rules after running EGFR_7D12 + additional dirty-sequence regression set."
+
+governance:
+  change_log:
+    - change_type: "create"
+      change_summary: "Initial QC gating chain for noncanonical AA, numbering failure, truncation, tags/fusions, dual numbering conflicts."
+      owner: "bioinformatics"
+      reviewer: "antibody_engineering"
+      date: "2025-12-14"

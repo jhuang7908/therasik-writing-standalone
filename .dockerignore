@@ -1,0 +1,50 @@
+# ── Git / IDE ────────────────────────────────────────────────────────────────
+.git
+.gitignore
+.cursor
+.agent
+**/__pycache__
+*.py[cod]
+*.egg-info
+.eggs
+*.ipynb_checkpoints
+**/node_modules
+
+# ── Docs / web source (not needed at runtime) ────────────────────────────────
+insynbio-web-source
+therasik-web-source
+docs/
+*.md
+*.pdf
+
+# ── Large research data (not needed for API runtime) ─────────────────────────
+data/atlas/
+data/structures/
+data/benchmarks/
+projects/
+archive/
+absci_benchmark_data/
+*.pdb
+*.cif
+*.fasta
+
+# ── Temporary files ──────────────────────────────────────────────────────────
+.tmp*
+**/.tmp*
+*.log
+*.tmp
+
+# ── Local job / cache (mounted volumes at runtime) ───────────────────────────
+.job_storage
+api/.job_storage
+.vhh_nbb2_cache/
+.integrity_url_cache/
+
+# ── Release artifacts ─────────────────────────────────────────────────────────
+*.zip
+AbEngineCore_*.zip
+
+# ── Test scaffolding ──────────────────────────────────────────────────────────
+tests/
+*.test.py
+.tmp_*.py

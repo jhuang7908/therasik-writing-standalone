@@ -1,0 +1,86 @@
+imgt_position_sets:
+  imgt_anchor_positions:
+  - 26
+  - 39
+  - 55
+  - 66
+  - 104
+  - 118
+  vhh_hallmark_positions:
+  - 37
+  - 44
+  - 45
+  - 47
+  vernier_anchor_positions:
+  - 28
+  - 29
+  - 94
+  north_dunbrack_dependent_positions:
+    H1-13-1: []
+    H2-10-1: []
+    H2-9-1: []
+    H1-14-1: []
+  surface_plasticity_positions_v1:
+  - 1
+  - 11
+  - 12
+  - 13
+  - 14
+  - 17
+  - 24
+  - 40
+  - 41
+  - 42
+  - 43
+  - 52
+  - 54
+  - 67
+  - 68
+  - 69
+  - 77
+  - 83
+  - 86
+  - 96
+  - 99
+  - 101
+meta:
+  source: InSynBio-AI Antibody Engineer Suite
+  generation_script: scripts/build_imgt_position_sets.py
+  status: v1.0-production
+north_dunbrack:
+  dependent_positions_v2_lite:
+    method: slice3_entropy_contrast
+    thresholds:
+      entropy_in_class_max: 0.35
+      entropy_contrast_min: 0.2
+      min_class_n_core: 5
+      min_class_n_candidate: 3
+      min_coverage_core: 0.8
+    exclusions:
+    - 26
+    - 28
+    - 29
+    - 37
+    - 39
+    - 44
+    - 45
+    - 47
+    - 55
+    - 66
+    - 94
+    - 104
+    - 118
+    H1:
+      H1-14-1:
+        core: []
+        candidate: []
+      H1-13-1:
+        core: []
+        candidate: []
+    H2:
+      H2-10-1:
+        core: []
+        candidate: []
+      H2-9-1:
+        core: []
+        candidate: []

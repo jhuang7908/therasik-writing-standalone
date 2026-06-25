@@ -1,0 +1,390 @@
+{
+  "_meta": {
+    "description": "AbEngineCore  —  agent/ ，",
+    "version": "1.3",
+    "updated": "2026-05-04",
+    "rule": "：1)  2)  python_api  entrypoint 3) ，",
+    "field_guide": {
+      "use_case": "",
+      "not_for": "，",
+      "last_validated": ""
+    }
+  },
+
+  "_availability_legend": {
+    "description": "local_run_status 「 AbEngineCore （Windows +  conda）」。、 Colab/WSL 。",
+    "local_run_status": {
+      "READY": " Windows+conda （ conda env）",
+      "READY_AFFMAT": "， conda env affmat",
+      "READY_ANARCII": "， conda env anarcii（ImmuneBuilder / ANARCI ）",
+      "READY_VACCINE": "， conda env vaccine",
+      "READY_EPISCAN": "， conda env episcan",
+      "REMOVED_PIPELINE": "；/VHH ，（ removal_reason）",
+      "WSL_OR_LINUX": " Windows  WSL/Linux ",
+      "COLAB_OR_CLOUD_DEFAULT": "；/， Colab/（ pip+）",
+      "LICENSE_OR_COMPLIANCE": " ToS ；",
+      "WEB_ONLY_FORBIDDEN_PROD": "；"
+    }
+  },
+
+  "tools": {
+    "EvoEF2": {
+      "local_run_status": "READY_AFFMAT",
+      "purpose": "Physics-based  ΔG_bind /  ΔΔG",
+      "use_case": "-（ΔΔG_bind）（ΔΔG_stab）。：PDB  + 。：。",
+      "not_for": "B /T 、、CMC 、mRNA ",
+      "last_validated": "2026-04-13",
+      "location": "tools/EvoEF2_src/EvoEF2.exe",
+      "type": "cli_executable",
+      "conda_env": "affmat",
+      "cwd_required": "tools/EvoEF2_src/",
+      "commands": {
+        "ComputeBinding":  "EvoEF2.exe --command=ComputeBinding --pdb=<abs_path> --split=HL,A",
+        "BuildMutant":     "EvoEF2.exe --command=BuildMutant --pdb=<name> --mutant_file=individual_list.txt",
+        "ComputeStability":"EvoEF2.exe --command=ComputeStability --pdb=<name>"
+      },
+      "python_api": "core/structure/affinity_energy_toolkit.py → AffinityEnergyToolkit.run_evoef2",
+      "output_parse": "line starts with 'Total' → float after '='",
+      "status": "ready",
+      "benchmark": "Pearson r≈0.50-0.60 vs SKEMPI2 AB-AG, <5s/mutant",
+      "absci_validated": true,
+      "notes": " tools/EvoEF2_src/ （library/ ）"
+    },
+
+    "PRODIGY": {
+      "local_run_status": "READY_AFFMAT",
+      "purpose": "Interface-contact  ΔG_bind + Kd ",
+      "use_case": "（/）（kcal/mol） Kd。， EvoEF2  ΔΔG 。",
+      "not_for": " ΔΔG（ EvoEF2）、、、",
+      "last_validated": "2026-04-13",
+      "location": "d:/Users/NextVivo/miniconda3/Scripts/prodigy.exe",
+      "type": "cli_executable",
+      "conda_env": "affmat (base Scripts)",
+      "commands": {
+        "default": "prodigy.exe <pdb_path> --selection H,L A"
+      },
+      "python_api": "core/structure/affinity_energy_toolkit.py → AffinityEnergyToolkit.run_prodigy [ prodigy_prot，]",
+      "output_parse": "line contains 'Predicted binding affinity' → float after ':'",
+      "status": "ready (CLI only; prodigy_prot Python module NOT installed)",
+      "benchmark": "Pearson r≈0.74 vs PPI test set, <2s/complex",
+      "absci_validated": true,
+      "notes": "Absci PDB : H=, L=, A=。 H,L vs A"
+    },
+
+    "ThermoMPNN": {
+      "local_run_status": "READY_AFFMAT",
+      "purpose": "GNN  ΔΔG + ΔTm ",
+      "use_case": "， ΔΔG_stab（kcal/mol） ΔTm（°C）。 VAM ：ΔΔG_stab > +0.5 。： SSM （，~2340/PDB）。",
+      "not_for": "（ EvoEF2/PRODIGY）、B/T 、（ AbLang/AntiFold）",
+      "last_validated": "2026-04-13",
+      "location": "tools/ThermoMPNN/",
+      "entrypoint": "tools/ThermoMPNN/analysis/custom_inference.py",
+      "model_weights": "tools/ThermoMPNN/models/thermoMPNN_default.pt",
+      "config": "tools/ThermoMPNN/local.yaml",
+      "type": "python_script",
+      "conda_env": "affmat",
+      "cwd_required": "tools/ThermoMPNN/",
+      "command": "python tools/ThermoMPNN/analysis/custom_inference.py --pdb <abs_path> --chain H --model_path <model_pt> --out_dir <out>",
+      "python_api": "core/structure/affinity_energy_toolkit.py → AffinityEnergyToolkit.run_thermompnn",
+      "output": "CSV: ThermoMPNN_inference_<pdbid>.csv, columns: ddG_pred, position, wildtype, mutation",
+      "status": "ready",
+      "benchmark": "Pearson r≈0.75 on FireProt/Megascale",
+      "absci_validated": true,
+      "notes": " per-residue SSM（2340/PDB）。 ddG_pred.mean "
+    },
+
+    "AntiFold": {
+      "local_run_status": "READY_AFFMAT",
+      "purpose": " CDR  log-likelihood，-",
+      "use_case": " PDB ， CDR （per-residue log-likelihood）。 ThermoMPNN ：ThermoMPNN ，AntiFold  CDR 。",
+      "not_for": " ΔΔG（ EvoEF2）、（ ThermoMPNN）、、",
+      "last_validated": "2026-04-13",
+      "location": "tools/AntiFold/",
+      "entrypoint": "tools/AntiFold/antifold/main.py",
+      "model_weights": "tools/AntiFold/models/model.pt",
+      "type": "python_script",
+      "conda_env": "affmat",
+      "command": "python tools/AntiFold/antifold/main.py --pdb_file <pdb> --heavy_chain H --light_chain L --out_dir <out>",
+      "python_api": "core/structure/affinity_energy_toolkit.py → AffinityEnergyToolkit.run_antifold",
+      "output": "CSV per-residue log-likelihood for CDR residues",
+      "status": "ready — biotite 0.38.0 confirmed installed in affmat (2026-04-13)",
+      "workaround": null,
+      "benchmark": "Spearman r≈0.52 vs ΔΔG_exp (antibody benchmark)",
+      "absci_validated": false,
+      "notes": " CDR ；ThermoMPNN ，AntiFold  CDR。 Absci benchmark "
+    },
+
+    "ProteinMPNN": {
+      "local_run_status": "READY_AFFMAT",
+      "purpose": "（inverse folding）， CDR ",
+      "use_case": "，。 De Novo CDR  CDR （ mask_strategy.json ）。",
+      "not_for": "ΔΔG 、、、",
+      "last_validated": "2026-04-05",
+      "location": "tools/ProteinMPNN/",
+      "entrypoint": "tools/ProteinMPNN/protein_mpnn_run.py",
+      "model_weights": "tools/ProteinMPNN/vanilla_model_weights/v_48_020.pt",
+      "type": "python_script",
+      "conda_env": "affmat",
+      "python_api": "pipeline/run_mpnn_v2.py",
+      "status": "ready (， ΔΔG )",
+      "notes": "， Absci benchmark"
+    },
+
+    "AbLang": {
+      "local_run_status": "READY_AFFMAT",
+      "purpose": "/ likelihood score",
+      "use_case": " VH （per-residue log-likelihood），/。 VAM 。",
+      "not_for": " ΔΔG、、、VL （VL ）",
+      "last_validated": "2026-04-13",
+      "location": "pip: ablang 0.3.1",
+      "type": "python_module",
+      "conda_env": "affmat / anarcii",
+      "python_api": "import ablang; m=ablang.pretrained('heavy'); m(seqs, mode='likelihood')",
+      "status": "ready",
+      "absci_validated": true,
+      "notes": " per-residue log-likelihood ， mean "
+    },
+
+    "ESM-IF1": {
+      "local_run_status": "READY_AFFMAT",
+      "purpose": " log-likelihood，",
+      "use_case": " PDB ，（ log-likelihood）。 AntiFold （ CDR）。 AntiFold ，。",
+      "not_for": " ΔΔG（ EvoEF2）、（ ThermoMPNN）、、CDR （ AntiFold ）",
+      "last_validated": "2026-04-06",
+      "location": "pip: fair-esm 2.0.0",
+      "type": "python_module",
+      "conda_env": "affmat",
+      "python_api": "core/structure/affinity_energy_toolkit.py → AffinityEnergyToolkit.run_esm_if1",
+      "status": "ready (NOT yet integrated in Absci benchmark)",
+      "notes": "（~30s/PDB CPU）， AntiFold。：ESM-IF1≠ ESMFold。ESMFold  openfold（Linux-only），ESM-IF1  fair-esm+torch， openfold "
+    },
+    "ESMFold": {
+      "local_run_status": "REMOVED_PIPELINE",
+      "purpose": " 3D ",
+      "status": "REMOVED_FROM_PIPELINE — 2026-05-03",
+      "removal_reason": " openfold，openfold  Windows wheel，（Windows）。 ABodyBuilder2（ImmuneBuilder）。",
+      "not_for": "",
+      "last_validated": "2026-05-03",
+      "notes": " engine.py  scripts/compare_fv_structure_predictors.py "
+    },
+
+    "IgFold": {
+      "local_run_status": "REMOVED_PIPELINE",
+      "purpose": "（VH/VL/VHH）",
+      "status": "REMOVED_FROM_PIPELINE — 2026-05-03",
+      "removal_reason": "transformers ≥5.x（anarcii env） IgFold 0.4.0 （stack expects a non-empty TensorList）， PyTorch ≥2.6 weights_only 。 ABodyBuilder2（ImmuneBuilder）。",
+      "not_for": "； transformers ",
+      "last_validated": "2026-05-03",
+      "notes": " engine.py  scripts/compare_fv_structure_predictors.py "
+    },
+
+    "EpiScan": {
+      "local_run_status": "READY_EPISCAN",
+      "purpose": "（epitope mapping），+ Ab-Ag ",
+      "use_case": "【】B /。- + （//），（per-residue epitope score）。 VAM 。",
+      "not_for": "【】 PPI（-）； T  MHC （ MHCflurry/IEDB）； ΔΔG ",
+      "last_validated": "2026-04-13",
+      "location": "tools/EpiScan/",
+      "type": "python_script",
+      "conda_env": "episcan",
+      "training_data": "DB1: 162 Ab-Ag  + DB2: 30 Ab-Ag ",
+      "status": "ready ( episcan， affmat )",
+      "notes": " B ，。 VAM ， Absci benchmark"
+    },
+
+    "LinearDesign": {
+      "local_run_status": "READY_VACCINE",
+      "purpose": "mRNA （ + ）",
+      "use_case": "，（CAI） mRNA （MFE）， mRNA 。 vaccine_design  mRNA 。",
+      "not_for": "、、、CDR  — ",
+      "last_validated": "2026-04-06",
+      "location": "tools/LinearDesign/",
+      "type": "cpp_binary",
+      "conda_env": "vaccine",
+      "status": "ready (mRNA/vaccine ，)",
+      "notes": " vaccine_design ， VAM pipeline"
+    },
+
+    "LinearFold": {
+      "local_run_status": "READY_VACCINE",
+      "purpose": "RNA （O(n) ）",
+      "use_case": "O(n)  mRNA （MFE）， mRNA 。 vaccine_design 。",
+      "not_for": "、、 — ",
+      "last_validated": "2026-04-06",
+      "location": "tools/LinearFold/",
+      "type": "cpp_binary",
+      "conda_env": "vaccine",
+      "status": "ready (mRNA/vaccine )",
+      "notes": " vaccine_design "
+    },
+
+    "OpenMM_MMGBSA": {
+      "local_run_status": "READY_AFFMAT",
+      "purpose": " MM/GBSA （，）",
+      "use_case": "：EvoEF2 BuildMutant → PDBFixer  → OpenMM ff14SB+OBC2  →  ΔG_bind。 VAM Phase 4 （Top-20 ）， EvoEF2/PRODIGY 。",
+      "not_for": "（~1–3 min/，854  Absci ）；；",
+      "location": "conda env affmat: openmm + pdbfixer (site-packages)",
+      "verified_versions": {
+        "openmm": "8.5",
+        "pdbfixer": "installed"
+      },
+      "python_interpreter": "d:/Users/NextVivo/miniconda3/envs/affmat/python.exe",
+      "type": "python_module",
+      "conda_env": "affmat",
+      "python_api": "core/structure/affinity_energy_toolkit.py → AffinityEnergyToolkit.run_mmgbsa",
+      "last_validated": "2026-04-13",
+      "status": "ready —  VAM  toolkit ",
+      "verification_command": "conda run -n affmat python -c \"import openmm, pdbfixer; print(openmm.__version__)\"",
+      "pitfall": "Windows  `python`  Python（ openmm）。 affmat  `conda run -n affmat python`。",
+      "notes": "EvoEF2 BuildMutant → PDBFixer  → OpenMM ff14SB+OBC2  →  ΔG_bind。~1–3 min/ CPU。 854  Absci  MM/GBSA，。"
+    },
+
+    "ANARCI": {
+      "local_run_status": "READY_ANARCII",
+      "purpose": "（Chothia/IMGT/Kabat）",
+      "use_case": " VH/VL/VHH  Chothia/IMGT/Kabat/Martin ， CDR 。、、CMC （ CDR ）。",
+      "not_for": "、、； affmat ",
+      "last_validated": "2026-04-13",
+      "location": "pip: anarci 2.0.3",
+      "type": "python_module",
+      "conda_env": "anarcii (NOT in affmat)",
+      "status": "ready in anarcii env",
+      "notes": " anarcii ，affmat "
+    },
+
+    "HADDOCK3": {
+      "local_run_status": "WSL_OR_LINUX",
+      "local_run_notes": "： WSL Ubuntu 「」，。 Windows  CMD。",
+      "purpose": "-",
+      "use_case": "-，（ambiguous restraints）（++）。 VAM Scenario A De Novo CDR3 （CDR3 backbone ）。",
+      "not_for": "、、； Windows （ WSL）",
+      "last_validated": "2026-04-05",
+      "location": "WSL Ubuntu-22.04",
+      "type": "external_wsl",
+      "status": "ready via WSL",
+      "license": "Apache-2.0 code; CNS dependency commercial-license-required",
+      "commercial_use": "requires_cns_license",
+      "notes": " docs/VIRTUAL_AFFINITY_MATURATION_STANDARD.md  DE_NOVO_CDR_DESIGN_STANDARD.md"
+    },
+
+    "Boltz-2": {
+      "local_run_status": "COLAB_OR_CLOUD_DEFAULT",
+      "purpose": "AF3-class - +  affinity prediction head",
+      "use_case": "VAM Stage 0  PRIMARY ：-、-、-（hapten via SMILES）、PTM/。Affinity head  Stage 7 ensemble （weight 0.25）。",
+      "not_for": " monomer （ AF2 ）、、、、",
+      "last_validated": "2026-05-01",
+      "location": "tools/Boltz/ (local) + tools/Boltz/colab/run_boltz2_pag1.ipynb (Colab template)",
+      "type": "python_module",
+      "conda_env": "affmat (optional local) / Colab T4+ (default deployment)",
+      "install": "pip install boltz",
+      "model_weights": "~/.boltz/ auto-downloaded (~2-3 GB)",
+      "command": "boltz predict <input.yaml> --out_dir <out>",
+      "python_api": "tools/Boltz/wrapper.py (TODO; not yet implemented; for now use yaml + CLI)",
+      "license": "MIT (code AND model weights)",
+      "commercial_use": "fully_allowed_no_license_negotiation_needed",
+      "status": "approved as VAM V1.6.1 Stage 0 primary; deployment via Colab notebook",
+      "benchmark": "AF3-class on antibody-antigen and protein-peptide complexes; integrated affinity head trained mostly on protein-protein and protein-small-molecule",
+      "scenario_compatibility": {
+        "A_short_peptide": "primary; require ipTM>=0.80 + PAE_interface<5.0 dual gate",
+        "B_protein": "primary; ipTM>=0.70",
+        "C_vhh_protein": "primary; inherits B",
+        "D_hapten": "primary for structure; affinity head SKIPPED (not validated for haptens)"
+      },
+      "msa_policy": "antibody chains and short peptides MUST use msa: empty (documented best practice)",
+      "notes": " Chai-1  license-clean ；Colab T4 16GB  < 300 aa （PAG-1 + Fv ~250 aa）。",
+      "local_run_notes": " affmat  pip+， Colab；。"
+    },
+
+    "Boltz-1": {
+      "local_run_status": "COLAB_OR_CLOUD_DEFAULT",
+      "purpose": "Boltz-2 ，AF3-class （ affinity head）",
+      "use_case": "Boltz-2  fallback； AF3/Chai-1 。",
+      "not_for": "（ affinity head； Boltz-2  EvoEF2）",
+      "last_validated": "2026-05-01",
+      "location": "tools/Boltz/ (local) / Colab",
+      "type": "python_module",
+      "install": "pip install boltz",
+      "license": "MIT",
+      "commercial_use": "fully_allowed",
+      "status": "fallback only; prefer Boltz-2"
+    },
+
+    "Chai-1": {
+      "local_run_status": "LICENSE_OR_COMPLIANCE",
+      "purpose": "AF3-class （ / PTM / ）",
+      "use_case": " Genomab  Chai Discovery  license ； Boltz-2 。",
+      "not_for": " license ",
+      "last_validated": "2026-05-01",
+      "location": "github.com/chaidiscovery/chai-lab (not deployed locally)",
+      "type": "python_module",
+      "license": "non-commercial code; commercial use requires per-org license from Chai Discovery",
+      "commercial_use": "requires_license",
+      "status": "BLOCKED for commercial production until license confirmed",
+      "deviation_protocol": "If owner provides license artefact, log in docs/EVOLUTION_LOG.md [OBSERVATION] before any production run.",
+      "notes": "V1.6.1 governance: prefer Boltz-2 (MIT) for all greenfield projects."
+    },
+
+    "AF3_server": {
+      "local_run_status": "WEB_ONLY_FORBIDDEN_PROD",
+      "purpose": "DeepMind / Isomorphic Labs  AF3 ",
+      "use_case": "ONLY one-off ad-hoc sanity checks that NEVER enter any deliverable.",
+      "not_for": " IND 、、、、、。",
+      "last_validated": "2026-05-01",
+      "location": "https://alphafoldserver.com (web only)",
+      "type": "external_web_service",
+      "license": "non-commercial only (Isomorphic Labs ToS)",
+      "commercial_use": "PROHIBITED",
+      "status": "HARD-PROHIBITED for production runs in genomab.com / Antibody_Engineer_Suite scope",
+      "compliance_risk": "Server logs all jobs by account; ToS violation is auditable by Isomorphic Labs and is a documented red line in industry biotech compliance.",
+      "deviation_protocol": "No deviation allowed without owner + legal sign-off recorded in EVOLUTION_LOG.",
+      "notes": "AF3 model weights are also non-commercial; commercial license must be negotiated separately with Isomorphic Labs."
+    },
+
+    "ImmuneBuilder": {
+      "local_run_status": "READY_ANARCII",
+      "purpose": " Fv / VHH （ABodyBuilder2 / NanoBodyBuilder2）",
+      "use_case": "VH/VL  Phase 3 ；VHH  QC。 IgFold/ESMFold。",
+      "not_for": "-（ Boltz ）；（ AutoDock_Vina）",
+      "last_validated": "2026-05-03",
+      "location": "pip / conda: ImmuneBuilder（ anarcii ）",
+      "type": "python_module",
+      "conda_env": "anarcii",
+      "python_api": "core/humanization/engine.py → _run_abodybuilder2 / _run_nanobodybuilder2；scripts/predict_one_immunebuilder.py",
+      "status": "PRIMARY for Fv/VHH monomer structure in HumanizationEngine",
+      "notes": " import ， Phase 3  unavailable； conda run -n anarcii。"
+    },
+
+    "AutoDock_Vina": {
+      "local_run_status": "WSL_OR_LINUX",
+      "local_run_notes": "： WSL+conda「vina」；Vina  Windows ， vina.exe / 。",
+      "purpose": "-（ /  pose），AutoDock Vina CLI",
+      "use_case": "hapten/（：projects/fentanyl/v2  redock、alanine scan）。 affinity_energy_toolkit 。",
+      "not_for": "-（ HADDOCK3）； ΔΔG（ EvoEF2/PRODIGY）",
+      "last_validated": "project_scripts_only",
+      "location": " vina  + AutoDockTools(mk_prepare_receptor.py)； WSL ",
+      "type": "cli_executable",
+      "conda_env": "vina (typical; WSL/Linux)",
+      "commands": {
+        "default": "vina --receptor <rec.pdbqt> --ligand <lig.pdbqt> --out <out.pdbqt> [box]"
+      },
+      "status": "ready on WSL/Linux when env paths configured — NOT wired into core toolkit",
+      "notes": "Windows  Vina， WSL  conda env vina。 HADDOCK3 ：Vina=，HADDOCK=-。"
+    }
+  },
+
+  "conda_env_map": {
+    "_comment": "IgFold ， env map； petization  IgFold， run_petization_pipeline.py",
+    "affmat": ["EvoEF2", "PRODIGY", "ThermoMPNN", "AntiFold", "ProteinMPNN", "AbLang", "ESM-IF1", "OpenMM_MMGBSA", "Boltz-2", "Boltz-1"],
+    "anarcii": ["ANARCI", "AbLang", "ImmuneBuilder"],
+    "episcan": ["EpiScan"],
+    "vaccine": ["LinearDesign", "LinearFold"],
+    "vina": ["AutoDock_Vina"]
+  },
+
+  "absci_benchmark_tool_plan": {
+    "implemented": ["EvoEF2", "PRODIGY", "ThermoMPNN", "AbLang"],
+    "todo_add":    ["AntiFold", "ESM-IF1"],
+    "not_applicable": ["ProteinMPNN", "EpiScan", "LinearDesign", "LinearFold", "IgFold", "HADDOCK3"],
+    "optional_heavy_compute": ["OpenMM_MMGBSA"]
+  }
+}

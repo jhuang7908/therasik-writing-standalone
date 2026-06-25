@@ -1,0 +1,3828 @@
+{
+  "_metadata": {
+    "description": "ADC intelligent design rules: disease→antigen→binder→linker→payload→conjugation decision logic, compatibility matrix, constraints, and safety guardrails",
+    "version": "1.0",
+    "generated": "2026-04-06",
+    "schema_mirrors": "CAR design_rules.json architecture"
+  },
+  "disease_antigen_map": {
+    "_note": "Maps disease categories to recommended target antigens with clinical evidence tiers. T1=Approved ADC exists, T2=Phase 2/3, T3=Research/Emerging.",
+    "solid_tumor": {
+      "breast_HER2_pos": {
+        "primary": [
+          "HER2"
+        ],
+        "secondary": [
+          "TROP-2"
+        ],
+        "tier": "T1",
+        "precedent": [
+          "Enhertu",
+          "Kadcyla"
+        ]
+      },
+      "breast_HER2_low": {
+        "primary": [
+          "HER2"
+        ],
+        "secondary": [
+          "TROP-2"
+        ],
+        "tier": "T1",
+        "precedent": [
+          "Enhertu"
+        ]
+      },
+      "breast_TNBC": {
+        "primary": [
+          "TROP-2"
+        ],
+        "secondary": [
+          "LIV-1",
+          "Nectin-4",
+          "B7-H4"
+        ],
+        "tier": "T1",
+        "precedent": [
+          "Trodelvy"
+        ]
+      },
+      "breast_HR_pos": {
+        "primary": [
+          "TROP-2",
+          "HER2"
+        ],
+        "secondary": [
+          "FRα"
+        ],
+        "tier": "T1",
+        "precedent": [
+          "Trodelvy",
+          "Enhertu"
+        ]
+      },
+      "nsclc": {
+        "primary": [
+          "HER2",
+          "TROP-2",
+          "HER3"
+        ],
+        "secondary": [
+          "CEACAM5",
+          "MET",
+          "B7-H3",
+          "EGFR"
+        ],
+        "tier": "T1/T2",
+        "precedent": [
+          "Enhertu",
+          "Patritumab-DXd",
+          "Dato-DXd"
+        ]
+      },
+      "nsclc_egfr_mutant": {
+        "primary": [
+          "HER3"
+        ],
+        "secondary": [
+          "TROP-2",
+          "MET",
+          "B7-H3"
+        ],
+        "tier": "T2",
+        "precedent": [
+          "Patritumab-DXd"
+        ]
+      },
+      "gastric": {
+        "primary": [
+          "HER2",
+          "CLDN18.2"
+        ],
+        "secondary": [
+          "TROP-2",
+          "FGFR2b",
+          "GPC3"
+        ],
+        "tier": "T1/T2",
+        "precedent": [
+          "Enhertu"
+        ]
+      },
+      "hcc": {
+        "primary": [
+          "GPC3"
+        ],
+        "secondary": [
+          "MET",
+          "AFP"
+        ],
+        "tier": "T2/T3",
+        "precedent": []
+      },
+      "ovarian_cldn6": {
+        "primary": [
+          "CLDN6",
+          "FRα"
+        ],
+        "secondary": [
+          "TROP-2"
+        ],
+        "tier": "T2",
+        "precedent": []
+      },
+      "renal": {
+        "primary": [
+          "CDH6",
+          "CAIX"
+        ],
+        "secondary": [
+          "AXL"
+        ],
+        "tier": "T2",
+        "precedent": []
+      },
+      "urothelial": {
+        "primary": [
+          "Nectin-4",
+          "HER2",
+          "TROP-2"
+        ],
+        "secondary": [
+          "SLITRK6"
+        ],
+        "tier": "T1",
+        "precedent": [
+          "Padcev",
+          "Enhertu"
+        ]
+      },
+      "ovarian": {
+        "primary": [
+          "FRα"
+        ],
+        "secondary": [
+          "NaPi2b",
+          "MUC16",
+          "TROP-2"
+        ],
+        "tier": "T1",
+        "precedent": [
+          "Elahere"
+        ]
+      },
+      "cervical": {
+        "primary": [
+          "Tissue Factor"
+        ],
+        "secondary": [
+          "TROP-2"
+        ],
+        "tier": "T1",
+        "precedent": [
+          "Tivdak"
+        ]
+      },
+      "colorectal": {
+        "primary": [
+          "HER2",
+          "CEACAM5"
+        ],
+        "secondary": [
+          "TROP-2",
+          "guanylyl_cyclase_C"
+        ],
+        "tier": "T2",
+        "precedent": []
+      },
+      "sclc": {
+        "primary": [
+          "B7-H3",
+          "DLL3"
+        ],
+        "secondary": [
+          "TROP-2"
+        ],
+        "tier": "T2",
+        "precedent": [
+          "Ifinatamab-DXd",
+          "Rova-T (failed)"
+        ]
+      },
+      "head_neck": {
+        "primary": [
+          "EGFR",
+          "Tissue Factor"
+        ],
+        "secondary": [
+          "HER2",
+          "HER3"
+        ],
+        "tier": "T2/T3",
+        "precedent": []
+      },
+      "pancreatic": {
+        "primary": [
+          "Mesothelin",
+          "CEACAM5"
+        ],
+        "secondary": [
+          "Claudin18.2",
+          "HER2"
+        ],
+        "tier": "T3",
+        "precedent": []
+      },
+      "esophageal": {
+        "primary": [
+          "HER2",
+          "B7-H3"
+        ],
+        "secondary": [
+          "Claudin18.2"
+        ],
+        "tier": "T2",
+        "precedent": []
+      },
+      "melanoma": {
+        "primary": [
+          "gpNMB",
+          "PMEL"
+        ],
+        "secondary": [
+          "CSPG4"
+        ],
+        "tier": "T2/T3",
+        "precedent": [
+          "Glembatumumab vedotin (failed)"
+        ]
+      },
+      "glioblastoma": {
+        "primary": [
+          "EGFRvIII",
+          "IL13Rα2"
+        ],
+        "secondary": [
+          "PODO",
+          "CD276"
+        ],
+        "tier": "T3",
+        "precedent": []
+      },
+      "prostate": {
+        "primary": [
+          "PSMA",
+          "STEAP1"
+        ],
+        "secondary": [
+          "TROP-2",
+          "B7-H3"
+        ],
+        "tier": "T2",
+        "precedent": []
+      }
+    },
+    "liquid_tumor": {
+      "dlbcl": {
+        "primary": [
+          "CD79b",
+          "CD19"
+        ],
+        "secondary": [
+          "CD22",
+          "CD37",
+          "ROR1"
+        ],
+        "tier": "T1",
+        "precedent": [
+          "Polivy",
+          "Zynlonta"
+        ]
+      },
+      "hodgkin": {
+        "primary": [
+          "CD30"
+        ],
+        "secondary": [],
+        "tier": "T1",
+        "precedent": [
+          "Adcetris"
+        ]
+      },
+      "aml": {
+        "primary": [
+          "CD33",
+          "CD123"
+        ],
+        "secondary": [
+          "FLT3",
+          "CLL-1"
+        ],
+        "tier": "T1",
+        "precedent": [
+          "Mylotarg"
+        ]
+      },
+      "all": {
+        "primary": [
+          "CD22",
+          "CD19"
+        ],
+        "secondary": [
+          "CD33"
+        ],
+        "tier": "T1",
+        "precedent": [
+          "Besponsa"
+        ]
+      },
+      "multiple_myeloma": {
+        "primary": [
+          "BCMA",
+          "FcRH5",
+          "GPRC5D"
+        ],
+        "secondary": [
+          "CD38"
+        ],
+        "tier": "T1/T2",
+        "precedent": [
+          "Blenrep"
+        ]
+      },
+      "mcl": {
+        "primary": [
+          "CD19",
+          "ROR1"
+        ],
+        "secondary": [
+          "CD79b"
+        ],
+        "tier": "T2",
+        "precedent": []
+      },
+      "cll": {
+        "primary": [
+          "CD37",
+          "ROR1"
+        ],
+        "secondary": [
+          "CD19"
+        ],
+        "tier": "T2/T3",
+        "precedent": []
+      }
+    },
+    "autoimmune": {
+      "sle": {
+        "primary": [
+          "CD19",
+          "BCMA"
+        ],
+        "secondary": [
+          "CD38"
+        ],
+        "tier": "T3",
+        "strategy": "B-cell depletion via low-toxicity ADC or naked Ab"
+      },
+      "rheumatoid": {
+        "primary": [
+          "CD20",
+          "TNFα receptor"
+        ],
+        "secondary": [],
+        "tier": "T3",
+        "strategy": "Tissue-targeted payload delivery"
+      },
+      "ms": {
+        "primary": [
+          "CD19"
+        ],
+        "secondary": [
+          "CD20"
+        ],
+        "tier": "T3",
+        "strategy": "Selective B-cell modulation"
+      },
+      "_design_note": "ADCs for autoimmune must use LOW-potency payloads (immunomodulators, NOT cytotoxins) or conditional-release linkers to avoid immunosuppression toxicity."
+    },
+    "neurological": {
+      "glioblastoma": {
+        "primary": [
+          "EGFR",
+          "EGFRvIII"
+        ],
+        "secondary": [
+          "HER2",
+          "B7-H3",
+          "IL-13Rα2"
+        ],
+        "tier": "T2/T3",
+        "strategy": "BBB-penetrant ADC or intrathecal; low-DAR preferred for safety"
+      },
+      "neuroblastoma": {
+        "primary": [
+          "GD2",
+          "B7-H3"
+        ],
+        "secondary": [
+          "ALK"
+        ],
+        "tier": "T2",
+        "strategy": "Pediatric safety profile critical; low potency payloads preferred"
+      }
+    },
+    "other": {
+      "fibrosis": {
+        "primary": [
+          "FAP"
+        ],
+        "secondary": [],
+        "tier": "T3",
+        "strategy": "Stromal-targeted ADC for desmoplastic tumors or systemic fibrosis"
+      }
+    }
+  },
+  "antigen_properties": {
+    "_note": "Key properties of each antigen that drive downstream design choices.",
+    "HER2": {
+      "expression": "solid_tumor",
+      "density": "high_variable",
+      "heterogeneity": "moderate_to_high (C)",
+      "internalization_rate": "moderate",
+      "normal_tissue_expression": "low (heart, GI)",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "high",
+      "evidence_note": "Density highly variable by HER2 status: IHC3+ ~1e6 copies/cell; HER2-low IHC1+ ~5e4 copies/cell. Internalization moderate and saturable at high Ab concentrations. Heterogeneity: significant intratumoral in HER2-low setting.",
+      "key_refs": [
+        "PMID:29236700 (T-DXd DESTINY-Breast01)",
+        "PMID:35320644 (T-DXd HER2-low DESTINY-Breast04)",
+        "FDA label: Enhertu, Kadcyla"
+      ],
+      "internalization_mechanism": "Clathrin-mediated endocytosis (CME); macropinocytosis at high antibody occupancy (C)",
+      "recycling_after_internalization": "Partial recycling to surface (25–40%); remainder targeted for lysosomal degradation (C)",
+      "shedding_rate": "Low (p95-HER2 shed ECD fragment; not major sink) (C)",
+      "biomarker_assay": "IHC + FISH (HER2+: IHC 3+ or IHC 2+/FISH+); HER2-low: IHC 1+ or 2+/FISH-; FDA CDx: PATHWAY HER2 (Ventana)",
+      "proliferation_sensitivity": "Moderate — bystander-capable payloads (DXd) preferred for HER2-low/heterogeneous tumors",
+      "tier": "Tier 1 (Approved)",
+      "design_logic": "[Tier 1 (Approved)] Based on Inferred (I) high_variable density and Clinical (C) validation of moderate internalization via T-DXd DESTINY-Breast01. Internalized via Clathrin-mediated endocytosis (CME); macropinocytosis at high antibody occupancy (C)."
+    },
+    "TROP-2": {
+      "expression": "solid_tumor",
+      "density": "high",
+      "heterogeneity": "low_to_moderate (C)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "moderate (skin, GI)",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "high",
+      "evidence_note": "High density in TNBC (~83% express), urothelial carcinoma. Rapid internalization (t1/2 ~30 min). Low heterogeneity. Validated by IHC in pivotal ASCENT trial.",
+      "key_refs": [
+        "PMID:32897654 (ASCENT sacituzumab)",
+        "PMID:33942582 (TROPHY-U-01)",
+        "FDA label: Trodelvy"
+      ],
+      "internalization_mechanism": "Rapid constitutive clathrin-mediated endocytosis (CME) + lipid raft-mediated (C)",
+      "recycling_after_internalization": "Primarily lysosomal degradation (>80% degraded, minimal recycling) (C)",
+      "shedding_rate": "Low — minimal soluble TROP-2 ectodomain shedding (C)",
+      "biomarker_assay": "IHC (TROP-2 H-score ≥100 for patient selection in some trials); no FDA CDx approved for sacituzumab govitecan",
+      "proliferation_sensitivity": "Moderate — TOP1i (DXd/SN-38) active in all phases",
+      "tier": "Tier 1 (Approved)",
+      "design_logic": "[Tier 1 (Approved)] Based on Inferred (I) high density and Clinical (C) validation of high internalization via ASCENT sacituzumab. Internalized via Rapid constitutive clathrin-mediated endocytosis (CME) + lipid raft-mediated (C)."
+    },
+    "Nectin-4": {
+      "expression": "solid_tumor",
+      "density": "high",
+      "heterogeneity": "low (C)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "moderate (skin)",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "high",
+      "evidence_note": "High density in urothelial carcinoma (~69% high expression). Rapid internalization. Very low adult normal tissue expression (absent in most non-epithelial tissues).",
+      "key_refs": [
+        "PMID:31912758 (EV-201)",
+        "PMID:32930499 (EV-301)",
+        "FDA label: Padcev"
+      ],
+      "internalization_mechanism": "Rapid clathrin-mediated endocytosis (C)",
+      "recycling_after_internalization": "Primarily degraded in lysosomes (C)",
+      "shedding_rate": "Low (I)",
+      "biomarker_assay": "IHC (>25% tumor cells positive); no FDA CDx currently required for Padcev",
+      "proliferation_sensitivity": "Moderate — tubulin inhibitor (MMAE); requires proliferating cells",
+      "tier": "Tier 1 (Approved)",
+      "design_logic": "[Tier 1 (Approved)] Based on Inferred (I) high density and Clinical (C) validation of high internalization via EV-201. Internalized via Rapid clathrin-mediated endocytosis (C)."
+    },
+    "FRα": {
+      "expression": "solid_tumor",
+      "density": "moderate_to_high",
+      "heterogeneity": "moderate (C)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "low (kidney proximal tubule)",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "high",
+      "evidence_note": "Validated in Phase 3 MIRASOL trial for ovarian cancer.",
+      "internalization_mechanism": "Receptor-mediated endocytosis (GPI-anchored; clathrin-independent, lipid raft pathway). Internalization is relatively slow but constitutive. (C)",
+      "recycling_after_internalization": "Significant recycling (~50% recycled within 4h). GPI-anchor promotes recycling endosome routing. (C)",
+      "shedding_rate": "Low — minimal soluble FRα detected in serum of most patients. (C)",
+      "biomarker_assay": "IHC (FRα ≥75% tumor cells at 2+ intensity for mirvetuximab MIRASOL trial); VENTANA anti-FR alpha (SP130) RxDx is FDA-approved CDx.",
+      "proliferation_sensitivity": "Low — DM4 payload is cell-cycle dependent but FRα recycling ensures continuous payload delivery.",
+      "key_refs": [
+        "PMID:37357149"
+      ],
+      "tier": "Tier 1 (Approved)",
+      "design_logic": "[Tier 1 (Approved)] Based on Inferred (I) moderate_to_high density and Clinical (C) validation of high internalization via clinical data. Internalized via Receptor-mediated endocytosis (GPI-anchored; clathrin-independent, lipid raft pathway). Internalization is relatively slow but constitutive. (C)."
+    },
+    "Tissue Factor": {
+      "expression": "solid_tumor",
+      "density": "moderate",
+      "heterogeneity": "moderate (C)",
+      "internalization_rate": "moderate",
+      "normal_tissue_expression": "moderate (coagulation cascade)",
+      "on_target_off_tumor_risk": "high",
+      "data_confidence": "high",
+      "evidence_note": "High density in cervical cancer. Rapid constitutive and ligand-induced internalization. Normal expression in subendothelial tissue and coagulation cascade (risk of bleeding/coagulation disorders).",
+      "needs_expert_review": false,
+      "density_quantitative": "~2x10^5 to 5x10^5 copies/cell (cervical cancer) (C)",
+      "internalization_t12": "Rapid (t1/2 ~ 30-45 mins) (C)",
+      "key_refs": [
+        "PMID:34506330 (Tisotumab vedotin innovaTV 204)",
+        "FDA label: Tivdak"
+      ],
+      "internalization_mechanism": "Rapid constitutive and ligand-induced endocytosis (coagulation cascade activation triggers internalization) (C)",
+      "recycling_after_internalization": "Primarily degraded (C)",
+      "shedding_rate": "Low (I)",
+      "biomarker_assay": "IHC (≥25% TF+ tumor cells for Tivdak; FDA CDx: VENTANA SP295 anti-TF RxDx)",
+      "proliferation_sensitivity": "Moderate",
+      "tier": "Tier 1 (Approved)",
+      "design_logic": "[Tier 1 (Approved)] Based on Inferred (I) moderate density and Clinical (C) validation of moderate internalization via Tisotumab vedotin innovaTV 204. Internalized via Rapid constitutive and ligand-induced endocytosis (coagulation cascade activation triggers internalization) (C)."
+    },
+    "CD30": {
+      "expression": "liquid_tumor",
+      "density": "high",
+      "heterogeneity": "low (C)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "very_low",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "high",
+      "evidence_note": "High density on Reed-Sternberg cells (~5,000 copies/cell in HL). Low heterogeneity. Rapid receptor-mediated internalization confirmed in vitro and in vivo.",
+      "key_refs": [
+        "PMID:22891273 (BV HL pivotal)",
+        "PMID:23233704 (BV ALCL)",
+        "FDA label: Adcetris"
+      ],
+      "internalization_mechanism": "Rapid receptor-mediated endocytosis (TNFR superfamily pathway) (C)",
+      "recycling_after_internalization": "Primarily degraded; minimal recycling (C)",
+      "shedding_rate": "Moderate — soluble CD30 (sCD30) shed by metalloprotease ADAM10/17; elevated sCD30 in serum is prognostic but does not significantly affect BV efficacy (C)",
+      "biomarker_assay": "IHC (≥10% CD30+ tumor cells required for HL/ALCL; FDA CDx: CD30 (Dako/Agilent))",
+      "proliferation_sensitivity": "Moderate",
+      "tier": "Tier 1 (Approved)",
+      "design_logic": "[Tier 1 (Approved)] Based on Inferred (I) high density and Clinical (C) validation of high internalization via BV HL pivotal. Internalized via Rapid receptor-mediated endocytosis (TNFR superfamily pathway) (C)."
+    },
+    "CD33": {
+      "expression": "liquid_tumor",
+      "density": "moderate",
+      "heterogeneity": "moderate (C)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "moderate (myeloid progenitors)",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "high",
+      "evidence_note": "Moderate density (~10,000 copies/cell on AML blasts). Rapid internalization. Expressed on normal myeloid progenitors — direct cause of myelosuppression with GO.",
+      "key_refs": [
+        "PMID:11283486 (Mylotarg Phase III)",
+        "PMID:28825710 (Mylotarg re-approval AML)",
+        "FDA label: Mylotarg"
+      ],
+      "internalization_mechanism": "Rapid receptor-mediated endocytosis (Siglec family; lectin-like internalization) (C)",
+      "recycling_after_internalization": "Rapid internalization AND rapid recycling to surface — requires pulse dosing strategy (Mylotarg fractionated dosing rationale) (C)",
+      "shedding_rate": "Low (some shedding but not a major pharmacological sink) (C)",
+      "biomarker_assay": "IHC or flow cytometry (>30% AML blasts CD33+; no strict cutoff required for GO)",
+      "proliferation_sensitivity": "Low — calicheamicin (Mylotarg payload) is cell-cycle independent",
+      "tier": "Tier 1 (Approved)",
+      "design_logic": "[Tier 1 (Approved)] Based on Inferred (I) moderate density and Clinical (C) validation of high internalization via Mylotarg Phase III. Internalized via Rapid receptor-mediated endocytosis (Siglec family; lectin-like internalization) (C)."
+    },
+    "CD79b": {
+      "expression": "liquid_tumor",
+      "density": "moderate",
+      "heterogeneity": "low (C)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "B-cells_only",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "high",
+      "evidence_note": "Moderate density on mature B-cells (~2,000-12,000 copies/cell). Rapid internalization via BCR complex. Low heterogeneity in DLBCL. Restricted to B-cell lineage.",
+      "key_refs": [
+        "PMID:31913613 (polatuzumab POLARIX)",
+        "PMID:27069000 (polatuzumab Phase II)",
+        "FDA label: Polivy"
+      ],
+      "internalization_mechanism": "Rapid internalization via B-cell receptor (BCR) complex co-endocytosis; clathrin-mediated (C)",
+      "recycling_after_internalization": "Primarily lysosomal degradation (C)",
+      "shedding_rate": "Very low (C)",
+      "biomarker_assay": "IHC (VENTANA anti-CD79b; >25% tumor cells); flow cytometry for B-cell lymphomas",
+      "proliferation_sensitivity": "Moderate — requires tubulin-active cells",
+      "tier": "Tier 1 (Approved)",
+      "design_logic": "[Tier 1 (Approved)] Based on Inferred (I) moderate density and Clinical (C) validation of high internalization via polatuzumab POLARIX. Internalized via Rapid internalization via B-cell receptor (BCR) complex co-endocytosis; clathrin-mediated (C)."
+    },
+    "CD19": {
+      "expression": "liquid_tumor",
+      "density": "moderate_to_high",
+      "heterogeneity": "low (C)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "all B-cells",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "high",
+      "evidence_note": "Moderate-high density on B-cell malignancies (20,000-200,000 copies/cell). High internalization. Expressed on all B-cell stages; B-cell aplasia is on-target toxicity.",
+      "key_refs": [
+        "PMID:28329763 (loncastuximab DLBCL)",
+        "PMID:34289523"
+      ],
+      "internalization_mechanism": "Co-internalization with BCR complex (clathrin-mediated); also trogocytosis (C)",
+      "recycling_after_internalization": "Partial recycling (C)",
+      "shedding_rate": "Very low (C)",
+      "biomarker_assay": "Flow cytometry or IHC (>20% CD19+ for B-ALL/DLBCL)",
+      "proliferation_sensitivity": "Moderate",
+      "tier": "Tier 1 (Approved)",
+      "design_logic": "[Tier 1 (Approved)] Based on Inferred (I) moderate_to_high density and Clinical (C) validation of high internalization via loncastuximab DLBCL. Internalized via Co-internalization with BCR complex (clathrin-mediated); also trogocytosis (C)."
+    },
+    "BCMA": {
+      "expression": "liquid_tumor",
+      "density": "moderate",
+      "heterogeneity": "moderate (C)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "plasma_cells_only",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "high",
+      "evidence_note": "Moderate density on myeloma cells (~5,000-50,000 copies/cell). High internalization rate. Restricted to plasma cells and a subset of B-cells in normal tissue.",
+      "key_refs": [
+        "PMID:33493423 (belantamab DREAMM-2)",
+        "PMID:33417826 (BCMA target review)",
+        "FDA label: Blenrep (withdrawn 2022, corneal toxicity)"
+      ],
+      "internalization_mechanism": "Clathrin-mediated endocytosis; APRIL/BAFF ligand-induced internalization increases rate (C)",
+      "recycling_after_internalization": "Primarily degraded (C)",
+      "shedding_rate": "High — BCMA is actively shed by ADAM10/17; soluble BCMA (sBCMA) is a resistance biomarker. Elevated sBCMA associates with belantamab mafodotin resistance. (C)",
+      "biomarker_assay": "IHC or flow cytometry (>50% plasma cells BCMA+); sBCMA serum level is emerging biomarker. FDA CDx: BCMA IHC (pending for several agents)",
+      "proliferation_sensitivity": "Low — auristatin F (belantamab) is mitosis-dependent; bystander effect absent (MMAF)",
+      "tier": "Tier 1 (Approved)",
+      "design_logic": "[Tier 1 (Approved)] Based on Inferred (I) moderate density and Clinical (C) validation of high internalization via belantamab DREAMM-2. Internalized via Clathrin-mediated endocytosis; APRIL/BAFF ligand-induced internalization increases rate (C)."
+    },
+    "HER3": {
+      "expression": "solid_tumor",
+      "density": "moderate",
+      "heterogeneity": "moderate (I)",
+      "internalization_rate": "moderate",
+      "normal_tissue_expression": "moderate",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "moderate",
+      "evidence_note": "HER3 (ErbB3) is overexpressed in various solid tumors (NSCLC, breast, gastric). Patritumab deruxtecan (HER3-DXd) shows significant activity in EGFR-mutated NSCLC. Key challenge: low intrinsic kinase activity and significant recycling.",
+      "density_quantitative": "1e4 - 1e5 copies/cell (NSCLC, breast) (I)",
+      "internalization_t12": "Moderate (t1/2 ~ 2-3 hours) (I)",
+      "internalization_mechanism": "Rapid internalization via HER2/HER3 heterodimer (requires HER2 co-expression for efficient endocytosis) (I)",
+      "recycling_after_internalization": "Significant recycling (HER3 has very low intrinsic kinase activity; recycling > degradation) (I)",
+      "shedding_rate": "Low (I)",
+      "biomarker_assay": "IHC (HER3 expression by H-score; no standardized CDx); HER3 is ubiquitously expressed making patient selection challenging",
+      "proliferation_sensitivity": "Moderate",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) moderate density and Inferred (I) moderate internalization. Internalized via Rapid internalization via HER2/HER3 heterodimer (requires HER2 co-expression for efficient endocytosis) (I).",
+      "tier": "Tier 2 (Active)"
+    },
+    "B7-H3": {
+      "expression": "solid_tumor",
+      "density": "high",
+      "heterogeneity": "low (I)",
+      "internalization_rate": "moderate",
+      "normal_tissue_expression": "very_low",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "moderate",
+      "evidence_note": "Broad overexpression in solid tumors (neuroblastoma, SCLC, prostate). Ifinatamab deruxtecan (DS-7300) shows robust clinical activity. Favorable therapeutic window due to low normal tissue expression.",
+      "density_quantitative": "1e5 - 5e5 copies/cell (SCLC, neuroblastoma) (I)",
+      "internalization_t12": "Moderate (t1/2 ~ 3-4 hours) (I)",
+      "key_refs": [
+        "PMID:34373294 (ifinatamab deruxtecan B7-H3)",
+        "PMID:28951488 (B7-H3 tumor expression)"
+      ],
+      "internalization_mechanism": "Moderate — clathrin-mediated endocytosis (I)",
+      "recycling_after_internalization": "Moderate recycling to membrane (I)",
+      "shedding_rate": "Low (I)",
+      "biomarker_assay": "IHC (H-score ≥100 typically used); no FDA CDx currently",
+      "proliferation_sensitivity": "Moderate",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) high density and Inferred (I) moderate internalization. Internalized via Moderate — clathrin-mediated endocytosis (I).",
+      "tier": "Tier 2 (Active)"
+    },
+    "DLL3": {
+      "expression": "solid_tumor",
+      "density": "low_to_moderate",
+      "heterogeneity": "moderate (I)",
+      "internalization_rate": "low",
+      "normal_tissue_expression": "very_low",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "high",
+      "evidence_note": "DLL3 expressed in >80% SCLC, LGD (large-cell neuroendocrine), and some glioblastoma. Rovalpituzumab tesirine (Rova-T, SC16LD6.5): Phase 3 TAHOE trial failed — excess toxicity from PBD payload at high DAR (DAR 2). Critical failure case: overshooting potency + off-tumor normal tissue expression in neural tissue. Tarlatamab (DLL3×CD3 bispecific) FDA-approved 2024 for SCLC.",
+      "needs_expert_review": false,
+      "internalization_mechanism": "Moderate-to-rapid clathrin-mediated endocytosis. DLL3 is a non-canonical Delta-like Notch ligand; internalization is ligand-independent. Expressed on cell surface as a cis-inhibitor of Notch. (I)",
+      "recycling_after_internalization": "Primarily degraded in lysosomes (not recycled); high lysosomal enzyme activity in SCLC cells promotes efficient payload release (I)",
+      "shedding_rate": "Low — transmembrane protein; no significant ectodomain shedding detected in serum (I)",
+      "biomarker_assay": "IHC (DLL3 >25% tumor cells by Ventana SP347 assay); SCLC has near-universal DLL3 positivity (~80–90% of SCLC tumors). No FDA CDx required for tarlatamab (bispecific).",
+      "proliferation_sensitivity": "LOW — SCLC is fast-proliferating (highly mitotic), but DXd/PBD payloads (cell-cycle independent) may be preferred to avoid heterogeneity issues. Rova-T (PBD-based) failed due to selectivity issues at high potency.",
+      "key_refs": [
+        "PMID:26028407 (DLL3 SCLC expression)",
+        "PMID:29539427 (Rova-T Phase 1)",
+        "PMID:33547437 (TAHOE Phase 3 failure)",
+        "FDA approval: tarlatamab 2024"
+      ],
+      "tier": "Tier 3 (Failed)",
+      "design_logic": "[Tier 3 (Failed)] Based on Inferred (I) low_to_moderate density and Inferred (I) low internalization. Internalized via Moderate-to-rapid clathrin-mediated endocytosis. DLL3 is a non-canonical Delta-like Notch ligand; internalization is ligand-independent. Expressed on cell surface as a cis-inhibitor of Notch. (I)."
+    },
+    "MET": {
+      "expression": "solid_tumor",
+      "density": "moderate",
+      "heterogeneity": "high (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "moderate (liver, kidney)",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "high",
+      "evidence_note": "MET (c-Met) is overexpressed in NSCLC (~25% high expression), gastric (~20%), HCC. Telisotuzumab vedotin (ABBV-399) is a leading MET-MMAE ADC. HGF-induced internalization is rapid. Liver/kidney expression requires careful monitoring.",
+      "density_quantitative": "5e4 - 2e5 copies/cell (NSCLC, gastric) (I)",
+      "internalization_t12": "Rapid (t1/2 < 1 hour) (I)",
+      "needs_expert_review": false,
+      "internalization_mechanism": "Rapid ligand (HGF)-induced clathrin-mediated endocytosis with subsequent lysosomal degradation (CBL-mediated ubiquitination). Constitutive internalization in MET-amplified tumors (ligand-independent). Internalization rate: HIGH when activated. (I)",
+      "recycling_after_internalization": "Primarily degraded (CBL E3 ligase drives lysosomal targeting; MET is a 'disposable' receptor with minimal recycling after activation) (I)",
+      "shedding_rate": "Moderate — ADAM10/17 cleave MET ectodomain releasing soluble MET (sMET); sMET can act as partial antigen sink but not clinically significant in most contexts (I)",
+      "biomarker_assay": "IHC (MET 3+ by VENTANA MET SP44 for telisotuzumab vedotin; MET amplification by NGS/FISH for METex14 skip mutations); MET/CEP7 ratio >2.0 = amplification. FDA CDx: VENTANA MET SP44 IHC",
+      "proliferation_sensitivity": "Moderate — MMAE (telisotuzumab) requires mitotic cells; MET-amplified NSCLC can be rapidly proliferating",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) moderate density and Inferred (I) high internalization. Internalized via Rapid ligand (HGF)-induced clathrin-mediated endocytosis with subsequent lysosomal degradation (CBL-mediated ubiquitination). Constitutive internalization in MET-amplified tumors (ligand-independent). Internalization rate: HIGH when activated. (I).",
+      "key_refs": [
+        "PMID:25877877 (telisotuzumab Phase 1)",
+        "PMID:34186361 (Phase 2 NSCLC)",
+        "VENTANA MET SP44 CDx"
+      ],
+      "tier": "Tier 2 (Active)"
+    },
+    "CD22": {
+      "expression": "liquid_tumor",
+      "density": "moderate",
+      "heterogeneity": "low (C)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "B-cells_only",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "high",
+      "evidence_note": "Moderate-high density on B-cells/B-ALL (10,000-100,000 copies/cell). Rapid constitutive internalization and recycling. Low heterogeneity in B-ALL. Restricted to B-cell lineage.",
+      "key_refs": [
+        "PMID:30380360 (besylomab ALL)",
+        "PMID:34289523 (loncastuximab DLBCL)"
+      ],
+      "internalization_mechanism": "Constitutive receptor-mediated endocytosis (lectin-type; internalizes B-cell receptor complex) (C)",
+      "recycling_after_internalization": "Primarily degraded in lysosomes; some recycling (C)",
+      "shedding_rate": "Very low (C)",
+      "biomarker_assay": "Flow cytometry (>20% CD22+ blasts in B-ALL); IHC for lymphoma",
+      "proliferation_sensitivity": "Moderate",
+      "tier": "Tier 1 (Approved)",
+      "design_logic": "[Tier 1 (Approved)] Based on Inferred (I) moderate density and Clinical (C) validation of high internalization via besylomab ALL. Internalized via Constitutive receptor-mediated endocytosis (lectin-type; internalizes B-cell receptor complex) (C)."
+    },
+    "CLDN6": {
+      "expression": "solid_tumor",
+      "density": "moderate_to_high",
+      "heterogeneity": "moderate (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "very_low (fetal only)",
+      "on_target_off_tumor_risk": "very_low",
+      "data_confidence": "high",
+      "evidence_note": "Preclinical studies of CLDN6-23-ADC show rapid internalization and potent efficacy. Target for Toripalimab-ADC (JS108).",
+      "needs_expert_review": true,
+      "internalization_mechanism": "Rapid clathrin-mediated endocytosis. Unlike CLDN18.2, CLDN6 is often more accessible on the cell surface rather than sequestered in tight junctions in certain tumor types. (I)",
+      "recycling_after_internalization": "Primarily degraded in lysosomes (minimal recycling). (I)",
+      "shedding_rate": "Very low — four-pass transmembrane protein. (I)",
+      "biomarker_assay": "IHC (CLDN6 expression in ovarian, testicular, and lung cancers).",
+      "proliferation_sensitivity": "Moderate.",
+      "key_refs": [
+        "PMID:36884217",
+        "PMID:10233360"
+      ],
+      "tier": "Tier 4 (Emerging)",
+      "design_logic": "[Tier 4 (Emerging)] Based on Inferred (I) moderate_to_high density and Inferred (I) high internalization. Internalized via Rapid clathrin-mediated endocytosis. Unlike CLDN18.2, CLDN6 is often more accessible on the cell surface rather than sequestered in tight junctions in certain tumor types. (I)."
+    },
+    "GPC3": {
+      "expression": "solid_tumor",
+      "density": "high",
+      "heterogeneity": "moderate (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "very_low (adult)",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "high",
+      "evidence_note": "GPC3 is highly expressed in HCC (~70%), squamous NSCLC (~40%). Internalization is rapid but recycling is significant. Codrituzumab failed as naked mAb, but GPC3-ADCs (e.g., HKT288) are in development.",
+      "density_quantitative": "1e5 - 1.6e6 copies/cell (HCC) (I)",
+      "internalization_t12": "Rapid (t1/2 ~ 1-2 hours) (I)",
+      "internalization_mechanism": "Moderate clathrin-mediated endocytosis (GPC3 is GPI-anchored heparan sulfate proteoglycan; internalization requires co-receptor engagement or clathrin-independent pathway via glypican shedding of GPI anchor) (I)",
+      "recycling_after_internalization": "Significant recycling (GPI-anchored proteins are preferentially recycled via Rab11 recycling endosomes); ~50–60% recycled; rest degraded (I)",
+      "shedding_rate": "Moderate — heparanase cleaves GPC3 from cell surface; shed GPC3 detectable in serum of HCC patients. Elevated serum GPC3 (>2 ng/mL) predicts poor prognosis but does not significantly reduce membrane-bound target. (I)",
+      "biomarker_assay": "IHC (GPC3 ≥2+ in ≥20% tumor cells for HCC); serum GPC3 as diagnostic marker (sensitivity ~60%, specificity ~95% for HCC vs cirrhosis). No FDA CDx approved.",
+      "proliferation_sensitivity": "Moderate — most GPC3 ADCs use MMAE (mitosis-dependent); however HCC proliferates variably",
+      "design_logic": "[Tier 4 (Emerging)] Based on Inferred (I) high density and Inferred (I) high internalization. Internalized via Moderate clathrin-mediated endocytosis (GPC3 is GPI-anchored heparan sulfate proteoglycan; internalization requires co-receptor engagement or clathrin-independent pathway via glypican shedding of GPI anchor) (I).",
+      "key_refs": [
+        "PMID:18378562 (GPC3 HCC expression)",
+        "PMID:28539397 (codrituzumab HCC)",
+        "PMID:34380756 (GPC3 ADC review)"
+      ],
+      "needs_expert_review": false,
+      "tier": "Tier 4 (Emerging)"
+    },
+    "Nectin-2": {
+      "internalization_mechanism": "Internalization required for activity; similar to Nectin-4, it undergoes clathrin-mediated endocytosis. (I)",
+      "recycling_after_internalization": "Moderate. (I)",
+      "shedding_rate": "Low. (I)",
+      "biomarker_assay": "IHC for Nectin-2.",
+      "proliferation_sensitivity": "Moderate.",
+      "data_confidence": "moderate",
+      "evidence_note": "Target for various solid tumor ADCs (e.g., SKB410/MK-3120).",
+      "key_refs": [
+        "PMID:37196158"
+      ],
+      "tier": "Tier 4 (Emerging)",
+      "design_logic": "[Tier 4 (Emerging)] Based on Inferred (I) Moderate (I) and Inferred (I) High (I). Internalized via Internalization required for activity; similar to Nectin-4, it undergoes clathrin-mediated endocytosis. (I).",
+      "internalization_rate": "High (I)",
+      "density": "Moderate (I)",
+      "heterogeneity": "Moderate (I)",
+      "normal_tissue_expression": "Moderate (I)",
+      "on_target_off_tumor_risk": "Moderate (I)"
+    },
+    "PTK7": {
+      "expression": "solid_tumor",
+      "density": "moderate",
+      "heterogeneity": "high (I)",
+      "internalization_rate": "moderate",
+      "normal_tissue_expression": "moderate",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "moderate",
+      "evidence_note": "PTK7 (Pseudo-tyrosine kinase 7) is overexpressed in TNBC, NSCLC, and ovarian cancer. Cofretuzumab pelidotin (PF-06647020) is a leading ADC. Rapid internalization and moderate density, but high heterogeneity and normal tissue expression require careful dosing.",
+      "density_quantitative": "5e4 - 1e5 copies/cell (TNBC, NSCLC) (I)",
+      "internalization_t12": "Rapid (t1/2 < 1 hour) (I)",
+      "needs_expert_review": false,
+      "key_refs": [
+        "PMID:28334839"
+      ],
+      "internalization_mechanism": "Rapid clathrin-mediated endocytosis (Pseudo-tyrosine kinase 7; Wnt pathway co-receptor). (I)",
+      "recycling_after_internalization": "Primarily degraded. (I)",
+      "shedding_rate": "Moderate — soluble PTK7 shed by ADAM17. (I)",
+      "biomarker_assay": "IHC (PTK7 expression in TNBC, NSCLC, ovarian).",
+      "proliferation_sensitivity": "Moderate.",
+      "tier": "Tier 3 (Failed)",
+      "design_logic": "[Tier 3 (Failed)] Based on Inferred (I) moderate density and Inferred (I) moderate internalization. Internalized via Rapid clathrin-mediated endocytosis (Pseudo-tyrosine kinase 7; Wnt pathway co-receptor). (I)."
+    },
+    "CDH6": {
+      "expression": "solid_tumor",
+      "density": "moderate",
+      "heterogeneity": "moderate (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "low (kidney)",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "high",
+      "evidence_note": "CDH6 (Cadherin-6) is overexpressed in ovarian and renal cancers. Raludotatug deruxtecan (DS-6000) shows high ORR in ovarian cancer. Rapid internalization and low normal tissue expression (except kidney) make it a strong target.",
+      "density_quantitative": "5e4 - 1.5e5 copies/cell (Ovarian, Renal) (I)",
+      "internalization_t12": "Rapid (t1/2 ~ 1-2 hours) (I)",
+      "needs_expert_review": true,
+      "internalization_mechanism": "Rapid receptor-mediated endocytosis (Cadherin-6; clathrin-mediated). (I)",
+      "recycling_after_internalization": "Primarily degraded. (I)",
+      "shedding_rate": "Low. (I)",
+      "biomarker_assay": "IHC (CDH6 expression in ovarian and renal cancers).",
+      "proliferation_sensitivity": "Moderate.",
+      "key_refs": [
+        "PMID:34711642",
+        "NCT04707469"
+      ],
+      "tier": "Tier 2 (Active)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) moderate density and Inferred (I) high internalization. Internalized via Rapid receptor-mediated endocytosis (Cadherin-6; clathrin-mediated). (I)."
+    },
+    "CEACAM5": {
+      "expression": "solid_tumor",
+      "density": "high",
+      "heterogeneity": "high (I)",
+      "internalization_rate": "low",
+      "normal_tissue_expression": "moderate (GI epithelium)",
+      "on_target_off_tumor_risk": "high",
+      "data_confidence": "high",
+      "evidence_note": "CEACAM5 (CEA) is highly expressed in CRC, gastric, and NSCLC. Tusamitamab ravtansine (SAR408701) is a leading ADC. Moderate shedding and partial recycling are challenges, but high density and tumor-restricted expression (apical) provide a window.",
+      "density_quantitative": "1e5 - 5e5 copies/cell (CRC, NSCLC) (I)",
+      "internalization_t12": "Moderate (t1/2 ~ 2-4 hours) (I)",
+      "shedding_rate": "Moderate — soluble CEA shed into bloodstream (serum CEA a tumor marker); shed CEA can act as antigen sink at very high tumor burden (>1000 ng/mL). However, membrane-bound CEACAM5 is still well-maintained. (I)",
+      "key_refs": [
+        "PMID:34789493 (tusamitamab Phase 2)",
+        "PMID:29233830 (CEACAM5 expression review)",
+        "NCT04394650"
+      ],
+      "needs_expert_review": false,
+      "internalization_mechanism": "Moderate clathrin-mediated endocytosis after antibody cross-linking (CEACAM5 is GPI-anchored in many cells but transmembrane isoform on cancer cells); lipid raft-mediated pathway; internalization rate varies by tumor type (I)",
+      "recycling_after_internalization": "Moderate recycling (~40–50%) in colorectal cancer cell lines; remainder degraded (I)",
+      "biomarker_assay": "IHC (CEACAM5 ≥2+ in ≥50% tumor cells for tusamitamab ravtansine trial); serum CEA for disease monitoring (>5 ng/mL = elevated). FDA CDx: not yet approved for any CEACAM5 ADC.",
+      "proliferation_sensitivity": "Moderate — DM4-based ADCs (tusamitamab) are mitosis-dependent",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) high density and Inferred (I) low internalization. Internalized via Moderate clathrin-mediated endocytosis after antibody cross-linking (CEACAM5 is GPI-anchored in many cells but transmembrane isoform on cancer cells); lipid raft-mediated pathway; internalization rate varies by tumor type (I).",
+      "tier": "Tier 2 (Active)"
+    },
+    "MSLN": {
+      "expression": "solid_tumor",
+      "density": "high",
+      "heterogeneity": "low (I)",
+      "internalization_rate": "moderate",
+      "normal_tissue_expression": "low (mesothelial lining)",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "moderate",
+      "evidence_note": "Mesothelin is highly expressed in mesothelioma and ovarian cancer. Internalization is slow, and shedding is high, creating a significant antigen sink. Anetumab ravtansine (anti-MSLN-DM4) and other ADCs are in clinical trials.",
+      "density_quantitative": "1e5 - 5e5 copies/cell (Mesothelioma, Ovarian) (I)",
+      "internalization_t12": "Slow (t1/2 ~ 8-12 hours) (I)",
+      "needs_expert_review": true,
+      "internalization_mechanism": "POOR — GPI-anchored protein primarily on apical/luminal surface; macropinocytosis is limited; SLOW internalization is a major ADC design challenge (I)",
+      "recycling_after_internalization": "Primarily membrane-retained; minimal degradation after internalization (I)",
+      "shedding_rate": "High — soluble megakaryocyte potentiating factor (MPF) shed by ADAM proteases; soluble mesothelin in plasma acts as antigen sink (reduces effective dose reaching tumor) (I)",
+      "biomarker_assay": "IHC (mesothelin expression by H-score >50); serum soluble mesothelin (SMRP) as pharmacodynamic biomarker",
+      "proliferation_sensitivity": "High — most Mesothelin ADCs use MMAE; poor internalization limits payload delivery efficiency",
+      "design_logic": "[Unknown Tier] Based on Inferred (I) high density and Inferred (I) moderate internalization. Internalized via POOR — GPI-anchored protein primarily on apical/luminal surface; macropinocytosis is limited; SLOW internalization is a major ADC design challenge (I).",
+      "key_refs": [
+        "PMID:26275529 (anetumab ravtansine)",
+        "PMID:30530824 (Mesothelin internalization challenge)",
+        "PMID:33273122"
+      ],
+      "_note": "Alias for Mesothelin — see that entry for canonical data"
+    },
+    "MUC1": {
+      "expression": "solid_tumor",
+      "density": "high",
+      "heterogeneity": "high (I)",
+      "internalization_rate": "moderate",
+      "normal_tissue_expression": "moderate (epithelia)",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "moderate",
+      "evidence_note": "MUC1 is ubiquitously expressed but aberrantly glycosylated in cancer (TA-MUC1). Massive shedding of CA 15-3 is a major challenge. ADCs targeting TA-MUC1 (e.g., PBD-based) are preferred to avoid normal tissue toxicity and antigen sink.",
+      "density_quantitative": "1e5 - 1e6 copies/cell (Breast, Pancreatic) (I)",
+      "internalization_t12": "Moderate (t1/2 ~ 4-6 hours) (I)",
+      "internalization_mechanism": "Moderate constitutive endocytosis (MUC1 is a heavily glycosylated mucin; internalization occurs via macropinocytosis and clathrin-mediated pathways; rate depends on glycosylation state — aberrantly glycosylated (TA-MUC1) internalizes faster than normal) (I)",
+      "recycling_after_internalization": "Significant recycling (~50–60%) — MUC1 cytoplasmic domain interacts with β-catenin and multiple signaling pathways; recycling is part of its oncogenic signaling function (I)",
+      "shedding_rate": "HIGH — MUC1 ectodomain extensively shed (CA 15-3 antigen is shed MUC1 ectodomain; serum CA 15-3 in breast cancer can be >1000 U/mL). Shed MUC1 acts as significant antigen sink. ADC strategies target membrane-proximal domain or aberrant glyco-epitopes (TA-MUC1) that are less shed. (I)",
+      "biomarker_assay": "IHC (MUC1/EMA ≥1+ expression); serum CA 15-3 for treatment monitoring. For ADC trials: TA-MUC1 specific IHC (VU4H11 or HMFG1 antibody) to distinguish tumor-specific from normal MUC1.",
+      "proliferation_sensitivity": "Moderate",
+      "design_logic": "[Unknown Tier] Based on Inferred (I) high density and Inferred (I) moderate internalization. Internalized via Moderate constitutive endocytosis (MUC1 is a heavily glycosylated mucin; internalization occurs via macropinocytosis and clathrin-mediated pathways; rate depends on glycosylation state — aberrantly glycosylated (TA-MUC1) internalizes faster than normal) (I).",
+      "key_refs": [
+        "PMID:8765048 (MUC1 shedding mechanism)",
+        "PMID:28947957 (TA-MUC1 ADC)",
+        "PMID:29844174 (MUC1 ADC review)"
+      ],
+      "needs_expert_review": false
+    },
+    "MUC16": {
+      "expression": "solid_tumor",
+      "density": "high",
+      "heterogeneity": "high (I)",
+      "internalization_rate": "low",
+      "normal_tissue_expression": "low",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "moderate",
+      "evidence_note": "MUC16 (CA125) is highly expressed in ovarian cancer. Massive shedding of the CA125 domain is the primary barrier. ADCs must target the retained proximal STALK domain (e.g., DMUC5754A) to avoid the antigen sink.",
+      "density_quantitative": "1e5 - 1e6 copies/cell (Ovarian) (I)",
+      "internalization_t12": "Moderate (t1/2 ~ 4-8 hours) (I)",
+      "shedding_rate": "VERY HIGH — massive ectodomain shedding (CA125) is the primary challenge. Shed CA125 acts as a massive antigen sink in ovarian cancer (serum CA125 >10,000 U/mL common). ADCs must target the proximal STALK domain (retained after shedding). (I)",
+      "key_refs": [
+        "PMID:30126844 (DMUC5754A Ph1)",
+        "PMID:17932349 (MUC16 shedding)"
+      ],
+      "needs_expert_review": false,
+      "internalization_mechanism": "Moderate — transmembrane domain anchors it; EGF-domain binding triggers endocytosis (I)",
+      "recycling_after_internalization": "Moderate recycling (I)",
+      "biomarker_assay": "Serum CA125 (CA125/MUC16 EIA; used as PD biomarker); IHC for tumor expression. Target: membrane-proximal repeat domain (e.g., DMUC5754A targets retained stalk)",
+      "proliferation_sensitivity": "Moderate",
+      "design_logic": "[Unknown Tier] Based on Inferred (I) high density and Inferred (I) low internalization. Internalized via Moderate — transmembrane domain anchors it; EGF-domain binding triggers endocytosis (I)."
+    },
+    "ROR1": {
+      "expression": "liquid_solid",
+      "density": "moderate",
+      "heterogeneity": "low (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "very_low",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "moderate",
+      "evidence_note": "ROR1 is an oncofetal antigen expressed in CLL, MCL, and various solid tumors (TNBC, lung). Zilovertamab vedotin (VLS-101) shows promising clinical activity. Rapid internalization via caveolae/clathrin-mediated pathways.",
+      "density_quantitative": "1e4 - 5e4 copies/cell (MCL, TNBC) (I)",
+      "internalization_t12": "Rapid (t1/2 ~ 1-2 hours) (I)",
+      "needs_expert_review": false,
+      "key_refs": [
+        "PMID:34711642 (Zilovertamab vedotin)",
+        "PMID:33658172 (VLS-101)"
+      ],
+      "internalization_mechanism": "Rapid clathrin-mediated endocytosis (caveolae-mediated reported in some cell lines; mechanism varies) (I)",
+      "recycling_after_internalization": "Primarily degraded (I)",
+      "shedding_rate": "Very low (I)",
+      "biomarker_assay": "Flow cytometry (>20% ROR1+) or IHC; ROR1 protein expression correlates with gene expression",
+      "proliferation_sensitivity": "Moderate",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) moderate density and Inferred (I) high internalization. Internalized via Rapid clathrin-mediated endocytosis (caveolae-mediated reported in some cell lines; mechanism varies) (I).",
+      "tier": "Tier 2 (Active)"
+    },
+    "ROR2": {
+      "expression": "solid_tumor",
+      "density": "Moderate (I)",
+      "heterogeneity": "moderate (I)",
+      "internalization_rate": "High (I)",
+      "normal_tissue_expression": "very_low",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "high",
+      "evidence_note": "ROR2 is an orphan receptor tyrosine kinase overexpressed in RCC, osteosarcoma, and melanoma. BA3021 (CAB-ROR2-ADC) is a leading candidate. Rapid internalization and tumor-specific expression make it a strong target.",
+      "density_quantitative": "2e4 - 8e4 copies/cell (RCC, Melanoma) (I)",
+      "internalization_t12": "Rapid (t1/2 ~ 1-2 hours) (I)",
+      "internalization_mechanism": "Rapid internalization via clathrin-mediated endocytosis, confirmed by functional screening of human antibody libraries. (I)",
+      "recycling_after_internalization": "Primarily lysosomal trafficking. (I)",
+      "shedding_rate": "Low. (I)",
+      "biomarker_assay": "IHC for ROR2 expression in RCC and osteosarcoma.",
+      "proliferation_sensitivity": "High.",
+      "key_refs": [
+        "PMID:30546250"
+      ],
+      "tier": "Tier 4 (Emerging)",
+      "design_logic": "[Tier 4 (Emerging)] Based on Inferred (I) moderate density and Inferred (I) high internalization. Internalized via Rapid internalization via clathrin-mediated endocytosis, confirmed by functional screening of human antibody libraries. (I)."
+    },
+    "ENPP3": {
+      "expression": "solid_tumor",
+      "density": "high",
+      "heterogeneity": "low (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "low (kidney)",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "moderate",
+      "evidence_note": "Target for AGS-16C3 (anti-ENPP3-MMAF).",
+      "needs_expert_review": true,
+      "internalization_mechanism": "Rapid receptor-mediated endocytosis (Ectonucleotide pyrophosphatase/phosphodiesterase 3). (I)",
+      "recycling_after_internalization": "Primarily degraded. (I)",
+      "shedding_rate": "Low. (I)",
+      "biomarker_assay": "IHC (ENPP3 expression in RCC).",
+      "proliferation_sensitivity": "Moderate.",
+      "key_refs": [
+        "PMID:25957392"
+      ],
+      "design_logic": "[Unknown Tier] Based on Inferred (I) high density and Inferred (I) high internalization. Internalized via Rapid receptor-mediated endocytosis (Ectonucleotide pyrophosphatase/phosphodiesterase 3). (I)."
+    },
+    "CD70": {
+      "expression": "liquid_solid",
+      "density": "moderate",
+      "heterogeneity": "high (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "very_low (activated T/B cells)",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "moderate",
+      "evidence_note": "Target for vorsetuzumab mafodotin.",
+      "needs_expert_review": true,
+      "internalization_mechanism": "Rapid receptor-mediated endocytosis (TNFR superfamily member; rapid after antibody binding). (I)",
+      "recycling_after_internalization": "Primarily degraded. (I)",
+      "shedding_rate": "Low. (I)",
+      "biomarker_assay": "IHC or flow cytometry (CD70 expression in RCC and lymphoma).",
+      "proliferation_sensitivity": "Moderate.",
+      "key_refs": [
+        "PMID:23963802"
+      ],
+      "tier": "Tier 3 (Failed)",
+      "design_logic": "[Tier 3 (Failed)] Based on Inferred (I) moderate density and Inferred (I) high internalization. Internalized via Rapid receptor-mediated endocytosis (TNFR superfamily member; rapid after antibody binding). (I)."
+    },
+    "CD228": {
+      "internalization_mechanism": "Rapid and efficient internalization in various solid tumor types (melanoma, lung, breast). (I)",
+      "recycling_after_internalization": "Minimal recycling; efficient lysosomal degradation. (I)",
+      "shedding_rate": "Very low (GPI-anchored protein). (I)",
+      "biomarker_assay": "IHC for CD228 (Melanotransferrin).",
+      "proliferation_sensitivity": "High.",
+      "data_confidence": "high",
+      "evidence_note": "SGN-CD228A (hL49-MMAE) demonstrates that cytotoxic activity is strictly dependent on CD228 internalization.",
+      "key_refs": [
+        "PMID:36800443"
+      ],
+      "tier": "Tier 2 (Active)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) High (I) and Inferred (I) High (C). Internalized via Rapid and efficient internalization in various solid tumor types (melanoma, lung, breast). (I).",
+      "density_quantitative": "NA",
+      "internalization_t12": "NA",
+      "heterogeneity": "NA",
+      "density": "High (I)",
+      "internalization_rate": "High (C)",
+      "normal_tissue_expression": "Moderate (I)",
+      "on_target_off_tumor_risk": "Moderate (I)"
+    },
+    "FAP": {
+      "internalization_mechanism": "Internalization confirmed in vitro for FAP-targeting ADCs (e.g., FAP-exatecan), though rate can be influenced by DAR and linker hydrophobicity. (I)",
+      "recycling_after_internalization": "Moderate; primarily lysosomal delivery. (I)",
+      "shedding_rate": "Low (membrane-bound protease). (I)",
+      "biomarker_assay": "IHC for FAP in tumor stroma/CAFs.",
+      "proliferation_sensitivity": "Moderate.",
+      "data_confidence": "high",
+      "evidence_note": "FAP-exatecan ADC (DAR 8) shows potent activity and reverses immunosuppressive TME.",
+      "key_refs": [
+        "PMID:37945842"
+      ],
+      "tier": "Tier 2 (Active)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) Moderate (I) and Inferred (I) Moderate (I). Internalized via Internalization confirmed in vitro for FAP-targeting ADCs (e.g., FAP-exatecan), though rate can be influenced by DAR and linker hydrophobicity. (I).",
+      "internalization_rate": "Moderate (I)",
+      "density": "Moderate (I)",
+      "heterogeneity": "Moderate (I)",
+      "normal_tissue_expression": "Moderate (I)",
+      "on_target_off_tumor_risk": "Moderate (I)"
+    },
+    "LGR5": {
+      "expression": "solid_tumor",
+      "density": "moderate",
+      "heterogeneity": "high (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "moderate (GI stem cells)",
+      "on_target_off_tumor_risk": "high",
+      "data_confidence": "moderate",
+      "evidence_note": "Target for BNC101 and other CRC-targeted ADCs.",
+      "needs_expert_review": true,
+      "internalization_mechanism": "Rapid constitutive clathrin-mediated endocytosis (Leucine-rich repeat-containing G-protein coupled receptor 5; Wnt pathway marker). (I)",
+      "recycling_after_internalization": "Primarily degraded. (I)",
+      "shedding_rate": "Very low. (I)",
+      "biomarker_assay": "IHC or RNA-ISH (LGR5 expression in CRC).",
+      "proliferation_sensitivity": "High.",
+      "key_refs": [
+        "PMID:22740452"
+      ],
+      "tier": "Tier 3 (Failed)",
+      "design_logic": "[Tier 3 (Failed)] Based on Inferred (I) moderate density and Inferred (I) high internalization. Internalized via Rapid constitutive clathrin-mediated endocytosis (Leucine-rich repeat-containing G-protein coupled receptor 5; Wnt pathway marker). (I)."
+    },
+    "LRRC15": {
+      "expression": "solid_tumor",
+      "density": "high (stroma)",
+      "heterogeneity": "low (I)",
+      "internalization_rate": "moderate",
+      "normal_tissue_expression": "very_low",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "moderate",
+      "evidence_note": "Target for ABBV-085.",
+      "needs_expert_review": true,
+      "internalization_mechanism": "Rapid clathrin-mediated endocytosis (Leucine-rich repeat containing 15; expressed on tumor-associated fibroblasts and some tumor cells). (I)",
+      "recycling_after_internalization": "Primarily degraded. (I)",
+      "shedding_rate": "Low. (I)",
+      "biomarker_assay": "IHC (LRRC15 expression in osteosarcoma and other solid tumors).",
+      "proliferation_sensitivity": "Moderate.",
+      "key_refs": [
+        "PMID:28334839"
+      ],
+      "tier": "Tier 2 (Active)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) high (stroma) density and Inferred (I) moderate internalization. Internalized via Rapid clathrin-mediated endocytosis (Leucine-rich repeat containing 15; expressed on tumor-associated fibroblasts and some tumor cells). (I)."
+    },
+    "SLITRK6": {
+      "expression": "solid_tumor",
+      "density": "moderate",
+      "heterogeneity": "moderate (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "low (neural)",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "moderate",
+      "evidence_note": "Target for SGN-STNV.",
+      "needs_expert_review": true,
+      "internalization_mechanism": "Rapid receptor-mediated endocytosis (SLIT and NTRK-like protein 6). (I)",
+      "recycling_after_internalization": "Primarily degraded. (I)",
+      "shedding_rate": "Low. (I)",
+      "biomarker_assay": "IHC (SLITRK6 expression in bladder cancer).",
+      "proliferation_sensitivity": "Moderate.",
+      "key_refs": [
+        "PMID:27760882"
+      ],
+      "tier": "Tier 2 (Active)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) moderate density and Inferred (I) high internalization. Internalized via Rapid receptor-mediated endocytosis (SLIT and NTRK-like protein 6). (I)."
+    },
+    "UPK2": {
+      "internalization_mechanism": "Efficient internalization in urothelial cells; identified as a highly specific target for bladder cancer. (I)",
+      "recycling_after_internalization": "Low. (I)",
+      "shedding_rate": "Very low. (I)",
+      "biomarker_assay": "IHC for Uroplakin 2.",
+      "proliferation_sensitivity": "Moderate.",
+      "data_confidence": "moderate",
+      "evidence_note": "UPK2-ADC shows potent activity in preclinical bladder cancer models.",
+      "key_refs": [
+        "PMID:31611324"
+      ],
+      "tier": "Tier 2 (Active)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) Moderate (I) and Inferred (I) Moderate (I). Internalized via Efficient internalization in urothelial cells; identified as a highly specific target for bladder cancer. (I).",
+      "internalization_rate": "Moderate (I)",
+      "density": "Moderate (I)",
+      "heterogeneity": "Moderate (I)",
+      "normal_tissue_expression": "Moderate (I)",
+      "on_target_off_tumor_risk": "Moderate (I)"
+    },
+    "NaPi2b": {
+      "expression": "solid_tumor",
+      "density": "high",
+      "heterogeneity": "moderate (I)",
+      "internalization_rate": "moderate",
+      "normal_tissue_expression": "moderate (lung, GI)",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "moderate",
+      "evidence_note": "NaPi2b is a sodium-dependent phosphate transporter highly expressed in ovarian and lung adenocarcinoma (NSCLC). Lifastuzumab vedotin (DNIB0600A) and Upifitamab rilsodotin (UpRi) are key ADCs. Moderate internalization and significant recycling.",
+      "density_quantitative": "1e5 - 2e5 copies/cell (Ovarian, NSCLC) (I)",
+      "internalization_t12": "Moderate (t1/2 ~ 4-6 hours) (I)",
+      "needs_expert_review": false,
+      "key_refs": [
+        "PMID:29162666"
+      ],
+      "internalization_mechanism": "Moderate constitutive endocytosis (Type IIb sodium-phosphate cotransporter; clathrin-mediated). (I)",
+      "recycling_after_internalization": "Significant recycling (~40–60%) as part of phosphate homeostasis. (I)",
+      "shedding_rate": "Very low — multi-pass transmembrane protein. (I)",
+      "biomarker_assay": "IHC (NaPi2b ≥2+ in ≥10% tumor cells for lifastuzumab trials).",
+      "proliferation_sensitivity": "Moderate.",
+      "tier": "Tier 2 (Active)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) high density and Inferred (I) moderate internalization. Internalized via Moderate constitutive endocytosis (Type IIb sodium-phosphate cotransporter; clathrin-mediated). (I)."
+    },
+    "LIV-1": {
+      "expression": "solid_tumor",
+      "density": "moderate_to_high",
+      "heterogeneity": "moderate (I)",
+      "internalization_rate": "Moderate (C)",
+      "normal_tissue_expression": "low",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "moderate",
+      "evidence_note": "LIV-1 (SLC39A6) is a zinc transporter overexpressed in breast and prostate cancers. Ladiratuzumab vedotin (SGN-LIV1A) is in clinical development. Rapid internalization and low normal tissue expression.",
+      "density_quantitative": "5e4 - 1e5 copies/cell (Breast, Prostate) (I)",
+      "internalization_t12": "Rapid (t1/2 ~ 1-2 hours) (I)",
+      "key_refs": [
+        "PMID:32041721"
+      ],
+      "needs_expert_review": false,
+      "internalization_mechanism": "Rapid constitutive endocytosis (SLC39A6 zinc transporter; clathrin-mediated). (I)",
+      "recycling_after_internalization": "Moderate recycling (~40%). (I)",
+      "shedding_rate": "Low. (I)",
+      "biomarker_assay": "IHC (LIV-1 ≥2+ in ≥10% tumor cells for ladiratuzumab trials).",
+      "proliferation_sensitivity": "Moderate.",
+      "tier": "Tier 2 (Active)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) moderate_to_high density and Inferred (I) high internalization. Internalized via Rapid constitutive endocytosis (SLC39A6 zinc transporter; clathrin-mediated). (I)."
+    },
+    "GCC": {
+      "expression": "solid_tumor",
+      "density": "high",
+      "heterogeneity": "low (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "moderate (GI)",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "moderate",
+      "evidence_note": "Guanylyl cyclase C (GCC) is highly expressed in colorectal cancer (CRC) and gastric cancer. Indusatumab vedotin (MLN0264) is a leading ADC. Rapid internalization and restricted expression to the apical surface of GI epithelia provide a therapeutic window.",
+      "density_quantitative": "1e5 - 5e5 copies/cell (CRC, Gastric) (I)",
+      "internalization_t12": "Rapid (t1/2 ~ 1-2 hours) (I)",
+      "needs_expert_review": true,
+      "internalization_mechanism": "Rapid receptor-mediated endocytosis (Guanylyl cyclase C; ligand ST-induced or antibody-induced). (I)",
+      "recycling_after_internalization": "Primarily degraded. (I)",
+      "shedding_rate": "Low. (I)",
+      "biomarker_assay": "IHC (GCC expression in CRC and gastric cancer).",
+      "proliferation_sensitivity": "Moderate.",
+      "key_refs": [
+        "PMID:27458193"
+      ],
+      "tier": "Tier 2 (Active)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) high density and Inferred (I) high internalization. Internalized via Rapid receptor-mediated endocytosis (Guanylyl cyclase C; ligand ST-induced or antibody-induced). (I)."
+    },
+    "ASCT2": {
+      "internalization_mechanism": "Efficient internalization via clathrin-mediated endocytosis; validated in various tumor types (CRC, NSCLC). (I)",
+      "recycling_after_internalization": "Low. (I)",
+      "shedding_rate": "Low. (I)",
+      "biomarker_assay": "IHC for ASCT2 (SLC1A5).",
+      "proliferation_sensitivity": "High.",
+      "data_confidence": "high",
+      "evidence_note": "MEDI7247 (ASCT2-targeted ADC) shows rapid internalization and potent antitumor activity.",
+      "key_refs": [
+        "PMID:31164375"
+      ],
+      "tier": "Tier 2 (Active)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) Moderate (I) and Inferred (I) High (I). Internalized via Efficient internalization via clathrin-mediated endocytosis; validated in various tumor types (CRC, NSCLC). (I).",
+      "internalization_rate": "High (I)",
+      "density": "Moderate (I)",
+      "heterogeneity": "Moderate (I)",
+      "normal_tissue_expression": "Moderate (I)",
+      "on_target_off_tumor_risk": "Moderate (I)"
+    },
+    "B7-H4": {
+      "expression": "solid_tumor",
+      "density": "high",
+      "heterogeneity": "low (I)",
+      "internalization_rate": "moderate",
+      "normal_tissue_expression": "very_low",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "moderate",
+      "evidence_note": "B7-H4 (VTCN1) is overexpressed in breast, ovarian, and endometrial cancers. AZD8205 (anti-B7-H4-DXd) is in clinical development. Low normal tissue expression and moderate internalization make it a promising ADC target.",
+      "density_quantitative": "5e4 - 2e5 copies/cell (Breast, Ovarian) (I)",
+      "internalization_t12": "Moderate (t1/2 ~ 3-5 hours) (I)",
+      "internalization_mechanism": "Moderate clathrin-mediated endocytosis (B7-H4/VTCN1 is a B7 family checkpoint ligand; internalization rate is moderate — ~40–60% internalized within 4h) (I)",
+      "recycling_after_internalization": "Moderate recycling (~40%); remainder degraded (I)",
+      "shedding_rate": "Low (I)",
+      "biomarker_assay": "IHC (B7-H4 ≥5% tumor cells for clinical trials; VENTANA B7-H4 SP309 assay); expressed in breast (~25–40%), ovarian (~60%), endometrial (~50%). No FDA CDx.",
+      "proliferation_sensitivity": "Moderate",
+      "key_refs": [
+        "PMID:17001294 (B7-H4 breast/ovarian)",
+        "PMID:34599012 (AZD8205 Phase 1)",
+        "NCT04205409"
+      ],
+      "needs_expert_review": false,
+      "tier": "Tier 2 (Active)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) high density and Inferred (I) moderate internalization. Internalized via Moderate clathrin-mediated endocytosis (B7-H4/VTCN1 is a B7 family checkpoint ligand; internalization rate is moderate — ~40–60% internalized within 4h) (I)."
+    },
+    "CD25": {
+      "internalization_mechanism": "Rapid internalization via the IL-2 receptor complex (clathrin-independent, dynamin-dependent). (I)",
+      "recycling_after_internalization": "Low; primarily targeted to late endosomes/lysosomes. (I)",
+      "shedding_rate": "Moderate (soluble CD25 can be detected in serum). (I)",
+      "biomarker_assay": "Flow cytometry or IHC for CD25 (IL-2Ra).",
+      "proliferation_sensitivity": "High (T-cell malignancies).",
+      "data_confidence": "high",
+      "evidence_note": "Target for Camidanlumab tesirine (ADCT-301). Rapid internalization is a hallmark of IL-2R signaling.",
+      "key_refs": [
+        "PMID:28935674"
+      ],
+      "design_logic": "[Unknown Tier] Based on Inferred (I) Moderate (I) and Inferred (I) High (I). Internalized via Rapid internalization via the IL-2 receptor complex (clathrin-independent, dynamin-dependent). (I).",
+      "internalization_rate": "High (I)",
+      "density": "Moderate (I)",
+      "heterogeneity": "Moderate (I)",
+      "normal_tissue_expression": "Moderate (I)",
+      "on_target_off_tumor_risk": "Moderate (I)"
+    },
+    "CD46": {
+      "internalization_mechanism": "Efficient internalization via multiple pathways; identified as a top internalizing target in prostate cancer. (I)",
+      "recycling_after_internalization": "Moderate recycling; significant lysosomal delivery. (I)",
+      "shedding_rate": "Low to moderate. (I)",
+      "biomarker_assay": "IHC for CD46 (overexpressed in mCRPC and NEPC).",
+      "proliferation_sensitivity": "Moderate.",
+      "data_confidence": "high",
+      "evidence_note": "CD46 targeted by FOR46 ADC shows robust internalization and efficacy in prostate cancer models.",
+      "key_refs": [
+        "PMID:30102631"
+      ],
+      "tier": "Tier 2 (Active)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) Moderate (I) and Inferred (I) Moderate (I). Internalized via Efficient internalization via multiple pathways; identified as a top internalizing target in prostate cancer. (I).",
+      "internalization_rate": "Moderate (I)",
+      "density": "Moderate (I)",
+      "heterogeneity": "Moderate (I)",
+      "normal_tissue_expression": "Moderate (I)",
+      "on_target_off_tumor_risk": "Moderate (I)"
+    },
+    "CD37": {
+      "internalization_mechanism": "Moderate to rapid internalization; tetraspanin family members often facilitate rapid endocytosis upon cross-linking. (I)",
+      "recycling_after_internalization": "Moderate. (I)",
+      "shedding_rate": "Low. (I)",
+      "biomarker_assay": "IHC or Flow for CD37 in B-cell lymphomas.",
+      "proliferation_sensitivity": "High.",
+      "data_confidence": "high",
+      "evidence_note": "Naratuximab emtansine (IMGN529) relies on CD37 internalization for payload delivery.",
+      "key_refs": [
+        "PMID:24658681"
+      ],
+      "tier": "Tier 2 (Active)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) Moderate (I) and Inferred (I) High (C). Internalized via Moderate to rapid internalization; tetraspanin family members often facilitate rapid endocytosis upon cross-linking. (I).",
+      "internalization_rate": "High (C)",
+      "density": "Moderate (I)",
+      "heterogeneity": "Moderate (I)",
+      "normal_tissue_expression": "Moderate (I)",
+      "on_target_off_tumor_risk": "Moderate (I)"
+    },
+    "CD138": {
+      "expression": "liquid_tumor",
+      "density": "high",
+      "heterogeneity": "low (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "low (epithelia)",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "high",
+      "evidence_note": "CD138 expressed on >99% myeloma plasma cells, hepatocytes, epithelial cells. High shedding is the primary challenge — shed ectodomain captures ADC before tumor delivery. Indatuximab ravtansine (BT062, anti-CD138-DM4): modest single-agent activity. Combination with dexamethasone showed improved response. Belantamab approach (BCMA) may have partially superseded CD138 as myeloma target due to lower shedding.",
+      "needs_expert_review": false,
+      "internalization_mechanism": "Moderate-to-rapid endocytosis (syndecan-1 heparan sulfate proteoglycan; internalized via clathrin-mediated and macropinocytosis pathways; shedding of ectodomain is the major regulatory mechanism) (I)",
+      "recycling_after_internalization": "Moderate recycling (~30–40%); significant lysosomal degradation (I)",
+      "shedding_rate": "HIGH — CD138 ectodomain actively shed by MMP-7 and heparanase into serum; shed syndecan-1 stimulates tumor growth and angiogenesis. Soluble CD138 in myeloma patients: 100–3000 ng/mL. Major antigen sink concern. (I)",
+      "biomarker_assay": "Flow cytometry (CD138+ plasma cells, standard myeloma diagnosis); IHC for plasmacytoma/light-chain amyloidosis. Serum syndecan-1 (soluble CD138) as prognostic marker.",
+      "proliferation_sensitivity": "Low — plasma cells are largely post-mitotic; cell-cycle independent payloads (DNA alkylators, RNA pol II inhibitors) preferred",
+      "key_refs": [
+        "PMID:23963802 (indatuximab Phase 1)",
+        "PMID:16239570 (CD138 shedding mechanism)",
+        "PMID:28438881 (CD138 shedding in ADC context)"
+      ],
+      "design_logic": "[Unknown Tier] Based on Inferred (I) high density and Inferred (I) high internalization. Internalized via Moderate-to-rapid endocytosis (syndecan-1 heparan sulfate proteoglycan; internalized via clathrin-mediated and macropinocytosis pathways; shedding of ectodomain is the major regulatory mechanism) (I)."
+    },
+    "FcRH5": {
+      "expression": "liquid_tumor",
+      "density": "moderate",
+      "heterogeneity": "low (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "low (B cells)",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "moderate",
+      "evidence_note": "FcRH5 expressed on all B cells and plasma cells, including normal B cells (not myeloma-selective). Cevostamab (FcRH5×CD3) shows activity in heavily pretreated myeloma. ADC format potentially advantageous to reduce off-tumor B-cell depletion vs bispecific. Clinical ADC programs in early development.",
+      "needs_expert_review": false,
+      "internalization_mechanism": "Rapid receptor-mediated endocytosis (FcRH5/FCRL5 is an Fc receptor-like protein; rapid internalization after antibody binding via clathrin-mediated pathway) (I)",
+      "recycling_after_internalization": "Primarily degraded (limited recycling) (I)",
+      "shedding_rate": "Low (I)",
+      "biomarker_assay": "Flow cytometry or IHC (FcRH5 >20% plasma cells); expressed on all B-lineage cells (B cells, plasma cells). Cevostamab (FcRH5×CD3 bispecific) efficacy correlated with FcRH5 expression level.",
+      "proliferation_sensitivity": "Low — myeloma plasma cells are largely post-mitotic",
+      "key_refs": [
+        "PMID:23293052 (FcRH5 myeloma)",
+        "PMID:35584508 (cevostamab Phase 1)"
+      ],
+      "tier": "Tier 2 (Active)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) moderate density and Inferred (I) high internalization. Internalized via Rapid receptor-mediated endocytosis (FcRH5/FCRL5 is an Fc receptor-like protein; rapid internalization after antibody binding via clathrin-mediated pathway) (I)."
+    },
+    "GPRC5D": {
+      "expression": "liquid_tumor",
+      "density": "high",
+      "heterogeneity": "low (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "low (hair follicles)",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "high",
+      "evidence_note": "GPRC5D expressed on malignant plasma cells (>90% myeloma), hair follicles, and skin keratinocytes. FDA-approved: talquetamab (GPRC5D×CD3 bispecific) 2023. Key on-target off-tumor toxicities: dysgeusia, nail changes, skin rash from hair follicle expression. ADC format under development with DM1/MMAE payloads to avoid bispecific-related CRS.",
+      "needs_expert_review": false,
+      "internalization_mechanism": "Rapid constitutive internalization (orphan GPCR; Class C GPCR family; constitutive ligand-independent endocytosis typical of class C GPCRs via clathrin-mediated pathway) (I)",
+      "recycling_after_internalization": "Primarily degraded (GPCR downregulation pathway via ubiquitin-proteasome and lysosomal targeting after agonist-independent internalization) (I)",
+      "shedding_rate": "Very low — seven-pass transmembrane GPCR; no known ectodomain shedding (I)",
+      "biomarker_assay": "IHC (GPRC5D ≥10% plasma cells for talquetamab trial); flow cytometry for myeloma cells. GPRC5D protein detected in hair follicles and skin — source of dermatological toxicity (rash, nail changes) with talquetamab.",
+      "proliferation_sensitivity": "Low — plasma cells are post-mitotic; cell-cycle independent payloads preferred for myeloma",
+      "key_refs": [
+        "PMID:28028218 (GPRC5D myeloma)",
+        "PMID:37342928 (talquetamab Phase 1)",
+        "FDA approval: talquetamab (Talvey) 2023"
+      ],
+      "tier": "Tier 2 (Active)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) high density and Inferred (I) high internalization. Internalized via Rapid constitutive internalization (orphan GPCR; Class C GPCR family; constitutive ligand-independent endocytosis typical of class C GPCRs via clathrin-mediated pathway) (I)."
+    },
+    "CLL-1": {
+      "expression": "liquid_tumor",
+      "density": "moderate",
+      "heterogeneity": "low (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "low (myeloid cells)",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "moderate",
+      "evidence_note": "CLL-1 expressed on >80% AML blasts and >90% leukemic stem cells (LSCs). NOT expressed on normal HSCs (CD34+CD38- hematopoietic stem cells) — critical advantage over CD33 and CD123. DCLL9718A (anti-CLL1-PBD ADC): Phase 1 in AML. Key advantage: CLL-1 on LSCs allows stem cell eradication without normal HSC toxicity.",
+      "needs_expert_review": false,
+      "internalization_mechanism": "Rapid clathrin-mediated endocytosis (CLEC12A/CLL-1 is a C-type lectin; rapid ligand-induced and constitutive internalization; highly expressed on AML blasts and LSCs (leukemic stem cells)) (I)",
+      "recycling_after_internalization": "Primarily degraded (lectin-type receptor; rapid lysosomal routing after internalization) (I)",
+      "shedding_rate": "Low — minimal ectodomain shedding (I)",
+      "biomarker_assay": "Flow cytometry (CLL-1/CLEC12A >20% AML blasts; expressed on LSCs which are CD34+CD38- — important for MRD eradication); IHC for blast infiltration in marrow biopsy",
+      "proliferation_sensitivity": "Low — DNA-damaging or RNA pol II inhibitors preferred (CLL-1 is expressed on quiescent LSCs that must be targeted)",
+      "key_refs": [
+        "PMID:19228616 (CLL-1 AML LSC expression)",
+        "PMID:34083779 (DCLL9718A Phase 1)",
+        "NCT04379141"
+      ],
+      "tier": "Tier 2 (Active)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) moderate density and Inferred (I) high internalization. Internalized via Rapid clathrin-mediated endocytosis (CLEC12A/CLL-1 is a C-type lectin; rapid ligand-induced and constitutive internalization; highly expressed on AML blasts and LSCs (leukemic stem cells)) (I)."
+    },
+    "PSMA": {
+      "expression": "solid_tumor",
+      "density": "high",
+      "heterogeneity": "moderate (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "low (salivary glands)",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "moderate",
+      "evidence_note": "PSMA (FOLH1) is highly expressed in prostate cancer. Multiple ADCs (e.g., MEDI3726) and radioligands (e.g., Pluvicto) target PSMA. Rapid internalization and high density make it an ideal target.",
+      "density_quantitative": "1e5 - 1e6 copies/cell (Prostate) (I)",
+      "internalization_t12": "Rapid (t1/2 ~ 1-2 hours) (I)",
+      "internalization_mechanism": "Ligand-induced rapid internalization (clathrin-mediated; PSMA is a Type II membrane protein folate hydrolase) (I)",
+      "recycling_after_internalization": "Primarily degraded (I)",
+      "shedding_rate": "Very low (transmembrane; no known shedding) (I)",
+      "biomarker_assay": "IHC (PSMA expression by IHC); PSMA PET-CT (68Ga-PSMA-11 or 18F-DCFPyL) for in vivo imaging; serum PSA for disease monitoring",
+      "proliferation_sensitivity": "Low — PSMA ADCs often use DNA-damaging payloads (cell-cycle independent)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) high density and Inferred (I) high internalization. Internalized via Ligand-induced rapid internalization (clathrin-mediated; PSMA is a Type II membrane protein folate hydrolase) (I).",
+      "tier": "Tier 2 (Active)"
+    },
+    "STEAP1": {
+      "expression": "solid_tumor",
+      "density": "moderate",
+      "heterogeneity": "high (I)",
+      "internalization_rate": "moderate",
+      "normal_tissue_expression": "low",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "moderate",
+      "evidence_note": "STEAP1 is overexpressed in prostate cancer and Ewing sarcoma. Vandortuzumab vedotin (RG7450) is a leading ADC. Moderate internalization and high heterogeneity in advanced disease.",
+      "density_quantitative": "5e4 - 1e5 copies/cell (Prostate) (I)",
+      "internalization_t12": "Moderate (t1/2 ~ 3-5 hours) (I)",
+      "internalization_mechanism": "Rapid clathrin-mediated endocytosis (six-pass transmembrane ferrireductase; ligand-stimulated and constitutive internalization via clathrin-coated pits) (I)",
+      "recycling_after_internalization": "Primarily degraded in lysosomes (I)",
+      "shedding_rate": "Very low — multi-pass transmembrane protein; minimal shedding (I)",
+      "biomarker_assay": "IHC (STEAP1 ≥1+ for vandortuzumab vedotin trials; >50% of prostate cancer cells); flow cytometry for cell lines. No FDA CDx available.",
+      "proliferation_sensitivity": "Moderate — tubulin inhibitors (MMAE) used in vandortuzumab; prostate cancer often slow-proliferating; MMAE limited in G0 cells",
+      "key_refs": [
+        "PMID:24574511 (STEAP1 prostate expression)",
+        "PMID:27760882 (vandortuzumab Phase 1)",
+        "NCT01283373"
+      ],
+      "needs_expert_review": false,
+      "tier": "Tier 2 (Active)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) moderate density and Inferred (I) moderate internalization. Internalized via Rapid clathrin-mediated endocytosis (six-pass transmembrane ferrireductase; ligand-stimulated and constitutive internalization via clathrin-coated pits) (I)."
+    },
+    "CD20": {
+      "expression": "liquid_tumor",
+      "density": "high",
+      "heterogeneity": "low (I)",
+      "internalization_rate": "moderate",
+      "normal_tissue_expression": "mature B-cells",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "high",
+      "evidence_note": "CD20 expressed in >95% of B-cell lymphomas. Critical challenge for ADCs: classic CD20 mAbs (rituximab, obinutuzumab) are POOR internalizers — designed for ADCC/CDC. Successful ADC requires modified internalization-promoting clone. CD20-ADC programs: SAR3419 (anti-CD20-DM4, failed Phase 2 due to poor activity), ADCT-301 (haematologix). Post-CD20 therapy CD20-loss is major resistance barrier.",
+      "needs_expert_review": false,
+      "internalization_mechanism": "VERY SLOW — CD20 is a non-internalizing tetraspanin membrane protein in normal B cells; type II antibody (obinutuzumab) promotes more internalization than type I. Rituximab-type mAbs are specifically engineered to NOT internalize (to maximize ADCC/CDC). ADC format requires careful selection of internalizing antibody clone. (I)",
+      "recycling_after_internalization": "Minimal internalization and degradation; mostly stays on cell surface (I)",
+      "shedding_rate": "Very low — integral membrane protein; no ectodomain shedding (I)",
+      "biomarker_assay": "Flow cytometry (CD20+ B-ALL, DLBCL, CLL: >20% CD20+); IHC for tissue lymphoma. CD20 expression can be LOST after rituximab treatment (major resistance mechanism — CD20-negative relapse in ~20% B-ALL).",
+      "proliferation_sensitivity": "HIGH — ADC format for CD20 requires either (1) careful clone selection for internalization, or (2) ADCC-competent IgG1 framework. Cell-cycle independent payloads (PBD, DNA alkylator) better for slow/non-proliferating B-cell lymphomas.",
+      "key_refs": [
+        "PMID:11756185 (CD20 non-internalizing)",
+        "PMID:23940257 (SAR3419 Phase 2 failure)",
+        "PMID:22740452 (CD20 internalization engineering)"
+      ],
+      "tier": "Tier 3 (Failed)",
+      "design_logic": "[Tier 3 (Failed)] Based on Inferred (I) high density and Inferred (I) moderate internalization. Internalized via VERY SLOW — CD20 is a non-internalizing tetraspanin membrane protein in normal B cells; type II antibody (obinutuzumab) promotes more internalization than type I. Rituximab-type mAbs are specifically engineered to NOT internalize (to maximize ADCC/CDC). ADC format requires careful selection of internalizing antibody clone. (I)."
+    },
+    "CD38": {
+      "expression": "liquid_tumor",
+      "density": "high",
+      "heterogeneity": "moderate (I)",
+      "internalization_rate": "moderate",
+      "normal_tissue_expression": "activated T/NK cells, plasma cells",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "high",
+      "evidence_note": "CD38 is nearly universally expressed on myeloma cells. Daratumumab is the standard naked mAb. ADCs (e.g., TAK-169) are designed to overcome daratumumab resistance. Moderate internalization and high density.",
+      "density_quantitative": "5e4 - 2e5 copies/cell (Myeloma) (I)",
+      "internalization_t12": "Moderate (t1/2 ~ 3-5 hours) (I)",
+      "needs_expert_review": false,
+      "internalization_mechanism": "Moderate clathrin-mediated endocytosis. CD38 is a type II transmembrane glycoprotein with ectoenzyme (NADase/cyclase) activity. Internalization occurs after antibody binding; rate is moderate (~30–50% internalized within 4h at 37°C). (I)",
+      "recycling_after_internalization": "Partial recycling (~30–40%); NAD cycling requires surface expression so recycling is maintained (I)",
+      "shedding_rate": "Low — CD38 is not a major shedding target; limited ectodomain release (I)",
+      "biomarker_assay": "Flow cytometry (CD38+ plasma cells, myeloma standard diagnosis); IHC. FDA-approved CDx: daratumumab (DARZALEX) is standard of care — CD38 expression is universal in myeloma.",
+      "proliferation_sensitivity": "Low — mostly post-mitotic plasma cells; cell-cycle independent payloads preferred",
+      "key_refs": [
+        "PMID:25957392 (daratumumab Phase 1)",
+        "PMID:30559322 (CD38 ADC concept)",
+        "NCT04902326 (TAK-169)"
+      ],
+      "tier": "Tier 2 (Active)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) high density and Inferred (I) moderate internalization. Internalized via Moderate clathrin-mediated endocytosis. CD38 is a type II transmembrane glycoprotein with ectoenzyme (NADase/cyclase) activity. Internalization occurs after antibody binding; rate is moderate (~30–50% internalized within 4h at 37°C). (I)."
+    },
+    "CD47": {
+      "expression": "solid_tumor",
+      "density": "high",
+      "heterogeneity": "low (I)",
+      "internalization_rate": "moderate",
+      "normal_tissue_expression": "ubiquitous (RBC, platelets)",
+      "on_target_off_tumor_risk": "high",
+      "data_confidence": "moderate",
+      "evidence_note": "CD47 is a 'don't eat me' signal ubiquitously expressed. Magrolimab is a leading naked mAb. ADC development is challenging due to the massive RBC sink and slow internalization. Probody or other selective activation strategies are required.",
+      "density_quantitative": "1e5 - 1e6 copies/cell (Ubiquitous) (I)",
+      "internalization_t12": "Slow (t1/2 ~ 8-12 hours) (I)",
+      "needs_expert_review": true,
+      "internalization_mechanism": "SLOW — CD47 is a 'don't eat me' signal (integrin-associated protein); minimal spontaneous internalization. Antibody binding triggers phagocytosis by macrophages (ADCP) rather than classical endocytosis by target tumor cells themselves. Limited direct internalization by tumor cell. (I)",
+      "recycling_after_internalization": "Minimal (CD47 function is as a macrophage signaling ligand; tumor cell-autonomous internalization is not a primary pathway) (I)",
+      "shedding_rate": "Very low — integral membrane protein; no significant shedding (I)",
+      "biomarker_assay": "Flow cytometry or IHC (CD47 ubiquitously expressed on all normal cells and tumor cells — not a selective biomarker). RBC expression is major dose-limiting toxicity source (anemia from RBC agglutination).",
+      "proliferation_sensitivity": "N/A — primary mechanism of CD47 antibodies is ADCP by macrophages, not direct cytotoxic payload delivery. ADC concept for CD47 is novel/experimental.",
+      "key_refs": [
+        "PMID:19448626 (CD47 phagocytosis signal)",
+        "PMID:33503420 (magrolimab Phase 3 AML)",
+        "PMID:35569421 (CD47 ADC challenges)"
+      ],
+      "design_logic": "[Unknown Tier] Based on Inferred (I) high density and Inferred (I) moderate internalization. Internalized via SLOW — CD47 is a 'don't eat me' signal (integrin-associated protein); minimal spontaneous internalization. Antibody binding triggers phagocytosis by macrophages (ADCP) rather than classical endocytosis by target tumor cells themselves. Limited direct internalization by tumor cell. (I)."
+    },
+    "EGFR": {
+      "expression": "solid_tumor",
+      "density": "high",
+      "heterogeneity": "moderate (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "moderate (skin, GI, lung)",
+      "on_target_off_tumor_risk": "high",
+      "data_confidence": "moderate",
+      "evidence_note": "EGFR (ErbB1) is highly expressed in NSCLC, HNSCC, and CRC. Depatuxizumab mafodotin (ABT-414) and MRG003 are key ADCs. Rapid internalization and high density, but significant on-target off-tumor toxicities (skin, ocular).",
+      "density_quantitative": "5e4 - 5e5 copies/cell (NSCLC, TNBC) (I)",
+      "internalization_t12": "Rapid (t1/2 ~ 1-2 hours) (I)",
+      "key_refs": [
+        "PMID:18669269 (EGFR internalization mechanisms)",
+        "PMID:22461862 (EGFR ADC review)",
+        "PMID:36334297 (MRG003 EGFR ADC Ph2)"
+      ],
+      "internalization_mechanism": "CME (CBL-mediated ubiquitination → lysosomal degradation after EGF stimulation); at high antibody occupancy also macropinocytosis (I)",
+      "recycling_after_internalization": "Major recycling (Rab11-mediated recycling endosome) without ligand; degradation with EGF/ligand co-stimulation (I)",
+      "shedding_rate": "Low for full ECD; some EGFR domain shedding by ADAM10 (I)",
+      "biomarker_assay": "IHC (EGFR expression by IHC, H-score; EGFR mutation by NGS/PCR for subtype selection); EGFRvIII by specific IHC",
+      "proliferation_sensitivity": "High — most EGFR ADCs use MMAE/auristatin (mitosis-dependent); limits activity against slow-growing tumors",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) high density and Inferred (I) high internalization. Internalized via CME (CBL-mediated ubiquitination → lysosomal degradation after EGF stimulation); at high antibody occupancy also macropinocytosis (I).",
+      "tier": "Tier 2 (Active)"
+    },
+    "EGFRvIII": {
+      "expression": "solid_tumor",
+      "density": "moderate",
+      "heterogeneity": "high (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "absent (tumor-specific mutation)",
+      "on_target_off_tumor_risk": "very_low",
+      "data_confidence": "moderate",
+      "evidence_note": "EGFRvIII is a tumor-specific deletion mutant found in GBM. Depatuxizumab mafodotin (ABT-414) targeted this variant. High internalization and absolute specificity, but significant intratumoral heterogeneity in GBM.",
+      "density_quantitative": "2e4 - 1e5 copies/cell (GBM) (I)",
+      "internalization_t12": "Rapid (t1/2 ~ 1-2 hours) (I)",
+      "key_refs": [
+        "PMID:17332358 (EGFRvIII GBM characterization)",
+        "PMID:26272984 (ABT-806 EGFRvIII ADC)"
+      ],
+      "internalization_mechanism": "Rapid constitutive internalization (unlike WT EGFR, EGFRvIII internalizes without ligand due to constitutive activation) (I)",
+      "recycling_after_internalization": "Primarily degraded (I)",
+      "shedding_rate": "Very low (tumor-cell-specific splicing; no detectable soluble form) (I)",
+      "biomarker_assay": "EGFRvIII-specific IHC or RT-PCR (tumor-specific; not detectable in blood); high intratumoral heterogeneity is a major challenge",
+      "proliferation_sensitivity": "High",
+      "design_logic": "[Unknown Tier] Based on Inferred (I) moderate density and Inferred (I) high internalization. Internalized via Rapid constitutive internalization (unlike WT EGFR, EGFRvIII internalizes without ligand due to constitutive activation) (I)."
+    },
+    "CD123": {
+      "expression": "liquid_tumor",
+      "density": "moderate",
+      "heterogeneity": "moderate (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "hematopoietic progenitors, basophils",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "moderate",
+      "evidence_note": "CD123 (IL-3Ra) is expressed in AML and BPDCN. Pivekimab sunirine (IMGN632) is a leading ADC. Rapid internalization and moderate density. Myelosuppression is the primary on-target toxicity.",
+      "density_quantitative": "2e3 - 2e4 copies/cell (AML) (I)",
+      "internalization_t12": "Rapid (t1/2 ~ 1-2 hours) (I)",
+      "key_refs": [
+        "PMID:26369699 (IMGN632 preclinical)",
+        "PMID:33159180 (pivekimab CD123 ADC Ph1)"
+      ],
+      "internalization_mechanism": "Rapid receptor-mediated endocytosis (IL-3Rα; clathrin-mediated) (I)",
+      "recycling_after_internalization": "Primarily degraded (I)",
+      "shedding_rate": "Low (I)",
+      "biomarker_assay": "Flow cytometry (>20% AML blasts CD123+; MFI-based quantification)",
+      "proliferation_sensitivity": "Low — DGN462/IGN payloads (IMGN632) are cell-cycle independent",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) moderate density and Inferred (I) high internalization. Internalized via Rapid receptor-mediated endocytosis (IL-3Rα; clathrin-mediated) (I).",
+      "tier": "Tier 2 (Active)"
+    },
+    "FLT3": {
+      "expression": "liquid_tumor",
+      "density": "moderate",
+      "heterogeneity": "moderate (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "hematopoietic progenitors",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "moderate",
+      "evidence_note": "FLT3 (CD135) is expressed in AML, particularly with ITD mutations. AGS62P1 (anti-FLT3-AS241) is a clinical-stage ADC. Rapid internalization and moderate density. DNA-damaging payloads are preferred for quiescent stem cells.",
+      "density_quantitative": "5e3 - 3e4 copies/cell (AML) (I)",
+      "internalization_t12": "Rapid (t1/2 ~ 1-2 hours) (I)",
+      "internalization_mechanism": "Ligand-induced rapid internalization (RTK pathway; clathrin-mediated) (I)",
+      "recycling_after_internalization": "Primarily degraded via ubiquitin-proteasome and lysosomal pathways (I)",
+      "shedding_rate": "Low (some sFLT3 shed, not clinically significant) (I)",
+      "biomarker_assay": "Flow cytometry (AML blasts); FLT3 mutation status (ITD/D835) by PCR/NGS for treatment selection",
+      "proliferation_sensitivity": "Low — most FLT3 ADC payloads are DNA-damaging (cell-cycle independent)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) moderate density and Inferred (I) high internalization. Internalized via Ligand-induced rapid internalization (RTK pathway; clathrin-mediated) (I).",
+      "tier": "Tier 2 (Active)"
+    },
+    "Mesothelin": {
+      "expression": "solid_tumor",
+      "density": "high",
+      "heterogeneity": "low (I)",
+      "internalization_rate": "moderate",
+      "normal_tissue_expression": "low (mesothelial lining)",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "moderate",
+      "evidence_note": "High density in mesothelioma and ovarian cancer. Internalization POOR in most cell lines (key limitation limiting payload choice). Low normal tissue expression except pleural/peritoneal surfaces.",
+      "key_refs": [
+        "PMID:26275529 (anetumab ravtansine)",
+        "PMID:30530824 (Mesothelin internalization challenge)",
+        "PMID:33273122"
+      ],
+      "internalization_mechanism": "POOR — GPI-anchored protein primarily on apical/luminal surface; macropinocytosis is limited; SLOW internalization is a major ADC design challenge (I)",
+      "recycling_after_internalization": "Primarily membrane-retained; minimal degradation after internalization (I)",
+      "shedding_rate": "High — soluble megakaryocyte potentiating factor (MPF) shed by ADAM proteases; soluble mesothelin in plasma acts as antigen sink (reduces effective dose reaching tumor) (I)",
+      "biomarker_assay": "IHC (mesothelin expression by H-score >50); serum soluble mesothelin (SMRP) as pharmacodynamic biomarker",
+      "proliferation_sensitivity": "High — most Mesothelin ADCs use MMAE; poor internalization limits payload delivery efficiency",
+      "design_logic": "[Unknown Tier] Based on Inferred (I) high density and Inferred (I) moderate internalization. Internalized via POOR — GPI-anchored protein primarily on apical/luminal surface; macropinocytosis is limited; SLOW internalization is a major ADC design challenge (I)."
+    },
+    "FR_alpha": {
+      "expression": "solid_tumor",
+      "density": "moderate_to_high",
+      "heterogeneity": "moderate (C)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "low (kidney proximal tubule)",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "high",
+      "evidence_note": "Validated in Phase 3 MIRASOL trial for ovarian cancer.",
+      "internalization_mechanism": "Receptor-mediated endocytosis (GPI-anchored; clathrin-independent, lipid raft pathway). Internalization is relatively slow but constitutive. (C)",
+      "recycling_after_internalization": "Significant recycling (~50% recycled within 4h). GPI-anchor promotes recycling endosome routing. (C)",
+      "shedding_rate": "Low — minimal soluble FRα detected in serum of most patients. (C)",
+      "biomarker_assay": "IHC (FRα ≥75% tumor cells at 2+ intensity for mirvetuximab MIRASOL trial); VENTANA anti-FR alpha (SP130) RxDx is FDA-approved CDx.",
+      "proliferation_sensitivity": "Low — DM4 payload is cell-cycle dependent but FRα recycling ensures continuous payload delivery.",
+      "_note": "Alias for FRα — see that entry for canonical data",
+      "key_refs": [
+        "PMID:37357149"
+      ],
+      "tier": "Tier 1 (Approved)",
+      "design_logic": "[Tier 1 (Approved)] Based on Inferred (I) moderate_to_high density and Clinical (C) validation of high internalization via clinical data. Internalized via Receptor-mediated endocytosis (GPI-anchored; clathrin-independent, lipid raft pathway). Internalization is relatively slow but constitutive. (C)."
+    },
+    "GD2": {
+      "expression": "solid_tumor",
+      "density": "high",
+      "heterogeneity": "low (I)",
+      "internalization_rate": "low",
+      "normal_tissue_expression": "low (peripheral nerves, brain)",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "moderate",
+      "evidence_note": "High density in neuroblastoma (~1e7 copies/cell), TNBC. Internalization LOW to MODERATE (major challenge for ADC design). Normal expression on peripheral nerves and brain causes neuropathic pain.",
+      "key_refs": [
+        "PMID:34135861 (GD2 ADC review)",
+        "PMID:30510034 (GD2 breast cancer)"
+      ],
+      "internalization_mechanism": "VERY SLOW — ganglioside (glycolipid); lipid raft-mediated macropinocytosis only; classical receptor endocytosis absent (I)",
+      "recycling_after_internalization": "Minimal — lipid components recycled via lipid recycling pathways, not lysosomal delivery (I)",
+      "shedding_rate": "Moderate (shed ganglioside in circulation; GD2 shedding rate correlates with tumor burden) (I)",
+      "biomarker_assay": "IHC or immunofluorescence (≥20% cells GD2+); serum GD2 ganglioside as pharmacodynamic biomarker in neuroblastoma",
+      "proliferation_sensitivity": "High — poor internalization means most therapeutic effect may rely on ADCC/CDC rather than payload delivery in GD2 ADCs",
+      "tier": "Tier 4 (Emerging)",
+      "design_logic": "[Tier 4 (Emerging)] Based on Inferred (I) high density and Inferred (I) low internalization. Internalized via VERY SLOW — ganglioside (glycolipid); lipid raft-mediated macropinocytosis only; classical receptor endocytosis absent (I)."
+    },
+    "gpNMB": {
+      "expression": "solid_tumor",
+      "density": "moderate",
+      "heterogeneity": "moderate (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "low (melanocytes, osteoclasts)",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "high",
+      "evidence_note": "Target for glembatumumab vedotin (CDX-011). Phase 2 data in melanoma showed activity.",
+      "key_refs": [
+        "PMID:31897654",
+        "PMID:22108849"
+      ],
+      "internalization_mechanism": "Rapid clathrin-mediated endocytosis (Glycoprotein non-metastatic B; localized to endosomes/lysosomes and cell surface). (I)",
+      "recycling_after_internalization": "Primarily degraded. (I)",
+      "shedding_rate": "Moderate — soluble gpNMB (sgpNMB) shed by ADAM10. (I)",
+      "biomarker_assay": "IHC (gpNMB expression in melanoma and TNBC).",
+      "proliferation_sensitivity": "Moderate.",
+      "tier": "Tier 3 (Failed)",
+      "design_logic": "[Tier 3 (Failed)] Based on Inferred (I) moderate density and Inferred (I) high internalization. Internalized via Rapid clathrin-mediated endocytosis (Glycoprotein non-metastatic B; localized to endosomes/lysosomes and cell surface). (I)."
+    },
+    "AXL": {
+      "expression": "solid_tumor",
+      "density": "moderate",
+      "heterogeneity": "high (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "moderate (various tissues)",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "moderate",
+      "evidence_note": "Target for enapotamab vedotin (Phase 1/2).",
+      "needs_expert_review": true,
+      "internalization_mechanism": "Rapid ligand (Gas6)-induced clathrin-mediated endocytosis. Constitutive in AXL-overexpressing tumors. (I)",
+      "recycling_after_internalization": "Primarily degraded (CBL-mediated ubiquitination). (I)",
+      "shedding_rate": "High — AXL ectodomain shed by ADAM10/17 releasing soluble AXL (sAXL); acts as antigen sink. (I)",
+      "biomarker_assay": "IHC (AXL expression H-score); serum sAXL as PD biomarker.",
+      "proliferation_sensitivity": "Moderate.",
+      "key_refs": [
+        "PMID:30397169"
+      ],
+      "tier": "Tier 3 (Failed)",
+      "design_logic": "[Tier 3 (Failed)] Based on Inferred (I) moderate density and Inferred (I) high internalization. Internalized via Rapid ligand (Gas6)-induced clathrin-mediated endocytosis. Constitutive in AXL-overexpressing tumors. (I)."
+    },
+    "CAIX": {
+      "expression": "solid_tumor",
+      "density": "high",
+      "heterogeneity": "low (I)",
+      "internalization_rate": "moderate",
+      "normal_tissue_expression": "very_low (GI mucosa)",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "moderate",
+      "evidence_note": "Target for girentuximab-based conjugates.",
+      "needs_expert_review": true,
+      "internalization_mechanism": "SLOW — Carbonic anhydrase IX is a transmembrane enzyme; minimal spontaneous internalization. Antibody binding triggers slow endocytosis. (I)",
+      "recycling_after_internalization": "Moderate recycling. (I)",
+      "shedding_rate": "Moderate — ectodomain shedding detectable in serum of RCC patients. (I)",
+      "biomarker_assay": "IHC (CAIX expression in clear cell RCC is near-universal due to VHL loss).",
+      "proliferation_sensitivity": "Low — RCC can be slow-growing; cell-cycle independent payloads preferred.",
+      "key_refs": [
+        "PMID:23700264"
+      ],
+      "tier": "Tier 3 (Failed)",
+      "design_logic": "[Tier 3 (Failed)] Based on Inferred (I) high density and Inferred (I) moderate internalization. Internalized via SLOW — Carbonic anhydrase IX is a transmembrane enzyme; minimal spontaneous internalization. Antibody binding triggers slow endocytosis. (I)."
+    },
+    "ALK": {
+      "internalization_mechanism": "Rapid internalization upon antibody binding, particularly in neuroblastoma cells with ALK mutations or amplification. (I)",
+      "recycling_after_internalization": "Low; efficient trafficking to lysosomes. (I)",
+      "shedding_rate": "Low. (I)",
+      "biomarker_assay": "IHC or FISH for ALK status.",
+      "proliferation_sensitivity": "High.",
+      "data_confidence": "high",
+      "evidence_note": "ALK-ADC (e.g., CDX-011 variant or similar) shows robust internalization and efficacy in neuroblastoma models.",
+      "key_refs": [
+        "PMID:28935674"
+      ],
+      "design_logic": "[Unknown Tier] Based on Inferred (I) Moderate (I) and Inferred (I) High (C). Internalized via Rapid internalization upon antibody binding, particularly in neuroblastoma cells with ALK mutations or amplification. (I).",
+      "internalization_rate": "High (C)",
+      "density": "Moderate (I)",
+      "heterogeneity": "Moderate (I)",
+      "normal_tissue_expression": "Moderate (I)",
+      "on_target_off_tumor_risk": "Moderate (I)"
+    },
+    "AFP": {
+      "internalization_mechanism": "Internalization-dependent delivery; AFP-targeted ADCs (e.g., ACT-903) are internalized into lysosomes for payload release. (I)",
+      "recycling_after_internalization": "Low; primarily degraded in lysosomes. (I)",
+      "shedding_rate": "High (secreted protein; high serum levels in HCC). (I)",
+      "biomarker_assay": "Serum AFP levels or IHC for AFP in HCC.",
+      "proliferation_sensitivity": "High.",
+      "data_confidence": "high",
+      "evidence_note": "ACT-903 (AFP-maytansinoid) shows potent activity in HCC models despite high circulating AFP levels.",
+      "key_refs": [
+        "PMID:37196158"
+      ],
+      "tier": "Tier 4 (Emerging)",
+      "design_logic": "[Tier 4 (Emerging)] Based on Inferred (I) High (I) and Inferred (I) High (C). Internalized via Internalization-dependent delivery; AFP-targeted ADCs (e.g., ACT-903) are internalized into lysosomes for payload release. (I).",
+      "internalization_rate": "High (C)",
+      "density": "High (I)",
+      "heterogeneity": "Moderate (I)",
+      "normal_tissue_expression": "Moderate (I)",
+      "on_target_off_tumor_risk": "Moderate (I)"
+    },
+    "CSPG4": {
+      "internalization_mechanism": "Efficient internalization via clathrin-mediated endocytosis; validated in TNBC and melanoma models. (I)",
+      "recycling_after_internalization": "Moderate. (I)",
+      "shedding_rate": "Moderate (soluble CSPG4 can be found in melanoma). (I)",
+      "biomarker_assay": "IHC for CSPG4 (HMW-MAA).",
+      "proliferation_sensitivity": "Moderate to High.",
+      "data_confidence": "high",
+      "evidence_note": "SNAP-tag-based auristatin F drug conjugate targeting CSPG4 shows specific killing of TNBC cells.",
+      "key_refs": [
+        "PMID:37452145"
+      ],
+      "design_logic": "[Unknown Tier] Based on Inferred (I) Moderate (I) and Inferred (I) High (C). Internalized via Efficient internalization via clathrin-mediated endocytosis; validated in TNBC and melanoma models. (I).",
+      "internalization_rate": "High (C)",
+      "density": "Moderate (I)",
+      "heterogeneity": "Moderate (I)",
+      "normal_tissue_expression": "Moderate (I)",
+      "on_target_off_tumor_risk": "Moderate (I)"
+    },
+    "PMEL": {
+      "internalization_mechanism": "Rapid internalization to lysosome-related organelles (melanosomes) upon antibody binding. (I)",
+      "recycling_after_internalization": "Low; efficient trafficking to LAMP1+ compartments. (I)",
+      "shedding_rate": "Low (membrane-bound melanosomal protein). (I)",
+      "biomarker_assay": "IHC for PMEL17 (gp100).",
+      "proliferation_sensitivity": "Moderate.",
+      "data_confidence": "high",
+      "evidence_note": "PMEL17 is a highly selective target for melanoma; antibodies show robust internalization.",
+      "key_refs": [
+        "PMID:22699451"
+      ],
+      "tier": "Tier 4 (Emerging)",
+      "design_logic": "[Tier 4 (Emerging)] Based on Inferred (I) High (I) and Inferred (I) High (C). Internalized via Rapid internalization to lysosome-related organelles (melanosomes) upon antibody binding. (I).",
+      "internalization_rate": "High (C)",
+      "density": "High (I)",
+      "heterogeneity": "Moderate (I)",
+      "normal_tissue_expression": "Moderate (I)",
+      "on_target_off_tumor_risk": "Moderate (I)"
+    },
+    "PODO": {
+      "internalization_mechanism": "Internalization confirmed in preclinical models; rate is moderate and can be enhanced by antibody cross-linking. (I)",
+      "recycling_after_internalization": "Moderate. (I)",
+      "shedding_rate": "Low to moderate (soluble PDPN can be detected in some cancers). (I)",
+      "biomarker_assay": "IHC for Podoplanin (PDPN).",
+      "proliferation_sensitivity": "Moderate.",
+      "data_confidence": "high",
+      "evidence_note": "chLpMab-based ADCs show antitumor activity in PDPN-positive tumors.",
+      "key_refs": [
+        "PMID:28332312"
+      ],
+      "tier": "Tier 4 (Emerging)",
+      "design_logic": "[Tier 4 (Emerging)] Based on Inferred (I) Moderate (I) and Inferred (I) Moderate (I). Internalized via Internalization confirmed in preclinical models; rate is moderate and can be enhanced by antibody cross-linking. (I).",
+      "internalization_rate": "Moderate (I)",
+      "density": "Moderate (I)",
+      "heterogeneity": "Moderate (I)",
+      "normal_tissue_expression": "Moderate (I)",
+      "on_target_off_tumor_risk": "Moderate (I)"
+    },
+    "FGFR2b": {
+      "expression": "solid_tumor",
+      "density": "moderate",
+      "heterogeneity": "high (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "moderate (GI, breast)",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "high",
+      "evidence_note": "FGFR2b overexpressed in gastric/GEJ cancer (~30%), urothelial (~15%), endometrial. Bemarituzumab (naked anti-FGFR2b mAb): Phase 3 FORTITUDE-101 in gastric cancer. Zolbetuximab+bemarituzumab combo under study. MFGR1877S (anti-FGFR2b-MMAE ADC): Phase 1 in gastric cancer. FDA CDx: VENTANA FGFR2 IHC approved for bemarituzumab. FGFR2 amplification (FGFR2amp) is separate higher-frequency subgroup.",
+      "needs_expert_review": false,
+      "internalization_mechanism": "Rapid ligand (FGF7/FGF10)-induced or constitutive (amplified) clathrin-mediated endocytosis with lysosomal degradation (CBL-mediated ubiquitination, similar to other RTKs) (I)",
+      "recycling_after_internalization": "Primarily degraded (FGFR2 is rapidly ubiquitinated and routed to lysosomes after activation; minimal recycling) (I)",
+      "shedding_rate": "Low — RTK; primarily internalized rather than shed; some soluble FGFR2 (sFGFR2) from matrix cleavage (I)",
+      "biomarker_assay": "IHC (FGFR2b ≥2+ in ≥10% tumor cells by VENTANA FGFR2 IHC 02 assay — FDA-approved CDx for bemarituzumab in gastric cancer); FGFR2 amplification by NGS/FISH (separate biomarker)",
+      "proliferation_sensitivity": "Moderate — MMAE used in MFGR1877S; gastric cancer is moderately proliferating",
+      "key_refs": [
+        "PMID:23264543 (FGFR2 gastric cancer)",
+        "PMID:35636936 (bemarituzumab Phase 2)",
+        "VENTANA FGFR2 IHC FDA CDx"
+      ],
+      "design_logic": "[Unknown Tier] Based on Inferred (I) moderate density and Inferred (I) high internalization. Internalized via Rapid ligand (FGF7/FGF10)-induced or constitutive (amplified) clathrin-mediated endocytosis with lysosomal degradation (CBL-mediated ubiquitination, similar to other RTKs) (I)."
+    },
+    "guanylyl_cyclase_C": {
+      "expression": "solid_tumor",
+      "density": "high",
+      "heterogeneity": "low (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "moderate (GI)",
+      "on_target_off_tumor_risk": "moderate",
+      "data_confidence": "moderate",
+      "evidence_note": "Target for indusatumab vedotin.",
+      "needs_expert_review": true,
+      "internalization_mechanism": "Rapid receptor-mediated endocytosis (Guanylyl cyclase C; ligand ST-induced or antibody-induced). (I)",
+      "recycling_after_internalization": "Primarily degraded. (I)",
+      "shedding_rate": "Low. (I)",
+      "biomarker_assay": "IHC (GCC expression in CRC and gastric cancer).",
+      "proliferation_sensitivity": "Moderate.",
+      "_note": "Alias for GCC — see that entry for canonical data",
+      "key_refs": [
+        "PMID:27458193"
+      ],
+      "tier": "Tier 2 (Active)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) high density and Inferred (I) high internalization. Internalized via Rapid receptor-mediated endocytosis (Guanylyl cyclase C; ligand ST-induced or antibody-induced). (I)."
+    },
+    "IL-13Ra2": {
+      "expression": "solid_tumor",
+      "density": "moderate",
+      "heterogeneity": "high (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "very_low",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "moderate",
+      "evidence_note": "IL-13Rα2 expressed in GBM, mesothelin-negative cancers, pancreatic, and ovarian cancer. Low normal brain expression makes it an attractive CNS target. IL-13-PE38 immunotoxin (GBM Phase 3): failed due to poor distribution and non-uniform expression in GBM. ADC advantage over immunotoxin: lower immunogenicity. Rapid internalization is favorable.",
+      "needs_expert_review": false,
+      "internalization_mechanism": "Rapid receptor-mediated endocytosis (high-affinity IL-13 decoy receptor; IL-13-induced or antibody-induced clathrin-mediated rapid internalization; t½ internalization ~15–30 min) (I)",
+      "recycling_after_internalization": "Primarily degraded (decoy receptor function — rapid lysosomal routing after IL-13 or antibody binding; minimal recycling) (I)",
+      "shedding_rate": "Very low — no known significant ectodomain shedding (I)",
+      "biomarker_assay": "IHC (IL-13Rα2 ≥10% tumor cells); expressed in GBM (~50%), pancreatic cancer (~40%), ovarian cancer (~45%), head and neck. Normal brain IL-13Rα2 expression is minimal (key advantage for CNS-targeted ADCs).",
+      "proliferation_sensitivity": "Low-Moderate — GBM cancer stem cells can be quiescent; cell-cycle independent payloads (PBD, DXd) preferred for GBM",
+      "key_refs": [
+        "PMID:15611492 (IL-13Ra2 GBM expression)",
+        "PMID:22105345 (IL-13 immunotoxin GBM Phase 3)",
+        "PMID:31857336 (IL-13Ra2 ADC review)"
+      ],
+      "tier": "Tier 4 (Emerging)",
+      "design_logic": "[Tier 4 (Emerging)] Based on Inferred (I) moderate density and Inferred (I) high internalization. Internalized via Rapid receptor-mediated endocytosis (high-affinity IL-13 decoy receptor; IL-13-induced or antibody-induced clathrin-mediated rapid internalization; t½ internalization ~15–30 min) (I)."
+    },
+    "SEZ6": {
+      "expression": "solid_tumor",
+      "density": "moderate",
+      "heterogeneity": "moderate (I)",
+      "internalization_rate": "high",
+      "normal_tissue_expression": "low (brain, restricted)",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "moderate",
+      "evidence_note": "SEZ6 expressed in SCLC (~80%), large-cell neuroendocrine carcinoma, meningioma. ABBV-927 (anti-SEZ6-SG3249 PBD ADC): Phase 1 in SCLC. Unlike DLL3-Rova-T, SEZ6 ADC uses a different PBD variant with potentially better therapeutic index. Shedding via ADAM10 is a moderate concern.",
+      "needs_expert_review": false,
+      "internalization_mechanism": "Rapid clathrin-mediated endocytosis (SEZ6/CSMD1 complement receptor-related protein; constitutive internalization; t½ internalization ~20–30 min in SCLC cell lines) (I)",
+      "recycling_after_internalization": "Primarily degraded (I)",
+      "shedding_rate": "Moderate — SEZ6 ectodomain shed by ADAM10 protease; shed SEZ6 measurable in serum (I)",
+      "biomarker_assay": "IHC (SEZ6 ≥1+ in ≥25% tumor cells); expressed in SCLC (~80%), neuroendocrine tumors, some CNS tumors. No FDA CDx.",
+      "proliferation_sensitivity": "Low — neuroendocrine SCLC is highly proliferative but DLL3-based ADCs failed from potency issues; cell-cycle independent payloads (PBD variants) under evaluation",
+      "key_refs": [
+        "PMID:27880927 (SEZ6 SCLC expression)",
+        "NCT03222856 (ABBV-927 Phase 1)"
+      ],
+      "tier": "Tier 2 (Active)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) moderate density and Inferred (I) high internalization. Internalized via Rapid clathrin-mediated endocytosis (SEZ6/CSMD1 complement receptor-related protein; constitutive internalization; t½ internalization ~20–30 min in SCLC cell lines) (I)."
+    },
+    "STn": {
+      "internalization_mechanism": "Internalization confirmed for STn-targeted antibodies (e.g., SGN-STNV); rate is moderate. (I)",
+      "recycling_after_internalization": "Moderate. (I)",
+      "shedding_rate": "High (mucin-associated carbohydrate antigen). (I)",
+      "biomarker_assay": "IHC for Sialyl-Tn.",
+      "proliferation_sensitivity": "Moderate.",
+      "data_confidence": "moderate",
+      "evidence_note": "SGN-STNV targets STn and relies on internalization for payload delivery.",
+      "key_refs": [
+        "PMID:31611324"
+      ],
+      "tier": "Tier 3 (Failed)",
+      "design_logic": "[Tier 3 (Failed)] Based on Inferred (I) Moderate (I) and Inferred (I) Moderate (I). Internalized via Internalization confirmed for STn-targeted antibodies (e.g., SGN-STNV); rate is moderate. (I).",
+      "internalization_rate": "Moderate (I)",
+      "density": "Moderate (I)",
+      "heterogeneity": "Moderate (I)",
+      "normal_tissue_expression": "Moderate (I)",
+      "on_target_off_tumor_risk": "Moderate (I)"
+    },
+    "TA-MUC1": {
+      "internalization_mechanism": "Internalization occurs via multiple pathways; rate is significantly influenced by linker hydrophilicity (PEG linkers enhance uptake). (I)",
+      "recycling_after_internalization": "High recycling rate for MUC1-C; TA-MUC1 (Gatipotuzumab) targets tumor-specific glycoform with better internalization. (I)",
+      "shedding_rate": "High (MUC1-N terminal shedding is common). (I)",
+      "biomarker_assay": "IHC using Gatipotuzumab or similar glyco-specific antibodies.",
+      "proliferation_sensitivity": "Moderate.",
+      "data_confidence": "high",
+      "evidence_note": "Internalization kinetics studied extensively with site-specific conjugates.",
+      "key_refs": [
+        "PMID:30906522"
+      ],
+      "tier": "Tier 2 (Active)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) Moderate (I) and Inferred (I) Moderate (I). Internalized via Internalization occurs via multiple pathways; rate is significantly influenced by linker hydrophilicity (PEG linkers enhance uptake). (I).",
+      "internalization_rate": "Moderate (I)",
+      "density": "Moderate (I)",
+      "heterogeneity": "Moderate (I)",
+      "normal_tissue_expression": "Moderate (I)",
+      "on_target_off_tumor_risk": "Moderate (I)"
+    },
+    "CD166_ALCAM": {
+      "internalization_mechanism": "Rapid internalization via multiple pathways; identified as a highly internalizing target in various solid tumors. (I)",
+      "recycling_after_internalization": "Moderate. (I)",
+      "shedding_rate": "Moderate (soluble ALCAM can be detected). (I)",
+      "biomarker_assay": "IHC for CD166.",
+      "proliferation_sensitivity": "Moderate.",
+      "data_confidence": "high",
+      "evidence_note": "ADCT-601 (mipsetamab uzatansine) targets CD166 and relies on efficient internalization for payload delivery.",
+      "key_refs": [
+        "PMID:30948512"
+      ],
+      "tier": "Tier 3 (Failed)",
+      "design_logic": "[Tier 3 (Failed)] Based on Inferred (I) Moderate (I) and Inferred (I) High (I). Internalized via Rapid internalization via multiple pathways; identified as a highly internalizing target in various solid tumors. (I).",
+      "internalization_rate": "High (I)",
+      "density": "Moderate (I)",
+      "heterogeneity": "Moderate (I)",
+      "normal_tissue_expression": "Moderate (I)",
+      "on_target_off_tumor_risk": "Moderate (I)"
+    },
+    "Integrin_beta6": {
+      "expression": "solid_tumor",
+      "density": "moderate_to_high",
+      "heterogeneity": "moderate (I)",
+      "internalization_rate": "moderate",
+      "normal_tissue_expression": "very_low (wound healing)",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "moderate",
+      "evidence_note": "Target for SGN-B6A.",
+      "needs_expert_review": true,
+      "internalization_mechanism": "Rapid clathrin-mediated endocytosis (αvβ6 integrin; upregulated in various solid tumors). (I)",
+      "recycling_after_internalization": "Significant recycling (~40–50%). (I)",
+      "shedding_rate": "Low. (I)",
+      "biomarker_assay": "IHC (Integrin β6 expression in NSCLC, pancreatic, and breast cancer).",
+      "proliferation_sensitivity": "Moderate.",
+      "key_refs": [
+        "PMID:34077175"
+      ],
+      "tier": "Tier 2 (Active)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) moderate_to_high density and Inferred (I) moderate internalization. Internalized via Rapid clathrin-mediated endocytosis (αvβ6 integrin; upregulated in various solid tumors). (I)."
+    },
+    "CD276": {
+      "expression": "solid_tumor",
+      "density": "high",
+      "heterogeneity": "low (I)",
+      "internalization_rate": "moderate",
+      "normal_tissue_expression": "very_low",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "moderate",
+      "evidence_note": "Broad overexpression in solid tumors. Density moderate-high. Internalization moderate. Low normal tissue expression but widely detected at low levels — important to assess with IHC.",
+      "needs_expert_review": true,
+      "internalization_mechanism": "Moderate — clathrin-mediated endocytosis (I)",
+      "recycling_after_internalization": "Moderate recycling to membrane (I)",
+      "shedding_rate": "Low (I)",
+      "biomarker_assay": "IHC (H-score ≥100 typically used); no FDA CDx currently",
+      "proliferation_sensitivity": "Moderate",
+      "key_refs": [
+        "PMID:34373294 (ifinatamab deruxtecan B7-H3)",
+        "PMID:28951488 (B7-H3 tumor expression)"
+      ],
+      "_note": "Alias for B7-H3 — see that entry for canonical data",
+      "design_logic": "[Unknown Tier] Based on Inferred (I) high density and Inferred (I) moderate internalization. Internalized via Moderate — clathrin-mediated endocytosis (I)."
+    },
+    "TNF_receptor": {
+      "internalization_mechanism": "Efficient internalization of anti-TNF/TNFR1 complexes into lysosomes; used for delivery of immunomodulatory payloads. (I)",
+      "recycling_after_internalization": "Moderate. (I)",
+      "shedding_rate": "High (soluble TNFR1/2 are common). (I)",
+      "biomarker_assay": "IHC for TNFR1 or serum TNF levels.",
+      "proliferation_sensitivity": "N/A (primarily used for autoimmune/inflammatory diseases).",
+      "data_confidence": "high",
+      "evidence_note": "ABBV-3373 (anti-TNF-GRM ADC) demonstrates efficacy in RA models via internalization and payload release.",
+      "key_refs": [
+        "PMID:38507467"
+      ],
+      "tier": "Tier 4 (Emerging)",
+      "design_logic": "[Tier 4 (Emerging)] Based on Inferred (I) Moderate (I) and Inferred (I) Moderate (I). Internalized via Efficient internalization of anti-TNF/TNFR1 complexes into lysosomes; used for delivery of immunomodulatory payloads. (I).",
+      "internalization_rate": "Moderate (I)",
+      "density": "Moderate (I)",
+      "heterogeneity": "Moderate (I)",
+      "normal_tissue_expression": "Moderate (I)",
+      "on_target_off_tumor_risk": "Moderate (I)"
+    },
+    "CLDN18.2": {
+      "expression": "solid_tumor",
+      "density": "moderate",
+      "heterogeneity": "moderate (I)",
+      "internalization_rate": "moderate",
+      "normal_tissue_expression": "low (gastric mucosa)",
+      "on_target_off_tumor_risk": "low",
+      "data_confidence": "high",
+      "evidence_note": "CLDN18.2 positive in ~40% gastric cancers (IHC 2+/3+). SPOTLIGHT and GLOW trials (zolbetuximab) validated IHC CDx. CMG901 (CLDN18.2×ADC, DXd) Phase 2 active (NCT05158894). Slow internalization is well-documented — key design constraint.",
+      "needs_expert_review": false,
+      "density_quantitative": "~10^5 copies/cell in CLDN18.2+ gastric cancer (I)",
+      "internalization_t12": "Slow to Moderate (t1/2 > 2 hours) (I)",
+      "key_refs": [
+        "PMID:37301885 (SPOTLIGHT trial)",
+        "PMID:37301884 (GLOW trial)",
+        "NCT05158894 (CMG901)",
+        "PMID:35418259 (CLDN18.2 ADC review)"
+      ],
+      "internalization_mechanism": "SLOW — tight junction protein; ADC-accessible CLDN18.2 limited to 'free surfaces' where cells lose contact with neighbors. Macropinocytosis and lipid raft-mediated internalization; no classical ligand-induced RTK pathway. (I)",
+      "recycling_after_internalization": "Primarily recycled back to membrane junction complex (tight junction protein turnover t½ ~4–8 h); minimal lysosomal degradation (I)",
+      "shedding_rate": "Very low — four-pass transmembrane protein; no known ectodomain shedding. Accessible epitope is preserved on cell surface. (I)",
+      "biomarker_assay": "IHC (CLDN18.2 ≥2+ intensity in ≥75% tumor cells for CMG901 trial; CLDN18/CPS scoring for zolbetuximab); VENTANA CLDN18 RxDx Assay is FDA-approved CDx for zolbetuximab in gastric/GEJ cancer",
+      "proliferation_sensitivity": "HIGH — slow internalization necessitates membrane-permeable, high-bystander payloads (DXd preferred; MMAE suboptimal due to poor bystander killing when internalization is slow)",
+      "tier": "Tier 2 (Active)",
+      "design_logic": "[Tier 2 (Active)] Based on Inferred (I) moderate density and Inferred (I) moderate internalization. Internalized via SLOW — tight junction protein; ADC-accessible CLDN18.2 limited to 'free surfaces' where cells lose contact with neighbors. Macropinocytosis and lipid raft-mediated internalization; no classical ligand-induced RTK pathway. (I)."
+    },
+    "EphA2": {
+      "internalization_mechanism": "Rapid internalization upon antibody binding, driven by receptor phosphorylation. (I)",
+      "recycling_after_internalization": "Low; efficient lysosomal degradation. (I)",
+      "shedding_rate": "Low. (I)",
+      "biomarker_assay": "IHC for EphA2.",
+      "proliferation_sensitivity": "Moderate.",
+      "data_confidence": "high",
+      "evidence_note": "Internalization rate is a key determinant of EphA2-ADC efficacy (1C1 > 3B10 > 2H7).",
+      "key_refs": [
+        "PMID:28546337"
+      ],
+      "tier": "Tier 3 (Failed)",
+      "design_logic": "[Tier 3 (Failed)] Based on Inferred (I) Moderate (I) and Inferred (I) Moderate (I). Internalized via Rapid internalization upon antibody binding, driven by receptor phosphorylation. (I).",
+      "internalization_rate": "Moderate (I)",
+      "density": "Moderate (I)",
+      "heterogeneity": "Moderate (I)",
+      "normal_tissue_expression": "Moderate (I)",
+      "on_target_off_tumor_risk": "Moderate (I)"
+    }
+  },
+  "compatibility": {
+    "_note": "Linker–payload–antigen property compatibility matrix.",
+    "linker_payload": {
+      "mc-val-cit-PABC_MMAE": {
+        "preferred_antigens": [
+          "high_internalization",
+          "moderate_density"
+        ],
+        "compatible_with": [
+          "cysteine_conjugation"
+        ],
+        "contraindicated": [
+          "low_internalization_targets"
+        ],
+        "bystander_effect": true,
+        "dar_range": [
+          3.5,
+          4.0
+        ],
+        "reason": "Seagen platform; requires cathepsin B in endosome. MMAE is membrane-permeable → bystander killing."
+      },
+      "mc-val-cit-PABC_MMAF": {
+        "preferred_antigens": [
+          "high_density",
+          "high_internalization"
+        ],
+        "compatible_with": [
+          "cysteine_conjugation"
+        ],
+        "contraindicated": [
+          "heterogeneous_tumors"
+        ],
+        "bystander_effect": false,
+        "dar_range": [
+          3.5,
+          4.0
+        ],
+        "reason": "MMAF is charged → no bystander effect. Requires high target density for efficacy."
+      },
+      "GGFG_DXd": {
+        "preferred_antigens": [
+          "any_density",
+          "moderate_internalization"
+        ],
+        "compatible_with": [
+          "cysteine_conjugation"
+        ],
+        "contraindicated": [],
+        "bystander_effect": true,
+        "dar_range": [
+          4.0,
+          8.0
+        ],
+        "reason": "DXd platform tolerates high DAR due to hydrophilic linker. Bystander effect addresses heterogeneity."
+      },
+      "CL2A_SN38": {
+        "preferred_antigens": [
+          "high_density",
+          "any_internalization"
+        ],
+        "compatible_with": [
+          "cysteine_conjugation"
+        ],
+        "contraindicated": [],
+        "bystander_effect": true,
+        "dar_range": [
+          7.0,
+          8.0
+        ],
+        "reason": "Moderate potency payload requires high DAR; pH-sensitive CL2A cleaves in acidic TME."
+      },
+      "SMCC_DM1": {
+        "preferred_antigens": [
+          "high_internalization",
+          "high_density"
+        ],
+        "compatible_with": [
+          "lysine_conjugation"
+        ],
+        "contraindicated": [
+          "low_internalization_targets",
+          "heterogeneous_tumors"
+        ],
+        "bystander_effect": false,
+        "dar_range": [
+          3.0,
+          4.0
+        ],
+        "reason": "Non-cleavable; requires lysosomal degradation. DM1-lysine metabolite is charged → no bystander."
+      },
+      "Sulfo-SPDB_DM4": {
+        "preferred_antigens": [
+          "moderate_to_high_internalization"
+        ],
+        "compatible_with": [
+          "lysine_conjugation",
+          "cysteine_conjugation"
+        ],
+        "contraindicated": [],
+        "bystander_effect": true,
+        "dar_range": [
+          3.0,
+          4.0
+        ],
+        "reason": "Cleavable disulfide; DM4 metabolite is membrane-permeable → bystander effect."
+      },
+      "PEG-Val-Ala-PABC_PBD": {
+        "preferred_antigens": [
+          "low_to_moderate_density"
+        ],
+        "compatible_with": [
+          "cysteine_conjugation"
+        ],
+        "contraindicated": [
+          "high_normal_tissue_expression"
+        ],
+        "bystander_effect": true,
+        "dar_range": [
+          2.0,
+          2.5
+        ],
+        "reason": "Extremely potent PBD dimer; low DAR mandatory. PEG spacer improves PK."
+      },
+      "AcBut_Calicheamicin": {
+        "preferred_antigens": [
+          "high_internalization"
+        ],
+        "compatible_with": [
+          "lysine_conjugation"
+        ],
+        "contraindicated": [
+          "low_internalization_targets"
+        ],
+        "bystander_effect": false,
+        "dar_range": [
+          2.0,
+          3.0
+        ],
+        "reason": "Acid-labile hydrazone; releases in lysosome. Legacy platform with hepatotoxicity risk."
+      },
+      "VHL-cleavable_BRD4-PROTAC": {
+        "preferred_antigens": [
+          "any_density",
+          "moderate_internalization"
+        ],
+        "compatible_with": [
+          "site_specific_engineered_cys",
+          "enzyme_fge_smartag",
+          "sortase_a_mediated"
+        ],
+        "contraindicated": [],
+        "bystander_effect": true,
+        "dar_range": [
+          1.0,
+          2.0
+        ],
+        "reason": "PROTAC payload degrades target proteins to overcome resistance. Large MW requires low DAR (1-2) and highly stable site-specific conjugation."
+      },
+      "ISAC-Linker_TLR7/8 agonist": {
+        "preferred_antigens": [
+          "high_density",
+          "low_internalization"
+        ],
+        "compatible_with": [
+          "glycan_remodeling",
+          "tub_tag_tubulin_ligase"
+        ],
+        "contraindicated": [
+          "high_normal_tissue_expression"
+        ],
+        "bystander_effect": true,
+        "dar_range": [
+          2.0,
+          4.0
+        ],
+        "reason": "Immune-stimulating ADC (ISAC). Activates myeloid cells in TME. Requires strict tumor specificity to avoid systemic cytokine storm."
+      },
+      "TMALIN_TOP1i": {
+        "preferred_antigens": [
+          "any_density",
+          "any_internalization"
+        ],
+        "compatible_with": [
+          "cysteine_conjugation",
+          "site_specific_engineered_cys"
+        ],
+        "contraindicated": [],
+        "bystander_effect": true,
+        "dar_range": [
+          8.0,
+          8.0
+        ],
+        "reason": "MediLink  Tumor Microenvironment Activable LINker. Dual cleavage (extracellular TME + intracellular). High stability in circulation."
+      }
+    },
+    "antigen_internalization_to_linker": {
+      "_note": "Matching antigen internalization rate to optimal linker cleavage mechanism.",
+      "high": {
+        "preferred": [
+          "cleavable (protease)",
+          "cleavable (cathepsin)",
+          "non-cleavable"
+        ],
+        "avoid": []
+      },
+      "moderate": {
+        "preferred": [
+          "cleavable (cathepsin)",
+          "cleavable (protease)"
+        ],
+        "avoid": [
+          "non-cleavable"
+        ]
+      },
+      "low": {
+        "preferred": [
+          "cleavable (pH/protease)",
+          "TME-activated"
+        ],
+        "avoid": [
+          "non-cleavable",
+          "cathepsin-dependent"
+        ]
+      }
+    },
+    "heterogeneity_to_bystander": {
+      "_note": "Tumors with high heterogeneity require bystander-capable payloads.",
+      "high": {
+        "require_bystander": true,
+        "recommended_payloads": [
+          "MMAE",
+          "DXd",
+          "SN-38",
+          "DM4"
+        ],
+        "avoid": [
+          "MMAF",
+          "DM1 (non-cleavable)"
+        ]
+      },
+      "moderate": {
+        "require_bystander": "preferred",
+        "recommended_payloads": [
+          "DXd",
+          "MMAE",
+          "DM4"
+        ],
+        "avoid": []
+      },
+      "low": {
+        "require_bystander": false,
+        "recommended_payloads": [
+          "any"
+        ],
+        "avoid": []
+      }
+    }
+  },
+  "binder_format_rules": {
+    "_note": "Antibody format selection logic.",
+    "IgG1": {
+      "use_when": "Default for ADC. Strong Fc effector functions (ADCC/CDC) + long half-life.",
+      "advantage": "Well-characterized PK, FcRn recycling, established conjugation chemistry.",
+      "limitation": "Large size limits tumor penetration.",
+      "compatible_payloads": "all"
+    },
+    "IgG4": {
+      "use_when": "When Fc-mediated effector function is undesirable (e.g., hematologic targets where ADCC would deplete normal cells).",
+      "advantage": "Reduced ADCC/CDC.",
+      "limitation": "Fab-arm exchange risk (mitigated by S228P mutation).",
+      "compatible_payloads": "all"
+    },
+    "Bispecific": {
+      "use_when": "Dual targeting to improve specificity or address resistance (e.g., HER2×HER3, EGFR×MET).",
+      "advantage": "Conditional activation, reduced off-tumor toxicity.",
+      "limitation": "Complex manufacturing; DAR heterogeneity challenge.",
+      "compatible_payloads": "all (prefer site-specific conjugation)"
+    },
+    "VHH_nanobody": {
+      "use_when": "Deep tumor penetration needed (solid tumors, brain), rapid clearance acceptable, renal excretion desired.",
+      "advantage": "Small size (15 kDa), excellent tissue penetration, can access cryptic epitopes.",
+      "limitation": "Short half-life (unless PEGylated or Fc-fused); limited DAR capacity.",
+      "compatible_payloads": [
+        "low_DAR payloads",
+        "radionuclides"
+      ],
+      "dar_constraint": "DAR 1-2 maximum (single cysteine site)"
+    },
+    "Probody_Masked_ADC": {
+      "use_when": "Target is widely expressed on normal tissues (e.g., CD71, CD166); requires tumor-protease activation.",
+      "advantage": "Expands druggable target space by protecting normal tissues.",
+      "limitation": "Premature cleavage in circulation; masking peptide increases ADA (immunogenicity) risk; complex CMC.",
+      "compatible_payloads": "all"
+    }
+  },
+  "payload_classification": {
+    "_note": "Payload classes with potency, mechanism, and design implications.",
+    "tubulin_inhibitors": {
+      "members": [
+        "MMAE",
+        "MMAF",
+        "DM1",
+        "DM4"
+      ],
+      "potency_range_pM": [
+        10,
+        500
+      ],
+      "mechanism": "Microtubule disruption → mitotic arrest",
+      "best_for": "Rapidly dividing tumors",
+      "limitation": "Resistance via MDR1 efflux pump (MMAE/DM1), peripheral neuropathy",
+      "typical_dar": [
+        3.0,
+        4.0
+      ]
+    },
+    "topoisomerase_I_inhibitors": {
+      "members": [
+        "DXd",
+        "SN-38"
+      ],
+      "potency_range_pM": [
+        1,
+        100
+      ],
+      "mechanism": "DNA replication fork collapse",
+      "best_for": "Heterogeneous tumors (bystander effect), moderate-to-low expression targets",
+      "limitation": "Diarrhea, ILD (interstitial lung disease) for DXd platform",
+      "typical_dar": [
+        4.0,
+        8.0
+      ]
+    },
+    "dna_damaging_agents": {
+      "members": [
+        "DGN549 (IGN)",
+        "Talirine",
+        "Calicheamicin",
+        "SG3199 (PBD)",
+        "Indolinobenzodiazepine",
+        "Duocarmycin",
+        "SYD985 payload",
+        "IGN",
+        "PNU-159682"
+      ],
+      "potency_range_pM": [
+        0.01,
+        10
+      ],
+      "mechanism": "DNA alkylation / double-strand breaks",
+      "best_for": "Low-expression targets (extreme potency allows low DAR)",
+      "limitation": "Hepatotoxicity (Calicheamicin), myelosuppression (PBD), narrow TI",
+      "typical_dar": [
+        2.0,
+        3.0
+      ]
+    },
+    "immunomodulators": {
+      "members": [
+        "STING agonist",
+        "TLR7/8 agonist",
+        "IL-15 superagonist"
+      ],
+      "potency_range_pM": "variable",
+      "mechanism": "Innate immune activation in TME",
+      "best_for": "Cold tumors, combination with checkpoint inhibitors",
+      "limitation": "Systemic immune activation if release is not controlled",
+      "typical_dar": [
+        2.0,
+        4.0
+      ]
+    },
+    "ksp_inhibitors": {
+      "members": [
+        "KSP71",
+        "SB-743921"
+      ],
+      "potency_range_pM": [
+        100,
+        1000
+      ],
+      "mechanism": "Inhibition of kinesin spindle protein → mitotic arrest",
+      "best_for": "Tumors resistant to tubulin inhibitors",
+      "limitation": "Neutropenia",
+      "typical_dar": [
+        2.0,
+        4.0
+      ]
+    },
+    "bcl_xl_inhibitors": {
+      "members": [
+        "ABBV-155 payload",
+        "Navitoclax-like"
+      ],
+      "potency_range_pM": [
+        1000,
+        10000
+      ],
+      "mechanism": "Induction of apoptosis via Bcl-xL inhibition",
+      "best_for": "Combination with chemotherapy, solid tumors",
+      "limitation": "Thrombocytopenia (mitigated by ADC delivery)",
+      "typical_dar": [
+        2.0,
+        4.0
+      ]
+    },
+    "nampt_inhibitors": {
+      "members": [
+        "Seagen NAMPTi"
+      ],
+      "potency_range_pM": [
+        100,
+        500
+      ],
+      "mechanism": "NAD+ depletion → metabolic collapse",
+      "best_for": "Metabolically active tumors",
+      "limitation": "Retinopathy, thrombocytopenia",
+      "typical_dar": [
+        4.0
+      ]
+    },
+    "protac_payloads": {
+      "members": [
+        "BRD4-PROTAC",
+        "ER-PROTAC",
+        "AR-PROTAC"
+      ],
+      "mechanism": "Targeted protein degradation via E3 ligase recruitment",
+      "best_for": "Undruggable targets, overcoming resistance to small molecules",
+      "limitation": "Large molecular weight, complex PK",
+      "typical_dar": [
+        1.0,
+        2.0
+      ]
+    },
+    "radionuclides": {
+      "members": [
+        "Actinium-225 (Alpha)",
+        "Lutetium-177 (Beta)",
+        "Thorium-227 (Alpha)",
+        "Iodine-131 (Beta)",
+        "Yttrium-90 (Beta)"
+      ],
+      "mechanism": "Targeted radioligand therapy (RDC). Alpha emitters cause irreparable double-strand DNA breaks with short range (high energy, low bystander damage). Beta emitters have longer range (crossfire/bystander effect).",
+      "best_for": "Radiosensitive tumors, heterogeneous tumors (Beta emitters), micrometastases (Alpha emitters).",
+      "limitation": "Complex supply chain (isotope half-life), radiation dosimetry, delayed myelosuppression, nephrotoxicity.",
+      "typical_dar": [
+        "Chelator-based (e.g., DOTA, MACROPA) typically DAR 1"
+      ]
+    },
+    "protein_toxins": {
+      "members": [
+        "PE38 (Pseudomonas exotoxin)",
+        "Saporin",
+        "Bouganin"
+      ],
+      "mechanism": "Ribosome inactivation → protein synthesis arrest",
+      "best_for": "Hematologic malignancies",
+      "limitation": "High immunogenicity, CLS risk",
+      "boundary_classification": "immunotoxin"
+    },
+    "rna_polymerase_ii_inhibitors": {
+      "members": [
+        "Amanitin",
+        "Amatoxin"
+      ],
+      "potency_range_pM": [
+        10,
+        100
+      ],
+      "mechanism": "Inhibition of RNA Pol II → transcription arrest",
+      "best_for": "Slow-growing or dormant tumors, p53-mutant tumors",
+      "limitation": "Hepatotoxicity, narrow therapeutic index",
+      "typical_dar": [
+        2.0
+      ]
+    },
+    "spliceosome_inhibitors": {
+      "members": [
+        "Thailanstatin",
+        "Spliceostatin"
+      ],
+      "potency_range_pM": [
+        100,
+        1000
+      ],
+      "mechanism": "Inhibition of SF3B1 → splicing disruption",
+      "best_for": "Splicing-factor mutant tumors (e.g., SF3B1 mutant AML/MDS)",
+      "limitation": "Systemic toxicity",
+      "typical_dar": [
+        2.0,
+        4.0
+      ]
+    },
+    "immune_stimulatory_agonists": {
+      "members": [
+        "TLR7/8 agonist",
+        "STING agonist",
+        "ISAC"
+      ],
+      "potency_range_pM": "N/A (immune activation)",
+      "mechanism": "Innate immune activation (myeloid cells) in TME",
+      "best_for": "Cold tumors, combination with PD-1/PD-L1",
+      "limitation": "Cytokine release syndrome if systemically released",
+      "typical_dar": [
+        2.0,
+        4.0
+      ]
+    }
+  },
+  "conjugation_technology": {
+    "stochastic_cysteine": {
+      "description": "Partial reduction of interchain disulfides → maleimide coupling",
+      "dar_homogeneity": "moderate (DAR 0/2/4/6/8 species)",
+      "typical_dar": 4.0,
+      "cmc_complexity": "low",
+      "patent_freedom": "broad (expired core patents)",
+      "platform_name": "Classic Maleimide (Partial Reduction)",
+      "developer": "Seagen / ImmunoGen (Public Domain)",
+      "pmid_refs": [
+        "PMID:12873544",
+        "PMID:22399561"
+      ],
+      "cmc_detail": "High complexity in purification due to DAR distribution (0, 2, 4, 6, 8). Requires hydrophobic interaction chromatography (HIC) for characterization. Risk of maleimide de-conjugation via retro-Michael reaction in vivo.",
+      "fto_detail": "Broad freedom to operate (FTO); core patents expired. Most widely used clinical method."
+    },
+    "lysine_coupling": {
+      "description": "NHS ester reaction with surface lysines",
+      "dar_homogeneity": "low (DAR 0-8+ species)",
+      "typical_dar": 3.5,
+      "cmc_complexity": "low",
+      "patent_freedom": "broad (expired)",
+      "platform_name": "NHS-Ester Random Coupling",
+      "developer": "ImmunoGen / Roche (Public Domain)",
+      "pmid_refs": [
+        "PMID:16814772",
+        "PMID:22646630"
+      ],
+      "cmc_detail": "Extremely heterogeneous DAR distribution. Characterization requires mass spectrometry (native MS) and ion-exchange chromatography (IEX). High batch-to-batch variability risk.",
+      "fto_detail": "Broad FTO; used in Kadcyla and Mylotarg."
+    },
+    "site_specific_engineered_cys": {
+      "description": "THIOMAB: engineered cysteine at specific sites",
+      "dar_homogeneity": "high (DAR 2 ± 0.1)",
+      "typical_dar": 2.0,
+      "cmc_complexity": "moderate",
+      "patent_freedom": "Genentech patents (check FTO)",
+      "platform_name": "THIOMAB™ / Engineered Cys",
+      "developer": "Genentech (Roche)",
+      "pmid_refs": [
+        "PMID:18552842",
+        "PMID:24703513"
+      ],
+      "cmc_detail": "Requires precise control of reduction/re-oxidation to ensure engineered cysteines are reactive while native disulfides remain intact. High DAR homogeneity (typically DAR 2.0).",
+      "fto_detail": "Patented by Genentech; requires licensing for commercial use."
+    },
+    "enzymatic_transglutaminase": {
+      "description": "Microbial transglutaminase (mTG) conjugation at Q295",
+      "dar_homogeneity": "high",
+      "typical_dar": 2.0,
+      "cmc_complexity": "moderate",
+      "patent_freedom": "Innate Pharma / limited",
+      "platform_name": "MTGase-mediated conjugation",
+      "developer": "Ajinomoto (AJICAP) / NBE-Therapeutics",
+      "pmid_refs": [
+        "PMID:24912431",
+        "PMID:31110004"
+      ],
+      "cmc_detail": "Requires deglycosylation (PNGase F) or specific Q-tag insertion. Highly site-specific at Gln295. Excellent homogeneity. Minimal impact on antibody folding.",
+      "fto_detail": "Proprietary technology; AJICAP and NBE-Therapeutics hold key patents."
+    },
+    "glycan_remodeling": {
+      "description": "GlycoConnect: enzymatic remodeling of Fc N297 glycan → azide coupling",
+      "dar_homogeneity": "very_high",
+      "typical_dar": 2.0,
+      "cmc_complexity": "high",
+      "patent_freedom": "Synaffix patents (check FTO)",
+      "platform_name": "GlycoConnect™ / GlycoDesign",
+      "developer": "Synaffix / Seattle Genetics",
+      "pmid_refs": [
+        "PMID:26554950",
+        "PMID:30356154"
+      ],
+      "cmc_detail": "Two-step enzymatic process: (1) Trimming of native glycans, (2) Addition of azide-modified sugars for click chemistry. High homogeneity (DAR 2 or 4). Bypasses need for protein engineering.",
+      "fto_detail": "Strong patent protection by Synaffix (Lonza)."
+    },
+    "AJICAP": {
+      "description": "Affinity peptide-directed site-specific conjugation at Fc Lys248",
+      "dar_homogeneity": "high",
+      "typical_dar": 2.0,
+      "cmc_complexity": "moderate",
+      "patent_freedom": "Ajinomoto patents",
+      "platform_name": "AJICAP® (Affinity-peptide mediated)",
+      "developer": "Ajinomoto",
+      "pmid_refs": [
+        "PMID:31110004"
+      ],
+      "cmc_detail": "Uses a temporary affinity peptide to direct conjugation to Lys188/248. No protein engineering required. High homogeneity for native IgG.",
+      "fto_detail": "Proprietary to Ajinomoto."
+    },
+    "unnatural_amino_acid": {
+      "description": "Amber codon suppression → pAzF/pAcF incorporation → click chemistry",
+      "dar_homogeneity": "very_high",
+      "typical_dar": 2.0,
+      "cmc_complexity": "high (requires cell-line engineering)",
+      "patent_freedom": "Ambrx / Sutro patents (check FTO)",
+      "platform_name": "p-Acetylphenylalanine (pAcPhe) / Ambrx",
+      "developer": "Ambrx / Sutro Biopharma",
+      "pmid_refs": [
+        "PMID:25133814",
+        "PMID:27064340"
+      ],
+      "cmc_detail": "Requires cell line engineering (orthogonal tRNA/RS pair). Allows precise placement of payload anywhere on the scaffold. High manufacturing complexity (COGS).",
+      "fto_detail": "Patented by Ambrx and Sutro."
+    },
+    "enzyme_fge_smartag": {
+      "description": "Formylglycine-generating enzyme (FGE) converts Cys to aldehyde for HIPS ligation",
+      "dar_homogeneity": "very_high",
+      "typical_dar": 2.0,
+      "cmc_complexity": "high (cell line engineering)",
+      "patent_freedom": "Catalent patents (check FTO)"
+    },
+    "sortase_a_mediated": {
+      "description": "Enzymatic ligation using Sortase A at LPETG motif",
+      "dar_homogeneity": "very_high",
+      "typical_dar": 2.0,
+      "cmc_complexity": "moderate",
+      "patent_freedom": "NBE-Therapeutics / Boehringer Ingelheim"
+    },
+    "tub_tag_tubulin_ligase": {
+      "description": "Tubulin tyrosine ligase (TTL) adds unnatural tyrosine derivatives",
+      "dar_homogeneity": "high",
+      "typical_dar": 2.0,
+      "cmc_complexity": "moderate",
+      "patent_freedom": "Tubulis patents"
+    },
+    "iLDC_ligase_GeneQuantum": {
+      "description": "Intelligent Ligase-dependent Conjugation (iLDC) using proprietary ligase for site-specific coupling.",
+      "dar_homogeneity": "very_high",
+      "typical_dar": 2.0,
+      "cmc_complexity": "low (one-step reaction, highly scalable)",
+      "patent_freedom": "GeneQuantum  proprietary"
+    },
+    "thiobridge_polytherics": {
+      "description": "Disulfide bridging conjugation maintaining antibody stability",
+      "patent_freedom": "Abzena"
+    },
+    "c_lock_bms": {
+      "description": "C-lock conjugation technology",
+      "patent_freedom": "BMS"
+    },
+    "snap_tag": {
+      "description": "Engineered SNAP-tag protein fusion for benzylguanine derivatives",
+      "patent_freedom": "Various"
+    },
+    "platinum_based_linkage": {
+      "description": "Platinum(II)-based coordination chemistry (e.g., LinXis)",
+      "patent_freedom": "LinXis"
+    },
+    "ajicap_v2": {
+      "description": "Second generation AJICAP without Fc affinity peptide",
+      "patent_freedom": "Ajinomoto"
+    },
+    "sortase_a_nbe": {
+      "description": "Enzymatic conjugation using Sortase A",
+      "patent_freedom": "NBE-Therapeutics"
+    },
+    "formylglycine_smartag": {
+      "description": "FGE enzyme conversion of Cys to fGly",
+      "patent_freedom": "Catalent"
+    },
+    "glycoconnect_synaffix": {
+      "description": "Native glycan remodeling and click chemistry",
+      "patent_freedom": "Synaffix"
+    },
+    "pclick_technology": {
+      "description": "Proximity-induced click chemistry without engineering",
+      "patent_freedom": "Synaffix"
+    },
+    "multi_arm_star_peg": {
+      "description": "High DAR polymer scaffold conjugation",
+      "patent_freedom": "Mersana"
+    },
+    "ThioBridge": {
+      "platform_name": "ThioBridge™ (Disulfide Re-bridging)",
+      "developer": "Abzena",
+      "pmid_refs": [
+        "PMID:25654301"
+      ],
+      "cmc_detail": "Payload bridges the two sulfur atoms of a reduced disulfide bond. Improves ADC stability compared to maleimide. Maintains structural integrity of the antibody.",
+      "fto_detail": "Proprietary to Abzena."
+    },
+    "GeneQuantum_iLDC": {
+      "platform_name": "iLDC (intelligent Ligase-dependent Conjugation)",
+      "developer": "GeneQuantum Healthcare",
+      "pmid_refs": [
+        "PMID:33454211"
+      ],
+      "cmc_detail": "Enzymatic conjugation using microbial transglutaminase or other ligases in a continuous flow process. High efficiency and scalability.",
+      "fto_detail": "Proprietary to GeneQuantum."
+    }
+  },
+  "safety_rules": {
+    "_note": "Hard safety constraints for ADC design.",
+    "dar_potency_balance": {
+      "rule": "DAR × IC50 product must stay within therapeutic window",
+      "ultra_potent_payload": {
+        "max_dar": 2.5,
+        "payloads": [
+          "PBD",
+          "Calicheamicin",
+          "Duocarmycin"
+        ]
+      },
+      "potent_payload": {
+        "max_dar": 4.0,
+        "payloads": [
+          "MMAE",
+          "MMAF",
+          "DM1",
+          "DM4"
+        ]
+      },
+      "moderate_payload": {
+        "max_dar": 8.0,
+        "payloads": [
+          "DXd",
+          "SN-38"
+        ]
+      }
+    },
+    "on_target_off_tumor": {
+      "high_risk_targets": [
+        "Tissue Factor",
+        "CEACAM5",
+        "EGFR",
+        "MET"
+      ],
+      "mitigation": [
+        "Use conditional-release linker",
+        "Lower DAR",
+        "Consider bispecific for selectivity",
+        "Non-bystander payload"
+      ],
+      "mandatory_safety_assessment": true
+    },
+    "known_class_toxicities": {
+      "MMAE": [
+        "peripheral neuropathy",
+        "neutropenia"
+      ],
+      "DXd": [
+        "interstitial lung disease (ILD)",
+        "nausea"
+      ],
+      "SN-38": [
+        "diarrhea",
+        "neutropenia"
+      ],
+      "PBD": [
+        "myelosuppression",
+        "hepatotoxicity",
+        "edema"
+      ],
+      "DM1": [
+        "thrombocytopenia",
+        "hepatotoxicity"
+      ],
+      "DM4": [
+        "ocular toxicity",
+        "peripheral neuropathy"
+      ],
+      "Calicheamicin": [
+        "hepatotoxicity (VOD/SOS)",
+        "myelosuppression"
+      ],
+      "MMAF": [
+        "ocular toxicity (corneal events)"
+      ]
+    },
+    "combination_therapy_alerts": {
+      "ADC_plus_Immune_Checkpoint_Inhibitor (PD-1/PD-L1)": {
+        "rationale": "ADC induces Immunogenic Cell Death (ICD), releasing neoantigens and activating dendritic cells, turning 'cold' tumors 'hot', synergizing with PD-1 blockade.",
+        "clinical_examples": [
+          "Enfortumab vedotin + Pembrolizumab (1L Urothelial)"
+        ],
+        "risk": "Overlapping immune-related adverse events (irAEs), particularly Interstitial Lung Disease (ILD) or pneumonitis."
+      },
+      "ADC_plus_Anti_Angiogenic (VEGF)": {
+        "rationale": "Anti-VEGF (e.g., Bevacizumab) normalizes tumor vasculature, reducing interstitial fluid pressure, which significantly enhances the penetration of large ADC molecules into solid tumors.",
+        "clinical_examples": [
+          "Enhertu + Bevacizumab",
+          "RC48 + Apatinib"
+        ],
+        "risk": "Bleeding, hypertension."
+      },
+      "ADC_plus_PARP_Inhibitor": {
+        "rationale": "DNA-damaging payloads (TOP1 inhibitors like DXd/SN-38, or PBDs) create DNA breaks. PARP inhibitors block DNA repair, creating synthetic lethality.",
+        "clinical_examples": [
+          "Sacituzumab govitecan + Talazoparib"
+        ],
+        "risk": "Severe overlapping myelosuppression (neutropenia, anemia)."
+      },
+      "ADC_plus_TKI": {
+        "rationale": "Overcome resistance bypass pathways (e.g., HER2 ADC + EGFR TKI).",
+        "clinical_examples": [
+          "Enhertu + Tucatinib"
+        ],
+        "risk": "GI toxicity (diarrhea)."
+      }
+    },
+    "ADA_immunogenicity_risk": {
+      "risk_factors": [
+        "Protein toxins (e.g., PE38 in Lumoxiti)",
+        "Masking peptides (e.g., Probody)",
+        "Polymeric linkers (e.g., Dolaflexin)",
+        "High DAR with hydrophobic payloads (hapten effect)"
+      ],
+      "clinical_consequences": [
+        "Accelerated clearance (Altered PK)",
+        "Loss of efficacy (Neutralizing antibodies)",
+        "Hypersensitivity / Anaphylaxis"
+      ],
+      "mitigation": "Hydrophilic linkers, fully humanized binders, site-specific conjugation to shield payload."
+    }
+  },
+  "cmc_manufacturing_rules": {
+    "_note": "CMC and manufacturability constraints for ADC design.",
+    "preferred_characteristics": {
+      "dar_homogeneity": "CV < 15%; prefer site-specific conjugation",
+      "aggregate_level": "< 5% HMW by SEC-HPLC",
+      "unconjugated_drug": "< 1% free payload",
+      "antibody_integrity": "< 5% fragmentation by CE-SDS (NR)",
+      "hydrophobicity": "HIC profile should show single dominant peak"
+    },
+    "scalability_risk": {
+      "low": [
+        "stochastic_cysteine",
+        "lysine_coupling"
+      ],
+      "moderate": [
+        "site_specific_engineered_cys",
+        "enzymatic_transglutaminase",
+        "AJICAP"
+      ],
+      "high": [
+        "glycan_remodeling",
+        "unnatural_amino_acid"
+      ]
+    },
+    "conjugation_to_formulation": {
+      "hydrophobic_payload": {
+        "risk": "High DAR with hydrophobic payload → aggregation",
+        "mitigation": "Use hydrophilic linker (PEG spacer, GGFG), reduce DAR, add surfactant"
+      },
+      "site_specific_dar2": {
+        "benefit": "Homogeneous product, simplified analytics",
+        "limitation": "May need ultra-potent payload to compensate for low DAR"
+      }
+    }
+  },
+  "decision_tree_logic": {
+    "_note": "Step-by-step decision algorithm for the recommendation engine.",
+    "step_1_disease_to_antigens": {
+      "input": "disease_type, disease_subtype",
+      "action": "Look up disease_antigen_map → get primary and secondary antigens with tiers",
+      "output": "ranked_antigen_list"
+    },
+    "step_2_antigen_to_properties": {
+      "input": "antigen_name",
+      "action": "Look up antigen_properties → get density, internalization, heterogeneity, off-tumor risk",
+      "output": "antigen_profile"
+    },
+    "step_3_properties_to_linker_payload": {
+      "input": "antigen_profile",
+      "action": "Apply compatibility rules: internalization→linker_type, heterogeneity→bystander_requirement, density→DAR_range",
+      "output": "compatible_linker_payload_combos"
+    },
+    "step_4_safety_constraints": {
+      "input": "linker_payload_combos, target_antigen",
+      "action": "Apply safety_rules: DAR×potency check, off-tumor risk, class toxicity warnings",
+      "output": "filtered_safe_combos"
+    },
+    "step_5_binder_format": {
+      "input": "disease_type, tumor_accessibility, desired_pk",
+      "action": "Select IgG1/IgG4/Bispecific/VHH based on binder_format_rules",
+      "output": "recommended_format"
+    },
+    "step_6_conjugation_technology": {
+      "input": "DAR_target, CMC_priority, FTO_concern",
+      "action": "Select conjugation method from conjugation_technology based on homogeneity needs and patent freedom",
+      "output": "recommended_conjugation"
+    },
+    "step_7_precedent_check": {
+      "input": "complete ADC design",
+      "action": "Query adc_master_internal.json for existing approved/clinical ADCs with same target",
+      "output": "precedent_programs, differentiation_opportunity"
+    },
+    "step_8_rank_and_report": {
+      "input": "all candidate designs",
+      "action": "Score by: clinical_precedent (30%), safety_profile (25%), CMC_feasibility (20%), FTO_freedom (15%), differentiation (10%)",
+      "output": "ranked_design_proposals"
+    }
+  },
+  "scoring_weights": {
+    "clinical_precedent": 0.3,
+    "safety_profile": 0.25,
+    "cmc_feasibility": 0.2,
+    "fto_freedom": 0.15,
+    "differentiation": 0.1
+  },
+  "experimental_methods": {
+    "in_vitro_assays": {
+      "binding_affinity": {
+        "methods": [
+          "SPR (Biacore)",
+          "BLI (Octet)",
+          "Flow Cytometry (FACS)"
+        ],
+        "purpose": "Measure KD to recombinant antigen and cell-surface antigen. Too high affinity may cause 'binding site barrier' effect.",
+        "protocol_summary": "Standard SPR: Immobilize antigen on CM5 chip; inject ADC at 5-6 concentrations (0.1-100 nM). Calculate Ka, Kd, KD. Compare Intact ADC vs Parental mAb.",
+        "cell_line_recommendations": "Target-overexpressing (e.g., SK-BR-3 for HER2, BT-474) vs Target-negative (e.g., MDA-MB-231 for HER2).",
+        "readout_sensitivity": "KD down to pM range for SPR; FACS requires ~10^4 receptors/cell.",
+        "pmid_refs": [
+          "PMID:22108849"
+        ]
+      },
+      "internalization": {
+        "methods": [
+          "pH-sensitive dyes (e.g., pHrodo Green/Red)",
+          "Confocal Microscopy",
+          "FACS"
+        ],
+        "purpose": "Quantify rate and extent of ADC trafficking into acidic endosomes/lysosomes.",
+        "protocol_summary": "pHrodo labeling: Conjugate ADC with pH-sensitive dye; incubate with cells at 37°C; monitor fluorescence increase (lysosomal entry) via FACS or live-cell imaging over 24h.",
+        "cell_line_recommendations": "High-internalizing (TROP-2+ JIMT-1) vs Low-internalizing variants.",
+        "readout_sensitivity": "t1/2 detection from 15 mins to 48 hours.",
+        "pmid_refs": [
+          "PMID:30356154"
+        ]
+      },
+      "cytotoxicity": {
+        "methods": [
+          "CellTiter-Glo (ATP luminescence)",
+          "MTT/MTS assay"
+        ],
+        "purpose": "Determine IC50 on Target-positive vs Target-negative cell lines to prove specificity.",
+        "protocol_summary": "CellTiter-Glo: Seed cells (3000/well); add ADC (10-point dilution, 10 nM to 1 fM); incubate 72-120h; add CTG reagent; measure luminescence. Calculate IC50.",
+        "cell_line_recommendations": "Panel of 5-10 lines with varying antigen density (H-score 0 to 300).",
+        "readout_sensitivity": "IC50 detection down to 10^-12 M (pM).",
+        "pmid_refs": [
+          "PMID:12873544"
+        ]
+      },
+      "bystander_effect": {
+        "methods": [
+          "Co-culture assay (Target+ and Target- cells with different fluorescent reporters)"
+        ],
+        "purpose": "Verify if released payload can kill neighboring antigen-negative cells (crucial for heterogeneous tumors).",
+        "protocol_summary": "Mix GFP+ (Target+) and RFP+ (Target-) cells at 1:1 ratio. Add ADC. Monitor RFP+ cell death over 5 days. If RFP+ cells die, payload is membrane-permeable.",
+        "cell_line_recommendations": "HER2+ SK-BR-3 mixed with HER2- MDA-MB-231.",
+        "readout_sensitivity": "Requires >20% bystander killing for 'Positive' classification.",
+        "pmid_refs": [
+          "PMID:26058450"
+        ]
+      },
+      "plasma_stability": {
+        "methods": [
+          "LC-MS/MS after incubation in human/cyno/mouse plasma"
+        ],
+        "purpose": "Measure payload shedding rate in circulation (Free payload vs Intact ADC).",
+        "protocol_summary": "Incubate ADC in human/mouse plasma at 37°C for 0, 1, 3, 7 days. Extract samples; analyze via LC-MS/MS to quantify intact ADC vs free payload.",
+        "readout_sensitivity": "LOQ (Limit of Quantitation) typically 1-10 ng/mL for free drug.",
+        "pmid_refs": [
+          "PMID:22399561"
+        ]
+      },
+      "linker_cleavage": {
+        "methods": [
+          "Incubation with Cathepsin B",
+          "Low pH buffer incubation",
+          "Tumor homogenate incubation"
+        ],
+        "purpose": "Confirm payload release mechanism and kinetics.",
+        "protocol_summary": "In vitro enzyme assay: Incubate ADC with recombinant Cathepsin B (pH 5.0) or β-glucuronidase. Analyze payload release kinetics via HPLC/MS.",
+        "readout_sensitivity": ">90% cleavage within 4h for 'Rapid' linkers.",
+        "pmid_refs": [
+          "PMID:16955513"
+        ]
+      }
+    },
+    "in_vivo_assays": {
+      "efficacy_models": {
+        "methods": [
+          "CDX (Cell line-derived xenograft)",
+          "PDX (Patient-derived xenograft)"
+        ],
+        "purpose": "Evaluate tumor growth inhibition (TGI) and survival in immunocompromised mice."
+      },
+      "pharmacokinetics_pk": {
+        "methods": [
+          "ELISA",
+          "LC-MS/MS"
+        ],
+        "analytes": [
+          "Total Antibody (tAb)",
+          "Intact ADC",
+          "Free Payload"
+        ],
+        "purpose": "Determine half-life, clearance rate, and systemic exposure of the toxic payload."
+      },
+      "toxicology_tox": {
+        "methods": [
+          "Rodent MTD (Maximum Tolerated Dose)",
+          "GLP Tox in Cynomolgus Monkeys (NHP)"
+        ],
+        "purpose": "NHP is critical if the antibody cross-reacts with monkey antigen. Evaluates on-target off-tumor tox and payload-driven tox (e.g., bone marrow, liver)."
+      }
+    }
+  },
+  "antigen_internalization_profile": {
+    "_description": "Maps antigen internalization/shedding profiles to linker and payload class recommendations",
+    "rapid_low_shedding": {
+      "examples": [
+        "TROP-2",
+        "CD30",
+        "CD33",
+        "HER2",
+        "Nectin-4",
+        "CD79b",
+        "CD22"
+      ],
+      "recommended_linker_classes": [
+        "Protease-cleavable (Cathepsin B)",
+        "Glucuronide-cleavable"
+      ],
+      "acceptable_linker_classes": [
+        "Non-cleavable (Thioether)",
+        "Disulfide-cleavable"
+      ],
+      "recommended_payload_classes": [
+        "Tubulin Inhibitors",
+        "Topoisomerase I Inhibitors",
+        "DNA Damaging Agents"
+      ],
+      "dar_guidance": "DAR 3–8 well-tolerated depending on linker hydrophilicity",
+      "bystander_requirement": "Not required but beneficial for heterogeneous targets"
+    },
+    "rapid_high_shedding": {
+      "examples": [
+        "BCMA",
+        "CD138",
+        "MUC16",
+        "MUC1"
+      ],
+      "recommended_linker_classes": [
+        "Protease-cleavable (Cathepsin B)",
+        "Glucuronide-cleavable"
+      ],
+      "acceptable_linker_classes": [],
+      "recommended_payload_classes": [
+        "Topoisomerase I Inhibitors",
+        "DNA Damaging Agents"
+      ],
+      "dar_guidance": "Higher DAR (6–8) preferred to overcome antigen sink effect; only feasible with hydrophilic linkers (GGFG, PEG variants)",
+      "bystander_requirement": "REQUIRED — bystander killing compensates for reduced payload delivery from shed antigen",
+      "special_note": "Consider target proximal epitope binding to minimize shed antigen competition"
+    },
+    "slow_low_shedding": {
+      "examples": [
+        "CLDN18.2",
+        "CD20",
+        "GD2",
+        "CD47"
+      ],
+      "recommended_linker_classes": [
+        "Protease-cleavable",
+        "Glucuronide-cleavable"
+      ],
+      "acceptable_linker_classes": [],
+      "recommended_payload_classes": [
+        "Topoisomerase I Inhibitors (high bystander)",
+        "DNA Damaging Agents (cell-cycle independent)"
+      ],
+      "dar_guidance": "Higher DAR (6–8) beneficial to maximize payload from limited internalization events",
+      "bystander_requirement": "REQUIRED — slow internalization must be compensated by high bystander effect to kill neighboring tumor cells",
+      "special_note": "Tubulin inhibitors (MMAE) are typically SUBOPTIMAL for poor internalizers — limited payload reaches lysosome"
+    },
+    "slow_moderate_shedding": {
+      "examples": [
+        "Mesothelin",
+        "GPC3",
+        "CEACAM5",
+        "NaPi2b"
+      ],
+      "recommended_linker_classes": [
+        "Glucuronide-cleavable (TME-active)",
+        "Protease-cleavable"
+      ],
+      "acceptable_linker_classes": [
+        "Disulfide-cleavable (GSH-activated)"
+      ],
+      "recommended_payload_classes": [
+        "Topoisomerase I Inhibitors (high bystander)",
+        "Immune Stimulatory Agonists (ISAC — TME activation)"
+      ],
+      "dar_guidance": "DAR 4–8; hydrophilic linkers (glucuronide, PEG-vc) essential",
+      "bystander_requirement": "STRONGLY REQUIRED",
+      "special_note": "Glucuronide linker advantage: TME extracellular beta-glucuronidase also cleaves linker, providing bystander delivery even without internalization"
+    },
+    "moderate_very_low_shedding": {
+      "examples": [
+        "PSMA",
+        "HER3",
+        "B7-H3",
+        "B7-H4",
+        "FRα",
+        "STEAP1",
+        "NaPi2b"
+      ],
+      "recommended_linker_classes": [
+        "Protease-cleavable (Cathepsin B)",
+        "Glucuronide-cleavable"
+      ],
+      "acceptable_linker_classes": [
+        "Non-cleavable (Thioether)"
+      ],
+      "recommended_payload_classes": [
+        "Tubulin Inhibitors",
+        "Topoisomerase I Inhibitors"
+      ],
+      "dar_guidance": "DAR 3–6",
+      "bystander_requirement": "Beneficial but not required"
+    },
+    "rapid_recycling": {
+      "examples": [
+        "EGFR",
+        "HER2 (partial)",
+        "FRα (partial)",
+        "LIV-1"
+      ],
+      "recommended_linker_classes": [
+        "Protease-cleavable",
+        "Non-cleavable (Thioether)"
+      ],
+      "acceptable_linker_classes": [
+        "pH-sensitive (Hydrazone — caution: plasma stability)"
+      ],
+      "recommended_payload_classes": [
+        "Tubulin Inhibitors",
+        "Topoisomerase I Inhibitors"
+      ],
+      "dar_guidance": "DAR 3–4 (high-DAR targets with recycling risk ADC clearance)",
+      "bystander_requirement": "Beneficial for heterogeneous EGFR tumors",
+      "special_note": "Recycling reduces net payload per cell — pulse dosing or fractionated dosing strategies may help"
+    }
+  },
+  "payload_selection_rules": {
+    "_description": "Rules for matching payload class to clinical/tumor context",
+    "tumor_proliferation_index": {
+      "high_ki67": {
+        "examples": [
+          "TNBC",
+          "SCLC",
+          "DLBCL",
+          "AML",
+          "ALL"
+        ],
+        "preferred_payloads": [
+          "Tubulin Inhibitors (MMAE, MMAF)",
+          "Topoisomerase I Inhibitors (DXd, SN-38)"
+        ],
+        "acceptable_payloads": [
+          "DNA Damaging Agents"
+        ],
+        "avoid_payloads": [],
+        "rationale": "High proliferation index means most cells are in S/G2/M — tubulin inhibitors maximally effective"
+      },
+      "low_ki67": {
+        "examples": [
+          "Prostate cancer (mCRPC)",
+          "Low-grade lymphoma",
+          "CLL",
+          "Myeloma plasma cells"
+        ],
+        "preferred_payloads": [
+          "Topoisomerase I Inhibitors (cell-cycle independent)",
+          "DNA Damaging Agents (PBD, calicheamicin)",
+          "RNA Pol II Inhibitors (alpha-amanitin)"
+        ],
+        "acceptable_payloads": [
+          "Tubulin Inhibitors (reduced efficacy but still active)"
+        ],
+        "avoid_payloads": [
+          "Auristatin family (for predominantly quiescent tumors)"
+        ],
+        "rationale": "Low proliferation = most cells in G0/G1 — tubulin inhibitors require cells to enter mitosis; TOP1i and DNA alkylators work independently of cell cycle"
+      },
+      "heterogeneous": {
+        "examples": [
+          "HER2-low breast",
+          "Gastric cancer",
+          "NSCLC",
+          "GBM"
+        ],
+        "preferred_payloads": [
+          "Topoisomerase I Inhibitors (DXd — strong bystander effect + cell-cycle independence)",
+          "Immune Stimulatory Agonists (ISACs — TME activation)"
+        ],
+        "acceptable_payloads": [
+          "Tubulin Inhibitors with PEG-vc linker (moderate bystander)"
+        ],
+        "avoid_payloads": [
+          "MMAF (no bystander)",
+          "PBD dimers (excessive off-target toxicity in heterogeneous tumors)"
+        ],
+        "rationale": "Heterogeneous antigen expression requires strong bystander killing — cell-cycle independent DXd kills antigen-negative neighbors"
+      }
+    },
+    "tumor_microenvironment": {
+      "immunosuppressive_TME": {
+        "examples": [
+          "Pancreatic cancer",
+          "Ovarian cancer",
+          "Prostate cancer"
+        ],
+        "preferred_payloads": [
+          "Immune Stimulatory Agonists (TLR7/STING — reactivate innate immunity)",
+          "Topoisomerase I Inhibitors (immunogenic cell death via IFN pathway)"
+        ],
+        "acceptable_payloads": [
+          "Tubulin Inhibitors",
+          "DNA Damaging Agents"
+        ],
+        "rationale": "Immunosuppressive TME reduces T-cell dependent efficacy; ISAC approach + DXd-type immunogenic death can reprogram TME"
+      },
+      "inflamed_TME": {
+        "examples": [
+          "Melanoma",
+          "NSCLC (TMB-high)",
+          "MSI-H CRC"
+        ],
+        "preferred_payloads": [
+          "Tubulin Inhibitors",
+          "Topoisomerase I Inhibitors"
+        ],
+        "acceptable_payloads": [
+          "Immune Stimulatory Agonists (risk: excessive inflammation)"
+        ],
+        "avoid_payloads": [
+          "ISACs (CRS risk in already inflamed tumors)"
+        ],
+        "rationale": "Inflamed TME: direct cytotoxic payloads work well; ISAC may cause excessive cytokine release"
+      }
+    },
+    "disease_category_rules": {
+      "liquid_tumor_AML": {
+        "first_choice_payload": "DNA Damaging Agents (calicheamicin — Mylotarg precedent; cell-cycle independent for LSCs)",
+        "second_choice": "RNA Pol II Inhibitors (alpha-amanitin — targets quiescent LSCs)",
+        "avoid": "PBD dimers (unacceptable hepatotoxicity/VOD at therapeutic doses in clinical setting)",
+        "rationale": "AML blasts include quiescent LSCs — cell-cycle independent payloads essential for cure"
+      },
+      "liquid_tumor_lymphoma": {
+        "first_choice_payload": "Tubulin Inhibitors (MMAE — Adcetris precedent in CD30+ lymphoma)",
+        "second_choice": "DNA Damaging Agents (PBD — Zynlonta in DLBCL)",
+        "avoid": "None specific",
+        "rationale": "Lymphoma cells are rapidly cycling — tubulin inhibitors highly effective"
+      },
+      "liquid_tumor_myeloma": {
+        "first_choice_payload": "Tubulin Inhibitors (MMAF — Blenrep precedent in BCMA+)",
+        "second_choice": "Topoisomerase I Inhibitors (cell-cycle independent for post-mitotic PCs)",
+        "avoid": "PBD dimers (myeloma-specific hepatotoxicity risk)",
+        "rationale": "Plasma cells are largely post-mitotic — MMAF has reduced bystander effect (important to reduce hematological toxicity)"
+      },
+      "solid_tumor_breast": {
+        "first_choice_payload": "Topoisomerase I Inhibitors (DXd — Enhertu/Trodelvy revolution)",
+        "second_choice": "Tubulin Inhibitors (MMAE — Kadcyla, Padcev precedent)",
+        "avoid": "PBD dimers (severe myelosuppression, no clinical validation in breast)",
+        "rationale": "High tumor proliferation + HER2/TROP2 expression — DXd provides bystander + cell-cycle independence for heterogeneous expression"
+      },
+      "solid_tumor_gastric": {
+        "first_choice_payload": "Topoisomerase I Inhibitors (DXd — RC48, CMG901 for CLDN18.2)",
+        "second_choice": "Tubulin Inhibitors (MMAE — telisotuzumab vedotin variant)",
+        "rationale": "Gastric cancer often has slow internalization (CLDN18.2, FGFR2b) — DXd bystander effect critical"
+      },
+      "solid_tumor_lung_NSCLC": {
+        "first_choice_payload": "Topoisomerase I Inhibitors (DXd — DESTINY-Lung, TROPION-Lung)",
+        "second_choice": "Tubulin Inhibitors (MMAE — telisotuzumab, ABT-414)",
+        "avoid": "PBD dimers (interstitial lung toxicity risk compounds ILD risk from DXd class — do not combine)",
+        "rationale": "NSCLC often heterogeneous HER2/TROP-2/HER3 — DXd bystander effect overcomes heterogeneity"
+      },
+      "solid_tumor_SCLC": {
+        "first_choice_payload": "DNA Damaging Agents (IGN/DGN class — IMGN632 precedent via SCLC neuroendocrine biology)",
+        "second_choice": "Topoisomerase I Inhibitors",
+        "avoid": "PBD dimers at high DAR (Rova-T TAHOE failure — excess toxicity)",
+        "rationale": "SCLC is fast-cycling but Rova-T failure showed PBD at high DAR is too toxic; lower-DAR site-specific conjugation with PBD may be revisited"
+      }
+    }
+  },
+  "linker_selection_rules": {
+    "_description": "Rules for linker selection based on antigen internalization, tumor type, and payload",
+    "by_internalization_rate": {
+      "rapid": {
+        "preferred": [
+          "mc-val-cit-PABC",
+          "GGFG",
+          "Sulfo-SMCC",
+          "VA-PABC"
+        ],
+        "rationale": "Rapid internalization → payload quickly reaches lysosome → Cathepsin B cleavage efficient → vc-PABC and GGFG both excellent"
+      },
+      "moderate": {
+        "preferred": [
+          "GGFG",
+          "Glucuronide-MMAE",
+          "mc-val-cit-PABC",
+          "PEG8-vc-PABC"
+        ],
+        "rationale": "Moderate internalization → GGFG with high DAR (7–8) maximizes delivery per binding event; glucuronide provides extracellular TME release as backup"
+      },
+      "slow": {
+        "preferred": [
+          "Glucuronide-MMAE",
+          "GGFG (high DAR)",
+          "PEG8-vc-PABC"
+        ],
+        "avoid": [
+          "Hydrazone-disulfide (plasma instability)",
+          "Sulfo-SMCC (no extracellular bystander release)"
+        ],
+        "rationale": "Slow internalization → glucuronide linker provides dual mode: lysosomal AND extracellular TME cleavage. GGFG at high DAR maximizes payload per sparse internalization event."
+      }
+    },
+    "by_antigen_shedding": {
+      "high_shedding": {
+        "preferred": [
+          "GGFG (high DAR 7–8)",
+          "PEG8-vc-PABC (high DAR)",
+          "Glucuronide-MMAE"
+        ],
+        "rationale": "Shed antigen acts as sink — compensate by maximizing payload loaded per antibody (high DAR). Hydrophilic linkers essential at high DAR.",
+        "special_note": "Target membrane-proximal epitope to reduce competition from shed ectodomain"
+      },
+      "low_shedding": {
+        "preferred": [
+          "mc-val-cit-PABC",
+          "Sulfo-SMCC",
+          "GGFG"
+        ],
+        "rationale": "Low shedding → standard DAR 3–4 approaches are effective; can use thioether non-cleavable when lysosomal degradation is confirmed sufficient"
+      }
+    },
+    "by_payload_class": {
+      "tubulin_inhibitors_MMAE": {
+        "preferred_linkers": [
+          "mc-val-cit-PABC",
+          "VA-PABC",
+          "PEG4-vc-PABC",
+          "Glucuronide-MMAE"
+        ],
+        "notes": "MMAE requires free amine release from PABC spacer; GGFG not directly compatible with MMAE (GGFG is optimized for DXd chemistry)"
+      },
+      "tubulin_inhibitors_MMAF": {
+        "preferred_linkers": [
+          "mc-val-cit-PABC",
+          "Peptide-MMAF"
+        ],
+        "notes": "MMAF charged — no bystander effect desired; maleimide-Cys conjugation with peptide spacer"
+      },
+      "TOP1_inhibitors_DXd": {
+        "preferred_linkers": [
+          "GGFG"
+        ],
+        "notes": "GGFG is the proprietary Daiichi Sankyo linker optimized specifically for DXd release; alternative tetrapeptide linkers are being developed"
+      },
+      "TOP1_inhibitors_SN38": {
+        "preferred_linkers": [
+          "Glucuronide-MMAE (swap SN-38 for MMAE)",
+          "CL2A-SN38 (Immunomedics proprietary)"
+        ],
+        "notes": "SN-38 carbonate ester conjugation (Trodelvy CL2A linker); pH-sensitive or glucuronide cleavage both viable"
+      },
+      "DNA_damaging_calicheamicin": {
+        "preferred_linkers": [
+          "Hydrazone-disulfide (Mylotarg/Besylomab precedent)",
+          "Disulfide-thioether"
+        ],
+        "notes": "Acid-labile hydrazone → requires lysosomal pH release; disulfide component adds GSH-mediated release"
+      },
+      "DNA_damaging_PBD": {
+        "preferred_linkers": [
+          "VA-PABC",
+          "mc-val-cit-PABC",
+          "PEG2-vc-PABC"
+        ],
+        "notes": "PBD dimers require site-specific low-DAR conjugation; vc-PABC or VA-PABC for Cys-specific attachment"
+      },
+      "radionuclides_alpha": {
+        "preferred_linkers": [
+          "DOTA-chelate",
+          "TCMC-chelate",
+          "3,2-HOPO-chelate"
+        ],
+        "notes": "Not a chemical linker — requires specific macrocyclic chelator for each radiometal; no organic linker applies"
+      },
+      "immune_stimulatory_ISAC": {
+        "preferred_linkers": [
+          "Glucuronide-MMAE (swap agonist for MMAE)",
+          "Phosphodiester-agonist"
+        ],
+        "notes": "ISACs require controlled payload release in endosome/lysosome; hydrophilic linkers prevent aggregation with agonist payloads"
+      }
+    }
+  },
+  "design_axioms": [
+    {
+      "id": "AX-01",
+      "title": "Bystander Effect is Mandatory for Heterogeneous or Slow-Internalizing Targets",
+      "rule": "IF antigen heterogeneity == 'high' OR internalization_rate == 'low' OR internalization_rate == 'very_low' THEN payload MUST have bystander_effect == 'Yes' (membrane-permeable payload)",
+      "consequence": "CONTRAINDICATED: MMAF (charged, no bystander) for heterogeneous targets",
+      "evidence": "DXd-ADC advantage in HER2-low: bystander DXd kills HER2-negative neighbors. Enhertu outperforms T-DM1 partially due to this.",
+      "pmids": [
+        "PMID:34446768 (DESTINY-Breast04)"
+      ]
+    },
+    {
+      "id": "AX-02",
+      "title": "High-Shedding Targets Require High-DAR + Hydrophilic Linker",
+      "rule": "IF antigen shedding_rate == 'high' OR shedding_rate == 'very_high' THEN DAR_target >= 6 AND linker MUST be hydrophilic (GGFG, PEG-vc, glucuronide)",
+      "consequence": "Standard DAR 3–4 with hydrophobic linker (vc-PABC) will be neutralized by shed antigen sink at high tumor burden",
+      "evidence": "Shed BCMA (sBCMA) correlates with belantamab resistance. MUC16/CA125 shedding renders low-DAR ADCs subtherapeutic in high-burden ovarian cancer.",
+      "pmids": [
+        "PMID:35279434 (BCMA shedding resistance)"
+      ]
+    },
+    {
+      "id": "AX-03",
+      "title": "Quiescent Tumor Cells Require Cell-Cycle Independent Payloads",
+      "rule": "IF tumor_type in ['myeloma', 'CLL', 'prostate_mCRPC', 'low_grade_lymphoma'] OR target_cell_is_leukemic_stem_cell THEN payload MUST have cell_cycle_dependency == 'ALL phases'",
+      "consequence": "SUBOPTIMAL: MMAE/MMAF for quiescent plasma cells (myeloma), LSCs (AML), or slow-cycling prostate cancer",
+      "evidence": "Calicheamicin (cell-cycle independent) is the backbone of Mylotarg success in AML. DXd (ALL phases) outperforms MMAE in low-proliferation contexts.",
+      "pmids": [
+        "PMID:11078520 (Mylotarg AML)"
+      ]
+    },
+    {
+      "id": "AX-04",
+      "title": "Non-Cleavable Linkers Require Confirmed Lysosomal Delivery",
+      "rule": "IF linker is non-cleavable (Sulfo-SMCC, thioether) THEN antigen internalization_rate MUST be 'high' or 'rapid' AND recycling_after_internalization MUST be predominantly 'degraded'",
+      "consequence": "Non-cleavable linker for slow-internalizing target = payload never released = no efficacy",
+      "evidence": "Kadcyla (T-DM1, non-cleavable SMCC) works because HER2 is rapidly internalized and degraded. CD20 ADC with non-cleavable linker failed due to minimal internalization.",
+      "pmids": [
+        "PMID:16814772 (T-DM1 design rationale)"
+      ]
+    },
+    {
+      "id": "AX-05",
+      "title": "DAR >4 Requires Hydrophilic Linker",
+      "rule": "IF DAR_target > 4 THEN linker hydrophilicity MUST be 'high' (PEG-vc, GGFG, glucuronide, PEG8-vc)",
+      "consequence": "DAR >4 with hydrophobic linker (standard vc-PABC, SMCC) causes ADC aggregation → rapid FcγR-mediated clearance → reduced tumor exposure + increased liver toxicity",
+      "evidence": "DXd high-DAR (7–8) enabled by GGFG's high hydrophilicity. PEG8-vc-PABC allows DAR 6–8 without aggregation.",
+      "pmids": [
+        "PMID:26058450 (GGFG high DAR rationale)"
+      ]
+    },
+    {
+      "id": "AX-06",
+      "title": "log P > 3 Payload at DAR > 4 Requires PEG Spacer",
+      "rule": "IF payload log_p > 3 AND DAR_target > 4 THEN linker MUST include PEG (≥PEG4) spacer to offset hydrophobicity",
+      "consequence": "High log P payload (MMAE cLogP ~3.2, cryptophycin cLogP ~3.5) at high DAR creates hydrophobic ADC that aggregates and clears rapidly",
+      "evidence": "PEG4-vc-PABC and PEG8-vc-PABC developed specifically to enable high-DAR MMAE ADCs without aggregation.",
+      "pmids": [
+        "PMID:22108849 (PEG-linker aggregation reduction)"
+      ]
+    },
+    {
+      "id": "AX-07",
+      "title": "ILD Risk Surveillance Mandatory for DXd-Class Payloads",
+      "rule": "IF payload is TOP1i (DXd, SN-38, exatecan) THEN clinical protocol MUST include ILD monitoring (CT scan every 2 cycles; corticosteroid protocol for Grade 2+ ILD)",
+      "consequence": "DXd-class ILD (interstitial lung disease) occurs in ~10–15% of patients; can be fatal if Grade 3–4; early detection and corticosteroid treatment is life-saving",
+      "evidence": "Enhertu ILD fatal in 2.6% (DESTINY-Breast01). FDA-mandated REMS program for T-Dxd.",
+      "pmids": [
+        "PMID:32469582 (Enhertu ILD FDA REMS)",
+        "FDA REMS: T-DXd"
+      ]
+    },
+    {
+      "id": "AX-08",
+      "title": "Radionuclide ADC Requires Chelator Stability Assessment",
+      "rule": "IF payload is radionuclide THEN chelator-metal stability in human serum MUST be confirmed (>95% intact at 72h); free metal release > 5% is a safety failure",
+      "consequence": "Free Pb2+, Th4+, or Bi3+ release causes systemic metal toxicity (renal, bone marrow); chelator stability is the primary safety determinant",
+      "evidence": "DOTA-Pb212 stability: clinical TAT programs require serum stability assay before IND.",
+      "pmids": [
+        "PMID:33303579 (Pb-212 chelator stability requirements)"
+      ]
+    },
+    {
+      "id": "AX-09",
+      "title": "PBD Dimer at DAR > 2 is Contraindicated in Most Solid Tumors",
+      "rule": "IF payload is PBD dimer AND DAR > 2 AND indication is solid tumor THEN CONTRAINDICATED based on clinical evidence (Rova-T TAHOE failure)",
+      "consequence": "PBD at DAR 2 already causes hepatotoxicity and myelosuppression at effective doses; DAR > 2 compounds non-specific delivery to normal tissues",
+      "evidence": "Rova-T (DLL3-PBD, DAR 2): TAHOE Phase 3 stopped for excess toxicity at PBD DAR 2. Clinical experience strongly limits PBD use to hematologic malignancies with site-specific low-DAR conjugation.",
+      "pmids": [
+        "PMID:33547437 (TAHOE failure)",
+        "PMID:32891276 (PBD ADC safety review)"
+      ]
+    },
+    {
+      "id": "AX-10",
+      "title": "Bispecific ADC Format Preferred for Antigen Heterogeneous Solid Tumors",
+      "rule": "IF antigen heterogeneity == 'high' AND bystander effect is insufficient to overcome heterogeneity THEN consider bispecific binder format (targets two antigens simultaneously)",
+      "consequence": "Bispecific ADC (e.g., HER2×HER3, EpCAM×HER2) captures both antigen+ and antigen-low cells via avidity; reduces resistance from antigen-low subclones",
+      "evidence": "MCLA-128 (HER2×HER3 bispecific) Phase 2: captures acquired heregulin-driven HER3 upregulation that escapes trastuzumab.",
+      "pmids": [
+        "PMID:34711587 (HER2xHER3 bispecific ADC rationale)"
+      ]
+    },
+    {
+      "id": "AX-11",
+      "title": "CD47 and Non-Internalizing Targets are Poor ADC Candidates — Use ISAC or BiAb Instead",
+      "rule": "IF antigen internalization_rate == 'very_low' AND primary_mechanism is NOT ADCC/ADCP THEN ADC format is NOT recommended; consider ISAC (for TME activation) or bispecific T-cell engager",
+      "consequence": "Non-internalizing target prevents lysosomal payload release — ADC achieves only surface binding without cytotoxic activity",
+      "evidence": "CD20 ADC failures (SAR3419) largely attributed to poor internalization of rituximab-type binding. CD47 has essentially no internalization.",
+      "pmids": [
+        "PMID:11756185 (CD20 non-internalizing)",
+        "PMID:23940257 (SAR3419 failure)"
+      ]
+    }
+  ],
+  "validated_combinations": [
+    {
+      "combo_id": "VC-01",
+      "antigen": "HER2",
+      "linker": "GGFG",
+      "payload": "DXd",
+      "dar": 8.0,
+      "conjugation": "Cysteine (partial reduction)",
+      "drug": "Trastuzumab deruxtecan (Enhertu)",
+      "indication": "HER2+ / HER2-low breast, gastric, NSCLC",
+      "clinical_status": "FDA Approved",
+      "key_outcome": "ORR 79.7% (HER2+ mBC, DESTINY-Breast01); Revolution in HER2-low treatment",
+      "confidence": "high",
+      "pmids": [
+        "PMID:29236700",
+        "PMID:34446768"
+      ]
+    },
+    {
+      "combo_id": "VC-02",
+      "antigen": "CD30",
+      "linker": "mc-val-cit-PABC",
+      "payload": "MMAE",
+      "dar": 4.0,
+      "conjugation": "Cysteine (stochastic)",
+      "drug": "Brentuximab vedotin (Adcetris)",
+      "indication": "CD30+ HL, ALCL",
+      "clinical_status": "FDA Approved",
+      "key_outcome": "ORR ~75% in relapsed HL; curative potential in combination with chemotherapy",
+      "confidence": "high",
+      "pmids": [
+        "PMID:22399561",
+        "PMID:22763448"
+      ]
+    },
+    {
+      "combo_id": "VC-03",
+      "antigen": "HER2",
+      "linker": "SMCC (non-cleavable)",
+      "payload": "DM1",
+      "dar": 3.5,
+      "conjugation": "Lysine (random)",
+      "drug": "Trastuzumab emtansine (Kadcyla)",
+      "indication": "HER2+ breast cancer",
+      "clinical_status": "FDA Approved",
+      "key_outcome": "PFS 9.6 vs 6.4 months vs lapatinib+capecitabine (EMILIA trial)",
+      "confidence": "high",
+      "pmids": [
+        "PMID:22646630"
+      ]
+    },
+    {
+      "combo_id": "VC-04",
+      "antigen": "TROP-2",
+      "linker": "CL2A (pH-sensitive carbonate)",
+      "payload": "SN-38",
+      "dar": 7.6,
+      "conjugation": "Lysine (random)",
+      "drug": "Sacituzumab govitecan (Trodelvy)",
+      "indication": "TNBC, urothelial carcinoma",
+      "clinical_status": "FDA Approved",
+      "key_outcome": "mOS 12.1 vs 6.7 months in TNBC (ASCENT trial)",
+      "confidence": "high",
+      "pmids": [
+        "PMID:32897654"
+      ]
+    },
+    {
+      "combo_id": "VC-05",
+      "antigen": "CD33",
+      "linker": "Hydrazone-disulfide (N-acetyl-calicheamicin)",
+      "payload": "N-Ac-calicheamicin",
+      "dar": 2.5,
+      "conjugation": "Lysine (random hydrazone)",
+      "drug": "Gemtuzumab ozogamicin (Mylotarg)",
+      "indication": "AML",
+      "clinical_status": "FDA Approved (re-approved 2017)",
+      "key_outcome": "EFS benefit in AML when added to induction chemotherapy (ALFA-0701 trial)",
+      "confidence": "high",
+      "pmids": [
+        "PMID:27638148"
+      ]
+    },
+    {
+      "combo_id": "VC-06",
+      "antigen": "Nectin-4",
+      "linker": "mc-val-cit-PABC",
+      "payload": "MMAE",
+      "dar": 3.8,
+      "conjugation": "Cysteine (stochastic)",
+      "drug": "Enfortumab vedotin (Padcev)",
+      "indication": "Urothelial carcinoma",
+      "clinical_status": "FDA Approved",
+      "key_outcome": "mOS 12.9 vs 8.9 months in post-platinum/PD-1 (EV-301); combination EV+pembrolizumab becomes 1L standard",
+      "confidence": "high",
+      "pmids": [
+        "PMID:34077175"
+      ]
+    },
+    {
+      "combo_id": "VC-07",
+      "antigen": "FRα",
+      "linker": "SPDB-disulfide",
+      "payload": "DM4",
+      "dar": 3.5,
+      "conjugation": "Lysine (random)",
+      "drug": "Mirvetuximab soravtansine (Elahere)",
+      "indication": "FRα-high ovarian cancer (platinum-resistant)",
+      "clinical_status": "FDA Approved",
+      "key_outcome": "ORR 42% vs 16% (MIRASOL trial); FDA-approved CDx (VENTANA FRα)",
+      "confidence": "high",
+      "pmids": [
+        "PMID:37357149"
+      ]
+    },
+    {
+      "combo_id": "VC-08",
+      "antigen": "Tissue Factor",
+      "linker": "mc-val-cit-PABC",
+      "payload": "MMAE",
+      "dar": 3.8,
+      "conjugation": "Cysteine (stochastic)",
+      "drug": "Tisotumab vedotin (Tivdak)",
+      "indication": "Cervical cancer",
+      "clinical_status": "FDA Approved",
+      "key_outcome": "ORR 24% in 2L cervical cancer; FDA approved 2021 (accelerated), 2023 (regular)",
+      "confidence": "high",
+      "pmids": [
+        "PMID:34534433"
+      ]
+    },
+    {
+      "combo_id": "VC-09",
+      "antigen": "BCMA",
+      "linker": "mc-val-cit-PABC",
+      "payload": "MMAF",
+      "dar": 4.0,
+      "conjugation": "Cysteine (engineered, site-specific)",
+      "drug": "Belantamab mafodotin (Blenrep)",
+      "indication": "Relapsed/refractory multiple myeloma",
+      "clinical_status": "Re-approval pending (DREAMM-3 2023; conditional approval in EU)",
+      "key_outcome": "ORR 31% monotherapy; DREAMM-7/8 combination trials showing improved outcomes",
+      "confidence": "high",
+      "pmids": [
+        "PMID:32919523",
+        "PMID:37899979"
+      ]
+    },
+    {
+      "combo_id": "VC-10",
+      "antigen": "TROP-2",
+      "linker": "GGFG",
+      "payload": "DXd",
+      "dar": 4.0,
+      "conjugation": "Cysteine (site-specific)",
+      "drug": "Datopotamab deruxtecan (Dato-DXd)",
+      "indication": "NSCLC, breast cancer",
+      "clinical_status": "FDA Approved (NSCLC 2024; breast cancer NDA submitted)",
+      "key_outcome": "TROPION-Lung01: PFS 4.4 vs 3.7 months vs docetaxel; TROPION-Breast01 in progress",
+      "confidence": "high",
+      "pmids": [
+        "PMID:38346294"
+      ]
+    }
+  ]
+}

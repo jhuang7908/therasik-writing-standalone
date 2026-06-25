@@ -1,0 +1,392 @@
+{
+  "_governance": {
+    "system": "InSynBio AbEngineCore",
+    "module": "HumanizationEngine_VHH",
+    "registry": "config/abenginecore_registry.json",
+    "owner": "InSynBio",
+    "locked": true,
+    "ai_instruction": "LOCKED FILE — Do NOT modify without explicit owner instruction. Upgrades require owner authorization and CHANGELOG entry.",
+    "upgrade_requires": "Owner must explicitly say 'upgrade' or 'modify the standard'"
+  },
+  "version": "5.0",
+  "standard": "VHH_HUMANIZATION_DESIGN_STANDARD",
+  "date": "2026-05-16",
+  "description": "V5.0 Structure-driven Tier classification. Static Tier 0-3 lists below are retained as fallback when structure prediction is unavailable. V5.0 mandates IgFold/ABodyBuilder2 + SASA + DeepFR-CTX voting to compute dynamic_tier per template. See v5_runtime block below.",
+  "supersedes_version": "1.0 (V4.0 of standard markdown)",
+  
+  "tier_0_critical": {
+    "description": "CRITICAL positions that must be preserved in ALL strategies",
+    "positions": {
+      "28": {
+        "type": "Vernier Anchor",
+        "kabat": 28,
+        "region": "FR1/FR2 border",
+        "function": "Critical anchor for CDR1 geometry",
+        "priority": "CRITICAL",
+        "preserve_in": ["S1", "S2", "S3"]
+      },
+      "29": {
+        "type": "Vernier Anchor",
+        "kabat": 29,
+        "region": "FR1/FR2 border",
+        "function": "Critical anchor for CDR1 geometry",
+        "priority": "CRITICAL",
+        "preserve_in": ["S1", "S2", "S3"]
+      },
+      "37": {
+        "type": "VHH Hallmark",
+        "kabat": 37,
+        "region": "FR2",
+        "function": "VHH structural hallmark",
+        "priority": "CRITICAL",
+        "preserve_in": ["S1", "S2", "S3"]
+      },
+      "44": {
+        "type": "VHH Hallmark",
+        "kabat": 44,
+        "region": "FR2",
+        "function": "VHH structural hallmark",
+        "priority": "CRITICAL",
+        "preserve_in": ["S1", "S2", "S3"]
+      },
+      "45": {
+        "type": "VHH Hallmark",
+        "kabat": 45,
+        "region": "FR2",
+        "function": "VHH structural hallmark",
+        "priority": "CRITICAL",
+        "preserve_in": ["S1", "S2", "S3"]
+      },
+      "47": {
+        "type": "VHH Hallmark",
+        "kabat": 47,
+        "region": "FR2",
+        "function": "VHH structural hallmark",
+        "priority": "CRITICAL",
+        "preserve_in": ["S1", "S2", "S3"]
+      },
+      "94": {
+        "type": "Vernier Anchor",
+        "kabat": 94,
+        "region": "FR3",
+        "function": "Critical anchor for CDR3 geometry",
+        "priority": "CRITICAL",
+        "preserve_in": ["S1", "S2", "S3"]
+      }
+    },
+    "count": 7
+  },
+  
+  "tier_1_high_priority": {
+    "description": "HIGH PRIORITY positions for structural stability and CDR support",
+    "positions": {
+      "34": {
+        "type": "FR2 Structural",
+        "region": "FR2",
+        "function": "Buried, core packing",
+        "priority": "HIGH",
+        "preserve_in": ["S2", "S3"]
+      },
+      "36": {
+        "type": "FR2 Structural",
+        "region": "FR2",
+        "function": "Buried, core packing",
+        "priority": "HIGH",
+        "preserve_in": ["S2", "S3"]
+      },
+      "40": {
+        "type": "FR2 Structural",
+        "region": "FR2",
+        "function": "Buried, core packing",
+        "priority": "HIGH",
+        "preserve_in": ["S2", "S3"]
+      },
+      "42": {
+        "type": "FR2 Structural",
+        "region": "FR2",
+        "function": "Buried, core packing",
+        "priority": "HIGH",
+        "preserve_in": ["S2", "S3"]
+      },
+      "49": {
+        "type": "Vernier Tuning",
+        "kabat": 49,
+        "region": "FR2/CDR2 border",
+        "function": "CDR2 support",
+        "priority": "HIGH",
+        "preserve_in": ["S2", "S3"]
+      },
+      "71": {
+        "type": "Vernier Tuning",
+        "kabat": 71,
+        "region": "FR3",
+        "function": "CDR2-CDR3 geometry",
+        "priority": "HIGH",
+        "preserve_in": ["S2", "S3"]
+      },
+      "73": {
+        "type": "Vernier Tuning",
+        "kabat": 73,
+        "region": "FR3",
+        "function": "Adjacent to CDR3",
+        "priority": "HIGH",
+        "preserve_in": ["S2", "S3"]
+      },
+      "78": {
+        "type": "Vernier Tuning",
+        "kabat": 78,
+        "region": "FR3",
+        "function": "CDR3 electrostatics",
+        "priority": "HIGH",
+        "preserve_in": ["S2", "S3"]
+      }
+    },
+    "count": 8
+  },
+  
+  "tier_2_medium_priority": {
+    "description": "MEDIUM PRIORITY positions for enhanced stability",
+    "positions": {
+      "32": {"type": "FR2 Surface", "region": "FR2", "function": "Surface exposed", "priority": "MEDIUM", "preserve_in": ["S3"]},
+      "33": {"type": "FR2 Surface", "region": "FR2", "function": "Surface exposed", "priority": "MEDIUM", "preserve_in": ["S3"]},
+      "35": {"type": "FR2 Surface", "region": "FR2", "function": "Surface exposed", "priority": "MEDIUM", "preserve_in": ["S3"]},
+      "38": {"type": "FR2 Surface", "region": "FR2", "function": "Surface exposed", "priority": "MEDIUM", "preserve_in": ["S3"]},
+      "39": {"type": "FR2 Surface", "region": "FR2", "function": "Surface exposed", "priority": "MEDIUM", "preserve_in": ["S3"]},
+      "41": {"type": "FR2 Surface", "region": "FR2", "function": "Surface exposed", "priority": "MEDIUM", "preserve_in": ["S3"]},
+      "43": {"type": "FR2 Surface", "region": "FR2", "function": "Surface exposed", "priority": "MEDIUM", "preserve_in": ["S3"]},
+      "46": {"type": "FR2 Surface", "region": "FR2", "function": "Surface exposed", "priority": "MEDIUM", "preserve_in": ["S3"]},
+      "66": {"type": "FR3 Structural", "region": "FR3", "function": "Secondary support", "priority": "MEDIUM", "preserve_in": ["S3"]},
+      "67": {"type": "FR3 Structural", "region": "FR3", "function": "Secondary support", "priority": "MEDIUM", "preserve_in": ["S3"]},
+      "72": {"type": "FR3 Structural", "region": "FR3", "function": "Near CDR3", "priority": "MEDIUM", "preserve_in": ["S3"]},
+      "74": {"type": "FR3 Structural", "region": "FR3", "function": "Secondary support", "priority": "MEDIUM", "preserve_in": ["S3"]},
+      "77": {"type": "FR3 Structural", "region": "FR3", "function": "Secondary support", "priority": "MEDIUM", "preserve_in": ["S3"]},
+      "82": {"type": "FR3 Structural", "region": "FR3", "function": "Secondary support", "priority": "MEDIUM", "preserve_in": ["S3"]}
+    },
+    "count": 14
+  },
+  
+  "tier_3_low_priority": {
+    "description": "LOW PRIORITY positions, generally humanized",
+    "positions": {
+      "1": {"type": "FR1 Surface", "region": "FR1", "function": "N-terminus, far from paratope", "priority": "LOW", "preserve_in": []},
+      "5": {"type": "FR1 Surface", "region": "FR1", "function": "Surface, far from paratope", "priority": "LOW", "preserve_in": []},
+      "14": {"type": "FR1 Surface", "region": "FR1", "function": "Surface, far from paratope", "priority": "LOW", "preserve_in": []},
+      "22": {"type": "FR1 Surface", "region": "FR1", "function": "Surface, far from paratope", "priority": "LOW", "preserve_in": []},
+      "24": {"type": "FR1 Surface", "region": "FR1", "function": "Surface, far from paratope", "priority": "LOW", "preserve_in": []}
+    },
+    "count": 5
+  },
+  
+  "strategy_definitions": {
+    "S1": {
+      "name": "Base Humanized",
+      "formula": "Tier 0 only",
+      "tiers_included": ["tier_0_critical"],
+      "expected_mutations": 7,
+      "expected_humanization_range": [93, 96],
+      "use_case": "Acute/short-term therapeutics, maximum human similarity"
+    },
+    "S2": {
+      "name": "Safety-Optimized",
+      "formula": "Tier 0 + Tier 1",
+      "tiers_included": ["tier_0_critical", "tier_1_high_priority"],
+      "expected_mutations": 15,
+      "expected_humanization_range": [85, 90],
+      "use_case": "Chronic/long-term therapeutics, balanced function and immunogenicity"
+    },
+    "S3": {
+      "name": "Affinity-Optimized (Conservative)",
+      "formula": "Tier 0 + Tier 1 + Tier 2",
+      "tiers_included": ["tier_0_critical", "tier_1_high_priority", "tier_2_medium_priority"],
+      "expected_mutations": 29,
+      "expected_humanization_range": [73, 78],
+      "use_case": "Discovery/optimization, maximum functional retention"
+    }
+  },
+  
+  "design_rules": {
+    "rule_1": "S1 < S2 < S3 in back-mutation count",
+    "rule_2": "S1 > S2 > S3 in humanization percentage",
+    "rule_3": "CDRs are NEVER humanized (100% original)",
+    "rule_4": "All Vernier anchors (28, 29, 94) must be in all strategies",
+    "rule_5": "All VHH Hallmarks (37, 44, 45, 47) must be in all strategies",
+    "rule_6": "S3 must have complete FR2 (16/16 positions)"
+  },
+  
+  "cdr_definitions_imgt": {
+    "CDR1": {"start": 25, "end": 31, "length": 7},
+    "CDR2": {"start": 48, "end": 56, "length": 9},
+    "CDR3": {"start": 94, "end": 106, "length": 13}
+  },
+  
+  "quality_checks": [
+    "S1 mutations == 7 (Tier 0 only)  — V4.0 static reference, retained as fallback",
+    "S2 mutations == 15 (Tier 0 + 1)  — V4.0 static reference, retained as fallback",
+    "S3 mutations == 29 (Tier 0 + 1 + 2)  — V4.0 static reference, retained as fallback",
+    "S1 < S2 < S3",
+    "All CDRs 100% preserved",
+    "Vernier anchors in all strategies",
+    "V5.0: Hallmark policy (FULL/PARTIAL/MINIMAL) must be recorded per run",
+    "V5.0: Structure prediction PDB cached per template+sequence hash",
+    "V5.0: DeepFR-CTX guard decisions logged to ctx_guard_decisions"
+  ],
+
+  "v5_runtime": {
+    "_description": "V5.0 (2026-05-16) Structure-driven dynamic Tier system. Replaces static Tier lists above as primary driver.",
+    "fr_identity_cutoff": {
+      "recommended": 0.65,
+      "permissive": 0.60,
+      "permissive_requires_audit_log": true,
+      "key_position_score_floor": 0.5
+    },
+    "hallmark_decision_v5": {
+      "_description": "Dynamic Hallmark preservation policy driven by donor CDR3 length + hydrophobicity. Aligned with V1.8.17 Stealth logic (VH->VHH conversion).",
+      "rules": [
+        {
+          "rule_id": "FULL",
+          "label": "Full camelid Hallmark preservation",
+          "conditions": {"cdr3_length_min": 17, "sap_min": 0.714},
+          "preserved_positions": [37, 44, 45, 47],
+          "rationale": "Long CDR3 + high hydrophobicity => camelid-like FR2 needed for solubility"
+        },
+        {
+          "rule_id": "PARTIAL",
+          "label": "Partial Hallmark preservation",
+          "conditions": {"cdr3_length_range": [12, 17], "pi_max": 9.0},
+          "preserved_positions": [37, 44],
+          "rationale": "Mid-length CDR3 + moderate charge => balanced FR2 (camelid 37/44 + human 45/47)"
+        },
+        {
+          "rule_id": "MINIMAL",
+          "label": "Minimal Hallmark preservation",
+          "conditions": {"cdr3_length_max": 12, "net_basic_max": 4},
+          "preserved_positions": [37],
+          "rationale": "Short CDR3 + low charge => human VH3-like FR2 acceptable"
+        }
+      ],
+      "default_when_no_rule_matches": "PARTIAL"
+    },
+    "dynamic_tier_formula": {
+      "_description": "Per-template, per-residue Tier score using structure prediction.",
+      "formula": "dynamic_tier(pos) = 0.4 * static_v4_tier_score(pos) + 0.3 * (1/SASA_rel(pos)) + 0.3 * (1/CDR_distance(pos))",
+      "alpha_static_v4": 0.4,
+      "beta_sasa_inv": 0.3,
+      "gamma_cdr_dist_inv": 0.3,
+      "thresholds": {
+        "S1_S2_S3_preserve": 0.7,
+        "S2_S3_preserve": 0.4,
+        "humanize_freely": 0.0
+      },
+      "static_v4_tier_score_map": {
+        "tier_0_critical": 1.0,
+        "tier_1_high_priority": 0.7,
+        "tier_2_medium_priority": 0.4,
+        "tier_3_low_priority": 0.1,
+        "unlisted": 0.0
+      }
+    },
+    "structure_prediction": {
+      "required": true,
+      "predictors": ["IgFold", "ABodyBuilder2"],
+      "cache_key": "sha256(template_id + humanized_seq)",
+      "cache_dir": ".vhh_v5_structure_cache",
+      "min_plddt_for_tier_use": 0.65,
+      "fallback_when_prediction_fails": "use_static_v4_tier_only"
+    },
+    "deepfr_ctx_integration": {
+      "ctx_guard_module": "core.humanization.ctx_guard",
+      "ninemer_db_path": "config/clinical_842_9mer_db.json",
+      "vote_overlapping_windows": true,
+      "veto_categories": [
+        "pro_introduction_backbone_disrupt",
+        "pro_removal_backbone_lock",
+        "gly_removal_backbone_anchor",
+        "introduces_free_cys",
+        "creates_n_glyc_motif",
+        "strong_charge_flip",
+        "global_sanity"
+      ]
+    },
+    "no_template_fallback": {
+      "_description": "When no clinical-VHH template meets cutoff and feasibility prescreen fails, use 9-aa context voting (replaces V4.0 fixed-substitution surface reshaping table).",
+      "method": "deepfr_ctx_vhh_9aa_voting",
+      "hard_protected_residues": ["G", "P", "C"],
+      "ninemer_db": "config/clinical_842_9mer_db.json",
+      "candidate_filters": [
+        "reduces_local_sap_by >= 0.01",
+        "no_new_ptm_motif (NG, NS, DG, DP, QG, GG, GP)",
+        "no_charge_category_flip",
+        "different_from_original"
+      ],
+      "max_iterations": 10,
+      "sap_target_band_by_strategy": {
+        "S1": [0.0, 0.65],
+        "S2": [0.0, 0.71],
+        "S3": [0.0, 0.77]
+      }
+    },
+    "template_library": {
+      "_description": "V5.0: clinical-VHH only. VH3-SAFE synthetic 90 templates DEPRECATED.",
+      "primary": {
+        "file": "data/vhh_clinical_39_union/vhh42_templates_cache.json",
+        "current_n": 42,
+        "expansion_welcome": true
+      },
+      "vh3_safe_synthetic": {
+        "status": "DEPRECATED in V5.0",
+        "file": "data/vhh_humanization_v2/human_vhh_safe_templates.json (still exists for archival)",
+        "do_not_use": true
+      }
+    },
+    "qc_thresholds": {
+      "_description": "Frozen V5.0 QC thresholds for web-console VHH humanization result display. All tones: ok/warn/fail.",
+      "_frozen_date": "2026-05-16",
+      "_cohort_source": "VHH42 clinical cohort (AbNatiV2 dual-model); VHH68 CMC benchmark (miniCMC); InSynBio HPR repertoire (9-mer compatibility)",
+      "mini_cmc": {
+        "pI":                   {"ok": [6.0, 9.0],  "warn_low": 5.5,  "warn_high": 9.0,  "fail_low": 5.5,  "fail_high": 9.5},
+        "GRAVY":                {"ok_max": -0.05,     "warn_max": 0.05, "fail_max": 0.10},
+        "instability_index":    {"ok_max": 40.0,      "warn_max": 50.0},
+        "SAP_proxy":            {"ok_max": 0.714,     "warn_max": 0.771}
+      },
+      "hpr_index": {
+        "humanized_score":      {"ok_min": 0.80,      "warn_min": 0.70},
+        "delta_vhh":            {"ok_min": 0.0,       "warn_min": -0.05, "_note": "positive delta preferred"}
+      },
+      "abnativ_naturalness": {
+        "delta_vh2": {
+          "_description": "Change in VH2 naturalness from donor to humanized. POSITIVE = more human-VH-like. Expected direction for successful humanization.",
+          "ok_min": 0.05,
+          "warn_min": 0.0,
+          "fail_below": 0.0
+        },
+        "delta_vhh2": {
+          "_description": "Change in VHH2 naturalness from donor to humanized. NEGATIVE = acceptable camelid character loss. Too negative risks structural instability.",
+          "ok_min": -0.15,
+          "warn_min": -0.25,
+          "fail_below": -0.25
+        }
+      },
+      "structure_qc": {
+        "plddt_humanized":      {"ok_min": 75.0,      "warn_min": 65.0},
+        "cdr1_rmsd_angstrom":   {"ok_max": 1.0,       "warn_max": 1.5},
+        "cdr2_rmsd_angstrom":   {"ok_max": 1.0,       "warn_max": 1.5},
+        "cdr3_rmsd_angstrom":   {"ok_max": 1.5,       "warn_max": 2.5}
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

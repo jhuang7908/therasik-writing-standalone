@@ -1,0 +1,154 @@
+{
+  "metadata": {
+    "generated": "2026-03-15",
+    "description": "Deep analysis of 3 independent humanized VHH from SAbDab (RCSB full-text search: humanized VHH)",
+    "source_pdbs": ["6CNW", "6XDG", "7Q6C"],
+    "methods": {
+      "segmentation": "Conserved motif-based (FR2=MSWXRQAPG, FR4=WGxGxLVTVSS)",
+      "germline_identity": "Per-FR pairwise identity vs IMGT IGHV reference; FR3 aligned by YADSVK anchor",
+      "mutation_delta": "7Q6C vs 5O0W (intra-lineage); 6CNW=hybrid no parent; 6XDG=parent not deposited"
+    }
+  },
+  "6CNW": {
+    "pdb": "6CNW",
+    "chain": "A",
+    "target": "unknown",
+    "origin": "Hybrid VHH-VH3 scaffold (CDRs on human framework)",
+    "species_annotation": "hybrid",
+    "full_sequence": "EVQLVESGGGLVQPGGSLRLSCAASGFTFSTSWMYWLRQAPGKGLEWVSVINTDGGTYYADSVKGRFTISRDNSKNTLYLQMNSLRAEDTAVYYCAKDWGGPEPTRGQGTLVTVSS",
+    "sequence_length": 116,
+    "segmentation": {
+      "FR1": "EVQLVESGGGLVQPGGSLRLSCAAS",
+      "CDR1": "GFTFSTSW",
+      "FR2": "MYWLRQAPGKGLEWVSV",
+      "CDR2": "INTDGGTY",
+      "FR3": "YADSVKGRFTISRDNSKNTLYLQMNSLRAEDTAVYYC",
+      "CDR3": "AKDWGGPEPT",
+      "FR4": "RGQGTLVTVSS"
+    },
+    "CDR_lengths": {"CDR1": 8, "CDR2": 8, "CDR3": 10},
+    "CDR3_class": "S1 (short ≤12aa) — typical globular",
+    "hallmark_pos44": "Q",
+    "hallmark_pos45": "A",
+    "hallmark_pos47": "G",
+    "hallmark_44_45_47": "QAG",
+    "pos52_vincke": "W (human germline equivalent; Vincke: G/A camelid→W detrimental, but W is already the IGHV3-66 natural residue)",
+    "germline_analysis": {
+      "best_germline": "IGHV3-66",
+      "IGHV3-66": {"FR1_id": 100.0, "FR2_id": 94.1, "FR3_id": 100.0, "combined_id": 98.7},
+      "IGHV3-23": {"FR1_id": 100.0, "FR2_id": 82.4, "FR3_id": 100.0, "combined_id": 96.3},
+      "interpretation": "Near-perfect IGHV3-66 match (98.7%). CDRs grafted onto VH3 framework. Differs from IGHV3-23 only in FR2 positions (MYWL vs MSWV = pos44 Q retained, pos45 A, pos47 G retained; GLEW motif identical)"
+    },
+    "FR3_mutations_vs_IGHV3_23": [],
+    "FR3_mutations_vs_IGHV3_66": [],
+    "mutation_delta_vs_camelid": {
+      "camelid_parent": "None — hybrid scaffold, CDRs grafted de novo onto human VH3-66 framework",
+      "estimated_FR_mutations": "N/A",
+      "note": "6CNW represents de novo CDR grafting strategy, not humanization of existing camelid VHH"
+    },
+    "rule_validation": {
+      "R1_hallmark_QAG": "PASS",
+      "R2_FR_length_FR1=25": "PASS",
+      "R5_IGHV3_template": "PARTIAL — IGHV3-66 used (not IGHV3-23); IGHV3-66 is same VH3 subfamily, structurally equivalent"
+    }
+  },
+  "6XDG": {
+    "pdb": "6XDG",
+    "chain": "B",
+    "target": "SARS-CoV-2 spike (anti-COVID)",
+    "origin": "Engineered/humanized VHH against SARS-CoV-2",
+    "species_annotation": "mus musculus (SAbDab annotation; VHH domain is humanized)",
+    "full_sequence": "QVQLVESGGGLVKPGGSLRLSCAASGFTFSDYYMSWIRQAPGKGLEWVSYITYSGSTIYYADSVKGRFTISRDNAKSSLYLQMNSLRAEDTAVYYCARDRGTTMVPFDYWGQGTLVTVSS",
+    "sequence_length": 120,
+    "segmentation": {
+      "FR1": "QVQLVESGGGLVKPGGSLRLSCAAS",
+      "CDR1": "GFTFSDYY",
+      "FR2": "MSWIRQAPGKGLEWVSY",
+      "CDR2": "ITYSGSTI",
+      "FR3": "YADSVKGRFTISRDNAKSSLYLQMNSLRAEDTAVYYC",
+      "CDR3": "ARDRGTTMVPFDY",
+      "FR4": "WGQGTLVTVSS"
+    },
+    "CDR_lengths": {"CDR1": 8, "CDR2": 8, "CDR3": 13},
+    "CDR3_class": "S2 (medium 13-18aa) — typical VHH",
+    "hallmark_pos44": "Q",
+    "hallmark_pos45": "A",
+    "hallmark_pos47": "G",
+    "hallmark_44_45_47": "QAG",
+    "pos52_vincke": "W (IGHV3-23 natural residue; not a problematic mutation)",
+    "germline_analysis": {
+      "best_germline": "IGHV3-23",
+      "IGHV3-23": {"FR1_id": 92.0, "FR2_id": 88.2, "FR3_id": 91.9, "combined_id": 91.1},
+      "IGHV3-66": {"FR1_id": 92.0, "FR2_id": 82.4, "FR3_id": 91.9, "combined_id": 89.9},
+      "interpretation": "Well-humanized VHH on IGHV3-23 scaffold (91.1%). FR1 differs from IGHV3-23 at pos 6 (K→Q) and pos 13 (L→K). FR2 retains VHH QAG hallmark. FR3 has 3 VHH-specific positions."
+    },
+    "FR3_mutations_vs_IGHV3_23": ["S16A", "N18S", "T19S"],
+    "FR3_mutation_notes": {
+      "S16A": "IGHV3-23 pos16=S; 6XDG=A. VHH-specific (common in camelid VHH FR3)",
+      "N18S": "IGHV3-23 pos18=N (Asn); 6XDG=S. VHH-specific position",
+      "T19S": "IGHV3-23 pos19=T; 6XDG=S. Conservative VHH-specific"
+    },
+    "mutation_delta_vs_camelid": {
+      "camelid_parent": "Not deposited in same PDB. Original camelid VHH unknown (SAbDab annotated as mus musculus, likely erroneous)",
+      "estimated_FR_mutations_vs_IGHV3_23": "~5 FR mutations total (2 in FR1, 2 in FR2 excluding VHH hallmarks, 3 in FR3)",
+      "note": "Well-humanized VHH consistent with 'complete humanization' approach using IGHV3-23 backbone"
+    },
+    "rule_validation": {
+      "R1_hallmark_QAG": "PASS",
+      "R2_FR_length_FR1=25": "PASS",
+      "R5_IGHV3_template": "PASS — IGHV3-23 (91.1%)"
+    }
+  },
+  "7Q6C": {
+    "pdb": "7Q6C",
+    "chain": "K",
+    "target": "von Willebrand factor A1 domain (vWF — anti-thrombosis)",
+    "origin": "Caplacizumab-related anti-vWF VHH; Lama glama origin",
+    "species_annotation": "lama glama",
+    "full_sequence": "QVQLQESGGGLVQPGGSLRLSCAASGRTISRYAMSWFRQAPGKEREFVAVARRSGDGAFYADSVQGRFTVSRDDAKNTVYLQMNSLKPEDTAVYYCAIDSDTFYSGSYDYWGQGTQVTVSSE",
+    "sequence_length": 122,
+    "segmentation": {
+      "FR1": "QVQLQESGGGLVQPGGSLRLSCAAS",
+      "CDR1": "GRTISRYA",
+      "FR2": "MSWFRQAPGKEREFVAV",
+      "CDR2": "ARRSGDGA",
+      "FR3": "YADSVQGRFTVSRDDAKNTVYLQMNSLKPEDTAVYYC",
+      "CDR3": "AIDSDTFYSGSYDY",
+      "FR4": "WGQGTQVTVSSE"
+    },
+    "CDR_lengths": {"CDR1": 8, "CDR2": 8, "CDR3": 14},
+    "CDR3_class": "S2 (medium 13-18aa) — typical VHH",
+    "hallmark_pos44": "Q",
+    "hallmark_pos45": "A",
+    "hallmark_pos47": "G",
+    "hallmark_44_45_47": "QAG",
+    "pos52_vincke": "F (Phe — camelid-like; NOT W; safe from Vincke perspective)",
+    "germline_analysis": {
+      "best_germline": "IGHV3-23",
+      "IGHV3-23": {"FR1_id": 92.0, "FR2_id": 64.7, "FR3_id": 81.1, "combined_id": 81.0},
+      "IGHV3-66": {"FR1_id": 92.0, "FR2_id": 58.8, "FR3_id": 81.1, "combined_id": 79.8},
+      "interpretation": "Partially humanized (81%). FR1 is VH3-like. FR2 retains more camelid character (64.7% IGHV3-23 identity) — VHH hallmark positions AND some surrounding camelid residues retained. FR3 diverges at 7 positions, consistent with Caplacizumab platform residues."
+    },
+    "FR3_mutations_vs_IGHV3_23": ["K6Q", "I11V", "N15D", "S16A", "L20V", "R28K", "A29P"],
+    "FR3_mutation_notes": {
+      "K6Q": "FR3 pos6=K→Q: camelid-specific (vWF-platform residue)",
+      "I11V": "I→V: conservative, VHH-common",
+      "N15D": "Camelid-specific FR3 position in anti-vWF lineage",
+      "S16A": "VHH FR3 position (common across VHH)",
+      "L20V": "Camelid-specific",
+      "R28K": "Conservative; Caplacizumab platform",
+      "A29P": "Pro insertion in FR3 loop — VHH-specific structural feature"
+    },
+    "mutation_delta_vs_camelid": {
+      "compared_to_5O0W": "76 total sequence differences vs Caplacizumab (5O0W chain E)",
+      "note": "76 differences span CDR1/CDR2/CDR3 primarily — these are different clones with different antigen contacts, not humanization mutations. Both are anti-vWF but 7Q6C and 5O0W represent different VHH molecules in the same platform lineage.",
+      "humanization_FR_mutations_estimated": "~12-15 FR mutations vs original llama VHH (FR1≈4, FR2≈5, FR3≈7); original llama sequence not deposited",
+      "caplacizumab_ref": "PMID:23461644 (Caplacizumab J Thromb Haemost 2013)"
+    },
+    "rule_validation": {
+      "R1_hallmark_QAG": "PASS",
+      "R2_FR_length_FR1=25": "PASS",
+      "R5_IGHV3_template": "PASS — IGHV3-23 (81.0%; partial humanization retaining platform-specific FR3 residues)"
+    }
+  }
+}

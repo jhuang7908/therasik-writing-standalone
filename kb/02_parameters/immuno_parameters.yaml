@@ -1,0 +1,137 @@
+meta:
+  id: "PARAM_IMMUNO_V1"
+  title: "Immunogenicity Parameters (MHC-II / PBMC-oriented)"
+  scope: [vhh, vhvl, rabbit, canine, bsab, car, tcr, mrna, adc, general]
+  confidence: "A"
+  owner: "bioinformatics"
+  reviewer: "immunology"
+  created: "2025-12-14"
+  updated: "2025-12-14"
+  status: "active"
+
+parameters:
+  - id: "IMM_METHOD_DEFAULT"
+    name: "Immunogenicity prediction default method"
+    scope: [general]
+    units: "enum"
+    recommended:
+      method: "iedb_mhcii"
+      cdr_handling: "do_not_auto_mutate_cdr_anchors"
+    red_flag:
+      method: "none"
+    notes: "Primary is MHC-II epitope prediction; CDR anchor mutation requires explicit tradeoff note."
+    confidence: "A"
+    tags: ["immunogenicity", "method"]
+
+  - id: "IMM_ALLELE_SET_DEFAULT"
+    name: "Default HLA allele reference set ID"
+    scope: [general]
+    units: "string"
+    recommended:
+      allele_set_id: "HLA_DRB1_top8_v1"
+    red_flag:
+      allele_set_id: "unknown"
+    notes: "Allele set should be versioned and stored as a separate asset if needed."
+    confidence: "B"
+    tags: ["HLA", "reference"]
+
+  - id: "IMM_RANK_STRONG"
+    name: "Strong epitope rank percentile threshold"
+    scope: [general]
+    units: "percentile"
+    recommended:
+      strong_rank_percentile_lt: 2.0
+    red_flag:
+      strong_rank_percentile_lt: 1.0
+    notes: "Use percentile rank where lower is stronger. Report both counts and minimum rank."
+    confidence: "A"
+    tags: ["threshold", "rank"]
+
+  - id: "IMM_RANK_MODERATE"
+    name: "Moderate epitope rank percentile threshold"
+    scope: [general]
+    units: "percentile"
+    recommended:
+      moderate_rank_percentile_lt: 10.0
+    red_flag:
+      moderate_rank_percentile_lt: 5.0
+    notes: "Moderate threshold supports triage and prioritization."
+    confidence: "A"
+    tags: ["threshold", "rank"]
+
+  - id: "IMM_IC50_STRONG"
+    name: "Strong epitope IC50 threshold"
+    scope: [general]
+    units: "nM"
+    recommended:
+      strong_ic50_lt: 50
+    red_flag:
+      strong_ic50_lt: 20
+    notes: "If IC50 is available, report both rank and IC50 and handle conflicts explicitly."
+    confidence: "A"
+    tags: ["threshold", "ic50"]
+
+  - id: "IMM_BURDEN_DEFINITION"
+    name: "Immunogenicity burden definition"
+    scope: [general]
+    units: "composite"
+    recommended:
+      burden_fields:
+        - "strong_epitope_count"
+        - "moderate_epitope_count"
+        - "allele_coverage"
+        - "min_rank_percentile"
+      weighting_hint:
+        strong_epitope_count: 3.0
+        moderate_epitope_count: 1.0
+        allele_coverage: 0.5
+        min_rank_percentile: 2.0
+    red_flag:
+      strong_epitope_count_ge: 5
+      allele_coverage_ge: 6
+    notes: "This is a scoring scaffold; final score can be calibrated using casebook regression."
+    confidence: "B"
+    tags: ["metric", "dashboard"]
+
+  - id: "IMM_REGION_POLICY"
+    name: "Region policy for de-immunization"
+    scope: [general]
+    units: "policy"
+    recommended:
+      fr_policy: "must_fix_if_strong"
+      cdr_policy: "minimize_anchor_mutation_and_warn_affinity_risk"
+      interface_policy: "avoid_charge_reversal_and_bulky_clash"
+    red_flag:
+      cdr_policy: "blind_mutate"
+    notes: "Rules must classify epitope location into FR/CDR and interface adjacency before proposing mutations."
+    confidence: "S"
+    tags: ["policy", "deimmunization"]
+
+evidence:
+  rationale: "Provide stable thresholds and reporting conventions that can be consumed by both pipeline decisions and customer reports."
+  sources:
+    - type: "internal"
+      ref: "To be linked: your validated PBMC assay correlation notes / prior projects"
+    - type: "public"
+      ref: "IEDB MHC-II predictor conventions (rank percentile, IC50) used widely in industry"
+  internal_validation:
+    status: "partial"
+    notes: "Calibrate burden weighting using casebook once 10+ projects have experimental immunogenicity readouts."
+
+governance:
+  change_log:
+    - change_type: "create"
+      change_summary: "Initial immunogenicity parameter set with rank/IC50 thresholds and burden definition."
+      owner: "bioinformatics"
+      reviewer: "immunology"
+      date: "2025-12-14"
+
+
+
+
+
+
+
+
+
+

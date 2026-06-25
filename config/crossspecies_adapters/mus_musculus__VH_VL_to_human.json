@@ -1,0 +1,66 @@
+{
+  "_meta": {
+    "schema_id": "crossspecies_adapter",
+    "schema_version": "V1.0",
+    "status": "LOCKED",
+    "governing_standard": "docs/CROSSSPECIES_ENGINE_STANDARD_V1.0.md",
+    "last_updated": "2026-05-07",
+    "note": "Mouse → human VH/VL humanization. Default and dominant flow under VH_VL_HUMANIZATION_STANDARD V5.4 (V5.1 Union grafting + V5.4 structure-driven FR fallback)."
+  },
+
+  "species_id": "mus_musculus_to_human",
+  "common_name": "Mouse → human",
+  "format": "VH_VL",
+  "numbering_scheme": "kabat",
+  "data_tier": "Tier-Hi",
+
+  "hallmarks_kabat": {
+    "positions": []
+  },
+
+  "cys_topology": {
+    "canonical_pairs": [[22, 92]],
+    "extra_protected_cys": []
+  },
+
+  "cdr_boundary_rules": {
+    "scheme": "union_kabat_chothia",
+    "regions": {
+      "VH": {"H1": [26, 35], "H2": [50, 65], "H3": [95, 102]},
+      "VL": {"L1": [24, 34], "L2": [50, 56], "L3": [89, 97]}
+    },
+    "source_standard": "docs/VH_VL_HUMANIZATION_STANDARD_V4.4.md"
+  },
+
+  "reference_source": {
+    "germline_freq_path": "data/germlines/mus_musculus_ig_aa/IGHV_aa.json",
+    "germline_freq_release_id": "mus_musculus_IGHV_v1_2026-04-13",
+    "auxiliary_freq_paths": {
+      "VL_kappa": "data/germlines/mus_musculus_ig_aa/IGKV_aa.json",
+      "VL_lambda": "data/germlines/mus_musculus_ig_aa/IGLV_aa.json"
+    },
+    "clinical_acceptors": [
+      {"acceptor_id": "human_clinical_germline_anchors", "scaffold_kind": "VH+VL", "source_drug_or_id": "config/vh_vl_humanization_v490.json clinical_germline_anchors (n=842 clinical-framework reference cohort)", "tier": "Tier1"}
+    ]
+  },
+
+  "track_priority": {
+    "order": ["AG-1.0", "DFR-1.0", "SR-1.0"],
+    "forbidden_tracks": []
+  },
+
+  "engine_tunables": {
+    "surface_sasa_threshold_A2": 20.0,
+    "deep_buried_sasa_cutoff_A2": 5.0,
+    "cdr_proximity_threshold_A": 5.0
+  },
+
+  "qa_pointer": {
+    "governing_standard_path": "docs/VH_VL_HUMANIZATION_STANDARD_V4.4.md",
+    "secondary_standard_paths": ["docs/CMC_DEVELOPABILITY_STANDARD_V1.1.md"],
+    "mandatory_qa_modules": [
+      "core/evaluation/evaluator.py | AbEvaluator",
+      "core/cmc/regular_ab_developability.py"
+    ]
+  }
+}

@@ -1,0 +1,1694 @@
+{
+  "metadata": {
+    "version": "2.0",
+    "date": "2026-04-18",
+    "updated_by": "agent",
+    "source_file": "data/immunogenicity_knowledge_base/master/ada_master_136_curated.csv",
+    "n_antibodies": 138,
+    "n_antibodies_with_germline": 135,
+    "n_germlines": 48,
+    "n_functional_germlines": 47,
+    "supersedes": "v1.0 (82 germlines, built from older partial dataset)",
+    "binding_standard": "VHH_HUMANIZATION_DESIGN_STANDARD_V2.0 §3.2a",
+    "usage": "ADA risk lookup for humanization result annotation. NOT a template selection source.",
+    "changelog": "v1.0->v2.0: expanded from 82 to 48 VH germlines covering 135 of 138 antibodies; added ada_pct_mean/min/max; added vl_partners; added is_orf flag"
+  },
+  "germlines": {
+    "IGHV1-18*01": {
+      "n_antibodies": 5,
+      "family": "IGHV1",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "HIGH": 3,
+        "LOW": 2
+      },
+      "majority_risk": "HIGH",
+      "ada_pct_mean": 2.62,
+      "ada_pct_min": 0.1,
+      "ada_pct_max": 6.5,
+      "n_with_pct": 5,
+      "vl_partners_top3": [
+        "IGKV3-15*01",
+        "IGKV1-13*01",
+        "IGKV1-39*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Tildrakizumab",
+          "ada_risk": "LOW",
+          "ada_pct": 6.5,
+          "indication": "autoimmune"
+        },
+        {
+          "name": "Brodalumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 3.3,
+          "indication": "autoimmune"
+        },
+        {
+          "name": "Elezanumab",
+          "ada_risk": "LOW",
+          "ada_pct": 2.0,
+          "indication": "neurology"
+        },
+        {
+          "name": "Tralokinumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 1.2,
+          "indication": "autoimmune_allergic"
+        },
+        {
+          "name": "Evolocumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 0.1,
+          "indication": "metabolic"
+        }
+      ]
+    },
+    "IGHV1-18*02": {
+      "n_antibodies": 1,
+      "family": "IGHV1",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "LOW": 1
+      },
+      "majority_risk": "LOW",
+      "ada_pct_mean": 1.1,
+      "ada_pct_min": 1.1,
+      "ada_pct_max": 1.1,
+      "n_with_pct": 1,
+      "vl_partners_top3": [
+        "IGKV7-3*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Gemtuzumab",
+          "ada_risk": "LOW",
+          "ada_pct": 1.1,
+          "indication": "oncology"
+        }
+      ]
+    },
+    "IGHV1-2*02": {
+      "n_antibodies": 9,
+      "family": "IGHV1",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "LOW": 5,
+        "UNKNOWN": 1,
+        "HIGH": 3
+      },
+      "majority_risk": "LOW",
+      "ada_pct_mean": 7.84,
+      "ada_pct_min": 1.0,
+      "ada_pct_max": 17.6,
+      "n_with_pct": 9,
+      "vl_partners_top3": [
+        "IGKV1-39*01",
+        "IGKV7-3*01",
+        "IGKV1-33*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Romosozumab",
+          "ada_risk": "LOW",
+          "ada_pct": 17.6,
+          "indication": "metabolic_musculoskeletal"
+        },
+        {
+          "name": "Spesolimab",
+          "ada_risk": "HIGH",
+          "ada_pct": 15.0,
+          "indication": "autoimmune"
+        },
+        {
+          "name": "Vunakizumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 15.0,
+          "indication": "autoimmune"
+        },
+        {
+          "name": "Mirikizumab",
+          "ada_risk": "LOW",
+          "ada_pct": 5.6,
+          "indication": "autoimmune"
+        },
+        {
+          "name": "Nemolizumab",
+          "ada_risk": "LOW",
+          "ada_pct": 5.6,
+          "indication": "autoimmune_allergic"
+        }
+      ]
+    },
+    "IGHV1-3*01": {
+      "n_antibodies": 5,
+      "family": "IGHV1",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "LOW": 5
+      },
+      "majority_risk": "LOW",
+      "ada_pct_mean": 23.08,
+      "ada_pct_min": 2.4,
+      "ada_pct_max": 87.0,
+      "n_with_pct": 5,
+      "vl_partners_top3": [
+        "IGKV2-28*01",
+        "IGKV2-29*02",
+        "IGKV1-33*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Donanemab",
+          "ada_risk": "LOW",
+          "ada_pct": 87.0,
+          "indication": "neurology"
+        },
+        {
+          "name": "Toripalimab",
+          "ada_risk": "LOW",
+          "ada_pct": 10.0,
+          "indication": "oncology"
+        },
+        {
+          "name": "Tafasitamab",
+          "ada_risk": "LOW",
+          "ada_pct": 10.0,
+          "indication": "oncology"
+        },
+        {
+          "name": "Natalizumab",
+          "ada_risk": "LOW",
+          "ada_pct": 6.0,
+          "indication": "neurology_autoimmune"
+        },
+        {
+          "name": "Vedolizumab",
+          "ada_risk": "LOW",
+          "ada_pct": 2.4,
+          "indication": "autoimmune"
+        }
+      ]
+    },
+    "IGHV1-3*04": {
+      "n_antibodies": 1,
+      "family": "IGHV1",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "LOW": 1
+      },
+      "majority_risk": "LOW",
+      "ada_pct_mean": 1.8,
+      "ada_pct_min": 1.8,
+      "ada_pct_max": 1.8,
+      "n_with_pct": 1,
+      "vl_partners_top3": [
+        "IGKV2-28*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Budigalimab",
+          "ada_risk": "LOW",
+          "ada_pct": 1.8,
+          "indication": "oncology"
+        }
+      ]
+    },
+    "IGHV1-46*01": {
+      "n_antibodies": 8,
+      "family": "IGHV1",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "MEDIUM": 3,
+        "HIGH": 1,
+        "LOW": 4
+      },
+      "majority_risk": "LOW",
+      "ada_pct_mean": 5.91,
+      "ada_pct_min": 0.0,
+      "ada_pct_max": 15.0,
+      "n_with_pct": 8,
+      "vl_partners_top3": [
+        "IGKV1-39*01",
+        "IGKV7-3*01",
+        "IGKV1-13*02"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Burosumab",
+          "ada_risk": "MEDIUM",
+          "ada_pct": 15.0,
+          "indication": "metabolic_musculoskeletal"
+        },
+        {
+          "name": "Benralizumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 13.0,
+          "indication": "autoimmune_allergic"
+        },
+        {
+          "name": "Daclizumab",
+          "ada_risk": "MEDIUM",
+          "ada_pct": 12.0,
+          "indication": "neurology_autoimmune"
+        },
+        {
+          "name": "Retifanlimab",
+          "ada_risk": "LOW",
+          "ada_pct": 2.8,
+          "indication": "oncology"
+        },
+        {
+          "name": "Eculizumab",
+          "ada_risk": "LOW",
+          "ada_pct": 2.0,
+          "indication": "hematology_immunology"
+        }
+      ]
+    },
+    "IGHV1-58*01": {
+      "n_antibodies": 2,
+      "family": "IGHV1",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "HIGH": 1,
+        "LOW": 1
+      },
+      "majority_risk": "HIGH",
+      "ada_pct_mean": 23.5,
+      "ada_pct_min": 4.1,
+      "ada_pct_max": 42.9,
+      "n_with_pct": 2,
+      "vl_partners_top3": [
+        "IGKV3-20*01",
+        "IGKV2/OR2-7D*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Favezelimab",
+          "ada_risk": "LOW",
+          "ada_pct": 42.9,
+          "indication": "oncology"
+        },
+        {
+          "name": "Tixagevimab",
+          "ada_risk": "HIGH",
+          "ada_pct": 4.1,
+          "indication": "infectious"
+        }
+      ]
+    },
+    "IGHV1-69*01": {
+      "n_antibodies": 5,
+      "family": "IGHV1",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "MEDIUM": 3,
+        "HIGH": 2
+      },
+      "majority_risk": "MEDIUM",
+      "ada_pct_mean": 9.22,
+      "ada_pct_min": 2.0,
+      "ada_pct_max": 20.0,
+      "n_with_pct": 5,
+      "vl_partners_top3": [
+        "IGKV1-33*01",
+        "IGKV1-39*01",
+        "IGKV2D-29*02"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Dazukibart",
+          "ada_risk": "MEDIUM",
+          "ada_pct": 20.0,
+          "indication": "autoimmune"
+        },
+        {
+          "name": "Ixekizumab",
+          "ada_risk": "MEDIUM",
+          "ada_pct": 14.29,
+          "indication": "autoimmune"
+        },
+        {
+          "name": "Nirsevimab",
+          "ada_risk": "MEDIUM",
+          "ada_pct": 5.0,
+          "indication": "infectious"
+        },
+        {
+          "name": "Belimumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 4.8,
+          "indication": "autoimmune"
+        },
+        {
+          "name": "Sintilimab",
+          "ada_risk": "HIGH",
+          "ada_pct": 2.0,
+          "indication": "oncology"
+        }
+      ]
+    },
+    "IGHV1-69*02": {
+      "n_antibodies": 4,
+      "family": "IGHV1",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "LOW": 3,
+        "HIGH": 1
+      },
+      "majority_risk": "LOW",
+      "ada_pct_mean": 14.7,
+      "ada_pct_min": 4.8,
+      "ada_pct_max": 24.0,
+      "n_with_pct": 4,
+      "vl_partners_top3": [
+        "IGKV1-39*01",
+        "IGKV1-27*01",
+        "IGKV1-33*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Risankizumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 24.0,
+          "indication": "autoimmune"
+        },
+        {
+          "name": "Belantamab",
+          "ada_risk": "LOW",
+          "ada_pct": 17.0,
+          "indication": "oncology"
+        },
+        {
+          "name": "Obinutuzumab",
+          "ada_risk": "LOW",
+          "ada_pct": 13.0,
+          "indication": "oncology"
+        },
+        {
+          "name": "Galcanezumab",
+          "ada_risk": "LOW",
+          "ada_pct": 4.8,
+          "indication": "neurology"
+        }
+      ]
+    },
+    "IGHV1-69*03": {
+      "n_antibodies": 1,
+      "family": "IGHV1",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "LOW": 1
+      },
+      "majority_risk": "LOW",
+      "ada_pct_mean": 15.0,
+      "ada_pct_min": 15.0,
+      "ada_pct_max": 15.0,
+      "n_with_pct": 1,
+      "vl_partners_top3": [
+        "IGKV2-30*02"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Nimotuzumab",
+          "ada_risk": "LOW",
+          "ada_pct": 15.0,
+          "indication": "oncology"
+        }
+      ]
+    },
+    "IGHV1-69*04": {
+      "n_antibodies": 1,
+      "family": "IGHV1",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "MEDIUM": 1
+      },
+      "majority_risk": "MEDIUM",
+      "ada_pct_mean": 2.1,
+      "ada_pct_min": 2.1,
+      "ada_pct_max": 2.1,
+      "n_with_pct": 1,
+      "vl_partners_top3": [
+        "IGKV1-39*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Bamlanivimab",
+          "ada_risk": "MEDIUM",
+          "ada_pct": 2.1,
+          "indication": "infectious"
+        }
+      ]
+    },
+    "IGHV1/OR15-2*02": {
+      "n_antibodies": 1,
+      "family": "IGHV1/OR15",
+      "is_orf": true,
+      "note": "IMGT ORF mis-assignment; included for traceability only",
+      "ada_risk_distribution": {
+        "UNKNOWN": 1
+      },
+      "majority_risk": "UNKNOWN",
+      "ada_pct_mean": 5.1,
+      "ada_pct_min": 5.1,
+      "ada_pct_max": 5.1,
+      "n_with_pct": 1,
+      "vl_partners_top3": [
+        "IGKV1-NL1*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Emicizumab",
+          "ada_risk": "UNKNOWN",
+          "ada_pct": 5.1,
+          "indication": "hematology"
+        }
+      ]
+    },
+    "IGHV2-70*01": {
+      "n_antibodies": 3,
+      "family": "IGHV2",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "HIGH": 1,
+        "LOW": 2
+      },
+      "majority_risk": "LOW",
+      "ada_pct_mean": 10.67,
+      "ada_pct_min": 0.7,
+      "ada_pct_max": 16.3,
+      "n_with_pct": 3,
+      "vl_partners_top3": [
+        "IGKV1-12*01",
+        "IGKV1-6*01",
+        "IGKV1-13*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Axatilimab",
+          "ada_risk": "LOW",
+          "ada_pct": 16.3,
+          "indication": "hematology_immunology"
+        },
+        {
+          "name": "Crovalimab",
+          "ada_risk": "HIGH",
+          "ada_pct": 15.0,
+          "indication": "hematology"
+        },
+        {
+          "name": "Palivizumab",
+          "ada_risk": "LOW",
+          "ada_pct": 0.7,
+          "indication": "infectious"
+        }
+      ]
+    },
+    "IGHV2-70*12": {
+      "n_antibodies": 1,
+      "family": "IGHV2",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "HIGH": 1
+      },
+      "majority_risk": "HIGH",
+      "ada_pct_mean": 10.0,
+      "ada_pct_min": 10.0,
+      "ada_pct_max": 10.0,
+      "n_with_pct": 1,
+      "vl_partners_top3": [
+        "IGKV3D-20*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Regdanvimab",
+          "ada_risk": "HIGH",
+          "ada_pct": 10.0,
+          "indication": "infectious"
+        }
+      ]
+    },
+    "IGHV3-15*01": {
+      "n_antibodies": 2,
+      "family": "IGHV3",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "MEDIUM": 1,
+        "LOW": 1
+      },
+      "majority_risk": "MEDIUM",
+      "ada_pct_mean": 2.25,
+      "ada_pct_min": 0.4,
+      "ada_pct_max": 4.1,
+      "n_with_pct": 2,
+      "vl_partners_top3": [
+        "IGKV4-1*01",
+        "IGKV3-11*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Cilgavimab",
+          "ada_risk": "MEDIUM",
+          "ada_pct": 4.1,
+          "indication": "infectious"
+        },
+        {
+          "name": "Fremanezumab",
+          "ada_risk": "LOW",
+          "ada_pct": 0.4,
+          "indication": "neurology"
+        }
+      ]
+    },
+    "IGHV3-21*01": {
+      "n_antibodies": 5,
+      "family": "IGHV3",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "MEDIUM": 3,
+        "HIGH": 1,
+        "LOW": 1
+      },
+      "majority_risk": "MEDIUM",
+      "ada_pct_mean": 14.07,
+      "ada_pct_min": 3.0,
+      "ada_pct_max": 25.0,
+      "n_with_pct": 5,
+      "vl_partners_top3": [
+        "IGKV2-29*02",
+        "IGKV1-17*01",
+        "IGKV2/OR22-4*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Concizumab",
+          "ada_risk": "MEDIUM",
+          "ada_pct": 25.0,
+          "indication": "hematology"
+        },
+        {
+          "name": "Itolizumab",
+          "ada_risk": "MEDIUM",
+          "ada_pct": 15.75,
+          "indication": "autoimmune"
+        },
+        {
+          "name": "Mogamulizumab",
+          "ada_risk": "LOW",
+          "ada_pct": 14.1,
+          "indication": "oncology"
+        },
+        {
+          "name": "Ebronucimab",
+          "ada_risk": "HIGH",
+          "ada_pct": 12.5,
+          "indication": "metabolic"
+        },
+        {
+          "name": "Ramucirumab",
+          "ada_risk": "MEDIUM",
+          "ada_pct": 3.0,
+          "indication": "oncology"
+        }
+      ]
+    },
+    "IGHV3-21*07": {
+      "n_antibodies": 1,
+      "family": "IGHV3",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "HIGH": 1
+      },
+      "majority_risk": "HIGH",
+      "ada_pct_mean": 15.0,
+      "ada_pct_min": 15.0,
+      "ada_pct_max": 15.0,
+      "n_with_pct": 1,
+      "vl_partners_top3": [
+        "IGKV2/OR22-4*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Pemivibart",
+          "ada_risk": "HIGH",
+          "ada_pct": 15.0,
+          "indication": "infectious"
+        }
+      ]
+    },
+    "IGHV3-23*01": {
+      "n_antibodies": 7,
+      "family": "IGHV3",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "LOW": 3,
+        "HIGH": 4
+      },
+      "majority_risk": "HIGH",
+      "ada_pct_mean": 3.3,
+      "ada_pct_min": 0.0,
+      "ada_pct_max": 10.0,
+      "n_with_pct": 7,
+      "vl_partners_top3": [
+        "IGKV1-39*01",
+        "IGKV3-20*01",
+        "IGKV1D-16*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Emapalumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 10.0,
+          "indication": "hematology_immunology"
+        },
+        {
+          "name": "Tisotumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 5.7,
+          "indication": "oncology"
+        },
+        {
+          "name": "Dostarlimab",
+          "ada_risk": "LOW",
+          "ada_pct": 2.5,
+          "indication": "oncology"
+        },
+        {
+          "name": "Garadacimab",
+          "ada_risk": "HIGH",
+          "ada_pct": 2.0,
+          "indication": "hematology_immunology"
+        },
+        {
+          "name": "Cemiplimab",
+          "ada_risk": "LOW",
+          "ada_pct": 1.9,
+          "indication": "oncology"
+        }
+      ]
+    },
+    "IGHV3-23*03": {
+      "n_antibodies": 3,
+      "family": "IGHV3",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "LOW": 3
+      },
+      "majority_risk": "LOW",
+      "ada_pct_mean": 13.33,
+      "ada_pct_min": 10.0,
+      "ada_pct_max": 15.0,
+      "n_with_pct": 3,
+      "vl_partners_top3": [
+        "IGKV7-3*01",
+        "IGKV2D-29*02",
+        "IGKV3/OR2-268*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Inebilizumab",
+          "ada_risk": "LOW",
+          "ada_pct": 15.0,
+          "indication": "neurology_autoimmune"
+        },
+        {
+          "name": "Leronlimab",
+          "ada_risk": "LOW",
+          "ada_pct": 15.0,
+          "indication": "infectious_oncology"
+        },
+        {
+          "name": "Sutimlimab",
+          "ada_risk": "LOW",
+          "ada_pct": 10.0,
+          "indication": "hematology"
+        }
+      ]
+    },
+    "IGHV3-23*04": {
+      "n_antibodies": 13,
+      "family": "IGHV3",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "MEDIUM": 3,
+        "LOW": 7,
+        "HIGH": 3
+      },
+      "majority_risk": "LOW",
+      "ada_pct_mean": 11.49,
+      "ada_pct_min": 0.6,
+      "ada_pct_max": 52.0,
+      "n_with_pct": 13,
+      "vl_partners_top3": [
+        "IGKV1-16*01",
+        "IGKV1-39*01",
+        "IGKV1-9*03"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Brolucizumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 52.0,
+          "indication": "ophthalmology"
+        },
+        {
+          "name": "Atezolizumab",
+          "ada_risk": "LOW",
+          "ada_pct": 30.0,
+          "indication": "oncology"
+        },
+        {
+          "name": "Penpulimab",
+          "ada_risk": "LOW",
+          "ada_pct": 15.0,
+          "indication": "oncology"
+        },
+        {
+          "name": "Timigutuzumab",
+          "ada_risk": "LOW",
+          "ada_pct": 15.0,
+          "indication": "oncology"
+        },
+        {
+          "name": "Trastuzumab",
+          "ada_risk": "LOW",
+          "ada_pct": 8.0,
+          "indication": "oncology"
+        }
+      ]
+    },
+    "IGHV3-23*05": {
+      "n_antibodies": 1,
+      "family": "IGHV3",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "MEDIUM": 1
+      },
+      "majority_risk": "MEDIUM",
+      "ada_pct_mean": 12.0,
+      "ada_pct_min": 12.0,
+      "ada_pct_max": 12.0,
+      "n_with_pct": 1,
+      "vl_partners_top3": [
+        "IGKV1-5*03"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Lanadelumab",
+          "ada_risk": "MEDIUM",
+          "ada_pct": 12.0,
+          "indication": "hematology_immunology"
+        }
+      ]
+    },
+    "IGHV3-30*01": {
+      "n_antibodies": 2,
+      "family": "IGHV3",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "HIGH": 1,
+        "LOW": 1
+      },
+      "majority_risk": "HIGH",
+      "ada_pct_mean": 4.8,
+      "ada_pct_min": 4.6,
+      "ada_pct_max": 5.0,
+      "n_with_pct": 2,
+      "vl_partners_top3": [
+        "IGKV3-11*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Etaracizumab",
+          "ada_risk": "LOW",
+          "ada_pct": 5.0,
+          "indication": "oncology"
+        },
+        {
+          "name": "Golimumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 4.6,
+          "indication": "autoimmune"
+        }
+      ]
+    },
+    "IGHV3-30*03": {
+      "n_antibodies": 1,
+      "family": "IGHV3",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "HIGH": 1
+      },
+      "majority_risk": "HIGH",
+      "ada_pct_mean": 6.3,
+      "ada_pct_min": 6.3,
+      "ada_pct_max": 6.3,
+      "n_with_pct": 1,
+      "vl_partners_top3": [
+        "IGKV3D-20*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Erenumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 6.3,
+          "indication": "neurology"
+        }
+      ]
+    },
+    "IGHV3-33*01": {
+      "n_antibodies": 7,
+      "family": "IGHV3",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "HIGH": 6,
+        "MEDIUM": 1
+      },
+      "majority_risk": "HIGH",
+      "ada_pct_mean": 9.09,
+      "ada_pct_min": 0.0,
+      "ada_pct_max": 37.8,
+      "n_with_pct": 7,
+      "vl_partners_top3": [
+        "IGKV1-39*01",
+        "IGKV3-11*01",
+        "IGKV6-21*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Nivolumab",
+          "ada_risk": "MEDIUM",
+          "ada_pct": 37.8,
+          "indication": "oncology"
+        },
+        {
+          "name": "Tremelimumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 16.7,
+          "indication": "oncology"
+        },
+        {
+          "name": "Tezepelumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 4.9,
+          "indication": "autoimmune_allergic"
+        },
+        {
+          "name": "Teprotumumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 2.3,
+          "indication": "endocrine_autoimmune"
+        },
+        {
+          "name": "Canakinumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 1.5,
+          "indication": "autoimmune"
+        }
+      ]
+    },
+    "IGHV3-41*02": {
+      "n_antibodies": 2,
+      "family": "IGHV3",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "UNKNOWN": 2
+      },
+      "majority_risk": "UNKNOWN",
+      "ada_pct_mean": 19.6,
+      "ada_pct_min": 10.0,
+      "ada_pct_max": 29.2,
+      "n_with_pct": 2,
+      "vl_partners_top3": [
+        "IGKV1-16*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Ozoralizumab",
+          "ada_risk": "UNKNOWN",
+          "ada_pct": 29.2,
+          "indication": "autoimmune"
+        },
+        {
+          "name": "Faricimab",
+          "ada_risk": "UNKNOWN",
+          "ada_pct": 10.0,
+          "indication": "ophthalmology"
+        }
+      ]
+    },
+    "IGHV3-43*02": {
+      "n_antibodies": 1,
+      "family": "IGHV3",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "LOW": 1
+      },
+      "majority_risk": "LOW",
+      "ada_pct_mean": 2.0,
+      "ada_pct_min": 2.0,
+      "ada_pct_max": 2.0,
+      "n_with_pct": 1,
+      "vl_partners_top3": [
+        "IGKV1-5*03"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Evinacumab",
+          "ada_risk": "LOW",
+          "ada_pct": 2.0,
+          "indication": "metabolic"
+        }
+      ]
+    },
+    "IGHV3-48*01": {
+      "n_antibodies": 3,
+      "family": "IGHV3",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "MEDIUM": 1,
+        "LOW": 2
+      },
+      "majority_risk": "LOW",
+      "ada_pct_mean": 11.87,
+      "ada_pct_min": 3.4,
+      "ada_pct_max": 17.2,
+      "n_with_pct": 3,
+      "vl_partners_top3": [
+        "IGKV2-30*02",
+        "IGKV1-9*03",
+        "IGKV1-27*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Domvanalimab",
+          "ada_risk": "LOW",
+          "ada_pct": 17.2,
+          "indication": "oncology"
+        },
+        {
+          "name": "Elotuzumab",
+          "ada_risk": "LOW",
+          "ada_pct": 15.0,
+          "indication": "oncology"
+        },
+        {
+          "name": "Lecanemab",
+          "ada_risk": "MEDIUM",
+          "ada_pct": 3.4,
+          "indication": "neurology"
+        }
+      ]
+    },
+    "IGHV3-48*02": {
+      "n_antibodies": 2,
+      "family": "IGHV3",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "HIGH": 2
+      },
+      "majority_risk": "HIGH",
+      "ada_pct_mean": 3.5,
+      "ada_pct_min": 1.0,
+      "ada_pct_max": 6.0,
+      "n_with_pct": 2,
+      "vl_partners_top3": [
+        "IGKV1-12*01",
+        "IGKV1-13*02"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Fulranumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 6.0,
+          "indication": "pain_neurology"
+        },
+        {
+          "name": "Enfortumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 1.0,
+          "indication": "oncology"
+        }
+      ]
+    },
+    "IGHV3-48*03": {
+      "n_antibodies": 1,
+      "family": "IGHV3",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "LOW": 1
+      },
+      "majority_risk": "LOW",
+      "ada_pct_mean": 37.0,
+      "ada_pct_min": 37.0,
+      "ada_pct_max": 37.0,
+      "n_with_pct": 1,
+      "vl_partners_top3": [
+        "IGKV2-29*02"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Rozanolixizumab",
+          "ada_risk": "LOW",
+          "ada_pct": 37.0,
+          "indication": "neurology_autoimmune"
+        }
+      ]
+    },
+    "IGHV3-49*04": {
+      "n_antibodies": 2,
+      "family": "IGHV3",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "HIGH": 2
+      },
+      "majority_risk": "HIGH",
+      "ada_pct_mean": 53.8,
+      "ada_pct_min": 22.6,
+      "ada_pct_max": 85.0,
+      "n_with_pct": 2,
+      "vl_partners_top3": [
+        "IGKV1-33*01",
+        "IGKV1-13*02"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Alemtuzumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 85.0,
+          "indication": "neurology_autoimmune"
+        },
+        {
+          "name": "Clesrovimab",
+          "ada_risk": "HIGH",
+          "ada_pct": 22.6,
+          "indication": "infectious"
+        }
+      ]
+    },
+    "IGHV3-53*01": {
+      "n_antibodies": 1,
+      "family": "IGHV3",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "MEDIUM": 1
+      },
+      "majority_risk": "MEDIUM",
+      "ada_pct_mean": 1.5,
+      "ada_pct_min": 1.5,
+      "ada_pct_max": 1.5,
+      "n_with_pct": 1,
+      "vl_partners_top3": [
+        "IGKV1-12*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Enuzovimab",
+          "ada_risk": "MEDIUM",
+          "ada_pct": 1.5,
+          "indication": "infectious"
+        }
+      ]
+    },
+    "IGHV3-53*03": {
+      "n_antibodies": 1,
+      "family": "IGHV3",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "HIGH": 1
+      },
+      "majority_risk": "HIGH",
+      "ada_pct_mean": 8.0,
+      "ada_pct_min": 8.0,
+      "ada_pct_max": 8.0,
+      "n_with_pct": 1,
+      "vl_partners_top3": [
+        "IGKV3-15*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Naxitamab",
+          "ada_risk": "HIGH",
+          "ada_pct": 8.0,
+          "indication": "oncology"
+        }
+      ]
+    },
+    "IGHV3-66*01": {
+      "n_antibodies": 5,
+      "family": "IGHV3",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "MEDIUM": 1,
+        "LOW": 2,
+        "HIGH": 2
+      },
+      "majority_risk": "LOW",
+      "ada_pct_mean": 6.0,
+      "ada_pct_min": 1.0,
+      "ada_pct_max": 20.6,
+      "n_with_pct": 5,
+      "vl_partners_top3": [
+        "IGKV1-39*01",
+        "IGKV3-7*02",
+        "IGKV7-3*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Eptinezumab",
+          "ada_risk": "LOW",
+          "ada_pct": 20.6,
+          "indication": "neurology"
+        },
+        {
+          "name": "Reslizumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 4.39,
+          "indication": "autoimmune_allergic"
+        },
+        {
+          "name": "Etrolizumab",
+          "ada_risk": "LOW",
+          "ada_pct": 2.0,
+          "indication": "autoimmune"
+        },
+        {
+          "name": "Levilimab",
+          "ada_risk": "HIGH",
+          "ada_pct": 2.0,
+          "indication": "autoimmune"
+        },
+        {
+          "name": "Clazakizumab",
+          "ada_risk": "MEDIUM",
+          "ada_pct": 1.0,
+          "indication": "autoimmune"
+        }
+      ]
+    },
+    "IGHV3-7*01": {
+      "n_antibodies": 4,
+      "family": "IGHV3",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "LOW": 2,
+        "MEDIUM": 2
+      },
+      "majority_risk": "LOW",
+      "ada_pct_mean": 14.05,
+      "ada_pct_min": 0.8,
+      "ada_pct_max": 34.0,
+      "n_with_pct": 4,
+      "vl_partners_top3": [
+        "IGKV3-20*01",
+        "IGKV1-13*02",
+        "IGKV1-39*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Bimekizumab",
+          "ada_risk": "MEDIUM",
+          "ada_pct": 34.0,
+          "indication": "autoimmune"
+        },
+        {
+          "name": "Camrelizumab",
+          "ada_risk": "LOW",
+          "ada_pct": 20.4,
+          "indication": "oncology"
+        },
+        {
+          "name": "Secukinumab",
+          "ada_risk": "MEDIUM",
+          "ada_pct": 1.0,
+          "indication": "autoimmune"
+        },
+        {
+          "name": "Durvalumab",
+          "ada_risk": "LOW",
+          "ada_pct": 0.8,
+          "indication": "oncology"
+        }
+      ]
+    },
+    "IGHV3-72*01": {
+      "n_antibodies": 1,
+      "family": "IGHV3",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "LOW": 1
+      },
+      "majority_risk": "LOW",
+      "ada_pct_mean": 3.2,
+      "ada_pct_min": 3.2,
+      "ada_pct_max": 3.2,
+      "n_with_pct": 1,
+      "vl_partners_top3": [
+        "IGKV1-17*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Olokizumab",
+          "ada_risk": "LOW",
+          "ada_pct": 3.2,
+          "indication": "autoimmune"
+        }
+      ]
+    },
+    "IGHV3-9*01": {
+      "n_antibodies": 3,
+      "family": "IGHV3",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "HIGH": 2,
+        "LOW": 1
+      },
+      "majority_risk": "HIGH",
+      "ada_pct_mean": 11.41,
+      "ada_pct_min": 0.22,
+      "ada_pct_max": 30.0,
+      "n_with_pct": 3,
+      "vl_partners_top3": [
+        "IGKV1-27*01",
+        "IGKV3-11*01",
+        "IGKV1-12*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Adalimumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 30.0,
+          "indication": "autoimmune"
+        },
+        {
+          "name": "Sarilumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 4.0,
+          "indication": "autoimmune"
+        },
+        {
+          "name": "Ofatumumab",
+          "ada_risk": "LOW",
+          "ada_pct": 0.22,
+          "indication": "oncology_neurology"
+        }
+      ]
+    },
+    "IGHV4-28*01": {
+      "n_antibodies": 1,
+      "family": "IGHV4",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "HIGH": 1
+      },
+      "majority_risk": "HIGH",
+      "ada_pct_mean": 2.0,
+      "ada_pct_min": 2.0,
+      "ada_pct_max": 2.0,
+      "n_with_pct": 1,
+      "vl_partners_top3": [
+        "IGKV1-33*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Tocilizumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 2.0,
+          "indication": "autoimmune"
+        }
+      ]
+    },
+    "IGHV4-30-2*07": {
+      "n_antibodies": 1,
+      "family": "IGHV4",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "LOW": 1
+      },
+      "majority_risk": "LOW",
+      "ada_pct_mean": 4.1,
+      "ada_pct_min": 4.1,
+      "ada_pct_max": 4.1,
+      "n_with_pct": 1,
+      "vl_partners_top3": [
+        "IGKV3-11*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Necitumumab",
+          "ada_risk": "LOW",
+          "ada_pct": 4.1,
+          "indication": "oncology"
+        }
+      ]
+    },
+    "IGHV4-34*03": {
+      "n_antibodies": 1,
+      "family": "IGHV4",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "LOW": 1
+      },
+      "majority_risk": "LOW",
+      "ada_pct_mean": 5.6,
+      "ada_pct_min": 5.6,
+      "ada_pct_max": 5.6,
+      "n_with_pct": 1,
+      "vl_partners_top3": [
+        "IGKV3-11*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Relatlimab",
+          "ada_risk": "LOW",
+          "ada_pct": 5.6,
+          "indication": "oncology"
+        }
+      ]
+    },
+    "IGHV4-34*09": {
+      "n_antibodies": 1,
+      "family": "IGHV4",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "HIGH": 1
+      },
+      "majority_risk": "HIGH",
+      "ada_pct_mean": 10.0,
+      "ada_pct_min": 10.0,
+      "ada_pct_max": 10.0,
+      "n_with_pct": 1,
+      "vl_partners_top3": [
+        "IGKV4-1*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Depemokimab",
+          "ada_risk": "HIGH",
+          "ada_pct": 10.0,
+          "indication": "autoimmune_allergic"
+        }
+      ]
+    },
+    "IGHV4-38-2*01": {
+      "n_antibodies": 1,
+      "family": "IGHV4",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "MEDIUM": 1
+      },
+      "majority_risk": "MEDIUM",
+      "ada_pct_mean": 0.0,
+      "ada_pct_min": 0.0,
+      "ada_pct_max": 0.0,
+      "n_with_pct": 1,
+      "vl_partners_top3": [
+        "IGKV7-3*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Omalizumab",
+          "ada_risk": "MEDIUM",
+          "ada_pct": 0.0,
+          "indication": "autoimmune_allergic"
+        }
+      ]
+    },
+    "IGHV4-39*01": {
+      "n_antibodies": 2,
+      "family": "IGHV4",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "HIGH": 2
+      },
+      "majority_risk": "HIGH",
+      "ada_pct_mean": 9.25,
+      "ada_pct_min": 3.5,
+      "ada_pct_max": 15.0,
+      "n_with_pct": 2,
+      "vl_partners_top3": [
+        "IGKV3-11*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Tafolecimab",
+          "ada_risk": "HIGH",
+          "ada_pct": 15.0,
+          "indication": "metabolic"
+        },
+        {
+          "name": "Olaratumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 3.5,
+          "indication": "oncology"
+        }
+      ]
+    },
+    "IGHV4-4*02": {
+      "n_antibodies": 1,
+      "family": "IGHV4",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "HIGH": 1
+      },
+      "majority_risk": "HIGH",
+      "ada_pct_mean": 41.0,
+      "ada_pct_min": 41.0,
+      "ada_pct_max": 41.0,
+      "n_with_pct": 1,
+      "vl_partners_top3": [
+        "IGKV1-33*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Satralizumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 41.0,
+          "indication": "neurology_autoimmune"
+        }
+      ]
+    },
+    "IGHV4-4*08": {
+      "n_antibodies": 2,
+      "family": "IGHV4",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "HIGH": 1,
+        "LOW": 1
+      },
+      "majority_risk": "HIGH",
+      "ada_pct_mean": 1.96,
+      "ada_pct_min": 1.0,
+      "ada_pct_max": 2.91,
+      "n_with_pct": 2,
+      "vl_partners_top3": [
+        "IGKV4-1*01",
+        "IGKV6-21*02"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Mepolizumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 2.91,
+          "indication": "autoimmune_allergic"
+        },
+        {
+          "name": "Tagitanlimab",
+          "ada_risk": "LOW",
+          "ada_pct": 1.0,
+          "indication": "oncology"
+        }
+      ]
+    },
+    "IGHV4-59*03": {
+      "n_antibodies": 3,
+      "family": "IGHV4",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "UNKNOWN": 1,
+        "LOW": 1,
+        "HIGH": 1
+      },
+      "majority_risk": "UNKNOWN",
+      "ada_pct_mean": 6.73,
+      "ada_pct_min": 5.2,
+      "ada_pct_max": 8.0,
+      "n_with_pct": 3,
+      "vl_partners_top3": [
+        "IGKV3-20*01",
+        "IGKV2-28*01",
+        "IGKV7-3*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Tarlatamab",
+          "ada_risk": "UNKNOWN",
+          "ada_pct": 8.0,
+          "indication": "oncology"
+        },
+        {
+          "name": "Exidavnemab",
+          "ada_risk": "LOW",
+          "ada_pct": 7.0,
+          "indication": "neurology"
+        },
+        {
+          "name": "Lebrikizumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 5.2,
+          "indication": "autoimmune_allergic"
+        }
+      ]
+    },
+    "IGHV4-61*01": {
+      "n_antibodies": 1,
+      "family": "IGHV4",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "LOW": 1
+      },
+      "majority_risk": "LOW",
+      "ada_pct_mean": 1.8,
+      "ada_pct_min": 1.8,
+      "ada_pct_max": 1.8,
+      "n_with_pct": 1,
+      "vl_partners_top3": [
+        "IGKV1-33*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Panitumumab",
+          "ada_risk": "LOW",
+          "ada_pct": 1.8,
+          "indication": "oncology"
+        }
+      ]
+    },
+    "IGHV5-51*01": {
+      "n_antibodies": 5,
+      "family": "IGHV5",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "MEDIUM": 1,
+        "LOW": 2,
+        "HIGH": 2
+      },
+      "majority_risk": "LOW",
+      "ada_pct_mean": 7.52,
+      "ada_pct_min": 2.3,
+      "ada_pct_max": 14.7,
+      "n_with_pct": 4,
+      "vl_partners_top3": [
+        "IGKV3-20*01",
+        "IGKV1-33*01",
+        "IGKV2/OR22-4*01"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Guselkumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 14.7,
+          "indication": "autoimmune"
+        },
+        {
+          "name": "Astegolimab",
+          "ada_risk": "LOW",
+          "ada_pct": 8.0,
+          "indication": "autoimmune_allergic"
+        },
+        {
+          "name": "Anifrolumab",
+          "ada_risk": "MEDIUM",
+          "ada_pct": 5.1,
+          "indication": "autoimmune"
+        },
+        {
+          "name": "Ustekinumab",
+          "ada_risk": "HIGH",
+          "ada_pct": 2.3,
+          "indication": "autoimmune"
+        },
+        {
+          "name": "Bezlotoxumab",
+          "ada_risk": "LOW",
+          "ada_pct": null,
+          "indication": "infectious"
+        }
+      ]
+    },
+    "IGHV7-4-1*02": {
+      "n_antibodies": 1,
+      "family": "IGHV7",
+      "is_orf": false,
+      "note": null,
+      "ada_risk_distribution": {
+        "LOW": 1
+      },
+      "majority_risk": "LOW",
+      "ada_pct_mean": 1.1,
+      "ada_pct_min": 1.1,
+      "ada_pct_max": 1.1,
+      "n_with_pct": 1,
+      "vl_partners_top3": [
+        "IGKV1-13*02"
+      ],
+      "clinical_examples": [
+        {
+          "name": "Sacituzumab",
+          "ada_risk": "LOW",
+          "ada_pct": 1.1,
+          "indication": "oncology"
+        }
+      ]
+    }
+  }
+}

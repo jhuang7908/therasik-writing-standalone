@@ -1,0 +1,641 @@
+{
+  "_meta": {
+    "thresholds_source": "data/reference/CDR_physchem_thresholds_v1.json",
+    "holdout_source": "data/humanization_assay/384_natural_segmentation.csv",
+    "accept_rate": 0.85,
+    "policy": "Apply AbRef-458/VHH42 derived thresholds to independent holdout. Report rates only; never silently re-segment."
+  },
+  "per_locus": {
+    "vh_cdr1": {
+      "n": 384,
+      "metrics": {
+        "longest_hydrophobic_run": {
+          "n": 384,
+          "PASS": 348,
+          "WARN": 36,
+          "VETO": 0,
+          "pass_rate": 0.9062,
+          "warn_rate": 0.0938,
+          "veto_rate": 0.0,
+          "ok": true
+        },
+        "longest_same_sign_charge_run": {
+          "n": 384,
+          "PASS": 366,
+          "WARN": 18,
+          "VETO": 0,
+          "pass_rate": 0.9531,
+          "warn_rate": 0.0469,
+          "veto_rate": 0.0,
+          "ok": true
+        },
+        "agg_motif_count": {
+          "n": 384,
+          "PASS": 382,
+          "WARN": 0,
+          "VETO": 2,
+          "pass_rate": 0.9948,
+          "warn_rate": 0.0,
+          "veto_rate": 0.0052,
+          "ok": true
+        },
+        "n_glyc_motif": {
+          "n": 384,
+          "PASS": 382,
+          "WARN": 0,
+          "VETO": 2,
+          "pass_rate": 0.9948,
+          "warn_rate": 0.0,
+          "veto_rate": 0.0052,
+          "ok": true
+        },
+        "deamidation_motif": {
+          "n": 384,
+          "PASS": 375,
+          "WARN": 9,
+          "VETO": 0,
+          "pass_rate": 0.9766,
+          "warn_rate": 0.0234,
+          "veto_rate": 0.0,
+          "ok": true
+        },
+        "isomerization_motif": {
+          "n": 384,
+          "PASS": 367,
+          "WARN": 16,
+          "VETO": 1,
+          "pass_rate": 0.9557,
+          "warn_rate": 0.0417,
+          "veto_rate": 0.0026,
+          "ok": true
+        },
+        "charge_asymmetry": {
+          "n": 384,
+          "PASS": 361,
+          "WARN": 23,
+          "VETO": 0,
+          "pass_rate": 0.9401,
+          "warn_rate": 0.0599,
+          "veto_rate": 0.0,
+          "ok": true
+        },
+        "net_charge_pH7": {
+          "n": 384,
+          "PASS": 347,
+          "WARN": 36,
+          "VETO": 1,
+          "pass_rate": 0.9036,
+          "warn_rate": 0.0938,
+          "veto_rate": 0.0026,
+          "ok": true
+        },
+        "gravy": {
+          "n": 384,
+          "PASS": 354,
+          "WARN": 29,
+          "VETO": 1,
+          "pass_rate": 0.9219,
+          "warn_rate": 0.0755,
+          "veto_rate": 0.0026,
+          "ok": true
+        },
+        "free_cys": {
+          "n": 384,
+          "PASS": 383,
+          "WARN": 1,
+          "VETO": 0,
+          "pass_rate": 0.9974,
+          "warn_rate": 0.0026,
+          "veto_rate": 0.0,
+          "ok": true
+        }
+      }
+    },
+    "vh_cdr2": {
+      "n": 384,
+      "metrics": {
+        "longest_hydrophobic_run": {
+          "n": 384,
+          "PASS": 344,
+          "WARN": 34,
+          "VETO": 6,
+          "pass_rate": 0.8958,
+          "warn_rate": 0.0885,
+          "veto_rate": 0.0156,
+          "ok": true
+        },
+        "longest_same_sign_charge_run": {
+          "n": 384,
+          "PASS": 382,
+          "WARN": 2,
+          "VETO": 0,
+          "pass_rate": 0.9948,
+          "warn_rate": 0.0052,
+          "veto_rate": 0.0,
+          "ok": true
+        },
+        "agg_motif_count": {
+          "n": 384,
+          "PASS": 270,
+          "WARN": 110,
+          "VETO": 4,
+          "pass_rate": 0.7031,
+          "warn_rate": 0.2865,
+          "veto_rate": 0.0104,
+          "ok": false
+        },
+        "n_glyc_motif": {
+          "n": 384,
+          "PASS": 373,
+          "WARN": 0,
+          "VETO": 11,
+          "pass_rate": 0.9714,
+          "warn_rate": 0.0,
+          "veto_rate": 0.0286,
+          "ok": true
+        },
+        "deamidation_motif": {
+          "n": 384,
+          "PASS": 383,
+          "WARN": 0,
+          "VETO": 1,
+          "pass_rate": 0.9974,
+          "warn_rate": 0.0,
+          "veto_rate": 0.0026,
+          "ok": true
+        },
+        "isomerization_motif": {
+          "n": 384,
+          "PASS": 312,
+          "WARN": 0,
+          "VETO": 72,
+          "pass_rate": 0.8125,
+          "warn_rate": 0.0,
+          "veto_rate": 0.1875,
+          "ok": false
+        },
+        "charge_asymmetry": {
+          "n": 384,
+          "PASS": 364,
+          "WARN": 16,
+          "VETO": 4,
+          "pass_rate": 0.9479,
+          "warn_rate": 0.0417,
+          "veto_rate": 0.0104,
+          "ok": true
+        },
+        "net_charge_pH7": {
+          "n": 384,
+          "PASS": 324,
+          "WARN": 46,
+          "VETO": 14,
+          "pass_rate": 0.8438,
+          "warn_rate": 0.1198,
+          "veto_rate": 0.0365,
+          "ok": false
+        },
+        "gravy": {
+          "n": 384,
+          "PASS": 377,
+          "WARN": 7,
+          "VETO": 0,
+          "pass_rate": 0.9818,
+          "warn_rate": 0.0182,
+          "veto_rate": 0.0,
+          "ok": true
+        },
+        "free_cys": {
+          "n": 384,
+          "PASS": 384,
+          "WARN": 0,
+          "VETO": 0,
+          "pass_rate": 1.0,
+          "warn_rate": 0.0,
+          "veto_rate": 0.0,
+          "ok": true
+        }
+      }
+    },
+    "vh_cdr3": {
+      "n": 384,
+      "metrics": {
+        "longest_hydrophobic_run": {
+          "n": 384,
+          "PASS": 363,
+          "WARN": 19,
+          "VETO": 2,
+          "pass_rate": 0.9453,
+          "warn_rate": 0.0495,
+          "veto_rate": 0.0052,
+          "ok": true
+        },
+        "longest_same_sign_charge_run": {
+          "n": 384,
+          "PASS": 383,
+          "WARN": 0,
+          "VETO": 1,
+          "pass_rate": 0.9974,
+          "warn_rate": 0.0,
+          "veto_rate": 0.0026,
+          "ok": true
+        },
+        "agg_motif_count": {
+          "n": 384,
+          "PASS": 378,
+          "WARN": 6,
+          "VETO": 0,
+          "pass_rate": 0.9844,
+          "warn_rate": 0.0156,
+          "veto_rate": 0.0,
+          "ok": true
+        },
+        "n_glyc_motif": {
+          "n": 384,
+          "PASS": 384,
+          "WARN": 0,
+          "VETO": 0,
+          "pass_rate": 1.0,
+          "warn_rate": 0.0,
+          "veto_rate": 0.0,
+          "ok": true
+        },
+        "deamidation_motif": {
+          "n": 384,
+          "PASS": 365,
+          "WARN": 18,
+          "VETO": 1,
+          "pass_rate": 0.9505,
+          "warn_rate": 0.0469,
+          "veto_rate": 0.0026,
+          "ok": true
+        },
+        "isomerization_motif": {
+          "n": 384,
+          "PASS": 383,
+          "WARN": 0,
+          "VETO": 1,
+          "pass_rate": 0.9974,
+          "warn_rate": 0.0,
+          "veto_rate": 0.0026,
+          "ok": true
+        },
+        "charge_asymmetry": {
+          "n": 384,
+          "PASS": 371,
+          "WARN": 11,
+          "VETO": 2,
+          "pass_rate": 0.9661,
+          "warn_rate": 0.0286,
+          "veto_rate": 0.0052,
+          "ok": true
+        },
+        "net_charge_pH7": {
+          "n": 384,
+          "PASS": 317,
+          "WARN": 54,
+          "VETO": 13,
+          "pass_rate": 0.8255,
+          "warn_rate": 0.1406,
+          "veto_rate": 0.0339,
+          "ok": false
+        },
+        "gravy": {
+          "n": 384,
+          "PASS": 307,
+          "WARN": 67,
+          "VETO": 10,
+          "pass_rate": 0.7995,
+          "warn_rate": 0.1745,
+          "veto_rate": 0.026,
+          "ok": false
+        },
+        "free_cys": {
+          "n": 384,
+          "PASS": 376,
+          "WARN": 2,
+          "VETO": 6,
+          "pass_rate": 0.9792,
+          "warn_rate": 0.0052,
+          "veto_rate": 0.0156,
+          "ok": true
+        }
+      }
+    },
+    "vl_cdr1": {
+      "n": 384,
+      "metrics": {
+        "longest_hydrophobic_run": {
+          "n": 384,
+          "PASS": 313,
+          "WARN": 0,
+          "VETO": 71,
+          "pass_rate": 0.8151,
+          "warn_rate": 0.0,
+          "veto_rate": 0.1849,
+          "ok": false
+        },
+        "longest_same_sign_charge_run": {
+          "n": 384,
+          "PASS": 377,
+          "WARN": 6,
+          "VETO": 1,
+          "pass_rate": 0.9818,
+          "warn_rate": 0.0156,
+          "veto_rate": 0.0026,
+          "ok": true
+        },
+        "agg_motif_count": {
+          "n": 384,
+          "PASS": 349,
+          "WARN": 35,
+          "VETO": 0,
+          "pass_rate": 0.9089,
+          "warn_rate": 0.0911,
+          "veto_rate": 0.0,
+          "ok": true
+        },
+        "n_glyc_motif": {
+          "n": 384,
+          "PASS": 383,
+          "WARN": 0,
+          "VETO": 1,
+          "pass_rate": 0.9974,
+          "warn_rate": 0.0,
+          "veto_rate": 0.0026,
+          "ok": true
+        },
+        "deamidation_motif": {
+          "n": 384,
+          "PASS": 384,
+          "WARN": 0,
+          "VETO": 0,
+          "pass_rate": 1.0,
+          "warn_rate": 0.0,
+          "veto_rate": 0.0,
+          "ok": true
+        },
+        "isomerization_motif": {
+          "n": 384,
+          "PASS": 383,
+          "WARN": 1,
+          "VETO": 0,
+          "pass_rate": 0.9974,
+          "warn_rate": 0.0026,
+          "veto_rate": 0.0,
+          "ok": true
+        },
+        "charge_asymmetry": {
+          "n": 384,
+          "PASS": 384,
+          "WARN": 0,
+          "VETO": 0,
+          "pass_rate": 1.0,
+          "warn_rate": 0.0,
+          "veto_rate": 0.0,
+          "ok": true
+        },
+        "net_charge_pH7": {
+          "n": 384,
+          "PASS": 373,
+          "WARN": 11,
+          "VETO": 0,
+          "pass_rate": 0.9714,
+          "warn_rate": 0.0286,
+          "veto_rate": 0.0,
+          "ok": true
+        },
+        "gravy": {
+          "n": 384,
+          "PASS": 363,
+          "WARN": 21,
+          "VETO": 0,
+          "pass_rate": 0.9453,
+          "warn_rate": 0.0547,
+          "veto_rate": 0.0,
+          "ok": true
+        },
+        "free_cys": {
+          "n": 384,
+          "PASS": 383,
+          "WARN": 1,
+          "VETO": 0,
+          "pass_rate": 0.9974,
+          "warn_rate": 0.0026,
+          "veto_rate": 0.0,
+          "ok": true
+        }
+      }
+    },
+    "vl_cdr2": {
+      "n": 384,
+      "metrics": {
+        "longest_hydrophobic_run": {
+          "n": 384,
+          "PASS": 383,
+          "WARN": 0,
+          "VETO": 1,
+          "pass_rate": 0.9974,
+          "warn_rate": 0.0,
+          "veto_rate": 0.0026,
+          "ok": true
+        },
+        "longest_same_sign_charge_run": {
+          "n": 384,
+          "PASS": 339,
+          "WARN": 0,
+          "VETO": 45,
+          "pass_rate": 0.8828,
+          "warn_rate": 0.0,
+          "veto_rate": 0.1172,
+          "ok": true
+        },
+        "agg_motif_count": {
+          "n": 384,
+          "PASS": 380,
+          "WARN": 0,
+          "VETO": 4,
+          "pass_rate": 0.9896,
+          "warn_rate": 0.0,
+          "veto_rate": 0.0104,
+          "ok": true
+        },
+        "n_glyc_motif": {
+          "n": 384,
+          "PASS": 384,
+          "WARN": 0,
+          "VETO": 0,
+          "pass_rate": 1.0,
+          "warn_rate": 0.0,
+          "veto_rate": 0.0,
+          "ok": true
+        },
+        "deamidation_motif": {
+          "n": 384,
+          "PASS": 376,
+          "WARN": 0,
+          "VETO": 8,
+          "pass_rate": 0.9792,
+          "warn_rate": 0.0,
+          "veto_rate": 0.0208,
+          "ok": true
+        },
+        "isomerization_motif": {
+          "n": 384,
+          "PASS": 363,
+          "WARN": 0,
+          "VETO": 21,
+          "pass_rate": 0.9453,
+          "warn_rate": 0.0,
+          "veto_rate": 0.0547,
+          "ok": true
+        },
+        "charge_asymmetry": {
+          "n": 384,
+          "PASS": 328,
+          "WARN": 0,
+          "VETO": 56,
+          "pass_rate": 0.8542,
+          "warn_rate": 0.0,
+          "veto_rate": 0.1458,
+          "ok": true
+        },
+        "net_charge_pH7": {
+          "n": 384,
+          "PASS": 323,
+          "WARN": 37,
+          "VETO": 24,
+          "pass_rate": 0.8411,
+          "warn_rate": 0.0964,
+          "veto_rate": 0.0625,
+          "ok": false
+        },
+        "gravy": {
+          "n": 384,
+          "PASS": 319,
+          "WARN": 65,
+          "VETO": 0,
+          "pass_rate": 0.8307,
+          "warn_rate": 0.1693,
+          "veto_rate": 0.0,
+          "ok": false
+        },
+        "free_cys": {
+          "n": 384,
+          "PASS": 384,
+          "WARN": 0,
+          "VETO": 0,
+          "pass_rate": 1.0,
+          "warn_rate": 0.0,
+          "veto_rate": 0.0,
+          "ok": true
+        }
+      }
+    },
+    "vl_cdr3": {
+      "n": 384,
+      "metrics": {
+        "longest_hydrophobic_run": {
+          "n": 384,
+          "PASS": 364,
+          "WARN": 18,
+          "VETO": 2,
+          "pass_rate": 0.9479,
+          "warn_rate": 0.0469,
+          "veto_rate": 0.0052,
+          "ok": true
+        },
+        "longest_same_sign_charge_run": {
+          "n": 384,
+          "PASS": 384,
+          "WARN": 0,
+          "VETO": 0,
+          "pass_rate": 1.0,
+          "warn_rate": 0.0,
+          "veto_rate": 0.0,
+          "ok": true
+        },
+        "agg_motif_count": {
+          "n": 384,
+          "PASS": 365,
+          "WARN": 19,
+          "VETO": 0,
+          "pass_rate": 0.9505,
+          "warn_rate": 0.0495,
+          "veto_rate": 0.0,
+          "ok": true
+        },
+        "n_glyc_motif": {
+          "n": 384,
+          "PASS": 382,
+          "WARN": 0,
+          "VETO": 2,
+          "pass_rate": 0.9948,
+          "warn_rate": 0.0,
+          "veto_rate": 0.0052,
+          "ok": true
+        },
+        "deamidation_motif": {
+          "n": 384,
+          "PASS": 322,
+          "WARN": 62,
+          "VETO": 0,
+          "pass_rate": 0.8385,
+          "warn_rate": 0.1615,
+          "veto_rate": 0.0,
+          "ok": false
+        },
+        "isomerization_motif": {
+          "n": 384,
+          "PASS": 324,
+          "WARN": 59,
+          "VETO": 1,
+          "pass_rate": 0.8438,
+          "warn_rate": 0.1536,
+          "veto_rate": 0.0026,
+          "ok": false
+        },
+        "charge_asymmetry": {
+          "n": 384,
+          "PASS": 383,
+          "WARN": 0,
+          "VETO": 1,
+          "pass_rate": 0.9974,
+          "warn_rate": 0.0,
+          "veto_rate": 0.0026,
+          "ok": true
+        },
+        "net_charge_pH7": {
+          "n": 384,
+          "PASS": 374,
+          "WARN": 9,
+          "VETO": 1,
+          "pass_rate": 0.974,
+          "warn_rate": 0.0234,
+          "veto_rate": 0.0026,
+          "ok": true
+        },
+        "gravy": {
+          "n": 384,
+          "PASS": 343,
+          "WARN": 37,
+          "VETO": 4,
+          "pass_rate": 0.8932,
+          "warn_rate": 0.0964,
+          "veto_rate": 0.0104,
+          "ok": true
+        },
+        "free_cys": {
+          "n": 384,
+          "PASS": 379,
+          "WARN": 5,
+          "VETO": 0,
+          "pass_rate": 0.987,
+          "warn_rate": 0.013,
+          "veto_rate": 0.0,
+          "ok": true
+        }
+      }
+    }
+  },
+  "global_pass_rate_check": {}
+}

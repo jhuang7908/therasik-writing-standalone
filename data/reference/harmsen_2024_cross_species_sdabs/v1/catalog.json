@@ -1,0 +1,344 @@
+{
+  "_meta": {
+    "catalog_id": "harmsen_2024_cross_species_sdabs_v1",
+    "doi": "10.3389/fimmu.2024.1346328",
+    "journal": "Frontiers in Immunology",
+    "year": 2024,
+    "volume": 15,
+    "article_title": "Serum immunoglobulin or albumin binding single-domain antibodies that enable tailored half-life extension of biologics in multiple animal species",
+    "article_url": "https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2024.1346328/full",
+    "first_authors": [
+      "Michiel M. Harmsen",
+      "Bart Ackerschott",
+      "Hans de Smit"
+    ],
+    "sequence_source": "Supplementary Figure 1 — spaced IMGT alignment parsed to linear (gap tokens '-' omitted); hinge tails omitted from VHH sequence",
+    "affinity_source": "Main text §3.5 — Table 3 (albumin), Table 4 (Fab/Fc BLI)",
+    "genbank_accession_range": "PP062726–PP062739",
+    "genbank_note": "Publication lists bulk deposit; per-clone accession mapping not stored in this catalog — query NCBI for authoritative protein records.",
+    "schema_version": "1.0.0",
+    "generated_at": "2026-05-06T21:00:00.655170+00:00"
+  },
+  "affinity_bli": {
+    "albumin_kd_nm_table3": {
+      "A6L": {
+        "horse": 13.0,
+        "dog": 3.2,
+        "cat": 1.2,
+        "swine": null
+      },
+      "A12L": {
+        "horse": 13.0,
+        "dog": 271.0,
+        "cat": 31.0,
+        "swine": 189.0
+      },
+      "A16L": {
+        "horse": 11.0,
+        "dog": 13.0,
+        "cat": 2.0,
+        "swine": null
+      },
+      "T6T16A12": {
+        "horse": 0.65,
+        "dog": 268.0,
+        "cat": null,
+        "swine": null
+      }
+    },
+    "albumin_kd_offrate_x1e5_per_s_table3": {
+      "A6L": {
+        "horse": 966,
+        "dog": 226,
+        "cat": 87,
+        "swine": null
+      },
+      "A12L": {
+        "horse": 115,
+        "dog": 1250,
+        "cat": 82,
+        "swine": 2489
+      },
+      "A16L": {
+        "horse": 242,
+        "dog": 510,
+        "cat": 29,
+        "swine": null
+      },
+      "T6T16A12": {
+        "horse": 14,
+        "dog": 620,
+        "cat": null,
+        "swine": null
+      }
+    },
+    "fab_fc_table4": [
+      {
+        "sdAb": "G6L",
+        "analyte": "Dog Fab",
+        "kd_nm": null,
+        "note": "binding not detectable"
+      },
+      {
+        "sdAb": "G13L",
+        "analyte": "Dog Fab",
+        "kd_nm": 70.0,
+        "r2": 0.916
+      },
+      {
+        "sdAb": "G18L",
+        "analyte": "Dog Fab",
+        "kd_nm": 38.0,
+        "r2": 0.911
+      },
+      {
+        "sdAb": "G19L",
+        "analyte": "Dog Fab",
+        "kd_nm": 62.0,
+        "r2": 0.941
+      },
+      {
+        "sdAb": "G3L",
+        "analyte": "Horse Fc",
+        "kd_nm": 0.68,
+        "r2": 0.98
+      },
+      {
+        "sdAb": "G23L",
+        "analyte": "Dog Fc",
+        "kd_nm": 0.24,
+        "r2": 0.992
+      },
+      {
+        "sdAb": "G24L",
+        "analyte": "Horse Fc",
+        "kd_nm": 4.5,
+        "r2": 0.997
+      },
+      {
+        "sdAb": "G24L",
+        "analyte": "Dog Fc",
+        "kd_nm": 2.7,
+        "r2": 0.992
+      }
+    ],
+    "units": {
+      "KD": "nM",
+      "kd_offrate": "×10⁻⁵ s⁻¹"
+    }
+  },
+  "sequences_supplementary_figure1": {
+    "G3": "QVQLQESGGGLVQAGGSLRLSCAASGRTFSNYVMGWFRQAPGKEREFVSAISWNGVSTFYADSVKGRFTISRDNAKNTVYLQMNSLKPEDTAVYYCAADERFVVRYNYWGQGTQVTVSSG",
+    "G6": "QVQLQESGGALVQPGGSLRLSCAASGFPFSAYDMTWVRQAPGQGLEWVSTIHKSGGITTYADSVKGRFTISRDNAKNTLYLQMNNLESEDTAVYYCAKALRAHNSDYVGRNALGSWGEGTLVTVSSD",
+    "G13": "QVQLQESGGGLVQPGGSLRLSCEASGFTFDDYGMSWVRQAPGKGLEWVSSLTPNGGSTYYADSVKGRFTISRDNAKNTLYLQMNSLKPEDTALYYCAKNSYYGAMDYWGKGTLVTVSSA",
+    "G18": "QVQLQQSGGGLVQPGGSLRLSCAASGFTFSSYAMSWVRQAPGKGLEWVSAINSGGDIISYADSVKGRFTISRDNAKNTLYLQMNSLKPEDTAVYYCAKSPIVRTYGGYDYWGQGTQVTVSS",
+    "G19": "QVQLQQSGGGLVQPGGSLRLSCAASGFTFSSYAMSWVRQAPGKGLEWVSAINSGGGSTSYADSVKGRFTISRDNAKNTLYLQMNSLKPEDTAVYYCAKDFDPWGVGTGGYDYWGQGTQVTVSSC",
+    "G23": "QVQLQESGGGLVQAGGSLRLSCAASGRAFGSYTMNWFRQAPGKERDFVAGIMSSGMNTWYADSVKGRFTISRDNAKNTVYLQMNSLKPEDTAVYYCASRPRSTMTSGRYLYDYWGQGTQVTVSSE",
+    "G24": "QVQLQQSGGGLVQAGGSLRLSCAASGRTFSTYNIAWFRQAPGKEREFVTAITWGSGNTYYADSVKGRFTISRDNAKNTVFLQMNSLKPDDTAVYYCAARRSLGPTMAFAYEYWGQGTQVTVSSF",
+    "G7": "QVQLQESGPGLVKPSQTLSLTCTVSGGSITTTAYAWSWIRQPPGKGLEWMGAIRFDGTTDYSPSLKSRISISRDTSNNQFSLRMSSVTPEDTAVYYCARYGVVSDHGGLDYWGQGTQVTVSSH",
+    "sdAb-31": "QVQLVESGPGLVKPSQTLSLTCTVSGASITTADYTWSWIRQPPGKALEWMGATDYSGYDYYRPHLKSRASISRDTSKNQFTLQLTSVTPEDTAVYYCARGRRAGSNRRSDYDFWGQGTQVTVSSX",
+    "sdAb-32": "QVQLVESGPGLVKPSQTLSLICTVSGGSITSSGYYWSWIRQSPGKGLEWIGTIGFDDFHYYSPSLKSRSSISRDTSKNQITLQLSSVTPEDTAVYYCARDKLPLGGTRWSEYDSWGQGTQVTVSSY",
+    "A2": "QVQLQQSGGGLVQAGGSLRLSCAASGRFFSRQVMGWFRQAPGKDREFVGVISWDNGVTFYSDSVKGRFTMSREIAKKTVHLQMNSLKPEDTAVYYCAAGNALHSRYYSPSKYDYWGPGTQVTVSSE",
+    "A4": "QVQLQQSGGGLVQAGGSLRLACAASGRTLSSYVMGWFRQAPGKEREFVAAISWSGGSTYYADSVKGRFTISRDNAKNTVYLQMNSLKPEDTAVYYCAATLRGSNRYYSGRVYDYWGQGTQVTVSS",
+    "A6": "QVQLQESGGRLVQAEDSLRLSCAASGRTFVSYDMGWFRQAPGKEREFVAAINWRGYTTDYVDSVKGRFFISRDIAKSTVYLQMNNLKPEDTAVYYCAARQMSGSSRYSPPGRVGYDFWGQGTQVTVSSC",
+    "A7": "QVQLQQSGGGLVQAGDSLRLSCAASGRAFNYYTMGWFRQAPGKEREFVAKIYWDGGSTIYADSVKGRFTISIDNAKNTVYLQMNSLKPEDTAVYYCAADPSFYPFRPKYWGQGTQVTVSSF",
+    "A12": "QVQLQESGGGLVQAGGSLRLSCAASGRTFSYYPMAWFRQAPGQEREFVAAIIGADTTYYADSLKGRFTISRDNAKNMVYLQMNSLKPEDTAVYYCAARNTYWSDVYYREGQYTNWGQGTQVTVSSD",
+    "A16": "QVQLQESGGGVVQAGGSLRLSCAASGRTVSSSAMGWFRLAPGKEREFVVGISRSGGSIFYADSVKGRFTISRKNAKNTVDLQMNSLKPEDTAVYYCAAGYRPGYGDYGRVFYREDEYDDWGQGTQVTVSSA"
+  },
+  "entries_curated": [
+    {
+      "clone": "A6",
+      "yeast_label": "A6L",
+      "type": "albumin",
+      "length_aa": 129,
+      "sequence": "QVQLQESGGRLVQAEDSLRLSCAASGRTFVSYDMGWFRQAPGKEREFVAAINWRGYTTDYVDSVKGRFFISRDIAKSTVYLQMNNLKPEDTAVYYCAARQMSGSSRYSPPGRVGYDFWGQGTQVTVSSC",
+      "albumin_kd_nm": {
+        "horse": 13.0,
+        "dog": 3.2,
+        "cat": 1.2,
+        "swine": null
+      }
+    },
+    {
+      "clone": "A12",
+      "yeast_label": "A12L",
+      "type": "albumin",
+      "length_aa": 126,
+      "sequence": "QVQLQESGGGLVQAGGSLRLSCAASGRTFSYYPMAWFRQAPGQEREFVAAIIGADTTYYADSLKGRFTISRDNAKNMVYLQMNSLKPEDTAVYYCAARNTYWSDVYYREGQYTNWGQGTQVTVSSD",
+      "albumin_kd_nm": {
+        "horse": 13.0,
+        "dog": 271.0,
+        "cat": 31.0,
+        "swine": 189.0
+      }
+    },
+    {
+      "clone": "A16",
+      "yeast_label": "A16L",
+      "type": "albumin",
+      "length_aa": 131,
+      "sequence": "QVQLQESGGGVVQAGGSLRLSCAASGRTVSSSAMGWFRLAPGKEREFVVGISRSGGSIFYADSVKGRFTISRKNAKNTVDLQMNSLKPEDTAVYYCAAGYRPGYGDYGRVFYREDEYDDWGQGTQVTVSSA",
+      "albumin_kd_nm": {
+        "horse": 11.0,
+        "dog": 13.0,
+        "cat": 2.0,
+        "swine": null
+      }
+    },
+    {
+      "construct": "T6T16A12",
+      "type": "TeNT_VHH_fusion_albumin_binder",
+      "albumin_kd_nm": {
+        "horse": 0.65,
+        "dog": 268.0,
+        "cat": null,
+        "swine": null
+      },
+      "sequence_note": "Multimer — component sequences in earlier TeNT work (ref. 41 in article)"
+    }
+  ],
+  "entries_all_clones": [
+    {
+      "clone_id": "A12",
+      "role": "albumin_binding",
+      "vhh_sequence_aa": "QVQLQESGGGLVQAGGSLRLSCAASGRTFSYYPMAWFRQAPGQEREFVAAIIGADTTYYADSLKGRFTISRDNAKNMVYLQMNSLKPEDTAVYYCAARNTYWSDVYYREGQYTNWGQGTQVTVSSD",
+      "length_aa": 126,
+      "yeast_expression_label": "A12L",
+      "albumin_kd_nm_bli": {
+        "horse": 13.0,
+        "dog": 271.0,
+        "cat": 31.0,
+        "swine": 189.0
+      },
+      "kd_offrate_x1e5_per_s": {
+        "horse": 115,
+        "dog": 1250,
+        "cat": 82,
+        "swine": 2489
+      }
+    },
+    {
+      "clone_id": "A16",
+      "role": "albumin_binding",
+      "vhh_sequence_aa": "QVQLQESGGGVVQAGGSLRLSCAASGRTVSSSAMGWFRLAPGKEREFVVGISRSGGSIFYADSVKGRFTISRKNAKNTVDLQMNSLKPEDTAVYYCAAGYRPGYGDYGRVFYREDEYDDWGQGTQVTVSSA",
+      "length_aa": 131,
+      "yeast_expression_label": "A16L",
+      "albumin_kd_nm_bli": {
+        "horse": 11.0,
+        "dog": 13.0,
+        "cat": 2.0,
+        "swine": null
+      },
+      "kd_offrate_x1e5_per_s": {
+        "horse": 242,
+        "dog": 510,
+        "cat": 29,
+        "swine": null
+      }
+    },
+    {
+      "clone_id": "A2",
+      "role": "albumin_binding",
+      "vhh_sequence_aa": "QVQLQQSGGGLVQAGGSLRLSCAASGRFFSRQVMGWFRQAPGKDREFVGVISWDNGVTFYSDSVKGRFTMSREIAKKTVHLQMNSLKPEDTAVYYCAAGNALHSRYYSPSKYDYWGPGTQVTVSSE",
+      "length_aa": 126
+    },
+    {
+      "clone_id": "A4",
+      "role": "albumin_binding",
+      "vhh_sequence_aa": "QVQLQQSGGGLVQAGGSLRLACAASGRTLSSYVMGWFRQAPGKEREFVAAISWSGGSTYYADSVKGRFTISRDNAKNTVYLQMNSLKPEDTAVYYCAATLRGSNRYYSGRVYDYWGQGTQVTVSS",
+      "length_aa": 125
+    },
+    {
+      "clone_id": "A6",
+      "role": "albumin_binding",
+      "vhh_sequence_aa": "QVQLQESGGRLVQAEDSLRLSCAASGRTFVSYDMGWFRQAPGKEREFVAAINWRGYTTDYVDSVKGRFFISRDIAKSTVYLQMNNLKPEDTAVYYCAARQMSGSSRYSPPGRVGYDFWGQGTQVTVSSC",
+      "length_aa": 129,
+      "yeast_expression_label": "A6L",
+      "albumin_kd_nm_bli": {
+        "horse": 13.0,
+        "dog": 3.2,
+        "cat": 1.2,
+        "swine": null
+      },
+      "kd_offrate_x1e5_per_s": {
+        "horse": 966,
+        "dog": 226,
+        "cat": 87,
+        "swine": null
+      }
+    },
+    {
+      "clone_id": "A7",
+      "role": "albumin_binding",
+      "vhh_sequence_aa": "QVQLQQSGGGLVQAGDSLRLSCAASGRAFNYYTMGWFRQAPGKEREFVAKIYWDGGSTIYADSVKGRFTISIDNAKNTVYLQMNSLKPEDTAVYYCAADPSFYPFRPKYWGQGTQVTVSSF",
+      "length_aa": 121
+    },
+    {
+      "clone_id": "G13",
+      "role": "igg_binding_or_control",
+      "vhh_sequence_aa": "QVQLQESGGGLVQPGGSLRLSCEASGFTFDDYGMSWVRQAPGKGLEWVSSLTPNGGSTYYADSVKGRFTISRDNAKNTLYLQMNSLKPEDTALYYCAKNSYYGAMDYWGKGTLVTVSSA",
+      "length_aa": 119,
+      "fab_fc_affinity_note": "Fab binders — KD Table 4 (authors note heterogeneous Fab BLI)"
+    },
+    {
+      "clone_id": "G18",
+      "role": "igg_binding_or_control",
+      "vhh_sequence_aa": "QVQLQQSGGGLVQPGGSLRLSCAASGFTFSSYAMSWVRQAPGKGLEWVSAINSGGDIISYADSVKGRFTISRDNAKNTLYLQMNSLKPEDTAVYYCAKSPIVRTYGGYDYWGQGTQVTVSS",
+      "length_aa": 121,
+      "fab_fc_affinity_note": "Fab binders — KD Table 4 (authors note heterogeneous Fab BLI)"
+    },
+    {
+      "clone_id": "G19",
+      "role": "igg_binding_or_control",
+      "vhh_sequence_aa": "QVQLQQSGGGLVQPGGSLRLSCAASGFTFSSYAMSWVRQAPGKGLEWVSAINSGGGSTSYADSVKGRFTISRDNAKNTLYLQMNSLKPEDTAVYYCAKDFDPWGVGTGGYDYWGQGTQVTVSSC",
+      "length_aa": 124,
+      "fab_fc_affinity_note": "Fab binders — KD Table 4 (authors note heterogeneous Fab BLI)"
+    },
+    {
+      "clone_id": "G23",
+      "role": "igg_binding_or_control",
+      "vhh_sequence_aa": "QVQLQESGGGLVQAGGSLRLSCAASGRAFGSYTMNWFRQAPGKERDFVAGIMSSGMNTWYADSVKGRFTISRDNAKNTVYLQMNSLKPEDTAVYYCASRPRSTMTSGRYLYDYWGQGTQVTVSSE",
+      "length_aa": 125,
+      "fab_fc_affinity_note": "KD in affinity_bli.fab_fc_table4 — Fc binders"
+    },
+    {
+      "clone_id": "G24",
+      "role": "igg_binding_or_control",
+      "vhh_sequence_aa": "QVQLQQSGGGLVQAGGSLRLSCAASGRTFSTYNIAWFRQAPGKEREFVTAITWGSGNTYYADSVKGRFTISRDNAKNTVFLQMNSLKPDDTAVYYCAARRSLGPTMAFAYEYWGQGTQVTVSSF",
+      "length_aa": 124,
+      "fab_fc_affinity_note": "KD in affinity_bli.fab_fc_table4 — Fc binders"
+    },
+    {
+      "clone_id": "G3",
+      "role": "igg_binding_or_control",
+      "vhh_sequence_aa": "QVQLQESGGGLVQAGGSLRLSCAASGRTFSNYVMGWFRQAPGKEREFVSAISWNGVSTFYADSVKGRFTISRDNAKNTVYLQMNSLKPEDTAVYYCAADERFVVRYNYWGQGTQVTVSSG",
+      "length_aa": 120,
+      "fab_fc_affinity_note": "KD in affinity_bli.fab_fc_table4 — Fc binders"
+    },
+    {
+      "clone_id": "G6",
+      "role": "igg_binding_or_control",
+      "vhh_sequence_aa": "QVQLQESGGALVQPGGSLRLSCAASGFPFSAYDMTWVRQAPGQGLEWVSTIHKSGGITTYADSVKGRFTISRDNAKNTLYLQMNNLESEDTAVYYCAKALRAHNSDYVGRNALGSWGEGTLVTVSSD",
+      "length_aa": 127,
+      "fab_fc_affinity_note": "Fab binders — KD Table 4 (authors note heterogeneous Fab BLI)"
+    },
+    {
+      "clone_id": "G7",
+      "role": "igg_binding_or_control",
+      "vhh_sequence_aa": "QVQLQESGPGLVKPSQTLSLTCTVSGGSITTTAYAWSWIRQPPGKGLEWMGAIRFDGTTDYSPSLKSRISISRDTSNNQFSLRMSSVTPEDTAVYYCARYGVVSDHGGLDYWGQGTQVTVSSH",
+      "length_aa": 123
+    },
+    {
+      "clone_id": "sdAb-31",
+      "role": "igg_binding_or_control",
+      "vhh_sequence_aa": "QVQLVESGPGLVKPSQTLSLTCTVSGASITTADYTWSWIRQPPGKALEWMGATDYSGYDYYRPHLKSRASISRDTSKNQFTLQLTSVTPEDTAVYYCARGRRAGSNRRSDYDFWGQGTQVTVSSX",
+      "length_aa": 125
+    },
+    {
+      "clone_id": "sdAb-32",
+      "role": "igg_binding_or_control",
+      "vhh_sequence_aa": "QVQLVESGPGLVKPSQTLSLICTVSGGSITSSGYYWSWIRQSPGKGLEWIGTIGFDDFHYYSPSLKSRSSISRDTSKNQITLQLSSVTPEDTAVYYCARDKLPLGGTRWSEYDSWGQGTQVTVSSY",
+      "length_aa": 126
+    }
+  ]
+}

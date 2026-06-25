@@ -1,0 +1,68 @@
+{
+  "_meta": {
+    "schema_id": "crossspecies_adapter",
+    "schema_version": "V1.0",
+    "status": "LOCKED",
+    "governing_standard": "docs/CROSSSPECIES_ENGINE_STANDARD_V1.0.md",
+    "last_updated": "2026-05-07",
+    "note": "Rabbit (Oryctolagus cuniculus) → human VH/VL humanization. Lambda-light is the dominant chain (~80–90%). RABBIT_HUMANIZATION_STANDARD V1.3 owns Phase 0 (chain-type detection) and CDRH3-Cys handling."
+  },
+
+  "species_id": "oryctolagus_cuniculus_to_human",
+  "common_name": "Rabbit → human",
+  "format": "VH_VL",
+  "numbering_scheme": "kabat",
+  "data_tier": "Tier-Hi",
+
+  "hallmarks_kabat": {
+    "positions": []
+  },
+
+  "cys_topology": {
+    "_doc": "Beyond canonical Cys22-Cys92, rabbit CDRH3 frequently carries an embedded Cys-Cys (C-x{2,8}-C). Detected pairs are added to extra_protected_cys at runtime by the rabbit standard's Phase 0; they are NOT enumerable here.",
+    "canonical_pairs": [[22, 92]],
+    "extra_protected_cys": []
+  },
+
+  "cdr_boundary_rules": {
+    "scheme": "union_kabat_chothia",
+    "regions": {
+      "VH": {"H1": [26, 35], "H2": [50, 65], "H3": [95, 102]},
+      "VL": {"L1": [24, 34], "L2": [50, 56], "L3": [89, 97]}
+    },
+    "source_standard": "docs/RABBIT_HUMANIZATION_STANDARD_V1.0.md"
+  },
+
+  "reference_source": {
+    "germline_freq_path": "data/germlines/oryctolagus_cuniculus_ig_aa/IGHV_aa.json",
+    "germline_freq_release_id": "oryctolagus_cuniculus_IGHV_v1_2026-04-13",
+    "auxiliary_freq_paths": {
+      "VL_kappa": "data/germlines/oryctolagus_cuniculus_ig_aa/IGKV_aa.json",
+      "VL_lambda": "data/germlines/oryctolagus_cuniculus_ig_aa/IGLV_aa.json"
+    },
+    "clinical_acceptors": [
+      {"acceptor_id": "rabbit_lambda_clinical_anchor_pool", "scaffold_kind": "VL", "source_drug_or_id": "RABBIT_HUMANIZATION_STANDARD V1.3 deterministic rescue (clinical λ anchors)", "tier": "Tier1"},
+      {"acceptor_id": "human_IGHV_clinical_anchors", "scaffold_kind": "VH", "source_drug_or_id": "config/vh_vl_humanization_v490.json clinical_germline_anchors", "tier": "Tier1"}
+    ]
+  },
+
+  "track_priority": {
+    "order": ["AG-1.0", "DFR-1.0", "SR-1.0"],
+    "forbidden_tracks": []
+  },
+
+  "engine_tunables": {
+    "surface_sasa_threshold_A2": 20.0,
+    "deep_buried_sasa_cutoff_A2": 5.0,
+    "cdr_proximity_threshold_A": 5.0
+  },
+
+  "qa_pointer": {
+    "governing_standard_path": "docs/RABBIT_HUMANIZATION_STANDARD_V1.0.md",
+    "secondary_standard_paths": ["docs/VH_VL_HUMANIZATION_STANDARD_V4.4.md", "docs/CMC_DEVELOPABILITY_STANDARD_V1.1.md"],
+    "mandatory_qa_modules": [
+      "core/evaluation/evaluator.py | AbEvaluator",
+      "core/cmc/regular_ab_developability.py"
+    ]
+  }
+}

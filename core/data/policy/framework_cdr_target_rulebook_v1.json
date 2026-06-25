@@ -1,0 +1,346 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-01-11",
+  "scope": [
+    "IgG VH/VL humanization & developability routing",
+    "Applies to slice-based therapeutic reference analysis and client projects"
+  ],
+  "assumptions": [
+    "delta_identity is computed between query FR1-3 and best in-library FR1-3 match",
+    "percentile bands (p75/p90/p99) are derived from slice_1 distribution and may be updated per release"
+  ],
+  "inputs_required": [
+    {
+      "vh_delta_identity": "float"
+    },
+    {
+      "vl_delta_identity": "float"
+    },
+    {
+      "vh_out_of_library_flag": "bool"
+    },
+    {
+      "vl_out_of_library_flag": "bool"
+    },
+    {
+      "vh_fr1": "string|nullable"
+    },
+    {
+      "vh_fr2": "string|nullable"
+    },
+    {
+      "vh_fr3": "string|nullable"
+    },
+    {
+      "vl_fr1": "string|nullable"
+    },
+    {
+      "vl_fr2": "string|nullable"
+    },
+    {
+      "vl_fr3": "string|nullable"
+    }
+  ],
+  "optional_inputs": [
+    {
+      "cdrh3_length": "int|nullable"
+    },
+    {
+      "cdr_lens": "dict|nullable"
+    },
+    {
+      "canonical_forms": "dict|nullable"
+    },
+    {
+      "antigen_type": "enum|UNKNOWN"
+    },
+    {
+      "mechanism": "enum|UNKNOWN"
+    },
+    {
+      "format": "enum|UNKNOWN"
+    },
+    {
+      "numbering_status": "enum|nullable"
+    },
+    {
+      "has_full_fr123_pair": "bool|nullable"
+    }
+  ],
+  "enums": {
+    "antigen_type": [
+      "SOLUBLE_PROTEIN",
+      "MEMBRANE_ECD",
+      "MULTI_PASS_MEMBRANE",
+      "ENZYME_ACTIVE_SITE",
+      "VIRAL_DYNAMIC",
+      "GLYCAN_RICH",
+      "UNKNOWN"
+    ],
+    "mechanism": [
+      "BLOCKING_NEUTRALIZING",
+      "AGONIST",
+      "DEPLETING_ADCC_CDC",
+      "T_CELL_ENGAGER",
+      "PAYLOAD_DELIVERY_ADC",
+      "UNKNOWN"
+    ],
+    "format": [
+      "IGG",
+      "SCFV",
+      "VHH",
+      "BISPECIFIC_IGG_LIKE",
+      "BISPECIFIC_2PLUS1",
+      "UNKNOWN"
+    ]
+  },
+  "thresholds": {
+    "delta_identity": {
+      "p75": 0.03,
+      "p90": 0.06,
+      "p99": 0.29
+    },
+    "cdr_load": {
+      "cdrh3_long": 18,
+      "cdrh3_very_long": 24
+    }
+  },
+  "framework_bands": [
+    {
+      "id": "F0",
+      "label_cn": "",
+      "label_en": "Industrial-compatible scaffold",
+      "when": {
+        "max_delta_identity_le": "p75",
+        "out_of_library": false
+      }
+    },
+    {
+      "id": "F1",
+      "label_cn": "",
+      "label_en": "Conditionally compatible scaffold",
+      "when": {
+        "max_delta_identity_le": "p90",
+        "out_of_library": false
+      }
+    },
+    {
+      "id": "F2",
+      "label_cn": "",
+      "label_en": "Function-coupled deviated scaffold",
+      "when": {
+        "max_delta_identity_le": "p99",
+        "out_of_library": "either"
+      }
+    },
+    {
+      "id": "F3",
+      "label_cn": "",
+      "label_en": "Out-of-distribution scaffold",
+      "when": {
+        "max_delta_identity_gt": "p99"
+      }
+    }
+  ],
+  "cdr_load_bands": [
+    {
+      "id": "C0",
+      "label_cn": "CDR",
+      "label_en": "Low CDR load",
+      "when": {
+        "cdrh3_length_lt": "cdrh3_long",
+        "atypical_canonical_count_le": 0
+      }
+    },
+    {
+      "id": "C1",
+      "label_cn": "CDR",
+      "label_en": "Moderate CDR load",
+      "when": {
+        "any_of": [
+          {
+            "cdrh3_length_ge": "cdrh3_long"
+          },
+          {
+            "atypical_canonical_count_ge": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "C2",
+      "label_cn": "CDR",
+      "label_en": "High CDR load",
+      "when": {
+        "any_of": [
+          {
+            "cdrh3_length_ge": "cdrh3_very_long"
+          },
+          {
+            "atypical_canonical_count_ge": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "C3",
+      "label_cn": "CDR",
+      "label_en": "Very high CDR load",
+      "when": {
+        "atypical_canonical_count_ge": 3
+      }
+    }
+  ],
+  "routes": [
+    {
+      "id": "ROUTE_I_MINIMAL",
+      "name_cn": "/",
+      "name_en": "Minimal humanization / low-tuning",
+      "applies_to": {
+        "framework_band": [
+          "F0"
+        ],
+        "cdr_load_band": [
+          "C0",
+          "C1"
+        ],
+        "antigen_type": [
+          "SOLUBLE_PROTEIN",
+          "MEMBRANE_ECD",
+          "UNKNOWN"
+        ]
+      },
+      "policy": {
+        "allow_framework_swap": true,
+        "fr_mutation_budget": "LOW",
+        "vernier_policy": "CONSERVATIVE",
+        "backmutation_strategy": "ONLY_IF_FUNCTIONAL_DRIFT",
+        "lock_positions": [
+          "FR2_vernier_core"
+        ],
+        "primary_focus": [
+          "CMC",
+          "immunogenicity",
+          "expression"
+        ]
+      },
+      "report": {
+        "summary_cn": "，/。",
+        "summary_en": "The scaffold lies in industrial-compatible space; a minimal/no-back-mutation path is plausible."
+      }
+    },
+    {
+      "id": "ROUTE_II_PARTITIONED",
+      "name_cn": "",
+      "name_en": "Partitioned refinement",
+      "applies_to": {
+        "framework_band": [
+          "F1"
+        ],
+        "cdr_load_band": [
+          "C0",
+          "C1",
+          "C2"
+        ],
+        "antigen_type": [
+          "MEMBRANE_ECD",
+          "SOLUBLE_PROTEIN",
+          "UNKNOWN"
+        ]
+      },
+      "policy": {
+        "allow_framework_swap": "CONDITIONAL",
+        "fr_mutation_budget": "MEDIUM",
+        "vernier_policy": "STRICT",
+        "backmutation_strategy": "FR2_AND_VERNIER_FIRST",
+        "lock_positions": [
+          "FR2_vernier_core",
+          "CDR_supporting_FR3"
+        ],
+        "primary_focus": [
+          "geometry_fidelity",
+          "CMC",
+          "immunogenicity"
+        ]
+      },
+      "report": {
+        "summary_cn": "，FR2/Vernier。",
+        "summary_en": "Conditionally compatible scaffold; refine FR2/Vernier under a partitioned strategy."
+      }
+    },
+    {
+      "id": "ROUTE_III_FUNCTION_PRESERVE",
+      "name_cn": "/",
+      "name_en": "Function-preserving de-immunization / point edits",
+      "applies_to": {
+        "framework_band": [
+          "F2",
+          "F3"
+        ],
+        "cdr_load_band": [
+          "C0",
+          "C1",
+          "C2",
+          "C3"
+        ],
+        "antigen_type": [
+          "ENZYME_ACTIVE_SITE",
+          "VIRAL_DYNAMIC",
+          "MULTI_PASS_MEMBRANE",
+          "GLYCAN_RICH",
+          "UNKNOWN"
+        ]
+      },
+      "policy": {
+        "allow_framework_swap": false,
+        "fr_mutation_budget": "VERY_LOW",
+        "vernier_policy": "LOCKED",
+        "backmutation_strategy": "LOCALIZED_ONLY",
+        "lock_positions": [
+          "ALL_VERNIER",
+          "FR2_hotspots",
+          "CDR_supporting_positions"
+        ],
+        "primary_focus": [
+          "function_fidelity",
+          "risk_reduction",
+          "stability"
+        ]
+      },
+      "report": {
+        "summary_cn": "，paratope；。",
+        "summary_en": "Scaffold deviates from industrial space; framework may contribute to paratope geometry—avoid wholesale swaps."
+      }
+    }
+  ],
+  "hard_constraints": [
+    {
+      "id": "HC_OUT_OF_LIBRARY_ALERT",
+      "when": {
+        "any_of": [
+          {
+            "vh_out_of_library_flag": true
+          },
+          {
+            "vl_out_of_library_flag": true
+          }
+        ]
+      },
+      "action": {
+        "raise_risk_level": "HIGH",
+        "append_report_cn": "（out-of-library）；。",
+        "append_report_en": "Out-of-library signal detected; prioritize functional fidelity checks and staged optimization."
+      }
+    },
+    {
+      "id": "HC_INCOMPLETE_FR",
+      "when": {
+        "has_full_fr123_pair": false
+      },
+      "action": {
+        "mark_data_quality_cn": "FR1-3 ，delta identity ；。",
+        "mark_data_quality_en": "Incomplete FR1-3; delta identity is indicative only—retrieve full sequences for robust decisions."
+      }
+    }
+  ]
+}

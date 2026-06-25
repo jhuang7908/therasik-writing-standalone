@@ -1,0 +1,73 @@
+Filtered 246 → 222 records (Humanized + Fully Human only)
+Source class dist: {'Humanized': 137, 'Fully_human': 85}
+
+======================================================================
+LAYER 1 — Univariate Spearman (HZ + FH only)
+======================================================================
+  HPR                               | n=203 | rho=-0.2815 | p=4.7e-05      | ***
+  Low-HPR HLA-II clusters                  | n=203 | rho=+0.2023 | p=0.003797     | **
+   max (SASA)                           | n=120 | rho=-0.1900 | p=0.037663     | *
+                                      | n=120 | rho=+0.0948 | p=0.303164     | 
+                                      | n=143 | rho=-0.0275 | p=0.744829     | 
+                                        | n=143 | rho=+0.0292 | p=0.729583     | 
+  GRAVY                                    | n=143 | rho=-0.1174 | p=0.162717     | 
+
+======================================================================
+LAYER 2 — HPR × ADA stratified by class (HZ vs FH)
+======================================================================
+  Humanized            | n=119 | HPR rho=-0.0983 | p=0.287515     | 
+  Fully_human          | n= 84 | HPR rho=-0.1480 | p=0.17912      | 
+
+  [All factors by class]
+  Humanized      | HPR                          | n=119 | rho=-0.0983 | 
+  Fully_human    | HPR                          | n= 84 | rho=-0.1480 | 
+  Humanized      | Low-HPR HLA-II clusters             | n=119 | rho=+0.0618 | 
+  Fully_human    | Low-HPR HLA-II clusters             | n= 84 | rho=+0.1900 | 
+  Humanized      |  max (SASA)                      | n= 69 | rho=-0.0944 | 
+  Fully_human    |  max (SASA)                      | n= 51 | rho=-0.2502 | 
+  Humanized      |                                | n= 69 | rho=+0.1029 | 
+  Fully_human    |                                | n= 51 | rho=+0.0932 | 
+  Humanized      |                                | n= 81 | rho=+0.0451 | 
+  Fully_human    |                                | n= 62 | rho=+0.0174 | 
+  Humanized      |                                  | n= 81 | rho=+0.0902 | 
+  Fully_human    |                                  | n= 62 | rho=-0.0041 | 
+  Humanized      | GRAVY                               | n= 81 | rho=+0.0114 | 
+  Fully_human    | GRAVY                               | n= 62 | rho=-0.2672 | *
+
+======================================================================
+LAYER 3 — Partial Spearman (controlling source_class_code)
+======================================================================
+  HPR                               | n=203 | partial_rho=-0.1496 | p=0.033093     | *
+  Low-HPR HLA-II clusters                  | n=203 | partial_rho=+0.1127 | p=0.109516     | 
+   max (SASA)                           | n=120 | partial_rho=-0.1358 | p=0.139179     | 
+                                      | n=120 | partial_rho=+0.0777 | p=0.398932     | 
+                                      | n=143 | partial_rho=+0.0319 | p=0.70563      | 
+                                        | n=143 | partial_rho=+0.0548 | p=0.515603     | 
+  GRAVY                                    | n=143 | partial_rho=-0.0847 | p=0.314737     | 
+
+  RF training set: 120 complete cases
+
+Layer 4 — RF Feature Importances:
+  GRAVY                                   : 0.2525  █████████████████████████
+  hpr_combined_score                      : 0.2520  █████████████████████████
+  pI                                      : 0.1609  ████████████████
+  instability_index                       : 0.1491  ██████████████
+  surf_n_patches                          : 0.0718  ███████
+  low_hpr_hla_clusters_fr_surface         : 0.0608  ██████
+  hydro_patch_max9                        : 0.0530  █████
+
+======================================================================
+ADA% STATISTICS BY CLASS
+======================================================================
+  Humanized      n=137 | median=  6.0% | mean= 13.8% | IQR=[2.0,17.0]% | max=100.0%
+  Fully_human    n= 85 | median=  3.0% | mean=  5.2% | IQR=[1.0,6.0]% | max=40.7%
+  ALL            n=222 | median=  5.0% | mean= 10.5% | IQR=[1.62,12.0]% | max=100.0%
+
+  Mann-Whitney Humanized vs Fully Human ADA: U=7535, p=0.0002 *
+
+  HPR combined score by class:
+  Humanized      n=119 | median=0.756 | mean=0.770 | range=[0.621, 1.000]
+  Fully_human    n= 84 | median=0.936 | mean=0.915 | range=[0.679, 1.000]
+
+Saved: D:\InSynBio-AI-Research\Antibody_Engineer_Suite\data\immunogenicity_knowledge_base\reports\ada_hzfh_analysis\ada_hzfh_analysis.json
+

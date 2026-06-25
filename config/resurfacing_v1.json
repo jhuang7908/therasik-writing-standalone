@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "standard": "RESURFACING_V1.0",
+    "version": "1.0.0",
+    "owner": "InSynBio AbEngineCore",
+    "introduced_in": "V5.4-roadmap",
+    "purpose": "Structure-driven surface reshaping (3D safe zone + data-driven consensus AA)."
+  },
+  "thresholds_3d": {
+    "rsa_min": 0.25,
+    "dist_to_cdr_min_a": 5.0,
+    "dist_to_other_chain_min_a": 5.0,
+    "dist_to_paratope_contact_min_a": 6.0
+  },
+  "target_aa_selection": {
+    "consensus_source": "ogrdb_human_germlines",
+    "consensus_freq_min": 0.30,
+    "grantham_distance_max": 100,
+    "forbid_introduce": ["P", "G", "C"],
+    "forbid_remove": ["C"]
+  },
+  "scoring": {
+    "weights": {
+      "rsa": 1.0,
+      "dist_cdr": 1.5,
+      "dist_interface": 1.5,
+      "human_freq": 2.0,
+      "physchem": 1.0
+    },
+    "penalties": {
+      "charge_flip": 2.0,
+      "forbidden_aa": 5.0,
+      "vernier_proximity": 3.0,
+      "long_h3_root": 2.5
+    },
+    "decision": {
+      "auto_apply_min": 2.0,
+      "pending_human_min": 0.5
+    }
+  },
+  "chain_caps": {
+    "vh_max_mut": 12,
+    "vl_max_mut": 10,
+    "max_per_fr": { "VH": 5, "VL": 4 },
+    "delta_pi_max": 0.5,
+    "delta_gravy_max": 0.15,
+    "delta_instability_max": 5,
+    "net_charge_delta_max": 2
+  },
+  "post_qc_gates": {
+    "global_fv_rmsd_pass_a": 1.0,
+    "global_fv_rmsd_warn_a": 1.5,
+    "stable_cdr_rmsd_pass_a": 1.0,
+    "stable_cdr_rmsd_warn_a": 1.5,
+    "volatile_cdr_rmsd_pass_a": 1.5,
+    "volatile_cdr_rmsd_warn_a": 2.0,
+    "vh_vl_angle_delta_pass": 5,
+    "vh_vl_angle_delta_warn": 8,
+    "humanized_plddt_pass": 75
+  },
+  "protected_kabat": {
+    "VH": [2, 27, 28, 29, 30, 47, 48, 49, 67, 69, 71, 73, 78, 93, 94],
+    "VL": [2, 4, 35, 36, 46, 47, 48, 49, 64, 66, 69, 71, 73]
+  },
+  "long_h3_root_kabat_vh": [92, 93, 94, 95, 96, 102, 103],
+  "consensus_cache_path": "data/cache/human_kabat_consensus_v1.json",
+  "notes": [
+    "All distances in angstrom (A).",
+    "RSA = relative solvent accessibility, computed via FreeSASA or Bio.PDB.SASA fallback.",
+    "Consensus frequencies built from OGRDB human IGHV/IGKV/IGLV germlines, FR positions only.",
+    "The 'long_h3_root' penalty is only triggered when donor CDR-H3 is unusually long (>16 aa) or rabbit donor."
+  ]
+}

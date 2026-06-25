@@ -1,0 +1,213 @@
+# Pipeline Rules SSOT — InSynBio Weekly Content (PPT + XHS + WeChat)
+# Updated: 2026-06-09 v2.0 (user-confirmed agent routing)
+
+version: "2.1"
+
+# 默认出版画风 SSOT（PPT / 小红书 / 公众号统一）
+default_publication_style:
+  name: 手绘技术解释风
+  source: outputs/humanized_mice_codex_ppt/deck_spec.json#style
+  engine_scientific: codex-gpt-image-2
+  engine_non_scientific: hybrid  # 质谱底图 + gpt-image-2 刻字
+  logo: assets/nextvivo_logo.png
+  logo_policy: bottom_right_compact    # 右下角紧凑贴附，安全区约6-7%（以美观为准）
+  scope: [humanized_mice_ppt, xiaohongshu, wechat]  # 人源化小鼠系列暂加 Logo
+
+# ─── Agent Routing (谁策划 / 谁画图 / 谁审计) ─────────────────────────────────
+agent_routing:
+  planning:
+    non_scientific:
+      primary: deepseek-chat       # 小红书/公众号文案、非科学页策划
+      fallback: [kimi-moonshot-v1-32k, gemini-2.5-flash]
+    scientific_deck:
+      # 科学 PPT deck_spec：按论文难度选模型
+      default: claude-3-5-sonnet-20241022
+      complex_paper: claude-sonnet-4-5   # 高难度论文（多模型对比、复杂曲线）
+      trigger_complex:
+        - multiple_quantitative_figures
+        - survival_curves_with_censoring
+        - dose_response_matrices
+      fallback: [kimi-moonshot-v1-32k]
+
+  narration:
+    ppt_voiceover: gpt-4o            # PPT 中文解说词
+    tts_engine: volcengine-doubao    # 爽快思思 2.0
+
+  text_audit:
+    primary: kimi-moonshot-v1-8k     # 异 AI 事实核查（对照 PMID/摘要）
+    fixer: deepseek-chat             # 按 Kimi 意见修订文案
+    note: DeepSeek/Kimi 均为文本审计，不能看图
+
+  visual_audit:
+    primary: gemini-2.5-flash        # 科学图像审计（轴值、曲线、乱码、Logo）
+    fallback: gpt-4o
+    forbidden: [deepseek-r1, deepseek-v3, kimi-text-only]
+
+# ─── Render Engine Routing ───────────────────────────────────────────────────
+render_routing:
+  scientific_charts:
+    # 含坐标轴、KM 曲线、肿瘤体积、嵌合率动力学等定量图
+    engines_allowed:
+      - codex-gpt-image-2           # PPT 科学图主引擎（图文融合）
+      - gpt-image-2
+      - nano-banana-pro             # 候选科学画图
+    engines_forbidden:
+      - cogview-4                   # 质谱=文科生，不可画科学图
+      - seedream
+    reason: >
+      科学图表要求精确轴值与数据一致曲线。质谱 CogView-4 只能画插画，
+      会扭曲刻度与终点。科学图必须用 codex-gpt / gpt-image-2 或 nano-banana-pro。
+
+  non_scientific_art:
+    # 封面、概念图、机制示意、参考文献页
+    mode: hybrid                     # 质谱画图 + gpt-image-2 刻字
+    steps:
+      - engine: cogview-4            # Step 1: 纯插画背景（无文字）
+      - engine: gpt-image-2-edit     # Step 2: 中文刻字融合（图文融合）
+    engines_allowed_fallback:
+      - gpt-image-2                 # 质谱失败时全图生成
+      - nano-banana-pro
+    reason: >
+      非科学图不需要数值精度。质谱成本低、插画质量好；
+      gpt-image-2 edit 负责中文刻字，效果优于质谱直出汉字。
+
+  social_xhs_wechat:
+    # 小红书/公众号须与 PPT 同款「手绘技术解释风」
+    style_ssot: outputs/humanized_mice_codex_ppt/deck_spec.json#style
+    scientific_cards: gpt-image-2    # 含数据图的卡片
+    non_scientific_cards: hybrid     # cogview-4 + gpt-image-2-edit
+
+# ─── Local Animation (deck 局部动画，零 Agent API) ─────────────────────────────
+animation_routing:
+  engine: python-layered-composite   # PIL + moviepy，不走 img2video
+  spec_ssot: outputs/humanized_mice_codex_ppt/animation_spec.json
+  planner:
+    scientific_curves: claude-sonnet  # deck_spec 数值已在策划阶段给出
+    decorative_motion: deepseek-chat
+    roi_calibration: local-python    # 一次性像素校准
+  executor: scripts/animate_slideNN_*.py  # 未来统一 animate_deck.py
+  audit: gemini-2.5-flash
+  recipes:
+    cover: cell_float
+    dual_curve: sequential_curve_grow
+    survival_km: km_steps_post
+    multi_line_chart: staggered_line_grow
+    mechanism: arrow_reveal
+    references: fade_in_list
+
+# ─── Visual Audit Requirements ────────────────────────────────────────────────
+visual_audit:
+  required: true
+  audit_model: gemini-2.5-flash
+  audit_models_forbidden:
+    - deepseek-r1
+    - deepseek-v3
+    - kimi-text-only
+  audit_checks:
+    scientific_slides:
+      - axis_start_value_correct
+      - axis_end_value_correct
+      - y_axis_range_correct
+      - curve_endpoint_correct
+      - curve_shape_plausible
+      - labels_readable
+      - no_phantom_annotation
+    all_slides:
+      - logo_present_bottom_right
+      - logo_not_overlapping_content
+      - no_duplicate_branding
+  on_fail: retry_once_then_block_email  # 审计失败重画1次，仍失败则不发
+
+# ─── Slide Classification (humanized-mice deck) ──────────────────────────────
+slide_classification:
+  slide_01:
+    type: non_scientific_art
+    planner: deepseek
+    render: hybrid                   # cogview + gpt-image-2刻字
+  slide_02:
+    type: scientific_charts
+    planner: claude-sonnet
+    render: codex-gpt-image-2
+    audit_priority: high
+    expected_axes:
+      x: "0 to 24 weeks"
+      y: "0% to 100% chimerism"
+      curves: ["CD34+ slow S-curve peaking 12-16w", "PBMC rapid curve peaking 1-2w"]
+  slide_03:
+    type: scientific_charts
+    planner: claude-sonnet
+    render: codex-gpt-image-2
+    audit_priority: high
+    expected_axes:
+      x: "0 to 20 weeks"
+      y: "0% to 100% survival"
+      endpoint: "61% survival at week 20"
+      drop_zone: "weeks 10-17"
+  slide_04:
+    type: non_scientific_art
+    planner: deepseek
+    render: hybrid
+  slide_05:
+    type: non_scientific_art
+    planner: deepseek
+    render: hybrid
+  slide_06:
+    type: non_scientific_art
+    planner: deepseek
+    render: hybrid
+
+# ─── Weekly Delivery (每周一) ────────────────────────────────────────────────
+weekly_delivery:
+  # 每周任务：选最相关/最热门人源化小鼠免疫评估文章 → 有声音PPT + 小红书 + 公众号 → 三封独立邮件
+  schedule: "0 1 * * 1"              # 每周一 北京 09:00
+  article_selection:
+    mode: ai_native_fulltext         # 必须有 PMC 全文；AI 选本周唯一主线
+    source: pubmed
+    require_full_text: true          # 无全文则跳过，不只用摘要
+    full_text_source: pmc            # NCBI PMC Open Access
+    min_fulltext_chars: 5000
+    pubmed_filter: free_full_text_or_pmc_oa
+    pubmed_prefilter: relevance
+    top_n: 20                        # 初筛候选；过滤后送 AI 评分
+    scorer: deepseek-chat            # fallback kimi → gemini
+    scorer_temperature: 0
+    window_days: [30, 90, 180, 365] # 逐级扩窗直到找到足够全文候选
+    related_references: 3            # PubMed similarity，仅 slide6/文末延伸阅读
+    narrative: single_story          # 幻灯片 1–5 只讲一篇主文献
+    dedup: weekly_cache.json
+    on_scorer_fail: fulltext_relevance_fallback
+  sender: contact@insynbio.com
+  recipients:
+    - 1725490135@qq.com
+    - mail.jing.huang@gmail.com
+  emails_separate: true              # 三封独立邮件，禁止合并
+  packages:
+    - id: ppt_mp4
+      subject_prefix: "【NextVivo】每周人源化小鼠简报"
+      attachments: [pptx, mp4]
+    - id: xiaohongshu
+      subject_prefix: "【NextVivo 小红书】"
+      attachments: [xhs_cards_x6]
+      inline_preview: true           # 正文内嵌图片（QQ 兼容）
+      attachment_names: ascii_only   # xhs_card_01.png
+    - id: wechat
+      subject_prefix: "【NextVivo 公众号】"
+      attachments: [wechat_cover, wechat_inline_x2, wechat_ad_bar]
+
+# ─── Logo Policy ─────────────────────────────────────────────────────────────
+branding:
+  logo_file: assets/nextvivo_logo.png
+  position: bottom_right
+  size_pct_of_slide_width: 10       # Logo 宽度约占画面 10%
+  margin_right_pct: 1.5             # 距右边缘 1.5%
+  margin_bottom_pct: 1.5            # 距底边缘 1.5%
+  text_watermark: false
+  applied_once: true
+  # Gemini 视觉审计 — Logo 距离标准（既不能太远也不能覆盖）
+  logo_audit_criteria:
+    overlap: FAIL                     # 与文字/图表/图例任何重叠 → 不通过
+    too_close: FAIL                   # 贴边或压住内容边缘 (<0.5% 空白) → 不通过
+    too_far: FAIL                     # Logo 与最近内容间距 > 画面高度 8% → 不通过
+    floating_in_large_empty_band: FAIL  # 底部大面积空白仅放 Logo → 不通过
+    acceptable_gap: "画面高度 1%–6%"   # Logo 顶边与最近内容底边间距在此区间为佳
+    duplicate_branding: FAIL          # 文字水印 + Logo 双重品牌 → 不通过

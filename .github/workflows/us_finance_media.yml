@@ -1,0 +1,216 @@
+name: US Finance Media Scheduler
+
+on:
+  schedule:
+    # Daily recap @ 09:30 America/New_York (EDT=13:30 UTC / EST=14:30 UTC)
+    - cron: "30 13 * * *"
+    - cron: "30 14 * * *"
+    # XHS 2-card send Wed/Sat @ 05:30 America/New_York (EDT=09:30 UTC / EST=10:30 UTC)
+    - cron: "30 9 * * 3,6"
+    - cron: "30 10 * * 3,6"
+  workflow_dispatch:
+    inputs:
+      run_mode:
+        description: "Which task to run"
+        required: true
+        type: choice
+        options:
+          - fetch
+          - send
+          - recap
+          - all
+        default: all
+      force_send:
+        description: "Force send for send/recap tasks"
+        required: false
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install \
+            anthropic \
+            openai \
+            google-genai \
+            requests \
+            pyyaml \
+            Pillow \
+            python-dotenv \
+            biopython \
+            moviepy \
+            imageio-ffmpeg
+
+      - name: Write runtime env from GitHub Secrets
+        run: |
+          mkdir -p content_generation_tools
+          cat > content_generation_tools/.env << 'EOF'
+          OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
+          ZHIPU_API_KEY=${{ secrets.ZHIPU_API_KEY }}
+          ARK_API_KEY=${{ secrets.ARK_API_KEY }}
+          VOLC_SPEECH_API_KEY=${{ secrets.VOLC_SPEECH_API_KEY }}
+          DEEPSEEK_API_KEY=${{ secrets.DEEPSEEK_API_KEY }}
+          KIMI_API_KEY=${{ secrets.KIMI_API_KEY }}
+          INSYNBIO_SMTP_HOST=${{ secrets.INSYNBIO_SMTP_HOST }}
+          INSYNBIO_SMTP_PORT=${{ secrets.INSYNBIO_SMTP_PORT }}
+          INSYNBIO_SMTP_USER=${{ secrets.INSYNBIO_SMTP_USER }}
+          INSYNBIO_SMTP_PASS=${{ secrets.INSYNBIO_SMTP_PASS }}
+          INSYNBIO_EMAIL_SENDER=${{ secrets.INSYNBIO_EMAIL_SENDER }}
+          GMAIL_USER=${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD=${{ secrets.GMAIL_APP_PASSWORD }}
+          FINANCE_XHS_NOTIFY_EMAILS=${{ secrets.FINANCE_XHS_NOTIFY_EMAILS }}
+          FINANCE_XHS_SEND_INTERVAL_DAYS=2
+          FINANCE_XHS_USE_CACHE=1
+          FINANCE_XHS_VOICE=0
+          FINANCE_XHS_VOICE_VIDEO=0
+          FINANCE_XHS_OUT_ROOT=outputs/us_finance_xhs_scheduled
+          EOF
+
+      - name: Normalize SMTP env (prefer InSynBio, fallback Gmail)
+        shell: bash
+        run: |
+          python - << 'PY'
+          from pathlib import Path
+
+          p = Path("content_generation_tools/.env")
+          lines = p.read_text(encoding="utf-8").splitlines() if p.exists() else []
+          kv = {}
+          for line in lines:
+            if "=" in line and not line.strip().startswith("#"):
+              k, v = line.split("=", 1)
+              kv[k.strip()] = v.strip()
+
+          has_primary = bool(kv.get("INSYNBIO_SMTP_HOST"))
+          if not has_primary and kv.get("GMAIL_USER") and kv.get("GMAIL_APP_PASSWORD"):
+            kv.setdefault("LAB_SMTP_HOST", "smtp.gmail.com")
+            kv.setdefault("LAB_SMTP_PORT", "587")
+            kv.setdefault("LAB_SMTP_USER", kv["GMAIL_USER"])
+            kv.setdefault("LAB_SMTP_PASSWORD", kv["GMAIL_APP_PASSWORD"])
+            kv.setdefault("LAB_SMTP_FROM", kv["GMAIL_USER"])
+            kv.setdefault("LAB_SMTP_TLS", "1")
+
+          p.write_text("\n".join(f"{k}={v}" for k, v in kv.items()) + "\n", encoding="utf-8")
+          print("SMTP normalized. has_insynbio_host=", bool(kv.get("INSYNBIO_SMTP_HOST")), "has_lab_host=", bool(kv.get("LAB_SMTP_HOST")))
+          PY
+
+      - name: Decide run mode
+        id: mode
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            MODE="${{ github.event.inputs.run_mode }}"
+          else
+            # Bind mode to cron expression — do NOT re-check local hour (Actions delay caused skip)
+            case "${{ github.event.schedule }}" in
+              "30 13 * * *"|"30 14 * * *") MODE="recap" ;;
+              "30 9 * * 3,6"|"30 10 * * 3,6") MODE="send" ;;
+              *) MODE="skip" ;;
+            esac
+          fi
+          echo "mode=$MODE" >> "$GITHUB_OUTPUT"
+          echo "Selected mode: $MODE"
+
+      - name: DST slot gate (one run per schedule — scheduled only)
+        id: slot
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          SCHED="${{ github.event.schedule }}"
+          TZ_ZONE=$(TZ=America/New_York date +%Z)
+          MODE="${{ steps.mode.outputs.mode }}"
+          RUN="false"
+          if [[ "$MODE" == "recap" ]]; then
+            if [[ "$TZ_ZONE" == "EDT" && "$SCHED" == "30 13 * * *" ]]; then RUN="true"; fi
+            if [[ "$TZ_ZONE" != "EDT" && "$SCHED" == "30 14 * * *" ]]; then RUN="true"; fi
+          elif [[ "$MODE" == "send" ]]; then
+            if [[ "$TZ_ZONE" == "EDT" && "$SCHED" == "30 9 * * 3,6" ]]; then RUN="true"; fi
+            if [[ "$TZ_ZONE" != "EDT" && "$SCHED" == "30 10 * * 3,6" ]]; then RUN="true"; fi
+          fi
+          echo "run=$RUN" >> "$GITHUB_OUTPUT"
+          echo "Schedule: $SCHED, TZ: $TZ_ZONE, mode: $MODE, run: $RUN"
+
+      - name: Run finance fetch
+        if: steps.slot.outputs.run == 'true' && (steps.mode.outputs.mode == 'fetch' || steps.mode.outputs.mode == 'all')
+        run: python scripts/run_us_finance_xhs_fetch.py
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+
+      - name: Run finance fetch (refresh before recap)
+        if: steps.slot.outputs.run == 'true' && steps.mode.outputs.mode == 'recap'
+        run: python scripts/run_us_finance_xhs_fetch.py
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+
+      - name: Run finance fetch (refresh before send)
+        if: steps.slot.outputs.run == 'true' && steps.mode.outputs.mode == 'send'
+        run: python scripts/run_us_finance_xhs_fetch.py
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+
+      - name: Run finance recap
+        if: steps.slot.outputs.run == 'true' && (steps.mode.outputs.mode == 'recap' || steps.mode.outputs.mode == 'all')
+        shell: bash
+        run: |
+          FORCE=""
+          if [[ "${{ github.event.inputs.force_send }}" == "true" ]]; then
+            FORCE="--force-send"
+          fi
+          python scripts/run_us_finance_xhs_recap.py $FORCE
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+
+      - name: Run finance send
+        if: steps.slot.outputs.run == 'true' && (steps.mode.outputs.mode == 'send' || steps.mode.outputs.mode == 'all')
+        shell: bash
+        run: |
+          FORCE=""
+          if [[ "${{ github.event.inputs.force_send }}" == "true" ]]; then
+            FORCE="--force-send"
+          fi
+          python scripts/run_us_finance_xhs_cron.py $FORCE
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+
+      - name: Upload finance outputs
+        if: always() && steps.slot.outputs.run == 'true' && steps.mode.outputs.mode != 'skip'
+        uses: actions/upload-artifact@v4
+        with:
+          name: us-finance-media-${{ github.run_id }}
+          path: outputs/us_finance_xhs_scheduled/**
+          retention-days: 14
+
+      - name: Commit finance cache/state
+        if: always() && steps.slot.outputs.run == 'true' && steps.mode.outputs.mode != 'skip'
+        shell: bash
+        run: |
+          git config user.name "NextVivo Pipeline Bot"
+          git config user.email "pipeline@nextvivo.com"
+          git add outputs/us_finance_xhs_scheduled/_news_cache/latest/* || true
+          git add outputs/us_finance_xhs_scheduled/_news_cache/send_state.json || true
+          git diff --staged --quiet || git commit -m "chore: update finance media cache [skip ci]"
+          git push || true

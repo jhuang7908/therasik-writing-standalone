@@ -1,0 +1,103 @@
+{
+  "entity_id": "EXAMPLE-0001",
+  "entity_type": "antibody_program",
+  "canonical_name": "Example Therapeutic",
+  "aliases": [
+    "Example Brand",
+    "Internal Alias"
+  ],
+  "modality": "antibody",
+  "development_stage": "phase2",
+  "target": "TargetName",
+  "target_class": "receptor",
+  "indications": [
+    "Example disease"
+  ],
+  "company_or_sponsor": "Example Bio",
+  "geography": [
+    "US",
+    "EU"
+  ],
+  "approval_dates": [],
+  "visibility": "public_ok",
+  "review_status": "reviewed",
+  "design_features": {
+    "format": "IgG1",
+    "species_or_humanization": "humanized",
+    "isotype": "IgG1",
+    "fc_engineering": "none",
+    "germline": {
+      "vh_family": "",
+      "vl_family": ""
+    },
+    "sequence_status": "redacted_public",
+    "epitope_note": "",
+    "platform": "",
+    "architecture": {}
+  },
+  "clinical_outcomes": {
+    "trial_phase": "phase2",
+    "trial_ids": [
+      "NCT00000000"
+    ],
+    "trial_context": "monotherapy",
+    "sample_size": 0,
+    "efficacy": {
+      "orr": "",
+      "cr": "",
+      "pfs": "",
+      "os": "",
+      "dor": "",
+      "subgroup_notes": ""
+    },
+    "safety": {
+      "grade3_plus_ae_rate": "",
+      "key_toxicities": [],
+      "boxed_warning": "",
+      "discontinuation_rate": ""
+    },
+    "pk_pd": {
+      "half_life": "",
+      "dose_schedule": "",
+      "route": "",
+      "exposure_response_note": ""
+    },
+    "immunogenicity": {
+      "ada_incidence": "",
+      "nab_status": "",
+      "assay_platform": "",
+      "sampling_window": "",
+      "confounders": [],
+      "interpretation_note": ""
+    }
+  },
+  "cmc_developability": {
+    "expression_titer": "",
+    "aggregation_risk": "",
+    "viscosity_risk": "",
+    "stability_tm": "",
+    "pi": "",
+    "hydrophobicity_patch": "",
+    "ptm_liabilities": [],
+    "manufacturing_note": "",
+    "formulation_note": "",
+    "value_origin": "curated_inference"
+  },
+  "evidence": {
+    "evidence_tier": "T1",
+    "primary_source_type": "clinical_paper",
+    "source_ids": [
+      "PMID:00000000"
+    ],
+    "source_quote": "",
+    "provenance_note": "",
+    "reviewer": "",
+    "last_reviewed": "2026-04-11",
+    "version_tag": "v1"
+  },
+  "visibility_control": {
+    "sequence_policy": "redacted",
+    "field_level_redactions": [],
+    "partner_scope": ""
+  }
+}

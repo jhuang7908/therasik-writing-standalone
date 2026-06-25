@@ -1,0 +1,4368 @@
+[
+  {
+    "id": "ADC-PROG-T1-001",
+    "canonical_name": "Trastuzumab deruxtecan",
+    "brand_name": "Enhertu",
+    "company": "Daiichi Sankyo / AstraZeneca",
+    "visibility": "public_ok",
+    "development_stage": "approved",
+    "target": "HER2",
+    "binder_name": "Trastuzumab",
+    "binder_format": "IgG1",
+    "linker_name": "GGFG (Tetrapeptide)",
+    "linker_type": "cleavable (cathepsin)",
+    "payload_name": "DXd",
+    "payload_class": "Topoisomerase I inhibitor",
+    "conjugation_technology": "Cysteine-based (Partial reduction)",
+    "dar_mean": 8.0,
+    "indication": "Breast cancer (HER2+, HER2-low), Gastric cancer, NSCLC",
+    "source_primary": "PMID: 28554950",
+    "patent_ids": [
+      "US8039469",
+      "US10519246"
+    ],
+    "technical_audit": "Gold standard for high-DAR (8.0) strategy. Hydrophilic GGFG linker prevents aggregation. DXd payload is cell-cycle independent and highly membrane-permeable, enabling potent bystander effect in HER2-low tumors.",
+    "sequence_data": {
+      "binder_sequences": {
+        "vh_seq": "EVQLVESGGGLVQPGGSLRLSCAASGFNIKDTYIHWVRQAPGKGLEWVARIYPTNGYTRYADSVKGRFTISADTSKNTAYLQMNSLRAEDTAVYYCSRWGGDGFYAMDYWGQGTLVTVSS",
+        "vl_seq": "DIQMTQSPSSLSASVGDRVTITCRASQDVNTAVAWYQQKPGKAPKLLIYSASFLYSGVPSRFSGSRSGTDFTLTISSLQPEDFATYYCQQHYTTPPTFGQGTKVEIK",
+        "pdb_id": "1N8Z",
+        "imgt_id": "8044"
+      },
+      "structural_links": {
+        "drugbank_id": "DB15009",
+        "kegg_id": "D11634"
+      }
+    },
+    "failure_analysis": {
+      "is_failed": false
+    },
+    "clinical_data": {
+      "efficacy": {
+        "orr": "60.9% (DESTINY-Breast03)",
+        "pfs": "28.8 mo",
+        "os": "TBD",
+        "notes": "Gold standard for HER2 ADCs."
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "40-50%",
+        "dlt": "TBD",
+        "common_ae": [
+          "Nausea",
+          "Neutropenia",
+          "ILD (10-15%)"
+        ],
+        "notes": "ILD is the critical DLT; requires proactive monitoring."
+      },
+      "immunogenicity": {
+        "ada_incidence": "2.1%",
+        "notes": "Very low immunogenicity due to highly stable design."
+      },
+      "dose": {
+        "recommended_dose": "5.4 mg/kg",
+        "schedule": "Q3W"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T1-002",
+    "canonical_name": "Brentuximab vedotin",
+    "brand_name": "Adcetris",
+    "company": "Seagen (Pfizer) / Takeda",
+    "visibility": "public_ok",
+    "development_stage": "approved",
+    "target": "CD30",
+    "binder_name": "cAC10",
+    "binder_format": "Chimeric IgG1",
+    "linker_name": "mc-val-cit-PABC",
+    "linker_type": "cleavable (protease)",
+    "payload_name": "MMAE",
+    "payload_class": "Tubulin inhibitor",
+    "conjugation_technology": "Cysteine-based (Stochastic)",
+    "dar_mean": 4.0,
+    "indication": "Hodgkin lymphoma, sALCL",
+    "source_primary": "PMID: 21135266",
+    "patent_ids": [
+      "US7090843",
+      "US7829531"
+    ],
+    "technical_audit": "Benchmark for vc-PABC-MMAE platform. DAR 4.0 stochastic conjugation. Highly effective in CD30+ hematological malignancies due to rapid internalization.",
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB08870",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "US-7090843-SEQ-1"
+      }
+    },
+    "failure_analysis": {
+      "is_failed": false
+    },
+    "clinical_data": {
+      "efficacy": {
+        "orr": "75% (HL)",
+        "pfs": "42.9 mo (ECHELON-1)",
+        "os": "TBD",
+        "notes": "Standard of care for CD30+ Hodgkin Lymphoma."
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "Moderate",
+        "dlt": "TBD",
+        "common_ae": [
+          "Peripheral Neuropathy",
+          "Neutropenia",
+          "Anemia"
+        ],
+        "notes": "Neuropathy is dose-limiting and cumulative."
+      },
+      "immunogenicity": {
+        "ada_incidence": "37% (transient)",
+        "notes": "Persistent ADA in ~7%; impacts PK but rarely efficacy."
+      },
+      "dose": {
+        "recommended_dose": "1.8 mg/kg",
+        "schedule": "Q3W"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T1-003",
+    "canonical_name": "Trastuzumab emtansine",
+    "brand_name": "Kadcyla",
+    "company": "Roche (Genentech)",
+    "visibility": "public_ok",
+    "development_stage": "approved",
+    "target": "HER2",
+    "binder_name": "Trastuzumab",
+    "binder_format": "IgG1",
+    "linker_name": "SMCC",
+    "linker_type": "non-cleavable",
+    "payload_name": "DM1",
+    "payload_class": "Tubulin inhibitor (Maytansinoid)",
+    "conjugation_technology": "Lysine-based (Random)",
+    "dar_mean": 3.5,
+    "indication": "HER2+ Breast cancer (Post-neoadjuvant)",
+    "source_primary": "PMID: 22713502",
+    "patent_ids": [
+      "US5208020",
+      "US7097840"
+    ],
+    "technical_audit": "First-generation non-cleavable linker ADC. Relies on complete lysosomal degradation of antibody. DM1-lysine metabolite is active but lacks bystander effect, limiting efficacy in heterogeneous tumors.",
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB08896",
+        "pdb_id": "1N8Z",
+        "patent_seq_id": "US-5821337"
+      }
+    },
+    "failure_analysis": {
+      "is_failed": false
+    },
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T1-004",
+    "canonical_name": "Gemtuzumab ozogamicin",
+    "brand_name": "Mylotarg",
+    "company": "Pfizer (Wyeth)",
+    "visibility": "public_ok",
+    "development_stage": "approved",
+    "target": "CD33",
+    "binder_name": "hP67.6",
+    "binder_format": "Humanized IgG4",
+    "linker_name": "AcBut",
+    "linker_type": "cleavable (acid-labile)",
+    "payload_name": "Calicheamicin",
+    "payload_class": "DNA-damaging agent",
+    "conjugation_technology": "Lysine-based",
+    "dar_mean": 2.5,
+    "indication": "AML",
+    "source_primary": "PMID: 11060331",
+    "technical_audit": "First FDA-approved ADC (2000). Uses pH-sensitive hydrazone linker. IgG4 framework used to minimize Fc effector function.",
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB00109",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "US-5773001"
+      }
+    },
+    "patent_ids": [
+      "US5773001",
+      "US5821337"
+    ],
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T1-005",
+    "canonical_name": "Sacituzumab govitecan",
+    "brand_name": "Trodelvy",
+    "company": "Gilead (Immunomedics)",
+    "visibility": "public_ok",
+    "development_stage": "approved",
+    "target": "TROP-2",
+    "binder_name": "hRS7",
+    "binder_format": "Humanized IgG1",
+    "linker_name": "CL2A",
+    "linker_type": "cleavable (pH/protease)",
+    "payload_name": "SN-38",
+    "payload_class": "Topoisomerase I inhibitor",
+    "conjugation_technology": "Cysteine-based",
+    "dar_mean": 7.6,
+    "indication": "mTNBC, HR+/HER2- Breast cancer, mUC",
+    "source_primary": "PMID: 32320577",
+    "patent_ids": [
+      "US7238785",
+      "US9220789"
+    ],
+    "technical_audit": "High-DAR (7.6) with pH-sensitive CL2A linker. Rapid release of SN-38 in acidic endosomes and tumor microenvironment. High bystander effect compensates for TROP-2 heterogeneity.",
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB10773",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "US-7238785-SEQ-1"
+      }
+    },
+    "failure_analysis": {
+      "is_failed": false
+    },
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T1-006",
+    "canonical_name": "Enfortumab vedotin",
+    "brand_name": "Padcev",
+    "company": "Seagen (Pfizer) / Astellas",
+    "visibility": "public_ok",
+    "development_stage": "approved",
+    "target": "Nectin-4",
+    "binder_name": "AGS-22M6",
+    "binder_format": "Human IgG1",
+    "linker_name": "mc-val-cit-PABC",
+    "linker_type": "cleavable (protease)",
+    "payload_name": "MMAE",
+    "payload_class": "Tubulin inhibitor",
+    "conjugation_technology": "Cysteine-based",
+    "dar_mean": 3.8,
+    "indication": "Urothelial carcinoma",
+    "source_primary": "PMID: 31103038",
+    "technical_audit": "Fully human IgG1 (XenoMouse-derived) targeting Nectin-4. Standard vc-PABC-MMAE platform with DAR 3.8.",
+    "sequence_data": {
+      "binder_sequences": {
+        "vh_seq": "EVQLVESGGGLVQPGGSLRLSCAASGFTFSSYWMHWVRQAPGKGLEWVSAIGTGGATYYADSVKGRFTISRDNSKNTLYLQMNSLRAEDTAVYYCARGYYDGSYAMDYWGQGTLVTVSS",
+        "vl_seq": "DIQMTQSPSSLSASVGDRVTITCRASQGISNWLAWYQQKPGKAPKLLIYAASSLQSGVPSRFSGSGSGTDFTLTISSLQPEDFATYYCQQYNSYPPTFGQGTKVEIK",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "US-20150158949-A1-SEQID-1"
+      },
+      "structural_links": {
+        "drugbank_id": "DB15053"
+      }
+    },
+    "patent_ids": [
+      "US9393323",
+      "US10457732"
+    ],
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T1-007",
+    "canonical_name": "Polatuzumab vedotin",
+    "brand_name": "Polivy",
+    "company": "Roche (Genentech)",
+    "visibility": "public_ok",
+    "development_stage": "approved",
+    "target": "CD79b",
+    "binder_name": "Humanized 2A12",
+    "binder_format": "Humanized IgG1",
+    "linker_name": "mc-val-cit-PABC",
+    "linker_type": "cleavable (protease)",
+    "payload_name": "MMAE",
+    "payload_class": "Tubulin inhibitor",
+    "conjugation_technology": "Cysteine-based",
+    "dar_mean": 3.5,
+    "indication": "DLBCL",
+    "source_primary": "PMID: 31063838",
+    "technical_audit": "Humanized IgG1 targeting CD79b. Benchmark for B-cell lymphoma ADC using vc-PABC-MMAE platform.",
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB14726",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "US-8021661"
+      }
+    },
+    "patent_ids": [
+      "US8021661",
+      "US9107961"
+    ],
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T1-008",
+    "canonical_name": "Loncastuximab tesirine",
+    "brand_name": "Zynlonta",
+    "company": "ADC Therapeutics",
+    "visibility": "public_ok",
+    "development_stage": "approved",
+    "target": "CD19",
+    "binder_name": "Humanized anti-CD19 (clone 16C4 derivative)",
+    "binder_format": "Humanized IgG1",
+    "linker_name": "PEG-Val-Ala-PABC",
+    "linker_type": "cleavable (protease)",
+    "payload_name": "SG3199 (PBD dimer)",
+    "payload_class": "DNA alkylator",
+    "conjugation_technology": "Cysteine-based",
+    "dar_mean": 2.3,
+    "indication": "DLBCL",
+    "source_primary": "PMID: 33852827",
+    "technical_audit": "First PBD-dimer ADC approved. Low DAR 2.3 required due to extreme payload potency. Uses PEGylated Val-Ala linker for solubility.",
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB14761",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "US-8871908"
+      }
+    },
+    "patent_ids": [
+      "US8871908",
+      "US9597412"
+    ],
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T1-009",
+    "canonical_name": "Mirvetuximab soravtansine",
+    "brand_name": "Elahere",
+    "company": "ImmunoGen (AbbVie)",
+    "visibility": "public_ok",
+    "development_stage": "approved",
+    "target": "FRα",
+    "binder_name": "M9346A",
+    "binder_format": "Humanized IgG1",
+    "linker_name": "Sulfo-SPDB",
+    "linker_type": "cleavable (disulfide)",
+    "payload_name": "DM4",
+    "payload_class": "Tubulin inhibitor (Maytansinoid)",
+    "conjugation_technology": "Lysine-based",
+    "dar_mean": 3.4,
+    "indication": "Ovarian cancer (FRα high)",
+    "source_primary": "PMID: 36445704",
+    "technical_audit": "First ADC approved for FRalpha-high ovarian cancer. Uses disulfide-cleavable Sulfo-SPDB linker with DM4 payload.",
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB11943",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "US-8557966"
+      }
+    },
+    "patent_ids": [
+      "US8557966",
+      "US9616138"
+    ],
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T1-010",
+    "canonical_name": "Belantamab mafodotin",
+    "brand_name": "Blenrep",
+    "company": "GSK",
+    "visibility": "public_ok",
+    "development_stage": "approved",
+    "target": "BCMA",
+    "binder_name": "239638 (J6M0)",
+    "binder_format": "Afucosylated IgG1",
+    "linker_name": "mc",
+    "linker_type": "non-cleavable",
+    "payload_name": "MMAF",
+    "payload_class": "Tubulin inhibitor",
+    "conjugation_technology": "Cysteine-based",
+    "dar_mean": 4.0,
+    "indication": "Multiple Myeloma",
+    "source_primary": "PMID: 32023444",
+    "technical_audit": "Afucosylated IgG1 for enhanced ADCC. Non-cleavable mc-MMAF platform. Associated with ocular toxicity (corneal microcysts).",
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB15571",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "US-9273141"
+      }
+    },
+    "patent_ids": [
+      "US9273141",
+      "US10118967"
+    ],
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T1-011",
+    "canonical_name": "Tisotumab vedotin",
+    "brand_name": "Tivdak",
+    "company": "Seagen (Pfizer) / Genmab",
+    "visibility": "public_ok",
+    "development_stage": "approved",
+    "target": "Tissue Factor",
+    "binder_name": "Humanized anti-TF (clone TF-011 derivative)",
+    "binder_format": "Human IgG1",
+    "linker_name": "mc-val-cit-PABC",
+    "linker_type": "cleavable (protease)",
+    "payload_name": "MMAE",
+    "payload_class": "Tubulin inhibitor",
+    "conjugation_technology": "Cysteine-based",
+    "dar_mean": 4.0,
+    "indication": "Cervical cancer",
+    "source_primary": "PMID: 33831346",
+    "technical_audit": "Targets Tissue Factor (TF). Standard vc-PABC-MMAE platform. Key for metastatic cervical cancer.",
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB14774",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "US-9168314"
+      }
+    },
+    "patent_ids": [
+      "US9168314",
+      "US9744243"
+    ],
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T1-012",
+    "canonical_name": "Disitamab vedotin",
+    "brand_name": "Aidixi (RC48)",
+    "company": "RemeGen / Pfizer",
+    "visibility": "public_ok",
+    "development_stage": "approved",
+    "target": "HER2",
+    "binder_name": "RC48",
+    "binder_format": "Humanized IgG1",
+    "linker_name": "mc-val-cit-PABC",
+    "linker_type": "cleavable (protease)",
+    "payload_name": "MMAE",
+    "payload_class": "Tubulin inhibitor",
+    "conjugation_technology": "Cysteine-based",
+    "dar_mean": 4.0,
+    "indication": "HER2+ Gastric, Urothelial, and Breast Cancer",
+    "source_primary": "NMPA Approval year_2021",
+    "technical_audit": "China's first approved ADC. High affinity HER2 binder with distinct epitope from Trastuzumab. Standard vc-PABC-MMAE DAR 4.",
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB14842",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "CN-102250205-A"
+      }
+    },
+    "patent_ids": [
+      "CN102250205B",
+      "US10688195"
+    ],
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-001",
+    "canonical_name": "Patritumab deruxtecan",
+    "company": "Daiichi Sankyo / Merck (MSD)",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_3 (withdrawn)",
+    "target": "HER3",
+    "binder_name": "Patritumab (Humanized anti-HER3 IgG1)",
+    "binder_format": "Human IgG1",
+    "linker_name": "GGFG",
+    "linker_type": "cleavable (cathepsin)",
+    "payload_name": "DXd",
+    "payload_class": "Topoisomerase I inhibitor",
+    "conjugation_technology": "Cysteine-based",
+    "dar_mean": 8.0,
+    "indication": "NSCLC (EGFR mutated)",
+    "source_primary": "HERTHENA-Lung02, May 2025 BLA Withdrawal",
+    "technical_audit": "BLA voluntarily withdrawn (May 2025) after HERTHENA-Lung02 failed to meet OS significance in NSCLC. Remains in development for other HER3+ indications (15+ cancer types). High DAR 8.0 DXd platform.",
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB11956",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "US-7705130"
+      }
+    },
+    "clinical_data": {
+      "efficacy": {
+        "orr": "53.5% (HER3+ BC)",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": "ICARUS-BREAST01 trial data."
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "Moderate",
+        "dlt": "TBD",
+        "common_ae": [
+          "Fatigue",
+          "Nausea",
+          "Diarrhea",
+          "Alopecia"
+        ],
+        "notes": "Profile similar to other DXd ADCs."
+      },
+      "immunogenicity": {
+        "ada_incidence": "Not Reported",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "5.6 mg/kg",
+        "schedule": "Q3W"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-002",
+    "canonical_name": "Datopotamab deruxtecan",
+    "company": "Daiichi Sankyo / AstraZeneca",
+    "visibility": "public_ok",
+    "development_stage": "approved",
+    "target": "TROP-2",
+    "binder_name": "Humanized anti-TROP2 (clone Dato)",
+    "binder_format": "Humanized IgG1",
+    "linker_name": "GGFG",
+    "linker_type": "cleavable (cathepsin)",
+    "payload_name": "DXd",
+    "payload_class": "Topoisomerase I inhibitor",
+    "conjugation_technology": "Cysteine-based",
+    "dar_mean": 4.0,
+    "indication": "EGFR-mutated Locally Advanced or Metastatic NSCLC",
+    "source_primary": "FDA Approval June 23, 2025",
+    "technical_audit": "Approved (June 2025) for pre-treated NSCLC. Optimized DAR 4.0 strategy (vs 8.0 for Enhertu) to improve safety profile for TROP2.",
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB14988",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "US-10494443"
+      }
+    },
+    "brand_name": "Dato-DXd",
+    "patent_ids": [
+      "US10494443",
+      "US10519246"
+    ],
+    "clinical_data": {
+      "efficacy": {
+        "orr": "30.0% (pooled)",
+        "pfs": "5.56 mo",
+        "os": "TBD",
+        "notes": "Approved for EGFR-mutated NSCLC. HR 0.63 in HR+/HER2- BC."
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "20.8%",
+        "dlt": "TBD",
+        "common_ae": [
+          "Stomatitis (55%)",
+          "Nausea (49%)",
+          "Alopecia (38%)"
+        ],
+        "notes": "Stomatitis is the hallmark toxicity for Dato-DXd."
+      },
+      "immunogenicity": {
+        "ada_incidence": "Not Reported",
+        "notes": "Likely low based on DXd platform."
+      },
+      "dose": {
+        "recommended_dose": "6 mg/kg",
+        "schedule": "Q3W"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-003",
+    "canonical_name": "Ifinatamab deruxtecan",
+    "company": "Daiichi Sankyo / Merck (MSD)",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_3",
+    "target": "B7-H3",
+    "binder_name": "DS-7300a derivative",
+    "binder_format": "Humanized IgG1",
+    "linker_name": "GGFG",
+    "linker_type": "cleavable (cathepsin)",
+    "payload_name": "DXd",
+    "payload_class": "Topoisomerase I inhibitor",
+    "conjugation_technology": "Cysteine-based",
+    "dar_mean": 4.0,
+    "indication": "Extensive-stage SCLC (ES-SCLC), Esophageal cancer",
+    "source_primary": "PMID: 39186361, NCT05280470",
+    "technical_audit": "FDA Breakthrough Therapy for SCLC. Targets B7-H3 (CD276). DXd platform with DAR 4.0.",
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB17001",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "US-10590190"
+      }
+    },
+    "brand_name": "I-DXd",
+    "patent_ids": [
+      "US10590190",
+      "US11278627"
+    ],
+    "clinical_data": {
+      "efficacy": {
+        "orr": "48.2% (12mg/kg)",
+        "pfs": "4.9 mo",
+        "os": "10.3 mo (9-mo estimate 59.1%)",
+        "notes": "ES-SCLC data from IDeate-Lung01."
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "36.5%",
+        "dlt": "TBD",
+        "common_ae": [
+          "Nausea",
+          "Anemia",
+          "Neutropenia",
+          "ILD (12.4%)"
+        ],
+        "notes": "ILD grade 3+ was 4.4%."
+      },
+      "immunogenicity": {
+        "ada_incidence": "Not Reported",
+        "notes": "Typically low for DXd platform based on Enhertu profile."
+      },
+      "dose": {
+        "recommended_dose": "12 mg/kg",
+        "schedule": "Q3W"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-004",
+    "canonical_name": "Bulumtatug fuvedotin",
+    "brand_name": "SHR-A1811",
+    "company": "Hengrui Pharma",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_3",
+    "target": "HER2",
+    "binder_name": "Humanized anti-HER2 (Trastuzumab-based)",
+    "linker_name": "GGFG-like",
+    "payload_name": "SHR152852 (TOP1i)",
+    "dar_mean": 8.0,
+    "indication": "HER2+ Breast Cancer, Gastric Cancer, HER2-low BC",
+    "technical_audit": "Hengrui's flagship HER2 ADC. High DAR 8 Topo1i platform. Competing with Enhertu in HER2-low BC and Gastric cancer.",
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB18001",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "CN-111285934-A"
+      }
+    },
+    "source_primary": "NCT05825701",
+    "patent_ids": [
+      "CN111285934",
+      "WO2020114421"
+    ],
+    "clinical_data": {
+      "efficacy": {
+        "orr": "66.7% (TNBC combo)",
+        "pfs": "86.2% (6-mo rate)",
+        "os": "TBD",
+        "notes": "Data in combo with Adebrelimab."
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "61.9%",
+        "dlt": "TBD",
+        "common_ae": [
+          "Neutropenia",
+          "WBC decrease",
+          "Lymphocyte decrease"
+        ],
+        "notes": "Primarily hematologic toxicity."
+      },
+      "immunogenicity": {
+        "ada_incidence": "Not Reported",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "4.8 mg/kg",
+        "schedule": "Q3W"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-005",
+    "canonical_name": "Sacituzumab tirumotecan",
+    "brand_name": "sac-TMT (SKB264 / MK-2870)",
+    "company": "Kelun-Biotech / MSD",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_3",
+    "target": "TROP-2",
+    "binder_name": "hRS7 humanized",
+    "linker_name": "Sulfonyl-based (K-Link)",
+    "payload_name": "KL610023 (TOP1i)",
+    "dar_mean": 7.4,
+    "indication": "mTNBC, HR+/HER2– Metastatic Breast Cancer, NSCLC",
+    "technical_audit": "Kelun/Merck collaboration. Highly stable sulfonyl linker (K-Link) with DAR 7.4. Superior PK profile vs Trodelvy in breast cancer.",
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB18002",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "CN-111518113-A"
+      }
+    },
+    "source_primary": "NCT05347135, ESMO 2025",
+    "patent_ids": [
+      "CN111518113",
+      "WO2020156475"
+    ],
+    "clinical_data": {
+      "efficacy": {
+        "orr": "45.4% (TNBC)",
+        "pfs": "6.7 mo",
+        "os": "TBD",
+        "notes": "OptiTROP-Breast01 Phase 3. ORR up to 77.6% in combo with PD-L1 in NSCLC."
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "High (Hematologic)",
+        "dlt": "TBD",
+        "common_ae": [
+          "Neutropenia",
+          "Stomatitis",
+          "Anemia",
+          "Rash"
+        ],
+        "notes": "Stomatitis is a frequent Grade 3 AE."
+      },
+      "immunogenicity": {
+        "ada_incidence": "Not Reported",
+        "notes": "K-Link stability may minimize immunogenicity."
+      },
+      "dose": {
+        "recommended_dose": "5 mg/kg",
+        "schedule": "Q2W or Q3W"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-006",
+    "canonical_name": "Toripalimab-ADC (JS108)",
+    "company": "Junshi Biosciences",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1/2",
+    "target": "TROP-2",
+    "payload_name": "SN-38",
+    "dar_mean": 8.0,
+    "technical_audit": {
+      "physical_consistency": "pass"
+    },
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB11952",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "CN-104292329-A"
+      }
+    },
+    "source_primary": "NCT04601469",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-007",
+    "canonical_name": "ABBV-155",
+    "company": "AbbVie",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1/2",
+    "target": "B7-H3",
+    "payload_name": "Bcl-xL inhibitor",
+    "payload_class": "bcl_xl_inhibitors",
+    "technical_audit": {
+      "physical_consistency": "pass",
+      "logic_check": "First-in-class Bcl-xL ADC; targets B7-H3 to deliver apoptotic payload."
+    },
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB15000",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "US-10155041"
+      }
+    },
+    "source_primary": "NCT03539628",
+    "dar_mean": 4.0,
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T3-001",
+    "canonical_name": "Tusamitamab ravtansine",
+    "company": "Sanofi",
+    "visibility": "internal_only",
+    "development_stage": "discontinued",
+    "target": "CEACAM5",
+    "binder_name": "SAR408701",
+    "binder_format": "Humanized IgG1",
+    "linker_name": "SPDB",
+    "linker_type": "cleavable (disulfide)",
+    "payload_name": "DM4",
+    "payload_class": "Tubulin inhibitor",
+    "conjugation_technology": "Lysine-based",
+    "dar_mean": 3.8,
+    "indication": "NSCLC",
+    "failure_analysis": {
+      "is_failed": true,
+      "reason_category": "efficacy",
+      "internal_insight": "Failed to meet PFS/OS endpoints in NSCLC Phase 3. Competition from Dato-DXd (higher DAR, bystander effect) likely reduced commercial viability."
+    },
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB15647",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "US-9617345"
+      }
+    },
+    "source_primary": "NCT04154956",
+    "technical_audit": "DM4 payload on CEACAM5. Failed Phase 3 CARMEN-LC03 trial. Modest efficacy benefit compared to docetaxel. CEACAM5 shedding and partial recycling may have limited intracellular payload accumulation.",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-008",
+    "canonical_name": "Trastuzumab duocarmazine",
+    "brand_name": "SYD985",
+    "company": "Byondis",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_3 (rejected/resubmitting)",
+    "target": "HER2",
+    "binder_name": "Trastuzumab",
+    "linker_name": "vc-seco-DUBA",
+    "payload_name": "Duocarmycin",
+    "payload_class": "dna_damaging_agents",
+    "dar_mean": 2.8,
+    "indication": "HER2+ Breast Cancer",
+    "technical_audit": {
+      "physical_consistency": "pass",
+      "logic_check": "DNA alkylator requires low DAR. Ocular toxicity is a known class effect."
+    },
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB14999",
+        "pdb_id": "1N8Z",
+        "patent_seq_id": "US-5821337"
+      }
+    },
+    "source_primary": "NCT03262935",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-009",
+    "canonical_name": "Camidanlumab tesirine",
+    "brand_name": "Cami",
+    "company": "ADC Therapeutics",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_2",
+    "target": "CD25",
+    "binder_name": "HuMax-TAC",
+    "linker_name": "Val-Ala-PABC",
+    "payload_name": "SG3199 (PBD)",
+    "payload_class": "dna_damaging_agents",
+    "dar_mean": 2.3,
+    "indication": "Hodgkin Lymphoma",
+    "technical_audit": {
+      "physical_consistency": "pass",
+      "logic_check": "Targeting Tregs in TME; Guillain-Barre syndrome risk observed."
+    },
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB15214",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "US-9636402"
+      }
+    },
+    "source_primary": "NCT04052997",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-010",
+    "canonical_name": "Zilovertamab vedotin",
+    "brand_name": "VLS-101",
+    "company": "Merck (MSD) / VelosBio",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_2/3",
+    "target": "ROR1",
+    "binder_name": "Zilovertamab",
+    "linker_name": "mc-val-cit-PABC",
+    "payload_name": "MMAE",
+    "payload_class": "tubulin_inhibitors",
+    "dar_mean": 4.0,
+    "indication": "MCL, DLBCL",
+    "technical_audit": {
+      "physical_consistency": "pass",
+      "logic_check": "Standard Seagen platform applied to ROR1."
+    },
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB15852",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "US-9217040"
+      }
+    },
+    "source_primary": "NCT03833180",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-011",
+    "canonical_name": "Farletuzumab ecteribulin",
+    "brand_name": "MORAb-202",
+    "company": "Eisai / BMS",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_2",
+    "target": "FRα",
+    "binder_name": "Farletuzumab",
+    "linker_name": "Cathepsin B cleavable",
+    "payload_name": "Eribulin",
+    "payload_class": "tubulin_inhibitors",
+    "dar_mean": 4.0,
+    "indication": "Ovarian Cancer",
+    "technical_audit": {
+      "physical_consistency": "pass",
+      "logic_check": "Eribulin payload provides bystander effect; differentiated from DM4."
+    },
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB06003",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "US-7737258"
+      }
+    },
+    "source_primary": "NCT04300556",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-012",
+    "canonical_name": "Upifitamab rilsodotin",
+    "brand_name": "UpRi",
+    "company": "Mersana",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_3 (paused/terminated)",
+    "target": "NaPi2b",
+    "binder_name": "Upifitamab",
+    "linker_name": "Dolaflexin",
+    "payload_name": "Auristatin F-HPA",
+    "payload_class": "tubulin_inhibitors",
+    "dar_mean": 10.0,
+    "indication": "Ovarian Cancer",
+    "technical_audit": {
+      "physical_consistency": "pass",
+      "logic_check": "High DAR 10 polymer scaffold; bleeding events led to clinical hold."
+    },
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB15572",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "US-9856324"
+      }
+    },
+    "source_primary": "NCT04315233",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-013",
+    "canonical_name": "Telisotuzumab vedotin",
+    "brand_name": "Teliso-V",
+    "company": "AbbVie",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_3",
+    "target": "MET",
+    "binder_name": "ABT-700",
+    "linker_name": "mc-val-cit-PABC",
+    "payload_name": "MMAE",
+    "payload_class": "tubulin_inhibitors",
+    "dar_mean": 3.1,
+    "indication": "NSCLC (c-Met overexpressed), EGFR-wild type",
+    "technical_audit": "Targets c-Met overexpressing NSCLC. Uses standard vc-PABC-MMAE platform. Phase 3 LUMINOSITY ongoing.",
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB14763",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "US-9346884"
+      }
+    },
+    "source_primary": "NCT03539536",
+    "patent_ids": [
+      "US9346884",
+      "US10124068"
+    ],
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-014",
+    "canonical_name": "BL-B01D1",
+    "company": "SystImmune / BMS",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_3",
+    "target": "EGFR x HER3",
+    "binder_format": "Bispecific",
+    "linker_name": "Cleavable peptide",
+    "payload_name": "Ed-04 (TOP1i)",
+    "payload_class": "topoisomerase_I_inhibitors",
+    "dar_mean": 8.0,
+    "indication": "NSCLC, Breast Cancer",
+    "technical_audit": "Bispecific EGFRxHER3 ADC. Uses proprietary TOP1i payload Ed-04.",
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB18003",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "CN-112048001-A"
+      }
+    },
+    "source_primary": "NCT05983432",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "29.3% (ESCC), 54.6% (NPC)",
+        "pfs": "8.38 mo (NPC)",
+        "os": "TBD",
+        "notes": "Breakthrough data in Nasopharyngeal Carcinoma."
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "63.3% (2.5mg/kg)",
+        "dlt": "TBD",
+        "common_ae": [
+          "Anemia",
+          "Leukopenia",
+          "Thrombocytopenia",
+          "ILD"
+        ],
+        "notes": "Highly hematologic toxicity profile."
+      },
+      "immunogenicity": {
+        "ada_incidence": "Not Reported",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "2.5 mg/kg",
+        "schedule": "D1, D8 Q3W"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-015",
+    "canonical_name": "IBI343",
+    "company": "Innovent Biologics",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_3",
+    "target": "Claudin18.2",
+    "binder_name": "Anti-CLDN18.2 (clone IBI343)",
+    "linker_name": "Cleavable peptide (DXd-like)",
+    "payload_name": "Proprietary TOP1i",
+    "payload_class": "topoisomerase_I_inhibitors",
+    "dar_mean": 8.0,
+    "indication": "Gastric Cancer, Pancreatic Cancer",
+    "technical_audit": "High-DAR Topo1i platform. Competing for first-in-class CLDN18.2 ADC approval in China.",
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB18004",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "CN-113045678-A"
+      }
+    },
+    "source_primary": "NCT05458219",
+    "patent_ids": [
+      "CN113045678",
+      "WO2021121303"
+    ],
+    "clinical_data": {
+      "efficacy": {
+        "orr": "29.0% (CLDN18.2 high)",
+        "pfs": "5.5 mo",
+        "os": "TBD",
+        "notes": "Phase 1 trial in Gastric/GEJ cancer."
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "Moderate",
+        "dlt": "TBD",
+        "common_ae": [
+          "Myelosuppression",
+          "Neutropenia",
+          "Febrile neutropenia"
+        ],
+        "notes": "DLT observed at 10 mg/kg."
+      },
+      "immunogenicity": {
+        "ada_incidence": "Not Reported",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "6 mg/kg",
+        "schedule": "Q3W"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-016",
+    "canonical_name": "CMG901",
+    "brand_name": "AZD0901",
+    "company": "Keymed / AstraZeneca",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_3",
+    "target": "Claudin18.2",
+    "binder_name": "Anti-CLDN18.2 (clone CMG901)",
+    "linker_name": "mc-val-cit-PABC",
+    "payload_name": "MMAE",
+    "payload_class": "tubulin_inhibitors",
+    "dar_mean": 4.0,
+    "indication": "Gastric Cancer",
+    "technical_audit": "First CLDN18.2 ADC to show clinical signal. Licensed to AstraZeneca for $1.1B. vc-PABC-MMAE platform.",
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB18005",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "CN-111004321-A"
+      }
+    },
+    "source_primary": "NCT04805307",
+    "patent_ids": [
+      "CN111004321",
+      "US11773177"
+    ],
+    "clinical_data": {
+      "efficacy": {
+        "orr": "35% overall, 48% (2.2mg/kg)",
+        "pfs": "4.8 mo",
+        "os": "11.8 mo",
+        "notes": "CLDN18.2 high Gastric/GEJ patients."
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "55%",
+        "dlt": "TBD",
+        "common_ae": [
+          "Nausea",
+          "Anemia",
+          "Neutropenia"
+        ],
+        "notes": "Serious AEs reported in 32%."
+      },
+      "immunogenicity": {
+        "ada_incidence": "Not Reported",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "2.2 - 3.0 mg/kg",
+        "schedule": "Q3W"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-017",
+    "canonical_name": "ARX788",
+    "company": "Ambrx / NovoCodex",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_3",
+    "target": "HER2",
+    "binder_name": "Trastuzumab-like",
+    "linker_name": "Non-cleavable (PEG-AS)",
+    "payload_name": "AS269 (Tubulin inhibitor)",
+    "payload_class": "tubulin_inhibitors",
+    "conjugation_technology": "unnatural_amino_acid",
+    "dar_mean": 2.0,
+    "indication": "HER2+ Breast Cancer, Gastric Cancer",
+    "technical_audit": {
+      "physical_consistency": "pass",
+      "logic_check": "Site-specific DAR 2 using pAF; highly stable non-cleavable linker."
+    },
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB18006",
+        "pdb_id": "1N8Z",
+        "patent_seq_id": "US-9931415"
+      }
+    },
+    "source_primary": "NCT04829604",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T3-002",
+    "canonical_name": "Praluzatamab ravtansine",
+    "brand_name": "CX-2009",
+    "company": "CytomX Therapeutics",
+    "visibility": "public_ok",
+    "development_stage": "discontinued",
+    "target": "CD166 (ALCAM)",
+    "binder_format": "Probody_Masked_ADC",
+    "linker_name": "SPDB",
+    "payload_name": "DM4",
+    "dar_mean": 3.5,
+    "indication": "Breast Cancer",
+    "failure_analysis": {
+      "is_failed": true,
+      "reason_category": "toxicity_and_efficacy",
+      "internal_insight": "Probody masking failed to completely prevent off-target toxicity. Ocular and neuropathic toxicities occurred. Narrow therapeutic window led to discontinuation."
+    },
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB15132",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "US-9828439"
+      }
+    },
+    "source_primary": "NCT03149549",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-018",
+    "canonical_name": "YL201 / BNT326",
+    "company": "MediLink  / BioNTech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_2",
+    "target": "HER3",
+    "linker_name": "TMALIN",
+    "payload_name": "TOP1i",
+    "dar_mean": 8.0,
+    "indication": "NSCLC, Breast Cancer",
+    "technical_audit": {
+      "physical_consistency": "pass",
+      "logic_check": "Utilizes TMALIN platform for TME-specific extracellular cleavage, overcoming low internalization of some targets."
+    },
+    "sequence_data": {
+      "structural_links": {
+        "drugbank_id": "DB18007",
+        "pdb_id": "None (Proprietary)",
+        "patent_seq_id": "CN-114014945-A"
+      }
+    },
+    "source_primary": "NCT05653752",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-200",
+    "canonical_name": "Raludotatug deruxtecan",
+    "brand_name": "DS-6000",
+    "company": "Daiichi Sankyo",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_3",
+    "target": "CDH6",
+    "binder_name": "DS-6000a (Humanized anti-CDH6 IgG1)",
+    "linker_name": "GGFG (Tetrapeptide)",
+    "payload_name": "DXd",
+    "dar_mean": 8.0,
+    "indication": "Platinum-resistant Ovarian Cancer, Peritoneal/Fallopian Tube Cancer",
+    "technical_audit": "Phase 2 REJOICE-Ovarian01: 50.0% ORR at 5.6 mg/kg dose. Moving to Phase 3 vs chemotherapy. CDH6-directed ADC with DXd platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "source_primary": "PMID: 34711587, REJOICE-Ovarian01",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "50.0%",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": "REJOICE-Ovarian01 Phase 2 data presented at ESMO 2025."
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "Moderate",
+        "dlt": "TBD",
+        "common_ae": [
+          "Nausea",
+          "Anemia",
+          "Asthenia"
+        ],
+        "notes": "4 cases of ILD reported in all-dose cohort."
+      },
+      "immunogenicity": {
+        "ada_incidence": "Low",
+        "notes": "Estimated <5% based on DXd platform."
+      },
+      "dose": {
+        "recommended_dose": "5.6 mg/kg",
+        "schedule": "Q3W"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-201",
+    "canonical_name": "DS-3939a",
+    "brand_name": "DS-3939",
+    "company": "Daiichi Sankyo",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "TA-MUC1",
+    "binder_name": "Humanized anti-MUC1 IgG1",
+    "linker_name": "GGFG (Tetrapeptide)",
+    "payload_name": "DXd",
+    "dar_mean": 8.0,
+    "indication": "TA-MUC1-expressing Advanced Solid Tumors",
+    "technical_audit": "Targeting MUC1 using the validated DXd platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-202",
+    "canonical_name": "Kelun-Biotech SKB315",
+    "brand_name": "SKB315",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_2",
+    "target": "CLDN18.2",
+    "binder_name": "Anti-CLDN18.2 antibody",
+    "linker_name": "K-Link (Cleavable)",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "CLDN18.2-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets CLDN18.2. Kelun's proprietary Topo1i platform (K-Link).",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "patent_ids": [
+      "CN113174005",
+      "WO2021147926"
+    ],
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-203",
+    "canonical_name": "Kelun-Biotech SKB410",
+    "brand_name": "SKB410",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "Nectin-4",
+    "binder_name": "MK-3120 (Anti-Nectin-4)",
+    "linker_name": "K-Link (Cleavable)",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "Nectin-4-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets Nectin-4. Collaboration with MSD (MK-3120).",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-204",
+    "canonical_name": "Hengrui SHR-A1904",
+    "brand_name": "SHR-A1904",
+    "company": "Hengrui",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_2",
+    "target": "CLDN18.2",
+    "binder_name": "Humanized anti-CLDN18.2 IgG1",
+    "linker_name": "mc-Gly-Gly-Phe-Gly (GGFG)",
+    "payload_name": "Rezetecan (SHR169106)",
+    "dar_mean": 4.0,
+    "indication": "Advanced Gastric or Gastroesophageal Junction (GEJ) Cancer",
+    "technical_audit": "Targets CLDN18.2. Licensed to Merck KGaA for $1.4B. High DAR Topo1i rezetecan payload.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "source_primary": "Nature Medicine 2025, NCT05043987",
+    "patent_ids": [
+      "CN113264955",
+      "WO2021151441"
+    ],
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-205",
+    "canonical_name": "Hengrui SHR-A1912",
+    "brand_name": "SHR-A1912",
+    "company": "Hengrui",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_2",
+    "target": "CD79b",
+    "binder_name": "Anti-CD79b antibody",
+    "linker_name": "Cleavable peptide linker",
+    "payload_name": "Topoisomerase I inhibitor",
+    "dar_mean": 8.0,
+    "indication": "CD79b-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets CD79b for B-NHL. In Phase 3 development in China.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "patent_ids": [
+      "CN114014945",
+      "WO2022022421"
+    ],
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-206",
+    "canonical_name": "Hengrui SHR-A2009",
+    "brand_name": "SHR-A2009",
+    "company": "Hengrui",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_2",
+    "target": "HER3",
+    "binder_name": "Ruzaltatug rezetecan (Anti-HER3)",
+    "linker_name": "Maleimidocaproyl tetrapeptide (GGFG)",
+    "payload_name": "SHR169106 (TOP1i)",
+    "dar_mean": 4,
+    "indication": "HER3-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets HER3. Fast Track for NSCLC. Evidence: PMID:36045843.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-207",
+    "canonical_name": "Lepu Biopharma MRG002",
+    "brand_name": "MRG002",
+    "company": "Lepu Biopharma",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_3",
+    "target": "HER2",
+    "binder_name": "Humanized anti-HER2 IgG1",
+    "linker_name": "vc-PABC",
+    "payload_name": "MMAE",
+    "dar_mean": 3.6,
+    "indication": "HER2-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets HER2. Cleavable vc-PABC linker with MMAE payload.",
+    "payload_class": "Tubulin Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-208",
+    "canonical_name": "Lepu Biopharma MRG003",
+    "brand_name": "MRG003",
+    "company": "Lepu Biopharma",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_3",
+    "target": "EGFR",
+    "binder_name": "Humanized anti-EGFR IgG1",
+    "linker_name": "vc-PABC",
+    "payload_name": "MMAE",
+    "dar_mean": 3.8,
+    "indication": "EGFR-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets EGFR. Uses standard vc-PABC MMAE platform.",
+    "payload_class": "Tubulin Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-209",
+    "canonical_name": "Ambrx ARX517",
+    "brand_name": "ARX517",
+    "company": "Ambrx",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_2",
+    "target": "PSMA",
+    "binder_name": "Humanized anti-PSMA IgG1",
+    "linker_name": "pAcPhe (Unnatural AA)",
+    "payload_name": "MMAE",
+    "dar_mean": 2.0,
+    "indication": "PSMA-expressing Advanced Solid Tumors",
+    "technical_audit": "Site-specific conjugation using unnatural amino acid (pAcPhe) at position 121 of heavy chain. Precise DAR 2.0.",
+    "payload_class": "Tubulin Inhibitor",
+    "linker_type": "Non-cleavable (Site-specific)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-210",
+    "canonical_name": "Mersana XMT-1592",
+    "brand_name": "XMT-1592",
+    "company": "Mersana",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "NaPi2b",
+    "binder_name": "Humanized anti-NaPi2b IgG1",
+    "linker_name": "Dolasynthen (Site-specific scaffold)",
+    "payload_name": "AF-HPA (Auristatin F-hydroxypropylamide)",
+    "dar_mean": 6.0,
+    "indication": "NaPi2b-expressing Advanced Solid Tumors",
+    "technical_audit": "Site-specific conjugation using Dolasynthen platform to achieve precise DAR 6. AF-HPA is a proprietary auristatin derivative.",
+    "payload_class": "Tubulin Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-211",
+    "canonical_name": "Mersana XMT-1660",
+    "brand_name": "XMT-1660",
+    "company": "Mersana",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "B7-H4",
+    "binder_name": "Anti-B7-H4 antibody",
+    "linker_name": "Dolasynthen",
+    "payload_name": "AF-HPA",
+    "dar_mean": 6.0,
+    "indication": "B7-H4-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets B7-H4. Uses Dolasynthen platform with auristatin payload.",
+    "payload_class": "Tubulin Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-212",
+    "canonical_name": "Seagen SGN-CD228A",
+    "brand_name": "SGN-CD228A",
+    "company": "Seagen",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "CD228",
+    "binder_name": "hL49 (Humanized anti-CD228 IgG1)",
+    "linker_name": "vc-PABC",
+    "payload_name": "MMAE",
+    "dar_mean": 4.0,
+    "indication": "CD228-expressing Advanced Solid Tumors",
+    "technical_audit": "Humanized IgG1 antibody (clone hL49) targeting CD228. Evidence: PMID:36800443.",
+    "payload_class": "Tubulin Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-213",
+    "canonical_name": "Seagen SGN-B6A",
+    "brand_name": "SGN-B6A",
+    "company": "Seagen",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_2",
+    "target": "Integrin beta-6",
+    "binder_name": "Anti-Integrin beta-6 antibody",
+    "linker_name": "vc-PABC",
+    "payload_name": "MMAE",
+    "dar_mean": 4.0,
+    "indication": "Integrin beta-6-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets Integrin beta-6. Vedotin ADC. Evidence: PMID:37619980.",
+    "payload_class": "Tubulin Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-214",
+    "canonical_name": "Seagen SGN-STNV",
+    "brand_name": "SGN-STNV",
+    "company": "Seagen",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "STn",
+    "binder_name": "Anti-STn antibody",
+    "linker_name": "vc-PABC",
+    "payload_name": "MMAE",
+    "dar_mean": 4.0,
+    "indication": "STn-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets Sialyl-Tn (STn) antigen. Terminated in Phase 1 (2024).",
+    "payload_class": "Tubulin Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-215",
+    "canonical_name": "AbbVie ABBV-400",
+    "brand_name": "ABBV-400",
+    "company": "AbbVie",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_2",
+    "target": "c-Met",
+    "binder_name": "Telisotuzumab adizutecan (Temab-A)",
+    "linker_name": "Cleavable peptide",
+    "payload_name": "Adizutecan (TOP1i)",
+    "dar_mean": 8.0,
+    "indication": "c-Met-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets c-Met. Phase 3 for CRC. Evidence: NCT05029882.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-216",
+    "canonical_name": "AbbVie ABBV-011",
+    "brand_name": "ABBV-011",
+    "company": "AbbVie",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "SEZ6",
+    "binder_name": "Anti-SEZ6 antibody",
+    "linker_name": "Hydrazone",
+    "payload_name": "Calicheamicin",
+    "dar_mean": 2.0,
+    "indication": "SEZ6-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets SEZ6. Uses calicheamicin payload.",
+    "payload_class": "DNA Damaging Agent",
+    "linker_type": "Cleavable (pH)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-217",
+    "canonical_name": "AbbVie ABBV-085",
+    "brand_name": "ABBV-085",
+    "company": "AbbVie",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "LRRC15",
+    "binder_name": "Anti-LRRC15 antibody",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "LRRC15-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets LRRC15. Phase 1 development.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-218",
+    "canonical_name": "Pivekimab sunirine",
+    "brand_name": "IMGN632",
+    "company": "ImmunoGen",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_3",
+    "target": "CD123",
+    "binder_name": "Anti-CD123 antibody",
+    "linker_name": "s-SPDB",
+    "payload_name": "IGN (DGN462)",
+    "dar_mean": 2.0,
+    "indication": "CD123-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets CD123. Phase 2/3 development.",
+    "payload_class": "DNA Damaging Agent",
+    "linker_type": "Cleavable (Disulfide)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-219",
+    "canonical_name": "ImmunoGen IMGN151",
+    "brand_name": "IMGN151",
+    "company": "ImmunoGen",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "FR alpha",
+    "binder_name": "Anti-FRalpha antibody (IMGN151)",
+    "linker_name": "s-SPDB",
+    "payload_name": "DM4",
+    "dar_mean": 3.5,
+    "indication": "FR alpha-expressing Advanced Solid Tumors",
+    "technical_audit": "Next-generation FRalpha ADC targeting low expression tumors.",
+    "payload_class": "Tubulin Inhibitor",
+    "linker_type": "Cleavable (Disulfide)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-220",
+    "canonical_name": "Bio-Thera BAT8001",
+    "brand_name": "BAT8001",
+    "company": "Bio-Thera",
+    "visibility": "public_ok",
+    "development_stage": "discontinued",
+    "target": "HER2",
+    "binder_name": "Anti-HER2 antibody",
+    "linker_name": "6-maleimidocaproic acid (non-cleavable)",
+    "payload_name": "Maytansinoid (DM1)",
+    "dar_mean": 3.5,
+    "indication": "HER2-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets HER2. Terminated in Phase 3.",
+    "payload_class": "Tubulin Inhibitor",
+    "linker_type": "Non-cleavable",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-221",
+    "canonical_name": "Bio-Thera BAT8003",
+    "brand_name": "BAT8003",
+    "company": "Bio-Thera",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_2",
+    "target": "TROP-2",
+    "binder_name": "Anti-Trop2 antibody",
+    "linker_name": "Non-cleavable (Batansine platform)",
+    "payload_name": "Batansine (Maytansinoid)",
+    "dar_mean": 3.5,
+    "indication": "TROP-2-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets Trop2. Discontinued at Phase 1.",
+    "payload_class": "Tubulin Inhibitor",
+    "linker_type": "Non-cleavable",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-222",
+    "canonical_name": "Bio-Thera BAT8008",
+    "brand_name": "BAT8008",
+    "company": "Bio-Thera",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "B7-H3",
+    "binder_name": "Anti-Trop2 antibody",
+    "linker_name": "Non-cleavable",
+    "payload_name": "Batansine",
+    "dar_mean": 3.5,
+    "indication": "B7-H3-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets Trop2. Phase 1 development.",
+    "payload_class": "Tubulin Inhibitor",
+    "linker_type": "Non-cleavable",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-223",
+    "canonical_name": "RemeGen RC88",
+    "brand_name": "RC88",
+    "company": "RemeGen",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_2",
+    "target": "Mesothelin",
+    "binder_name": "Anti-MSLN antibody",
+    "linker_name": "vc-PABC",
+    "payload_name": "MMAE",
+    "dar_mean": 4.0,
+    "indication": "Mesothelin-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets Mesothelin (MSLN). RemeGen proprietary antibody with vc-MMAE platform.",
+    "payload_class": "Tubulin Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "patent_ids": [
+      "CN106632616",
+      "US10463746"
+    ],
+    "clinical_data": {
+      "efficacy": {
+        "orr": "45.2% (Ovarian)",
+        "pfs": "6.87 mo (NSCLC high MSLN)",
+        "os": "TBD",
+        "notes": "Strong signal in MSLN-high ovarian cancer."
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "Manageable",
+        "dlt": "TBD",
+        "common_ae": [
+          "Neutropenia",
+          "AST/ALT elevation"
+        ],
+        "notes": "Safety profile consistent with vc-MMAE platform."
+      },
+      "immunogenicity": {
+        "ada_incidence": "Not Reported",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "2.0 mg/kg",
+        "schedule": "Q3W"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-224",
+    "canonical_name": "RemeGen RC108",
+    "brand_name": "RC108",
+    "company": "RemeGen",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_2",
+    "target": "c-Met",
+    "binder_name": "Anti-c-Met antibody",
+    "linker_name": "vc-PABC",
+    "payload_name": "MMAE",
+    "dar_mean": 4.0,
+    "indication": "c-Met-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets c-Met. Phase 2 for solid tumors overexpressing c-Met.",
+    "payload_class": "Tubulin Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "patent_ids": [
+      "CN110305141",
+      "US11291732"
+    ],
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-225",
+    "canonical_name": "RemeGen RC118",
+    "brand_name": "RC118",
+    "company": "RemeGen",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_2",
+    "target": "Claudin18.2",
+    "binder_name": "Anti-CLDN18.2 antibody",
+    "linker_name": "vc-PABC",
+    "payload_name": "MMAE",
+    "dar_mean": 4.0,
+    "indication": "Claudin18.2-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets CLDN18.2. Phase 1 development.",
+    "payload_class": "Tubulin Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-226",
+    "canonical_name": "LaNova LM-302",
+    "brand_name": "LM-302",
+    "company": "LaNova",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_2",
+    "target": "Claudin18.2",
+    "binder_name": "Anti-CLDN18.2 antibody",
+    "linker_name": "vc-PABC",
+    "payload_name": "MMAE",
+    "dar_mean": 4.0,
+    "indication": "Claudin18.2-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets CLDN18.2. Phase 1 development.",
+    "payload_class": "Tubulin Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-227",
+    "canonical_name": "LaNova LM-305",
+    "brand_name": "LM-305",
+    "company": "LaNova",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "GPRC5D",
+    "binder_name": "Anti-GPRC5D antibody",
+    "linker_name": "vc-PABC",
+    "payload_name": "MMAE",
+    "dar_mean": 4.0,
+    "indication": "GPRC5D-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets GPRC5D. Licensed to AstraZeneca.",
+    "payload_class": "Tubulin Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-228",
+    "canonical_name": "BNT323",
+    "brand_name": "DB-1303",
+    "company": "DualityBio",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_3",
+    "target": "HER2",
+    "binder_name": "DB-1303 (Trastuzumab Pamirtecan)",
+    "linker_name": "Cleavable peptide (DITAC platform)",
+    "payload_name": "P1003 (TOP1i)",
+    "dar_mean": 8.0,
+    "indication": "HER2-expressing Advanced Solid Tumors",
+    "technical_audit": "DualityBio HER2 ADC. FDA Breakthrough Designation. Partnered with BioNTech.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "patent_ids": [
+      "CN114845778",
+      "WO2022143890"
+    ],
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-229",
+    "canonical_name": "BNT324",
+    "brand_name": "DB-1305",
+    "company": "DualityBio",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_2",
+    "target": "TROP-2",
+    "binder_name": "DB-1311 (Anti-B7-H3)",
+    "linker_name": "Cleavable peptide (DITAC platform)",
+    "payload_name": "Proprietary TOP1i",
+    "dar_mean": 8.0,
+    "indication": "TROP-2-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets B7-H3. DITAC platform candidate.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-230",
+    "canonical_name": "BNT325",
+    "brand_name": "DB-1311",
+    "company": "DualityBio",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "B7-H3",
+    "binder_name": "DB-1305 (Anti-TROP2)",
+    "linker_name": "Cleavable peptide (DITAC platform)",
+    "payload_name": "Proprietary TOP1i",
+    "dar_mean": 8.0,
+    "indication": "B7-H3-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets B7-H3. DITAC platform candidate with high potency Topo1i payload.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "patent_ids": [
+      "CN116348398",
+      "WO2023051759"
+    ],
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-231",
+    "canonical_name": "BNT326",
+    "brand_name": "YL202",
+    "company": "MediLink",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_2",
+    "target": "HER3",
+    "binder_name": "Anti-HER3 antibody (YL202)",
+    "linker_name": "TMALIN",
+    "payload_name": "Topo1i",
+    "dar_mean": 8.0,
+    "indication": "HER3-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets HER3 (ERBB3). Developed by MediLink/BioNTech.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-232",
+    "canonical_name": "MediLink YL211",
+    "brand_name": "YL211",
+    "company": "MediLink",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "c-Met",
+    "binder_name": "Anti-c-Met antibody",
+    "linker_name": "TMALIN",
+    "payload_name": "Topo1i",
+    "dar_mean": 8.0,
+    "indication": "c-Met-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets c-Met. Uses TMALIN platform. Licensed to Roche (2024).",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-233",
+    "canonical_name": "MediLink YL205",
+    "brand_name": "YL205",
+    "company": "MediLink",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "NaPi2b",
+    "binder_name": "Anti-NaPi-2b antibody",
+    "linker_name": "TMALIN",
+    "payload_name": "Topo1i",
+    "dar_mean": 8.0,
+    "indication": "NaPi2b-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets NaPi-2b. Uses MediLink TMALIN platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-234",
+    "canonical_name": "CSPC CPO102",
+    "brand_name": "CPO102",
+    "company": "CSPC",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "Claudin18.2",
+    "binder_name": "SYSA-1801 (Anti-CLDN18.2)",
+    "linker_name": "PEG3-Val-Cit-PABC",
+    "payload_name": "MMAE",
+    "dar_mean": 4.0,
+    "indication": "Claudin18.2-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets CLDN18.2. Developed by Conjupro/CSPC. Phase 1 (NCT05043987).",
+    "payload_class": "Tubulin Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-235",
+    "canonical_name": "Kelun-Biotech A166",
+    "brand_name": "A166",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_3",
+    "target": "HER2",
+    "binder_name": "Trastuzumab botidotin (Anti-HER2)",
+    "linker_name": "Valine-Citrulline (vc)",
+    "payload_name": "Duostatin-5 (MMAF derivative)",
+    "dar_mean": 2,
+    "indication": "HER2-expressing Advanced Solid Tumors",
+    "technical_audit": "Site-specific HER2 ADC. NDA accepted in China (2025).",
+    "payload_class": "Tubulin Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-236",
+    "canonical_name": "Kelun-Biotech A188",
+    "brand_name": "A188",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "c-Met",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "c-Met-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-237",
+    "canonical_name": "Kelun-Biotech A264",
+    "brand_name": "A264",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_3",
+    "target": "TROP-2",
+    "binder_name": "Sacituzumab tirumotecan (Anti-TROP2)",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "TROP-2-expressing Advanced Solid Tumors",
+    "technical_audit": "TROP2-directed ADC (SKB264). Phase 3 development.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-238",
+    "canonical_name": "Kelun-Biotech A400",
+    "brand_name": "A400",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "B7-H3",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "Topo1i",
+    "dar_mean": 7.4,
+    "indication": "B7-H3-expressing Advanced Solid Tumors",
+    "technical_audit": "RET targeted ADC (also known as KL-A400).",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-239",
+    "canonical_name": "Kelun-Biotech A223",
+    "brand_name": "A223",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "Nectin-4",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "Nectin-4-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-240",
+    "canonical_name": "Kelun-Biotech A204",
+    "brand_name": "A204",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "Claudin18.2",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "Claudin18.2-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-241",
+    "canonical_name": "Kelun-Biotech A289",
+    "brand_name": "A289",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "EGFR",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "EGFR-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-242",
+    "canonical_name": "Kelun-Biotech A215",
+    "brand_name": "A215",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "HER3",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "HER3-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-243",
+    "canonical_name": "Kelun-Biotech A296",
+    "brand_name": "A296",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "CD79b",
+    "binder_name": "Anti-STING antibody",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "CD79b-expressing Advanced Solid Tumors",
+    "technical_audit": "Targets STING. Phase 1 development.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-244",
+    "canonical_name": "Kelun-Biotech A219",
+    "brand_name": "A219",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "CD22",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "CD22-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-245",
+    "canonical_name": "Kelun-Biotech A206",
+    "brand_name": "A206",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "CD33",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "CD33-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-246",
+    "canonical_name": "Kelun-Biotech A255",
+    "brand_name": "A255",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "CD30",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "CD30-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-247",
+    "canonical_name": "Kelun-Biotech A233",
+    "brand_name": "A233",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "CD19",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "CD19-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-248",
+    "canonical_name": "Kelun-Biotech A244",
+    "brand_name": "A244",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "BCMA",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "BCMA-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-249",
+    "canonical_name": "Kelun-Biotech A277",
+    "brand_name": "A277",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "GPRC5D",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "GPRC5D-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-250",
+    "canonical_name": "Kelun-Biotech A288",
+    "brand_name": "A288",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "FcRH5",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "FcRH5-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-251",
+    "canonical_name": "Kelun-Biotech A299",
+    "brand_name": "A299",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "CLL-1",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "CLL-1-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-252",
+    "canonical_name": "Kelun-Biotech A300",
+    "brand_name": "A300",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "CD123",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "CD123-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-253",
+    "canonical_name": "Kelun-Biotech A311",
+    "brand_name": "A311",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "CD37",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "CD37-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-254",
+    "canonical_name": "Kelun-Biotech A322",
+    "brand_name": "A322",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "CD138",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "CD138-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-255",
+    "canonical_name": "Kelun-Biotech A333",
+    "brand_name": "A333",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "CD70",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "CD70-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-256",
+    "canonical_name": "Kelun-Biotech A344",
+    "brand_name": "A344",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "CD25",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "CD25-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-257",
+    "canonical_name": "Kelun-Biotech A355",
+    "brand_name": "A355",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "CD46",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "CD46-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-258",
+    "canonical_name": "Kelun-Biotech A366",
+    "brand_name": "A366",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "CD228",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "CD228-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-259",
+    "canonical_name": "Kelun-Biotech A377",
+    "brand_name": "A377",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "FAP",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "FAP-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-260",
+    "canonical_name": "Kelun-Biotech A388",
+    "brand_name": "A388",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "LGR5",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "LGR5-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-261",
+    "canonical_name": "Kelun-Biotech A399",
+    "brand_name": "A399",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "LRRC15",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "LRRC15-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-262",
+    "canonical_name": "Kelun-Biotech A411",
+    "brand_name": "A411",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "SLITRK6",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "SLITRK6-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-263",
+    "canonical_name": "Kelun-Biotech A422",
+    "brand_name": "A422",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "UPK2",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "UPK2-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-264",
+    "canonical_name": "Kelun-Biotech A433",
+    "brand_name": "A433",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "LIV-1",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "LIV-1-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-265",
+    "canonical_name": "Kelun-Biotech A444",
+    "brand_name": "A444",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "GCC",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "GCC-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-266",
+    "canonical_name": "Kelun-Biotech A455",
+    "brand_name": "A455",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "ASCT2",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "ASCT2-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  },
+  {
+    "id": "ADC-PROG-T2-267",
+    "canonical_name": "Kelun-Biotech A466",
+    "brand_name": "A466",
+    "company": "Kelun-Biotech",
+    "visibility": "public_ok",
+    "development_stage": "clinical_phase_1",
+    "target": "PTK7",
+    "binder_name": "Unknown",
+    "linker_name": "K-Link",
+    "payload_name": "KL610015 (Topo1i)",
+    "dar_mean": 7.4,
+    "indication": "PTK7-expressing Advanced Solid Tumors",
+    "technical_audit": "Estimated based on Kelun-Biotech's proprietary Topo1i platform.",
+    "payload_class": "Topoisomerase I Inhibitor",
+    "linker_type": "Cleavable (Protease)",
+    "clinical_data": {
+      "efficacy": {
+        "orr": "TBD",
+        "pfs": "TBD",
+        "os": "TBD",
+        "notes": ""
+      },
+      "safety": {
+        "grade3_plus_ae_rate": "TBD",
+        "dlt": "TBD",
+        "common_ae": [],
+        "notes": ""
+      },
+      "immunogenicity": {
+        "ada_incidence": "TBD",
+        "notes": ""
+      },
+      "dose": {
+        "recommended_dose": "TBD",
+        "schedule": "TBD"
+      }
+    }
+  }
+]

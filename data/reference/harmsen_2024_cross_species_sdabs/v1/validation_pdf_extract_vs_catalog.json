@@ -1,0 +1,30 @@
+{
+  "validated_at": "2026-05-06T21:06:54.837394+00:00",
+  "pdf_path": "C:\\Users\\NextVivo\\Downloads\\Data Sheet 1.pdf",
+  "catalog_path": "data/reference/harmsen_2024_cross_species_sdabs/v1/catalog.json",
+  "method_note": "pypdf text layer → regex clone rows → spaced_to_seq (multi-AA tokens expanded). Trailing hinge peptides (AHHSEDPSS / EPKIPQPQP / GTNEV) stripped before compare because catalog stores VHH only.",
+  "pdf_regex_rows": 16,
+  "catalog_clones": 16,
+  "hinge_removed_from_pdf_extract": {
+    "G3": "EPKIPQPQP",
+    "G6": "GTNEV",
+    "G13": "GTNEV",
+    "G18": "AHHSEDPSS",
+    "G19": "AHHSEDPSS",
+    "G23": "EPKIPQPQP",
+    "G24": "AHHSEDPSS",
+    "G7": "EPKIPQPQP",
+    "A2": "AHHSEDPSS",
+    "A4": "AHHSEDPSS",
+    "A6": "AHHSEDPSS",
+    "A7": "EPKIPQPQP",
+    "A12": "EPKIPQPQP",
+    "A16": "AHHSEDPSS"
+  },
+  "identical_count": 16,
+  "mismatch_count": 0,
+  "missing_in_pdf_extract": [],
+  "extra_clone_ids_in_pdf": [],
+  "mismatches": [],
+  "summary": "PASS: PDF second extraction matches catalog for all clones."
+}

@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "description": "Canine BCR Repertoire Stats and DLA Allele Frequencies for Engineering",
+    "version": "1.1",
+    "date": "2026-02-22",
+    "sources": [
+      "Molecular characterization of the VH repertoire in Canis familiaris (VH usage)",
+      "Frequency and distribution of alleles of canine MHC-II ... in 25 AKC breeds (DLA)",
+      "IMGT Repertoire (IG and TR)"
+    ]
+  },
+  "vh_gene_usage": {
+    "summary": "Canine VH repertoire is dominated by the VH1 family (approx. 80 genes), with limited usage of VH2 and VH3. Diversity is driven mainly by CDR3 junctional diversity and SHM rather than V-gene variety.",
+    "dominant_family": "VH1",
+    "high_frequency_genes": [
+      {
+        "gene": "VH1-62",
+        "mapped_imgt_id": "IGHV3-38*01",
+        "human_homolog": "VH3-21",
+        "note": "High frequency in multiple breeds; preferred scaffold candidate. Mapped to IGHV3-38*01 as functional surrogate."
+      },
+      {
+        "gene": "VH1-44",
+        "mapped_imgt_id": "IGHV3-23*01",
+        "human_homolog": "VH3-23",
+        "note": "High frequency in multiple breeds; preferred scaffold candidate. Mapped to IGHV3-23*01."
+      }
+    ]
+  },
+  "dla_core_panel": {
+    "description": "High-frequency, cross-breed shared alleles for broad coverage immunogenicity assessment. These alleles represent the 'common denominators' across major dog breeds.",
+    "alleles": [
+      {
+        "locus": "DLA-DRB1",
+        "allele": "DLA-DRB1*00101",
+        "frequency_note": "Shared by 16/25 AKC breeds"
+      },
+      {
+        "locus": "DLA-DRB1",
+        "allele": "DLA-DRB1*01501",
+        "frequency_note": "Shared by 19/25 AKC breeds"
+      },
+      {
+        "locus": "DLA-DQA1",
+        "allele": "DLA-DQA1*00101",
+        "frequency_note": "Major allele, monoallelic in some breeds (e.g., English Setter)"
+      },
+      {
+        "locus": "DLA-DQA1",
+        "allele": "DLA-DQA1*00601",
+        "frequency_note": "Widely shared across breeds"
+      },
+      {
+        "locus": "DLA-DQB1",
+        "allele": "DLA-DQB1*00201",
+        "frequency_note": "Shared by 17/25 AKC breeds"
+      },
+      {
+        "locus": "DLA-DQB1",
+        "allele": "DLA-DQB1*02301",
+        "frequency_note": "Shared by 18/25 AKC breeds"
+      }
+    ]
+  }
+}

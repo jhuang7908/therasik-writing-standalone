@@ -1,0 +1,28 @@
+# AutoDock Vina 1.2.7 (Python API) + Meeko — Linux/WSL only.
+# Fully pinned snapshot: environment_vina_locked.yml
+#
+# Create (conda-forge only, avoids Anaconda defaults ToS prompts):
+#   conda env create -f config/environment_vina.yml --override-channels
+#
+# Activate:
+#   conda activate vina
+#
+# Optional: command-line vina binary (same version) from
+#   https://github.com/ccsb-scripps/AutoDock-Vina/releases
+#   e.g. install to ~/.local/bin and add to PATH.
+
+name: vina
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - swig
+  - boost-cpp
+  - rdkit
+  - scipy
+  - gemmi
+  - pip
+  - pip:
+      - vina==1.2.7
+      - meeko==0.7.1

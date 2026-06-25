@@ -1,0 +1,186 @@
+name: Weekly Humanized Mice PPT & Video
+
+on:
+  schedule:
+    # Every Monday 01:00 UTC = Beijing 09:00 / Toronto 21:00 Sunday
+    - cron: "0 1 * * 1"
+  workflow_dispatch:
+    inputs:
+      replay_bundle:
+        description: "Replay frozen bundle (skip PubMed). Use for resending known content."
+        required: false
+        default: "humanized_mice_front_immunol_2026"
+        type: choice
+        options:
+          - "humanized_mice_front_immunol_2026"
+          - "in_vivo_car_tech_2026"
+          - "none"
+      send_mode:
+        description: "Send mode: full=full pipeline, wechat_only=WeChat email only, emails_only=send all 3 emails, pin_only=commit frozen images without sending email"
+        required: false
+        default: "wechat_only"
+        type: choice
+        options:
+          - "wechat_only"
+          - "full"
+          - "emails_only"
+          - "pin_only"
+      force_images:
+        description: "Force re-render all images (bypasses frozen cache)"
+        required: false
+        default: false
+        type: boolean
+      pin_to_frozen:
+        description: "Pin generated images to frozen bundle (only after human review)"
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  build-and-send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: write   # Allow pipeline bot to commit frozen images back
+
+    steps:
+      # ── 1. Checkout ──────────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── 2. Python setup ──────────────────────────────────────────────────────
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      # ── 3. System dependencies (ffmpeg + CJK fonts for WeChat PIL text) ─────
+      - name: Install ffmpeg and CJK fonts
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-cjk
+
+      # ── 4. Python packages ───────────────────────────────────────────────────
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install \
+            anthropic \
+            openai \
+            google-genai \
+            moviepy \
+            python-pptx \
+            Pillow \
+            requests \
+            pyyaml \
+            biopython
+
+      # ── 5. Write .env from GitHub Secrets ────────────────────────────────────
+      - name: Write .env file
+        run: |
+          mkdir -p content_generation_tools
+          cat > content_generation_tools/.env << 'EOF'
+          OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
+          ZHIPU_API_KEY=${{ secrets.ZHIPU_API_KEY }}
+          ARK_API_KEY=${{ secrets.ARK_API_KEY }}
+          GMAIL_USER=mail.jing.huang@gmail.com
+          GMAIL_APP_PASSWORD=${{ secrets.GMAIL_APP_PASSWORD }}
+          SMTP_HOST=mail.privateemail.com
+          SMTP_PORT=465
+          SMTP_USER=contact@therasik.com
+          SMTP_PASSWORD=${{ secrets.INSYNBIO_SMTP_PASSWORD }}
+          SMTP_FALLBACK_USER=contact@insynbio.com
+          SMTP_SSL=true
+          SMTP_TLS=false
+          EOF
+
+      # ── 6. Run the weekly pipeline ───────────────────────────────────────────
+      - name: Run weekly pipeline
+        # Skip pipeline execution if this is a pin-only run
+        if: ${{ github.event.inputs.pin_to_frozen != 'true' || github.event.inputs.send_mode != 'pin_only' }}
+        run: |
+          BUNDLE_ARG=""
+          if [ -n "${{ github.event.inputs.replay_bundle }}" ] && [ "${{ github.event.inputs.replay_bundle }}" != "none" ]; then
+            BUNDLE_ARG="--replay-bundle data/frozen/${{ github.event.inputs.replay_bundle }}"
+          fi
+
+          MODE="${{ github.event.inputs.send_mode }}"
+          # Default to full pipeline for scheduled runs
+          if [ -z "$MODE" ]; then MODE="full"; fi
+
+          if [ "$MODE" = "wechat_only" ]; then
+            python scripts/weekly_pipeline.py $BUNDLE_ARG --wechat-only
+          elif [ "$MODE" = "emails_only" ]; then
+            python scripts/weekly_pipeline.py $BUNDLE_ARG --emails-only
+          else
+            # full pipeline
+            FORCE_ARG=""
+            if [ "${{ github.event.inputs.force_images }}" = "true" ]; then
+              FORCE_ARG="--force-images"
+            fi
+            python scripts/weekly_pipeline.py $BUNDLE_ARG $FORCE_ARG
+          fi
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+
+      # ── 7. Upload artifacts (downloadable from GitHub Actions UI) ────────────
+      - name: Upload PPTX artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-pptx-${{ github.run_id }}
+          path: outputs/weekly_*/**.pptx
+          retention-days: 30
+
+      - name: Upload MP4 artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-mp4-${{ github.run_id }}
+          path: |
+            outputs/weekly_*/**.mp4
+          retention-days: 30
+
+      - name: Upload XHS images artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-xhs-images-${{ github.run_id }}
+          path: outputs/weekly_**/social_images/xhs/
+          retention-days: 30
+
+      - name: Upload WeChat images artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-wechat-images-${{ github.run_id }}
+          path: outputs/weekly_**/social_images/wechat/
+          retention-days: 30
+
+      - name: Upload social content JSON
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-social-json-${{ github.run_id }}
+          path: outputs/weekly_**/social.json
+          retention-days: 30
+
+      # ── 8. Commit weekly cache + freeze wechat images (only when pin_to_frozen=true) ──
+      - name: Commit updated article cache and pin wechat images
+        if: ${{ github.event.inputs.pin_to_frozen == 'true' }}
+        run: |
+          git config user.name  "NextVivo Pipeline Bot"
+          git config user.email "pipeline@nextvivo.com"
+          git add outputs/weekly_cache.json || true
+          # Pin all generated wechat images into the active frozen bundle for future replays
+          BUNDLE="${{ github.event.inputs.replay_bundle }}"
+          if [ -z "$BUNDLE" ] || [ "$BUNDLE" = "none" ]; then
+            BUNDLE="humanized_mice_front_immunol_2026"
+          fi
+          FROZEN_DIR="data/frozen/${BUNDLE}/wechat"
+          WECHAT_SRC=$(find outputs/weekly_*/social_images/wechat -name "wechat_inline_*.png" 2>/dev/null | head -1 | xargs dirname 2>/dev/null)
+          if [ -n "$WECHAT_SRC" ]; then
+            mkdir -p "$FROZEN_DIR"
+            cp "$WECHAT_SRC"/wechat_inline_*.png "$FROZEN_DIR/" 2>/dev/null || true
+            cp "$WECHAT_SRC"/wechat_cover.png "$FROZEN_DIR/" 2>/dev/null || true
+            git add "$FROZEN_DIR"/wechat_inline_*.png "$FROZEN_DIR"/wechat_cover.png || true
+            echo "Pinned to frozen bundle: $FROZEN_DIR"
+          fi
+          git diff --staged --quiet || git commit -m "chore: pin wechat images to frozen/${BUNDLE} [skip ci]"
+          git push || true

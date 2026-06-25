@@ -1,0 +1,96 @@
+name: NYC Community Events Digest
+
+on:
+  schedule:
+    # Daily @ 07:00 America/New_York (EDT 11:00 / EST 12:00 UTC) — adjust hour gate below
+    - cron: "0 11 * * *"
+    - cron: "0 12 * * *"
+  workflow_dispatch:
+    inputs:
+      horizon_days:
+        description: "Look-ahead days"
+        required: false
+        default: "7"
+      send_email:
+        description: "Send digest email"
+        required: false
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install --upgrade pip requests python-dotenv
+
+      - name: Write runtime env
+        run: |
+          mkdir -p content_generation_tools
+          cat > content_generation_tools/.env << 'EOF'
+          INSYNBIO_SMTP_HOST=${{ secrets.INSYNBIO_SMTP_HOST }}
+          INSYNBIO_SMTP_PORT=${{ secrets.INSYNBIO_SMTP_PORT }}
+          INSYNBIO_SMTP_USER=${{ secrets.INSYNBIO_SMTP_USER }}
+          INSYNBIO_SMTP_PASS=${{ secrets.INSYNBIO_SMTP_PASS }}
+          NYC_COMMUNITY_NOTIFY_EMAILS=${{ secrets.NYC_COMMUNITY_NOTIFY_EMAILS }}
+          EOF
+
+      - name: Skip if not 07:00 ET (scheduled runs only)
+        id: tz
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Bind run decision to cron expression to be robust against GitHub Actions delays
+          SCHED="${{ github.event.schedule }}"
+          TZ_ZONE=$(TZ=America/New_York date +%Z)
+          RUN="false"
+
+          if [ "$TZ_ZONE" = "EDT" ]; then
+            if [ "$SCHED" = "0 11 * * *" ]; then
+              RUN="true"
+            fi
+          else
+            # EST or other Standard Time
+            if [ "$SCHED" = "0 12 * * *" ]; then
+              RUN="true"
+            fi
+          fi
+
+          echo "run=$RUN" >> "$GITHUB_OUTPUT"
+          echo "Schedule: $SCHED, Timezone: $TZ_ZONE, Run: $RUN"
+
+      - name: Run daily digest
+        if: steps.tz.outputs.run == 'true'
+        run: |
+          EXTRA=""
+          if [ "${{ github.event.inputs.send_email }}" = "true" ] || [ "${{ github.event_name }}" = "schedule" ]; then
+            EXTRA="--email"
+          fi
+          python scripts/run_nyc_community_weekly_digest.py \
+            --days "${{ github.event.inputs.horizon_days || '7' }}" \
+            $EXTRA
+
+      - name: Commit cache artifact
+        if: steps.tz.outputs.run == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add outputs/nyc_community_events/_events_cache/latest.json || true
+          git add outputs/nyc_community_events/weekly_digest_*.md || true
+          git diff --staged --quiet || git commit -m "chore: NYC community events daily digest"
+          git push || true

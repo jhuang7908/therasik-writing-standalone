@@ -1,0 +1,68 @@
+{
+  "_meta": {
+    "schema_id": "crossspecies_adapter",
+    "schema_version": "V1.0",
+    "status": "LOCKED",
+    "governing_standard": "docs/CROSSSPECIES_ENGINE_STANDARD_V1.0.md",
+    "last_updated": "2026-05-07"
+  },
+
+  "species_id": "felis_catus",
+  "common_name": "Cat",
+  "format": "VH_VL",
+  "numbering_scheme": "kabat",
+  "data_tier": "Tier-Mid",
+
+  "hallmarks_kabat": {
+    "_doc": "VH/VL has no single-domain hallmark set; CDR-Union and verify_cdr_preservation gate from PETIZATION_STANDARD V1.0.1 §2.4 + VH_VL_HUMANIZATION_STANDARD V5.4 are the governing protections.",
+    "positions": []
+  },
+
+  "cys_topology": {
+    "canonical_pairs": [[22, 92]],
+    "extra_protected_cys": []
+  },
+
+  "cdr_boundary_rules": {
+    "scheme": "union_kabat_chothia",
+    "regions": {
+      "VH": {"H1": [26, 35], "H2": [50, 65], "H3": [95, 102]},
+      "VL": {"L1": [24, 34], "L2": [50, 56], "L3": [89, 97]}
+    },
+    "source_standard": "docs/PETIZATION_STANDARD_V1.0.md"
+  },
+
+  "reference_source": {
+    "germline_freq_path": "data/germlines/felis_catus_ig_aa/_cache/cat_ighv_kabat_numbered_cache.json",
+    "germline_freq_release_id": "cat_ighv_kabat_v1_2026-05-06",
+    "auxiliary_freq_paths": {
+      "VL_kappa": "data/germlines/felis_catus_ig_aa/_cache/cat_igkv_kabat_numbered_cache.json",
+      "VL_lambda": "data/germlines/felis_catus_ig_aa/_cache/cat_iglv_kabat_numbered_cache.json"
+    },
+    "clinical_acceptors": [
+      {"acceptor_id": "feline_VH_Tier1_pool",  "scaffold_kind": "VH", "source_drug_or_id": "cat_scaffold_cmc_optimization_tier1_tier2_v1.json (Tier1 22 rows)", "tier": "Tier1"},
+      {"acceptor_id": "feline_VL_Tier1_pool",  "scaffold_kind": "VL", "source_drug_or_id": "cat_scaffold_cmc_optimization_tier1_tier2_v1.json (Tier1 22 rows)", "tier": "Tier1"}
+    ]
+  },
+
+  "track_priority": {
+    "_doc": "PETIZATION_STANDARD V1.0.1 §2.4 sets Track B (full-feline Fv) as default for new cat programs — implemented here as AG-1.0 default.",
+    "order": ["AG-1.0", "DFR-1.0", "SR-1.0"],
+    "forbidden_tracks": []
+  },
+
+  "engine_tunables": {
+    "surface_sasa_threshold_A2": 20.0,
+    "deep_buried_sasa_cutoff_A2": 5.0,
+    "cdr_proximity_threshold_A": 5.0
+  },
+
+  "qa_pointer": {
+    "governing_standard_path": "docs/PETIZATION_STANDARD_V1.0.md",
+    "secondary_standard_paths": ["docs/PETIZATION_CAT_DUAL_TRACK_V1.md", "docs/VH_VL_HUMANIZATION_STANDARD_V4.4.md"],
+    "mandatory_qa_modules": [
+      "core/evaluation/evaluator.py | AbEvaluator",
+      "core/cmc/regular_ab_developability.py"
+    ]
+  }
+}

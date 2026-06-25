@@ -1,0 +1,119 @@
+================================================================================
+CDR (CDR1/2/3) Feature Analysis for 19 Clinical VHHs
+================================================================================
+
+## 1. Overall CDR Length Distributions
+
+CDR1 lengths:
+  6 aa: 1 molecules
+  8 aa: 17 molecules
+  9 aa: 1 molecules
+
+CDR2 lengths:
+  6 aa: 1 molecules
+  7 aa: 6 molecules
+  8 aa: 12 molecules
+
+CDR3 lengths:
+  5 aa: 1 molecules
+  8 aa: 2 molecules
+  11 aa: 2 molecules
+  13 aa: 1 molecules
+  14 aa: 1 molecules
+  15 aa: 1 molecules
+  16 aa: 3 molecules
+  17 aa: 4 molecules
+  18 aa: 1 molecules
+  21 aa: 3 molecules
+
+## 2. CDR Lengths by Humanization Strategy
+
+### BM (n=8)
+  CDR1: median=8 aa, range=8-8 aa
+  CDR2: median=7 aa, range=7-8 aa
+  CDR3: median=12 aa, range=5-17 aa
+
+### SR (n=7)
+  CDR1: median=8 aa, range=6-8 aa
+  CDR2: median=8 aa, range=7-8 aa
+  CDR3: median=18 aa, range=8-21 aa
+
+### Native (n=4)
+  CDR1: median=8 aa, range=8-9 aa
+  CDR2: median=8 aa, range=6-8 aa
+  CDR3: median=16 aa, range=14-17 aa
+
+## 3. CDR3 Length Detailed Analysis
+
+CDR3 is highly variable (5-21 aa) and key to antigen specificity.
+
+CDR3 length groups vs strategy:
+  Short (≤10) (n=3): BM=2, SR=1, Native=0
+  Medium (11-15) (n=5): BM=3, SR=1, Native=1
+  Long (≥16) (n=11): BM=3, SR=5, Native=3
+
+## 4. H2 Canonical Fold vs CDR3 Length
+
+H2-9-1 (n=6): CDR3 median=14 aa, range=5-17 aa
+H2-10-1 (n=12): CDR3 median=16 aa, range=8-21 aa
+unknown (n=1): CDR3 median=14 aa, range=14-14 aa
+
+## 5. Combined CDR Signature Patterns (CDR1-CDR2-CDR3)
+
+Top 5 most common signatures:
+  8-8-21: 3 molecules (Caplacizumab, Envafolimab, Erfonrilimab)
+  8-8-8: 2 molecules (Brivekimig2, Ozoralizumab)
+  8-7-17: 2 molecules (Gefurulimab, Tarperprumig)
+  8-8-16: 2 molecules (Ozekibart, Sonelokimab1)
+  8-7-5: 1 molecules (Enristomig)
+  9-8-16: 1 molecules (Brivekimig1)
+  8-7-11: 1 molecules (Gocatamig2)
+  8-8-17: 1 molecules (Isecarosmab)
+  8-8-11: 1 molecules (Letolizumab)
+  8-6-14: 1 molecules (Podentamig1)
+
+## 6. CDR Profiles of Approved/Phase 3 Molecules
+
+Caplacizumab (Approved (EU/US)):
+  Strategy: SR, H2: H2-10-1
+  CDR lengths: 8-8-21 aa
+  CDR3 sequence: AAAGVRAEDGRVRTLPSEYTF
+
+Envafolimab (Approved (CN) / Disc (US)):
+  Strategy: SR, H2: H2-10-1
+  CDR lengths: 8-8-21 aa
+  CDR3 sequence: AADSFEDPTCTLVTSSGAFQY
+
+Gefurulimab (Phase 3):
+  Strategy: BM, H2: H2-9-1
+  CDR lengths: 8-7-17 aa
+  CDR3 sequence: AAVFRVVAPKTQYDYDY
+
+Ozoralizumab (Approved (JP)):
+  Strategy: SR, H2: H2-10-1
+  CDR lengths: 8-8-8 aa
+  CDR3 sequence: ARSPSGFN
+
+Sonelokimab1 (Phase 3):
+  Strategy: Native, H2: H2-10-1
+  CDR lengths: 8-8-16 aa
+  CDR3 sequence: TADQEFGYLRFGRSEY
+
+Sonelokimab2 (Phase 3):
+  Strategy: SR, H2: H2-10-1
+  CDR lengths: 6-8-17 aa
+  CDR3 sequence: ATRRGLYYVWDANDYEN
+
+## 7. Key Findings
+
+1. CDR1 is highly conserved in length (17/19 molecules = 8 aa)
+2. CDR2 length correlates with H2 canonical fold:
+   - H2-9-1: predominantly 7 aa
+   - H2-10-1: predominantly 8 aa
+3. CDR3 is highly variable (5-21 aa):
+   - Shortest: Enristomig (5 aa)
+   - Longest: Caplacizumab, Envafolimab, Erfonrilimab (21 aa)
+4. No strong association between CDR3 length and humanization strategy
+5. All 3 approved VHHs have CDR3 ≥ 8 aa (suggesting minimum CDR3 length for success)
+
+================================================================================

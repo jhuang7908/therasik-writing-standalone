@@ -1,0 +1,317 @@
+meta:
+  id: "RULES_CMC_FIX_V1"
+  title: "CMC Fix Rules (PTM detection → repair suggestions → interface gate → minimal validation)"
+  scope: [vhh, vhvl, rabbit, canine, bsab, adc, general]
+  confidence: "A"
+  owner: "cmc"
+  reviewer: "antibody_engineering"
+  created: "2025-12-14"
+  updated: "2025-12-14"
+  status: "active"
+
+rules:
+
+  # ------------------------------------------------------------
+  # 0) Precondition: liabilities exist
+  # ------------------------------------------------------------
+  - id: "RULE_CMC_000_REQUIRE_LIABILITIES"
+    scope: [general]
+    confidence: "S"
+    trigger:
+      any:
+        - { not: { exists: "cmc.liabilities" } }
+        - { eq: ["cmc.liabilities.count", 0] }
+    decision:
+      set:
+        cmc.fix.status: "not_applicable"
+        cmc.fix.block: true
+      report:
+        severity: "info"
+        headline: "CMC fix skipped: no liabilities detected (or liabilities not computed)."
+        required_pipeline_behavior:
+          - "Run liability scan to populate cmc.liabilities before proposing CMC fixes."
+      trace:
+        params_used:
+          - "CMC_LIAB_MOTIF_LIBRARY"
+    rationale: "CMC fixes must be driven by explicit liability calls; otherwise mutation suggestions are speculative."
+    alternatives:
+      - option: "Provide general CMC guidance only"
+        when: "customer requests qualitative CMC review without scanning"
+        decision:
+          set:
+            cmc.fix.block: true
+          report:
+            severity: "info"
+            note: "Qualitative guidance only; no mutation list issued."
+        rationale: "Avoid false precision."
+        confidence: "B"
+    deprecated: false
+
+  # ------------------------------------------------------------
+  # 1) Classify liabilities by severity with region & interface adjacency
+  # ------------------------------------------------------------
+  - id: "RULE_CMC_010_CLASSIFY_SEVERITY_WITH_REGION_INTERFACE"
+    scope: [general]
+    confidence: "A"
+    trigger:
+      all:
+        - { exists: "cmc.liabilities" }
+        - { gt: ["cmc.liabilities.count", 0] }
+    decision:
+      action:
+        - "annotate_liabilities_with_region_and_interface_adjacency"
+        - "apply_region_severity_multiplier"
+      set:
+        cmc.fix.severity_classified: true
+      report:
+        severity: "info"
+        headline: "Classified CMC liabilities by type, region, and interface adjacency."
+        must_include_in_report:
+          - "liability_table: type, motif, position, region, interface_adjacent, risk"
+      trace:
+        params_used:
+          - "CMC_LIAB_MOTIF_LIBRARY"
+          - "CMC_REGION_SEVERITY"
+    rationale: "Repair priority depends not only on motif type but also on where it sits (FR vs CDR, interface-adjacent vs not)."
+    alternatives:
+      - option: "Approximate region from IMGT boundaries"
+        when: "segmentation.regions missing but IMGT numbering exists"
+        decision:
+          action:
+            - "approximate_region_by_imgt_boundaries"
+          set:
+            cmc.fix.severity_classified: true
+          report:
+            severity: "medium"
+            note: "Used approximate region boundaries; verify manually for interface-adjacent calls."
+        rationale: "Maintains flow with flagged uncertainty."
+        confidence: "A"
+    deprecated: false
+
+  # ------------------------------------------------------------
+  # 2) High-risk liabilities in FR (non-interface) → must propose repair
+  # ------------------------------------------------------------
+  - id: "RULE_CMC_020_HIGH_RISK_FR_MUST_FIX"
+    scope: [general]
+    confidence: "S"
+    trigger:
+      all:
+        - { eq: ["cmc.fix.severity_classified", true] }
+        - { gt: ["cmc.liabilities_high_risk_in_FR_noninterface.count", 0] }
+    decision:
+      action:
+        - "propose_repair_mutations_from_policy"
+        - "rank_repairs_by_conservativeness"
+      set:
+        cmc.fix.status: "required"
+        cmc.fix.fr_repairs_proposed: true
+      report:
+        severity: "high"
+        headline: "High-risk CMC liabilities in FR: propose conservative repair mutations (must-fix)."
+        output_contract:
+          emit_variant_patch:
+            variant_tag: "cmc_fix_FR"
+            max_mutations_per_liability: 1
+        must_include_in_report:
+          - "repair_table: liability_id, mutation, rationale, expected_tradeoff"
+      trace:
+        params_used:
+          - "CMC_REPAIR_PRIORITIES"
+    rationale: "High-risk FR liabilities are typically fixable with conservative substitutions and low functional risk."
+    alternatives:
+      - option: "Defer repair if liability experimentally tolerated"
+        when: "casebook shows this motif tolerated for the same scaffold family"
+        decision:
+          set:
+            cmc.fix.status: "optional"
+          report:
+            severity: "medium"
+            note: "Repair deferred based on internal tolerance evidence; still provide repair as optional variant."
+        rationale: "Avoids unnecessary engineering when evidence supports tolerance."
+        confidence: "B"
+    deprecated: false
+
+  # ------------------------------------------------------------
+  # 3) Interface-adjacent liabilities → gated (no blind repair)
+  # ------------------------------------------------------------
+  - id: "RULE_CMC_030_INTERFACE_ADJACENT_GATE"
+    scope: [general]
+    confidence: "S"
+    trigger:
+      all:
+        - { eq: ["cmc.fix.severity_classified", true] }
+        - { gt: ["cmc.liabilities_interface_adjacent.count", 0] }
+    decision:
+      action:
+        - "propose_repairs_but_run_interface_gate_before_emitting"
+        - "suppress_and_emit_refusal"
+      set:
+        cmc.fix.interface_gate_applied: true
+      report:
+        severity: "high"
+        headline: "Interface-adjacent liabilities require interface gate; suppress unsafe repairs."
+        must_include_in_report:
+          - "interface_gate_results: pass/fail per mutation"
+          - "refusal_reason_if_fail"
+      trace:
+        params_used:
+          - "CMC_REPAIR_PRIORITIES"
+    rationale: "Interface-adjacent changes can break folding, VH/VL pairing, or paratope geometry; must be gated."
+    alternatives:
+      - option: "Second-order repairs"
+        when: "direct repair fails interface gate"
+        decision:
+          action:
+            - "propose_neighbor_noncritical_substitution_to_reduce_motif_context"
+          report:
+            severity: "medium"
+            note: "Proposed second-order repair (neighbor substitution) because direct repair failed interface gate."
+        rationale: "Reduces liability without touching critical interface residue."
+        confidence: "B"
+    deprecated: false
+
+  # ------------------------------------------------------------
+  # 4) CDR liabilities → conservative; warn binding risk
+  # ------------------------------------------------------------
+  - id: "RULE_CMC_040_CDR_LIABILITIES_CONSERVATIVE_AND_WARN"
+    scope: [general]
+    confidence: "A"
+    trigger:
+      all:
+        - { eq: ["cmc.fix.severity_classified", true] }
+        - { gt: ["cmc.liabilities_in_CDR.count", 0] }
+    decision:
+      action:
+        - "propose_cdr_repairs_only_if_high_risk_or_glyco_motif"
+        - "prefer_non_paratope_and_non_anchor_positions"
+        - "add_binding_risk_flag"
+      set:
+        cmc.fix.cdr_repairs_proposed: true
+      report:
+        severity: "high"
+        headline: "CMC liabilities in CDR: propose minimal edits only when justified; add binding-risk labels."
+        output_contract:
+          emit_variant_patch:
+            variant_tag: "cmc_fix_CDR"
+            max_mutations_per_liability: 1
+        must_include_in_report:
+          - "binding_risk_flag_per_mutation"
+          - "recommend_binding_validation_if_any_cdr_edit"
+      trace:
+        params_used:
+          - "CMC_REPAIR_PRIORITIES"
+    rationale: "CDR changes can impact affinity; only propose when liability severity warrants it and disclose risk."
+    alternatives:
+      - option: "Refuse CDR repair"
+        when: "liability is medium/low and predicted paratope overlap is high"
+        decision:
+          set:
+            cmc.fix.cdr_repairs_refused: true
+          report:
+            severity: "medium"
+            refusal_reason:
+              - "CDR repair likely harms binding; liability not severe enough to justify change."
+            next_best_actions:
+              - "Monitor in forced degradation / stability studies"
+              - "Prioritize FR/interface repairs instead"
+        rationale: "Preserves function over marginal CMC gain."
+        confidence: "A"
+    deprecated: false
+
+  # ------------------------------------------------------------
+  # 5) Glycosylation motifs (NXS/T) → always high priority, but gated
+  # ------------------------------------------------------------
+  - id: "RULE_CMC_050_NXS_T_GLYCO_MOTIF_HIGH_PRIORITY"
+    scope: [general]
+    confidence: "S"
+    trigger:
+      all:
+        - { eq: ["cmc.fix.severity_classified", true] }
+        - { gt: ["cmc.liabilities_type_glycosylation.count", 0] }
+    decision:
+      action:
+        - "propose_glyco_fix_n_to_q"
+        - "propose_glyco_fix_st_to_a"
+        - "run_interface_gate"
+      set:
+        cmc.fix.glyco_repairs_proposed: true
+      report:
+        severity: "high"
+        headline: "Potential N-linked glycosylation motifs detected; propose removal with interface gating."
+        must_include_in_report:
+          - "glyco_motif_list"
+          - "primary_and_secondary_repair_options"
+      trace:
+        params_used:
+          - "CMC_LIAB_MOTIF_LIBRARY"
+          - "CMC_REPAIR_PRIORITIES"
+    rationale: "Unintended glycosylation introduces heterogeneity and CMC complexity; typically warrants proactive removal."
+    alternatives:
+      - option: "Keep motif if confirmed not glycosylated in expression system"
+        when: "experimental evidence shows no glycosylation at site"
+        decision:
+          report:
+            severity: "medium"
+            note: "Motif retained due to expression evidence; keep as optional cleanup variant."
+        rationale: "Avoids unnecessary mutation when heterogeneity is not observed."
+        confidence: "B"
+    deprecated: false
+
+  # ------------------------------------------------------------
+  # 6) Assemble CMC-fix variants and enforce minimal validation set
+  # ------------------------------------------------------------
+  - id: "RULE_CMC_090_BUILD_VARIANTS_AND_MIN_VALIDATION"
+    scope: [general]
+    confidence: "S"
+    trigger:
+      any:
+        - { eq: ["cmc.fix.fr_repairs_proposed", true] }
+        - { eq: ["cmc.fix.interface_gate_applied", true] }
+        - { eq: ["cmc.fix.cdr_repairs_proposed", true] }
+        - { eq: ["cmc.fix.glyco_repairs_proposed", true] }
+    decision:
+      action:
+        - "assemble_variants_from_cmc_repairs"
+        - "attach_rule_trace_and_param_ids"
+      set:
+        cmc.fix.variants_built: true
+      report:
+        severity: "info"
+        headline: "Generated CMC-fix variants and prescribed minimal validation experiments."
+        recommended_min_validation:
+          - "SEC-HPLC (aggregation/monomer %)"
+          - "DSF/DSC (thermal stability)"
+          - "LC-MS peptide mapping if PTM/glyco risk is a driver"
+          - "SPR/OCTET binding if any interface/CDR-adjacent edits"
+      trace:
+        params_used:
+          - "CMC_REPAIR_PRIORITIES"
+    rationale: "CMC repair claims require a minimal wet-lab validation panel; this prevents '' ."
+    alternatives:
+      - option: "Budget-constrained panel"
+        when: "customer requests the smallest possible set"
+        decision:
+          report:
+            note: "Minimum: SEC-HPLC + DSF; add binding only if CDR/interface edits exist."
+        rationale: "Keeps feasibility without compromising credibility."
+        confidence: "A"
+    deprecated: false
+
+evidence:
+  rationale: "Turn PTM/motif liabilities into conservative, gated mutation plans with a standardized minimal validation panel."
+  sources:
+    - type: "internal"
+      ref: "Your v2 variant generation logic + CMC liabilities module categories"
+    - type: "public"
+      ref: "Common antibody developability/PTM mitigation practices (deamidation/isomerization/oxidation/glyco)"
+  internal_validation:
+    status: "in_progress"
+    notes: "Calibrate interface gate thresholds and repair ranking using casebook outcomes (SEC/DSF/SPR)."
+
+governance:
+  change_log:
+    - change_type: "create"
+      change_summary: "Initial CMC fix chain: classify → propose repairs → interface gate → assemble variants → minimal validation."
+      owner: "cmc"
+      reviewer: "antibody_engineering"
+      date: "2025-12-14"

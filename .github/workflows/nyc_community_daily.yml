@@ -1,0 +1,186 @@
+name: NYC Community Hub — Daily Live Update
+
+on:
+  schedule:
+    # 07:30 ET → 11:30 UTC (EDT) / 12:30 UTC (EST)
+    - cron: "30 11 * * *"
+    - cron: "30 12 * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Update mode"
+        type: choice
+        options:
+          - full
+          - incremental
+        default: full
+      max_items:
+        description: "Max items to write to hub page"
+        required: false
+        default: "120"
+      translate:
+        description: "Translate titles/summaries to Chinese"
+        required: false
+        type: boolean
+        default: true
+      deep_dive_pages:
+        description: "Detail pages to deep-dive per Parks source"
+        required: false
+        default: "8"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nyc-hub-live-update
+  cancel-in-progress: false
+
+jobs:
+  live_update:
+    name: Fetch → Translate → Update Hub → Commit
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout main repository (suite)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          submodules: false
+          path: suite
+          token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+
+      - name: Checkout insynbio-website (hub output target)
+        uses: actions/checkout@v4
+        with:
+          repository: jhuang7908/insynbio-website
+          ref: master
+          path: insynbio-web-source
+          token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+
+      - name: Sync hub template + yellow pages bundle from suite
+        run: |
+          python suite/scripts/sync_hub_static_assets.py \
+            --src suite/insynbio-web-source \
+            --dst insynbio-web-source
+
+      - name: Verify hub HTML template exists
+        run: |
+          if [ ! -f insynbio-web-source/us-chinese-life-hub.html ]; then
+            echo "::error::Missing insynbio-web-source/us-chinese-life-hub.html after checkout"
+            exit 1
+          fi
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install requests openai python-dotenv feedparser beautifulsoup4 lxml
+
+      - name: Write runtime env
+        run: |
+          mkdir -p content_generation_tools
+          printf 'OPENAI_API_KEY=%s\n' "${{ secrets.OPENAI_API_KEY }}" > content_generation_tools/.env
+
+      - name: Resolve update mode (07:30 full ET)
+        id: slot
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "mode=${{ github.event.inputs.mode || 'full' }}" >> "$GITHUB_OUTPUT"
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Bind mode to cron expression to be robust against GitHub Actions delays
+          SCHED="${{ github.event.schedule }}"
+          TZ_ZONE=$(TZ=America/New_York date +%Z)
+          RUN="false"
+          MODE="skip"
+
+          if [ "$TZ_ZONE" = "EDT" ]; then
+            if [ "$SCHED" = "30 11 * * *" ]; then
+              MODE="full"
+              RUN="true"
+            fi
+          else
+            # EST or other Standard Time
+            if [ "$SCHED" = "30 12 * * *" ]; then
+              MODE="full"
+              RUN="true"
+            fi
+          fi
+
+          echo "mode=$MODE" >> "$GITHUB_OUTPUT"
+          echo "run=$RUN" >> "$GITHUB_OUTPUT"
+          echo "Schedule: $SCHED, Timezone: $TZ_ZONE, Mode: $MODE, Run: $RUN"
+
+      - name: Run live hub update
+        if: steps.slot.outputs.run == 'true'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          NYC_OPEN_DATA_TOKEN: ${{ secrets.NYC_OPEN_DATA_TOKEN }}
+        run: |
+          TRANSLATE_FLAG=""
+          if [ "${{ github.event.inputs.translate }}" != "false" ]; then
+            TRANSLATE_FLAG="--translate"
+          fi
+          MODE="${{ steps.slot.outputs.mode }}"
+          MAX="${{ github.event.inputs.max_items || '120' }}"
+          if [ "$MODE" = "incremental" ]; then
+            MAX="120"
+          fi
+          python scripts/run_nyc_community_live_update.py \
+            --mode "$MODE" \
+            --max-items "$MAX" \
+            --deep-dive-pages "${{ github.event.inputs.deep_dive_pages || '8' }}" \
+            --hub-dir ../insynbio-web-source \
+            $TRANSLATE_FLAG
+        working-directory: suite
+
+      - name: Verify hub links (independent gate)
+        if: steps.slot.outputs.run == 'true'
+        run: |
+          python suite/scripts/verify_hub_links.py \
+            --hub insynbio-web-source/us-chinese-life-hub.html \
+            --output-dir suite/outputs/nyc_community_events \
+            --timeout 10
+        continue-on-error: true
+
+      - name: Commit hub page to insynbio-website repo
+        if: steps.slot.outputs.run == 'true'
+        run: |
+          cd insynbio-web-source
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add us-chinese-life-hub.html hub_market_snapshot.json hub-link-viewer.html \
+            hub_search_index.json yp_data robots.txt _headers sitemap.xml yellow_pages.json \
+            yellow_pages_reports.json yellow_page_ratings.json
+          if git diff --staged --quiet; then
+            echo "No changes to hub page."
+          else
+            MODE="${{ steps.slot.outputs.mode }}"
+            git commit -m "chore(nyc-hub): ${MODE} update $(TZ=America/New_York date '+%Y-%m-%d %H:%M ET')"
+            git push || echo "::warning::Push failed — configure GH_PAT with repo scope on insynbio-website."
+          fi
+
+      - name: Upload hub page + verification audit
+        if: steps.slot.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: nyc-hub-${{ steps.slot.outputs.mode }}-${{ github.run_id }}
+          path: |
+            insynbio-web-source/us-chinese-life-hub.html
+            insynbio-web-source/hub_market_snapshot.json
+            insynbio-web-source/hub-link-viewer.html
+            insynbio-web-source/yp_data/
+            insynbio-web-source/robots.txt
+            insynbio-web-source/_headers
+            insynbio-web-source/sitemap.xml
+            suite/outputs/nyc_community_events/live_update/
+          retention-days: 14

@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "description": "Curated ADA database: only rows with reported ADA/immunogenicity; tiered traceability.",
+    "input": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\data\\ADA_reliable_package\\from_openclaw_20260330\\reliable_merged\\reliable_ada_antibodies_database_20260330_231950.json",
+    "rules": {
+      "skip": "Empty ada_value or explicit N/A / not reported.",
+      "tier_A": "PMID (field, PMID: text, or pubmed.ncbi.nlm.nih.gov/ID URL) OR FDA accessdata.fda.gov OR clinicaltrials.gov.",
+      "tier_B": "Has at least one http(s) URL but no Tier-A anchor (still traceable, real ADA citation).",
+      "tier_C": "No URL and no PMID/FDA/ClinicalTrials anchor.",
+      "pubmed_flag": "Optional esearch returns PMIDs only; never auto-fill ADA numbers."
+    },
+    "counts": {
+      "kept_with_ada": 108,
+      "skipped_no_ada": 0,
+      "tier_A": 62,
+      "tier_B": 46,
+      "tier_C": 0,
+      "needs_retrieval": 0
+    }
+  },
+  "skipped": []
+}

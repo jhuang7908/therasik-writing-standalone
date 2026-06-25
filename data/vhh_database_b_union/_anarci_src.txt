@@ -1,0 +1,89 @@
+def anarci(sequences, scheme="imgt", database="ALL", output=False, outfile=None, csv=False, allow=set(["H","K","L","A","B","G","D"]), 
+           hmmerpath="", ncpu=None, assign_germline=False, allowed_species=['human','mouse'], bit_score_threshold=80):
+    """
+    The main function for anarci. Identify antibody and TCR domains, number them and annotate their germline and species. 
+
+    It is advised to use one of the wrapper functions:
+        o run_anarci   - fasta file or sequence list in. Automated multiprocessing for large jobs. Sequences, numbering, details 
+                         and hit tables out. 
+        o number       - single sequence in, numbering out
+
+    
+    @param sequences: A list or tuple of (Id, Sequence) pairs
+                              e.g. [ ("seq1","EVQLQQSGAEVVRSG ..."),
+                                     ("seq2","DIVMTQSQKFMSTSV ...") ]
+    @param scheme:    The numbering scheme that should be applied. Choose from imgt, chothia, kabat or martin
+    @param output:    Boolean flag to say whether the result should be output.
+    @param outfile:   The name of the file to output to. If output is True and outfile is None then output is printed
+                      to stdout.
+    @param csv:       Boolean flag to say whether the csv output alignment format or the vertical anarci format should be used.
+    @param allow:     A set containing the chain types that should be recognised. If chothia, kabat or martin is used
+                      as the scheme, anarci will ignore tcr chains. Choose a subset of ["H","K","L","A","B","G","D"]
+    @param assign_germline: Using highest sequence identity assign the germline to the chain. Can be more accurate at identifying
+                      species than the best HMM hit alone. (Bool)
+    @param allowed_species: If assign_germline is true, limit the species that can be assigned to a limited set. Useful when the 
+                      animal species is known or when performing closest germline experiments. Choose a subset of ['human',
+                      'mouse','rat','rabbit','rhesus','pig','alpaca'].
+
+
+    @param bit_score_threshold: The threshold score from HMMER at which an alignment should be numbered. Lowering the threshold 
+                      means domain recognition is more permissive and can be useful for numbering heavily engineered molecules. 
+                      However, too low and false positive recognition of other ig-like molecules will occur.
+    @param hmmerpath: The path to hmmscan. If left unspecified then the PATH will be searched. 
+    @param ncpu:      The number of cpu's that hmmer should be allowed to use. If not specified then the hmmscan 
+                      default is used. N.B. hmmscan must be compiled with multithreading enabled for this option to have effect. 
+                      Please consider using the run_anarci function for native multiprocessing with anarci.
+    @param database:  The HMMER database that should be used. Normally not changed unless a custom db is created.
+
+
+    @return: Three lists. Numbered, Alignment_details and Hit_tables.
+             Each list is in the same order as the input sequences list.
+             A description of each entry in the three lists is as followed.
+               o Numbered: will be None if no domain was found for that sequence or a list of domains with their 
+                           numbering, start and finish indices.
+               o Alignment_details: will be None if no domain was found for that sequence or a dictionary for each
+                           domain identified containing the details of the alignment (chain type, e-value, species etc).
+               o Hit_tables: None if no domain was found for that sequence or a nested list for each domain containing
+                           the hit table from hmmscan.
+    
+    """
+    
+    # Validate the input scheme
+    try:
+        scheme = scheme_short_to_long[scheme.lower()]
+    except KeyError:
+        raise AssertionError("Unrecognised or unimplemented scheme: %s"%scheme)        
+
+    # Check we have arguments for output before doing work.
+    if csv:
+        assert outfile, 'If csv output is True then an outfile must be specified'
+        _path, _ = os.path.split(outfile)
+        assert (not _path) or os.path.exists(_path), 'Output directory %s does not exist'%_path
+
+
+    # Perform the alignments of the sequences to the hmm database
+    alignments = run_hmmer(sequences,hmm_database=database,hmmerpath=hmmerpath,ncpu=ncpu,bit_score_threshold=bit_score_threshold,hmmer_species=allowed_species )   
+     
+    # Check the numbering for likely very long CDR3s that will have been missed by the first pass.
+    # Modify alignments in-place
+    check_for_j( sequences, alignments, scheme )
+
+    # Apply the desired numbering scheme to all sequences
+    numbered, alignment_details, hit_tables = number_sequences_from_alignment(sequences, alignments, scheme=scheme, allow=allow, 
+                                                                              assign_germline=assign_germline, 
+                                                                              allowed_species=allowed_species)
+
+    # Output if necessary
+    if output: 
+        if csv:
+            csv_output(sequences, numbered, details, outfile)             
+        else:
+            outto, close=sys.stdout, False
+            if outfile:
+                outto, close = open(outfile,'w'), True
+            anarci_output(numbered, sequences, alignment_details, outto)
+            if close:
+                outto.close()
+
+
+    return numbered, alignment_details, hit_tables

@@ -1,0 +1,1797 @@
+{
+  "_meta": {
+    "standard": "VH_VL_HUMANIZATION_STANDARD_V4.5.1",
+    "version": "5.5.1",
+    "date": "2026-05-09",
+    "scope": "vh_vl_humanization",
+    "description": "VH/VL Humanization V5.5.1 = V5.5.0 + client-safe checklist/report wording for the post-humanization paired Fv naturalness QC gate. Internal JSON retains p_abnativ2 fields; customer-facing checklist text must not expose tool names, threshold source, or pairing-likelihood implementation details.",
+    "locked": true,
+    "governance": "docs/ABENGINECORE_GOVERNANCE.md",
+    "supersedes": "V5.5.0_VH_VL_Humanization",
+    "supersedes_note": "V5.3.0 (2026-05-02): (a) P0 Bugfix in core/humanization/engine.py::_apply_bm — insertion-code key mismatch silently dropped algorithm-decided AUTO_APPLY back-mutations on positions whose ANARCII numbering returned (pos,' ') instead of (pos,''); fix iterates both ('','space') key forms; same fix in _audit_one. (b) Two-tier back-mutation decision policy — every HC*/Vernier-T* rule now carries decision_mode (AUTO_APPLY | PENDING_HUMAN | AUTO_APPLY_IF_TRIGGERED) plus client_options for PENDING_HUMAN escalations. (c) Per-rule audit cross-checks every config rule against the final assembled sequence. (d) Report format: §5 split into §5a Applied / §5b Pending review / §5c FR4 J-segment retemplating; §10 full sequences default-visible + FASTA copy block. (e) Anti-distillation client-facing pass — internal rule names, mask-scheme strings, threshold numbers in attention-block titles, and model name (AbLang2) removed from rendered HTML. (f) §3 fallback to 842 clinical-framework reference cohort. Inherits V5.1.0 Union grafting (VH H1=26-35, H2=50-65; H3=95-102; VL unchanged) and the verify_cdr_preservation HARD gate. Triggered by R5-307 client delivery audit (2026-05-02). See EVOLUTION_LOG.md [EXECUTED] 2026-05-02 entries (V5.3.0 Release + Anti-Distillation Pass + P0 BM Bugfix + Strict Decision Mode)."
+  },
+  "conda_environment": "anarcii",
+  "python": "d:/Users/NextVivo/miniconda3/envs/anarcii/python.exe",
+  "cdr_definitions": {
+    "scheme": "union_kabat_chothia_imgt",
+    "scheme_v5_0_legacy": "chothia",
+    "allowed_override": "chothia",
+    "override_status": "documented_only_not_yet_wired",
+    "override_note": "V5.0 strict Chothia (VH H1=26-32, H2=52-56) is reserved as a future override path for CRO comparison studies. The engine entry point (HumanizationEngine.run / api/routers/humanization.py) does NOT currently accept a runtime scheme override — every new run defaults to V5.1 Union. To enable, plumb a `cdr_scheme_override` parameter through HumanizationEngine.__init__ / _phase4_real._CDR_POS / _diff_cdr_positions_v51 / _fr_identity_from_numbered and surface it in the API request model. Until that is implemented, this field is documentation-only; do NOT advertise the override to clients.",
+    "override_requires_client_request": true,
+    "override_must_be_noted_in_report": true,
+    "back_mutation_regions": "FR_only",
+    "back_mutation_in_CDR_forbidden": true,
+    "regions_kabat_intent": {
+      "VH": {
+        "H1": [
+          26,
+          35
+        ],
+        "H2": [
+          50,
+          65
+        ],
+        "H3": [
+          95,
+          102
+        ]
+      },
+      "VL": {
+        "L1": [
+          24,
+          34
+        ],
+        "L2": [
+          50,
+          56
+        ],
+        "L3": [
+          89,
+          97
+        ]
+      }
+    },
+    "regions_imgt_runtime": {
+      "VH": {
+        "H1": [
+          26,
+          38
+        ],
+        "H2": [
+          50,
+          65
+        ],
+        "H3": [
+          105,
+          117
+        ]
+      },
+      "VL": {
+        "L1": [
+          26,
+          38
+        ],
+        "L2": [
+          50,
+          65
+        ],
+        "L3": [
+          105,
+          117
+        ]
+      }
+    },
+    "regions": {
+      "VH": {
+        "H1": [
+          26,
+          38
+        ],
+        "H2": [
+          50,
+          65
+        ],
+        "H3": [
+          105,
+          117
+        ]
+      },
+      "VL": {
+        "L1": [
+          26,
+          38
+        ],
+        "L2": [
+          50,
+          65
+        ],
+        "L3": [
+          105,
+          117
+        ]
+      }
+    },
+    "note": "V5.1.0 Union grafting envelope (Kabat ∪ Chothia ∪ AbM ∪ IMGT canonical). The runtime engine numbers donor and humanized chains with ANARCII's default IMGT scheme; therefore `regions` and `regions_imgt_runtime` use IMGT positions and are the values consumed by `_phase4_real._CDR_POS` and `verify_cdr_preservation`. `regions_kabat_intent` is the equivalent Kabat envelope kept for documentation, alignment with kabat_utils.CDR_RANGES_VH/VL, and Wemol H4/L4 cross-reference. Inclusive, 1-indexed positions.",
+    "rationale": "R5-307 / Wemol cross-comparison (2026-05-01) demonstrated that strict Chothia 26-32/52-56 grafting silently humanized paratope-adjacent IMGT positions 36, 40, 57 (Kabat 33-35, 50-51, 57-65), creating high affinity-loss risk. Union envelope is the industry-standard envelope used by Wemol H4/L4 and most CRO grafting protocols. The IMGT runtime range is the Union expressed in the numbering scheme actually returned by ANARCII."
+  },
+  "framework_selection": {
+    "human_germline_database": "IMGT",
+    "similarity_metric": "FR_identity_pct",
+    "min_fr_identity": 0.7,
+    "top_k_candidates": 5,
+    "prefer_same_vgene_subgroup": true,
+    "vernier_zone_check": "internal_audit_only"
+  },
+  "structure_modeling": {
+    "tool": "IgFold",
+    "conda_env": "affmat",
+    "phase3_pdb_required": true,
+    "phase3_fail_action": "HARD_ABORT",
+    "phase3_min_plddt": 60.0,
+    "phase3_fail_message": "V4.5.1: Phase 3  PDB (pLDDT < 60) → HARD ABORT. .",
+    "fallback": null,
+    "notes": "v4.9.1: tiered structure prediction for 5-10x Phase 3 speed improvement without final delivery quality loss.",
+    "tool_phase5": "ABodyBuilder2",
+    "tier_strategy": "Phase3=IgFold(fast_screen); Phase5=ABodyBuilder2(precision_gate)",
+    "phase3_plddt_gate": "WARN_ONLY",
+    "phase5_plddt_gate": "HARD_ABORT_60"
+  },
+  "cdr_rmsd": {
+    "stable_cdrs": [
+      "H1",
+      "H2",
+      "L2",
+      "L3"
+    ],
+    "stable_threshold_angstrom": 1.5,
+    "stable_fail_action": "HARD_ABORT",
+    "volatile_cdrs": [
+      "H3",
+      "L1"
+    ],
+    "volatile_threshold_angstrom": 2.5,
+    "volatile_fail_action": "WARN",
+    "volatile_warn_message": "AI  RMSD  — "
+  },
+  "vhvl_angle": {
+    "compute_tool": "core/structure/affinity_energy_toolkit.py:compute_vhvl_angle",
+    "warn_threshold_degrees": 10.0,
+    "hard_abort_threshold_degrees": 20.0,
+    "required_in_client_report": true
+  },
+  "canonical_class": {
+    "assign_tool": "assign_canonical_class",
+    "output_cdr_identity_to_known_canonical": true,
+    "h3_long_threshold": 12,
+    "h3_long_label": "Undefined — RMSD primary",
+    "vh71_sensitivity_check": true,
+    "vh71_noncanonical_action": "WARN"
+  },
+  "report_visibility": {
+    "client_visible": [
+      "cdr_rmsd_per_loop",
+      "vhvl_angle_theta_mouse",
+      "vhvl_angle_theta_humanized",
+      "vhvl_angle_delta_theta",
+      "oasis_humanness_score",
+      "back_mutation_list_with_rationale",
+      "germline_fr_identity_pct"
+    ],
+    "internal_audit_only": [
+      "sasa",
+      "packing_score",
+      "residue_contact_map",
+      "vernier_zone_analysis",
+      "stability_energy_raw"
+    ]
+  },
+  "back_mutations": {
+    "max_back_mutations_per_chain": 5,
+    "require_structural_justification": true,
+    "allowed_reasons": [
+      "CDR_contact_FR_position",
+      "Vernier_zone_H/L_packing",
+      "canonical_class_maintenance",
+      "charge_patch_correction"
+    ]
+  },
+    "cmc_gates": {
+    "min_pi": 5.5,
+    "max_pi": 9.5,
+    "max_instability_index": 45.0,
+    "max_gravy": 0.2,
+    "min_oasis_humanness": 80.0
+  },
+  "compliance_rules": {
+    "must_do": [
+      "Execute phases in order: 1 -> 2 -> 3 -> 4 -> 5, no skipping",
+      "Validate germline sequences before use (step 2.0)",
+      "Dual-scheme numbering cross-check BEFORE Vernier scoring: independent ANARCI(IMGT)+ANARCI(Kabat), align by sequence_index, preserve insertions",
+      "Pre-annotate in_cdr_union flag for all Vernier positions in diff table",
+      "Treat same-class Vernier differences in FR as requiring structural evaluation",
+      "Use pre-computed cache for VH3 numbering in Phase 2.1",
+      "Single batch ANARCI call per germline database (not per sequence)",
+      "Complete structure modeling before making backmutation decisions",
+      "Base backmutation decisions on actual computed SASA and contact numbers",
+      "Generate humanization_proposal.json and obtain human confirmation before assembly",
+      "CDR self-check: exact string match after assembly",
+      "Explicitly declare VL back-mutation count (including zero) with per-position reasoning",
+      "Load packing reference ranges dynamically from vernier_framework_patterns.json",
+      "Execute step 5.8 (Immunogenicity) using LOCAL germline tolerance and hydrophobicity filters; SKIP live IEDB API to reduce latency.",
+      "Record ABodyBuilder2 prediction quality metric in report",
+      "verify_cdr_preservation with scheme=chothia",
+      "run ABodyBuilder2 Phase 3 PDB generation",
+      "compute CDR RMSD for all 6 CDRs",
+      "compute VH/VL angle (θ_mouse, θ_humanized, Δθ)",
+      "compute OASis humanness",
+      "include back_mutation_list_with_rationale in client report",
+      "run CMC gate (pI, II, GRAVY, OASis)",
+      "write HallucinationGuard SEQ_BACK_CHECK before finalizing output",
+      "Execute V4.9.0 L1 architecture pre-filter before Phase 2 VL ranking.",
+      "Use naturalness_index in Phase 2 scoring (weight=0.05).",
+      "Generate drug-space advisory for PPC/PSH and CDR hotspots."
+    ],
+    "must_not_do": [
+      "Mix VHH rules, data, or modules with VH/VL workflow",
+      "Skip structure modeling and make backmutation decisions empirically",
+      "Humanize any residue within Union CDR ranges",
+      "Call ANARCI individually per sequence (performance violation)",
+      "Use AI-generated amino acids (only mouse or human germline sequences allowed)",
+      "Use a rearranged antibody sequence as germline template",
+      "Set CDR3 upper bound to > 117 (captures FR4 erroneously)",
+      "Treat same-class Vernier differences as automatically acceptable without structural check",
+      "Treat CDR contact distance = 0 as HC5 trigger (it means the residue IS a CDR residue)"
+    ]
+  },
+  "versions_history": [
+    {
+      "version": "5.1.0",
+      "date": "2026-05-01",
+      "changes": [
+        "Grafting CDR boundary widened from strict Chothia (26-32 / 52-56) to Union (Kabat ∪ Chothia ∪ AbM): VH H1=26-35, H2=50-65, H3=95-102; VL unchanged.",
+        "verify_cdr_preservation activated as HARD gate after Phase 4 assembly (replaces hardcoded cdr_integrity_check=True).",
+        "Same Union ruler applied to graft, BM forbidden region, CDR diff QA, and FR identity computation (B1: one ruler).",
+        "HTML report §10 must show side-by-side Mouse vs Humanized CDR diff (per CDR, per residue) under Union scheme.",
+        "Trigger: R5-307 vs Wemol H4/L4 cross-comparison (2026-05-01) revealed silent humanization of 33-35 / 50-51 / 57-65 paratope-adjacent residues under strict Chothia grafting."
+      ]
+    },
+    {
+      "version": "5.0.0",
+      "date": "2026-04-27",
+      "changes": [
+        "Per-CDR RMSD + Global Fv RMSD + VH/VL angle gate + FR identity gates (Phase 5 structural QC rebuild).",
+        "[OBSERVATION 2026-05-01] V5.0.0 grafting used strict Chothia (H1=26-32, H2=52-56), which silently humanized paratope-adjacent positions; superseded by V5.1.0."
+      ]
+    },
+    {
+      "version": "4.5.1",
+      "date": "2026-04-06",
+      "changes": [
+        "Chothia CDR structural definition enforced (V4.5.1-1)",
+        "CDR RMSD dual-tier: H1/H2/L2/L3 HARD GATE 1.5 Å; H3/L1 WARN (V4.5.1-2)",
+        "Phase 3 no PDB → HARD ABORT (V4.5.1-3)",
+        "Report confidentiality boundary: SASA/packing/Vernier = internal only (V4.5.1-4)"
+      ]
+    },
+    {
+      "version": "4.5",
+      "date": "2026-04-02",
+      "changes": [
+        "VH/VL angle reporting (V4.5-A)",
+        "Canonical class logical derivation + VH71 sensitivity (V4.5-B)"
+      ]
+    },
+    {
+      "version": "4.4",
+      "date": "2026-02-18",
+      "changes": [
+        "Germline validation checklist",
+        "5.2b canonical class determination",
+        "VL BM declaration",
+        "IEDB status",
+        "L2 rationale requirement"
+      ]
+    }
+  ],
+  "v49_drug_space_calibration": {
+    "enabled": true,
+    "vl_l1_architecture_rules": {
+      "description": "Hard pre-filter for VL germlines based on donor L1 length",
+      "mapping": {
+        "6": [
+          "IGKV3-11",
+          "IGKV1-39",
+          "IGKV1-12",
+          "IGKV1-13"
+        ],
+        "7": [
+          "IGKV3-20"
+        ],
+        "9": [
+          "IGKV7-3"
+        ],
+        "10": [
+          "IGKV7-3"
+        ],
+        "12": [
+          "IGKV4-1"
+        ]
+      },
+      "allowed_deviation": 1
+    },
+    "germline_naturalness_scores": {
+      "vh": {
+        "IGHV3-23": 0.61,
+        "IGHV3-30": 0.82,
+        "IGHV3-33": 1.0,
+        "IGHV1-69": 0.54,
+        "IGHV1-18": 0.54,
+        "IGHV1-46": 0.12,
+        "IGHV1-2": 0.21,
+        "IGHV1-3": 0.11,
+        "IGHV4-38-2": 0.11,
+        "IGHV3-21": 0.5,
+        "IGHV4-34": 0.85,
+        "IGHV4-39": 1.0,
+        "IGHV3-9": 1.0,
+        "IGHV5-51": 0.77
+      },
+      "vl": {
+        "IGKV3-20": 0.82,
+        "IGKV3-11": 0.77,
+        "IGKV1-12": 0.7,
+        "IGKV1-13": 0.53,
+        "IGKV1-39": 0.4,
+        "IGKV7-3": 0.04,
+        "IGKV2-30": 0.14,
+        "IGKV4-1": 0.28,
+        "IGKV3D-20": 0.89,
+        "IGKV2/OR22-4": 0.96,
+        "IGKV1-33": 0.35,
+        "IGKV2-28": 0.38
+      },
+      "default_unseen": 0.5
+    },
+    "drug_space_advisory": {
+      "ppc": {
+        "pass_min": 1.0,
+        "pass_max": 4.5,
+        "warn_max": 5.5
+      },
+      "psh": {
+        "pass_max": 700,
+        "warn_max": 1000
+      },
+      "vh_vl_identity": {
+        "pass_min": 0.85,
+        "warn_min": 0.82
+      }
+    },
+    "cdr_hotspot_patterns": {
+      "deamidation": [
+        "NG",
+        "NS",
+        "NH"
+      ],
+      "isomerization": [
+        "DS",
+        "DT",
+        "DG",
+        "DA"
+      ],
+      "high_priority_cdrs": [
+        "HCDR2",
+        "LCDR3"
+      ]
+    }
+  },
+  "checklist_v4_4": {
+    "phase_1": [
+      "1.1 CDR identification: IMGT + Kabat + Chothia Union definition",
+      "1.2 North canonical class: match CDR subtype in vernier_framework_patterns.json",
+      "1.3 Dual-scheme numbering QA (HARD GATE): ANARCI(IMGT) + ANARCI(Kabat) computed independently; align by sequence_index; insertion codes preserved; residue-by-residue match; FAIL blocks Vernier and all downstream analysis [NEW V4.4.2]"
+    ],
+    "phase_2": [
+      "2.0 Germline validation: verify sequence from IGHV_aa.json/IGKV_aa.json; no FR4 contamination [NEW V4.4]",
+      "2.1 CDR gate: H1/H2/L1 exact length match (L2 excluded — kappa invariant 7 aa) [L2 note NEW V4.4]",
+      "2.2 Golden pairs: VH/VL co-occurrence in 458 DB",
+      "2.3 Vernier score: T1×3 + T2×2 + T3×1; annotate in_cdr_union for each position [overlap flag NEW V4.4]",
+      "2.4 FR identity: FR1+FR2+FR3, Union CDR masked",
+      "2.5 Human review: autoreactivity check, clinical precedent verification"
+    ],
+    "phase_3": [
+      "3.1 Mouse structure: ABodyBuilder2 → PDB; record pLDDT/ranking score [quality record NEW V4.4]",
+      "3.2a VH/VL angle calculation",
+      "3.2b SASA per Vernier residue",
+      "3.2c Contact number per Vernier residue",
+      "3.2d Vernier→CDR minimum distance",
+      "3.2e Vernier 22 positions dual numbering table (IMGT+Kabat): compute independently, align by sequence_index; MUST cover 22 base positions (VH14 + VL8) [NEW V4.4.2]"
+    ],
+    "phase_4": [
+      "4.1 HC1: keep G/P mouse",
+      "4.2 HC1-inv: back-mutate if human introduces new P [NEW V4.3, kept]",
+      "4.3 HC2: keep Cys",
+      "4.4 HC4: back-mutate if SASA < 20 (includes same-class positions) [same-class rule NEW V4.4]",
+      "4.5 HC5: back-mutate if CDR dist < 4.5 Ang (skip if in_cdr_union=true) [overlap skip NEW V4.4]",
+      "4.6 HC6: back-mutate if buried salt bridge",
+      "4.SC1 VH/VL angle coupling check",
+      "4.SC2 L1→VL71 class check",
+      "4.SC3 VH core module coupling (VH71/73/78)",
+      "4.SC4 H2 length → VH71 class check",
+      "4.SC5 VH48/VH67 antagonism check",
+      "4.7 Sequence assembly: germline validation → CDR graft → BM apply → FR4 append [order NEW V4.4]",
+      "4.8 CDR self-check: exact match mouse CDR1/CDR2/CDR3",
+      "4.9 VL BM declaration: explicit count with per-position reasoning even if count=0 [NEW V4.4]"
+    ],
+    "phase_5": [
+      "5.1 Humanized structure: ABodyBuilder2 → PDB",
+      "5.2 CDR RMSD per-loop + Global Fv RMSD — thresholds from qc_thresholds.structural_fidelity (V5.0); species-stable vs volatile loops [V5.0]",
+      "5.2b Canonical class verification: humanized H1/H2/L1 class must match mouse [NEW V4.4]",
+      "5.3 VH/VL angle Δθ — V5.0: PASS ≤pass_deg; WARN (pass_deg,warn_deg]; FAIL >warn_deg (see VH_VL_angle in config)",
+      "5.4 Vernier packing P5-P95 (note: prediction artifacts possible for WARN)",
+      "5.5 SAP: structure-based preferred; sequence proxy fallback with CDR/FR separation [method note NEW V4.4]",
+      "5.6 pI Fab 5.5-8.5",
+      "5.7 Chemical liabilities with SASA filter (not pure sequence scan) [SASA filter NEW V4.4]",
+      "5.8 Immunogenicity — FR surface MHC-II [UPDATED V4.4.1]: (a) 27-allele IEDB prediction on full VH+VL; (b) apply FR-only filter (exclude CDR); (c) apply surface filter (Parker hydrophilicity > -0.5); (d) apply germline tolerance filter (IGHV/IGKV/IGLV frequency-weighted, tolerance>0.1 → TOLERATED); (e) agglomerative cluster analysis on remaining high-risk FR binders; (f) record API status code; (g) report: RISK_LEVEL, n_risk_positions, n_tolerated, cluster_count — NO algorithm details in client output; (h) when PDB available: recompute surface hydrophilicity using SASA and validate funnel-bottom risk positions [V4.4 supplement]",
+      "5.9 Paired Fv Naturalness QC [V5.5.1 client-safe label]: run after humanized VH/VL assembly; report only PASS/WARN/FAIL and recommended action in customer-facing outputs. This is a post-humanization QC gate, not a Phase 2 germline pre-filter."
+    ]
+  },
+  "clinical_anchor_policy": {
+    "enabled": true,
+    "mode": "clinical_anchor_only",
+    "source": "data/thera_sabdab/out/thera_germline_mapping.csv",
+    "rule": "Phase 2 candidate pool must come from germlines observed in clinical antibodies; OGRDB sequences are only used as sequence carriers for those clinical germline IDs.",
+    "fallback_anchors": {
+      "vh": "IGHV3-23*01",
+      "vl_kappa": "IGKV1-39*01",
+      "vl_lambda": "IGLV1-44*01"
+    }
+  },
+  "rescue_strategy": {
+    "enabled": true,
+    "round_1": "same germline, upgrade BM from standard HC rules to vernier_round2 (T1/T2/T3 deterministic rescue)",
+    "round_2": "if round_1 still fails, rerun with clinical fallback anchors",
+    "abort_rule": "if fallback still fails QC, terminate as FAIL rather than continue random retries"
+  },
+  "clinical_reference_policy": {
+    "germline_ada_reference": {
+      "enabled": true,
+      "source": "data/immunogenicity_knowledge_base/master/ada_master_136_curated.csv",
+      "matching_rule": "Match selected humanization germline against curated clinical ADA panel using exact germline first, then family-level overlap.",
+      "purpose": "Data-layer reference only: expose whether the selected germline has traceable clinical antibodies with curated ADA records.",
+      "forbidden_interpretation": "Do not treat matched ADA values as predictive for the current candidate. ADA remains indication-, assay-, route-, dose-, and population-dependent.",
+      "top_n_default": 8,
+      "required_fields": [
+        "antibody_name",
+        "vh_germline",
+        "vl_germline",
+        "match_type",
+        "ada_value_display",
+        "ada_first_pct",
+        "evidence_tier",
+        "evidence_source",
+        "approval_year",
+        "targets",
+        "indication_text",
+        "genetics_normalized"
+      ]
+    }
+  },
+  "result_schema_v472": {
+    "location": "HumanizationResult.qc_metrics.clinical_reference",
+    "fields": {
+      "selected_vh_germline": "string",
+      "selected_vl_germline": "string",
+      "germline_ada_reference_enabled": "bool",
+      "germline_ada_reference_boundary": "string",
+      "germline_ada_references": "list[dict]"
+    },
+    "interpretation_boundary": "clinical reference / evidence linkage only; non-predictive"
+  },
+  "protocol_result_contract": {
+    "enabled": true,
+    "output_method": "HumanizationResult.save_report also writes abenginecore_protocol_result.json",
+    "default_filename": "abenginecore_protocol_result.json",
+    "required_top_level_fields": [
+      "project_name",
+      "workflow",
+      "overall_status",
+      "notes",
+      "sequences",
+      "qc_metrics",
+      "checklist_report",
+      "qa_audit"
+    ],
+    "purpose": "Single machine-readable protocol artifact for orchestration and future SaaS execution."
+  },
+  "numbering_scheme": "IMGT",
+  "tools": {
+    "numbering": "ANARCI",
+    "structure_prediction": "ImmuneBuilder/ABodyBuilder2",
+    "immunogenicity_primary": "IEDB_API",
+    "immunogenicity_fallback": [
+      "NetMHCII-4.0 (local)",
+      "MHCflurry2 MHC-II (local)"
+    ],
+    "sap_method_primary": "structure-based (SASA-weighted)",
+    "sap_method_fallback": "5-mer sequence hydrophobicity proxy (note: overestimates in CDR regions)"
+  },
+  "cdr_imgt_ranges": {
+    "VH": {
+      "CDR1": [
+        27,
+        38
+      ],
+      "CDR2": [
+        56,
+        65
+      ],
+      "CDR3": [
+        105,
+        117
+      ]
+    },
+    "VL": {
+      "CDR1": [
+        27,
+        38
+      ],
+      "CDR2": [
+        56,
+        65
+      ],
+      "CDR3": [
+        105,
+        117
+      ]
+    },
+    "CDR3_boundary_rule": {
+      "end": 117,
+      "note": "IMGT CDR3 ends at position 117. FR4 (JH/JK-encoded) starts at position 118 (conserved W of JH or F of JK). Using 150 as upper bound INCORRECTLY captures FR4.",
+      "FR4_VH_start": 118,
+      "FR4_VL_start": 118
+    }
+  },
+  "fr4_sources": {
+    "note": "FR4 must ALWAYS come from human J-gene, never from mouse. Keep separate from V-region germline.",
+    "VH_JH4_FR4": "WGQGTLVTVSS",
+    "VH_JH6_FR4": "WGQGTTVTVSS",
+    "VL_JK4_FR4": "FGGGTKLEIK",
+    "VL_JK2_FR4": "FGQGTKVEIK",
+    "selection_rule": "Match J-gene usage from parent antibody when available; default to JH4/JK4"
+  },
+  "cdr_union_ranges": {
+    "description": "Union of Kabat+Chothia+IMGT+Contact definitions. All positions within these ranges are grafted from mouse, never humanized.",
+    "VH": {
+      "CDR1_union": [
+        26,
+        38
+      ],
+      "CDR2_union": [
+        55,
+        65
+      ],
+      "CDR3_union": [
+        105,
+        117
+      ]
+    },
+    "VL": {
+      "CDR1_union": [
+        27,
+        38
+      ],
+      "CDR2_union": [
+        56,
+        65
+      ],
+      "CDR3_union": [
+        105,
+        117
+      ]
+    },
+    "important_overlaps": {
+      "VH_28_in_CDR1_union": "VH pos 28 is Vernier T2 AND within CDR1 Union (26-38). CDR grafting resolves this — do NOT treat as requiring explicit back-mutation.",
+      "VH_29_in_CDR1_union": "Same as VH_28.",
+      "VH_30_in_CDR1_union": "Same as VH_28.",
+      "VL_36_in_CDR1_union": "VL pos 36 is Vernier T2 AND within CDR1 Union (27-38). Auto-resolved by CDR grafting.",
+      "annotation_requirement": "Phase 2 Vernier diff table MUST include 'in_cdr_union' boolean field for every Vernier position. Phase 4 MUST skip in_cdr_union=true positions from back-mutation decision logic."
+    }
+  },
+  "framework_selection_protocol": {
+    "step_order": [
+      "2.0_germline_validation",
+      "2.1_cdr_gate",
+      "2.2_golden_pairs",
+      "2.3_vernier_score",
+      "2.4_fr_identity"
+    ],
+    "step_2_0_germline_validation": {
+      "description": "NEW in V4.4. Validate that all germline sequences are sourced from official IMGT V-region database, NOT from rearranged antibodies.",
+      "rules": [
+        "Sequence MUST come from IGHV_aa.json or IGKV_aa.json 'entries' list (field: sequence_aa)",
+        "V-region sequence must NOT contain FR4 (JH/JK-encoded); typically ends at IMGT position ~104 (conserved Cys/Arg)",
+        "Verify: last 10 aa should NOT match known JH/JK FR4 patterns (WGQGT, FGGGT, FGQGT)",
+        "FR4 must be managed separately via fr4_sources lookup table"
+      ],
+      "validation_check": "re.search(r'(WGQGT|FGGGT|FGQGT)', seq[-12:]) must be NONE for valid V-region"
+    },
+    "step_2_1_cdr_gate": {
+      "description": "Hard filter: human germline CDR lengths must exactly match mouse antibody",
+      "required_match": [
+        "H1",
+        "H2",
+        "L1"
+      ],
+      "excluded_from_filter": {
+        "L2": {
+          "reason": "Kappa chain CDR2 (Kabat 50-56) is universally 7 residues in Homo sapiens IGKV — zero variance, provides no discriminatory information for framework selection.",
+          "kabat_length": 7,
+          "imgt_variable_positions": "56-65 (variable aa subset of this range)"
+        }
+      },
+      "data_source_vh3": "data/germlines/human_ig_aa/vh_numbered/human_vh_numbered_and_split.json",
+      "data_source_ighv": "data/germlines/human_ig_aa/IGHV_aa.json",
+      "data_source_igkv": "data/germlines/human_ig_aa/IGKV_aa.json",
+      "performance_rule": "Single batch ANARCI call, cache results to JSON. Never call per-sequence.",
+      "known_exclusions": {
+        "IGHV3-30_H2": "H2 length = 8 in IGHV3-30 germline. Automatically excludes all antibodies requiring H2=7."
+      }
+    },
+    "step_2_2_golden_pairs": {
+      "description": "Prioritize VH/VL combinations with high frequency in 458-engineered antibody database",
+      "data_source": "data/humanization_assay/vh_vl_pairing_report.md",
+      "tier_natural_engineered_both_high": "FIRST_CHOICE",
+      "tier_engineered_high_only": "SECOND_CHOICE",
+      "tier_neither": "PROHIBITED"
+    },
+    "step_2_3_vernier_score": {
+      "description": "Tier-weighted Vernier zone residue matching",
+      "tiers": {
+        "T1": {
+          "positions_VH": [
+            71
+          ],
+          "positions_VL": [
+            71
+          ],
+          "weight": 3.0
+        },
+        "T2": {
+          "positions_VH": [
+            2,
+            27,
+            28,
+            29,
+            30,
+            69,
+            93,
+            94
+          ],
+          "positions_VL": [
+            36,
+            46
+          ],
+          "weight": 2.0,
+          "cdr_overlap_note": "VH 27/28/29/30 and VL 36 overlap with CDR Union. Pre-annotate in_cdr_union=true; these DIFFER/same-class outcomes do NOT count against the framework."
+        },
+        "T3": {
+          "positions_VH": [
+            48,
+            49,
+            67,
+            73,
+            78
+          ],
+          "positions_VL": [
+            2,
+            4,
+            49,
+            69,
+            98
+          ],
+          "weight": 1.0
+        }
+      },
+      "score_rules": {
+        "exact_match": 2.0,
+        "same_chemical_class": 0.5,
+        "mismatch": 0.0
+      },
+      "diff_table_required_fields": [
+        "tier",
+        "pos",
+        "mouse_aa",
+        "germline_aa",
+        "status",
+        "in_cdr_union",
+        "phase4_action"
+      ]
+    },
+    "step_2_4_fr_identity": {
+      "description": "Framework region sequence identity, calculated after masking Union CDR ranges",
+      "regions": [
+        "FR1",
+        "FR2",
+        "FR3"
+      ]
+    },
+    "combined_score_formula": {
+      "vernier_weight": 0.6,
+      "fr_identity_weight": 0.3,
+      "golden_bonus_weight": 0.1
+    },
+    "output": "Top-3 VH candidates + Top-3 VL candidates for human review"
+  },
+  "structure_calculation": {
+    "required_metrics": [
+      {
+        "name": "SASA",
+        "unit": "Angstrom^2",
+        "description": "Solvent Accessible Surface Area per Vernier residue"
+      },
+      {
+        "name": "contact_number",
+        "unit": "count",
+        "cutoff_angstrom": 4.5,
+        "description": "Heavy atom contacts within 4.5 Ang (packing density)"
+      },
+      {
+        "name": "vh_vl_angle",
+        "unit": "degrees",
+        "description": "Inter-domain angle between VH and VL main axes"
+      },
+      {
+        "name": "vernier_cdr_distance",
+        "unit": "Angstrom",
+        "description": "Distance from each Vernier residue to nearest CDR atom"
+      }
+    ],
+    "thresholds": {
+      "SASA_buried_must_keep": 20,
+      "SASA_exposed_can_try": 50,
+      "contact_high_packing_keep": 28,
+      "contact_low_packing_try": 15,
+      "cdr_contact_distance_keep": 4.5
+    },
+    "prediction_quality_note": "ABodyBuilder2 CPU output pLDDT should be recorded. Packing warnings below P5 may reflect prediction artifacts, not true cavity. Recommend experimental DSF confirmation."
+  },
+  "backmutation_rules": {
+    "same_class_rule": {
+      "description": "NEW in V4.4. 'same-class' Vernier differences are NOT automatically accepted. They MUST undergo structural evaluation.",
+      "decision_flow": {
+        "MATCH": "No action needed. Skip structural evaluation.",
+        "same-class_in_CDR_union": "Auto-resolved by CDR grafting. No action.",
+        "same-class_in_FR": "MANDATORY structural evaluation → SASA + contact_number → then decide KEEP_MOUSE or ACCEPT_HUMAN",
+        "DIFFER_in_CDR_union": "Auto-resolved by CDR grafting. No action.",
+        "DIFFER_in_FR": "MANDATORY structural evaluation → apply HC1-HC6 rules → decide"
+      },
+      "example": "VH_94 V/L = same-class, but SASA=19.8 < 20 threshold → KEEP_MOUSE. Would have been missed if same-class was treated as acceptable without structural check."
+    },
+    "vl_zero_backmutation_declaration": {
+      "description": "NEW in V4.4. If VL back-mutations = 0, this MUST be explicitly declared with per-position reasoning.",
+      "required_statement_fields": [
+        "vl_bm_count: 0",
+        "all_vernier_positions_checked: true",
+        "per_position_reasoning: [list each Vernier position and disposition]"
+      ],
+      "example": "IGKV1-33*01: 8 Vernier positions — 7 MATCH (no action), 1 same-class (VL_36) in CDR1 Union (auto-resolved). CONFIRMED zero FR-zone differences requiring explicit BM."
+    },
+    "hard_constraints": [
+      {
+        "id": "HC1",
+        "name": "Gly_Pro_mouse_rule",
+        "condition": "mouse Vernier residue is G or P",
+        "decision": "KEEP_MOUSE",
+        "decision_mode": "AUTO_APPLY",
+        "decision_mode_rationale": "Backbone dihedral constraints are deterministic; algorithm applies BM without human review.",
+        "reason": "Backbone dihedral constraints"
+      },
+      {
+        "id": "HC1_inv",
+        "name": "Human_introduces_Pro",
+        "condition": "human germline Vernier residue is P AND mouse is NOT P",
+        "decision": "BACK_MUTATE",
+        "decision_mode": "AUTO_APPLY",
+        "decision_mode_rationale": "New Pro introduction is a known structural risk; algorithm always reverts.",
+        "reason": "Introducing new Pro changes backbone angle, may distort CDR geometry"
+      },
+      {
+        "id": "HC2",
+        "name": "Cys_disulfide_rule",
+        "condition": "residue involved in disulfide bond",
+        "decision": "KEEP_MOUSE",
+        "decision_mode": "AUTO_APPLY",
+        "decision_mode_rationale": "Disulfide preservation is non-negotiable; algorithm applies BM without human review."
+      },
+      {
+        "id": "HC3",
+        "name": "Tier1_default_keep",
+        "positions_VH": [
+          71,
+          94
+        ],
+        "positions_VL": [
+          71,
+          49
+        ],
+        "decision": "KEEP_MOUSE_default",
+        "decision_mode": "PENDING_HUMAN",
+        "decision_mode_rationale": "T1 positions are interface-critical; default is to keep mouse, but trade-off (humanness vs CDR support) requires customer trade-off awareness. Surface options to client.",
+        "client_options": [
+          {
+            "id": "keep_germline_human",
+            "label": "Keep human germline residue (maximize humanness)",
+            "consequence": "Higher FR humanness; possible mild CDR-shape drift if T1 packing is destabilized."
+          },
+          {
+            "id": "back_mutate_to_donor",
+            "label": "Revert to donor residue (preserve CDR support)",
+            "consequence": "More conservative CDR shape; FR humanness decreases by ~1 residue."
+          }
+        ],
+        "reason": "T1 positions require structural evidence to override"
+      },
+      {
+        "id": "HC4",
+        "name": "Buried_SASA",
+        "condition": "SASA < 20",
+        "decision": "KEEP_MOUSE",
+        "decision_mode": "AUTO_APPLY",
+        "decision_mode_rationale": "Buried residues mutating disrupts core packing; algorithm always preserves mouse residue when SASA<20 from computed structure."
+      },
+      {
+        "id": "HC5",
+        "name": "CDR_direct_contact",
+        "condition": "distance_to_CDR < 4.5 Ang",
+        "decision": "KEEP_MOUSE",
+        "decision_mode": "AUTO_APPLY",
+        "decision_mode_rationale": "Direct CDR contact within 4.5 Å is a deterministic structural threshold; algorithm always preserves mouse residue.",
+        "note": "If distance_to_CDR = 0.0, position is itself a CDR residue — handle via CDR grafting, not as back-mutation"
+      },
+      {
+        "id": "HC6",
+        "name": "Buried_salt_bridge",
+        "condition": "part of buried salt bridge pair",
+        "decision": "KEEP_MOUSE_paired",
+        "decision_mode": "AUTO_APPLY",
+        "decision_mode_rationale": "Buried salt-bridge disruption causes thermodynamic destabilization; algorithm always preserves the mouse pair."
+      }
+    ],
+    "soft_constraints": [
+      {
+        "id": "SC1",
+        "name": "VH_VL_angle_redline",
+        "condition": "Δangle (humanized vs mouse) > 3 degrees",
+        "force_keep": [
+          "VH_71",
+          "VH_94",
+          "VL_49"
+        ],
+        "decision_mode": "AUTO_APPLY_IF_TRIGGERED",
+        "decision_mode_rationale": "Trigger is structural and quantitative (Δangle). When triggered, the three positions are forced as a co-dependent cluster — no human review.",
+        "note": "Three interface positions are co-dependent, must be treated together"
+      },
+      {
+        "id": "SC2",
+        "name": "L1_VL71_binding",
+        "condition": "L1 length mouse != L1 length human framework",
+        "check": "VL_71 AA must belong to V/I/L class",
+        "force_keep": [
+          "VL_71"
+        ],
+        "decision_mode": "AUTO_APPLY_IF_TRIGGERED",
+        "decision_mode_rationale": "L1 length mismatch + VL71 class mismatch is deterministic (binary trigger); algorithm forces keep without human review.",
+        "data_support": "VL71 environment determined 55% by L1 length, r=0.55"
+      },
+      {
+        "id": "SC3",
+        "name": "VH_core_module_coupling",
+        "condition": "decided to keep VH_71 (mouse)",
+        "check_also": [
+          "VH_73",
+          "VH_78"
+        ],
+        "decision": "if mouse != human at VH73/VH78, keep mouse",
+        "decision_mode": "PENDING_HUMAN",
+        "decision_mode_rationale": "Coupling is statistical (r=0.75 / r=0.61), not deterministic. Customer should weigh humanness loss vs core stability and make the call.",
+        "client_options": [
+          {
+            "id": "keep_germline_human",
+            "label": "Keep human germline at VH73/VH78 (higher humanness)",
+            "consequence": "FR humanness up; small risk of VH core packing perturbation when VH71 is mouse."
+          },
+          {
+            "id": "back_mutate_to_donor",
+            "label": "Apply coupling rule (revert VH73/VH78 to donor)",
+            "consequence": "Conservative core packing; humanness loss of up to 2 FR residues."
+          }
+        ],
+        "data_support": "VH71-VH73 correlation r=0.75, VH71-VH78 r=0.61"
+      },
+      {
+        "id": "SC4",
+        "name": "H2_VH71_correction",
+        "condition": "H2_length = 7 (not 10)",
+        "check": "VH_71 must be L/V/I class",
+        "force_keep_if_not": [
+          "VH_71"
+        ],
+        "decision_mode": "AUTO_APPLY_IF_TRIGGERED",
+        "decision_mode_rationale": "H2 length and AA class checks are deterministic; algorithm forces keep without human review."
+      },
+      {
+        "id": "SC5",
+        "name": "VH48_VH67_antagonism",
+        "condition": "modifying VH_48",
+        "check_also": [
+          "VH_67"
+        ],
+        "decision": "avoid introducing bulky residues at both positions simultaneously",
+        "decision_mode": "PENDING_HUMAN",
+        "decision_mode_rationale": "Antagonism is statistical (r=-0.45); customer chooses which position to keep mouse if both would otherwise become bulky.",
+        "client_options": [
+          {
+            "id": "humanize_both",
+            "label": "Humanize both VH48 and VH67 (maximize humanness)",
+            "consequence": "Possible negative interaction (steric) when both go bulky."
+          },
+          {
+            "id": "keep_one_mouse",
+            "label": "Keep one position mouse (algorithm picks the more critical of the two)",
+            "consequence": "Conservative interface; minor humanness loss."
+          }
+        ],
+        "data_support": "negative correlation r=-0.45"
+      }
+    ],
+    "coupling_table": [
+      {
+        "trigger": "VH_71",
+        "check": [
+          "VH_73",
+          "VH_78"
+        ],
+        "cluster": 1
+      },
+      {
+        "trigger": "VL_71",
+        "check": [
+          "VL_36"
+        ],
+        "cluster": 2
+      },
+      {
+        "trigger": "VH_48",
+        "check": [
+          "VH_67"
+        ],
+        "cluster": "antagonist"
+      },
+      {
+        "trigger": "VH_94",
+        "check": [
+          "VH_93",
+          "VL_4"
+        ],
+        "cluster": 3
+      }
+    ],
+    "sequence_assembly_rules": [
+      "Step 1: Validate germline V-region sequence (step_2_0_germline_validation rules)",
+      "Step 2: Start from human germline V-region (positions 1-104 only, no FR4)",
+      "Step 3: Replace CDR Union ranges with mouse CDR sequences",
+      "Step 4: Apply back-mutation list residue by residue (FR positions only)",
+      "Step 5: Append human FR4 from fr4_sources lookup",
+      "Step 6: Self-check — exact string match of mouse CDR sequences in assembled humanized sequence",
+      "Step 7: Declare VL BM count explicitly (including zero with per-position reasoning)"
+    ]
+  },
+  "qc_thresholds": {
+    "p_abnativ2_paired_humanness": {
+      "_version": "V5.5.0",
+      "_evidence": "Calibrated against AbRef engineered_458 and Natural384 paired p-AbNatiV2 distributions (2026-05-09). Engineered_458 paired_humanness p10~0.73, p25~0.787, median~0.826; Natural384 p5~0.848, median~0.928.",
+      "_scope": "Post-humanization VH/VL candidate QC only; not a Phase 2 germline pre-filter.",
+      "metric": "paired_humanness",
+      "fail_below": 0.7,
+      "warn_below": 0.8,
+      "pass_at_or_above": 0.8,
+      "target_at_or_above": 0.83,
+      "fail_action": "retry_with_deterministic_repair_or_fallback_germline_when_available",
+      "warn_action": "retain candidate only with structural/CMC/immunogenicity support",
+      "pairing_likelihood_policy": {
+        "absolute_threshold": null,
+        "note": "pairing_likelihood values in current paired AbNatiV2 outputs are around 0.000-0.010 for the 842 cohort; do not apply the 0.70 paired_humanness threshold to pairing_likelihood."
+      }
+    },
+    "structural_fidelity": {
+      "_version": "V5.0.0 — CDR-specific RMSD gates",
+      "_reference": "Gupta et al. JBC 2023 PMID 38072062; CDR canonical structure literature",
+      "cdr_rmsd_per_loop": {
+        "H1": {
+          "pass_angstrom": 1.2,
+          "warn_angstrom": 1.8,
+          "fail_angstrom": 1.8,
+          "rationale": "Canonical; framework-constrained"
+        },
+        "H2": {
+          "pass_angstrom": 1.2,
+          "warn_angstrom": 1.8,
+          "fail_angstrom": 1.8,
+          "rationale": "Canonical; VH71-dependent"
+        },
+        "L1": {
+          "pass_angstrom": 1.5,
+          "warn_angstrom": 2.5,
+          "fail_angstrom": 2.5,
+          "rationale": "Semi-variable; long L1 loops naturally deviate"
+        },
+        "L2": {
+          "pass_angstrom": 1.2,
+          "warn_angstrom": 1.8,
+          "fail_angstrom": 1.8,
+          "rationale": "Highly conserved"
+        },
+        "H3": {
+          "gate": "pLDDT_and_canonical_class",
+          "rmsd_hard_gate": false,
+          "plddt_min": 60,
+          "rationale": "Hypervariable; conformational shift post-humanization is normal. Use pLDDT+canonical class instead of RMSD."
+        },
+        "L3": {
+          "pass_angstrom": 2.0,
+          "warn_angstrom": 3.0,
+          "fail_angstrom": 3.0,
+          "fail_action": "WARN_only",
+          "rationale": "Variable; moderate tolerance. WARN only."
+        }
+      },
+      "global_fv_rmsd": {
+        "description": "NEW V5.0 — Whole-Fv Ca RMSD (VH+VL) vs mouse parent. Decoupled from sequence identity.",
+        "pass_angstrom": 1.0,
+        "warn_angstrom": 1.5,
+        "fail_angstrom": 1.5,
+        "fail_action": "WARN_and_trigger_vernier_round2",
+        "note": "JBC 2023: Global RMSD NOT correlated with sequence identity. Evaluate independently."
+      },
+      "VH_VL_angle": {
+        "description": "NEW V5.0 — Upgraded from SC1 soft constraint to independent QC gate",
+        "pass_degrees": 3.0,
+        "warn_degrees": 6.0,
+        "fail_degrees": 6.0,
+        "fail_action": "HARD_FAIL_trigger_vernier_round2",
+        "fail_focus_positions": [
+          "VH_71",
+          "VH_94",
+          "VL_49"
+        ],
+        "legacy_note": "V4.x VH_VL_angle_deviation_max_degrees=3.0 was SC1 soft only. V5.0: independent FAIL gate."
+      }
+    },
+    "phase_5_2b_canonical_class_check": {
+      "description": "NEW in V4.4. Verify CDR canonical class of humanized structure matches mouse.",
+      "method": "Run North canonical class classification on humanized PDB CDR loops",
+      "required_match": "H1, H2, L1 canonical classes must be identical to mouse parent",
+      "fail_action": "If any CDR class differs, review back-mutation decisions for that CDR's Vernier residues"
+    },
+    "vernier_packing": {
+      "data_source": "data/humanization_assay/vernier_framework_patterns.json",
+      "reference_key_template": "H1-{H1}-?|H2-{H2}-?|L1-{L1}-?",
+      "pass_condition": "P5 <= contact_number <= P95",
+      "fail_low_cavity": "< P5 — large to small substitution, structural instability",
+      "fail_high_clash": "> P95 — small to large substitution, folding failure",
+      "prediction_artifact_note": "Values from ABodyBuilder2 CPU may deviate from crystal structure packing. Packing WARN is not a hard failure — require experimental DSF confirmation before engineering."
+    },
+    "surface_properties": {
+      "SAP_method_preferred": "Structure-based: sum SASA(residue) * hydrophobicity_score for each 5-residue window, using humanized PDB",
+      "SAP_method_fallback": "Sequence proxy (5-mer hydrophobic count >= 4/5). NOTE: overestimates CDR aromatic patches. Report CDR vs FR patches separately.",
+      "pI_acceptable_range_fab": [
+        5.5,
+        9.5
+      ],
+      "pI_note": "Use Henderson-Hasselbalch approximation for screening. Confirm with capillary isoelectric focusing post-expression."
+    },
+    "chemical_liabilities": [
+      {
+        "type": "N_glycosylation",
+        "pattern": "N-X-S/T (X!=P)",
+        "location": "CDR or exposed FR",
+        "severity": "HIGH"
+      },
+      {
+        "type": "deamidation",
+        "pattern": "NG or NS",
+        "severity": "MEDIUM",
+        "sasa_filter": "only flag if SASA > 20"
+      },
+      {
+        "type": "isomerization",
+        "pattern": "DG or DS",
+        "severity": "MEDIUM",
+        "sasa_filter": "only flag if SASA > 20"
+      },
+      {
+        "type": "oxidation",
+        "pattern": "exposed Met (SASA>50) or Trp in CDR3",
+        "severity": "MEDIUM",
+        "note": "Sequence-level scan flags all M/W. Only structurally exposed residues (SASA>50) require attention."
+      },
+      {
+        "type": "free_Cys",
+        "pattern": "non-disulfide Cys",
+        "severity": "HIGH"
+      }
+    ],
+    "immunogenicity": {
+      "tool_primary": "IEDB_API (consensus method, NetMHCIIpan EL 4.1)",
+      "tool_fallback": "Offline heuristic (hydrophobicity-anchor model)",
+      "record_api_status": "REQUIRED — record HTTP status code in report to distinguish 0-epitopes from API failure",
+      "peptide_lengths": [
+        15
+      ],
+      "hla_alleles": "EXT27 panel — 27 high-frequency HLA-DRB1/DRB3/DRB4/DRB5/DP/DQ alleles (≥97% world population coverage)",
+      "mhc_class": "II",
+      "analysis_scope": "FR (framework) regions ONLY — CDR epitopes excluded from risk scoring",
+      "surface_filter": "Parker hydrophilicity score > -0.5 (surface-exposed peptides only)",
+      "structure_recompute": "When PDB available: recompute surface hydrophilicity using SASA; validate funnel-bottom risk positions against structure (supplement to sequence-only first pass)",
+      "germline_filter": {
+        "method": "Frequency-weighted tolerance from IMGT germline database (IGHV/IGKV/IGLV)",
+        "binary_threshold": "Peptide present in ANY human germline → is_germline=True",
+        "frequency_threshold": "Tolerance score > 0.1 (present in >10% of V-gene sequences) → force LOW risk",
+        "database": "data/germlines/human_ig_aa/ (699 V-gene sequences, 16,446 unique 15-mers)"
+      },
+      "clustering": {
+        "method": "Agglomerative clustering, average-linkage Euclidean distance, pure numpy",
+        "input": "FR + surface-exposed + non-germline strong binders only",
+        "output": "Cluster map of immunogenic hotspots in FR"
+      },
+      "strong_binder_threshold_rank": 2.0,
+      "weak_binder_threshold_rank": 10.0,
+      "risk_thresholds": {
+        "HIGH": "strong_binders ≥ 4 alleles AND not germline AND in hydrophilic FR",
+        "MEDIUM": "strong_binders ≥ 2 OR weak_binders ≥ 6, AND not germline AND in hydrophilic FR",
+        "TOLERATED": "is_germline OR tolerance > 0.1"
+      },
+      "report_format": "Results only — no algorithm details in client report"
+    },
+    "fr_identity_gates": {
+      "_version": "V5.0.0",
+      "_deliverable_reporting": "Protocol JSON exposes fr_identity_qc (VH/VL % vs warn/hard floors from this block). No 9-mer humanness in reports.",
+      "_evidence_level": "[estimated, single-antigen, LAG3] — pending 459-antibody dataset validation",
+      "VL": {
+        "pass_pct": 60,
+        "warn_below_pct": 60,
+        "hard_fallback_below_pct": 40,
+        "hard_fallback_action": "trigger_clinical_fallback_anchor",
+        "data_basis": "JBC 2023 PMID 38072062: 91% binding retention at VL>60%; 98% loss at VL<60% (210-graft LAG3 matrix)",
+        "note": "VL framework primarily impacts binding affinity and function"
+      },
+      "VH": {
+        "warn_below_pct": 40,
+        "data_basis": "JBC 2023: VH 30-70% range all showed retained binding; VH impacts CMC/developability not affinity",
+        "note": "No hard lower limit. WARN at <40%. VH identity correlates with biophysical properties."
+      }
+    }
+  },
+  "data_sources": {
+    "vernier_framework_patterns": "data/humanization_assay/vernier_framework_patterns.json",
+    "vh_vl_pairing_report": "data/humanization_assay/vh_vl_pairing_report.md",
+    "vernier_correlation_report": "data/humanization_assay/vernier_correlation_report.md",
+    "structure_metrics_summary": "data/humanization_assay/structure_metrics_summary.json",
+    "human_vh3_numbered": "data/germlines/human_ig_aa/vh_numbered/human_vh_numbered_and_split.json",
+    "ighv_aa": "data/germlines/human_ig_aa/IGHV_aa.json",
+    "igkv_aa": "data/germlines/human_ig_aa/IGKV_aa.json"
+  },
+  "report_config": {
+    "_note": "。Checklist ，。",
+    "qa_audit": {
+      "always_generate": true,
+      "language": "zh_with_en_terms",
+      "format": "checklist_table",
+      "fields_per_item": [
+        "phase",
+        "item_id",
+        "description",
+        "status",
+        "evidence"
+      ],
+      "pass_threshold": "all_mandatory_pass",
+      "must_include_deliverables_check": true,
+      "output_filename": "{id}_V44_Audit.md"
+    },
+    "customer_zh": {
+      "always_generate": true,
+      "language": "zh_with_en_terms",
+      "format": "fixed_sections",
+      "sections": [
+        {
+          "id": "sequences_and_annotation",
+          "title": "",
+          "required_fields": [
+            "final_VH_sequence",
+            "final_VL_sequence",
+            "VH_FR_CDR_annotation_table",
+            "VL_FR_CDR_annotation_table",
+            "numbering_scheme_stated"
+          ],
+          "note": " FR/CDR ， Kabat ，"
+        },
+        {
+          "id": "germline_selection_analysis",
+          "title": "（Germline）",
+          "required_fields": [
+            "VH_candidates_comparison_table",
+            "VL_candidates_comparison_table",
+            "selection_rationale",
+            "clinical_precedent_antibodies",
+            "vernier_compatibility_summary"
+          ],
+          "note": "，；"
+        },
+        {
+          "id": "design_decisions",
+          "title": "",
+          "required_fields": [
+            "version_evolution_summary",
+            "backmutation_list_with_rationale",
+            "pI_correction_explanation_if_applicable"
+          ],
+          "note": "v1→v2→v3 ， BM ，"
+        },
+        {
+          "id": "executive_summary",
+          "title": "",
+          "required_fields": [
+            "humanization_score",
+            "key_improvements",
+            "next_steps"
+          ],
+          "note": "，"
+        },
+        {
+          "id": "germline_clinical_precedent",
+          "title": "",
+          "required_fields": [
+            "clinical_antibody_examples",
+            "framework_usage_frequency"
+          ],
+          "note": "，"
+        },
+        {
+          "id": "structural_fidelity",
+          "title": "",
+          "required_fields": [
+            "result",
+            "significance",
+            "action"
+          ],
+          "note": "（PASS/WARN/FAIL）， RMSD "
+        },
+        {
+          "id": "cmc_developability",
+          "title": "CMC ",
+          "required_fields": [
+            "result",
+            "significance",
+            "action"
+          ],
+          "note": "pI ，，"
+        },
+        {
+          "id": "immunogenicity_risk",
+          "title": "",
+          "required_fields": [
+            "result",
+            "significance",
+            "action"
+          ],
+          "note": "， MHC-II  allele "
+        },
+        {
+          "id": "deliverables_list",
+          "title": "",
+          "required_fields": [
+            "client_files_only"
+          ],
+          "forbidden_in_this_section": [
+            "V44_Audit.md",
+            "results.json",
+            "Dev_Report.md",
+            "internal_paths"
+          ],
+          "note": "，"
+        }
+      ],
+      "forbidden_content": [
+        "raw_sasa_tables",
+        "internal_file_paths",
+        "script_names",
+        "per_residue_values",
+        "computation_details",
+        "full_english_sentences",
+        "mhc_allele_binding_matrix",
+        "iedb_raw_scores",
+        "anarci_numbering_details",
+        "backmutation_rule_codes",
+        "results_json_reference",
+        "audit_report_reference"
+      ],
+      "output_filename": "{id}_Client_zh.md"
+    },
+    "customer_en": {
+      "always_generate": false,
+      "trigger": "--report client_en",
+      "language": "en",
+      "format": "fixed_sections",
+      "sections": [
+        "sequences_and_annotation",
+        "germline_selection_analysis",
+        "design_decisions",
+        "executive_summary",
+        "germline_clinical_precedent",
+        "structural_fidelity",
+        "cmc_developability",
+        "immunogenicity_risk",
+        "deliverables_list"
+      ],
+      "each_section_requires": [
+        "result",
+        "significance",
+        "action"
+      ],
+      "output_filename": "{id}_Client_en.md"
+    },
+    "developer": {
+      "always_generate": false,
+      "trigger": "--report developer",
+      "language": "zh_with_en_terms",
+      "format": "full_data_dump",
+      "output_filename": "{id}_Dev_Report.md"
+    }
+  },
+  "language_rules": {
+    "zh_with_en_terms": {
+      "base_language": "zh",
+      "description": "，，。",
+      "preserve_english_always": [
+        "CDR",
+        "FR",
+        "VH",
+        "VL",
+        "pI",
+        "RMSD",
+        "SASA",
+        "MHC-II",
+        "MHC-I",
+        "FASTA",
+        "PDB",
+        "PASS",
+        "FAIL",
+        "SKIP",
+        "HIGH",
+        "MEDIUM",
+        "LOW",
+        "WARN",
+        "ABodyBuilder2",
+        "IEDB",
+        "ANARCI",
+        "IMGT",
+        "Kabat",
+        "IGHV",
+        "IGKV",
+        "IGLV",
+        "SPR",
+        "ELISA",
+        "LC-MS",
+        "DSF",
+        "CMC",
+        "BM",
+        "SAP",
+        "QA"
+      ],
+      "first_occurrence_bilingual": {
+        "Immunogenicity": "（Immunogenicity）",
+        "Germline": "（Germline）",
+        "Back-mutation": "（Back-mutation，BM）",
+        "Developability": "（Developability）",
+        "Framework Region": "（Framework Region，FR）",
+        "Canonical class": "CDR （Canonical class）",
+        "Vernier zone": "Vernier "
+      },
+      "explanation_layer": "zh_only",
+      "forbidden": "full_english_sentences_in_zh_report"
+    }
+  },
+  "deliverables": {
+    "_note": " Pipeline 。QA Audit 。",
+    "_audience_rule": "client_deliverable  ZIP；internal_only ，。",
+    "client_deliverable": [
+      {
+        "file": "reports/{id}_Client_zh.pdf",
+        "format": "pdf",
+        "description": "（ PDF）— "
+      },
+      {
+        "file": "{id}_sequences.fasta",
+        "format": "fasta",
+        "must_include_versions": [
+          "mouse",
+          "v1",
+          "final"
+        ],
+        "header_format": "{id}_{version}|{chain}|{type}|{status}",
+        "description": "（ + ）"
+      },
+      {
+        "file": "structures/{id}_mouse.pdb",
+        "format": "pdb",
+        "source": "ABodyBuilder2",
+        "description": ""
+      },
+      {
+        "file": "structures/{id}_humanized_final.pdb",
+        "format": "pdb",
+        "source": "ABodyBuilder2",
+        "description": ""
+      },
+      {
+        "file": "README.md",
+        "format": "markdown",
+        "description": ""
+      }
+    ],
+    "client_deliverable_optional": [
+      {
+        "file": "reports/{id}_Client_en.pdf",
+        "trigger": "--report client_en",
+        "description": "（ PDF，）"
+      }
+    ],
+    "internal_only": [
+      {
+        "file": "reports/{id}_V44_Audit.md",
+        "format": "markdown",
+        "description": "V4.4  Checklist  —  QA ，"
+      },
+      {
+        "file": "reports/{id}_V44_Audit.pdf",
+        "format": "pdf",
+        "description": "V4.4  PDF —  QA "
+      },
+      {
+        "file": "{id}_results.json",
+        "format": "json",
+        "role": "single_source_of_truth",
+        "description": "— ，"
+      },
+      {
+        "file": "reports/{id}_Dev_Report.md",
+        "format": "markdown",
+        "description": " — ，"
+      }
+    ],
+    "optional": [
+      {
+        "file": "structures/{id}_humanized_v*.pdb",
+        "trigger": "intermediate_versions_requested",
+        "description": "（，）"
+      }
+    ],
+    "pdf_generation": {
+      "tool": "scripts/md_to_pdf.py",
+      "font_primary": "NotoSansSC-VF.ttf",
+      "font_fallback": [
+        "msyh.ttc (subfontIndex=0)",
+        "simhei.ttf",
+        "STSong-Light (CID)"
+      ],
+      "chinese_encoding": "UTF-8 + embedded TTF，",
+      "trigger": "auto after customer report generation",
+      "scope": [
+        "customer_zh",
+        "qa_audit"
+      ],
+      "note": " PDF"
+    },
+    "deliverables_audit_checklist": [
+      {
+        "id": "D.1",
+        "check": "{id}_sequences.fasta  final "
+      },
+      {
+        "id": "D.2",
+        "check": "{id}_results.json  pI / CDR_RMSD / immunogenicity / germline "
+      },
+      {
+        "id": "D.3",
+        "check": "reports/{id}_V44_Audit.md "
+      },
+      {
+        "id": "D.4",
+        "check": "reports/{id}_V44_Audit.pdf "
+      },
+      {
+        "id": "D.5",
+        "check": "reports/{id}_Client_zh.md "
+      },
+      {
+        "id": "D.6",
+        "check": "reports/{id}_Client_zh.pdf "
+      },
+      {
+        "id": "D.7",
+        "check": "structures/{id}_mouse.pdb "
+      },
+      {
+        "id": "D.8",
+        "check": "structures/{id}_humanized_final.pdb "
+      }
+    ]
+  },
+  "pre_delivery_gate": {
+    "_description": "。。 FAIL 。",
+    "_trigger": "before_any_report_output",
+    "_enforced_in": "Phase 6 of QA Audit Report",
+    "_authority": "InSynBio AbEngineCore V4.4 — owner-locked, AI cannot skip or override",
+    "completeness_checks": [
+      {
+        "id": "C.1",
+        "check": " VH + VL ",
+        "fatal": true
+      },
+      {
+        "id": "C.2",
+        "check": " FR/CDR （Kabat ）",
+        "fatal": true
+      },
+      {
+        "id": "C.3",
+        "check": " Germline （≥3 ，）",
+        "fatal": true
+      },
+      {
+        "id": "C.4",
+        "check": "（v1→v2→v3，）",
+        "fatal": true
+      },
+      {
+        "id": "C.5",
+        "check": "（ +  + ）",
+        "fatal": true
+      },
+      {
+        "id": "C.6",
+        "check": "",
+        "fatal": true
+      },
+      {
+        "id": "C.7",
+        "check": " QA Gate （ N/A ）",
+        "fatal": true
+      },
+      {
+        "id": "C.7b",
+        "check": "：ANARCI(IMGT)+ANARCI(Kabat)  sequence_index ",
+        "fatal": true
+      },
+      {
+        "id": "C.7c",
+        "check": "Vernier 22 （IMGT+Kabat， seq_index），（22 ）",
+        "fatal": true
+      },
+      {
+        "id": "C.8",
+        "check": "，",
+        "fatal": true
+      },
+      {
+        "id": "C.9",
+        "check": "PDB ，",
+        "fatal": false
+      },
+      {
+        "id": "C.10",
+        "check": "（humanized_final.pdb）",
+        "fatal": true
+      },
+      {
+        "id": "C.11",
+        "check": "（Oryctolagus cuniculus），（λ/κ）",
+        "fatal": true
+      },
+      {
+        "id": "C.12",
+        "check": " CDRH3 ， Cys  PROTECTED_CYS_NO_BM",
+        "fatal": true
+      }
+    ],
+    "algorithm_protection_checks": [
+      {
+        "id": "A.1",
+        "check": " IEDB  allele ",
+        "fatal": true
+      },
+      {
+        "id": "A.2",
+        "check": " ANARCI ",
+        "fatal": true
+      },
+      {
+        "id": "A.3",
+        "check": "（.py / .sh ）",
+        "fatal": true
+      },
+      {
+        "id": "A.4",
+        "check": " results.json ",
+        "fatal": true
+      },
+      {
+        "id": "A.5",
+        "check": " V44_Audit.md ",
+        "fatal": true
+      },
+      {
+        "id": "A.6",
+        "check": "（ HC4、SC3）",
+        "fatal": true
+      },
+      {
+        "id": "A.7",
+        "check": " SASA ",
+        "fatal": true
+      },
+      {
+        "id": "A.8",
+        "check": " MHC-II 27 allele ",
+        "fatal": true
+      },
+      {
+        "id": "A.9",
+        "check": " AlphaFold2  pTM/ipTM ",
+        "fatal": true
+      },
+      {
+        "id": "A.10",
+        "check": "results.json ",
+        "fatal": true
+      }
+    ],
+    "language_compliance_checks": [
+      {
+        "id": "L.1",
+        "check": "（_zh）",
+        "fatal": true
+      },
+      {
+        "id": "L.2",
+        "check": "",
+        "fatal": false
+      },
+      {
+        "id": "L.3",
+        "check": "",
+        "fatal": true
+      }
+    ],
+    "fail_action": "block_output_list_all_failures_require_fix_before_recheck",
+    "pass_action": "proceed_to_report_output_and_packaging",
+    "audit_record_requirement": " Pre-Delivery Gate  {id}_V44_Audit.md Phase 6 ，（PASS/FAIL）"
+  },
+  "donor_species_registry": {
+    "_added": "V4.6.0 — 2026-04-14 — ",
+    "_purpose": " VH/VL 。。",
+    "default_donor_species": "mus_musculus",
+    "supported_species": {
+      "mus_musculus": {
+        "label": "",
+        "standard_version": "V4.5.1",
+        "anarci_species_arg": "mouse",
+        "germline_dir": "data/germlines/mus_musculus_ig_aa/",
+        "vh_fasta": "IGHV_aa.fasta",
+        "vkappa_fasta": "IGKV_aa.fasta",
+        "vlambda_fasta": "IGLV_aa.fasta",
+        "notes": "； V4.4 + V4.5 + V4.5.1 "
+      },
+      "rattus_norvegicus": {
+        "label": "",
+        "standard_version": "V4.5.2",
+        "anarci_species_arg": "rat",
+        "germline_dir": "data/germlines/rattus_norvegicus_ig_aa/",
+        "vh_fasta": "IGHV_aa.fasta",
+        "vkappa_fasta": "IGKV_aa.fasta",
+        "vlambda_fasta": "IGLV_aa.fasta",
+        "germline_counts": {
+          "IGHV": 229,
+          "IGKV": 163,
+          "IGLV": 8,
+          "IGHD": 37,
+          "IGHJ": 4,
+          "IGKJ": 7,
+          "IGLJ": 4
+        },
+        "rule_delta_vs_mus": [
+          "Phase 1: ANARCI  species='rat'（ 'mouse'）",
+          "Phase 2 CDR gate: CDR  Rattus （， Mus ）",
+          "Phase 2–5:  Mus （Vernier 、BM 、QA Gate ）",
+          "Phase 5.8:  HLA MHC-II（IEDB），"
+        ],
+        "notes": "Rattus IGHV/IGKV  Mus （>80% FR identity ）， CDR ",
+        "status": "ACTIVE"
+      },
+      "oryctolagus_cuniculus": {
+        "label": "",
+        "standard_version": "RABBIT_HUMANIZATION_STANDARD_V1.0",
+        "anarci_species_arg": "rabbit",
+        "germline_dir": "data/germlines/oryctolagus_cuniculus_ig_aa/",
+        "vh_fasta": "IGHV_aa.fasta",
+        "vkappa_fasta": "IGKV_aa.fasta",
+        "vlambda_fasta": "IGLV_aa.fasta",
+        "germline_counts": {
+          "IGHV": 49,
+          "IGKV": 68,
+          "IGLV": 31,
+          "IGHD": 11,
+          "IGHJ": 10,
+          "IGKJ": 19,
+          "IGLJ": 4
+        },
+        "rule_delta_vs_mus": [
+          "VL: λ （IGLV ~80%，κ ~20%）；Phase 2 CDR gate  IGLV ",
+          "CDRH3:  CDRH3（≥16 aa） CDR3 （RABBIT_HUMANIZATION_STANDARD_V1.0 §3）",
+          "CDRH3 ：Phase 1  C-x{2,8}-C ； Cys ",
+          "FR4: λ VL FR4  IGLJ（ IGKJ）；Phase 4 ",
+          " V4.5.x； RABBIT_HUMANIZATION_STANDARD_V1.0 "
+        ],
+        "notes": "， docs/RABBIT_HUMANIZATION_STANDARD_V1.0.md",
+        "status": "ACTIVE —  docs/RABBIT_HUMANIZATION_STANDARD_V1.0.md",
+        "iglv_golden_pairs_json": "data/humanization_assay/vh_iglv_golden_pairs_v1.json",
+        "iglv_pairing_report_md": "data/humanization_assay/vh_iglv_pairing_report.md",
+        "default_structure_prediction_tier": "tier_a_fast",
+        "structure_note": " Phase 3  tier_a（ABodyBuilder2/ImmuneBuilder）；/ CDRH3  tier_b/c， structure_prediction_tiers"
+      }
+    }
+  },
+  "structure_prediction_tiers": {
+    "_added": "2026-04-14 — ",
+    "_purpose": "Phase 3  Fab ： wall-clock ； AF2/MD。",
+    "default_tier": "tier_a_fast",
+    "tiers": {
+      "tier_a_fast": {
+        "tool": "IgFold",
+        "typical_wall_clock": "~30s per Fab (CPU); ~5s (GPU)",
+        "plddt_gate": "WARN_ONLY — IgFold has no per-residue confidence; used for Phase 3 screening only",
+        "use_when": "Phase 3 (mouse Fv screening, Vernier geometry, VH/VL angle)"
+      },
+      "tier_b_deep": {
+        "tool_examples": [
+          "AlphaFold-Multimer (local or API)",
+          "ColabFold multimer",
+          "IgFold2 (if installed)"
+        ],
+        "typical_wall_clock": "10 min – several hours per Fab（ MSA ）",
+        "use_when": "tier_a （ pLDDT）、/； opt-in",
+        "cost_risk": " —  1–2 ，"
+      },
+      "tier_c_relax": {
+        "tool_examples": [
+          "OpenMM / GROMACS short MD after tier_a or tier_b",
+          "Rosetta fast relax"
+        ],
+        "typical_wall_clock": "30 min – 24+ h（、、GPU）",
+        "use_when": "； CDRH3 ",
+        "cost_risk": " — ， SLA"
+      },
+      "tier_a_precision": {
+        "tool": "ImmuneBuilder ABodyBuilder2",
+        "typical_wall_clock": "1-5 min per Fab (CPU)",
+        "plddt_gate": "HARD_ABORT at pLDDT < 60",
+        "use_when": "Phase 5 (humanized Fv CDR RMSD, angle delta, final delivery gate)"
+      }
+    },
+    "pipeline_rule": "HumanizationEngine Phase 3  tier_a， structure_prediction_tier_override=tier_b_deep|tier_c_relax",
+    "phase3_tier": "tier_a_fast",
+    "phase5_tier": "tier_a_precision"
+  }
+}

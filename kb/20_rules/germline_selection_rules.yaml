@@ -1,0 +1,310 @@
+meta:
+  id: "RULES_GERMLINE_SELECTION_V1"
+  title: "Germline/Scaffold Selection Rules (Top-N, ranking weights, Protein A/VH3 bias, long CDR3/J6)"
+  scope: [vhh, vhvl, rabbit, canine, bsab, general]
+  confidence: "A"
+  owner: "antibody_engineering"
+  reviewer: "computational_structures"
+  created: "2025-12-14"
+  updated: "2025-12-14"
+  status: "active"
+
+rules:
+
+  # ------------------------------------------------------------
+  # 0) Precondition: segmentation exists
+  # ------------------------------------------------------------
+  - id: "RULE_GL_000_REQUIRE_SEGMENTATION"
+    scope: [general]
+    confidence: "S"
+    trigger:
+      any:
+        - { not: { exists: "segmentation.regions" } }
+        - { eq: ["qc.numbering_status", "fail"] }
+    decision:
+      set:
+        scaffold.selection.status: "blocked"
+        scaffold.selection.block: true
+      report:
+        severity: "high"
+        headline: "Scaffold selection blocked: segmentation/numbering not available."
+        required_user_action:
+          - "Resolve numbering/segmentation first (see input QC section)."
+      trace:
+        params_used:
+          - "SCAFFOLD_CANDIDATE_FIELDS"
+    rationale: "Scaffold selection depends on CDR length profile and FR identity; without segmentation it is non-auditable."
+    alternatives:
+      - option: "Proceed with family-level heuristic only"
+        when: "user requests a rough starting point"
+        decision:
+          set:
+            scaffold.selection.status: "heuristic_only"
+            scaffold.selection.block: true
+          report:
+            severity: "medium"
+            note: "Heuristic-only suggestion; no ranked Top-N."
+        rationale: "Provides limited guidance without pretending precision."
+        confidence: "B"
+    deprecated: false
+
+  # ------------------------------------------------------------
+  # 1) Build scaffold candidate set and enforce metadata schema
+  # ------------------------------------------------------------
+  - id: "RULE_GL_010_BUILD_CANDIDATE_SET_AND_VALIDATE_METADATA"
+    scope: [general]
+    confidence: "A"
+    trigger:
+      all:
+        - { exists: "scaffold.library" }
+        - { exists: "segmentation.regions" }
+    decision:
+      action:
+        - "load_scaffold_candidates_from_library"
+        - "validate_candidate_metadata_fields"
+        - "flag_missing_metadata_and_apply_derank"
+      set:
+        scaffold.selection.candidates_loaded: true
+      report:
+        severity: "info"
+        headline: "Loaded scaffold candidates and validated metadata completeness."
+        must_include_in_report:
+          - "candidate_count"
+          - "count_missing_metadata"
+      trace:
+        params_used:
+          - "SCAFFOLD_CANDIDATE_FIELDS"
+    rationale: "Candidate metadata completeness is required to justify ranking; missing metadata must be transparently de-ranked."
+    alternatives:
+      - option: "Drop candidates with missing critical fields"
+        when: "strict mode enabled"
+        decision:
+          action:
+            - "filter_out_missing_critical_fields"
+          report:
+            severity: "info"
+            note: "Strict mode: removed candidates lacking critical metadata."
+        rationale: "Improves determinism and report defensibility."
+        confidence: "A"
+    deprecated: false
+
+  # ------------------------------------------------------------
+  # 2) Compute core compatibility scores (CDR length & motif compatibility first)
+  # ------------------------------------------------------------
+  - id: "RULE_GL_020_SCORE_CDR_LENGTH_AND_MOTIF_COMPATIBILITY"
+    scope: [general]
+    confidence: "S"
+    trigger:
+      all:
+        - { eq: ["scaffold.selection.candidates_loaded", true] }
+        - { exists: "segmentation.regions" }
+    decision:
+      action:
+        - "compute_cdr_length_profile_from_input"
+        - "score_each_candidate_cdr_length_compatibility"
+        - "score_each_candidate_structural_motif_compatibility"
+      set:
+        scaffold.selection.compatibility_scored: true
+      report:
+        severity: "info"
+        headline: "Scored candidates by CDR length and structural motif compatibility."
+        must_include_in_report:
+          - "input_cdr_lengths"
+          - "top_incompatibility_reasons"
+      trace:
+        params_used:
+          - "SCAFFOLD_RANKING_WEIGHTS"
+    rationale: "CDR length/architecture mismatch is a primary driver of poor folding and binding; it must outrank simple identity."
+    alternatives:
+      - option: "Relax compatibility if no candidates remain"
+        when: "all candidates fail hard compatibility gate"
+        decision:
+          action:
+            - "lower_gate_and_keep_best_effort_topn"
+          report:
+            severity: "medium"
+            note: "Relaxed compatibility gate to provide best-effort Top-N; mark as 'needs manual review'."
+        rationale: "Avoids empty outputs while preserving audit flags."
+        confidence: "A"
+    deprecated: false
+
+  # ------------------------------------------------------------
+  # 3) Add FR identity, stability prior, developability prior
+  # ------------------------------------------------------------
+  - id: "RULE_GL_030_SCORE_FR_IDENTITY_AND_PRIORS"
+    scope: [general]
+    confidence: "A"
+    trigger:
+      all:
+        - { eq: ["scaffold.selection.compatibility_scored", true] }
+        - { exists: "humanness.fr_identity" }
+    decision:
+      action:
+        - "score_each_candidate_fr_identity"
+        - "score_each_candidate_stability_prior"
+        - "score_each_candidate_developability_prior"
+      set:
+        scaffold.selection.priors_scored: true
+      report:
+        severity: "info"
+        headline: "Added FR identity and stability/developability priors to candidate scoring."
+      trace:
+        params_used:
+          - "SCAFFOLD_RANKING_WEIGHTS"
+    rationale: "Identity is helpful but secondary; priors capture learned scaffold behavior (expression, aggregation risk) when available."
+    alternatives:
+      - option: "Identity-only ranking"
+        when: "priors unavailable for most candidates"
+        decision:
+          action:
+            - "rank_by_identity_with_disclaimer"
+          report:
+            severity: "medium"
+            note: "Most candidates lack priors; ranked primarily by FR identity + compatibility."
+        rationale: "Maintains transparency."
+        confidence: "B"
+    deprecated: false
+
+  # ------------------------------------------------------------
+  # 4) Protein A requirement → VH3 bias (when format/process demands)
+  # ------------------------------------------------------------
+  - id: "RULE_GL_040_PROTEINA_REQUIREMENT_VH3_BIAS"
+    scope: [vhvl, bsab, general]
+    confidence: "A"
+    trigger:
+      all:
+        - { exists: "process.requires_proteinA" }
+        - { eq: ["process.requires_proteinA", true] }
+        - { eq: ["scaffold.selection.priors_scored", true] }
+    decision:
+      action:
+        - "apply_family_bias_prefer_vh3"
+        - "annotate_reason_in_candidate_reasons"
+      set:
+        scaffold.selection.proteinA_bias_applied: true
+      report:
+        severity: "info"
+        headline: "Applied Protein A constraint: VH3-family candidates prioritized."
+        must_include_in_report:
+          - "process.requires_proteinA"
+          - "which_candidates_promoted_and_why"
+      trace:
+        params_used:
+          - "PROTEINA_POLICY"
+    rationale: "When purification/process relies on Protein A, family preference must be encoded into the ranking and explained."
+    alternatives:
+      - option: "No bias if VHH-only workflow"
+        when: "format is VHH and Protein A is not used"
+        decision:
+          set:
+            scaffold.selection.proteinA_bias_applied: false
+          report:
+            severity: "info"
+            note: "No Protein A bias for VHH unless explicitly required by downstream format."
+        rationale: "Avoids unnecessary constraints."
+        confidence: "S"
+    deprecated: false
+
+  # ------------------------------------------------------------
+  # 5) Long CDR3 handling → include J6 candidates (and explain)
+  # ------------------------------------------------------------
+  - id: "RULE_GL_050_LONG_CDR3_ADD_J6_CANDIDATES"
+    scope: [vhh, vhvl, rabbit, canine, bsab, general]
+    confidence: "A"
+    trigger:
+      all:
+        - { exists: "segmentation.cdr3_length" }
+        - { gte: ["segmentation.cdr3_length", 18] }
+        - { eq: ["scaffold.selection.priors_scored", true] }
+    decision:
+      action:
+        - "include_j_region_family_j6_in_candidate_pool_or_promote_if_present"
+        - "add_reason_tag_long_cdr3_support"
+      set:
+        scaffold.selection.long_cdr3_policy_applied: true
+      report:
+        severity: "info"
+        headline: "Long CDR3 detected; expanded/promoted J6-compatible candidates."
+        must_include_in_report:
+          - "cdr3_length"
+          - "j_region_adjustment_summary"
+      trace:
+        params_used: []
+    rationale: "Long CDR3 often benefits from specific J-region context; candidates should reflect this and report must justify it."
+    alternatives:
+      - option: "Do not promote if evidence absent"
+        when: "candidate library lacks J annotation or J6 priors"
+        decision:
+          set:
+            scaffold.selection.long_cdr3_policy_applied: true
+          report:
+            severity: "medium"
+            note: "J-region metadata missing; long-CDR3 policy applied as a cautionary note only."
+        rationale: "Prevents overconfident promotion without metadata."
+        confidence: "B"
+    deprecated: false
+
+  # ------------------------------------------------------------
+  # 6) Emit Top-N ranked candidates with explicit reasons
+  # ------------------------------------------------------------
+  - id: "RULE_GL_090_EMIT_TOPN_WITH_REASONS_AND_TRACE"
+    scope: [general]
+    confidence: "S"
+    trigger:
+      all:
+        - { eq: ["scaffold.selection.priors_scored", true] }
+        - { exists: "scaffold.candidates" }
+    decision:
+      action:
+        - "rank_candidates_by_weighted_sum"
+        - "emit_topn"
+        - "attach_rank_reasons_per_candidate"
+        - "attach_rule_trace_and_param_ids"
+      set:
+        scaffold.selection.status: "complete"
+        scaffold.selection.topN_emitted: true
+      report:
+        severity: "info"
+        headline: "Selected Top-N scaffolds with ranked reasons; identified recommended and backup options."
+        must_include_in_report:
+          - "TopN_table: id, score, key_reasons"
+          - "recommended_choice_and_why"
+          - "backup_choices_and_when_to_use"
+      trace:
+        params_used:
+          - "GERMLINE_TOPN_DEFAULT"
+          - "SCAFFOLD_RANKING_WEIGHTS"
+          - "PROTEINA_POLICY"
+    rationale: "Reports must show candidates, not just a single pick; each recommendation must be explainable and reproducible."
+    alternatives:
+      - option: "Top-3 only"
+        when: "customer wants fewer options"
+        decision:
+          action:
+            - "emit_topn"
+          set:
+            scaffold.selection.topn_override: 3
+          report:
+            note: "Reduced Top-N for customer readability; full list retained in developer report."
+        rationale: "Balances clarity with completeness."
+        confidence: "A"
+    deprecated: false
+
+evidence:
+  rationale: "Codify scaffold selection into a deterministic, explainable, Top-N workflow with process constraints and long-CDR3 considerations."
+  sources:
+    - type: "internal"
+      ref: "Your stated ranking principle: CDR compatibility > stability/developability > identity; plus Protein A constraints."
+    - type: "public"
+      ref: "Common industry scaffolding practice: prioritize architecture compatibility and process constraints over raw identity."
+  internal_validation:
+    status: "in_progress"
+    notes: "Tune long-CDR3 threshold and weights using casebook outcomes (expression/SEC/DSF/binding)."
+
+governance:
+  change_log:
+    - change_type: "create"
+      change_summary: "Initial germline selection chain: candidate schema validation → compatibility scoring → priors → Protein A/VH3 bias → long CDR3/J6 policy → Top-N emission."
+      owner: "antibody_engineering"
+      reviewer: "computational_structures"
+      date: "2025-12-14"

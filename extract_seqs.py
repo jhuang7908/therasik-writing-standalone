@@ -1,0 +1,62 @@
+import Bio.Seq as Seq
+
+def translate(dna):
+    dna = dna.replace(" ", "").replace("\n", "").replace("\r", "")
+    return str(Seq.Seq(dna).translate())
+
+def extract_vh(prot):
+    # Signal peptide for HC is usually MGWSCIILFLVATATGVHS (19 aa)
+    # VH ends with WGQGTLVTVSS
+    start_motif = "QVQL"
+    if "EVQL" in prot:
+        start_motif = "EVQL"
+    
+    start_idx = prot.find(start_motif)
+    end_motif = "WGQGTLVTVSS"
+    end_idx = prot.find(end_motif)
+    
+    if start_idx != -1 and end_idx != -1:
+        return prot[start_idx : end_idx + len(end_motif)]
+    return "Not found"
+
+def extract_vl(prot):
+    # Signal peptide for LC is usually METDTLLLWVLLLWVPGSTG (20 aa)
+    # VL ends with FGQGTKLEIK
+    start_motif = "DIQM"
+    if "DVVM" in prot:
+        start_motif = "DVVM"
+    elif "VVMT" in prot:
+        start_motif = "VVMT"
+        
+    start_idx = prot.find(start_motif)
+    end_motif = "FGQGTKLEIK"
+    end_idx = prot.find(end_motif)
+    
+    if start_idx != -1 and end_idx != -1:
+        return prot[start_idx : end_idx + len(end_motif)]
+    return "Not found"
+
+# DNA sequences from GenBank files
+# VB260118-1056kad (Chim-TD01-HC)
+dna_chim_hc = "atgggctggagctgcatcatcctgttcctggtggccaccgccaccggcgtgcacagccaggtgcagctgcaggagagcggccccggcctggtgcgccccagccagaccctgagcctgacctgcaccgtgagcggcttcagcctgatcggctacgacctgaactgggtgcgccagccccccggccgcggcctggagtggatcggcatcatctggggcgacggcaccaccgactacaacagcgccgtgaagagccgcgtgaccatgctgaaggacaccagcaagaaccagttcagcctgcgcctgagcagcgtgaccgccgccgacaccgccgtgtactactgcgcccgcggcggctactggtacgccaccagctactacttcgactactggggccagggcaccctggtgaccgtgagcagcgccagcaccaagggccccagcgtgttccccctggccccctgcagccgcagcaccagcgagagcaccgccgccctgggctgcctggtgaaggactacttccccgagcccgtgaccgtgagctggaacagcggcgccctgaccagcggcgtgcacaccttccccgccgtgctgcagagcagcggcctgtacagcctgagcagcgtggtgaccgtgcccagcagcagcctcggcaccaagacctacacctgcaacgtggaccacaagcccagcaacaccaaggtggacaagcgcgtggagagcaagtacggccccccctgccccagctgccccgcccccgagttcctgggcggccccagcgtgttcctgttcccccccaagcccaaggacaccctgatgatcagccgcacccccgaggtgacctgcgtggtggtggatgtgagccaggaggaccccgaggtgcagttcaactggtacgtggacggcgtggaggtgcacaacgccaagaccaagccccgcgaggagcagttcaacagcacctaccgcgtggtgagcgtgctgaccgtgctgcaccaggactggctgaacggcaaggagtacaagtgcaaggtgagcaacaagggcctgcc cagcagcatcgagaagaccatcagcaaggccaagggccagccccgcgagccccaggtgtacaccctgccccccagccaggaggagatgaccaagaaccaggtgagcctgacctgcctggtgaagggcttctaccccagcgacatcgccgtggagtgggagagcaacggccagcccgagaacaactacaagaccaccccccccgtgctggacagcgacggcagcttcttcctgtacagccgcctgaccgtggacaagagccgctggcaggagggcaacgtgttcagctgcagcgtgatgcacgaggccctgcacaaccactacacccagaagagcctgagcctgagcctgggctag"
+
+# VB260118-1057wun (Chim-TD01-LC)
+dna_chim_lc = "atggagaccgacaccctgctgctgtgggtgctgctgctgtgggtgcccggcagcaccggcgacatccagatgacccagagccccagcagcctgagcgccagcgtgggcgaccgcgtgaccatcacctgccgcgccagccagagcatcagcaacaacctgaactggtaccagcagaagcccggcaaggcccccaagctgctgatctactacaccagccgcttccacagcggcgtgcccagccgcttcagcggcagcggcagcggcaccgacttcaccttcaccatcagcagcctgcagcccgaggacatcgccacctactactgccagcaggagcacaccctgccctacaccttcggccagggcaccaagctggagatcaagcgcaccgtggccgcccccagcgtgttcatcttcccccccagcgacgagcagctgaagagcggcaccgccagcgtggtgtgcctgctgaacaacttctacccccgcgaggccaaggtgcagtggaaggtggacaacgccctgcagagcggcaacagccaggagagcgtgaccgagcaggacagcaaggacagcacctacagcctgagcagcaccctgaccctgagcaaggccgactacgagaagcacaaggtgtacgcctgcgaggtgacccaccagggcctgagcagccccgtgaccaagagcttcaaccgcggcgagtgctag"
+
+# VB260118-1058wdp (Can-TD01-HC)
+dna_can_hc = "atgggctggagctgcatcatcctgttcctggtggccaccgccaccggcgtgcacagcgaggtgcagctggtggagagcggcggcgacctggtgaagcccggcggcagcctgcgcctgagctgcgtggccagcggcttcagcctgatcggctacgacctgaactgggtgcgccaggcccccggcaagggcctggagtggatcggcatcatctggggcgacggcaccaccgactacaacagcgccgtgaagagccgcttcaccatcagccgcgacaacaacagcaacaccctgtacctgcagatgaacagcctgcgcagcgaggacaccgccgtgtactactgcgcccgcggcggctactggtacgccaccagctactacttcgactactggggccagggcaccctggtgaccgtgagcagcgccagcaccaagggccccagcgtgttccccctggccccctgcagccgcagcaccagcgagagcaccgccgccctgggctgcctggtgaaggactacttccccgagcccgtgaccgtgagctggaacagcggcgccctgaccagcggcgtgcacaccttccccgccgtgctgcagagcagcggcctgtacagcctgagcagcgtggtgaccgtgcccagcagcagcctcggcaccaagacctacacctgcaacgtggaccacaagcccagcaacaccaaggtggacaagcgcgtggagagcaagtacggccccccctgccccagctgccccgcccccgagttcctgggcggccccagcgtgttcctgttcccccccaagcccaaggacaccctgatgatcagccgcacccccgaggtgacctgcgtggtggtggatgtgagccaggaggaccccgaggtgcagttcaactggtacgtggacggcgtggaggtgcacaacgccaagaccaagccccgcgaggagcagttcaacagcacctaccgcgtggtgagcgtgctgaccgtgctgcaccaggactggctgaacggcaaggagtacaagtgcaaggtgagcaacaagggcctgcccagcagcatcgagaagaccatcagcaaggccaagggccagccccgcgagccccaggtgtacaccctgccccccagccaggaggagatgaccaagaaccaggtgagcctgacctgcctggtgaagggcttctaccccagcgacatcgccgtggagtgggagagcaacggccagcccgagaacaactacaagaccaccccccccgtgctggacagcgacggcagcttcttcctgtacagccgcctgaccgtggacaagagccgctggcaggagggcaacgtgttcagctgcagcgtgatgcacgaggccctgcacaaccactacacccagaagagcctgagcctgagcctgggctag"
+
+# VB260118-1059ndy (Can-TD01-LC)
+dna_can_lc = "atggagaccgacaccctgctgctgtgggtgctgctgctgtgggtgcccggcagcaccggcgacgtggtgatgacccagacccccctgagcctgagcgtgagccccggcgagaccgccagcatcagctgccgcgccagccagagcatcagcaacaacctgaactggtaccagcagaagcccggccagagcccccagctgctgatctactacaccagccgcttccacagcggcgtgcccgaccgcttcagcggcagcggcagcggcaccgacttcaccctgaccatcagcagcctgcagcccgaggacttcgccacctactactgccagcaggagcacaccctgccctacaccttcggccagggcaccaagctggagatcaagcgcaccgtggccgcccccagcgtgttcatcttcccccccagcgacgagcagctgaagagcggcaccgccagcgtggtgtgcctgctgaacaacttctacccccgcgaggccaaggtgcagtggaaggtggacaacgccctgcagagcggcaacagccaggagagcgtgaccgagcaggacagcaaggacagcacctacagcctgagcagcaccctgaccctgagcaaggccgactacgagaagcacaaggtgtacgcctgcgaggtgacccaccagggcctgagcagccccgtgaccaagagcttcaaccgcggcgagtgctag"
+
+prot_chim_hc = translate(dna_chim_hc)
+prot_chim_lc = translate(dna_chim_lc)
+prot_can_hc = translate(dna_can_hc)
+prot_can_lc = translate(dna_can_lc)
+
+print("Tanezumab Chimeric (Chim-TD01):")
+print(f"VH: {extract_vh(prot_chim_hc)}")
+print(f"VL: {extract_vl(prot_chim_lc)}")
+print("\nTanezumab Caninized (Can-TD01):")
+print(f"VH: {extract_vh(prot_can_hc)}")
+print(f"VL: {extract_vl(prot_can_lc)}")

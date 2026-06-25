@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "description": "IMGT numbering reference used for VHH FR/CDR segmentation and grafting operations.",
+  "imgt_regions": {
+    "FR1": { "start": 1, "end": 26 },
+    "CDR1": { "start": 27, "end": 38 },
+    "FR2": { "start": 39, "end": 55 },
+    "CDR2": { "start": 56, "end": 65 },
+    "FR3": { "start": 66, "end": 104 },
+    "CDR3": { "start": 105, "end": 117 },
+    "FR4": { "start": 118, "end": 128 }
+  },
+  "vhh_special_positions": {
+    "hallmark_positions": {
+      "37":  { "region": "CDR1", "role": "context residue", "comment": "CDR1 context residue (IMGT 27-38), displayed for continuity but not used as FR2 hallmark gate." },
+      "44":  { "region": "FR2", "role": "VHH hallmark", "comment": "E/Q in camelid, G in human." },
+      "45":  { "region": "FR2", "role": "VHH hallmark", "comment": "R in camelid, L in human." },
+      "47":  { "region": "FR2", "role": "VHH hallmark", "comment": "W is highly conserved." }
+    },
+    "non_canonical_disulfide_warning": {
+      "pattern": "C...C",
+      "comment": "For VHHs containing an extra Cys pair bridging CDR1 and CDR3. Must be preserved; FR graft must not delete these residues."
+    }
+  },
+  "anarci_metadata": {
+    "scheme": "IMGT",
+    "output_format_reference": {
+      "imgt_number": "string e.g. '37'",
+      "aa": "one_letter_amino_acid",
+      "region": "IMGT region assignment",
+      "is_gap": "true/false"
+    }
+  },
+  "notes": [
+    "This metadata file is intentionally static and should rarely be modified.",
+    "Humanization, grafting, and FR/Cdr segmentation routines MUST use this mapping.",
+    "For VHH, FR2 hallmark preservation applies to IMGT 44/45/47 unless explicitly engineered for novel scaffolds."
+  ]
+}
+

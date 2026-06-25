@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://insynbio.com/creative_studio/content_doc.schema.json",
+  "title": "ContentDoc",
+  "description": "Single source of truth for Creative Studio document generation.",
+  "type": "object",
+  "required": ["schema_version", "doc_type", "meta", "blocks"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "type": "string", "const": "0.1" },
+    "doc_type": {
+      "type": "string",
+      "enum": ["ppt", "xiaohongshu", "wechat", "whitepaper"]
+    },
+    "locale": { "type": "string", "default": "zh-CN" },
+    "template_id": { "type": "string" },
+    "meta": {
+      "type": "object",
+      "required": ["generated_at", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "generated_at": { "type": "string", "format": "date-time" },
+        "llm_model": { "type": "string" },
+        "request_summary": { "type": "string" },
+        "credit_estimate": { "type": "integer", "minimum": 0 },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "rendered", "failed"]
+        }
+      }
+    },
+    "brand": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "primary_color": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+        "secondary_color": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+        "font_family": { "type": "string" },
+        "logo_asset_id": { "type": ["string", "null"] }
+      }
+    },
+    "blocks": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/block" }
+    }
+  },
+  "$defs": {
+    "block": {
+      "type": "object",
+      "required": ["block_id", "layout", "text"],
+      "additionalProperties": false,
+      "properties": {
+        "block_id": { "type": "string" },
+        "layout": {
+          "type": "string",
+          "enum": [
+            "cover", "section", "title_bullets", "two_column",
+            "image_left", "image_right", "big_number", "quote",
+            "card", "chapter"
+          ]
+        },
+        "text": { "$ref": "#/$defs/text" },
+        "visual": {
+          "oneOf": [{ "$ref": "#/$defs/visual" }, { "type": "null" }]
+        },
+        "bullets": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "notes": { "type": "string" }
+      }
+    },
+    "text": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "body": { "type": "string" },
+        "caption": { "type": "string" },
+        "tag": { "type": "string" }
+      }
+    },
+    "visual": {
+      "type": "object",
+      "required": ["intent", "role", "aspect_ratio", "preferred_tier"],
+      "additionalProperties": false,
+      "properties": {
+        "intent": { "type": "string" },
+        "prompt_en": { "type": "string" },
+        "role": {
+          "type": "string",
+          "enum": ["background", "illustration", "hero", "texture", "icon"]
+        },
+        "aspect_ratio": {
+          "type": "string",
+          "enum": ["16:9", "3:4", "4:3", "1:1", "9:16", "a4"]
+        },
+        "preferred_tier": {
+          "type": "string",
+          "enum": ["template_only", "stock", "standard", "premium"]
+        },
+        "negative": { "type": "string" },
+        "resolved": {
+          "oneOf": [{ "$ref": "#/$defs/resolved" }, { "type": "null" }]
+        }
+      }
+    },
+    "resolved": {
+      "type": "object",
+      "required": ["provider"],
+      "additionalProperties": false,
+      "properties": {
+        "provider": {
+          "type": "string",
+          "enum": [
+            "template_only", "stock", "flux", "sdxl",
+            "qwen", "jimeng", "gpt_image_2"
+          ]
+        },
+        "asset_id": { "type": "string" },
+        "asset_url": { "type": "string" },
+        "credit_cost": { "type": "integer", "minimum": 0 },
+        "cached": { "type": "boolean" }
+      }
+    }
+  }
+}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow">
+<title>InSynBio AbEngineCore | VHH CMC Report — vhh_cmc_abnativ_fixed</title>
+
+<style>
+:root{
+  --accent:#1b4fad; --accent2:#2d6cdf; --bg:#f4f7f9; --card:#fff;
+  --border:#d0d7e2; --muted:#5a6a80;
+  --pass:#1a7a3c; --fail:#b91c1c; --warn:#92610a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg); color:#2c3e50; margin:0; padding:20px; line-height:1.5; font-size:13px;
+}
+.page{
+  max-width:900px; margin:0 auto; background:#fff;
+  padding:32px 40px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,.05);
+}
+.report-header{
+  background:var(--accent); color:#fff; padding:20px 28px; border-radius:8px;
+  margin-bottom:18px; display:flex; justify-content:space-between; align-items:flex-end;
+}
+.report-header h1{font-size:1.35rem;font-weight:700;margin:0 0 4px;color:#fff;letter-spacing:-.02em}
+.report-header .sub{font-size:.84rem;font-weight:600;opacity:.95;line-height:1.45;color:#fff}
+.report-header .ts{font-size:.78rem;font-weight:600;opacity:.92;text-align:right}
+.report-header .header-meta{margin-top:10px;font-size:.76rem;font-weight:600;opacity:.9;line-height:1.45;width:100%}
+.report-header .header-meta div{margin-top:2px}
+@media print{.report-header .header-meta{color:#fff!important;opacity:1}}
+.card.accent h1{font-size:1.25rem;font-weight:800;color:var(--accent);letter-spacing:.01em;margin-bottom:8px}
+h2{color:var(--accent); font-size:.98rem; margin:0 0 12px; padding-bottom:6px; border-bottom:2px solid var(--border)}
+.meta{font-size:.78rem;color:var(--muted);margin-top:4px;line-height:1.5}
+.badge{display:inline-block;padding:2px 9px;border-radius:10px;font-size:.7rem;font-weight:700;vertical-align:middle}
+.pass{background:#d1fae5;color:var(--pass);border:1px solid #6ee7b7}
+.warn{background:#fef3c7;color:var(--warn);border:1px solid #fcd34d}
+.fail{background:#fee2e2;color:var(--fail);border:1px solid #fca5a5}
+.card{background:var(--card); border:1px solid var(--border); border-radius:8px; padding:18px 20px; margin-bottom:16px;box-shadow:0 1px 3px rgba(15,23,42,.06)}
+.card.accent{border-color:#aac4ee; background:#f8fafc}
+.score-row{display:flex;align-items:flex-end;gap:32px;margin:8px 0 12px;flex-wrap:wrap}
+.score-val{font-size:2.1rem;font-weight:800;color:var(--accent)}
+.score-lbl{font-size:.72rem;color:var(--muted);margin-bottom:4px}
+.score-rank{font-size:1.15rem;font-weight:700;color:var(--pass)}
+table{width:100%;border-collapse:collapse;font-size:.83rem;margin-top:8px}
+th,td{padding:7px 12px;border-bottom:1px solid #eef;text-align:left;vertical-align:top}
+th{background:#e8eef8; color:var(--accent); font-weight:600; font-size:.74rem; text-transform:uppercase; letter-spacing:.04em; border-bottom:2px solid var(--border)}
+.risk-low{color:var(--pass);font-weight:600}
+.risk-mod{color:var(--warn);font-weight:600}
+.risk-high{color:var(--fail);font-weight:600}
+.interp{font-size:.78rem;color:var(--muted);line-height:1.5;margin-top:4px}
+pre.seqblk{
+  white-space:pre-wrap;word-break:break-all;font-size:.78rem;
+  font-family:Consolas,'Courier New',monospace;
+  background:#f8fafd;padding:12px 14px;border-radius:6px;border:1px solid var(--border);
+  color:#1a2030;line-height:1.8;
+}
+footer{text-align:center;color:#8899aa;font-size:.72rem;margin-top:28px;padding-top:12px;border-top:1px solid var(--border)}
+footer a{color:#1b4fad}
+.param-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:10px;font-size:.76rem}
+@media (max-width:900px){.param-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.param-grid{grid-template-columns:1fr}}
+.param-cell{border:1px solid var(--border);border-radius:6px;padding:8px 10px;background:#f8fafc;line-height:1.35}
+.param-cell .pn{font-size:.66rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.param-cell .pv{font-size:.8rem;font-weight:700;margin-top:3px;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.param-cell .pv .rk{font-size:.65rem;font-weight:600;color:var(--muted)}
+.param-cell .gate{font-size:.62rem;color:var(--muted);margin-top:4px;line-height:1.3}
+.param-cell .interp2{font-size:.62rem;color:var(--muted);margin-top:4px;line-height:1.35}
+.param-dot{display:inline-block;width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:2px}
+.param-dot.low{background:var(--pass)}.param-dot.mod{background:var(--warn)}.param-dot.high{background:var(--fail)}.param-dot.na{background:#94a3b8}
+@media print{
+  body{background:#fff;font-size:10.5px;color:#000;padding:0}
+  .page{max-width:100%;padding:0;box-shadow:none}
+  .report-header{background:var(--accent) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .report-header h1,.report-header .sub,.report-header .ts,.report-header .header-meta{color:#fff!important;opacity:1}
+  /* Permit card pagination to reduce large white gaps in exported PDFs. */
+  .card{break-inside:auto;page-break-inside:auto;border:1px solid #ccc;margin-bottom:10px}
+  .card h2{break-after:avoid;page-break-after:avoid}
+  .param-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="report-header" style="margin-bottom:20px"><div><h1>InSynBio AbEngineCore</h1><div class="sub">VHH CMC Developability Report | CMC Standard v1.2</div>        <div class="header-meta">
+        <div><strong>Report format (suite)</strong>: 4.1.1</div>
+        <div><strong>Service</strong>: VHH CMC Developability &nbsp;·&nbsp; <strong>Service report</strong>: v1.5 &nbsp;·&nbsp; <strong>Content variant</strong>: CMC Standard v1.2 · source-matched benchmark panel</div>
+        <div><strong>Protocol</strong>: 5.1.0 &nbsp;|&nbsp; <strong>Analysis</strong>: 5.1.1 &nbsp;|&nbsp; <strong>Build</strong>: 20260503-002 &nbsp;|&nbsp; <strong>Environment</strong>: DEV</div>
+        <div>Sequence: <strong>vhh_cmc_abnativ_fixed</strong></div>
+        <div>Generated: 2026-05-11 18:59 UTC</div>
+        </div></div><div class="ts">2026-05-11 18:59 UTC<br><span style='font-size:.7rem;opacity:.6'>CONFIDENTIAL</span></div></div>
+<div class="cohort-provenance" style="margin:10px 0;padding:10px 14px;border:1px solid #cbd5e1;border-radius:6px;background:#f8fafc;font-size:.78rem;color:#1f2937"><div style="font-weight:600;color:#1e3a8a;margin-bottom:6px">Reference cohort provenance</div><table style="width:100%;border-collapse:collapse;color:#1f2937"><tr style="color:#475569;font-size:.72rem;text-align:left"><th style="padding:2px 4px;color:#1e3a8a">Panel type</th><th style="padding:2px 4px;color:#1e3a8a">Release ID</th><th style="padding:2px 4px;color:#1e3a8a">Purpose in this report</th></tr><tbody style="color:#1f2937"><tr><td><strong>Clinical VHH benchmark panel</strong></td><td>R2026.05</td><td>Clinical/approved VHH developability</td></tr><tr><td><strong>Structural VHH benchmark panel</strong></td><td>R2026.05</td><td>VHH hallmark / FR2 / CDR context</td></tr><tr><td><strong>SASA VHH benchmark panel</strong></td><td>R2026.05</td><td>SASA-based structural reference (psh / ppc / pnc / SAP-SASA)</td></tr></tbody></table><div style="margin-top:6px;color:#64748b;font-size:.72rem">Reference range derived from internal source-matched benchmark panel (frozen release: R2026.05). Detailed cohort composition is confidential.</div></div>
+
+<div class="card">
+  <h2>§Seq — Submitted VHH Sequence</h2>
+  <p class="interp" style="margin-bottom:8px">Single-domain antibody sequence as submitted for this assessment (120 aa).</p>
+  <div style="background:#f8fafd;border:1px solid var(--border);border-radius:6px;padding:12px 14px">
+    <div style="font-size:.72rem;font-weight:700;color:var(--accent2);margin-bottom:6px">
+      vhh_cmc_abnativ_fixed &nbsp;<span style="font-weight:400;color:#8a9ab0;font-size:.7rem">(120 aa)</span>
+    </div>
+    <div style="font-family:Consolas,'Courier New',monospace;font-size:.78rem;word-break:break-all;line-height:1.9;color:#1a2030"><span style="margin-right:8px;letter-spacing:.04em">QVQLQESGGG</span><span style="margin-right:8px;letter-spacing:.04em">SVQAGGSLRL</span><span style="margin-right:8px;letter-spacing:.04em">SCAASGRTFS</span><span style="margin-right:8px;letter-spacing:.04em">SYAMGWFRQA</span><span style="margin-right:8px;letter-spacing:.04em">PGKEREGVAA</span><span style="margin-right:8px;letter-spacing:.04em">ISSSGGSTYY</span><span style="margin-right:8px;letter-spacing:.04em">ADSVKGRFTI</span><span style="margin-right:8px;letter-spacing:.04em">SRDNAKNTVY</span><span style="margin-right:8px;letter-spacing:.04em">LQMNSLKPED</span><span style="margin-right:8px;letter-spacing:.04em">TAVYYCAAAG</span><span style="margin-right:8px;letter-spacing:.04em">LGSSTWLDYW</span><span style="margin-right:8px;letter-spacing:.04em">GQGTQVTVSS</span></div>
+  </div>
+  <p class="interp" style="margin-top:6px">Sequence is archived in the delivery FASTA alongside this report.</p>
+</div>
+
+<div class="card accent">
+  <h2>§0 — ADI Score &amp; Clinical Benchmark</h2>
+  <div class="score-row">
+    <div><div class="score-val">100.0</div><div class="score-lbl">ADI / 100</div></div>
+    <div><div class="score-val" style="font-size:1.4rem">Excellent</div><div class="score-lbl">Grade (A≥80 / B≥60 / C≥40 / D&lt;40)</div></div>
+  </div>
+  <div style="margin-top:12px;border-top:1px solid #eee;padding-top:12px;display:flex;gap:32px;flex-wrap:wrap">
+    <div><div class="score-lbl">HPR Index (Humanness)</div><div style="font-size:1.05rem;font-weight:700;color:var(--accent)">0.8214</div><div class="interp">Source-matched benchmark: no strict threshold (higher = more human-repertoire compatible)</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>§1 — Developability Metrics vs Benchmark Reference</h2>
+  <div class="param-grid">
+    <div class="param-cell"><div class="pn">Isoelectric point (pI)</div><div class="pv"><span class="param-dot low"></span><span>8.64</span><span class="rk">p25-p75 ✓</span></div><div class="gate">Normal: 5.13–8.99</div></div><div class="param-cell"><div class="pn">GRAVY (hydrophobicity)</div><div class="pv"><span class="param-dot low"></span><span>-0.34</span><span class="rk">p25-p75 ✓</span></div><div class="gate">Normal: -0.37–-0.21</div></div><div class="param-cell"><div class="pn">Instability index</div><div class="pv"><span class="param-dot low"></span><span>40.40</span><span class="rk">p25-p75 ✓</span></div><div class="gate">Normal: 33.60–44.30</div></div><div class="param-cell"><div class="pn">Net charge (pH 7)</div><div class="pv"><span class="param-dot low"></span><span>1.74</span><span class="rk">p25-p75 ✓</span></div><div class="gate">Normal: -1.95–2.80</div></div><div class="param-cell"><div class="pn">Hydrophobic patch (9-mer max)</div><div class="pv"><span class="param-dot low"></span><span>0.56</span><span class="rk">p5-p25</span></div><div class="gate">Normal: 0.56–0.64</div></div><div class="param-cell"><div class="pn">Charge patch (7-mer max)</div><div class="pv"><span class="param-dot low"></span><span>2.00</span><span class="rk">p5-p25</span></div><div class="gate">Normal: 2.00–3.00</div></div><div class="param-cell"><div class="pn">SAP score</div><div class="pv"><span class="param-dot low"></span><span>0.57</span><span class="rk">p5-p25</span></div><div class="gate">Normal: 0.71–0.71</div><div class="interp2">Method: sequence_proxy_7mer</div></div><div class="param-cell"><div class="pn">Aggregation motifs</div><div class="pv"><span class="param-dot low"></span><span>3.00</span><span class="rk">p5-p25</span></div><div class="gate">Normal: 3.00–4.00</div></div><div class="param-cell"><div class="pn">Hydrophobic clusters</div><div class="pv"><span class="param-dot low"></span><span>2.00</span><span class="rk">p75-p95</span></div><div class="gate">Normal: 0.00–1.00</div></div><div class="param-cell"><div class="pn">N-glycosylation sites</div><div class="pv"><span class="param-dot low"></span><span>0.00</span><span class="rk">p5-p25</span></div><div class="gate">Normal: 0.00–0.00</div></div><div class="param-cell"><div class="pn">Deamidation sites (NG/NS)</div><div class="pv"><span class="param-dot low"></span><span>1.00</span><span class="rk">p5-p25</span></div><div class="gate">Normal: 1.00–2.00</div></div><div class="param-cell"><div class="pn">Isomerization sites (DG/DS)</div><div class="pv"><span class="param-dot low"></span><span>1.00</span><span class="rk">p5-p25</span></div><div class="gate">Normal: 1.00–2.00</div></div><div class="param-cell"><div class="pn">Oxidation-prone residues</div><div class="pv"><span class="param-dot low"></span><span>5.00</span><span class="rk">p25-p75 ✓</span></div><div class="gate">Normal: 4.00–6.00</div></div><div class="param-cell"><div class="pn">Free Cys (beyond disulfide)</div><div class="pv"><span class="param-dot low"></span><span>0.00</span><span class="rk">p5-p25</span></div><div class="gate">Normal: 0.00–0.00</div></div>
+  </div>
+  <p class="interp" style="margin-top:10px">
+    Normal range = p25–p75 of source-matched benchmark panel (release R2026.05).
+    Status dot: <span style="color:var(--pass)">●</span> within normal &nbsp;
+    <span style="color:var(--warn)">●</span> borderline &nbsp;
+    <span style="color:var(--fail)">●</span> out-of-range &nbsp;
+    <span style="color:#94a3b8">●</span> no reference.
+    Detailed cohort composition is confidential.
+  </p>
+</div>
+
+
+<div class="card">
+  <h2>§N — AbNatiV2 Naturalness (VH2 / VHH2 Dual Score)</h2>
+  <p class="interp" style="margin-bottom:12px">AbNatiV2 scores both models independently: <strong>VH2</strong> = naturalness as conventional paired VH domain; <strong>VHH2</strong> = naturalness as VHH / single-domain antibody (0–1, higher = more natural). &Delta; = VHH2 &minus; VH2 — positive values confirm single-domain character. VHH2 reference: internal source-matched benchmark panel (release R2026.05; p25=0.6936, p75=0.8009, mean=0.757).</p><table><tr><th>Score</th><th>Value</th><th>Benchmark reference (release R2026.05)</th><th>Status</th></tr><tr><td><strong>VH2</strong> (as conventional VH)</td><td><strong>0.8311</strong></td><td><span style='font-size:.78rem;color:var(--muted)'>Not VHH benchmark (lower = good for VHH)</span></td><td><span style='font-size:.78rem;color:var(--muted)'>lower = more VHH-like</span></td></tr><tr><td><strong>VHH2</strong> (as single-domain VHH)</td><td><strong>0.9309</strong></td><td>p25–p75: 0.6936–0.8009 &nbsp;·&nbsp; mean: 0.757</td><td><span class="badge pass">PASS</span></td></tr><tr><td><strong>&Delta; (VHH2 &minus; VH2)</strong></td><td><strong>0.0998</strong></td><td>VHH clinical anchor: Caplacizumab &Delta;=+0.227 &nbsp;·&nbsp; cut-off: &Delta; &ge; 0.00</td><td><span class="badge pass">EXCELLENT</span></td></tr></table><p class="interp" style="margin-top:8px"><strong>Percentile vs benchmark panel:</strong> &gt; p95 (top tier)<br><strong>Verdict:</strong> Neutral-VHH — acceptable single-domain character</p>
+</div>
+
+<div class="card">
+  <h2>§V — VHH Format-Specific Parameters</h2>
+  <p class="interp" style="margin-bottom:10px">
+    Parameters unique to VHH single-domain format. These are not evaluated in standard VH/VL CMC pipelines.
+    Reference distributions from internal source-matched benchmark panel (release R2026.05) where available.
+  </p>
+  <table>
+    <tr><th>Parameter</th><th>Value</th><th>Benchmark reference (release R2026.05)</th><th>Status</th></tr>
+    <tr>
+      <td><strong>FR2 hallmark tetrad</strong> <span class="interp">(Kabat 37/44/45/47)</span><br>
+          <span style="font-size:.7rem;color:var(--muted)">VHH replaces VH-VL interface residues with hydrophilic aa to prevent self-aggregation without VL</span></td>
+      <td><strong style="font-family:monospace">FERG</strong> ✓</td>
+      <td>Benchmark panel pass profile (release R2026.05)</td>
+      <td><span class="badge pass">PASS</span></td>
+    </tr>
+    <tr>
+      <td><strong>Exposed FR2 hydrophobicity</strong> (Parker scale)<br>
+          <span style="font-size:.7rem;color:var(--muted)">Mean Parker hydrophobicity of FR2 window (≈ positions 25–43%). More negative = more hydrophilic = lower self-aggregation risk.</span></td>
+      <td><strong>0.224</strong></td>
+      <td>p25–p75: -1.150–-0.457 <span style="font-size:.7rem;color:var(--muted)">(mean=-0.900)</span></td>
+      <td><span class="badge fail">FAIL</span></td>
+    </tr>
+    <tr>
+      <td><strong>Noncanonical Cys</strong><br>
+          <span style="font-size:.7rem;color:var(--muted)">Cys count beyond canonical intra-domain disulfide (Cys22–Cys92). Extra Cys in VHH often forms CDR3–FR2 structural disulfide — a stabilizing FEATURE in camelid VHH.</span></td>
+      <td><strong>0</strong></td>
+      <td>Observed in benchmark panel (release R2026.05)</td>
+      <td><span class="badge pass">PASS</span></td>
+    </tr>
+    <tr>
+      <td><strong>CDR3 length (estimated)</strong><br>
+          <span style="font-size:.7rem;color:var(--muted)">Estimated from sequence; benchmark range 6–24 aa (modal 12–16). Use ANARCI-confirmed count for final report.</span></td>
+      <td><strong>13</strong> aa</td>
+      <td>Benchmark panel: modal 12–16 aa; p5: 6 / p95: 24</td>
+      <td><span class="badge pass">PASS</span></td>
+    </tr>
+  </table>
+  <p class="interp" style="margin-top:8px">
+    <strong>FR2 hallmark note:</strong> VHH uses F/L/V at pos 37 (replaces W), E/Q/L at 44 (replaces G),
+    R/K at 45 (replaces L), G/F at 47 (replaces W). Any canonical VH residue at these positions increases
+    hydrophobic exposure and aggregation risk without VL partner.
+    <strong>NanoBERT PLL</strong> (VHH-specific language model score; benchmark mean=−0.284, p25=−0.322, p75=−0.247)
+    is not currently computed online — available in offline pipeline.
+  </p>
+</div>
+
+<footer>InSynBio Research &nbsp;·&nbsp; <a href="https://www.insynbio.com">https://www.insynbio.com</a> &nbsp;·&nbsp; 2026-05-11 18:59 UTC &nbsp;·&nbsp; CONFIDENTIAL &nbsp;·&nbsp; Use Ctrl+P → Save as PDF to export.</footer>
+</div>
+</body>
+</html>

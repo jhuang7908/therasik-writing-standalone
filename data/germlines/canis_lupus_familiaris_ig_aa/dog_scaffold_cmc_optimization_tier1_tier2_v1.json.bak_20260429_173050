@@ -1,0 +1,1519 @@
+{
+  "artifact_id": "dog_scaffold_cmc_optimization_tier1_tier2_v1",
+  "built_at": "2026-02-22 13:23:33",
+  "updated_at": "2026-04-14",
+  "version": "1.1",
+  "changelog": "V1.1 (2026-04-14): Added tier1 IGHV1-30*01, IGHV3-67*01; tier2 IGHV3-72*01, IGHV3-54*01. Entries manually curated from pet_antibody_atlas analysis. Rerun optimize_dog_scaffolds_cmc_tier1_tier2_v1.py to regenerate full cmc_full detail and sequence_aa_opt.",
+  "inputs": {
+    "shortlist": "data\\germlines\\canis_lupus_familiaris_ig_aa\\dog_scaffold_shortlist_tier1_tier2_v1.json",
+    "imgt_catalog_dir": "data\\germlines\\canis_lupus_familiaris_ig_aa"
+  },
+  "tier2_status": {
+    "vh_tokens": [
+      "VH1-62",
+      "VH1-44"
+    ],
+    "resolution_map": {
+      "VH1-44": "IGHV3-23*01",
+      "VH1-62": "IGHV3-38*01"
+    },
+    "note": "Tier2 tokens mapped to IMGT IDs via resolution_status; processed as Tier2 scaffolds."
+  },
+  "notes": [],
+  "rows": [
+    {
+      "tier": "tier1",
+      "chain": "VH",
+      "locus": "IGHV",
+      "gene": "IGHV3-35*01",
+      "imgt_functionality": "F",
+      "raw_header": "IMGT000001|IGHV3-35*01|Canis lupus familiaris_boxer|F|V-REGION|676291..676586|296 nt|1| | | | |296+24=320| | |",
+      "sequence_aa_imgt": "EVQLVESGGDLVKPVGSLRLSCVASGFTFSSYDMNWVRQAPGKGLQWVAYISSGGSSTYYADAVKGRFTISRDNAKNTLYLQMNSLRAEDTAMYYCAG",
+      "sequence_aa_kabat_norm": "EVQLVESGGDLVKPVGSLRLSCVASGFTFSSYDMNWVRQAPGKGLQWVAYISSGGSSTYYADAVKGRFTISRDNAKNTLYLQMNSLRAEDTAMYYCAG",
+      "fr_segments": {
+        "FR1": "EVQLVESGGDLVKPVGSLRLSCVAS",
+        "FR2": "WVRQAPGKGLQWVA",
+        "FR3": "RFTISRDNAKNTLYLQMRAEDTAMYYCAG"
+      },
+      "fr1_3_concat": "EVQLVESGGDLVKPVGSLRLSCVASWVRQAPGKGLQWVARFTISRDNAKNTLYLQMRAEDTAMYYCAG",
+      "cmc_full": {
+        "length": 98,
+        "summary": {
+          "total_flags": 7,
+          "risk_level": "high"
+        },
+        "n_glyc_sites": [],
+        "deamidation_sites": [
+          {
+            "position": 84,
+            "aa": "N",
+            "motif": "NS",
+            "category": "deamidation",
+            "region_hint": null,
+            "kabat_pos": 82,
+            "kabat_ins": "A",
+            "region": "FR3"
+          }
+        ],
+        "isomerization_sites": [
+          {
+            "position": 90,
+            "aa": "D",
+            "motif": "DT",
+            "category": "isomerization",
+            "region_hint": null,
+            "kabat_pos": 86,
+            "kabat_ins": "",
+            "region": "FR3"
+          }
+        ],
+        "oxidation_sites": [
+          {
+            "position": 34,
+            "aa": "M",
+            "motif": "M",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 34,
+            "kabat_ins": "",
+            "region": null
+          },
+          {
+            "position": 36,
+            "aa": "W",
+            "motif": "W",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 36,
+            "kabat_ins": "",
+            "region": "FR2"
+          },
+          {
+            "position": 47,
+            "aa": "W",
+            "motif": "W",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 47,
+            "kabat_ins": "",
+            "region": "FR2"
+          },
+          {
+            "position": 83,
+            "aa": "M",
+            "motif": "M",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 82,
+            "kabat_ins": "",
+            "region": "FR3"
+          },
+          {
+            "position": 93,
+            "aa": "M",
+            "motif": "M",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 89,
+            "kabat_ins": "",
+            "region": "FR3"
+          }
+        ]
+      },
+      "cmc_fr_only": {
+        "n_glyc_sites": 0,
+        "deamidation_sites": 1,
+        "isomerization_sites": 1,
+        "oxidation_sites": 4
+      },
+      "cmc_fr13_only": {
+        "n_glyc_sites": 0,
+        "deamidation_sites": 1,
+        "isomerization_sites": 1,
+        "oxidation_sites": 2
+      },
+      "optimization": {
+        "scope": "FR1/FR3 only",
+        "protected_positions": {
+          "36": "W (conserved FR2 tryptophan)"
+        },
+        "mutations": [
+          {
+            "chain": "VH",
+            "locus": "IGHV",
+            "gene": "IGHV3-35*01",
+            "kabat_pos": 82,
+            "kabat_ins": "A",
+            "from_aa": "N",
+            "to_aa": "Q",
+            "reason": "deamidation:NS"
+          },
+          {
+            "chain": "VH",
+            "locus": "IGHV",
+            "gene": "IGHV3-35*01",
+            "kabat_pos": 86,
+            "kabat_ins": "",
+            "from_aa": "D",
+            "to_aa": "E",
+            "reason": "isomerization:DT"
+          },
+          {
+            "chain": "VH",
+            "locus": "IGHV",
+            "gene": "IGHV3-35*01",
+            "kabat_pos": 82,
+            "kabat_ins": "",
+            "from_aa": "M",
+            "to_aa": "L",
+            "reason": "oxidation:M"
+          },
+          {
+            "chain": "VH",
+            "locus": "IGHV",
+            "gene": "IGHV3-35*01",
+            "kabat_pos": 89,
+            "kabat_ins": "",
+            "from_aa": "M",
+            "to_aa": "L",
+            "reason": "oxidation:M"
+          }
+        ],
+        "sequence_aa_opt": "EVQLVESGGDLVKPVGSLRLSCVASGFTFSSYDMNWVRQAPGKGLQWVAYISSGGSSTYYADAVKGRFTISRDNAKNTLYLQLQSLRAEETALYYCAG",
+        "cmc_before": {
+          "summary": {
+            "total_flags": 7,
+            "risk_level": "high"
+          },
+          "fr13_counts": {
+            "n_glyc_sites": 0,
+            "deamidation_sites": 1,
+            "isomerization_sites": 1,
+            "oxidation_sites": 2
+          }
+        },
+        "cmc_after": {
+          "summary": {
+            "total_flags": 3,
+            "risk_level": "medium"
+          },
+          "fr13_counts": {
+            "n_glyc_sites": 0,
+            "deamidation_sites": 0,
+            "isomerization_sites": 0,
+            "oxidation_sites": 0
+          }
+        }
+      }
+    },
+    {
+      "tier": "tier1",
+      "chain": "VH",
+      "locus": "IGHV",
+      "gene": "IGHV3-19*01",
+      "imgt_functionality": "F",
+      "raw_header": "IMGT000001|IGHV3-19*01|Canis lupus familiaris_boxer|F|V-REGION|884529..884824|296 nt|1| | | | |296+24=320| | |",
+      "sequence_aa_imgt": "EVQLVESGGDLVKPAGSLRLSCVASGFTFSSYSMSWVRQAPEKGLQLVAGINSGGSSTYYTDAVKGRFTISRDNAKNTVYLQMNSLRAEDTAMYYCAK",
+      "sequence_aa_kabat_norm": "EVQLVESGGDLVKPAGSLRLSCVASGFTFSSYSMSWVRQAPEKGLQLVAGINSGGSSTYYTDAVKGRFTISRDNAKNTVYLQMNSLRAEDTAMYYCAK",
+      "fr_segments": {
+        "FR1": "EVQLVESGGDLVKPAGSLRLSCVAS",
+        "FR2": "WVRQAPEKGLQLVA",
+        "FR3": "RFTISRDNAKNTVYLQMRAEDTAMYYCAK"
+      },
+      "fr1_3_concat": "EVQLVESGGDLVKPAGSLRLSCVASWVRQAPEKGLQLVARFTISRDNAKNTVYLQMRAEDTAMYYCAK",
+      "cmc_full": {
+        "length": 98,
+        "summary": {
+          "total_flags": 7,
+          "risk_level": "high"
+        },
+        "n_glyc_sites": [],
+        "deamidation_sites": [
+          {
+            "position": 52,
+            "aa": "N",
+            "motif": "NS",
+            "category": "deamidation",
+            "region_hint": null,
+            "kabat_pos": 52,
+            "kabat_ins": "",
+            "region": null
+          },
+          {
+            "position": 84,
+            "aa": "N",
+            "motif": "NS",
+            "category": "deamidation",
+            "region_hint": null,
+            "kabat_pos": 82,
+            "kabat_ins": "A",
+            "region": "FR3"
+          }
+        ],
+        "isomerization_sites": [
+          {
+            "position": 90,
+            "aa": "D",
+            "motif": "DT",
+            "category": "isomerization",
+            "region_hint": null,
+            "kabat_pos": 86,
+            "kabat_ins": "",
+            "region": "FR3"
+          }
+        ],
+        "oxidation_sites": [
+          {
+            "position": 34,
+            "aa": "M",
+            "motif": "M",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 34,
+            "kabat_ins": "",
+            "region": null
+          },
+          {
+            "position": 36,
+            "aa": "W",
+            "motif": "W",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 36,
+            "kabat_ins": "",
+            "region": "FR2"
+          },
+          {
+            "position": 83,
+            "aa": "M",
+            "motif": "M",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 82,
+            "kabat_ins": "",
+            "region": "FR3"
+          },
+          {
+            "position": 93,
+            "aa": "M",
+            "motif": "M",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 89,
+            "kabat_ins": "",
+            "region": "FR3"
+          }
+        ]
+      },
+      "cmc_fr_only": {
+        "n_glyc_sites": 0,
+        "deamidation_sites": 1,
+        "isomerization_sites": 1,
+        "oxidation_sites": 3
+      },
+      "cmc_fr13_only": {
+        "n_glyc_sites": 0,
+        "deamidation_sites": 1,
+        "isomerization_sites": 1,
+        "oxidation_sites": 2
+      },
+      "optimization": {
+        "scope": "FR1/FR3 only",
+        "protected_positions": {
+          "36": "W (conserved FR2 tryptophan)"
+        },
+        "mutations": [
+          {
+            "chain": "VH",
+            "locus": "IGHV",
+            "gene": "IGHV3-19*01",
+            "kabat_pos": 82,
+            "kabat_ins": "A",
+            "from_aa": "N",
+            "to_aa": "Q",
+            "reason": "deamidation:NS"
+          },
+          {
+            "chain": "VH",
+            "locus": "IGHV",
+            "gene": "IGHV3-19*01",
+            "kabat_pos": 86,
+            "kabat_ins": "",
+            "from_aa": "D",
+            "to_aa": "E",
+            "reason": "isomerization:DT"
+          },
+          {
+            "chain": "VH",
+            "locus": "IGHV",
+            "gene": "IGHV3-19*01",
+            "kabat_pos": 82,
+            "kabat_ins": "",
+            "from_aa": "M",
+            "to_aa": "L",
+            "reason": "oxidation:M"
+          },
+          {
+            "chain": "VH",
+            "locus": "IGHV",
+            "gene": "IGHV3-19*01",
+            "kabat_pos": 89,
+            "kabat_ins": "",
+            "from_aa": "M",
+            "to_aa": "L",
+            "reason": "oxidation:M"
+          }
+        ],
+        "sequence_aa_opt": "EVQLVESGGDLVKPAGSLRLSCVASGFTFSSYSMSWVRQAPEKGLQLVAGINSGGSSTYYTDAVKGRFTISRDNAKNTVYLQLQSLRAEETALYYCAK",
+        "cmc_before": {
+          "summary": {
+            "total_flags": 7,
+            "risk_level": "high"
+          },
+          "fr13_counts": {
+            "n_glyc_sites": 0,
+            "deamidation_sites": 1,
+            "isomerization_sites": 1,
+            "oxidation_sites": 2
+          }
+        },
+        "cmc_after": {
+          "summary": {
+            "total_flags": 3,
+            "risk_level": "medium"
+          },
+          "fr13_counts": {
+            "n_glyc_sites": 0,
+            "deamidation_sites": 0,
+            "isomerization_sites": 0,
+            "oxidation_sites": 0
+          }
+        }
+      }
+    },
+    {
+      "tier": "tier1",
+      "chain": "VH",
+      "locus": "IGHV",
+      "gene": "IGHV3-9*01",
+      "imgt_functionality": "F",
+      "raw_header": "IMGT000001|IGHV3-9*01|Canis lupus familiaris_boxer|F|V-REGION|1087006..1087301|296 nt|1| | | | |296+24=320| | |",
+      "sequence_aa_imgt": "EVQLVESGGDLVKPGGSLRLSCVASGFTFSSYDMDWVRQAPGKGLQWLSEISSSGSSTYYADAVKGRFTISRDNAKNTLYLQMNSLRAEDTAVYYCAR",
+      "sequence_aa_kabat_norm": "EVQLVESGGDLVKPGGSLRLSCVASGFTFSSYDMDWVRQAPGKGLQWLSEISSSGSSTYYADAVKGRFTISRDNAKNTLYLQMNSLRAEDTAVYYCAR",
+      "fr_segments": {
+        "FR1": "EVQLVESGGDLVKPGGSLRLSCVAS",
+        "FR2": "WVRQAPGKGLQWLS",
+        "FR3": "RFTISRDNAKNTLYLQMRAEDTAVYYCAR"
+      },
+      "fr1_3_concat": "EVQLVESGGDLVKPGGSLRLSCVASWVRQAPGKGLQWLSRFTISRDNAKNTLYLQMRAEDTAVYYCAR",
+      "cmc_full": {
+        "length": 98,
+        "summary": {
+          "total_flags": 6,
+          "risk_level": "high"
+        },
+        "n_glyc_sites": [],
+        "deamidation_sites": [
+          {
+            "position": 84,
+            "aa": "N",
+            "motif": "NS",
+            "category": "deamidation",
+            "region_hint": null,
+            "kabat_pos": 82,
+            "kabat_ins": "A",
+            "region": "FR3"
+          }
+        ],
+        "isomerization_sites": [
+          {
+            "position": 90,
+            "aa": "D",
+            "motif": "DT",
+            "category": "isomerization",
+            "region_hint": null,
+            "kabat_pos": 86,
+            "kabat_ins": "",
+            "region": "FR3"
+          }
+        ],
+        "oxidation_sites": [
+          {
+            "position": 34,
+            "aa": "M",
+            "motif": "M",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 34,
+            "kabat_ins": "",
+            "region": null
+          },
+          {
+            "position": 36,
+            "aa": "W",
+            "motif": "W",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 36,
+            "kabat_ins": "",
+            "region": "FR2"
+          },
+          {
+            "position": 47,
+            "aa": "W",
+            "motif": "W",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 47,
+            "kabat_ins": "",
+            "region": "FR2"
+          },
+          {
+            "position": 83,
+            "aa": "M",
+            "motif": "M",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 82,
+            "kabat_ins": "",
+            "region": "FR3"
+          }
+        ]
+      },
+      "cmc_fr_only": {
+        "n_glyc_sites": 0,
+        "deamidation_sites": 1,
+        "isomerization_sites": 1,
+        "oxidation_sites": 3
+      },
+      "cmc_fr13_only": {
+        "n_glyc_sites": 0,
+        "deamidation_sites": 1,
+        "isomerization_sites": 1,
+        "oxidation_sites": 1
+      },
+      "optimization": {
+        "scope": "FR1/FR3 only",
+        "protected_positions": {
+          "36": "W (conserved FR2 tryptophan)"
+        },
+        "mutations": [
+          {
+            "chain": "VH",
+            "locus": "IGHV",
+            "gene": "IGHV3-9*01",
+            "kabat_pos": 82,
+            "kabat_ins": "A",
+            "from_aa": "N",
+            "to_aa": "Q",
+            "reason": "deamidation:NS"
+          },
+          {
+            "chain": "VH",
+            "locus": "IGHV",
+            "gene": "IGHV3-9*01",
+            "kabat_pos": 86,
+            "kabat_ins": "",
+            "from_aa": "D",
+            "to_aa": "E",
+            "reason": "isomerization:DT"
+          },
+          {
+            "chain": "VH",
+            "locus": "IGHV",
+            "gene": "IGHV3-9*01",
+            "kabat_pos": 82,
+            "kabat_ins": "",
+            "from_aa": "M",
+            "to_aa": "L",
+            "reason": "oxidation:M"
+          }
+        ],
+        "sequence_aa_opt": "EVQLVESGGDLVKPGGSLRLSCVASGFTFSSYDMDWVRQAPGKGLQWLSEISSSGSSTYYADAVKGRFTISRDNAKNTLYLQLQSLRAEETAVYYCAR",
+        "cmc_before": {
+          "summary": {
+            "total_flags": 6,
+            "risk_level": "high"
+          },
+          "fr13_counts": {
+            "n_glyc_sites": 0,
+            "deamidation_sites": 1,
+            "isomerization_sites": 1,
+            "oxidation_sites": 1
+          }
+        },
+        "cmc_after": {
+          "summary": {
+            "total_flags": 3,
+            "risk_level": "medium"
+          },
+          "fr13_counts": {
+            "n_glyc_sites": 0,
+            "deamidation_sites": 0,
+            "isomerization_sites": 0,
+            "oxidation_sites": 0
+          }
+        }
+      }
+    },
+    {
+      "tier": "tier1",
+      "chain": "VL",
+      "locus": "IGKV",
+      "gene": "IGKV3-18*02",
+      "imgt_functionality": "F",
+      "raw_header": "IMGT000002|IGKV3-18*02|Canis lupus familiaris_Boxer|F|V-REGION|307021..307306|286 nt|1| | | | |286+48=334| |rev-compl|",
+      "sequence_aa_imgt": "EIVMTQSPASLSLSQEEKVTITCRASQSVSSYLAWYQQKPGQAPKLLIYGTSNRATGVPSRFSGSGSGTDFSFTISSLEPEDVAVYYCQQYNSGY",
+      "sequence_aa_kabat_norm": "EIVMTQSPASLSLSQEEKVTITCRASQSVSSYLAWYQQKPGQAPKLLIYGTSNRATGVPSRFSGSGSGTDFSFTISSLEPEDVAVYYCQQYNS",
+      "fr_segments": {
+        "FR1": "EIVMTQSPASLSLSQEEKVTITC",
+        "FR2": "WYQQKPGQAPKLLIY",
+        "FR3": "GVPSRFSGSGSGTDFSFTISSLEPEDVAVYYC"
+      },
+      "fr1_3_concat": "EIVMTQSPASLSLSQEEKVTITCWYQQKPGQAPKLLIYGVPSRFSGSGSGTDFSFTISSLEPEDVAVYYC",
+      "cmc_full": {
+        "length": 93,
+        "summary": {
+          "total_flags": 3,
+          "risk_level": "medium"
+        },
+        "n_glyc_sites": [],
+        "deamidation_sites": [
+          {
+            "position": 92,
+            "aa": "N",
+            "motif": "NS",
+            "category": "deamidation",
+            "region_hint": null,
+            "kabat_pos": 96,
+            "kabat_ins": "",
+            "region": null
+          }
+        ],
+        "isomerization_sites": [],
+        "oxidation_sites": [
+          {
+            "position": 4,
+            "aa": "M",
+            "motif": "M",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 4,
+            "kabat_ins": "",
+            "region": "FR1"
+          },
+          {
+            "position": 35,
+            "aa": "W",
+            "motif": "W",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 35,
+            "kabat_ins": "",
+            "region": "FR2"
+          }
+        ]
+      },
+      "cmc_fr_only": {
+        "n_glyc_sites": 0,
+        "deamidation_sites": 0,
+        "isomerization_sites": 0,
+        "oxidation_sites": 2
+      },
+      "cmc_fr13_only": {
+        "n_glyc_sites": 0,
+        "deamidation_sites": 0,
+        "isomerization_sites": 0,
+        "oxidation_sites": 1
+      },
+      "optimization": {
+        "scope": "FR1/FR3 only",
+        "protected_positions": {
+          "35": "W (conserved FR2 tryptophan)"
+        },
+        "mutations": [
+          {
+            "chain": "VL",
+            "locus": "IGKV",
+            "gene": "IGKV3-18*02",
+            "kabat_pos": 4,
+            "kabat_ins": "",
+            "from_aa": "M",
+            "to_aa": "L",
+            "reason": "oxidation:M"
+          }
+        ],
+        "sequence_aa_opt": "EIVLTQSPASLSLSQEEKVTITCRASQSVSSYLAWYQQKPGQAPKLLIYGTSNRATGVPSRFSGSGSGTDFSFTISSLEPEDVAVYYCQQYNS",
+        "cmc_before": {
+          "summary": {
+            "total_flags": 3,
+            "risk_level": "medium"
+          },
+          "fr13_counts": {
+            "n_glyc_sites": 0,
+            "deamidation_sites": 0,
+            "isomerization_sites": 0,
+            "oxidation_sites": 1
+          }
+        },
+        "cmc_after": {
+          "summary": {
+            "total_flags": 2,
+            "risk_level": "medium"
+          },
+          "fr13_counts": {
+            "n_glyc_sites": 0,
+            "deamidation_sites": 0,
+            "isomerization_sites": 0,
+            "oxidation_sites": 0
+          }
+        }
+      }
+    },
+    {
+      "tier": "tier1",
+      "chain": "VL",
+      "locus": "IGKV",
+      "gene": "IGKV2-11*01",
+      "imgt_functionality": "F",
+      "raw_header": "IMGT000067|IGKV2-11*01|Canis lupus familiaris_Basenji|F|V-REGION|168282..168583|302 nt|1| | | | |302+33=335| | |",
+      "sequence_aa_imgt": "DIVMTQTPLSLSVSPGETASISCRASQSLLHSNGNTYLYWFRQKPGQSPQRLIYLVSNRDAGVPDRFSGSGSGTDFTLRISRVEADDAGVYYCGQGIQDP",
+      "sequence_aa_kabat_norm": "DIVMTQTPLSLSVSPGETASISCRASQSLLHSNGNTYLYWFRQKPGQSPQRLIYLVSNRDAGVPDRFSGSGSGTDFTLRISRVEADDAGVYYCGQGI",
+      "fr_segments": {
+        "FR1": "DIVMTQTPLSLSVSPGETASISC",
+        "FR2": "WFRQKPGQSPQRLIY",
+        "FR3": "GVPDRFSGSGSGTDFTLRISRVEADDAGVYYC"
+      },
+      "fr1_3_concat": "DIVMTQTPLSLSVSPGETASISCWFRQKPGQSPQRLIYGVPDRFSGSGSGTDFTLRISRVEADDAGVYYC",
+      "cmc_full": {
+        "length": 97,
+        "summary": {
+          "total_flags": 3,
+          "risk_level": "medium"
+        },
+        "n_glyc_sites": [],
+        "deamidation_sites": [
+          {
+            "position": 33,
+            "aa": "N",
+            "motif": "NG",
+            "category": "deamidation",
+            "region_hint": null,
+            "kabat_pos": 28,
+            "kabat_ins": "",
+            "region": null
+          }
+        ],
+        "isomerization_sites": [],
+        "oxidation_sites": [
+          {
+            "position": 4,
+            "aa": "M",
+            "motif": "M",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 4,
+            "kabat_ins": "",
+            "region": "FR1"
+          },
+          {
+            "position": 40,
+            "aa": "W",
+            "motif": "W",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 35,
+            "kabat_ins": "",
+            "region": "FR2"
+          }
+        ]
+      },
+      "cmc_fr_only": {
+        "n_glyc_sites": 0,
+        "deamidation_sites": 0,
+        "isomerization_sites": 0,
+        "oxidation_sites": 2
+      },
+      "cmc_fr13_only": {
+        "n_glyc_sites": 0,
+        "deamidation_sites": 0,
+        "isomerization_sites": 0,
+        "oxidation_sites": 1
+      },
+      "optimization": {
+        "scope": "FR1/FR3 only",
+        "protected_positions": {
+          "35": "W (conserved FR2 tryptophan)"
+        },
+        "mutations": [
+          {
+            "chain": "VL",
+            "locus": "IGKV",
+            "gene": "IGKV2-11*01",
+            "kabat_pos": 4,
+            "kabat_ins": "",
+            "from_aa": "M",
+            "to_aa": "L",
+            "reason": "oxidation:M"
+          }
+        ],
+        "sequence_aa_opt": "DIVLTQTPLSLSVSPGETASISCRASQSLLHSNGNTYLYWFRQKPGQSPQRLIYLVSNRDAGVPDRFSGSGSGTDFTLRISRVEADDAGVYYCGQGI",
+        "cmc_before": {
+          "summary": {
+            "total_flags": 3,
+            "risk_level": "medium"
+          },
+          "fr13_counts": {
+            "n_glyc_sites": 0,
+            "deamidation_sites": 0,
+            "isomerization_sites": 0,
+            "oxidation_sites": 1
+          }
+        },
+        "cmc_after": {
+          "summary": {
+            "total_flags": 2,
+            "risk_level": "medium"
+          },
+          "fr13_counts": {
+            "n_glyc_sites": 0,
+            "deamidation_sites": 0,
+            "isomerization_sites": 0,
+            "oxidation_sites": 0
+          }
+        }
+      }
+    },
+    {
+      "tier": "tier1",
+      "chain": "VL",
+      "locus": "IGLV",
+      "gene": "IGLV1-162*01",
+      "imgt_functionality": "F",
+      "raw_header": "IMGT000003|IGLV1-162*01|Canis lupus familiaris_boxer|F|V-REGION|1012..1307|296 nt|1| | | | |296+57=353| | |",
+      "sequence_aa_imgt": "QSVLTQPTSVSGSLGQRVTISCSGSTNNIGIVGASWYQQLPGKAPKLLVYSDGDRPSGVPDRFSGSNSGNSDTLTITGLQAEDEADYYCQSFDTTLDA",
+      "sequence_aa_kabat_norm": "QSVLTQPTSVSGSLGQRVTISCSGSTNNIGIVGASWYQQLPGKAPKLLVYSDGDRPSGVPDRFSGSNSGNSDTLTITGLQAEDEADYYCQSFDTTLDA",
+      "fr_segments": {
+        "FR1": "QSVLTQPTSVSGSLGQRVTISC",
+        "FR2": "WYQQLPGKAPKLLVY",
+        "FR3": "GVPDRFSGSNSGNSDTLTITGLQAEDEADYYC"
+      },
+      "fr1_3_concat": "QSVLTQPTSVSGSLGQRVTISCWYQQLPGKAPKLLVYGVPDRFSGSNSGNSDTLTITGLQAEDEADYYC",
+      "cmc_full": {
+        "length": 98,
+        "summary": {
+          "total_flags": 7,
+          "risk_level": "high"
+        },
+        "n_glyc_sites": [],
+        "deamidation_sites": [
+          {
+            "position": 27,
+            "aa": "N",
+            "motif": "NN",
+            "category": "deamidation",
+            "region_hint": null,
+            "kabat_pos": 27,
+            "kabat_ins": "A",
+            "region": null
+          },
+          {
+            "position": 67,
+            "aa": "N",
+            "motif": "NS",
+            "category": "deamidation",
+            "region_hint": null,
+            "kabat_pos": 66,
+            "kabat_ins": "",
+            "region": "FR3"
+          },
+          {
+            "position": 70,
+            "aa": "N",
+            "motif": "NS",
+            "category": "deamidation",
+            "region_hint": null,
+            "kabat_pos": 69,
+            "kabat_ins": "",
+            "region": "FR3"
+          }
+        ],
+        "isomerization_sites": [
+          {
+            "position": 52,
+            "aa": "D",
+            "motif": "DG",
+            "category": "isomerization",
+            "region_hint": null,
+            "kabat_pos": 51,
+            "kabat_ins": "",
+            "region": null
+          },
+          {
+            "position": 72,
+            "aa": "D",
+            "motif": "DT",
+            "category": "isomerization",
+            "region_hint": null,
+            "kabat_pos": 71,
+            "kabat_ins": "",
+            "region": "FR3"
+          },
+          {
+            "position": 93,
+            "aa": "D",
+            "motif": "DT",
+            "category": "isomerization",
+            "region_hint": null,
+            "kabat_pos": 92,
+            "kabat_ins": "",
+            "region": null
+          }
+        ],
+        "oxidation_sites": [
+          {
+            "position": 36,
+            "aa": "W",
+            "motif": "W",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 35,
+            "kabat_ins": "",
+            "region": "FR2"
+          }
+        ]
+      },
+      "cmc_fr_only": {
+        "n_glyc_sites": 0,
+        "deamidation_sites": 2,
+        "isomerization_sites": 1,
+        "oxidation_sites": 1
+      },
+      "cmc_fr13_only": {
+        "n_glyc_sites": 0,
+        "deamidation_sites": 2,
+        "isomerization_sites": 1,
+        "oxidation_sites": 0
+      },
+      "optimization": {
+        "scope": "FR1/FR3 only",
+        "protected_positions": {
+          "35": "W (conserved FR2 tryptophan)"
+        },
+        "mutations": [
+          {
+            "chain": "VL",
+            "locus": "IGLV",
+            "gene": "IGLV1-162*01",
+            "kabat_pos": 66,
+            "kabat_ins": "",
+            "from_aa": "N",
+            "to_aa": "Q",
+            "reason": "deamidation:NS"
+          },
+          {
+            "chain": "VL",
+            "locus": "IGLV",
+            "gene": "IGLV1-162*01",
+            "kabat_pos": 69,
+            "kabat_ins": "",
+            "from_aa": "N",
+            "to_aa": "Q",
+            "reason": "deamidation:NS"
+          },
+          {
+            "chain": "VL",
+            "locus": "IGLV",
+            "gene": "IGLV1-162*01",
+            "kabat_pos": 71,
+            "kabat_ins": "",
+            "from_aa": "D",
+            "to_aa": "E",
+            "reason": "isomerization:DT"
+          }
+        ],
+        "sequence_aa_opt": "QSVLTQPTSVSGSLGQRVTISCSGSTNNIGIVGASWYQQLPGKAPKLLVYSDGDRPSGVPDRFSGSQSGQSETLTITGLQAEDEADYYCQSFDTTLDA",
+        "cmc_before": {
+          "summary": {
+            "total_flags": 7,
+            "risk_level": "high"
+          },
+          "fr13_counts": {
+            "n_glyc_sites": 0,
+            "deamidation_sites": 2,
+            "isomerization_sites": 1,
+            "oxidation_sites": 0
+          }
+        },
+        "cmc_after": {
+          "summary": {
+            "total_flags": 4,
+            "risk_level": "medium"
+          },
+          "fr13_counts": {
+            "n_glyc_sites": 0,
+            "deamidation_sites": 0,
+            "isomerization_sites": 0,
+            "oxidation_sites": 0
+          }
+        }
+      }
+    },
+    {
+      "tier": "tier1",
+      "chain": "VH",
+      "locus": "IGHV",
+      "gene": "IGHV1-30*01",
+      "imgt_functionality": "F",
+      "raw_header": "IMGT000001|IGHV1-30*01|Canis lupus familiaris_boxer|F|V-REGION|714117..714410|294 nt|1| | | | |294+24=318| | |",
+      "sequence_aa_imgt": "EVQLVQSGAEVKKPGASVKVSCKTSGYTFINYYMIWVRQAPGAGLDWMGQIDPEDGATSYAQKFQGRVTLTADTSTSTAYMELSSLRAGDIAVYYCAR",
+      "sequence_aa_kabat_norm": "EVQLVQSGAEVKKPGASVKVSCKTSGYTFINYYMIWVRQAPGAGLDWMGQIDPEDGATSYAQKFQGRVTLTADTSTSTAYMELSSLRAGDIAVYYCAR",
+      "fr_segments": {
+        "FR1": "EVQLVQSGAEVKKPGASVKVSCKTSGYTFI",
+        "FR2": "WVRQAPGAGLDWMG",
+        "FR3": "RVTLTADTSTSTAYMELSSLRAGDIAVYYCAR"
+      },
+      "cmc_fr13_only": {
+        "n_glyc_sites": 0,
+        "deamidation_sites": 0,
+        "isomerization_sites": 1,
+        "oxidation_sites": 2
+      },
+      "optimization": {
+        "scope": "FR1/FR3 only",
+        "note": "V1.1 manual curation — IGHV1 family; different FR3 topology from IGHV3. Rerun optimize_dog_scaffolds_cmc_tier1_tier2_v1.py for full cmc_full detail.",
+        "mutations": [
+          {
+            "chain": "VH", "locus": "IGHV", "gene": "IGHV1-30*01",
+            "kabat_pos": 48, "kabat_ins": "",
+            "from_aa": "M", "to_aa": "L", "reason": "oxidation:M (FR2 DWM motif)"
+          },
+          {
+            "chain": "VH", "locus": "IGHV", "gene": "IGHV1-30*01",
+            "kabat_pos": 82, "kabat_ins": "",
+            "from_aa": "M", "to_aa": "L", "reason": "oxidation:M (FR3 TAYM motif)"
+          },
+          {
+            "chain": "VH", "locus": "IGHV", "gene": "IGHV1-30*01",
+            "kabat_pos": 83, "kabat_ins": "",
+            "from_aa": "D", "to_aa": "E", "reason": "isomerization:DT (FR3 ADTS motif, IGHV1-family Kabat ~83)"
+          }
+        ],
+        "sequence_aa_opt": "EVQLVQSGAEVKKPGASVKVSCKTSGYTFINYYMIWVRQAPGAGLDWLGQIDPEDGATSYAQKFQGRVTLTAETSTSTAYLELSSLRAGDIAVYYCAR",
+        "cmc_before": {
+          "fr13_counts": {"n_glyc_sites": 0, "deamidation_sites": 0, "isomerization_sites": 1, "oxidation_sites": 2}
+        },
+        "cmc_after": {
+          "fr13_counts": {"n_glyc_sites": 0, "deamidation_sites": 0, "isomerization_sites": 0, "oxidation_sites": 0}
+        }
+      }
+    },
+    {
+      "tier": "tier1",
+      "chain": "VH",
+      "locus": "IGHV",
+      "gene": "IGHV3-67*01",
+      "imgt_functionality": "F",
+      "raw_header": "IMGT000001|IGHV3-67*01|Canis lupus familiaris_boxer|F|V-REGION|219729..220024|296 nt|1| | | | |296+24=320| | |",
+      "sequence_aa_imgt": "EVQLVESGGDLVKPGGSLRLSCVASGFTFSSYYMYWVRQAPGKGLQWVARISSDGSSTYYADAVKGRFTISRDNAKNTLYLQMNSLRAEDTAMYYCAK",
+      "sequence_aa_kabat_norm": "EVQLVESGGDLVKPGGSLRLSCVASGFTFSSYYMYWVRQAPGKGLQWVARISSDGSSTYYADAVKGRFTISRDNAKNTLYLQMNSLRAEDTAMYYCAK",
+      "fr_segments": {
+        "FR1": "EVQLVESGGDLVKPGGSLRLSCVASGFTFS",
+        "FR2": "WVRQAPGKGLQWVA",
+        "FR3": "RFTISRDNAKNTLYLQMNSLRAEDTAMYYCAK"
+      },
+      "cmc_fr13_only": {
+        "n_glyc_sites": 0,
+        "deamidation_sites": 1,
+        "isomerization_sites": 1,
+        "oxidation_sites": 2
+      },
+      "optimization": {
+        "scope": "FR1/FR3 only",
+        "note": "V1.1 manual curation — IGHV3 family, same FR3 PTM pattern as IGHV3-35*01.",
+        "mutations": [
+          {
+            "chain": "VH", "locus": "IGHV", "gene": "IGHV3-67*01",
+            "kabat_pos": 82, "kabat_ins": "A",
+            "from_aa": "N", "to_aa": "Q", "reason": "deamidation:NS"
+          },
+          {
+            "chain": "VH", "locus": "IGHV", "gene": "IGHV3-67*01",
+            "kabat_pos": 86, "kabat_ins": "",
+            "from_aa": "D", "to_aa": "E", "reason": "isomerization:DT"
+          },
+          {
+            "chain": "VH", "locus": "IGHV", "gene": "IGHV3-67*01",
+            "kabat_pos": 82, "kabat_ins": "",
+            "from_aa": "M", "to_aa": "L", "reason": "oxidation:M"
+          },
+          {
+            "chain": "VH", "locus": "IGHV", "gene": "IGHV3-67*01",
+            "kabat_pos": 89, "kabat_ins": "",
+            "from_aa": "M", "to_aa": "L", "reason": "oxidation:M"
+          }
+        ],
+        "sequence_aa_opt": "EVQLVESGGDLVKPGGSLRLSCVASGFTFSSYYMYWVRQAPGKGLQWVARISSDGSSTYYADAVKGRFTISRDNAKNTLYLQLQSLRAEETALYYCAK",
+        "cmc_before": {
+          "fr13_counts": {"n_glyc_sites": 0, "deamidation_sites": 1, "isomerization_sites": 1, "oxidation_sites": 2}
+        },
+        "cmc_after": {
+          "fr13_counts": {"n_glyc_sites": 0, "deamidation_sites": 0, "isomerization_sites": 0, "oxidation_sites": 0}
+        }
+      }
+    },
+    {
+      "tier": "tier2",
+      "chain": "VH",
+      "locus": "IGHV",
+      "gene": "IGHV3-38*01",
+      "imgt_functionality": "F",
+      "raw_header": "IMGT000001|IGHV3-38*01|Canis lupus familiaris_boxer|F|V-REGION|632668..632963|296 nt|1| | | | |296+24=320| | |",
+      "sequence_aa_imgt": "EVQLVESGGDLVKPGGTLRLSCVASGFTFSSYDMSWVRQSPGKGLQWVAVIWNDGSSTYYADAVKGRFTISRDNAKNTLYLQMNSLRAEDTAVYYCAK",
+      "sequence_aa_kabat_norm": "EVQLVESGGDLVKPGGTLRLSCVASGFTFSSYDMSWVRQSPGKGLQWVAVIWNDGSSTYYADAVKGRFTISRDNAKNTLYLQMNSLRAEDTAVYYCAK",
+      "fr_segments": {
+        "FR1": "EVQLVESGGDLVKPGGTLRLSCVAS",
+        "FR2": "WVRQSPGKGLQWVA",
+        "FR3": "RFTISRDNAKNTLYLQMRAEDTAVYYCAK"
+      },
+      "fr1_3_concat": "EVQLVESGGDLVKPGGTLRLSCVASWVRQSPGKGLQWVARFTISRDNAKNTLYLQMRAEDTAVYYCAK",
+      "cmc_full": {
+        "length": 98,
+        "summary": {
+          "total_flags": 8,
+          "risk_level": "high"
+        },
+        "n_glyc_sites": [],
+        "deamidation_sites": [
+          {
+            "position": 84,
+            "aa": "N",
+            "motif": "NS",
+            "category": "deamidation",
+            "region_hint": null,
+            "kabat_pos": 82,
+            "kabat_ins": "A",
+            "region": "FR3"
+          }
+        ],
+        "isomerization_sites": [
+          {
+            "position": 54,
+            "aa": "D",
+            "motif": "DG",
+            "category": "isomerization",
+            "region_hint": null,
+            "kabat_pos": 53,
+            "kabat_ins": "",
+            "region": null
+          },
+          {
+            "position": 90,
+            "aa": "D",
+            "motif": "DT",
+            "category": "isomerization",
+            "region_hint": null,
+            "kabat_pos": 86,
+            "kabat_ins": "",
+            "region": "FR3"
+          }
+        ],
+        "oxidation_sites": [
+          {
+            "position": 34,
+            "aa": "M",
+            "motif": "M",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 34,
+            "kabat_ins": "",
+            "region": null
+          },
+          {
+            "position": 36,
+            "aa": "W",
+            "motif": "W",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 36,
+            "kabat_ins": "",
+            "region": "FR2"
+          },
+          {
+            "position": 47,
+            "aa": "W",
+            "motif": "W",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 47,
+            "kabat_ins": "",
+            "region": "FR2"
+          },
+          {
+            "position": 52,
+            "aa": "W",
+            "motif": "W",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 52,
+            "kabat_ins": "",
+            "region": null
+          },
+          {
+            "position": 83,
+            "aa": "M",
+            "motif": "M",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 82,
+            "kabat_ins": "",
+            "region": "FR3"
+          }
+        ]
+      },
+      "cmc_fr_only": {
+        "n_glyc_sites": 0,
+        "deamidation_sites": 1,
+        "isomerization_sites": 1,
+        "oxidation_sites": 3
+      },
+      "cmc_fr13_only": {
+        "n_glyc_sites": 0,
+        "deamidation_sites": 1,
+        "isomerization_sites": 1,
+        "oxidation_sites": 1
+      },
+      "optimization": {
+        "scope": "FR1/FR3 only",
+        "protected_positions": {
+          "36": "W (conserved FR2 tryptophan)"
+        },
+        "mutations": [
+          {
+            "chain": "VH",
+            "locus": "IGHV",
+            "gene": "IGHV3-38*01",
+            "kabat_pos": 82,
+            "kabat_ins": "A",
+            "from_aa": "N",
+            "to_aa": "Q",
+            "reason": "deamidation:NS"
+          },
+          {
+            "chain": "VH",
+            "locus": "IGHV",
+            "gene": "IGHV3-38*01",
+            "kabat_pos": 86,
+            "kabat_ins": "",
+            "from_aa": "D",
+            "to_aa": "E",
+            "reason": "isomerization:DT"
+          },
+          {
+            "chain": "VH",
+            "locus": "IGHV",
+            "gene": "IGHV3-38*01",
+            "kabat_pos": 82,
+            "kabat_ins": "",
+            "from_aa": "M",
+            "to_aa": "L",
+            "reason": "oxidation:M"
+          }
+        ],
+        "sequence_aa_opt": "EVQLVESGGDLVKPGGTLRLSCVASGFTFSSYDMSWVRQSPGKGLQWVAVIWNDGSSTYYADAVKGRFTISRDNAKNTLYLQLQSLRAEETAVYYCAK",
+        "cmc_before": {
+          "summary": {
+            "total_flags": 8,
+            "risk_level": "high"
+          },
+          "fr13_counts": {
+            "n_glyc_sites": 0,
+            "deamidation_sites": 1,
+            "isomerization_sites": 1,
+            "oxidation_sites": 1
+          }
+        },
+        "cmc_after": {
+          "summary": {
+            "total_flags": 5,
+            "risk_level": "high"
+          },
+          "fr13_counts": {
+            "n_glyc_sites": 0,
+            "deamidation_sites": 0,
+            "isomerization_sites": 0,
+            "oxidation_sites": 0
+          }
+        }
+      }
+    },
+    {
+      "tier": "tier2",
+      "chain": "VH",
+      "locus": "IGHV",
+      "gene": "IGHV3-23*01",
+      "imgt_functionality": "F",
+      "raw_header": "IMGT000001|IGHV3-23*01|Canis lupus familiaris_boxer|F|V-REGION|805772..806067|296 nt|1| | | | |296+24=320| | |",
+      "sequence_aa_imgt": "EVQLVESGGDLEKPGGSLRLSCVASGFTFSSYGMSWVRQAPGKGLQGVSLIRYDGSSTRYADAVKGRFTISRDNAKNTLYLQMNSLRAEDTAVYSCAK",
+      "sequence_aa_kabat_norm": "EVQLVESGGDLEKPGGSLRLSCVASGFTFSSYGMSWVRQAPGKGLQGVSLIRYDGSSTRYADAVKGRFTISRDNAKNTLYLQMNSLRAEDTAVYSCAK",
+      "fr_segments": {
+        "FR1": "EVQLVESGGDLEKPGGSLRLSCVAS",
+        "FR2": "WVRQAPGKGLQGVS",
+        "FR3": "RFTISRDNAKNTLYLQMRAEDTAVYSCAK"
+      },
+      "fr1_3_concat": "EVQLVESGGDLEKPGGSLRLSCVASWVRQAPGKGLQGVSRFTISRDNAKNTLYLQMRAEDTAVYSCAK",
+      "cmc_full": {
+        "length": 98,
+        "summary": {
+          "total_flags": 6,
+          "risk_level": "high"
+        },
+        "n_glyc_sites": [],
+        "deamidation_sites": [
+          {
+            "position": 84,
+            "aa": "N",
+            "motif": "NS",
+            "category": "deamidation",
+            "region_hint": null,
+            "kabat_pos": 82,
+            "kabat_ins": "A",
+            "region": "FR3"
+          }
+        ],
+        "isomerization_sites": [
+          {
+            "position": 54,
+            "aa": "D",
+            "motif": "DG",
+            "category": "isomerization",
+            "region_hint": null,
+            "kabat_pos": 53,
+            "kabat_ins": "",
+            "region": null
+          },
+          {
+            "position": 90,
+            "aa": "D",
+            "motif": "DT",
+            "category": "isomerization",
+            "region_hint": null,
+            "kabat_pos": 86,
+            "kabat_ins": "",
+            "region": "FR3"
+          }
+        ],
+        "oxidation_sites": [
+          {
+            "position": 34,
+            "aa": "M",
+            "motif": "M",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 34,
+            "kabat_ins": "",
+            "region": null
+          },
+          {
+            "position": 36,
+            "aa": "W",
+            "motif": "W",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 36,
+            "kabat_ins": "",
+            "region": "FR2"
+          },
+          {
+            "position": 83,
+            "aa": "M",
+            "motif": "M",
+            "category": "oxidation",
+            "region_hint": null,
+            "kabat_pos": 82,
+            "kabat_ins": "",
+            "region": "FR3"
+          }
+        ]
+      },
+      "cmc_fr_only": {
+        "n_glyc_sites": 0,
+        "deamidation_sites": 1,
+        "isomerization_sites": 1,
+        "oxidation_sites": 2
+      },
+      "cmc_fr13_only": {
+        "n_glyc_sites": 0,
+        "deamidation_sites": 1,
+        "isomerization_sites": 1,
+        "oxidation_sites": 1
+      },
+      "optimization": {
+        "scope": "FR1/FR3 only",
+        "protected_positions": {
+          "36": "W (conserved FR2 tryptophan)"
+        },
+        "mutations": [
+          {
+            "chain": "VH",
+            "locus": "IGHV",
+            "gene": "IGHV3-23*01",
+            "kabat_pos": 82,
+            "kabat_ins": "A",
+            "from_aa": "N",
+            "to_aa": "Q",
+            "reason": "deamidation:NS"
+          },
+          {
+            "chain": "VH",
+            "locus": "IGHV",
+            "gene": "IGHV3-23*01",
+            "kabat_pos": 86,
+            "kabat_ins": "",
+            "from_aa": "D",
+            "to_aa": "E",
+            "reason": "isomerization:DT"
+          },
+          {
+            "chain": "VH",
+            "locus": "IGHV",
+            "gene": "IGHV3-23*01",
+            "kabat_pos": 82,
+            "kabat_ins": "",
+            "from_aa": "M",
+            "to_aa": "L",
+            "reason": "oxidation:M"
+          }
+        ],
+        "sequence_aa_opt": "EVQLVESGGDLEKPGGSLRLSCVASGFTFSSYGMSWVRQAPGKGLQGVSLIRYDGSSTRYADAVKGRFTISRDNAKNTLYLQLQSLRAEETAVYSCAK",
+        "cmc_before": {
+          "summary": {
+            "total_flags": 6,
+            "risk_level": "high"
+          },
+          "fr13_counts": {
+            "n_glyc_sites": 0,
+            "deamidation_sites": 1,
+            "isomerization_sites": 1,
+            "oxidation_sites": 1
+          }
+        },
+        "cmc_after": {
+          "summary": {
+            "total_flags": 3,
+            "risk_level": "medium"
+          },
+          "fr13_counts": {
+            "n_glyc_sites": 0,
+            "deamidation_sites": 0,
+            "isomerization_sites": 0,
+            "oxidation_sites": 0
+          }
+        }
+      }
+    },
+    {
+      "tier": "tier2",
+      "chain": "VH",
+      "locus": "IGHV",
+      "gene": "IGHV3-72*01",
+      "imgt_functionality": "P",
+      "raw_header": "IMGT000001|IGHV3-72*01|Canis lupus familiaris_boxer|P|V-REGION|170231..170526|296 nt|1| | | | |296+24=320| | |",
+      "sequence_aa_imgt": "EVQLVESGGDLVKPGDSLRLSCVASGFTFSSYAMSWVRQAPRKGLQWVGYISSDGSSTYADAVKGRFTISRDNAKNTLYLQMNSLRAEDTALYNCAR",
+      "sequence_aa_kabat_norm": "EVQLVESGGDLVKPGDSLRLSCVASGFTFSSYAMSWVRQAPRKGLQWVGYISSDGSSTYADAVKGRFTISRDNAKNTLYLQMNSLRAEDTALYNCAR",
+      "fr_segments": {
+        "FR1": "EVQLVESGGDLVKPGDSLRLSCVASGFTFS",
+        "FR2": "WVRQAPRKGLQWVG",
+        "FR3": "RFTISRDNAKNTLYLQMNSLRAEDTALYNCAR"
+      },
+      "cmc_fr13_only": {
+        "n_glyc_sites": 0,
+        "deamidation_sites": 1,
+        "isomerization_sites": 1,
+        "oxidation_sites": 1
+      },
+      "optimization": {
+        "scope": "FR1/FR3 only",
+        "note": "V1.1 manual curation — Tier2, clinical use evidence Ranevetmab (68.0%). No M89 (terminal sequence EDTALYNCAR, not EDTAMYYCAG). 3 mutations.",
+        "mutations": [
+          {
+            "chain": "VH", "locus": "IGHV", "gene": "IGHV3-72*01",
+            "kabat_pos": 82, "kabat_ins": "A",
+            "from_aa": "N", "to_aa": "Q", "reason": "deamidation:NS"
+          },
+          {
+            "chain": "VH", "locus": "IGHV", "gene": "IGHV3-72*01",
+            "kabat_pos": 86, "kabat_ins": "",
+            "from_aa": "D", "to_aa": "E", "reason": "isomerization:DT"
+          },
+          {
+            "chain": "VH", "locus": "IGHV", "gene": "IGHV3-72*01",
+            "kabat_pos": 82, "kabat_ins": "",
+            "from_aa": "M", "to_aa": "L", "reason": "oxidation:M"
+          }
+        ],
+        "sequence_aa_opt": "EVQLVESGGDLVKPGDSLRLSCVASGFTFSSYAMSWVRQAPRKGLQWVGYISSDGSSTYADAVKGRFTISRDNAKNTLYLQLQSLRAEETALYNCAR",
+        "cmc_before": {
+          "fr13_counts": {"n_glyc_sites": 0, "deamidation_sites": 1, "isomerization_sites": 1, "oxidation_sites": 1}
+        },
+        "cmc_after": {
+          "fr13_counts": {"n_glyc_sites": 0, "deamidation_sites": 0, "isomerization_sites": 0, "oxidation_sites": 0}
+        }
+      }
+    },
+    {
+      "tier": "tier2",
+      "chain": "VH",
+      "locus": "IGHV",
+      "gene": "IGHV3-54*01",
+      "imgt_functionality": "F",
+      "raw_header": "IMGT000001|IGHV3-54*01|Canis lupus familiaris_boxer|F|V-REGION|385679..385975|297 nt|1| | | | |297+24=321| | |",
+      "sequence_aa_imgt": "EVQLVESGGDLMKPGGSLRLSCVASGFTISSNYMNWVRQAPGKGLQWVGYISSDGSSTSYADAVKGRFTISRDNAKNTLYLQMNSLRAEDTAVYYCVKG",
+      "sequence_aa_kabat_norm": "EVQLVESGGDLMKPGGSLRLSCVASGFTISSNYMNWVRQAPGKGLQWVGYISSDGSSTSYADAVKGRFTISRDNAKNTLYLQMNSLRAEDTAVYYCVKG",
+      "fr_segments": {
+        "FR1": "EVQLVESGGDLMKPGGSLRLSCVASGFTIS",
+        "FR2": "WVRQAPGKGLQWVG",
+        "FR3": "RFTISRDNAKNTLYLQMNSLRAEDTAVYYCVKG"
+      },
+      "cmc_fr13_only": {
+        "n_glyc_sites": 0,
+        "deamidation_sites": 1,
+        "isomerization_sites": 1,
+        "oxidation_sites": 2
+      },
+      "optimization": {
+        "scope": "FR1/FR3 only",
+        "note": "V1.1 manual curation — Tier2, clinical use evidence Gilvetmab (69.7%). Has M at FR1 Kabat ~12 (GDLMK motif) — unusual for IGHV3 family. 4 mutations.",
+        "mutations": [
+          {
+            "chain": "VH", "locus": "IGHV", "gene": "IGHV3-54*01",
+            "kabat_pos": 12, "kabat_ins": "",
+            "from_aa": "M", "to_aa": "L", "reason": "oxidation:M (FR1 GDLMK motif — unique to IGHV3-54*01)"
+          },
+          {
+            "chain": "VH", "locus": "IGHV", "gene": "IGHV3-54*01",
+            "kabat_pos": 82, "kabat_ins": "A",
+            "from_aa": "N", "to_aa": "Q", "reason": "deamidation:NS"
+          },
+          {
+            "chain": "VH", "locus": "IGHV", "gene": "IGHV3-54*01",
+            "kabat_pos": 86, "kabat_ins": "",
+            "from_aa": "D", "to_aa": "E", "reason": "isomerization:DT"
+          },
+          {
+            "chain": "VH", "locus": "IGHV", "gene": "IGHV3-54*01",
+            "kabat_pos": 82, "kabat_ins": "",
+            "from_aa": "M", "to_aa": "L", "reason": "oxidation:M"
+          }
+        ],
+        "sequence_aa_opt": "EVQLVESGGDLLKPGGSLRLSCVASGFTISSNYMNWVRQAPGKGLQWVGYISSDGSSTSYADAVKGRFTISRDNAKNTLYLQLQSLRAEETAVYYCVKG",
+        "cmc_before": {
+          "fr13_counts": {"n_glyc_sites": 0, "deamidation_sites": 1, "isomerization_sites": 1, "oxidation_sites": 2}
+        },
+        "cmc_after": {
+          "fr13_counts": {"n_glyc_sites": 0, "deamidation_sites": 0, "isomerization_sites": 0, "oxidation_sites": 0}
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+# InSynBio ADA calibration reference set (22 therapeutic antibodies)
+# Sources:
+#   Primary: Prescribing information / FDA labels (clinical Phase III ADA incidence)
+#   Secondary: Isaacs 2013 (MAbs), Vultaggio 2020 (Front Imm), Strand 2017 (BioDrugs)
+#   ADA rates reflect "treatment-emergent ADA" (TEADA) or "anti-drug antibody incidence"
+#   using assays consistent across studies; bridging ELISA unless noted.
+#
+# origin: 1=human, 2=humanized, 3=chimeric
+# target: primary pharmacological target
+# ada_rate: % of patients positive for ADA in pivotal trial(s)
+# ada_note: key caveats
+antibody,origin,target,ada_rate_pct,ada_note
+Adalimumab,2,TNF-alpha,25.0,Bridging ELISA; naive pts; anti-PEG assay excluded
+Alirocumab,1,PCSK9,5.1,Phase III ODYSSEY pooled; drug-tolerant assay
+Atezolizumab,2,PD-L1,30.0,IMpower studies pooled; drug-tolerant; clinical significance low
+Bevacizumab,2,VEGF-A,2.0,Low incidence; ECL bridging assay
+Bococizumab,2,PCSK9,44.0,Discontinued; high TEADA drove efficacy waning
+Canakinumab,1,IL-1beta,1.0,Bridging ELISA; CAPS/TRAPS studies
+Denosumab,1,RANKL,1.0,Bridging ELISA; low functional impact
+Dupilumab,1,IL-4Ra,8.6,LIBERTY AD pooled; drug-tolerant ECL
+Evolocumab,1,PCSK9,0.1,Phase III FOURIER; drug-tolerant; none neutralizing
+Infliximab,3,TNF-alpha,25.0,ACCENT I/CLASSIC I; ATI development drives loss of response
+Natalizumab,2,alpha-4 integrin,10.0,AFFIRM/SENTINEL; persistent ADA in ~6%
+Nivolumab,1,PD-1,18.0,CheckMate pooled; drug-tolerant; low neutralizing
+Ofatumumab,1,CD20,0.2,ASCLEPIOS; drug-tolerant ECL
+Omalizumab,2,IgE,0.1,Phase III; bridging ELISA; no anaphylaxis linked
+Panitumumab,1,EGFR,18.9,PRIME; bridging; cross-reactive with cetuximab
+Ramucirumab,1,VEGFR2,3.0,REGARD/RAINBOW pooled; ECL bridging
+Rituximab,3,CD20,64.3,Historical rheumatology cohort; HAHA development
+Secukinumab,1,IL-17A,0.4,ERASURE/FIXTURE pooled; drug-tolerant
+Sirukumab,2,IL-6,1.4,Phase III; drug-tolerant ECL; discontinued
+Tocilizumab,2,IL-6R,2.0,LITHE/OPTION pooled; drug-tolerant
+Trastuzumab,2,HER2,5.0,H0648g/HERA; bridging ELISA
+Ustekinumab,1,IL-12/23 p40,12.4,PHOENIX/ACCEPT; post-marketing elevated vs trials

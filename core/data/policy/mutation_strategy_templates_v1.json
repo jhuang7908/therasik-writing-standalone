@@ -1,0 +1,102 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-01-11",
+  "strategies": [
+    {
+      "id": "STRAT_F0_MINIMAL",
+      "applies_to_framework_band": [
+        "F0"
+      ],
+      "intent_cn": "：FR，CMC。",
+      "intent_en": "Industrial-compatible: minimal/no FR edits; focus on CMC and immunogenicity.",
+      "allowed_edits": [
+        "CDR liabilities fix (deamidation/isoAsp oxidation hotspots) with minimal paratope perturbation",
+        "Surface polarity smoothing outside Vernier"
+      ],
+      "locked_regions": [
+        "FR2 Vernier core (positions supporting CDR geometry)",
+        "Any residue flagged as paratope-contact (if known)"
+      ],
+      "backmutation_rule": [
+        "Only back-mutate FR residues if binding loss is observed or if canonical/cdr geometry mismatch is detected."
+      ],
+      "default_budget": {
+        "fr_total": "0-3",
+        "vernier": "0-1"
+      }
+    },
+    {
+      "id": "STRAT_F1_PARTITIONED",
+      "applies_to_framework_band": [
+        "F1"
+      ],
+      "intent_cn": "：，FR2/Vernier，FR1/FR3。",
+      "intent_en": "Conditionally compatible: partitioned refinement; lock FR2/Vernier first.",
+      "workflow_steps": [
+        {
+          "step": "Lock geometry",
+          "actions": [
+            "Identify Vernier candidates (FR2 & FR3 support positions) and freeze by default",
+            "If immunogenicity risk exists, propose conservative substitutions only on surface-exposed non-support positions"
+          ]
+        },
+        {
+          "step": "CMC-first adjustments",
+          "actions": [
+            "Remove/mitigate high-risk PTM motifs away from CDR contact zones"
+          ]
+        },
+        {
+          "step": "Controlled back-mutation",
+          "actions": [
+            "Back-mutate only a small set of FR2/Vernier positions if predicted geometry drift or affinity loss risk"
+          ]
+        }
+      ],
+      "default_budget": {
+        "fr_total": "3-8",
+        "vernier": "1-3"
+      }
+    },
+    {
+      "id": "STRAT_F2_FUNCTION_PRESERVE",
+      "applies_to_framework_band": [
+        "F2",
+        "F3"
+      ],
+      "intent_cn": "/：，。",
+      "intent_en": "Function-coupled/OOD: avoid framework swap; do function-preserving de-immunization and point patches.",
+      "prohibited": [
+        "Wholesale germline framework replacement",
+        "Batch humanization of FR2/Vernier"
+      ],
+      "allowed_edits": [
+        "Single-point edits on solvent-exposed, non-support positions with clear risk reduction",
+        "Stability patches (e.g., reduce hydrophobic surface) only if not in Vernier/support",
+        "De-immunization edits prioritized by risk-weighting and minimal structural impact"
+      ],
+      "validation_requirements": [
+        "Stage-gated: binding/biophysical check after every small edit set",
+        "If available, require structural model confirmation before touching Vernier/support positions"
+      ],
+      "default_budget": {
+        "fr_total": "0-4",
+        "vernier": "0 (locked)"
+      }
+    }
+  ],
+  "target_notes": {
+    "SOLUBLE_PROTEIN": {
+      "cn": "，。",
+      "en": "Typically less geometry-constrained; prefer low-risk scaffold strategies."
+    },
+    "MEMBRANE_ECD": {
+      "cn": "；Vernier/FR2，。",
+      "en": "Angle/conformation constraints are common; Vernier/FR2 are sensitive—use partitioned refinement."
+    },
+    "ENZYME_ACTIVE_SITE": {
+      "cn": "；，。",
+      "en": "Deep pockets often require framework contributions; avoid wholesale swaps."
+    }
+  }
+}

@@ -1,0 +1,357 @@
+{
+  "metadata": {
+    "title": "VHH Template Libraries Summary",
+    "version": "1.0.0",
+    "generated_at": "2025-01-XX",
+    "project": "Antibody Engineer Suite",
+    "description": "Complete inventory of all VHH template libraries in the system"
+  },
+  "summary": {
+    "total_libraries": 6,
+    "total_templates": 456,
+    "total_size_bytes": 1071832,
+    "total_size_mb": 1.07,
+    "production_ready": 4,
+    "mvp_placeholder": 2
+  },
+  "libraries": [
+    {
+      "id": "vhh_scaffold_library_v1",
+      "name": "VHH Scaffold Library v1",
+      "category": "vhh_v1",
+      "status": "production",
+      "file_path": "data/germlines/vhh_v1/vhh_scaffold_library_v1.jsonl",
+      "entry_count": 264,
+      "file_size_bytes": 781796,
+      "file_size_kb": 781,
+      "format": "JSONL",
+      "description": " stage1 scaffold ranking ",
+      "usage": {
+        "primary": true,
+        "default_for": "stage1 scaffold ranking",
+        "mode": "vhh",
+        "auto_load": true
+      },
+      "features": {
+        "vhh_hallmark": true,
+        "canonical_proxy": true,
+        "imgt_numbering": true,
+        "kabat_numbering": true,
+        "segments": ["FR1", "FR2", "FR3", "FR4"]
+      },
+      "data_source": "vhh_germline_assets_clean_with_canonical_proxy.jsonl",
+      "generation_script": "scripts/generate_vhh_special_fr_library.py",
+      "schema": {
+        "required_fields": [
+          "scaffold_id",
+          "n_members",
+          "member_ids",
+          "consensus",
+          "vhh_hallmark",
+          "canonical_proxy_cdr1",
+          "canonical_proxy_cdr2"
+        ],
+        "optional_fields": [
+          "imgt_map",
+          "kabat_map"
+        ]
+      }
+    },
+    {
+      "id": "vhh_special_fr_templates_v1",
+      "name": "VHH Special FR Templates v1",
+      "category": "vhh_v1",
+      "status": "production",
+      "file_path": "data/germlines/vhh_v1/vhh_special_fr_templates_v1.jsonl",
+      "entry_count": 82,
+      "file_size_bytes": 66344,
+      "file_size_kb": 66,
+      "format": "JSONL",
+      "description": "FR-only ， FR /",
+      "usage": {
+        "primary": false,
+        "default_for": "FR clustering and consensus templates",
+        "mode": "vhh",
+        "auto_load": false,
+        "requires_flag": "use_special_fr_templates=True"
+      },
+      "features": {
+        "vhh_hallmark": true,
+        "canonical_proxy": true,
+        "fr_deduplication": true
+      },
+      "filtering_criteria": {
+        "vhh_like": true,
+        "ambiguous_with_score_ge_0.5": true,
+        "proxy_agg_ge_0.80": true,
+        "fr_sequence_deduplication": true
+      },
+      "data_source": "vhh_germline_assets_clean_with_canonical_proxy.jsonl",
+      "generation_script": "scripts/build_vhh_special_fr_library_v1.py",
+      "schema": {
+        "required_fields": [
+          "fr_id",
+          "template_type",
+          "source_sequence_id",
+          "fr_sequence",
+          "segments",
+          "vhh_hallmark",
+          "canonical_proxy"
+        ]
+      }
+    },
+    {
+      "id": "human_vh3_vhh_safe_templates",
+      "name": "Human VH3 VHH-SAFE Templates",
+      "category": "humanized",
+      "status": "production",
+      "file_path": "data/germlines/human_ig_aa/vh_scaffolds/human_vh3_vhh_safe_templates.json",
+      "entry_count": 90,
+      "file_size_bytes": 204982,
+      "file_size_kb": 205,
+      "format": "JSON",
+      "description": "VHH-SAFE （30 scaffolds × 3）",
+      "usage": {
+        "primary": false,
+        "default_for": "VHH humanization pipeline",
+        "scenarios": [
+          "VHH humanization",
+          "Engineered VHH → human-VHH design",
+          "Developability optimization",
+          "SaaS template library"
+        ]
+      },
+      "features": {
+        "developability_score": true,
+        "cmc_liabilities": true,
+        "mutation_info": true,
+        "three_engineering_plans": true
+      },
+      "engineering_plans": {
+        "plan_a": {
+          "name": "",
+          "description": "44→Q, 45→R",
+          "mutations": ["44→Q", "45→R"]
+        },
+        "plan_b": {
+          "name": "",
+          "description": "37→Y/S, 44→Q, 45→R, 47→G",
+          "mutations": ["37→Y/S", "44→Q", "45→R", "47→G"]
+        },
+        "plan_c": {
+          "name": "VHH",
+          "description": "37=Y, 44=Q, 45=R, 47=G",
+          "mutations": ["37=Y", "44=Q", "45=R", "47=G"]
+        }
+      },
+      "generation": {
+        "base_scaffolds": 30,
+        "plans_per_scaffold": 3,
+        "total_templates": 90
+      },
+      "generation_script": "scripts/generate_human_vhh_safe_templates.py",
+      "schema": {
+        "required_fields": [
+          "template_id",
+          "source_scaffold",
+          "safe_plan",
+          "plan_name",
+          "plan_description",
+          "consensus",
+          "mutations",
+          "n_members",
+          "developability"
+        ]
+      }
+    },
+    {
+      "id": "vicugna_pacos_vhh_scaffolds",
+      "name": "Vicugna Pacos VHH Scaffolds",
+      "category": "camelid",
+      "status": "production",
+      "file_path": "data/germlines/vicugna_pacos_ig_aa/vhh_scaffolds/vhh_scaffolds.json",
+      "entry_count": 14,
+      "file_size_bytes": 13159,
+      "file_size_kb": 13,
+      "format": "JSON",
+      "description": " VHH scaffold ， 73  VHH ",
+      "usage": {
+        "primary": false,
+        "default_for": "Reference for framework similarity calculation",
+        "scenarios": [
+          "Framework similarity calculation",
+          "VHH framework feature identification",
+          "Humanization quality assessment"
+        ]
+      },
+      "features": {
+        "clustered_from": 73,
+        "clustering_threshold": 0.90,
+        "largest_cluster": {
+          "id": "VHH_SCF_04",
+          "size": 33
+        }
+      },
+      "generation_script": "scripts/generate_vhh_scaffold_panel.py",
+      "schema": {
+        "required_fields": [
+          "scaffold_id",
+          "n_members",
+          "member_ids",
+          "consensus"
+        ]
+      }
+    },
+    {
+      "id": "eps_scaffolds_vhh",
+      "name": "EPS Scaffolds VHH",
+      "category": "engineered",
+      "status": "mvp_placeholder",
+      "file_path": "core/data/eps_scaffolds_vhh.json",
+      "entry_count": 3,
+      "file_size_bytes": 1809,
+      "file_size_kb": 1.8,
+      "format": "JSON",
+      "description": "Engineered Protein Scaffold  - MVP ",
+      "usage": {
+        "primary": false,
+        "recommended": false,
+        "note": "MVP placeholder version, not recommended for production use"
+      },
+      "features": {
+        "developability_score": true,
+        "stability_class": true,
+        "source_based": ["human_vh3", "human_vh1"]
+      },
+      "schema": {
+        "required_fields": [
+          "template_id",
+          "name",
+          "sequence_v_region",
+          "regions",
+          "metadata"
+        ]
+      }
+    },
+    {
+      "id": "cluster_scaffolds_vhh",
+      "name": "Cluster Scaffolds VHH",
+      "category": "engineered",
+      "status": "mvp_placeholder",
+      "file_path": "core/data/cluster_scaffolds_vhh.json",
+      "entry_count": 3,
+      "file_size_bytes": 1742,
+      "file_size_kb": 1.7,
+      "format": "JSON",
+      "description": " scaffold medoids - MVP ",
+      "usage": {
+        "primary": false,
+        "recommended": false,
+        "note": "MVP placeholder version, not recommended for production use"
+      },
+      "features": {
+        "cluster_size": true,
+        "cluster_diversity": true,
+        "representative_quality": true
+      },
+      "schema": {
+        "required_fields": [
+          "cluster_id",
+          "cluster_size",
+          "medoid_sequence",
+          "regions",
+          "metadata"
+        ]
+      }
+    }
+  ],
+  "data_sources": {
+    "vhh_germline_assets_clean_with_canonical_proxy": {
+      "file_path": "data/germlines/vhh_v1/vhh_germline_assets_clean_with_canonical_proxy.jsonl",
+      "entry_count": 264,
+      "description": "Germline ，",
+      "used_by": [
+        "vhh_scaffold_library_v1",
+        "vhh_special_fr_templates_v1"
+      ]
+    }
+  },
+  "statistics_by_category": {
+    "vhh_v1": {
+      "libraries": 2,
+      "templates": 346,
+      "percentage": 75.9
+    },
+    "humanized": {
+      "libraries": 1,
+      "templates": 90,
+      "percentage": 19.7
+    },
+    "camelid": {
+      "libraries": 1,
+      "templates": 14,
+      "percentage": 3.1
+    },
+    "engineered": {
+      "libraries": 2,
+      "templates": 6,
+      "percentage": 1.3
+    }
+  },
+  "recommendations": {
+    "production_use": [
+      {
+        "library_id": "vhh_scaffold_library_v1",
+        "priority": "primary",
+        "use_case": "Default for stage1 scaffold ranking"
+      },
+      {
+        "library_id": "vhh_special_fr_templates_v1",
+        "priority": "secondary",
+        "use_case": "FR-only deduplication and clustering"
+      },
+      {
+        "library_id": "human_vh3_vhh_safe_templates",
+        "priority": "secondary",
+        "use_case": "VHH humanization pipeline"
+      },
+      {
+        "library_id": "vicugna_pacos_vhh_scaffolds",
+        "priority": "reference",
+        "use_case": "Framework similarity and quality assessment"
+      }
+    ],
+    "development_testing": [
+      {
+        "library_id": "eps_scaffolds_vhh",
+        "note": "MVP placeholder, not for production"
+      },
+      {
+        "library_id": "cluster_scaffolds_vhh",
+        "note": "MVP placeholder, not for production"
+      }
+    ]
+  },
+  "maintenance": {
+    "generation_scripts": {
+      "vhh_scaffold_library_v1": "scripts/generate_vhh_special_fr_library.py",
+      "vhh_special_fr_templates_v1": "scripts/build_vhh_special_fr_library_v1.py",
+      "human_vh3_vhh_safe_templates": "scripts/generate_human_vhh_safe_templates.py",
+      "vicugna_pacos_vhh_scaffolds": "scripts/generate_vhh_scaffold_panel.py"
+    },
+    "version_info": {
+      "vhh_v1_version": "2025-12-13",
+      "manifest_path": "data/germlines/vhh_v1/manifest.json"
+    }
+  },
+  "related_documents": [
+    "data/germlines/vhh_v1/manifest.json",
+    "data/germlines/vhh_v1/VHH_SPECIAL_FR_LIBRARY_README.md",
+    "data/germlines/human_ig_aa/vh_scaffolds/README.md",
+    "docs/VHH_ANALYSIS_SYSTEM_SUMMARY.md"
+  ]
+}
+
+
+
+

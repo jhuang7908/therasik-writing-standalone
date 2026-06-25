@@ -1,0 +1,109 @@
+{
+  "record_id": "lofacimig_ncats_gsrs_full_chain_v1",
+  "inn": "Lofacimig",
+  "unii": "L55HB62LXD",
+  "generated_at_utc": "2026-05-08T14:10:59.476112+00:00",
+  "source": {
+    "url": "https://drugs.ncats.io/api/v1/substances(L55HB62LXD)",
+    "source_type": "NCATS/GSRS API",
+    "approval_id": "L55HB62LXD",
+    "substance_class": "protein",
+    "protein_type": "BISPECIFIC ANTIBODY",
+    "sequence_origin": "HUMAN",
+    "sequence_type": "COMPLETE",
+    "definition_level": "COMPLETE"
+  },
+  "classification": {
+    "entity_class": "humanized_camelid_tandem_vh_fc",
+    "modality": "VH1-GAP-VH2-G1(h-CH2-CH3) homodimer",
+    "not_single_domain_vhh": true,
+    "do_not_merge_into_vhh42": true
+  },
+  "subunits": [
+    {
+      "subunit_index": 1,
+      "length_reported": 493,
+      "length_cleaned": 493,
+      "matches_consensus_chain": true
+    },
+    {
+      "subunit_index": 2,
+      "length_reported": 493,
+      "length_cleaned": 493,
+      "matches_consensus_chain": true
+    }
+  ],
+  "chain": {
+    "sequence": "QVQLVESGGGSVQAGGSLRLSCAASGHTYSSNYCMAWFRQAPGKEREGVAAIYSDGSTSYADSVKGRFTISKDNSKNTLYLQMNSLRAEDTAVYYCAATAYEGSWTGKQPLCLLYEYTYWGQGTLVTVSSGAPQVQLVESGGGSVQAGGSLRLSCTASEFTFDDSDMAWYRQAPGNECELVSTITSDGGTYYADSVKGRFTISQDNSKNTMYLQMNSLRAEDTAVYYCAADQWGSAEGDCTSSYPGGYWGQGTLVTVSSGSEPKSSDKTHTCPPCPAPELLGGPSVFLFPPKPKDTLMISRTPEVTCVVVDVSHEDPEVKFNWYVDGVEVHNAKTKPREEQYNSTYRVVSVLTVLHQDWLNGKEYKCKVSNKALPAPIEKTISKAKGQPREPQVYTLPPSRDELTKNQVSLTCLVKGFYPSDIAVEWESNGQPENNYKTTPPVLDSDGSFFLYSKLTVDKSRWQQGNVFSCSVMHEALHNHYTQKSLSLSPGK",
+    "length": 493,
+    "segments": {
+      "VH1": {
+        "start_1based": 1,
+        "end_1based": 130,
+        "length": 130
+      },
+      "linker_GAP": {
+        "start_1based": 131,
+        "end_1based": 133,
+        "sequence": "GAP"
+      },
+      "VH2": {
+        "start_1based": 134,
+        "end_1based": 259,
+        "length": 126
+      },
+      "G1_h_CH2_CH3": {
+        "start_1based": 260,
+        "end_1based": 493,
+        "length": 234
+      }
+    }
+  },
+  "domains": {
+    "VH1": {
+      "sequence": "QVQLVESGGGSVQAGGSLRLSCAASGHTYSSNYCMAWFRQAPGKEREGVAAIYSDGSTSYADSVKGRFTISKDNSKNTLYLQMNSLRAEDTAVYYCAATAYEGSWTGKQPLCLLYEYTYWGQGTLVTVSS",
+      "length": 130,
+      "imgt_regions": {
+        "FR1": "QVQLVESGGGSVQAGGSLRLSCAAS",
+        "CDR1": "GHTYSSNYC",
+        "FR2": "MAWFRQAPGKEREGVAA",
+        "CDR2": "IYSDGST",
+        "FR3": "SYADSVKGRFTISKDNSKNTLYLQMNSLRAEDTAVYYC",
+        "CDR3": "AATAYEGSWTGKQPLCLLYEYTY",
+        "FR4": "WGQGTLVTVSS"
+      },
+      "cdr_lengths": {
+        "CDR1": 9,
+        "CDR2": 7,
+        "CDR3": 23
+      }
+    },
+    "VH2": {
+      "sequence": "QVQLVESGGGSVQAGGSLRLSCTASEFTFDDSDMAWYRQAPGNECELVSTITSDGGTYYADSVKGRFTISQDNSKNTMYLQMNSLRAEDTAVYYCAADQWGSAEGDCTSSYPGGYWGQGTLVTVSS",
+      "length": 126,
+      "imgt_regions": {
+        "FR1": "QVQLVESGGGSVQAGGSLRLSCTAS",
+        "CDR1": "EFTFDDSD",
+        "FR2": "MAWYRQAPGNECELVST",
+        "CDR2": "ITSDGGT",
+        "FR3": "YYADSVKGRFTISQDNSKNTMYLQMNSLRAEDTAVYYC",
+        "CDR3": "AADQWGSAEGDCTSSYPGGY",
+        "FR4": "WGQGTLVTVSS"
+      },
+      "cdr_lengths": {
+        "CDR1": 8,
+        "CDR2": 7,
+        "CDR3": 20
+      }
+    }
+  },
+  "constant_region": {
+    "G1_h_CH2_CH3": "GSEPKSSDKTHTCPPCPAPELLGGPSVFLFPPKPKDTLMISRTPEVTCVVVDVSHEDPEVKFNWYVDGVEVHNAKTKPREEQYNSTYRVVSVLTVLHQDWLNGKEYKCKVSNKALPAPIEKTISKAKGQPREPQVYTLPPSRDELTKNQVSLTCLVKGFYPSDIAVEWESNGQPENNYKTTPPVLDSDGSFFLYSKLTVDKSRWQQGNVFSCSVMHEALHNHYTQKSLSLSPGK",
+    "length": 234
+  },
+  "notes": [
+    "NCATS/GSRS provides two identical 493 aa subunits, consistent with a homodimer.",
+    "N-terminal Q->pidolic acid and C-terminal K removal are structural modifications; raw AA chain is retained here for sequence provenance.",
+    "This artifact resolves the earlier metadata-only status for full-chain collection, but the molecule remains excluded from single-domain VHH cohort statistics."
+  ]
+}

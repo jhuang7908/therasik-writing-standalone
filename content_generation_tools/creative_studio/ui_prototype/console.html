@@ -1,0 +1,2106 @@
+<!DOCTYPE html>
+<!-- Creative Studio Console v3.19 · 2026-06-05 · 页数选择+登录按钮修复 -->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Creative Studio · 操作台</title>
+<style>
+/* ════ THEMES ════ */
+[data-theme="dark-blue"]{
+  --bg:#0b1020;--panel:#121a2e;--panel2:#0f1729;--line:#22304d;
+  --text:#e6edf7;--muted:#7a90b0;--chip:#1b2742;
+  --ai-bg:#0d1f35;--ai-border:#1a3a5c;
+  --primary:#6366f1;--accent:#06b6d4;
+}
+[data-theme="dark-pure"]{
+  --bg:#000;--panel:#0d0d0d;--panel2:#111;--line:#222;
+  --text:#f0f0f0;--muted:#666;--chip:#1a1a1a;
+  --ai-bg:#0a0a0a;--ai-border:#222;
+  --primary:#818cf8;--accent:#22d3ee;
+}
+[data-theme="gray-pro"]{
+  --bg:#18181b;--panel:#1f1f23;--panel2:#1a1a1e;--line:#2e2e35;
+  --text:#e4e4e7;--muted:#71717a;--chip:#27272a;
+  --ai-bg:#1c1c21;--ai-border:#2e2e35;
+  --primary:#6366f1;--accent:#06b6d4;
+}
+[data-theme="light"]{
+  --bg:#f1f5f9;--panel:#fff;--panel2:#f8fafc;--line:#e2e8f0;
+  --text:#0f172a;--muted:#64748b;--chip:#e2e8f0;
+  --ai-bg:#eff6ff;--ai-border:#bfdbfe;
+  --primary:#4f46e5;--accent:#0891b2;
+}
+/* ── Artistic light themes ── */
+[data-theme="wheat"]{
+  --bg:#fdf6e3;--panel:#fffaf0;--panel2:#fef9ec;--line:#e8d8b0;
+  --text:#3d2b00;--muted:#8a6a30;--chip:#f0e4c0;
+  --ai-bg:#fffbf0;--ai-border:#d4b870;
+  --primary:#b45309;--accent:#d97706;
+}
+[data-theme="wheat"] body{
+  background:radial-gradient(ellipse at 80% 10%,rgba(251,191,36,.18) 0%,transparent 55%),
+             radial-gradient(ellipse at 10% 90%,rgba(180,83,9,.12) 0%,transparent 50%),#fdf6e3;
+}
+[data-theme="wheat"] .lnav{border-right:1px solid #e0c880}
+[data-theme="sage"]{
+  --bg:#f0f7f0;--panel:#f8fbf8;--panel2:#f2f8f2;--line:#c8dfc8;
+  --text:#1a3020;--muted:#4a7060;--chip:#d5ecd5;
+  --ai-bg:#edf7ed;--ai-border:#90c890;
+  --primary:#16a34a;--accent:#0d9488;
+}
+[data-theme="sage"] body{
+  background:radial-gradient(ellipse at 20% 20%,rgba(22,163,74,.12) 0%,transparent 50%),
+             radial-gradient(ellipse at 85% 80%,rgba(13,148,136,.09) 0%,transparent 45%),#f0f7f0;
+}
+[data-theme="blush"]{
+  --bg:#fdf2f8;--panel:#fff5fa;--panel2:#fdf0f7;--line:#f0c8e0;
+  --text:#3d0030;--muted:#9d4080;--chip:#f8d8ee;
+  --ai-bg:#fff0f8;--ai-border:#e890c8;
+  --primary:#db2777;--accent:#ec4899;
+}
+[data-theme="blush"] body{
+  background:radial-gradient(ellipse at 70% 15%,rgba(236,72,153,.12) 0%,transparent 50%),
+             radial-gradient(ellipse at 15% 80%,rgba(219,39,119,.09) 0%,transparent 45%),#fdf2f8;
+}
+[data-theme="sky"]{
+  --bg:#f0f8ff;--panel:#f8fbff;--panel2:#f2f9ff;--line:#bfdbfe;
+  --text:#0c1a40;--muted:#3b6090;--chip:#dbeafe;
+  --ai-bg:#eff6ff;--ai-border:#93c5fd;
+  --primary:#2563eb;--accent:#0ea5e9;
+}
+[data-theme="sky"] body{
+  background:radial-gradient(ellipse at 60% 0%,rgba(14,165,233,.14) 0%,transparent 55%),
+             radial-gradient(ellipse at 5% 100%,rgba(37,99,235,.08) 0%,transparent 50%),#f0f8ff;
+}
+[data-theme="lavender"]{
+  --bg:#f5f0ff;--panel:#faf8ff;--panel2:#f7f4ff;--line:#d8c8f8;
+  --text:#200050;--muted:#7050a0;--chip:#ece0ff;
+  --ai-bg:#f5f0ff;--ai-border:#c4a8f0;
+  --primary:#7c3aed;--accent:#a855f7;
+}
+[data-theme="lavender"] body{
+  background:radial-gradient(ellipse at 25% 25%,rgba(124,58,237,.1) 0%,transparent 50%),
+             radial-gradient(ellipse at 80% 80%,rgba(168,85,247,.08) 0%,transparent 45%),#f5f0ff;
+}
+[data-theme="parchment"]{
+  --bg:#f9f5ef;--panel:#fdfaf6;--panel2:#fbf8f3;--line:#d8c8b0;
+  --text:#2a1800;--muted:#7a5828;--chip:#ede0cc;
+  --ai-bg:#fdf8f0;--ai-border:#c8a870;
+  --primary:#92400e;--accent:#b45309;
+}
+[data-theme="parchment"] body{
+  background:
+    repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(180,83,9,.04) 32px),
+    radial-gradient(ellipse at 90% 5%,rgba(146,64,14,.08) 0%,transparent 50%),#f9f5ef;
+}
+/* ── Artistic themes ── */
+[data-theme="aurora"]{
+  --bg:#04071a;--panel:#080d1f;--panel2:#060a18;--line:#1a2040;
+  --text:#e8f4f8;--muted:#6ba3be;--chip:#0f1a30;
+  --ai-bg:#040e1c;--ai-border:#0f2a40;
+  --primary:#22d3ee;--accent:#a78bfa;
+}
+[data-theme="aurora"] body{
+  background:radial-gradient(ellipse at 20% 30%,rgba(6,182,212,.08) 0%,transparent 60%),
+             radial-gradient(ellipse at 80% 70%,rgba(167,139,250,.07) 0%,transparent 60%),#04071a;
+}
+[data-theme="earth"]{
+  --bg:#1c1208;--panel:#251809;--panel2:#1e140a;--line:#3d2a14;
+  --text:#f5e6c8;--muted:#a0825a;--chip:#2e1e0e;
+  --ai-bg:#1a1008;--ai-border:#4a2e16;
+  --primary:#d97706;--accent:#f59e0b;
+}
+[data-theme="earth"] .app{background:linear-gradient(160deg,#1c1208 60%,#2d1a0a)}
+[data-theme="rose-gold"]{
+  --bg:#120a10;--panel:#1c1018;--panel2:#170d15;--line:#38203030;
+  --text:#fce7f3;--muted:#c084a4;--chip:#28131f;
+  --ai-bg:#130b11;--ai-border:#4a2040;
+  --primary:#e879a4;--accent:#f0abcc;
+}
+[data-theme="rose-gold"] body{
+  background:radial-gradient(ellipse at 30% 20%,rgba(244,63,94,.06) 0%,transparent 55%),
+             radial-gradient(ellipse at 70% 80%,rgba(232,121,164,.05) 0%,transparent 55%),#120a10;
+}
+[data-theme="neon"]{
+  --bg:#030308;--panel:#07070f;--panel2:#050510;--line:#1a1a2e;
+  --text:#e0e7ff;--muted:#5c5c8a;--chip:#10102a;
+  --ai-bg:#05050e;--ai-border:#1f1f4a;
+  --primary:#f72585;--accent:#4cc9f0;
+}
+[data-theme="neon"] .lnav,.neon .rpanel{box-shadow:inset 0 0 20px rgba(76,201,240,.03)}
+[data-theme="forest"]{
+  --bg:#030e07;--panel:#051408;--panel2:#040f06;--line:#0e2a14;
+  --text:#d1fae5;--muted:#52875e;--chip:#0b1e0e;
+  --ai-bg:#030c06;--ai-border:#0f3018;
+  --primary:#22c55e;--accent:#86efac;
+}
+[data-theme="forest"] body{
+  background:radial-gradient(ellipse at 15% 40%,rgba(34,197,94,.06) 0%,transparent 50%),#030e07;
+}
+[data-theme="candy"]{
+  --bg:#0e0520;--panel:#160630;--panel2:#120428;--line:#2e0f60;
+  --text:#fdf4ff;--muted:#b06fd0;--chip:#1f0845;
+  --ai-bg:#0c0420;--ai-border:#3a1070;
+  --primary:#e040fb;--accent:#f9a8d4;
+}
+[data-theme="candy"] body{
+  background:linear-gradient(135deg,#0e0520,#0a1020 40%,#1a0530);
+}
+:root{
+  --primary:#6366f1;--accent:#06b6d4;
+  --good:#22c55e;--warn:#f59e0b;--red:#f43f5e;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;font-family:"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;
+  font-size:14px;overflow:hidden;background:var(--bg);color:var(--text)}
+
+/* ── SHELL: flex so right panel can resize ── */
+.app{display:flex;height:100vh;overflow:hidden}
+.lnav{width:188px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);
+  display:flex;flex-direction:column;overflow:hidden}
+.mid{flex:1;min-width:0;display:flex;flex-direction:column;overflow:hidden}
+.resize-handle{width:5px;cursor:col-resize;background:var(--line);flex-shrink:0;
+  transition:background .15s;position:relative;z-index:10}
+.resize-handle:hover,.resize-handle.dragging{background:var(--primary)}
+.rpanel{width:520px;min-width:300px;max-width:800px;flex-shrink:0;
+  background:var(--panel);border-left:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden}
+
+/* ── BRAND ── */
+.brand{padding:12px 13px;display:flex;align-items:center;gap:9px;
+  border-bottom:1px solid var(--line);flex-shrink:0}
+.brand-mark{width:28px;height:28px;border-radius:8px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:800}
+.brand-name{font-weight:700;font-size:13px;line-height:1.2;color:var(--text)}
+.brand-sub{font-size:10px;color:var(--muted)}
+
+/* ── LEFT NAV ── */
+.navlbl{padding:9px 13px 2px;color:var(--muted);font-size:9.5px;text-transform:uppercase;letter-spacing:.7px;flex-shrink:0}
+.nav a{display:flex;align-items:center;gap:8px;padding:8px 13px;color:var(--text);
+  text-decoration:none;cursor:pointer;border-left:3px solid transparent;transition:.1s;font-size:13px}
+.nav a .ic{font-size:16px;flex-shrink:0}
+.nav a:hover{background:var(--panel2)}
+.nav a.active{background:var(--panel2);border-left-color:var(--primary)}
+.nav a small{display:block;color:var(--muted);font-size:10px;margin-top:1px}
+.nav a.dim{opacity:.35;pointer-events:none}
+.user-footer{margin-top:auto;padding:9px 13px;border-top:1px solid var(--line);
+  font-size:11px;color:var(--muted);flex-shrink:0;cursor:pointer}
+.user-footer:hover{color:var(--text)}
+
+/* ── MID HEADER ── */
+.mid-hd{display:flex;align-items:center;gap:8px;padding:9px 14px;
+  border-bottom:1px solid var(--line);background:var(--panel2);flex-shrink:0;flex-wrap:wrap}
+.mid-title{font-size:15px;font-weight:700;color:var(--text)}
+.chip{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:999px;
+  background:var(--chip);color:var(--muted);font-size:11px}
+.model-tag{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;
+  border-radius:999px;font-size:11px;font-weight:700;border:1px solid}
+.mt-nova-chat{background:rgba(99,102,241,.12);color:#a5b4fc;border-color:rgba(99,102,241,.3)}
+.mt-nova-design{background:rgba(167,139,250,.12);color:#c4b5fd;border-color:rgba(167,139,250,.3)}
+[data-theme="light"] .mt-nova-chat{background:#eff6ff;color:#3730a3;border-color:#c7d2fe}
+[data-theme="light"] .mt-nova-design{background:#faf5ff;color:#6d28d9;border-color:#ddd6fe}
+/* nova identity dot */
+.nova-dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0}
+.nova-dot.chat{background:var(--primary)}
+.nova-dot.design{background:var(--accent)}
+
+/* theme switcher */
+.theme-btn{background:none;border:1px solid var(--line);border-radius:8px;
+  color:var(--muted);padding:4px 9px;cursor:pointer;font-size:12px;transition:.1s;display:flex;align-items:center;gap:4px}
+.theme-btn:hover{border-color:var(--primary);color:var(--text)}
+.theme-menu{position:absolute;top:calc(100% + 4px);right:0;background:var(--panel);
+  border:1px solid var(--line);border-radius:12px;padding:6px;z-index:50;
+  box-shadow:0 12px 32px rgba(0,0,0,.4);min-width:185px}
+.theme-menu button{display:flex;align-items:center;gap:8px;width:100%;background:none;
+  border:none;color:var(--text);padding:7px 10px;cursor:pointer;border-radius:8px;font-size:12px;text-align:left;transition:.1s}
+.theme-menu button:hover{background:var(--panel2)}
+.theme-menu button.on{color:var(--primary);font-weight:700}
+.theme-sep{height:1px;background:var(--line);margin:4px 6px}
+.theme-wrapper{position:relative}
+
+/* ── MIDDLE BODY ── */
+/* ── MID BODY: flex so divider is draggable ── */
+.mid-body{display:flex;flex:1;min-height:0;overflow:hidden}
+.mid-divider{width:5px;flex-shrink:0;cursor:col-resize;background:var(--line);
+  position:relative;z-index:5;transition:background .15s}
+.mid-divider:hover,.mid-divider.dragging{background:var(--primary)}
+.mid-divider::after{content:'';position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);width:3px;height:32px;border-radius:3px;
+  background:var(--muted);opacity:.5}
+
+/* ── PARAMS ── */
+.col-params{width:310px;min-width:200px;max-width:520px;flex-shrink:0;overflow-y:auto;padding:12px;
+  background:var(--panel);display:flex;flex-direction:column;gap:0}
+.sec-lbl{font-size:10px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.6px;color:var(--muted);padding:8px 0 4px}
+
+/* template gallery */
+.filters{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
+.filters button{background:var(--chip);color:var(--muted);border:1px solid var(--line);
+  border-radius:999px;padding:3px 9px;font-size:11px;cursor:pointer;transition:.1s}
+.filters button.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+.tpl-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:2px}
+.tcard{border:1px solid var(--line);border-radius:8px;overflow:hidden;cursor:pointer;
+  background:var(--panel2);transition:.12s}
+.tcard:hover{border-color:var(--muted);transform:translateY(-1px)}
+.tcard.sel{outline:2px solid var(--primary);outline-offset:1px}
+.tcard-thumb{height:60px;position:relative;overflow:hidden;display:block;background:#000}
+.tcard-thumb svg{display:block;width:100%;height:100%}
+.tcard-cap{padding:5px 6px;font-size:11px;font-weight:600;line-height:1.3;color:var(--text)}
+.tcard-cap small{color:var(--muted);font-size:10px;font-weight:400;display:block}
+.tpl-source{font-size:10px;color:var(--muted);padding:4px 0 8px;text-align:center}
+.tpl-source a{color:var(--accent);text-decoration:none}
+.tpl-source a:hover{text-decoration:underline}
+
+/* upload zone */
+.upload-zone{border:1.5px dashed var(--line);border-radius:10px;padding:12px;
+  text-align:center;cursor:pointer;transition:.15s;background:var(--panel2);position:relative;
+  margin-bottom:2px}
+.upload-zone:hover,.upload-zone.drag{border-color:var(--primary);background:var(--ai-bg)}
+.upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.upload-icon{font-size:20px;margin-bottom:4px}
+.upload-text{font-size:11px;color:var(--muted);line-height:1.5}
+.upload-name{font-size:11px;color:var(--good);margin-top:5px;word-break:break-all}
+
+/* form */
+.field{margin:6px 0}
+.field label{display:flex;align-items:center;gap:5px;color:var(--muted);font-size:11px;margin-bottom:3px;font-weight:600}
+.field input,.field select,.field textarea{width:100%;background:var(--panel2);
+  border:1px solid var(--line);border-radius:8px;color:var(--text);padding:7px 10px;font-size:13px;transition:.1s;font-family:inherit}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--primary)}
+.field textarea{min-height:66px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:none;
+  border-radius:9px;padding:9px 13px;font-size:13px;cursor:pointer;font-weight:600;
+  transition:.12s;text-decoration:none;white-space:nowrap}
+.btn-primary{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff}
+.btn-primary:hover:not(:disabled){opacity:.9;transform:translateY(-1px)}
+.btn-primary:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn-block{width:100%;margin-top:6px}
+.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--text)}
+.btn-ghost:hover{border-color:var(--muted)}
+.cost-pill{font-size:11px;padding:2px 7px;border-radius:999px;background:rgba(0,0,0,.25);color:#7dd3fc}
+
+/* ── RESULT ── */
+.col-result{flex:1;min-width:0;overflow:auto;padding:13px;background:var(--panel2);display:flex;flex-direction:column}
+.result-toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:9px;flex-shrink:0}
+.result-meta{font-size:11px;color:var(--muted);flex:1}
+.status-banner{display:flex;align-items:center;gap:8px;padding:9px 12px;
+  border-radius:8px;margin-bottom:9px;font-size:13px;border:1px solid}
+.sb-running{background:var(--ai-bg);border-color:var(--ai-border);color:#7dd3fc}
+.sb-done{background:#0d2418;border-color:#166534;color:#86efac}
+.sb-failed{background:#2d0808;border-color:#7f1d1d;color:#fca5a5}
+[data-theme="light"] .sb-done{background:#f0fdf4;border-color:#bbf7d0;color:#166534}
+[data-theme="light"] .sb-failed{background:#fff1f2;border-color:#fecdd3;color:#be123c}
+.spin{animation:spin 1s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.slide{aspect-ratio:16/9;border:1px solid var(--line);border-radius:9px;
+  margin-bottom:8px;position:relative;overflow:hidden;background:#0d1426}
+.slide-bg{position:absolute;inset:0}
+.slide-pad{position:absolute;inset:0;padding:18px 22px;display:flex;flex-direction:column;justify-content:center}
+.slide-tag{font-size:9px;color:#bae6fd;position:absolute;top:11px;left:18px;text-transform:uppercase;letter-spacing:.5px}
+.slide-title{font-size:20px;font-weight:700;line-height:1.25}
+.slide-sub{font-size:12px;color:#bae6fd;margin-top:5px}
+.slide.light-slide{background:#f8fafc;color:#1f2937}
+.slide.light-slide .slide-title{color:#1e3a8a}
+.slide.light-slide .slide-sub{color:#64748b}
+.slide ul{margin:6px 0 0;padding-left:16px;font-size:11px;line-height:1.75}
+.empty-state{flex:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;color:var(--muted);text-align:center;padding:40px;line-height:2.2;font-size:13px}
+.empty-icon{font-size:40px;margin-bottom:10px;opacity:.3}
+
+/* ── RIGHT PANEL ── */
+.rtabs{display:flex;border-bottom:1px solid var(--line);flex-shrink:0}
+.rtab{flex:1;background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);
+  padding:10px;cursor:pointer;font-size:12px;font-weight:600;transition:.1s}
+.rtab.on{color:var(--text);border-bottom-color:var(--primary)}
+.rpane{display:none;flex:1;flex-direction:column;overflow:hidden}
+.rpane.on{display:flex}
+
+/* AI header */
+.ai-hd{padding:10px 13px;border-bottom:1px solid var(--line);flex-shrink:0;
+  display:flex;align-items:center;justify-content:space-between;gap:8px}
+.ai-identity{display:flex;align-items:center;gap:8px}
+.ai-avatar{width:30px;height:30px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,#6366f1,#06b6d4);
+  display:flex;align-items:center;justify-content:center;font-size:13px}
+.ai-name{font-size:13px;font-weight:700;color:var(--text)}
+.ai-tagline{font-size:10px;color:var(--muted)}
+.ai-badges{display:flex;gap:3px;flex-wrap:wrap}
+.abadge{font-size:9px;padding:2px 5px;border-radius:999px;border:1px solid;font-weight:700}
+.ab-llm{background:var(--ai-bg);color:#93c5fd;border-color:var(--ai-border)}
+.ab-img{background:#1a0d35;color:#c4b5fd;border-color:#4c1d95}
+.ab-bk{background:#1a1a0a;color:#fde68a;border-color:#78350f}
+[data-theme="light"] .ab-llm{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}
+[data-theme="light"] .ab-img{background:#faf5ff;color:#7c3aed;border-color:#ddd6fe}
+[data-theme="light"] .ab-bk{background:#fffbeb;color:#92400e;border-color:#fde68a}
+
+/* chat */
+.chat-msgs{flex:1;min-height:120px;overflow-y:auto;padding:10px 12px;display:flex;flex-direction:column;gap:9px}
+.cmsg{display:flex;gap:7px;align-items:flex-start}
+.cmsg.me{flex-direction:row-reverse}
+.cmsg-av{width:28px;height:28px;border-radius:50%;flex-shrink:0;font-size:11px;
+  display:flex;align-items:center;justify-content:center;margin-top:2px}
+.cmsg-av.ai-av{background:linear-gradient(135deg,#6366f1,#06b6d4)}
+.cmsg-av.me-av{background:var(--chip);border:1px solid var(--line);font-size:9px}
+.cmsg-who{font-size:9px;color:var(--muted);margin-bottom:2px}
+.cmsg.me .cmsg-who{text-align:right}
+.cmsg-body{min-width:0;max-width:calc(100% - 40px)}
+.bubble{border-radius:10px;padding:9px 11px;font-size:13px;line-height:1.65;
+  word-break:break-word;max-width:calc(100% - 36px);white-space:normal}
+.bubble.ai{background:var(--ai-bg);border:1px solid var(--ai-border)}
+/* user bubble: short text stays on one line, long text wraps naturally */
+.bubble.me{background:var(--chip);border:1px solid var(--line);
+  display:inline-block;max-width:260px;word-break:break-word;
+  overflow-wrap:break-word;hyphens:auto}
+[data-theme="light"] .bubble.ai{background:#eff6ff;border-color:#bfdbfe;color:#1e3a8a}
+[data-theme="light"] .bubble.me{background:#f1f5f9;border-color:#e2e8f0}
+
+/* ── typing indicator ── */
+.typing-bubble{display:flex;gap:4px;align-items:center;padding:10px 14px}
+.typing-bubble span{width:7px;height:7px;border-radius:50%;background:var(--muted);
+  animation:typingPulse 1.2s ease-in-out infinite}
+.typing-bubble span:nth-child(2){animation-delay:.25s}
+.typing-bubble span:nth-child(3){animation-delay:.5s}
+@keyframes typingPulse{0%,60%,100%{opacity:.25;transform:scale(.9)}30%{opacity:1;transform:scale(1.2)}}
+
+/* ── generation progress bar ── */
+.gen-progress{padding:18px 16px 12px;display:flex;flex-direction:column;gap:10px}
+.gen-progress-bar-wrap{height:6px;border-radius:4px;background:var(--line);overflow:hidden}
+.gen-progress-bar-fill{height:100%;border-radius:4px;
+  background:linear-gradient(90deg,#6366f1,#06b6d4);
+  transition:width .6s ease;width:0%}
+.gen-progress-steps{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+.gen-step{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);transition:.3s}
+.gen-step.active{color:var(--text)}
+.gen-step.done{color:var(--good)}
+.gen-step .step-icon{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);
+  display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;transition:.3s}
+.gen-step.active .step-icon{border-color:#6366f1;background:#6366f122;animation:spin 1s linear infinite}
+.gen-step.done .step-icon{border-color:var(--good);background:var(--good);color:#fff;animation:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* quick chips */
+/* ── quick chips – collapsible ── */
+.quick-area{padding:4px 10px 3px;border-top:none;flex-shrink:0}
+.quick-header{display:flex;align-items:center;justify-content:space-between;
+  font-size:10px;color:var(--muted);cursor:pointer;user-select:none;padding:2px 0 4px}
+.quick-header:hover{color:var(--text)}
+.quick-toggle{font-size:11px;transition:.2s}
+.quick-toggle.closed{transform:rotate(-90deg)}
+.quick-wrap{display:flex;flex-wrap:wrap;gap:4px;overflow-y:auto;
+  transition:max-height .25s ease;max-height:160px}
+.quick-wrap.collapsed{max-height:0}
+.quick-wrap .qchip{white-space:nowrap;font-size:11px;padding:3px 8px}
+.qchip-tool{border-style:dashed !important;opacity:.85}
+.qchip-tool:hover{opacity:1}
+/* param toggle chips (language / image quality) */
+.qchip-param{border-style:solid !important;opacity:.6}
+.qchip-param.on{opacity:1;border-color:var(--accent)!important;color:var(--accent)!important;font-weight:600}
+.qchip-param:hover{opacity:.9}
+/* consultation chip */
+.qchip-consult{border-color:var(--accent)!important;color:var(--accent)!important;opacity:.85}
+.qchip-consult:hover{opacity:1;background:var(--accent)!important;color:#fff!important}
+/* separator between chip groups */
+.chip-sep{width:1px;height:14px;background:var(--line);align-self:center;flex-shrink:0;margin:0 2px}
+.qchip{background:var(--chip);border:1px solid var(--line);color:var(--muted);
+  border-radius:999px;padding:4px 10px;font-size:11px;cursor:pointer;
+  white-space:nowrap;flex-shrink:0;transition:.1s}
+.qchip:hover{color:var(--text);border-color:var(--muted)}
+
+/* consultation option chips inside chat */
+.opt-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.opt-chip{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;
+  border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;
+  background:var(--panel2);border:1.5px solid var(--accent);color:var(--accent);
+  transition:.12s;user-select:none}
+.opt-chip:hover{background:var(--accent);color:#fff}
+.opt-chip .opt-num{width:18px;height:18px;border-radius:50%;background:var(--accent);
+  color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.opt-chip:hover .opt-num{background:#fff;color:var(--accent)}
+
+/* composer – resizable textarea */
+.bottom-dock{flex-shrink:0;display:flex;flex-direction:column;overflow:hidden}
+.vresize-handle{height:5px;cursor:row-resize;background:var(--line);flex-shrink:0;
+  position:relative;z-index:10;transition:background .15s}
+.vresize-handle:hover,.vresize-handle.dragging{background:var(--primary)}
+.vresize-handle::after{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:32px;height:3px;border-radius:3px;background:var(--muted);opacity:.5}
+.composer{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line);
+  flex-shrink:0;background:var(--panel2)}
+.chat-msgs{flex:1;min-height:120px;overflow-y:auto;padding:10px 12px;display:flex;flex-direction:column;gap:9px}
+/* attachment tray */
+.attach-tray{display:flex;flex-wrap:wrap;gap:5px;padding:7px 10px 0;
+  min-height:0;transition:.15s}
+.attach-tray:empty{padding:0}
+.atag{display:inline-flex;align-items:center;gap:5px;padding:3px 8px;
+  border-radius:7px;font-size:11px;font-weight:600;background:var(--chip);
+  border:1px solid var(--line);color:var(--text);max-width:200px}
+.atag .aname{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:140px}
+.atag .adel{cursor:pointer;color:var(--muted);font-size:12px;line-height:1;flex-shrink:0}
+.atag .adel:hover{color:var(--red)}
+.atag-pdf{border-color:#ef4444;color:#ef4444;background:rgba(239,68,68,.08)}
+.atag-doc{border-color:#3b82f6;color:#3b82f6;background:rgba(59,130,246,.08)}
+.atag-ppt{border-color:#f97316;color:#f97316;background:rgba(249,115,22,.08)}
+.atag-img{border-color:#a855f7;color:#a855f7;background:rgba(168,85,247,.08)}
+.atag-url{border-color:var(--accent);color:var(--accent);background:rgba(6,182,212,.07);
+  max-width:260px}
+/* url preview badge */
+.url-preview{padding:5px 10px;font-size:11px;color:var(--muted);
+  display:none;align-items:center;gap:6px;flex-wrap:wrap}
+.url-preview.show{display:flex}
+.url-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;
+  border-radius:6px;background:rgba(6,182,212,.1);color:var(--accent);
+  border:1px solid rgba(6,182,212,.25);font-size:11px;font-weight:600;max-width:300px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* vision routing note */
+.vision-note{padding:3px 10px 0;font-size:10px;color:var(--warn);display:none}
+.vision-note.show{display:block}
+/* composer row */
+.composer-row{display:flex;gap:7px;padding:6px 10px 8px;align-items:flex-end}
+.composer-input{flex:1;background:var(--panel);border:1px solid var(--line);
+  border-radius:10px;color:var(--text);padding:8px 11px;font-size:13px;
+  resize:vertical;min-height:52px;max-height:200px;font-family:inherit;line-height:1.5;transition:.1s}
+.composer-input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 2px color-mix(in srgb,var(--primary) 18%,transparent)}
+.composer-send{align-self:flex-end;margin-bottom:0}
+
+/* account */
+.acct-body{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column}
+.stat-row{display:flex;justify-content:space-between;align-items:center;
+  padding:8px 0;border-bottom:1px dashed var(--line);font-size:13px}
+.stat-row b{font-size:14px}
+.credit-bar{height:6px;border-radius:6px;background:var(--chip);overflow:hidden;margin:7px 0 3px}
+.credit-fill{height:100%;background:linear-gradient(90deg,var(--good),var(--accent));transition:.3s}
+.pay-btns{display:flex;gap:6px;margin-top:9px}
+.pay-btn{flex:1;border-radius:8px;border:1px solid var(--line);
+  background:var(--panel2);color:var(--text);padding:8px;cursor:pointer;
+  font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:5px;transition:.1s}
+.pay-btn:hover{border-color:var(--primary)}
+.jobs-list{display:flex;flex-direction:column;gap:5px;margin-top:7px}
+.job-row{background:var(--panel2);border:1px solid var(--line);border-radius:8px;
+  padding:7px 9px;font-size:11px;cursor:pointer;transition:.1s}
+.job-row:hover{border-color:var(--muted)}
+.js{font-size:9px;padding:2px 5px;border-radius:999px;font-weight:700}
+.js-done{background:#0d2418;color:#86efac}.js-running{background:#0d1f35;color:#7dd3fc}
+.js-queued{background:#1b2742;color:#93c5fd}.js-failed{background:#2d0808;color:#fca5a5}
+[data-theme="light"] .js-done{background:#f0fdf4;color:#166534}
+[data-theme="light"] .js-running{background:#eff6ff;color:#1d4ed8}
+[data-theme="light"] .js-failed{background:#fff1f2;color:#be123c}
+
+/* auth overlay */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;
+  align-items:center;justify-content:center}
+.overlay.show{display:flex}
+.modal{background:var(--panel);border:1px solid var(--line);border-radius:16px;
+  padding:24px;width:min(370px,90vw);box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.modal h3{font-size:17px;font-weight:800;margin-bottom:3px;color:var(--text)}
+.modal-note{font-size:12px;color:var(--muted);margin-bottom:14px}
+.mtabs{display:flex;border-bottom:1px solid var(--line);margin-bottom:14px}
+.mtab{flex:1;background:none;border:none;border-bottom:2px solid transparent;
+  color:var(--muted);padding:8px;cursor:pointer;font-size:13px;font-weight:600}
+.mtab.on{color:var(--text);border-bottom-color:var(--primary)}
+.merr{color:var(--red);font-size:12px;min-height:16px;margin-top:5px}
+
+/* toast */
+.toast-wrap{position:fixed;bottom:16px;right:16px;z-index:500;
+  display:flex;flex-direction:column;gap:5px;pointer-events:none}
+.toast{background:var(--panel);border:1px solid var(--line);border-radius:9px;
+  padding:9px 13px;font-size:13px;box-shadow:0 6px 20px rgba(0,0,0,.4);
+  max-width:270px;animation:toastIn .15s;pointer-events:all}
+.toast.ok{border-color:#166534;color:#86efac}.toast.err{border-color:#7f1d1d;color:#fca5a5}
+[data-theme="light"] .toast.ok{border-color:#bbf7d0;color:#166534}
+[data-theme="light"] .toast.err{border-color:#fecdd3;color:#be123c}
+@keyframes toastIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* scrollbars */
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
+
+/* light mode global tweaks */
+[data-theme="light"] .slide{box-shadow:0 2px 12px rgba(0,0,0,.1)}
+[data-theme="light"] .tcard:hover{box-shadow:0 4px 12px rgba(0,0,0,.08)}
+</style>
+</head>
+<body data-theme="dark-blue">
+<div class="app" id="appRoot">
+
+<!-- ════ LEFT NAV ════ -->
+<aside class="lnav">
+  <div class="brand">
+    <div class="brand-mark">C</div>
+    <div><div class="brand-name">Creative Studio</div><div class="brand-sub">AI 图文工作台</div></div>
+  </div>
+  <div class="navlbl">业务类型</div>
+  <nav class="nav" id="bizNav">
+    <a class="active" data-biz="ppt"><span class="ic">📊</span><div>可编辑 PPT<small>商业演示 / 路演</small></div></a>
+    <a data-biz="xiaohongshu"><span class="ic">📕</span><div>小红书图文<small>封面 + 内页</small></div></a>
+    <a data-biz="wechat"><span class="ic">💬</span><div>公众号图文<small>首图 + 配图</small></div></a>
+    <a data-biz="whitepaper"><span class="ic">📄</span><div>商业白皮书<small>产品说明书</small></div></a>
+  </nav>
+  <div class="navlbl" style="margin-top:4px">二期（规划）</div>
+  <nav class="nav">
+    <a class="dim"><span class="ic">🪪</span><div>名片</div></a>
+    <a class="dim"><span class="ic">🍽️</span><div>餐馆菜单</div></a>
+    <a class="dim"><span class="ic">🖼️</span><div>商业海报</div></a>
+    <a class="dim"><span class="ic">✴️</span><div>Logo</div></a>
+  </nav>
+  <div class="user-footer" id="userFooter" onclick="openAuth()">
+    未登录 · <span style="color:var(--accent)">点击登录</span>
+  </div>
+</aside>
+
+<!-- ════ MIDDLE ════ -->
+<section class="mid">
+  <!-- header -->
+  <div class="mid-hd">
+    <span class="mid-title" id="bizTitle">可编辑 PPT</span>
+    <span class="chip" id="bizChip">图文分离 · 原生可编辑</span>
+    <span style="flex:1"></span>
+    <span class="model-tag mt-nova-chat"><span class="nova-dot chat"></span>Nova Chat</span>
+    <span class="model-tag mt-nova-design"><span class="nova-dot design"></span>Nova Designer</span>
+    <!-- theme switcher -->
+    <div class="theme-wrapper">
+      <button class="theme-btn" onclick="toggleThemeMenu()" id="themeBtn">🎨 主题</button>
+      <div class="theme-menu" id="themeMenu" style="display:none">
+        <div style="padding:2px 10px 5px;font-size:10px;color:var(--muted);font-weight:700;letter-spacing:.5px">深色</div>
+        <button onclick="setTheme('dark-blue')" data-t="dark-blue">🌊 深蓝（默认）</button>
+        <button onclick="setTheme('dark-pure')" data-t="dark-pure">⬛ 纯黑</button>
+        <button onclick="setTheme('gray-pro')" data-t="gray-pro">🌫 灰调专业</button>
+        <div class="theme-sep"></div>
+        <div style="padding:2px 10px 5px;font-size:10px;color:var(--muted);font-weight:700;letter-spacing:.5px">艺术</div>
+        <button onclick="setTheme('aurora')" data-t="aurora">🌌 极光</button>
+        <button onclick="setTheme('neon')" data-t="neon">⚡ 霓虹</button>
+        <button onclick="setTheme('candy')" data-t="candy">🍬 糖果紫</button>
+        <button onclick="setTheme('rose-gold')" data-t="rose-gold">🌸 玫瑰金</button>
+        <button onclick="setTheme('forest')" data-t="forest">🌿 暗森林</button>
+        <button onclick="setTheme('earth')" data-t="earth">🟫 暖土棕</button>
+        <div class="theme-sep"></div>
+        <div style="padding:2px 10px 5px;font-size:10px;color:var(--muted);font-weight:700;letter-spacing:.5px">浅色 / 艺术</div>
+        <button onclick="setTheme('light')" data-t="light">🤍 标准浅色</button>
+        <button onclick="setTheme('wheat')" data-t="wheat">🌾 土黄麦色</button>
+        <button onclick="setTheme('sage')" data-t="sage">🌿 浅绿鼠尾草</button>
+        <button onclick="setTheme('blush')" data-t="blush">🌸 玫瑰腮红</button>
+        <button onclick="setTheme('sky')" data-t="sky">🩵 晴空蓝</button>
+        <button onclick="setTheme('lavender')" data-t="lavender">💜 薰衣草</button>
+        <button onclick="setTheme('parchment')" data-t="parchment">📜 羊皮纸</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- body: params + result -->
+  <div class="mid-body">
+
+    <!-- PARAMS COLUMN -->
+    <div class="col-params">
+      <div class="sec-lbl">① 选择模板</div>
+      <div class="filters" id="styleFilters">
+        <button class="on" data-filter="">全部</button>
+        <button data-filter="tech">科技</button>
+        <button data-filter="minimal">极简</button>
+        <button data-filter="premium">高端</button>
+        <button data-filter="warm">暖色</button>
+        <button data-filter="eco">环保</button>
+        <button data-filter="medical">医疗</button>
+      </div>
+      <div class="tpl-grid" id="tplGrid"></div>
+      <div class="tpl-source">
+        模板素材参考：
+        <a href="https://slidesgo.com" target="_blank">Slidesgo</a>
+        <a href="https://presentationgo.com" target="_blank">PresentationGO</a>
+        <a href="https://fppt.me" target="_blank">FPPT</a>
+      </div>
+
+      <div style="font-size:11px;color:var(--muted);margin:6px 0 4px;line-height:1.5">
+        💬 在右侧 <b>Nova Chat</b> 描述需求、上传文件后点生成
+      </div>
+      <button class="btn btn-primary btn-block" id="genBtn" onclick="generate()"
+        title="已有需求→直接生成文件">
+        ✦ 生成可编辑文件　<span class="cost-pill" id="costPill">约 120 积分</span>
+      </button>
+    </div>
+
+    <!-- RESULT COLUMN -->
+    <div class="mid-divider" id="midDivider"></div>
+    <div class="col-result">
+      <div class="result-toolbar">
+        <strong>结果预览</strong>
+        <span class="result-meta" id="resultMeta">尚未生成</span>
+        <button class="btn btn-ghost" style="padding:6px 12px;font-size:12px"
+                id="dlBtn" onclick="download()" disabled>⬇ 下载文件</button>
+      </div>
+      <div id="statusBanner"></div>
+      <div id="resultArea" style="flex:1">
+        <div class="empty-state">
+          <div class="empty-icon">✦</div>
+          选模板 → 填需求 → 点「生成」
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════ RESIZE HANDLE ════ -->
+<div class="resize-handle" id="resizeHandle" title="拖拽调整右侧宽度"></div>
+
+<!-- ════ RIGHT PANEL ════ -->
+<aside class="rpanel" id="rpanel">
+  <div class="rtabs">
+    <button class="rtab on" data-t="ai" onclick="switchRTab('ai')">🤖 AI 设计顾问</button>
+    <button class="rtab" data-t="acct" onclick="switchRTab('acct')">账户 / 任务</button>
+  </div>
+
+  <!-- AI PANE -->
+  <div class="rpane on" id="rpane-ai">
+    <div class="ai-hd">
+      <div class="ai-identity">
+        <div class="ai-avatar">🎨</div>
+        <div>
+          <div class="ai-name">Nova · 设计顾问</div>
+          <div class="ai-tagline">主动策划 · 生成 · 调优</div>
+        </div>
+      </div>
+      <div class="ai-badges">
+        <span class="abadge ab-llm" title="Nova Chat — 内容策划与对话">Chat</span>
+        <span class="abadge ab-img" title="Nova Designer — 视觉设计与配图">Design</span>
+      </div>
+    </div>
+    <div class="chat-msgs" id="chatMsgs"></div>
+    <div class="vresize-handle" id="vResizeHandle"></div>
+    <div class="bottom-dock" id="bottomDock">
+    <div class="quick-area">
+      <div class="quick-header" onclick="toggleChips()">
+        <span>快捷指令</span><span class="quick-toggle" id="chipToggle">▾</span>
+      </div>
+      <div class="quick-wrap" id="chipWrap">
+        <!-- ── 语言 toggle ── -->
+        <span class="qchip qchip-param on" id="lang-zh" onclick="setLang('zh',this)" title="输出中文">🇨🇳 中文</span>
+        <span class="qchip qchip-param" id="lang-en" onclick="setLang('en',this)" title="输出英文">🇺🇸 英文</span>
+        <span class="qchip qchip-param" id="lang-bi" onclick="setLang('bilingual',this)" title="双语并排">🌐 双语</span>
+        <span class="chip-sep"></span>
+        <!-- ── 图像质量 toggle ── -->
+        <span class="qchip qchip-param on" id="img-auto" onclick="setImg('auto',this)" title="自动选择最优方案">🖼 自动配图</span>
+        <span class="qchip qchip-param" id="img-hd" onclick="setImg('premium',this)" title="Nova Designer 高清 AI 图">✨ 高清</span>
+        <span class="qchip qchip-param" id="img-none" onclick="setImg('template_only',this)" title="不生成 AI 图，省积分">⚡ 省积分</span>
+        <span class="chip-sep"></span>
+        <!-- ── 页数 ── -->
+        <span class="qchip qchip-param" id="slide-6"  onclick="setSlides(6,this)"  title="6 页">6页</span>
+        <span class="qchip qchip-param on" id="slide-8" onclick="setSlides(8,this)" title="8 页（默认）">8页</span>
+        <span class="qchip qchip-param" id="slide-12" onclick="setSlides(12,this)" title="12 页">12页</span>
+        <span class="qchip qchip-param" id="slide-16" onclick="setSlides(16,this)" title="16 页">16页</span>
+        <span class="qchip qchip-param" id="slide-custom" onclick="promptCustomSlides()" title="自定义页数">✏️ 自定义</span>
+        <span class="chip-sep"></span>
+        <!-- ── Agent Tier ── -->
+        <span class="qchip qchip-param on" id="tier-std" onclick="setTier('standard',this)" title="DeepSeek 驱动，性价比高">🤖 标准 Agent</span>
+        <span class="qchip qchip-param" id="tier-pre" onclick="setTier('premium',this)" title="Claude 4.5 + GPT-5 驱动，逻辑与审美巅峰">✨ 顶级 Agent</span>
+        <span class="qchip qchip-param" id="tier-kimi" onclick="setTier('kimi',this)" title="Kimi K2.6 驱动，长上下文与多模态办公专家">🌙 Kimi Agent</span>
+        <span class="chip-sep"></span>
+        <!-- ── 策划入口 ── -->
+        <span class="qchip qchip-consult" onclick="startConsultation()" title="让 Nova 问 3 个问题后再生成">💬 让 Nova 策划</span>
+        <span class="chip-sep"></span>
+        <!-- ── 后处理指令 ── -->
+        <span class="qchip" onclick="quickMsg(this)">🎨 调整配色</span>
+        <span class="qchip" onclick="quickMsg(this)">📝 优化文案</span>
+        <span class="qchip" onclick="quickMsg(this)">🔄 重做封面</span>
+        <span class="qchip" onclick="quickMsg(this)">🔁 重新生成</span>
+        <span class="qchip" onclick="quickMsg(this)">➕ 再加一页</span>
+        <span class="qchip" onclick="quickMsg(this)">📊 加数据图表</span>
+        <span class="qchip" onclick="quickMsg(this)">🏢 加品牌信息</span>
+        <span class="qchip" onclick="quickMsg(this)">💡 换一套风格</span>
+        <span class="qchip" onclick="quickMsg(this)">📱 竖版格式</span>
+        <span class="qchip" onclick="quickMsg(this)">✂️ 精简内容</span>
+        <span class="qchip" onclick="quickMsg(this)">🖼 加大图</span>
+        <!-- attachment & link tools inline -->
+        <span class="qchip qchip-tool" title="上传文件 (PDF/Word/PPT/图片)" onclick="document.getElementById('attachInput').click()">📎 上传文件</span>
+        <span class="qchip qchip-tool" title="粘贴链接，Nova 将读取网页内容" onclick="promptPasteUrl()">🔗 粘贴链接</span>
+        <span id="docBadge" style="display:none;font-size:12px;color:var(--accent);padding:2px 8px;background:var(--bg2);border-radius:10px;margin-left:4px;white-space:nowrap;"></span>
+        <input type="file" id="attachInput" multiple accept=".pdf,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg,.gif,.webp"
+          style="display:none" onchange="handleAttach(this.files)">
+      </div>
+    </div>
+    <div class="composer">
+      <!-- attachment tray: shows attached files & detected URLs -->
+      <div class="attach-tray" id="attachTray"></div>
+      <!-- URL preview strip -->
+      <div class="url-preview" id="urlPreview">
+        <span>🔗 检测到链接，发送后由 Nova Chat 读取页面内容：</span>
+        <span class="url-badge" id="urlBadgeText"></span>
+        <span style="cursor:pointer;color:var(--muted)" onclick="clearUrlPreview()">✕</span>
+      </div>
+      <!-- vision routing note -->
+      <div class="vision-note" id="visionNote">
+        ⚠️ 图片/扫描件将路由至 Nova Designer（视觉模型），DeepSeek 不处理图像
+      </div>
+      <!-- composer row -->
+      <div class="composer-row">
+        <textarea class="composer-input" id="chatInput" rows="2"
+          placeholder="描述需求，或粘贴链接… (Enter 发送, Shift+Enter 换行)"
+          oninput="detectUrl(this.value)"
+          onpaste="setTimeout(()=>detectUrl(this.value),50)"
+          onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat()}"></textarea>
+        <button class="btn btn-primary composer-send" onclick="sendChat()" style="padding:9px 13px">发送</button>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- ACCOUNT PANE -->
+  <div class="rpane" id="rpane-acct">
+    <div class="acct-body">
+      <!-- Not-logged-in banner -->
+      <div id="acctLoginBanner" style="display:none;flex-direction:column;align-items:center;
+        gap:12px;padding:32px 16px;text-align:center">
+        <div style="font-size:32px">🔑</div>
+        <div style="font-size:14px;font-weight:700;color:var(--text)">请先登录</div>
+        <div style="font-size:12px;color:var(--muted)">注册即送 200 积分，可生成约 1–2 个项目</div>
+        <button class="btn btn-primary" style="width:100%;font-size:14px" onclick="openAuth()">
+          登录 / 注册
+        </button>
+        <button class="btn btn-ghost" style="width:100%;font-size:12px" onclick="demoLogin()">
+          使用演示账户（admin / nova123）
+        </button>
+      </div>
+      <div id="acctDetails">
+        <div style="font-weight:700;font-size:14px;padding-bottom:9px;border-bottom:1px solid var(--line);
+                    display:flex;align-items:center;justify-content:space-between;color:var(--text)">
+          账户概览 <span class="cost-pill" id="planPill">未登录</span>
+        </div>
+        <div class="stat-row"><span>积分余额</span><b id="creditsAmt">—</b></div>
+        <div class="credit-bar"><div class="credit-fill" id="creditFill" style="width:0"></div></div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px" id="creditSub">登录后查看</div>
+        <div class="stat-row"><span>本次预计消耗</span><b id="acctCost">—</b> 积分</div>
+        <div class="stat-row"><span>历史任务数</span><b id="totalJobs">—</b></div>
+        <div class="pay-btns">
+          <button class="pay-btn" onclick="doPay('wechat')">🟢 微信充值</button>
+          <button class="pay-btn" onclick="doPay('stripe')">💳 Stripe</button>
+        </div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
+                    color:var(--muted);padding:12px 0 5px;border-top:1px solid var(--line);margin-top:8px">
+          最近任务
+        </div>
+        <div class="jobs-list" id="jobsList">
+          <div style="font-size:12px;color:var(--muted)">登录后查看任务历史</div>
+        </div>
+        <button class="btn btn-ghost btn-block" style="margin-top:9px;font-size:12px" onclick="loadJobs()">
+          ↻ 刷新任务列表
+        </button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+</div><!-- .app -->
+
+<!-- AUTH MODAL -->
+<div class="overlay" id="authOverlay" onclick="if(event.target===this)closeAuth()">
+  <div class="modal">
+    <h3>Creative Studio</h3>
+    <p class="modal-note">登录后即可使用 AI 生成，注册送 200 积分</p>
+    <div class="mtabs">
+      <button class="mtab on" onclick="switchMTab('register')">注册</button>
+      <button class="mtab" onclick="switchMTab('login')">登录</button>
+    </div>
+    <div id="mf-register">
+      <div class="field"><label>邮箱</label><input type="email" id="reg-email" placeholder="you@company.com"></div>
+      <div class="field"><label>密码（至少 8 位）</label><input type="password" id="reg-pwd" placeholder="••••••••"></div>
+      <button class="btn btn-primary btn-block" style="font-size:14px" onclick="doRegister()">创建账户 →</button>
+    </div>
+    <div id="mf-login" style="display:none">
+      <div class="field"><label>邮箱 / 用户名</label><input type="text" id="log-email" placeholder="admin 或 you@company.com"></div>
+      <div class="field"><label>密码</label><input type="password" id="log-pwd" placeholder="••••••••"></div>
+      <button class="btn btn-primary btn-block" style="font-size:14px" onclick="doLogin()">登录 →</button>
+      <div style="margin-top:8px;padding:8px 10px;border-radius:8px;background:rgba(99,102,241,.08);
+                  border:1px solid rgba(99,102,241,.2);font-size:11px;color:var(--muted)">
+        <b style="color:var(--primary)">演示账户</b>　用户名：<code>admin</code>　密码：<code>nova123</code>
+        <button onclick="demoLogin()" style="float:right;background:var(--primary);color:#fff;border:none;
+          border-radius:5px;padding:2px 8px;cursor:pointer;font-size:11px">一键填入</button>
+      </div>
+    </div>
+    <div class="merr" id="auth-err"></div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script>
+// ════ CONFIG ════
+// When served by serve_local.py, use same origin; otherwise fall back to localhost:8100
+const API = (location.protocol === 'file:')
+  ? 'http://127.0.0.1:8100'
+  : location.origin;
+
+// ════ STATE ════
+let token = localStorage.getItem('cs_token')||'';
+let curBiz = 'ppt', templates = [], selTplId = '';
+let activeJobId = null, pollTimer = null, resultUrl = null, uploadedFile = null;
+let _genStartTime = 0, _genTimer = null; // for tracking generation time
+let consultStep = -1, consultAnswers = {};
+let _selLang = 'zh', _selImg = 'auto', _selSlides = 8, _selTier = 'standard';
+
+function setLang(val, el){
+  _selLang = val;
+  document.querySelectorAll('#chipWrap .qchip-param[id^="lang-"]').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on');
+  const labels = {zh:'中文',en:'英文',bilingual:'双语'};
+  appendAI(`语言已切换为 <b>${labels[val]||val}</b>，下次生成时应用 ✓`);
+}
+function setImg(val, el){
+  _selImg = val;
+  document.querySelectorAll('#chipWrap .qchip-param[id^="img-"]').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on');
+  const labels = {auto:'自动配图',premium:'高清配图',template_only:'省积分（模板图）'};
+  appendAI(`图像质量已切换为 <b>${labels[val]||val}</b>，下次生成时应用 ✓`);
+}
+function setSlides(val, el){
+  _selSlides = val;
+  document.querySelectorAll('#chipWrap .qchip-param[id^="slide-"]').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on');
+  appendAI(`幻灯片数量已设为 <b>${val} 页</b>，下次生成时应用 ✓`);
+}
+function setTier(t,el){
+  _selTier=t;
+  document.querySelectorAll('#chipWrap .qchip-param[id^="tier-"]').forEach(c=>{ if(c!==el) c.classList.remove('on'); });
+  if(el) el.classList.add('on');
+  let msg = '';
+  if(t==='premium') msg = '已切换至 <b>顶级 Agent</b> (Claude 4.5 + GPT-5) 驱动，逻辑与审美将大幅提升 ✨';
+  else if(t==='kimi') msg = '已切换至 <b>Kimi Agent</b> (Kimi K2.6) 驱动，长上下文与多模态办公专家 🌙';
+  else msg = '已切换至 <b>标准 Agent</b> (DeepSeek) 驱动，性价比均衡 🤖';
+  appendAI(msg);
+}
+function promptCustomSlides(){
+  const n = prompt('请输入幻灯片数量（4–30 页）：', _selSlides);
+  const v = parseInt(n);
+  if(!n || isNaN(v) || v<4 || v>30){ toast('请输入 4–30 之间的数字','err'); return; }
+  _selSlides = v;
+  // update custom chip label
+  const el = document.getElementById('slide-custom');
+  if(el){ el.textContent = `✏️ ${v}页`; el.classList.add('on');
+    document.querySelectorAll('#chipWrap .qchip-param[id^="slide-"]').forEach(c=>{ if(c!==el) c.classList.remove('on'); }); }
+  appendAI(`幻灯片数量已设为 <b>${v} 页</b>，下次生成时应用 ✓`);
+}
+
+const COSTS = {ppt:120,xiaohongshu:60,wechat:80,whitepaper:200};
+const BIZ = {
+  ppt:{title:'可编辑 PPT',chip:'图文分离 · 原生可编辑'},
+  xiaohongshu:{title:'小红书图文',chip:'封面 + 内页 · 3:4'},
+  wechat:{title:'公众号图文',chip:'首图 + 配图'},
+  whitepaper:{title:'商业白皮书',chip:'PDF · 段落可编辑'},
+};
+const CONSULT_Q = {
+  ppt:[
+    '请问 PPT 的<b>使用场景</b>是什么？（招商路演 / 内部汇报 / 产品发布 / 教育培训 / 其他）',
+    '你们的<b>品牌主色或风格</b>偏好是什么？（深色科技 / 极简白 / 暖色品牌 / 高端黑金 / 自定义）',
+    'PPT 的<b>核心信息</b>用 1–2 句话告诉我——最想让受众记住什么？（自由输入）',
+  ],
+  xiaohongshu:[
+    '这篇小红书要推广的是<b>什么类型</b>？（美食探店 / 生活方式 / 数码测评 / 护肤种草 / 旅行打卡）',
+    '目标受众和想要的<b>风格</b>是什么？（清新可爱 / 高级质感 / 活力运动 / 干货知识）',
+    '有没有<b>核心关键词或话题标签</b>想一定用上的？（自由输入，如：#好物推荐）',
+  ],
+  wechat:[
+    '公众号图文的<b>主题类型</b>是什么？（企业公告 / 品牌故事 / 行业洞察 / 活动促销 / 科普文章）',
+    '目标读者是谁？（专业人士 / 普通消费者 / 行业伙伴 / 投资者）',
+    '有现成文字稿吗？（有，我来上传 / 没有，请 Nova 生成）',
+  ],
+  whitepaper:[
+    '白皮书面向<b>哪类读者</b>？（投资人 / 政府机构 / 企业客户 / 学术界 / 媒体）',
+    '白皮书的<b>核心主张</b>是什么？（解决什么问题 / 提出什么方案——自由输入）',
+    '有<b>现有数据、图表或案例</b>吗？（有，我来上传 / 没有，AI 生成示例数据）',
+  ],
+};
+
+// ════ INIT ════
+window.onload = async () => {
+  const saved = localStorage.getItem('cs_theme')||'dark-blue';
+  applyTheme(saved);
+  showAcctBanner(!token);  // show login prompt in account tab if not logged in
+  if (token) await loadUser();
+  await loadTemplates();
+  document.querySelectorAll('#bizNav a[data-biz]').forEach(a=>{a.onclick=()=>setBiz(a.dataset.biz);});
+  document.querySelectorAll('#styleFilters button').forEach(b=>{
+    b.onclick=()=>{
+      document.querySelectorAll('#styleFilters button').forEach(x=>x.classList.remove('on'));
+      b.classList.add('on'); renderTpls(b.dataset.filter);
+    };
+  });
+  setBiz('ppt');
+  initResize();
+  // close theme menu on outside click
+  document.addEventListener('click',e=>{if(!e.target.closest('.theme-wrapper'))document.getElementById('themeMenu').style.display='none';});
+};
+
+// ════ RESIZE HANDLE ════
+function initResize() {
+  // ── right panel horizontal resize ──
+  const handle = document.getElementById('resizeHandle');
+  const rpanel = document.getElementById('rpanel');
+  let dragging = false, startX = 0, startW = 0;
+  handle.addEventListener('mousedown', e => {
+    dragging = true; startX = e.clientX; startW = rpanel.offsetWidth;
+    handle.classList.add('dragging');
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+  });
+  document.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    const delta = startX - e.clientX;
+    const newW = Math.max(260, Math.min(700, startW + delta));
+    rpanel.style.width = newW + 'px';
+  });
+  document.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false; handle.classList.remove('dragging');
+    document.body.style.cursor = ''; document.body.style.userSelect = '';
+  });
+
+  // ── mid-body: params ↔ result resize ──
+  const mDiv  = document.getElementById('midDivider');
+  const mLeft = document.querySelector('.col-params');
+  let mDrag = false, mStartX = 0, mStartW = 0;
+  mDiv.addEventListener('mousedown', e => {
+    mDrag = true; mStartX = e.clientX; mStartW = mLeft.offsetWidth;
+    mDiv.classList.add('dragging');
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+  });
+  document.addEventListener('mousemove', e => {
+    if (!mDrag) return;
+    const newW = Math.max(200, Math.min(520, mStartW + (e.clientX - mStartX)));
+    mLeft.style.width = newW + 'px';
+    mLeft.style.minWidth = 'unset';
+  });
+  document.addEventListener('mouseup', () => {
+    if (!mDrag) return;
+    mDrag = false; mDiv.classList.remove('dragging');
+    document.body.style.cursor = ''; document.body.style.userSelect = '';
+  });
+}
+
+// ════ VERTICAL RESIZE (chat-msgs ↕ bottom-dock) ════
+{
+  const vHandle = document.getElementById('vResizeHandle');
+  const dock    = document.getElementById('bottomDock');
+  let vDrag = false, startY = 0, startH = 0;
+  vHandle.addEventListener('mousedown', e => {
+    vDrag = true; startY = e.clientY; startH = dock.offsetHeight;
+    vHandle.classList.add('dragging');
+    document.body.style.cursor = 'row-resize';
+    document.body.style.userSelect = 'none';
+  });
+  document.addEventListener('mousemove', e => {
+    if (!vDrag) return;
+    const delta = startY - e.clientY;            // drag up → increase dock
+    const newH  = Math.max(140, Math.min(520, startH + delta));
+    dock.style.height = newH + 'px';
+    dock.style.minHeight = 'unset';
+  });
+  document.addEventListener('mouseup', () => {
+    if (!vDrag) return;
+    vDrag = false;
+    vHandle.classList.remove('dragging');
+    document.body.style.cursor = '';
+    document.body.style.userSelect = '';
+  });
+}
+
+// ════ ATTACHMENT & URL DETECTION ════
+const attachedFiles = [];
+let _extractedDocText = '';   // text extracted from uploaded PDF/doc
+let _docFileName = '';        // display name for the uploaded doc
+let detectedUrl = null;
+
+const FILE_ICONS = {pdf:'📄',doc:'📝',docx:'📝',ppt:'📊',pptx:'📊',
+  png:'🖼',jpg:'🖼',jpeg:'🖼',gif:'🖼',webp:'🖼'};
+const FILE_CLS   = {pdf:'atag-pdf',doc:'atag-doc',docx:'atag-doc',
+  ppt:'atag-ppt',pptx:'atag-ppt',png:'atag-img',jpg:'atag-img',jpeg:'atag-img',gif:'atag-img',webp:'atag-img'};
+const IMG_EXTS   = new Set(['png','jpg','jpeg','gif','webp']);
+
+function handleAttach(files) {
+  for (const f of files) {
+    const ext = f.name.split('.').pop().toLowerCase();
+    attachedFiles.push({name:f.name, ext, file:f});
+
+    // Auto-upload PDF/Word docs to extract text
+    if (['pdf','doc','docx'].includes(ext)) {
+      _uploadDocForExtraction(f);
+    }
+  }
+  renderAttachTray();
+  document.getElementById('attachInput').value = '';
+}
+
+async function _uploadDocForExtraction(file) {
+  const docBadge = document.getElementById('docBadge');
+  if (docBadge) { docBadge.textContent = '📄 ' + file.name + ' 解析中…'; docBadge.style.display='inline'; }
+  
+  // Ensure we are logged in before uploading
+  if(!token) {
+    try {
+      const r = await fetch(API+'/api/auth/login',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({username:'admin', password:'nova123'})
+      });
+      const d = await r.json();
+      if(r.ok){
+        token=d.access_token; localStorage.setItem('cs_token',token);
+        await loadUser(); await loadJobs();
+      }
+    } catch(e) {}
+  }
+
+  try {
+    const fd = new FormData();
+    fd.append('file', file);
+    const r = await fetch(API + '/api/upload', {method:'POST', body:fd,
+      headers: token ? {Authorization:'Bearer '+token} : {}});
+    if (r.status === 401) throw new Error('未授权 (401)');
+    if (!r.ok) throw new Error('上传失败 ' + r.status);
+    const data = await r.json();
+    _extractedDocText = data.extracted_text || '';
+    _docFileName = file.name;
+    if (docBadge) docBadge.textContent = '📄 ' + file.name + (
+      _extractedDocText ? ` ✓ (${Math.round(_extractedDocText.length/100)/10}k 字)` : ' (无文本)');
+    if (_extractedDocText) {
+      appendAI(`✅ <b>文献已解析</b>：<b>${file.name}</b>，提取 ${_extractedDocText.length} 字。\n点「✦ 生成」即可根据文献内容制作 PPT。`);
+    }
+  } catch(e) {
+    _extractedDocText = '';
+    _docFileName = '';
+    if (docBadge) { docBadge.textContent = '⚠️ 解析失败'; }
+    appendAI(`⚠️ 文献解析失败：${e.message}。将使用对话内容生成。`);
+  }
+}
+
+function renderAttachTray() {
+  const tray = document.getElementById('attachTray');
+  tray.innerHTML = '';
+  let hasImg = false;
+  attachedFiles.forEach((a, i) => {
+    const ext = a.ext;
+    if (IMG_EXTS.has(ext)) hasImg = true;
+    const cls = FILE_CLS[ext] || '';
+    const icon = FILE_ICONS[ext] || '📎';
+    const tag = document.createElement('span');
+    tag.className = 'atag ' + cls;
+    tag.innerHTML = `<span>${icon}</span><span class="aname" title="${a.name}">${a.name}</span>
+      <span class="adel" onclick="removeAttach(${i})">✕</span>`;
+    tray.appendChild(tag);
+  });
+  // vision routing warning
+  document.getElementById('visionNote').classList.toggle('show', hasImg);
+}
+
+function removeAttach(i) {
+  attachedFiles.splice(i, 1);
+  renderAttachTray();
+}
+
+// URL detection on paste / input
+const URL_RE = /https?:\/\/[^\s]{6,}/;
+function detectUrl(val) {
+  const m = val.match(URL_RE);
+  const preview = document.getElementById('urlPreview');
+  const badge   = document.getElementById('urlBadgeText');
+  if (m) {
+    detectedUrl = m[0];
+    badge.textContent = detectedUrl.length > 60 ? detectedUrl.slice(0,60)+'…' : detectedUrl;
+    badge.title = detectedUrl;
+    preview.classList.add('show');
+  } else {
+    detectedUrl = null;
+    preview.classList.remove('show');
+  }
+}
+
+function clearUrlPreview() {
+  detectedUrl = null;
+  document.getElementById('urlPreview').classList.remove('show');
+  // strip URL from textarea
+  const ta = document.getElementById('chatInput');
+  ta.value = ta.value.replace(URL_RE, '').trim();
+}
+
+function promptPasteUrl() {
+  const url = prompt('粘贴链接（Nova Chat 将读取页面文字内容）：');
+  if (!url) return;
+  const ta = document.getElementById('chatInput');
+  ta.value = (ta.value + ' ' + url).trim();
+  detectUrl(ta.value);
+}
+
+// ════ THEME ════
+function applyTheme(t) {
+  document.body.setAttribute('data-theme', t);
+  localStorage.setItem('cs_theme', t);
+  document.querySelectorAll('.theme-menu button[data-t]').forEach(b=>b.classList.toggle('on',b.dataset.t===t));
+}
+function setTheme(t) { applyTheme(t); document.getElementById('themeMenu').style.display='none'; toast('主题已切换'); }
+function toggleThemeMenu() {
+  const m = document.getElementById('themeMenu');
+  m.style.display = m.style.display==='none' ? 'block' : 'none';
+}
+
+// ════ CHIP TOGGLE ════
+function toggleChips() {
+  const wrap = document.getElementById('chipWrap');
+  const arrow = document.getElementById('chipToggle');
+  wrap.classList.toggle('collapsed');
+  arrow.classList.toggle('closed');
+}
+
+// ════ API ════
+async function apiFetch(path, opts={}) {
+  const h = {'Content-Type':'application/json',...(opts.headers||{})};
+  if (token) h['Authorization']='Bearer '+token;
+  const r = await fetch(API+path,{...opts,headers:h});
+  if (r.status===401) { openAuth(); throw new Error('请先登录'); }
+  return r;
+}
+
+// ════ USER ════
+async function loadUser() {
+  try {
+    const r = await apiFetch('/api/auth/me');
+    if (!r.ok) { token=''; localStorage.removeItem('cs_token'); showAcctBanner(true); return; }
+    renderUser(await r.json());
+  } catch { showAcctBanner(!token); }
+}
+function showAcctBanner(show) {
+  const banner = document.getElementById('acctLoginBanner');
+  const details = document.getElementById('acctDetails');
+  if(banner) banner.style.display = show ? 'flex' : 'none';
+  if(details) details.style.display = show ? 'none' : '';
+  const footer = document.getElementById('userFooter');
+  if(footer && show) footer.innerHTML = `未登录 · <span style="color:var(--accent);cursor:pointer" onclick="openAuth()">点击登录</span>`;
+}
+function renderUser(u) {
+  if(!u) return;
+  const isAdmin = u.plan === 'admin';
+  const pct = isAdmin ? 100 : Math.min(100,(u.credits/6000)*100);
+  const name = u.email ? u.email.split('@')[0] : 'Admin';
+  const displayCredits = isAdmin ? '∞' : u.credits.toLocaleString();
+  
+  const footer = document.getElementById('userFooter');
+  if(footer) footer.innerHTML = `<span style="color:var(--text)">${name}</span> · <span style="color:var(--good);cursor:pointer" onclick="openAuth()">${displayCredits} 积分</span>`;
+  
+  const planPill = document.getElementById('planPill');
+  if(planPill) planPill.textContent = u.plan || '会员';
+  
+  const creditsAmt = document.getElementById('creditsAmt');
+  if(creditsAmt) creditsAmt.textContent = displayCredits;
+  
+  const creditFill = document.getElementById('creditFill');
+  if(creditFill) creditFill.style.width = pct + '%';
+  
+  const creditSub = document.getElementById('creditSub');
+  if(creditSub) creditSub.textContent = isAdmin ? '无限额度 · 管理员' : `余额 ${u.credits.toLocaleString()} · 满额 6,000`;
+  
+  showAcctBanner(false);
+}
+
+// ════ TEMPLATES ════
+async function loadTemplates() {
+  try { const r=await fetch(API+'/api/templates'); if(r.ok)templates=await r.json(); else templates=FALLBACK; }
+  catch { templates=FALLBACK; }
+  renderTpls('');
+}
+function renderTpls(filter) {
+  const g = document.getElementById('tplGrid');
+  let list = templates.filter(t=>t.doc_types?.includes(curBiz));
+  if (filter) list = list.filter(t=>t.style===filter);
+  if (!list.length) { g.innerHTML='<div style="color:var(--muted);font-size:11px;grid-column:span 3;padding:10px 0;text-align:center">暂无匹配模板</div>'; return; }
+  g.innerHTML='';
+  list.forEach((t,i)=>{
+    if (!selTplId && i===0) selTplId=t.template_id;
+    const d=document.createElement('div');
+    d.className='tcard'+(t.template_id===selTplId?' sel':'');
+    d.innerHTML=`<div class="tcard-thumb">${makeThumbnailSVG(t)}</div>
+      <div class="tcard-cap">${t.name_zh}<small>${t.style||''}</small></div>`;
+    d.onclick=()=>{selTplId=t.template_id;renderTpls(filter);};
+    g.appendChild(d);
+  });
+}
+
+// ════ BIZ ════
+function setBiz(biz) {
+  curBiz=biz; selTplId='';
+  document.querySelectorAll('#bizNav a[data-biz]').forEach(a=>a.classList.toggle('active',a.dataset.biz===biz));
+  document.getElementById('bizTitle').textContent=BIZ[biz].title;
+  document.getElementById('bizChip').textContent=BIZ[biz].chip;
+  const c=COSTS[biz]||100;
+  document.getElementById('costPill').textContent='约 '+c+' 积分';
+  document.getElementById('acctCost').textContent=c;
+  renderTpls(document.querySelector('#styleFilters button.on')?.dataset.filter||'');
+  autoGreet(biz);
+}
+
+function autoGreet(biz) {
+  const m = {
+    ppt:'切换到【可编辑 PPT】✦ <b>Nova Chat</b> 策划内容结构，<b>Nova Designer</b> 生成精美配图，输出原生可编辑 .pptx。\n\n直接填需求生成，或点「让 AI 帮我策划」，我来主动问你 3 个问题 🎯',
+    xiaohongshu:'切换到【小红书图文】📕 <b>Nova Designer</b> 生成封面图，对中文场景和美学理解极佳。\n\n建议先点「让 AI 帮我策划」，3 个问题后输出高互动图文 ✨',
+    wechat:'切换到【公众号图文】💬 如果有现成文字稿，先上传，Nova 来排版配图，效率最高。\n\n没有稿子也可以，直接描述主题即可 📋',
+    whitepaper:'切换到【商业白皮书】📄 建议上传已有资料（Word/PPT/PDF），Nova Chat 提取关键信息后重新排版成专业白皮书 📊',
+  };
+  appendAI(m[biz]||'已切换，请描述你的需求。');
+}
+
+// ════ CONSULTATION ════
+function startConsultation() {
+  consultStep=0; consultAnswers={};
+  switchRTab('ai');
+  appendAI('好的，我来帮你策划！回答以下 3 个问题，我替你生成最优描述 🎯');
+  setTimeout(()=>askQ(),400);
+}
+// Parse options like （A / B / C / 其他）from question text
+function parseOptions(qtext) {
+  const m = qtext.match(/[（(]([^）)]+)[）)]/);
+  if (!m) return [];
+  return m[1].split(/[\/／、,，]/).map(s=>s.trim()).filter(Boolean);
+}
+
+function askQ() {
+  const qs=CONSULT_Q[curBiz]||[];
+  if(consultStep>=qs.length){finishConsultation();return;}
+  const raw = qs[consultStep];
+  // Strip options from question text for clean display
+  const cleanQ = raw.replace(/[（(][^）)]+[）)]/,'').trim();
+  const opts = parseOptions(raw);
+  const labels = ['A','B','C','D','E','F'];
+  let chipsHtml = '';
+  if (opts.length) {
+    const chips = opts.map((o,i)=>
+      `<span class="opt-chip" onclick="pickOpt('${o.replace(/'/g,"\\'")}')">
+        <span class="opt-num">${labels[i]||i+1}</span>${o}</span>`
+    ).join('');
+    chipsHtml = `<div class="opt-chips">${chips}</div>`;
+  }
+  appendAI(`<b>问 ${consultStep+1}／${qs.length}：</b><br>${cleanQ}${chipsHtml}`);
+  document.getElementById('chatInput').focus();
+}
+
+function pickOpt(answer) {
+  // remove all opt-chips to prevent double-click
+  document.querySelectorAll('.opt-chips').forEach(el=>el.remove());
+  appendMe(answer);
+  if(consultStep>=0&&consultStep<(CONSULT_Q[curBiz]||[]).length){
+    consultAnswers[consultStep]=answer;
+    if(consultStep===0 && curBiz==='ppt') tryAutoSelectTemplate(answer);
+    consultStep++;
+    setTimeout(()=>askQ(),350);
+  }
+}
+function finishConsultation() {
+  consultStep=-1;
+  const brief=BIZ[curBiz].title+'需求：'+Object.values(consultAnswers).join('；');
+  // write summary into chat input so generate() picks it up
+  const ta = document.getElementById('chatInput');
+  ta.value = brief;
+  appendAI('✅ 策划完成！需求摘要已填入输入框，确认后点「<b>生成可编辑文件</b>」即可 🚀');
+  toast('需求已填入输入框');
+}
+
+// ── Map consultation answer → template style filter ──
+const SCENE_STYLE_MAP = [
+  {kw:['路演','融资','投资','pitch','招商'],style:'premium'},
+  {kw:['内部','汇报','报告','工作'],     style:'minimal'},
+  {kw:['产品','发布','发布会','launch'], style:'tech'},
+  {kw:['教育','培训','课程','教学'],     style:'education'},
+  {kw:['医疗','医学','医院','临床'],     style:'medical'},
+  {kw:['绿色','环保','可持续','生态'],   style:'eco'},
+  {kw:['金融','银行','财务','投行'],     style:'finance'},
+  {kw:['品牌','营销','推广','市场'],     style:'warm'},
+];
+function tryAutoSelectTemplate(answer) {
+  const a = answer.toLowerCase();
+  for (const {kw, style} of SCENE_STYLE_MAP) {
+    if (kw.some(k => a.includes(k))) {
+      // update filter button
+      document.querySelectorAll('#styleFilters button').forEach(b=>{
+        b.classList.toggle('on', b.dataset.filter===style);
+      });
+      renderTpls(style);
+      appendAI(`💡 根据「${answer}」场景，已为你筛选 <b>${style}</b> 风格模板，可在左栏选择或手动切换。`);
+      return;
+    }
+  }
+}
+
+// ════ FILE UPLOAD (left-panel legacy removed; now handled by attach tray in chat) ════
+function handleFile(i) { if(i.files[0])processFile(i.files[0]); }
+function processFile(f) {
+  uploadedFile=f;
+  const sz=f.size>1048576?(f.size/1048576).toFixed(1)+' MB':(f.size/1024).toFixed(0)+' KB';
+  appendAI(`收到「${f.name}」(${sz})，生成时会自动提取内容融入结果 📎`);
+  if(f.name.match(/\.(pptx|ppt)$/i))setTimeout(()=>appendAI('检测到 PPT 文件，建议「参考风格重做」：保留结构，AI 重新配图文案。'),600);
+}
+
+// ════ GENERATE ════
+// Collect brief from: chat input first, then chat history (.bubble.me), fallback to ''
+function collectBrief() {
+  const inputVal = document.getElementById('chatInput').value.trim();
+  if (inputVal) return inputVal;
+  // grab all user bubble texts from history
+  const myBubbles = Array.from(document.querySelectorAll('#chatMsgs .cmsg.me .bubble'));
+  // filter out pure quick-chip preference messages and generation trigger commands
+  const skipPat = /^[➕🎨📝🔄🔁📊🏢💡📱✂️🖼]|已记录|收到|生成|开始|做|制作/;
+  const relevant = myBubbles.filter(b => !skipPat.test(b.textContent.trim())).map(b=>b.textContent.trim());
+  if (relevant.length) return relevant.slice(-3).join('；'); // last 3 relevant user messages
+  // fallback: any user message at all
+  if (myBubbles.length) return myBubbles[myBubbles.length-1].textContent.trim();
+  return '';
+}
+async function generate() {
+  if(!token){
+    // Auto-login for seamless experience if not logged in
+    const err = document.getElementById('auth-err');
+    if(err) err.textContent = '';
+    try {
+      const form = {username:'admin', password:'nova123'};
+      const r = await fetch(API+'/api/auth/login',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(form)
+      });
+      const d = await r.json();
+      if(r.ok){
+        token=d.access_token; localStorage.setItem('cs_token',token);
+        await loadUser(); await loadJobs();
+        toast('已自动登录演示账号 ✓');
+      } else {
+        openAuth(); return;
+      }
+    } catch(e) {
+      openAuth(); return;
+    }
+  }
+  const brief = collectBrief();
+  if(!brief){
+    appendAI('请先<b>描述您的需求</b>，例如：「做一个深色科技风产品路演PPT，8 页」，然后再点生成 🎯');
+    toast('请先在右侧描述需求','err');
+    return;
+  }
+  if(!selTplId){
+    appendAI('请先在左侧<b>选择一个模板</b>，然后点「✦ 生成」🎯');
+    toast('请选择一个模板','err');
+    return;
+  }
+  const btn=document.getElementById('genBtn');
+  btn.disabled=true; btn.innerHTML='<span class="spin">⟳</span> 提交中…';
+  document.getElementById('statusBanner').innerHTML='';
+  _genStartTime = Date.now();
+  if(_genTimer) clearInterval(_genTimer);
+  _genTimer = setInterval(updateGenTime, 1000);
+  showGenProgress(0,'提交任务中…');
+  try {
+    const r=await apiFetch('/api/jobs',{method:'POST',body:JSON.stringify({
+      doc_type:curBiz,template_id:selTplId,request_summary:brief,
+      image_tier:_selImg, lang:_selLang, slide_count:_selSlides,
+      document_text: _extractedDocText,
+      use_multi_agent: true,
+      agent_tier: _selTier})});
+    const job=await r.json();
+    if(!r.ok) {
+      const msg = typeof job.detail === 'string' ? job.detail : (job.detail ? JSON.stringify(job.detail) : '提交失败');
+      throw new Error(msg);
+    }
+    activeJobId=job.id;
+    toast('任务已提交 ✦');
+    const docHint = _extractedDocText
+      ? `\n<b>文献来源：</b>${_docFileName}（${Math.round(_extractedDocText.length/100)/10}k 字已加载）` : '';
+    appendAI(`收到请求 ✦\n\n<b>流水线：</b>策划 Agent → 内容 Agent（×${_selSlides}）→ 设计 Agent → 渲染输出${docHint}\n<b>任务 ID：</b>${job.id.slice(0,8)}…\n<b>预计时间：</b>40–120 秒`);
+    pollJob(job.id);
+  } catch(e) {
+    // ── Offline demo: simulate generation when API is not running ──
+    if(e.message.includes('fetch')||e.message.includes('Failed')||e.message.includes('NetworkError')||e.message.includes('Load')){
+      toast('API 离线，启动演示模式 ✦','ok');
+      appendAI(`✦ <b>演示模式</b>（API 未连接）\n\n正在模拟生成流程…`);
+      setTimeout(()=>showDemoResult(brief),1800);
+      return;
+    }
+    toast(e.message,'err');
+    btn.disabled=false;
+    btn.innerHTML='✦ 生成可编辑文件　<span class="cost-pill">约 '+COSTS[curBiz]+' 积分</span>';
+  }
+}
+
+function pollJob(jid) {
+  if(pollTimer)clearInterval(pollTimer);
+  let n=0;
+  pollTimer=setInterval(async()=>{
+    n++; if(n>90){clearInterval(pollTimer);showFailed('等待超时，请重试');return;}
+    try{const r=await apiFetch('/api/jobs/'+jid);if(!r.ok)return;const j=await r.json();
+    if(j.status==='done'){clearInterval(pollTimer);showDone(j);}
+    else if(j.status==='failed'){clearInterval(pollTimer);showFailed(j.error_message||'生成失败');}
+    else showRunning(j);}catch{}
+  },2000);
+}
+function showRunning(j){
+  const stepMap = {queued:0,planning:1,designing:2,rendering:3,finalizing:4};
+  const si = stepMap[j.status]??1;
+  const msgs = ['排队等待…','① 策划 Agent 规划大纲…','② 内容 Agent 并行撰写各页…','③ 设计 Agent 分配版式配图…','④ 排版渲染输出…'];
+  const elapsed = Math.floor((Date.now() - _genStartTime)/1000);
+  document.getElementById('statusBanner').innerHTML=
+    `<div class="status-banner sb-running">
+      <span class="spin">⟳</span> 多 Agent 生成中 · ${msgs[si]} 
+      <span style="margin-left:10px;font-family:monospace;opacity:0.8">已耗时 ${elapsed}s</span>
+    </div>`;
+  showGenProgress(si, msgs[si]);
+}
+function updateGenTime() {
+  const el = document.querySelector('.status-banner.sb-running');
+  if(!el) return;
+  const elapsed = Math.floor((Date.now() - _genStartTime)/1000);
+  const timeSpan = el.querySelector('span[style*="font-family:monospace"]');
+  if(timeSpan) timeSpan.textContent = `已耗时 ${elapsed}s`;
+}
+function showDone(j){
+  if(_genTimer) { clearInterval(_genTimer); _genTimer = null; }
+  const totalTime = Math.floor((Date.now() - _genStartTime)/1000);
+  resultUrl=j.result_url;
+  document.getElementById('statusBanner').innerHTML=`<div class="status-banner sb-done">✅ 完成 · 耗时 ${totalTime}s · ${j.credit_actual} 积分 · 策划 Agent + 内容 Agent + 设计 Agent</div>`;
+  document.getElementById('resultMeta').textContent=`${j.doc_type} · ${j.template_id} · ${j.credit_actual} 积分`;
+  document.getElementById('dlBtn').disabled=false;
+  renderPreview(j);
+  const docLine = _extractedDocText ? `\n文献来源：<b>${_docFileName}</b> 已作为内容依据。` : '';
+  appendAI(`✅ <b>生成完成！</b>\n<b>① 策划 Agent</b> 规划大纲 → <b>② 内容 Agent</b> 并行撰写 → <b>③ 设计 Agent</b> 版式配图${docLine}\n消耗：<b>${j.credit_actual} 积分</b>\n\n点「下载文件」获取文件，有调整直接告诉我 👇`);
+  const btn=document.getElementById('genBtn');btn.disabled=false;btn.innerHTML='✦ 重新生成　<span class="cost-pill">约 '+COSTS[curBiz]+' 积分</span>';
+  loadUser();loadJobs();
+}
+function showFailed(msg){
+  if(_genTimer) { clearInterval(_genTimer); _genTimer = null; }
+  document.getElementById('statusBanner').innerHTML=`<div class="status-banner sb-failed">❌ ${msg}</div>`;
+  appendAI(`⚠️ 遇到问题：${msg}。建议稍后重试，或换一个模板。`);
+  const btn=document.getElementById('genBtn');btn.disabled=false;btn.innerHTML='✦ 重试　<span class="cost-pill">约 '+COSTS[curBiz]+' 积分</span>';
+}
+
+// ════ DEMO RESULT (offline simulation) ════
+const GEN_STEPS = [
+  {label:'接收需求 & 分析文献'},
+  {label:'① 策划 Agent：规划幻灯片大纲'},
+  {label:'② 内容 Agent：并行撰写各页内容'},
+  {label:'③ 设计 Agent：版式分配 & 配图'},
+  {label:'排版渲染 → 输出 .pptx'},
+];
+function showGenProgress(stepIdx, msg){
+  const stepsHtml = GEN_STEPS.map((s,i)=>{
+    const cls = i<stepIdx?'done':i===stepIdx?'active':'';
+    const icon = i<stepIdx?'✓':i===stepIdx?'⟳':'·';
+    return `<div class="gen-step ${cls}">
+      <div class="step-icon">${icon}</div>
+      <span>${s.label}</span>
+    </div>`;
+  }).join('');
+  const pct = Math.round(stepIdx/GEN_STEPS.length*100);
+  document.getElementById('resultArea').innerHTML=`
+    <div class="gen-progress">
+      <div style="font-size:12px;color:var(--text);font-weight:600">
+        <span class="spin" style="margin-right:5px">⟳</span>${msg}
+      </div>
+      <div class="gen-progress-bar-wrap">
+        <div class="gen-progress-bar-fill" style="width:${pct}%"></div>
+      </div>
+      <div class="gen-progress-steps">${stepsHtml}</div>
+    </div>`;
+}
+
+function showDemoResult(brief) {
+  const tpl = templates.find(t=>t.template_id===selTplId)||templates[0]||{name_zh:'演示模板',_grad:'linear-gradient(135deg,#1e3a8a,#3b82f6)',_colors:{bg:'#0f172a',title:'#f0f9ff',sub:'#93c5fd',accent:'#3b82f6'}};
+  const c = tpl._colors||{bg:'#0f172a',title:'#f8fafc',sub:'#94a3b8',accent:'#6366f1'};
+  const briefShort = brief.slice(0,40)+(brief.length>40?'…':'');
+  const creditsUsed = Math.floor(COSTS[curBiz]*0.6);
+
+  // Animate through 5 steps with delays
+  const delays = [0, 800, 1600, 2600, 3400];
+  const msgs = ['接收需求…','① 策划 Agent 规划大纲…','② 内容 Agent 并行撰写…','③ 设计 Agent 版式配图…','渲染输出中…'];
+  delays.forEach((d,i)=>{
+    setTimeout(()=>{
+      showGenProgress(i, msgs[i]);
+      if(i===0) document.getElementById('statusBanner').innerHTML=
+        `<div class="status-banner" style="background:var(--chip);border:1px solid var(--line);color:var(--text)">
+          <span class="spin">⟳</span> 多 Agent 生成中 · 策划→内容→设计→渲染 · 演示模式
+        </div>`;
+    }, d);
+  });
+
+  // Final render after all steps
+  setTimeout(()=>{
+  const slides = Array.from({length: _selSlides}, (_,i) => {
+    const labels = ['封面','目录','背景','核心内容','数据分析','方案详情','案例展示','竞品对比','技术架构','团队介绍','财务预测','里程碑','风险分析','合作建议','附录','总结'];
+    return {label: labels[i] || `第${i+1}页`};
+  });
+    const thumbs = slides.map((s,i)=>`
+      <div style="flex-shrink:0;width:152px;border-radius:8px;overflow:hidden;
+        border:2px solid ${i===0?c.accent:c.sub+'44'};cursor:pointer;
+        box-shadow:0 2px 10px rgba(0,0,0,.2);transition:.15s"
+        onclick="this.parentNode.querySelectorAll('div[style]').forEach(el=>{el.style.borderColor='${c.sub}44'});this.style.borderColor='${c.accent}'">
+        <div style="height:95px;background:${tpl._grad||'linear-gradient(135deg,#334155,#0ea5e9)'};position:relative">
+          <div style="position:absolute;top:4px;left:6px;font-size:9px;background:rgba(0,0,0,.35);
+            color:#fff;padding:1px 5px;border-radius:3px">${i+1}/${slides.length}</div>
+          <div style="position:absolute;inset:0;padding:10px 10px 8px">
+            <div style="height:6px;background:${c.title};border-radius:3px;opacity:.9;margin-bottom:5px;width:${60+i*7}%"></div>
+            <div style="height:3px;background:${c.sub};border-radius:2px;opacity:.6;width:${40+i*5}%"></div>
+            ${i>0?`<div style="height:3px;background:${c.sub};border-radius:2px;opacity:.4;width:${50+i*4}%;margin-top:4px"></div>`:''}
+            ${i>1?`<div style="height:3px;background:${c.sub};border-radius:2px;opacity:.35;width:${35+i*5}%;margin-top:4px"></div>`:''}
+            ${i>1?`<div style="position:absolute;bottom:8px;right:8px;width:44px;height:28px;
+              border-radius:4px;background:${c.accent};opacity:.3"></div>`:''}
+          </div>
+        </div>
+        <div style="background:var(--panel);padding:4px 8px;font-size:11px;font-weight:600;color:var(--text)">
+          ${s.label}
+        </div>
+      </div>`).join('');
+
+    document.getElementById('statusBanner').innerHTML=
+      `<div class="status-banner sb-done">✅ 演示完成 · ${creditsUsed} 积分 · 策划 Agent + 内容 Agent + 设计 Agent (演示)</div>`;
+    document.getElementById('resultMeta').textContent=`${curBiz} · ${tpl.name_zh} · ${_selSlides} 页 · ${creditsUsed} 积分`;
+    document.getElementById('dlBtn').disabled=false;
+    document.getElementById('resultArea').innerHTML=`
+      <div style="padding:4px 0 10px">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:8px">
+          📄 <b>${tpl.name_zh}</b> · ${_selSlides} 张幻灯片 · <span style="color:var(--good)">演示预览</span>
+          <span style="margin-left:auto;font-size:10px;color:#f59e0b">⚠️ 连接 API 后输出真实 .pptx</span>
+        </div>
+        <div style="display:flex;gap:10px;overflow-x:auto;padding-bottom:12px;
+          min-height:148px;scrollbar-width:thin">${thumbs}</div>
+        <div style="margin-top:12px;padding:12px;border-radius:10px;background:var(--ai-bg);
+          border:1px solid var(--ai-border);font-size:12px;line-height:1.8;color:var(--text)">
+          <b>Nova Chat 策划摘要：</b><br>
+          需求：${briefShort}<br>
+          模板：${tpl.name_zh}（${tpl.style||'默认'}风格）<br>
+          结构：封面 → 目录 → 核心内容 × ${Math.max(1,_selSlides-3)} → 总结
+        </div>
+        <div style="margin-top:10px;padding:10px 12px;border-radius:8px;
+          border:1px dashed var(--line);font-size:11px;color:var(--muted);line-height:1.6">
+          🔌 <b>演示模式</b> — API 离线，无真实文件。<br>
+          启动后端：<code style="background:var(--chip);padding:1px 5px;border-radius:4px">uvicorn api.main:app --reload</code>
+          后重新生成，即可下载 .pptx
+        </div>
+      </div>`;
+    const docDemoLine = _extractedDocText ? `\n📄 文献「${_docFileName}」已在演示中模拟使用。` : '';
+    appendAI(`✅ <b>演示生成完成！</b>\n\n<b>① 策划 Agent</b> → <b>② 内容 Agent（×${_selSlides}）</b> → <b>③ 设计 Agent</b> → 渲染${docDemoLine}\n${_selSlides} 张幻灯片预览已显示在中间区域。\n连接后端 API 后可输出真实可编辑 <b>.pptx</b> 文件。\n\n有什么要调整的？直接告诉我 👇`);
+    const btn=document.getElementById('genBtn');
+    btn.disabled=false;
+    btn.innerHTML='✦ 重新生成　<span class="cost-pill">约 '+COSTS[curBiz]+' 积分</span>';
+  }, 4200);
+}
+function renderPreview(j){
+  const doc=j.content_doc;
+  if(!doc){document.getElementById('resultArea').innerHTML='<div class="empty-state">文件已生成，点击下载查看。</div>';return;}
+  let html='';
+  (doc.blocks||[]).slice(0,5).forEach((b,i)=>{
+    const t=b.text||{};
+    const g=GRADS[i%GRADS.length];
+    if(i===0){html+=`<div class="slide"><div class="slide-bg" style="background:${g}"></div>
+      <div class="slide-tag">${curBiz}</div>
+      <div class="slide-pad"><div class="slide-title">${esc(t.headline||'')}</div>
+      ${t.subheadline?`<div class="slide-sub">${esc(t.subheadline)}</div>`:''}</div></div>`;}
+    else{html+=`<div class="slide light-slide"><div class="slide-pad" style="justify-content:flex-start;padding-top:16px">
+      <div class="slide-title" style="font-size:16px">${esc(t.headline||'')}</div>
+      ${(t.body_paragraphs||[]).slice(0,2).map(p=>`<div style="font-size:12px;margin-top:5px">${esc(p)}</div>`).join('')}
+      ${(t.bullets||[]).length?`<ul>${(t.bullets||[]).slice(0,4).map(b=>`<li>${esc(b)}</li>`).join('')}</ul>`:''}</div></div>`;}
+  });
+  document.getElementById('resultArea').innerHTML=html||'<div class="empty-state">已生成，点击下载。</div>';
+}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function download(){
+  if(!resultUrl){
+    // Demo mode: no real file, show helpful message
+    toast('演示模式：暂无真实文件，连接 API 后可下载 .pptx','err');
+    appendAI('⚠️ 当前为<b>演示模式</b>（API 未连接）。\n\n启动后端 API 后重新生成，即可下载原生可编辑 <b>.pptx</b> 文件。\n\n需要帮助启动 API？直接告诉我 👇');
+    return;
+  }
+  window.open(resultUrl.startsWith('http')?resultUrl:API+'/outputs/'+encodeURIComponent(resultUrl.split(/[/\\]/).pop()),'_blank');
+}
+
+// ════ JOBS ════
+async function loadJobs(){
+  if(!token)return;
+  try{const r=await apiFetch('/api/jobs?limit=10');if(!r.ok)return;const jobs=await r.json();
+  document.getElementById('totalJobs').textContent=jobs.length;
+  const el=document.getElementById('jobsList');
+  if(!jobs.length){el.innerHTML='<div style="font-size:12px;color:var(--muted)">暂无任务</div>';return;}
+  const SC={done:'js-done',running:'js-running',queued:'js-queued',failed:'js-failed'};
+  el.innerHTML=jobs.map(j=>`<div class="job-row" onclick="loadJobDetail('${j.id}')">
+    ${j.doc_type} · ${j.template_id||'—'}<span class="js ${SC[j.status]||'js-queued'}">${j.status}</span>
+    <div style="color:var(--muted);margin-top:2px">${j.id.slice(0,8)}… · ${j.credit_actual||j.credit_estimate} 积分</div>
+    </div>`).join('');}catch{}
+}
+async function loadJobDetail(jid){
+  const r=await apiFetch('/api/jobs/'+jid);if(!r.ok)return;const j=await r.json();
+  if(j.result_url){resultUrl=j.result_url;document.getElementById('dlBtn').disabled=false;
+  document.getElementById('resultMeta').textContent=j.doc_type+' · 历史任务';
+  renderPreview(j);switchRTab('ai');appendAI('已加载历史任务 '+jid.slice(0,8)+'…，点「下载文件」获取。');}
+}
+
+// ════ CHAT ════
+let _typingEl = null;
+function showTyping(){
+  if(_typingEl) return;
+  const c=document.getElementById('chatMsgs');
+  c.insertAdjacentHTML('beforeend',`<div class="cmsg" id="typingMsg">
+    <div class="cmsg-av ai-av">🎨</div>
+    <div class="cmsg-body"><div class="cmsg-who">Nova</div>
+      <div class="bubble ai" style="padding:0"><div class="typing-bubble">
+        <span></span><span></span><span></span>
+      </div></div></div></div>`);
+  _typingEl = document.getElementById('typingMsg');
+  c.scrollTop=c.scrollHeight;
+}
+function hideTyping(){
+  if(_typingEl){_typingEl.remove();_typingEl=null;}
+}
+function appendAI(t){
+  hideTyping();
+  const c=document.getElementById('chatMsgs');
+  c.insertAdjacentHTML('beforeend',`<div class="cmsg"><div class="cmsg-av ai-av">🎨</div>
+    <div class="cmsg-body"><div class="cmsg-who">Nova</div><div class="bubble ai">${t.replace(/\n/g,'<br>')}</div></div></div>`);
+  c.scrollTop=c.scrollHeight;
+}
+function appendMe(t){
+  const c=document.getElementById('chatMsgs');
+  c.insertAdjacentHTML('beforeend',`<div class="cmsg me"><div class="cmsg-av me-av">我</div>
+    <div class="cmsg-body"><div class="cmsg-who">我</div><div class="bubble me">${esc(t)}</div></div></div>`);
+  c.scrollTop=c.scrollHeight;
+  showTyping();
+}
+function sendChat(){
+  const i=document.getElementById('chatInput');
+  const v=i.value.trim();
+  // build display message with attachment context
+  let displayParts = [];
+  if (v) displayParts.push(v);
+  if (attachedFiles.length) {
+    const names = attachedFiles.map(a=>a.name).join('、');
+    displayParts.push(`📎 附件：${names}`);
+  }
+  if (detectedUrl) displayParts.push(`🔗 链接：${detectedUrl.length>60?detectedUrl.slice(0,60)+'…':detectedUrl}`);
+  const display = displayParts.join('\n');
+  if (!display) return;
+  appendMe(display);
+  i.value='';
+  // build AI reply context
+  const hasImg = attachedFiles.some(a=>IMG_EXTS.has(a.ext));
+  const hasDoc = attachedFiles.some(a=>!IMG_EXTS.has(a.ext));
+  let routeNote = '';
+  if (hasImg) routeNote = '\n\n📌 <b>图片路由</b>：已切换至 <b>Nova Designer (Vision)</b> 处理图像，DeepSeek 不解析图像内容。';
+  if (hasDoc) routeNote += '\n\n📌 <b>文档路由</b>：Nova Chat 将提取 PDF/Word/PPT 文字内容后策划排版。';
+  if (detectedUrl) routeNote += `\n\n🔗 <b>链接读取</b>：Nova Chat 将抓取 <code>${detectedUrl.length>60?detectedUrl.slice(0,60)+'…':detectedUrl}</code> 的页面文字（JS渲染页面需后端接口，当前前端 demo）。`;
+  // clear attachments
+  attachedFiles.length = 0;
+  renderAttachTray();
+  document.getElementById('urlPreview').classList.remove('show');
+  detectedUrl = null;
+  document.getElementById('visionNote').classList.remove('show');
+
+  if(consultStep>=0&&consultStep<(CONSULT_Q[curBiz]||[]).length){
+    consultAnswers[consultStep]=v;
+    if(consultStep===0 && curBiz==='ppt') tryAutoSelectTemplate(v);
+    document.querySelectorAll('.opt-chips').forEach(el=>el.remove());
+    consultStep++;setTimeout(()=>askQ(),300);
+  } else {
+    // ── Generation intent detection ──
+    const genIntent = /生成|生产|制作|开始|做|创建|写|帮我(做|写|生成)|出文件|出ppt|出报告|generate|create|make/i;
+    const docTypes  = /ppt|报告|方案|文档|小红书|公众号|白皮书|海报|简历|提案/i;
+    if(genIntent.test(v) || (docTypes.test(v) && v.length < 10)){
+      if(!selTplId){
+        setTimeout(()=>appendAI('收到指令 ✓\n\n请先在左侧<b>选择一个模板</b>，然后我会立即开始生成 🎯'),250);
+      } else if(!token){
+        setTimeout(()=>appendAI('请先<b>登录</b>后再生成（点右上角头像）'),250);
+      } else {
+        setTimeout(()=>{
+          appendAI('收到！正在为您生成 ✦');
+          generate();
+        },300);
+      }
+      return;
+    }
+    setTimeout(()=>appendAI('收到「'+v+'」✓ 已记录，下次生成时应用'+routeNote),250);
+  }
+}
+function quickMsg(b){appendMe(b.textContent.trim());setTimeout(()=>appendAI('已记录偏好「'+b.textContent.trim()+'」，点「重新生成」可应用 ✓'),200);}
+
+// ════ TABS ════
+function switchRTab(t){
+  document.querySelectorAll('.rtab').forEach(b=>b.classList.toggle('on',b.dataset.t===t));
+  document.querySelectorAll('.rpane').forEach(p=>p.classList.remove('on'));
+  document.getElementById('rpane-'+t).classList.add('on');
+  if(t==='acct')loadJobs();
+}
+
+// ════ AUTH ════
+function openAuth(){document.getElementById('authOverlay').classList.add('show');}
+function closeAuth(){document.getElementById('authOverlay').classList.remove('show');}
+function switchMTab(t){
+  document.querySelectorAll('.mtab').forEach((b,i)=>b.classList.toggle('on',(i===0&&t==='register')||(i===1&&t==='login')));
+  document.getElementById('mf-register').style.display=t==='register'?'':'none';
+  document.getElementById('mf-login').style.display=t==='login'?'':'none';
+  document.getElementById('auth-err').textContent='';
+}
+// ════ DEMO ACCOUNTS (frontend bypass when API not running) ════
+const DEMO_ACCOUNTS = {
+  'admin': { password:'nova123', email:'admin@insynbio.com', role:'管理员', credits:99999, name:'Admin' },
+  'admin@insynbio.com': { password:'nova123', email:'admin@insynbio.com', role:'管理员', credits:99999, name:'Admin' },
+};
+
+async function doRegister(){
+  const email=document.getElementById('reg-email').value.trim(),pwd=document.getElementById('reg-pwd').value;
+  const err=document.getElementById('auth-err');err.textContent='';
+  try{const r=await fetch(API+'/api/auth/register',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({email,password:pwd})});const d=await r.json();
+    if(!r.ok) {
+      const msg = typeof d.detail === 'string' ? d.detail : (d.detail ? JSON.stringify(d.detail) : '注册失败');
+      throw new Error(msg);
+    }
+    token=d.access_token;localStorage.setItem('cs_token',token);
+    closeAuth();await loadUser();await loadJobs();toast('注册成功！已送 200 积分 🎉');
+    appendAI('欢迎！账户已创建，赠送 200 积分。选好模板后点「生成」开始你的第一个作品 ✦');
+  }catch(e){err.textContent=e.message;}
+}
+async function doLogin(){
+  const emailVal=document.getElementById('log-email').value.trim();
+  const pwdVal=document.getElementById('log-pwd').value;
+  const err=document.getElementById('auth-err');err.textContent='';
+
+  // ── Try server login first ──
+  try{
+    const r=await fetch(API+'/api/auth/login',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({username:emailVal,password:pwdVal})
+    });
+    const d=await r.json();
+    if(r.ok) {
+      token=d.access_token;localStorage.setItem('cs_token',token);
+      closeAuth();await loadUser();await loadJobs();toast('欢迎回来！');
+      return;
+    }
+  } catch(e) {
+    console.error('Server login failed, trying demo bypass', e);
+  }
+
+  // ── demo bypass (fallback for offline mode) ──
+  const demo = DEMO_ACCOUNTS[emailVal] || DEMO_ACCOUNTS[emailVal.toLowerCase()];
+  if(demo && pwdVal===demo.password){
+    token='demo_'+demo.name+'_token';localStorage.setItem('cs_token',token);
+    localStorage.setItem('cs_demo_user',JSON.stringify(demo));
+    closeAuth();
+    renderUser(demo);
+    toast(`欢迎，${demo.role} ${demo.name} 🎉`);
+    appendAI(`✅ 管理员账户已登录。积分：<b>${demo.credits.toLocaleString()}</b>。所有功能已解锁，可直接点「生成可编辑文件」测试完整流程。`);
+    return;
+  }
+  err.textContent = '登录失败，请检查账号密码';
+}
+function demoLogin(){
+  // If modal not open, open it first
+  const overlay = document.getElementById('authOverlay');
+  if(!overlay.classList.contains('show')) openAuth();
+  switchMTab('login');
+  document.getElementById('log-email').value='admin';
+  document.getElementById('log-pwd').value='nova123';
+  document.getElementById('auth-err').textContent='';
+  // Trigger login after a short delay so modal is visible
+  setTimeout(()=>doLogin(), 150);
+}
+function doPay(p){if(!token){openAuth();return;}toast(p==='wechat'?'微信支付集成中，请联系客服充值':'Stripe 支付集成中，请联系客服充值');}
+
+// ════ TOAST ════
+function toast(msg,type='ok'){
+  const el=document.createElement('div');el.className='toast '+type;el.textContent=msg;
+  document.getElementById('toastWrap').appendChild(el);setTimeout(()=>el.remove(),3500);
+}
+
+// ════ SVG THUMBNAIL ENGINE ════
+// Each template has _layout + color palette; we draw real structure previews.
+
+// Layout renderers: SVG at 160×100 viewBox
+const SVG_LAYOUTS = {
+
+  // ── HERO: full-bleed bg, large title bar, subtitle line
+  hero: (c) => `
+    <rect width="160" height="100" fill="${c.bg}"/>
+    <rect x="0" y="0" width="160" height="100" fill="url(#grad_${c.id})" opacity=".85"/>
+    <rect x="12" y="28" width="90" height="11" rx="2" fill="${c.title}" opacity=".95"/>
+    <rect x="12" y="44" width="62" height="5" rx="1.5" fill="${c.sub}" opacity=".7"/>
+    <rect x="12" y="54" width="44" height="5" rx="1.5" fill="${c.sub}" opacity=".45"/>
+    <rect x="12" y="72" width="28" height="8" rx="3" fill="${c.accent}" opacity=".9"/>`,
+
+  // ── SPLIT: left text, right image block
+  split: (c) => `
+    <rect width="160" height="100" fill="${c.bg}"/>
+    <rect x="84" y="0" width="76" height="100" fill="${c.imgbg}" opacity=".9"/>
+    <rect x="84" y="0" width="76" height="100" fill="url(#grad_${c.id})" opacity=".5"/>
+    <rect x="10" y="14" width="3" height="28" rx="1.5" fill="${c.accent}"/>
+    <rect x="18" y="18" width="56" height="9" rx="2" fill="${c.title}" opacity=".95"/>
+    <rect x="18" y="33" width="46" height="4" rx="1.5" fill="${c.sub}" opacity=".6"/>
+    <rect x="18" y="41" width="52" height="4" rx="1.5" fill="${c.sub}" opacity=".4"/>
+    <rect x="18" y="49" width="38" height="4" rx="1.5" fill="${c.sub}" opacity=".3"/>
+    <rect x="18" y="70" width="30" height="7" rx="2.5" fill="${c.accent}" opacity=".85"/>
+    <rect x="94" y="15" width="56" height="36" rx="4" fill="${c.imgbg}" opacity=".4"/>
+    <text x="122" y="38" text-anchor="middle" fill="${c.sub}" opacity=".4" font-size="14">🖼</text>`,
+
+  // ── IMAGE_TOP: big photo top half, text bottom
+  image_top: (c) => `
+    <rect width="160" height="100" fill="${c.bg}"/>
+    <rect x="0" y="0" width="160" height="52" fill="url(#grad_${c.id})" opacity=".9"/>
+    <rect x="60" y="16" width="40" height="22" rx="3" fill="${c.imgbg}" opacity=".3"/>
+    <text x="80" y="31" text-anchor="middle" fill="${c.sub}" opacity=".5" font-size="14">🖼</text>
+    <rect x="10" y="60" width="80" height="8" rx="2" fill="${c.title}" opacity=".9"/>
+    <rect x="10" y="73" width="120" height="4" rx="1.5" fill="${c.sub}" opacity=".5"/>
+    <rect x="10" y="81" width="100" height="4" rx="1.5" fill="${c.sub}" opacity=".35"/>`,
+
+  // ── BULLETS: title + 4 bullet rows
+  bullets: (c) => `
+    <rect width="160" height="100" fill="${c.bg}"/>
+    <rect x="0" y="0" width="160" height="28" fill="${c.accent}" opacity=".15"/>
+    <rect x="0" y="0" width="4" height="100" fill="${c.accent}"/>
+    <rect x="10" y="8" width="100" height="10" rx="2" fill="${c.title}" opacity=".9"/>
+    <rect x="10" y="35" width="6" height="6" rx="1" fill="${c.accent}"/>
+    <rect x="22" y="36" width="110" height="4" rx="1.5" fill="${c.sub}" opacity=".7"/>
+    <rect x="10" y="49" width="6" height="6" rx="1" fill="${c.accent}"/>
+    <rect x="22" y="50" width="90" height="4" rx="1.5" fill="${c.sub}" opacity=".7"/>
+    <rect x="10" y="63" width="6" height="6" rx="1" fill="${c.accent}"/>
+    <rect x="22" y="64" width="100" height="4" rx="1.5" fill="${c.sub}" opacity=".7"/>
+    <rect x="10" y="77" width="6" height="6" rx="1" fill="${c.accent}"/>
+    <rect x="22" y="78" width="80" height="4" rx="1.5" fill="${c.sub}" opacity=".7"/>`,
+
+  // ── TWO_COL: two content columns
+  two_col: (c) => `
+    <rect width="160" height="100" fill="${c.bg}"/>
+    <rect x="0" y="0" width="160" height="22" fill="${c.accent}" opacity=".2"/>
+    <rect x="10" y="6" width="80" height="9" rx="2" fill="${c.title}" opacity=".9"/>
+    <rect x="10" y="30" width="66" height="50" rx="4" fill="${c.imgbg}" opacity=".15" stroke="${c.accent}" stroke-width="1"/>
+    <rect x="84" y="30" width="66" height="50" rx="4" fill="${c.imgbg}" opacity=".15" stroke="${c.accent}" stroke-width="1"/>
+    <rect x="15" y="38" width="44" height="5" rx="1.5" fill="${c.title}" opacity=".8"/>
+    <rect x="15" y="47" width="52" height="3" rx="1.5" fill="${c.sub}" opacity=".5"/>
+    <rect x="15" y="54" width="44" height="3" rx="1.5" fill="${c.sub}" opacity=".4"/>
+    <rect x="89" y="38" width="44" height="5" rx="1.5" fill="${c.title}" opacity=".8"/>
+    <rect x="89" y="47" width="52" height="3" rx="1.5" fill="${c.sub}" opacity=".5"/>
+    <rect x="89" y="54" width="44" height="3" rx="1.5" fill="${c.sub}" opacity=".4"/>`,
+
+  // ── MAGAZINE: big photo + bold overlay title
+  magazine: (c) => `
+    <rect width="160" height="100" fill="${c.bg}"/>
+    <rect x="0" y="0" width="160" height="100" fill="url(#grad_${c.id})" opacity=".7"/>
+    <rect x="0" y="55" width="160" height="45" fill="rgba(0,0,0,0.55)"/>
+    <rect x="10" y="62" width="3" height="22" rx="1.5" fill="${c.accent}"/>
+    <rect x="18" y="62" width="100" height="9" rx="2" fill="#fff" opacity=".92"/>
+    <rect x="18" y="76" width="72" height="4" rx="1.5" fill="#fff" opacity=".55"/>
+    <rect x="18" y="84" width="50" height="4" rx="1.5" fill="#fff" opacity=".4"/>`,
+
+  // ── MINIMAL_LINE: white/light bg, thin accent bar, clean text
+  minimal_line: (c) => `
+    <rect width="160" height="100" fill="${c.bg}"/>
+    <rect x="10" y="20" width="140" height="1" fill="${c.accent}" opacity=".4"/>
+    <rect x="10" y="79" width="140" height="1" fill="${c.accent}" opacity=".2"/>
+    <rect x="10" y="30" width="110" height="10" rx="1.5" fill="${c.title}" opacity=".9"/>
+    <rect x="10" y="44" width="80" height="4" rx="1" fill="${c.sub}" opacity=".5"/>
+    <rect x="10" y="52" width="94" height="4" rx="1" fill="${c.sub}" opacity=".4"/>
+    <rect x="10" y="60" width="70" height="4" rx="1" fill="${c.sub}" opacity=".3"/>
+    <rect x="10" y="84" width="30" height="6" rx="2" fill="${c.accent}" opacity=".7"/>
+    <rect x="44" y="84" width="24" height="6" rx="2" fill="${c.sub}" opacity=".3"/>`,
+
+  // ── CARDS: 3 horizontal info cards
+  cards: (c) => `
+    <rect width="160" height="100" fill="${c.bg}"/>
+    <rect x="8" y="8" width="140" height="12" rx="2" fill="${c.title}" opacity=".85"/>
+    <rect x="8" y="28" width="42" height="58" rx="4" fill="${c.imgbg}" opacity=".18" stroke="${c.accent}" stroke-width="1"/>
+    <rect x="59" y="28" width="42" height="58" rx="4" fill="${c.imgbg}" opacity=".18" stroke="${c.accent}" stroke-width="1"/>
+    <rect x="110" y="28" width="42" height="58" rx="4" fill="${c.imgbg}" opacity=".18" stroke="${c.accent}" stroke-width="1"/>
+    <rect x="12" y="34" width="34" height="18" rx="3" fill="${c.accent}" opacity=".2"/>
+    <rect x="63" y="34" width="34" height="18" rx="3" fill="${c.accent}" opacity=".2"/>
+    <rect x="114" y="34" width="34" height="18" rx="3" fill="${c.accent}" opacity=".2"/>
+    <rect x="12" y="56" width="34" height="4" rx="1" fill="${c.title}" opacity=".7"/>
+    <rect x="63" y="56" width="34" height="4" rx="1" fill="${c.title}" opacity=".7"/>
+    <rect x="114" y="56" width="34" height="4" rx="1" fill="${c.title}" opacity=".7"/>
+    <rect x="12" y="64" width="28" height="3" rx="1" fill="${c.sub}" opacity=".4"/>
+    <rect x="63" y="64" width="28" height="3" rx="1" fill="${c.sub}" opacity=".4"/>
+    <rect x="114" y="64" width="28" height="3" rx="1" fill="${c.sub}" opacity=".4"/>`,
+
+  // ── COVER_PORTRAIT: 3:4 for XHS/WeChat
+  cover_portrait: (c) => `
+    <rect width="160" height="100" fill="${c.bg}"/>
+    <rect x="0" y="0" width="160" height="100" fill="url(#grad_${c.id})" opacity=".75"/>
+    <rect x="14" y="12" width="60" height="4" rx="1.5" fill="${c.sub}" opacity=".6"/>
+    <rect x="14" y="40" width="120" height="12" rx="2.5" fill="#fff" opacity=".95"/>
+    <rect x="14" y="57" width="90" height="6" rx="1.5" fill="#fff" opacity=".65"/>
+    <rect x="14" y="68" width="70" height="6" rx="1.5" fill="#fff" opacity=".5"/>
+    <rect x="14" y="83" width="36" height="9" rx="4" fill="${c.accent}" opacity=".9"/>
+    <rect x="56" y="85" width="14" height="5" rx="2" fill="${c.sub}" opacity=".35"/>`,
+
+  // ── ARTICLE: wechat long-form article layout
+  article: (c) => `
+    <rect width="160" height="100" fill="${c.bg}"/>
+    <rect x="0" y="0" width="160" height="38" fill="url(#grad_${c.id})" opacity=".8"/>
+    <rect x="10" y="8" width="100" height="10" rx="2" fill="#fff" opacity=".9"/>
+    <rect x="10" y="22" width="72" height="4" rx="1.5" fill="#fff" opacity=".55"/>
+    <rect x="10" y="46" width="140" height="3.5" rx="1" fill="${c.sub}" opacity=".5"/>
+    <rect x="10" y="53" width="130" height="3.5" rx="1" fill="${c.sub}" opacity=".4"/>
+    <rect x="10" y="60" width="120" height="3.5" rx="1" fill="${c.sub}" opacity=".35"/>
+    <rect x="10" y="70" width="52" height="18" rx="3" fill="${c.accent}" opacity=".15" stroke="${c.accent}" stroke-width="1"/>
+    <rect x="70" y="70" width="80" height="18" rx="3" fill="${c.imgbg}" opacity=".12"/>
+    <rect x="15" y="76" width="40" height="4" rx="1" fill="${c.sub}" opacity=".5"/>
+    <rect x="75" y="76" width="60" height="4" rx="1" fill="${c.sub}" opacity=".4"/>`,
+
+  // ── REPORT_COVER: whitepaper formal cover
+  report_cover: (c) => `
+    <rect width="160" height="100" fill="${c.bg}"/>
+    <rect x="0" y="0" width="12" height="100" fill="${c.accent}" opacity=".9"/>
+    <rect x="0" y="0" width="160" height="5" fill="${c.accent}" opacity=".6"/>
+    <rect x="20" y="16" width="24" height="24" rx="3" fill="${c.accent}" opacity=".2"/>
+    <rect x="22" y="18" width="20" height="20" rx="2" fill="${c.accent}" opacity=".3"/>
+    <rect x="20" y="48" width="110" height="10" rx="2" fill="${c.title}" opacity=".9"/>
+    <rect x="20" y="62" width="82" height="5" rx="1.5" fill="${c.sub}" opacity=".55"/>
+    <rect x="20" y="71" width="94" height="4" rx="1.5" fill="${c.sub}" opacity=".4"/>
+    <rect x="20" y="85" width="48" height="4" rx="1.5" fill="${c.sub}" opacity=".3"/>
+    <rect x="130" y="80" width="18" height="14" rx="2" fill="${c.accent}" opacity=".2"/>`,
+};
+
+function makeThumbnailSVG(t) {
+  const L = t._layout || 'hero';
+  const fn = SVG_LAYOUTS[L] || SVG_LAYOUTS.hero;
+  const c = t._colors || {};
+  const id = t.template_id.replace(/[^a-z0-9]/g,'_');
+  const [g1, g2] = (t._grad||'').match(/#[0-9a-f]{3,6}/gi) || ['#334155','#0ea5e9'];
+  const colors = {
+    id,
+    bg: c.bg || '#0f172a',
+    title: c.title || '#f8fafc',
+    sub: c.sub || '#94a3b8',
+    accent: c.accent || g2,
+    imgbg: c.imgbg || g1,
+  };
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" width="100%" height="100%">
+    <defs>
+      <linearGradient id="grad_${id}" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="${g1}"/>
+        <stop offset="100%" stop-color="${g2}"/>
+      </linearGradient>
+    </defs>
+    ${fn(colors)}
+  </svg>`;
+}
+
+// ════ TEMPLATE LIBRARY — 35 templates with real layout + color data ════
+const FALLBACK=[
+  // ── PPT 科技 ──────────────────────────────────────────
+  {template_id:'ppt_tech_blue',name_zh:'科技蓝',style:'tech',doc_types:['ppt'],
+   _layout:'split',_grad:'linear-gradient(135deg,#1e3a8a,#3b82f6)',
+   _colors:{bg:'#0f172a',title:'#f0f9ff',sub:'#93c5fd',accent:'#3b82f6',imgbg:'#1e3a8a'}},
+  {template_id:'ppt_ai_purple',name_zh:'AI 渐变紫',style:'tech',doc_types:['ppt'],
+   _layout:'hero',_grad:'linear-gradient(135deg,#4c1d95,#7c3aed)',
+   _colors:{bg:'#1e1b4b',title:'#faf5ff',sub:'#c4b5fd',accent:'#a78bfa',imgbg:'#4c1d95'}},
+  {template_id:'ppt_cyber',name_zh:'赛博青',style:'tech',doc_types:['ppt'],
+   _layout:'magazine',_grad:'linear-gradient(135deg,#0c4a6e,#06b6d4)',
+   _colors:{bg:'#082f49',title:'#f0fdff',sub:'#67e8f9',accent:'#06b6d4',imgbg:'#0c4a6e'}},
+  {template_id:'ppt_data_viz',name_zh:'数据看板',style:'tech',doc_types:['ppt'],
+   _layout:'cards',_grad:'linear-gradient(135deg,#1e1b4b,#6366f1)',
+   _colors:{bg:'#0f0e2a',title:'#e0e7ff',sub:'#a5b4fc',accent:'#6366f1',imgbg:'#1e1b4b'}},
+  // ── PPT 极简 ──────────────────────────────────────────
+  {template_id:'ppt_minimal_white',name_zh:'极简白',style:'minimal',doc_types:['ppt'],
+   _layout:'minimal_line',_grad:'linear-gradient(135deg,#f8fafc,#cbd5e1)',
+   _colors:{bg:'#ffffff',title:'#0f172a',sub:'#64748b',accent:'#6366f1',imgbg:'#f1f5f9'}},
+  {template_id:'ppt_minimal_dark',name_zh:'极简黑',style:'minimal',doc_types:['ppt'],
+   _layout:'minimal_line',_grad:'linear-gradient(135deg,#1c1917,#44403c)',
+   _colors:{bg:'#111827',title:'#f9fafb',sub:'#6b7280',accent:'#d1d5db',imgbg:'#1f2937'}},
+  {template_id:'ppt_line_art',name_zh:'线条艺术',style:'minimal',doc_types:['ppt'],
+   _layout:'bullets',_grad:'linear-gradient(135deg,#f0fdf4,#d1fae5)',
+   _colors:{bg:'#f8fafc',title:'#1e293b',sub:'#64748b',accent:'#0d9488',imgbg:'#e2e8f0'}},
+  // ── PPT 高端 ──────────────────────────────────────────
+  {template_id:'ppt_dark_premium',name_zh:'深色黑金',style:'premium',doc_types:['ppt'],
+   _layout:'hero',_grad:'linear-gradient(135deg,#0c0c0c,#b8860b)',
+   _colors:{bg:'#0a0a0a',title:'#fef9c3',sub:'#d4af37',accent:'#d4af37',imgbg:'#1a1400'}},
+  {template_id:'ppt_luxury_blue',name_zh:'深蓝金边',style:'premium',doc_types:['ppt'],
+   _layout:'split',_grad:'linear-gradient(135deg,#0f1729,#c8a84b)',
+   _colors:{bg:'#0f1729',title:'#fef3c7',sub:'#c8a84b',accent:'#c8a84b',imgbg:'#1e3a5f'}},
+  // ── PPT 暖色 ──────────────────────────────────────────
+  {template_id:'ppt_warm_brand',name_zh:'橙品牌',style:'warm',doc_types:['ppt'],
+   _layout:'split',_grad:'linear-gradient(135deg,#7c2d12,#ea580c)',
+   _colors:{bg:'#431407',title:'#ffedd5',sub:'#fb923c',accent:'#f97316',imgbg:'#7c2d12'}},
+  {template_id:'ppt_sunset',name_zh:'日落渐变',style:'warm',doc_types:['ppt'],
+   _layout:'magazine',_grad:'linear-gradient(135deg,#be123c,#f97316)',
+   _colors:{bg:'#450a0a',title:'#fff1f2',sub:'#fda4af',accent:'#f43f5e',imgbg:'#be123c'}},
+  {template_id:'ppt_peach',name_zh:'桃粉柔和',style:'warm',doc_types:['ppt'],
+   _layout:'two_col',_grad:'linear-gradient(135deg,#831843,#fb7185)',
+   _colors:{bg:'#fff1f2',title:'#881337',sub:'#be185d',accent:'#f43f5e',imgbg:'#fce7f3'}},
+  // ── PPT 行业 ──────────────────────────────────────────
+  {template_id:'ppt_medical',name_zh:'医疗清洁',style:'medical',doc_types:['ppt'],
+   _layout:'bullets',_grad:'linear-gradient(135deg,#0c4a6e,#38bdf8)',
+   _colors:{bg:'#f0f9ff',title:'#0c4a6e',sub:'#0369a1',accent:'#0ea5e9',imgbg:'#e0f2fe'}},
+  {template_id:'ppt_green_eco',name_zh:'绿色环保',style:'eco',doc_types:['ppt'],
+   _layout:'image_top',_grad:'linear-gradient(135deg,#052e16,#22c55e)',
+   _colors:{bg:'#052e16',title:'#dcfce7',sub:'#86efac',accent:'#22c55e',imgbg:'#14532d'}},
+  {template_id:'ppt_finance',name_zh:'金融正式',style:'finance',doc_types:['ppt'],
+   _layout:'two_col',_grad:'linear-gradient(135deg,#1e3a5f,#c8a84b)',
+   _colors:{bg:'#0f172a',title:'#f8fafc',sub:'#94a3b8',accent:'#c8a84b',imgbg:'#1e3a5f'}},
+  {template_id:'ppt_edu',name_zh:'教育明亮',style:'education',doc_types:['ppt'],
+   _layout:'cards',_grad:'linear-gradient(135deg,#3b0764,#7c3aed)',
+   _colors:{bg:'#faf5ff',title:'#3b0764',sub:'#6d28d9',accent:'#7c3aed',imgbg:'#ede9fe'}},
+  // ── 小红书 ────────────────────────────────────────────
+  {template_id:'xhs_lifestyle',name_zh:'生活方式',style:'lifestyle',doc_types:['xiaohongshu'],
+   _layout:'cover_portrait',_grad:'linear-gradient(135deg,#831843,#fb7185)',
+   _colors:{bg:'#1a0010',title:'#fff1f2',sub:'#fda4af',accent:'#f43f5e',imgbg:'#831843'}},
+  {template_id:'xhs_foodie',name_zh:'美食探店',style:'food',doc_types:['xiaohongshu'],
+   _layout:'image_top',_grad:'linear-gradient(135deg,#78350f,#f59e0b)',
+   _colors:{bg:'#fffbeb',title:'#78350f',sub:'#92400e',accent:'#d97706',imgbg:'#fef3c7'}},
+  {template_id:'xhs_tech',name_zh:'数码测评',style:'tech',doc_types:['xiaohongshu'],
+   _layout:'cover_portrait',_grad:'linear-gradient(135deg,#0f172a,#22d3ee)',
+   _colors:{bg:'#0f172a',title:'#ecfeff',sub:'#67e8f9',accent:'#06b6d4',imgbg:'#164e63'}},
+  {template_id:'xhs_travel',name_zh:'旅行打卡',style:'travel',doc_types:['xiaohongshu'],
+   _layout:'magazine',_grad:'linear-gradient(135deg,#0c4a6e,#38bdf8)',
+   _colors:{bg:'#0c4a6e',title:'#f0fdff',sub:'#7dd3fc',accent:'#38bdf8',imgbg:'#0369a1'}},
+  {template_id:'xhs_knowledge',name_zh:'干货知识',style:'knowledge',doc_types:['xiaohongshu'],
+   _layout:'bullets',_grad:'linear-gradient(135deg,#713f12,#fde047)',
+   _colors:{bg:'#fefce8',title:'#713f12',sub:'#854d0e',accent:'#d97706',imgbg:'#fef9c3'}},
+  {template_id:'xhs_fashion',name_zh:'时尚穿搭',style:'lifestyle',doc_types:['xiaohongshu'],
+   _layout:'cover_portrait',_grad:'linear-gradient(135deg,#1c1917,#d97706)',
+   _colors:{bg:'#1c1917',title:'#fef9c3',sub:'#d97706',accent:'#f59e0b',imgbg:'#292524'}},
+  {template_id:'xhs_skincare',name_zh:'护肤种草',style:'warm',doc_types:['xiaohongshu'],
+   _layout:'image_top',_grad:'linear-gradient(135deg,#fdf2f8,#ec4899)',
+   _colors:{bg:'#fdf2f8',title:'#831843',sub:'#be185d',accent:'#ec4899',imgbg:'#fce7f3'}},
+  {template_id:'xhs_fitness',name_zh:'健身运动',style:'eco',doc_types:['xiaohongshu'],
+   _layout:'split',_grad:'linear-gradient(135deg,#052e16,#22c55e)',
+   _colors:{bg:'#052e16',title:'#dcfce7',sub:'#86efac',accent:'#22c55e',imgbg:'#14532d'}},
+  // ── 微信公众号 ────────────────────────────────────────
+  {template_id:'wechat_corporate',name_zh:'企业公告',style:'corporate',doc_types:['wechat'],
+   _layout:'article',_grad:'linear-gradient(135deg,#1e3a8a,#07c160)',
+   _colors:{bg:'#ffffff',title:'#1e3a8a',sub:'#4b5563',accent:'#07c160',imgbg:'#eff6ff'}},
+  {template_id:'wechat_brand_story',name_zh:'品牌故事',style:'story',doc_types:['wechat'],
+   _layout:'magazine',_grad:'linear-gradient(135deg,#0f0f23,#e11d48)',
+   _colors:{bg:'#0f0f23',title:'#fff1f2',sub:'#fda4af',accent:'#e11d48',imgbg:'#1f1f3e'}},
+  {template_id:'wechat_insight',name_zh:'行业洞察',style:'insight',doc_types:['wechat'],
+   _layout:'article',_grad:'linear-gradient(135deg,#1e1b4b,#4f46e5)',
+   _colors:{bg:'#f8fafc',title:'#1e1b4b',sub:'#475569',accent:'#4f46e5',imgbg:'#eef2ff'}},
+  {template_id:'wechat_promo',name_zh:'活动促销',style:'promo',doc_types:['wechat'],
+   _layout:'cover_portrait',_grad:'linear-gradient(135deg,#7f1d1d,#dc2626)',
+   _colors:{bg:'#450a0a',title:'#fff1f2',sub:'#fca5a5',accent:'#ef4444',imgbg:'#7f1d1d'}},
+  {template_id:'wechat_science',name_zh:'科普文章',style:'minimal',doc_types:['wechat'],
+   _layout:'bullets',_grad:'linear-gradient(135deg,#0c4a6e,#22d3ee)',
+   _colors:{bg:'#f0f9ff',title:'#0c4a6e',sub:'#0369a1',accent:'#0ea5e9',imgbg:'#e0f2fe'}},
+  {template_id:'wechat_food',name_zh:'菜谱美食',style:'warm',doc_types:['wechat'],
+   _layout:'image_top',_grad:'linear-gradient(135deg,#78350f,#fdba74)',
+   _colors:{bg:'#fffbeb',title:'#78350f',sub:'#92400e',accent:'#f97316',imgbg:'#fef3c7'}},
+  // ── 白皮书 ────────────────────────────────────────────
+  {template_id:'wp_b2b',name_zh:'B2B 正式',style:'formal',doc_types:['whitepaper'],
+   _layout:'report_cover',_grad:'linear-gradient(135deg,#1e3a5f,#3b82f6)',
+   _colors:{bg:'#f8fafc',title:'#1e3a5f',sub:'#4b5563',accent:'#2563eb',imgbg:'#eff6ff'}},
+  {template_id:'wp_startup',name_zh:'创业路演',style:'startup',doc_types:['whitepaper'],
+   _layout:'report_cover',_grad:'linear-gradient(135deg,#1e1b4b,#7c3aed)',
+   _colors:{bg:'#0f0e2a',title:'#ede9fe',sub:'#a5b4fc',accent:'#7c3aed',imgbg:'#1e1b4b'}},
+  {template_id:'wp_research',name_zh:'研究报告',style:'academic',doc_types:['whitepaper'],
+   _layout:'report_cover',_grad:'linear-gradient(135deg,#1c1917,#dc2626)',
+   _colors:{bg:'#fafaf9',title:'#1c1917',sub:'#57534e',accent:'#dc2626',imgbg:'#f5f5f4'}},
+  {template_id:'wp_product',name_zh:'产品手册',style:'tech',doc_types:['whitepaper'],
+   _layout:'report_cover',_grad:'linear-gradient(135deg,#0c4a6e,#06b6d4)',
+   _colors:{bg:'#ffffff',title:'#0c4a6e',sub:'#374151',accent:'#0ea5e9',imgbg:'#f0f9ff'}},
+  {template_id:'wp_annual',name_zh:'年度报告',style:'premium',doc_types:['whitepaper'],
+   _layout:'report_cover',_grad:'linear-gradient(135deg,#0c0c0c,#c8a84b)',
+   _colors:{bg:'#0a0a0a',title:'#fef9c3',sub:'#a3a3a3',accent:'#c8a84b',imgbg:'#1a1400'}},
+];
+</script>
+</body>
+</html>

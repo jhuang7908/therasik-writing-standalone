@@ -1,0 +1,3862 @@
+{
+  "metadata": {
+    "profile_id": "cat_ighv_clinical_combined_v1",
+    "species": "Felis catus",
+    "locus": "IGHV",
+    "chain": "H",
+    "numbering_scheme": "Kabat",
+    "data_type": "clinical_combined_three_tier",
+    "level1_source": "pet_antibody_atlas/master_table.csv",
+    "level1_n_sequences": 3,
+    "level1_weights": {
+      "approved": 3,
+      "caninised_felinised": 2,
+      "chimeric_engineered": 1
+    },
+    "level1_n_scaling": {
+      "formula": "min(1, sqrt(n)/sqrt(N_target))",
+      "N_target": 10
+    },
+    "level2_n_scaling": {
+      "formula": "min(1, sqrt(n)/sqrt(N_target))",
+      "N_target": 5
+    },
+    "level2_source": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\data\\germlines\\felis_catus_ig_aa\\cat_scaffold_cmc_optimization_tier1_tier2_v1.json",
+    "level2_tier": "tier1_only",
+    "level2_n_sequences": 0,
+    "level3_source": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\data\\reference\\pet_replacement_profiles\\v2\\cat_ighv_aa_freq_kabat_v2.json",
+    "priority_weights": {
+      "L1_clinical": 3,
+      "L2_scaffold": 2,
+      "L3_germline": 1
+    },
+    "context_window": "±4 residues (9-mer)",
+    "schema_version": "clinical_combined_v1",
+    "generated_at": "2026-05-09T02:41:30.256302+00:00"
+  },
+  "positions": {
+    "1": {
+      "combined_preferred": "D",
+      "combined_freq": {
+        "D": 0.52908,
+        "Q": 0.46202,
+        "E": 0.0089
+      },
+      "level1_clinical_counts": {
+        "Q": 3.0,
+        "D": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "D": 0.741176,
+        "E": 0.023529,
+        "Q": 0.235294
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "----QVLLV",
+        "----QVQLV",
+        "----DVQLV"
+      ]
+    },
+    "2": {
+      "combined_preferred": "V",
+      "combined_freq": {
+        "V": 0.96174,
+        "L": 0.02125,
+        "E": 0.01275,
+        "P": 0.00425
+      },
+      "level1_clinical_counts": {
+        "V": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "E": 0.033708,
+        "L": 0.05618,
+        "P": 0.011236,
+        "V": 0.898876
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "---QVLLVQ",
+        "---QVQLVE",
+        "---DVQLVE"
+      ]
+    },
+    "3": {
+      "combined_preferred": "Q",
+      "combined_freq": {
+        "Q": 0.64506,
+        "L": 0.31668,
+        "T": 0.02551,
+        "R": 0.0085,
+        "H": 0.00425
+      },
+      "level1_clinical_counts": {
+        "L": 2.0,
+        "Q": 3.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "H": 0.011236,
+        "L": 0.179775,
+        "Q": 0.719101,
+        "R": 0.022472,
+        "T": 0.067416
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "--QVLLVQS",
+        "--QVQLVES",
+        "--DVQLVES"
+      ]
+    },
+    "4": {
+      "combined_preferred": "L",
+      "combined_freq": {
+        "L": 0.983,
+        "V": 0.01275,
+        "Q": 0.00425
+      },
+      "level1_clinical_counts": {
+        "L": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "L": 0.955056,
+        "Q": 0.011236,
+        "V": 0.033708
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "-QVLLVQSG",
+        "-QVQLVESG",
+        "-DVQLVESG"
+      ]
+    },
+    "5": {
+      "combined_preferred": "V",
+      "combined_freq": {
+        "V": 0.97024,
+        "R": 0.02551,
+        "M": 0.00425
+      },
+      "level1_clinical_counts": {
+        "V": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "M": 0.011236,
+        "R": 0.067416,
+        "V": 0.921348
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "QVLLVQSGA",
+        "QVQLVESGA",
+        "DVQLVESGG"
+      ]
+    },
+    "6": {
+      "combined_preferred": "E",
+      "combined_freq": {
+        "E": 0.68332,
+        "Q": 0.31243,
+        "D": 0.00425
+      },
+      "level1_clinical_counts": {
+        "Q": 2.0,
+        "E": 3.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "D": 0.011236,
+        "E": 0.820225,
+        "Q": 0.168539
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "VLLVQSGAE",
+        "VQLVESGAE",
+        "VQLVESGGD"
+      ]
+    },
+    "7": {
+      "combined_preferred": "S",
+      "combined_freq": {
+        "S": 1.0
+      },
+      "level1_clinical_counts": {
+        "S": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "S": 1.0
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "LLVQSGAEV",
+        "QLVESGAEL",
+        "QLVESGGDL"
+      ]
+    },
+    "8": {
+      "combined_preferred": "G",
+      "combined_freq": {
+        "G": 1.0
+      },
+      "level1_clinical_counts": {
+        "G": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "G": 1.0
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "LVQSGAEVR",
+        "LVESGAELV",
+        "LVESGGDLV"
+      ]
+    },
+    "9": {
+      "combined_preferred": "G",
+      "combined_freq": {
+        "G": 0.53773,
+        "A": 0.43676,
+        "P": 0.02551
+      },
+      "level1_clinical_counts": {
+        "A": 3.0,
+        "G": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.168539,
+        "G": 0.764045,
+        "P": 0.067416
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "VQSGAEVRT",
+        "VESGAELVQ",
+        "VESGGDLVK"
+      ]
+    },
+    "10": {
+      "combined_preferred": "D",
+      "combined_freq": {
+        "D": 0.52923,
+        "E": 0.43251,
+        "G": 0.02551,
+        "N": 0.01275
+      },
+      "level1_clinical_counts": {
+        "E": 3.0,
+        "D": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "D": 0.741573,
+        "E": 0.157303,
+        "G": 0.067416,
+        "N": 0.033708
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "QSGAEVRTP",
+        "ESGAELVQP",
+        "ESGGDLVKP"
+      ]
+    },
+    "11": {
+      "combined_preferred": "L",
+      "combined_freq": {
+        "L": 0.68757,
+        "V": 0.30818,
+        "R": 0.00425
+      },
+      "level1_clinical_counts": {
+        "V": 2.0,
+        "L": 3.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "L": 0.831461,
+        "R": 0.011236,
+        "V": 0.157303
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "SGAEVRTPG",
+        "SGAELVQPG",
+        "SGGDLVKPG"
+      ]
+    },
+    "12": {
+      "combined_preferred": "V",
+      "combined_freq": {
+        "V": 0.68757,
+        "R": 0.31243
+      },
+      "level1_clinical_counts": {
+        "R": 2.0,
+        "V": 3.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "R": 0.168539,
+        "V": 0.831461
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "GAEVRTPGA",
+        "GAELVQPGE",
+        "GGDLVKPGG"
+      ]
+    },
+    "13": {
+      "combined_preferred": "K",
+      "combined_freq": {
+        "K": 0.58449,
+        "T": 0.25292,
+        "Q": 0.14559,
+        "E": 0.00425,
+        "H": 0.00425,
+        "N": 0.00425,
+        "R": 0.00425
+      },
+      "level1_clinical_counts": {
+        "T": 2.0,
+        "Q": 1.0,
+        "K": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "E": 0.011236,
+        "H": 0.011236,
+        "K": 0.88764,
+        "N": 0.011236,
+        "Q": 0.05618,
+        "R": 0.011236,
+        "T": 0.011236
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "AEVRTPGAS",
+        "AELVQPGES",
+        "GDLVKPGGS"
+      ]
+    },
+    "14": {
+      "combined_preferred": "P",
+      "combined_freq": {
+        "P": 0.99575,
+        "T": 0.00425
+      },
+      "level1_clinical_counts": {
+        "P": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "P": 0.988764,
+        "T": 0.011236
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "EVRTPGASV",
+        "ELVQPGESL",
+        "DLVKPGGSL"
+      ]
+    },
+    "15": {
+      "combined_preferred": "G",
+      "combined_freq": {
+        "G": 0.96599,
+        "S": 0.02551,
+        "E": 0.0085
+      },
+      "level1_clinical_counts": {
+        "G": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "E": 0.022472,
+        "G": 0.910112,
+        "S": 0.067416
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "VRTPGASVK",
+        "LVQPGESLR",
+        "LVKPGGSLR"
+      ]
+    },
+    "16": {
+      "combined_preferred": "G",
+      "combined_freq": {
+        "G": 0.53348,
+        "A": 0.31243,
+        "E": 0.12858,
+        "Q": 0.02551
+      },
+      "level1_clinical_counts": {
+        "A": 2.0,
+        "E": 1.0,
+        "G": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.168539,
+        "E": 0.011236,
+        "G": 0.752809,
+        "Q": 0.067416
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "RTPGASVKI",
+        "VQPGESLRL",
+        "VKPGGSLRL"
+      ]
+    },
+    "17": {
+      "combined_preferred": "S",
+      "combined_freq": {
+        "S": 0.9915,
+        "A": 0.00425,
+        "Y": 0.00425
+      },
+      "level1_clinical_counts": {
+        "S": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.011236,
+        "S": 0.977528,
+        "Y": 0.011236
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "TPGASVKIF",
+        "QPGESLRLT",
+        "KPGGSLRLT"
+      ]
+    },
+    "18": {
+      "combined_preferred": "L",
+      "combined_freq": {
+        "L": 0.68332,
+        "V": 0.31243,
+        "Q": 0.00425
+      },
+      "level1_clinical_counts": {
+        "V": 2.0,
+        "L": 3.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "L": 0.820225,
+        "Q": 0.011236,
+        "V": 0.168539
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "PGASVKIFC",
+        "PGESLRLTC",
+        "PGGSLRLTC"
+      ]
+    },
+    "19": {
+      "combined_preferred": "R",
+      "combined_freq": {
+        "R": 0.66206,
+        "K": 0.30393,
+        "S": 0.02551,
+        "E": 0.0085
+      },
+      "level1_clinical_counts": {
+        "K": 2.0,
+        "R": 3.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "E": 0.022472,
+        "K": 0.146067,
+        "R": 0.764045,
+        "S": 0.067416
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "GASVKIFCK",
+        "GESLRLTCA",
+        "GGSLRLTCV"
+      ]
+    },
+    "20": {
+      "combined_preferred": "L",
+      "combined_freq": {
+        "L": 0.68332,
+        "I": 0.31243,
+        "P": 0.00425
+      },
+      "level1_clinical_counts": {
+        "I": 2.0,
+        "L": 3.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "I": 0.168539,
+        "L": 0.820225,
+        "P": 0.011236
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "ASVKIFCKA",
+        "ESLRLTCAA",
+        "GSLRLTCVA"
+      ]
+    },
+    "21": {
+      "combined_preferred": "T",
+      "combined_freq": {
+        "T": 0.67907,
+        "F": 0.31243,
+        "S": 0.0085
+      },
+      "level1_clinical_counts": {
+        "F": 2.0,
+        "T": 3.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "F": 0.168539,
+        "S": 0.022472,
+        "T": 0.808989
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "SVKIFCKAS",
+        "SLRLTCAAS",
+        "SLRLTCVAS"
+      ]
+    },
+    "22": {
+      "combined_preferred": "C",
+      "combined_freq": {
+        "C": 1.0
+      },
+      "level1_clinical_counts": {
+        "C": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "C": 1.0
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "VKIFCKASG",
+        "LRLTCAASG",
+        "LRLTCVASG"
+      ]
+    },
+    "23": {
+      "combined_preferred": "V",
+      "combined_freq": {
+        "V": 0.55473,
+        "K": 0.31243,
+        "A": 0.13284
+      },
+      "level1_clinical_counts": {
+        "K": 2.0,
+        "A": 1.0,
+        "V": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.022472,
+        "K": 0.168539,
+        "V": 0.808989
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "KIFCKASGY",
+        "RLTCAASGF",
+        "RLTCVASGF"
+      ]
+    },
+    "24": {
+      "combined_preferred": "A",
+      "combined_freq": {
+        "A": 0.96174,
+        "V": 0.02551,
+        "T": 0.0085,
+        "D": 0.00425
+      },
+      "level1_clinical_counts": {
+        "A": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.898876,
+        "D": 0.011236,
+        "T": 0.022472,
+        "V": 0.067416
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "IFCKASGYS",
+        "LTCAASGFS",
+        "LTCVASGFT"
+      ]
+    },
+    "25": {
+      "combined_preferred": "S",
+      "combined_freq": {
+        "S": 1.0
+      },
+      "level1_clinical_counts": {
+        "S": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "S": 1.0
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "FCKASGYSF",
+        "TCAASGFSL",
+        "TCVASGFTY"
+      ]
+    },
+    "26": {
+      "combined_preferred": "G",
+      "combined_freq": {
+        "G": 0.9915,
+        "A": 0.00425,
+        "E": 0.00425
+      },
+      "level1_clinical_counts": {
+        "G": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.011236,
+        "E": 0.011236,
+        "G": 0.977528
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "CKASGYSFT",
+        "CAASGFSLT",
+        "CVASGFTYS"
+      ]
+    },
+    "27": {
+      "combined_preferred": "F",
+      "combined_freq": {
+        "F": 0.64931,
+        "Y": 0.31243,
+        "G": 0.02551,
+        "L": 0.0085,
+        "I": 0.00425
+      },
+      "level1_clinical_counts": {
+        "Y": 2.0,
+        "F": 3.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "F": 0.730337,
+        "G": 0.067416,
+        "I": 0.011236,
+        "L": 0.022472,
+        "Y": 0.168539
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "KASGYSFTS",
+        "AASGFSLTN",
+        "VASGFTYSN"
+      ]
+    },
+    "28": {
+      "combined_preferred": "T",
+      "combined_freq": {
+        "T": 0.50372,
+        "S": 0.44952,
+        "A": 0.01275,
+        "N": 0.01275,
+        "P": 0.0085,
+        "D": 0.00425,
+        "K": 0.00425,
+        "R": 0.00425
+      },
+      "level1_clinical_counts": {
+        "S": 3.0,
+        "T": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.033708,
+        "D": 0.011236,
+        "K": 0.011236,
+        "N": 0.033708,
+        "P": 0.022472,
+        "R": 0.011236,
+        "S": 0.202247,
+        "T": 0.674157
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "ASGYSFTSY",
+        "ASGFSLTNN",
+        "ASGFTYSNY"
+      ]
+    },
+    "29": {
+      "combined_preferred": "F",
+      "combined_freq": {
+        "F": 0.55048,
+        "Y": 0.25292,
+        "L": 0.14984,
+        "V": 0.04251,
+        "I": 0.00425
+      },
+      "level1_clinical_counts": {
+        "F": 2.0,
+        "L": 1.0,
+        "Y": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "F": 0.797753,
+        "I": 0.011236,
+        "L": 0.067416,
+        "V": 0.11236,
+        "Y": 0.011236
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "SGYSFTSYT",
+        "SGFSLTNNN",
+        "SGFTYSNYW"
+      ]
+    },
+    "30": {
+      "combined_preferred": "S",
+      "combined_freq": {
+        "S": 0.48247,
+        "T": 0.45802,
+        "G": 0.02125,
+        "N": 0.017,
+        "R": 0.017,
+        "I": 0.00425
+      },
+      "level1_clinical_counts": {
+        "T": 3.0,
+        "S": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "G": 0.05618,
+        "I": 0.011236,
+        "N": 0.044944,
+        "R": 0.044944,
+        "S": 0.617978,
+        "T": 0.224719
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "GYSFTSYTI",
+        "GFSLTNNNV",
+        "GFTYSNYWM"
+      ]
+    },
+    "31": {
+      "combined_preferred": "N",
+      "combined_freq": {
+        "N": 0.41976,
+        "S": 0.4102,
+        "D": 0.07652,
+        "T": 0.03401,
+        "R": 0.02125,
+        "A": 0.01275,
+        "I": 0.0085,
+        "G": 0.00425,
+        "H": 0.00425,
+        "K": 0.00425,
+        "V": 0.00425
+      },
+      "level1_clinical_counts": {
+        "S": 2.0,
+        "N": 3.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.033708,
+        "D": 0.202247,
+        "G": 0.011236,
+        "H": 0.011236,
+        "I": 0.022472,
+        "K": 0.011236,
+        "N": 0.123596,
+        "R": 0.05618,
+        "S": 0.426966,
+        "T": 0.089888,
+        "V": 0.011236
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "YSFTSYTIH",
+        "FSLTNNNVN",
+        "FTYSNYWMH"
+      ]
+    },
+    "32": {
+      "combined_preferred": "Y",
+      "combined_freq": {
+        "Y": 0.7949,
+        "N": 0.12858,
+        "S": 0.03401,
+        "H": 0.017,
+        "F": 0.0085,
+        "T": 0.0085,
+        "A": 0.00425,
+        "L": 0.00425
+      },
+      "level1_clinical_counts": {
+        "Y": 4.0,
+        "N": 1.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.011236,
+        "F": 0.022472,
+        "H": 0.044944,
+        "L": 0.011236,
+        "N": 0.011236,
+        "S": 0.089888,
+        "T": 0.022472,
+        "Y": 0.786517
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "SFTSYTIHW",
+        "SLTNNNVNW",
+        "TYSNYWMHW"
+      ]
+    },
+    "33": {
+      "combined_preferred": "W",
+      "combined_freq": {
+        "W": 0.26992,
+        "T": 0.25292,
+        "Y": 0.13603,
+        "N": 0.12858,
+        "S": 0.06801,
+        "G": 0.05101,
+        "A": 0.03401,
+        "E": 0.02125,
+        "D": 0.017,
+        "H": 0.0085,
+        "P": 0.0085,
+        "F": 0.00425
+      },
+      "level1_clinical_counts": {
+        "T": 2.0,
+        "N": 1.0,
+        "W": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.089888,
+        "D": 0.044944,
+        "E": 0.05618,
+        "F": 0.011236,
+        "G": 0.134831,
+        "H": 0.022472,
+        "N": 0.011236,
+        "P": 0.022472,
+        "S": 0.179775,
+        "T": 0.011236,
+        "W": 0.05618,
+        "Y": 0.359551
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "FTSYTIHWL",
+        "LTNNNVNWV",
+        "YSNYWMHWV"
+      ]
+    },
+    "34": {
+      "combined_preferred": "M",
+      "combined_freq": {
+        "M": 0.58449,
+        "I": 0.25292,
+        "V": 0.13284,
+        "Y": 0.02551,
+        "L": 0.00425
+      },
+      "level1_clinical_counts": {
+        "I": 2.0,
+        "V": 1.0,
+        "M": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "I": 0.011236,
+        "L": 0.011236,
+        "M": 0.88764,
+        "V": 0.022472,
+        "Y": 0.067416
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "TSYTIHWLR",
+        "TNNNVNWVR",
+        "SNYWMHWVR"
+      ]
+    },
+    "35": {
+      "combined_preferred": "H",
+      "combined_freq": {
+        "H": 0.57385,
+        "N": 0.26036,
+        "S": 0.09777,
+        "W": 0.02551,
+        "T": 0.0085,
+        "Y": 0.0085,
+        "A": 0.00425,
+        "F": 0.00425,
+        "G": 0.00425,
+        "I": 0.00425,
+        "M": 0.00425,
+        "V": 0.00425
+      },
+      "level1_clinical_counts": {
+        "H": 4.0,
+        "N": 1.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.011236,
+        "F": 0.011236,
+        "G": 0.011236,
+        "H": 0.202247,
+        "I": 0.011236,
+        "M": 0.011236,
+        "N": 0.359551,
+        "S": 0.258427,
+        "T": 0.022472,
+        "V": 0.011236,
+        "W": 0.067416,
+        "Y": 0.022472
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "SYTIHWLRQ",
+        "NNNVNWVRQ",
+        "NYWMHWVRQ"
+      ]
+    },
+    "35A": {
+      "combined_preferred": "N",
+      "combined_freq": {
+        "N": 0.5,
+        "K": 0.16667,
+        "S": 0.16667,
+        "T": 0.16667
+      },
+      "level1_clinical_counts": {},
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "K": 0.166667,
+        "N": 0.5,
+        "S": 0.166667,
+        "T": 0.166667
+      },
+      "n_clinical_seqs": 0,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": []
+    },
+    "36": {
+      "combined_preferred": "W",
+      "combined_freq": {
+        "W": 1.0
+      },
+      "level1_clinical_counts": {
+        "W": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "W": 1.0
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "YTIHWLRQA",
+        "NNVNWVRQA",
+        "YWMHWVRQA"
+      ]
+    },
+    "37": {
+      "combined_preferred": "V",
+      "combined_freq": {
+        "V": 0.65781,
+        "L": 0.29968,
+        "I": 0.02976,
+        "F": 0.0085,
+        "A": 0.00425
+      },
+      "level1_clinical_counts": {
+        "L": 2.0,
+        "V": 3.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.011236,
+        "F": 0.022472,
+        "I": 0.078652,
+        "L": 0.134831,
+        "V": 0.752809
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "TIHWLRQAP",
+        "NVNWVRQAP",
+        "WMHWVRQAP"
+      ]
+    },
+    "38": {
+      "combined_preferred": "R",
+      "combined_freq": {
+        "R": 0.9915,
+        "C": 0.00425,
+        "H": 0.00425
+      },
+      "level1_clinical_counts": {
+        "R": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "C": 0.011236,
+        "H": 0.011236,
+        "R": 0.977528
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "IHWLRQAPA",
+        "VNWVRQAPG",
+        "MHWVRQAPG"
+      ]
+    },
+    "39": {
+      "combined_preferred": "Q",
+      "combined_freq": {
+        "Q": 1.0
+      },
+      "level1_clinical_counts": {
+        "Q": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "Q": 1.0
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "HWLRQAPAQ",
+        "NWVRQAPGK",
+        "HWVRQAPGK"
+      ]
+    },
+    "40": {
+      "combined_preferred": "A",
+      "combined_freq": {
+        "A": 0.95749,
+        "R": 0.02551,
+        "T": 0.0085,
+        "V": 0.0085
+      },
+      "level1_clinical_counts": {
+        "A": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.88764,
+        "R": 0.067416,
+        "T": 0.022472,
+        "V": 0.022472
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "WLRQAPAQG",
+        "WVRQAPGKG"
+      ]
+    },
+    "41": {
+      "combined_preferred": "P",
+      "combined_freq": {
+        "P": 1.0
+      },
+      "level1_clinical_counts": {
+        "P": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "P": 1.0
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "LRQAPAQGL",
+        "VRQAPGKGL"
+      ]
+    },
+    "42": {
+      "combined_preferred": "G",
+      "combined_freq": {
+        "G": 0.67907,
+        "A": 0.27842,
+        "E": 0.03401,
+        "R": 0.00425,
+        "S": 0.00425
+      },
+      "level1_clinical_counts": {
+        "A": 2.0,
+        "G": 3.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.078652,
+        "E": 0.089888,
+        "G": 0.808989,
+        "R": 0.011236,
+        "S": 0.011236
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "RQAPAQGLE",
+        "RQAPGKGLE",
+        "RQAPGKGLQ"
+      ]
+    },
+    "43": {
+      "combined_preferred": "K",
+      "combined_freq": {
+        "K": 0.64931,
+        "Q": 0.31243,
+        "R": 0.02551,
+        "M": 0.0085,
+        "E": 0.00425
+      },
+      "level1_clinical_counts": {
+        "Q": 2.0,
+        "K": 3.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "E": 0.011236,
+        "K": 0.730337,
+        "M": 0.022472,
+        "Q": 0.168539,
+        "R": 0.067416
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "QAPAQGLEW",
+        "QAPGKGLEW",
+        "QAPGKGLQW"
+      ]
+    },
+    "44": {
+      "combined_preferred": "G",
+      "combined_freq": {
+        "G": 0.99575,
+        "E": 0.00425
+      },
+      "level1_clinical_counts": {
+        "G": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "E": 0.011236,
+        "G": 0.988764
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "APAQGLEWM",
+        "APGKGLEWM",
+        "APGKGLQWV"
+      ]
+    },
+    "45": {
+      "combined_preferred": "L",
+      "combined_freq": {
+        "L": 0.96599,
+        "F": 0.02976,
+        "W": 0.00425
+      },
+      "level1_clinical_counts": {
+        "L": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "F": 0.078652,
+        "L": 0.910112,
+        "W": 0.011236
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "PAQGLEWMG",
+        "PGKGLEWMG",
+        "PGKGLQWVA"
+      ]
+    },
+    "46": {
+      "combined_preferred": "Q",
+      "combined_freq": {
+        "Q": 0.52923,
+        "E": 0.46652,
+        "R": 0.00425
+      },
+      "level1_clinical_counts": {
+        "E": 3.0,
+        "Q": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "E": 0.247191,
+        "Q": 0.741573,
+        "R": 0.011236
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "AQGLEWMGN",
+        "GKGLEWMGG",
+        "GKGLQWVAR"
+      ]
+    },
+    "47": {
+      "combined_preferred": "W",
+      "combined_freq": {
+        "W": 0.9915,
+        "C": 0.00425,
+        "L": 0.00425
+      },
+      "level1_clinical_counts": {
+        "W": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "C": 0.011236,
+        "L": 0.011236,
+        "W": 0.977528
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "QGLEWMGNI",
+        "KGLEWMGGV",
+        "KGLQWVARI"
+      ]
+    },
+    "48": {
+      "combined_preferred": "V",
+      "combined_freq": {
+        "V": 0.53773,
+        "M": 0.43251,
+        "L": 0.02551,
+        "I": 0.00425
+      },
+      "level1_clinical_counts": {
+        "M": 3.0,
+        "V": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "I": 0.011236,
+        "L": 0.067416,
+        "M": 0.157303,
+        "V": 0.764045
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "GLEWMGNIN",
+        "GLEWMGGVW",
+        "GLQWVARID"
+      ]
+    },
+    "49": {
+      "combined_preferred": "A",
+      "combined_freq": {
+        "A": 0.48672,
+        "G": 0.46227,
+        "S": 0.02976,
+        "T": 0.02125
+      },
+      "level1_clinical_counts": {
+        "G": 3.0,
+        "A": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.629213,
+        "G": 0.235955,
+        "S": 0.078652,
+        "T": 0.05618
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "LEWMGNINP",
+        "LEWMGGVWA",
+        "LQWVARIDP"
+      ]
+    },
+    "50": {
+      "combined_preferred": "R",
+      "combined_freq": {
+        "R": 0.29118,
+        "N": 0.24867,
+        "Y": 0.17004,
+        "G": 0.14134,
+        "S": 0.03826,
+        "A": 0.02125,
+        "D": 0.017,
+        "Q": 0.017,
+        "E": 0.01275,
+        "H": 0.01275,
+        "W": 0.0085,
+        "C": 0.00425,
+        "F": 0.00425,
+        "K": 0.00425,
+        "T": 0.00425,
+        "V": 0.00425
+      },
+      "level1_clinical_counts": {
+        "N": 2.0,
+        "G": 1.0,
+        "R": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.05618,
+        "C": 0.011236,
+        "D": 0.044944,
+        "E": 0.033708,
+        "F": 0.011236,
+        "G": 0.044944,
+        "H": 0.033708,
+        "K": 0.011236,
+        "Q": 0.044944,
+        "R": 0.11236,
+        "S": 0.101124,
+        "T": 0.011236,
+        "V": 0.011236,
+        "W": 0.022472,
+        "Y": 0.449438
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "EWMGNINPT",
+        "EWMGGVWAG",
+        "QWVARIDPY"
+      ]
+    },
+    "51": {
+      "combined_preferred": "I",
+      "combined_freq": {
+        "I": 0.84376,
+        "V": 0.14257,
+        "D": 0.00456,
+        "F": 0.00456,
+        "M": 0.00456
+      },
+      "level1_clinical_counts": {
+        "I": 4.0,
+        "V": 1.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "D": 0.012048,
+        "F": 0.012048,
+        "I": 0.915663,
+        "M": 0.012048,
+        "V": 0.048193
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "WMGNINPTS",
+        "WMGGVWAGG",
+        "WVARIDPYG"
+      ]
+    },
+    "52": {
+      "combined_preferred": "D",
+      "combined_freq": {
+        "D": 0.32616,
+        "N": 0.30792,
+        "S": 0.14586,
+        "W": 0.12433,
+        "R": 0.03647,
+        "Y": 0.01823,
+        "T": 0.01367,
+        "G": 0.00912,
+        "H": 0.00912,
+        "F": 0.00456,
+        "K": 0.00456
+      },
+      "level1_clinical_counts": {
+        "N": 2.0,
+        "W": 1.0,
+        "D": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "D": 0.204819,
+        "F": 0.012048,
+        "G": 0.024096,
+        "H": 0.024096,
+        "K": 0.012048,
+        "N": 0.156627,
+        "R": 0.096386,
+        "S": 0.385542,
+        "T": 0.036145,
+        "Y": 0.048193
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "MGNINPTSG",
+        "MGGVWAGGA",
+        "VARIDPYGG"
+      ]
+    },
+    "52A": {
+      "combined_preferred": "P",
+      "combined_freq": {
+        "P": 0.6958,
+        "S": 0.0936,
+        "T": 0.0585,
+        "G": 0.0468,
+        "Y": 0.02925,
+        "D": 0.01755,
+        "E": 0.01755,
+        "N": 0.01755,
+        "F": 0.00585,
+        "H": 0.00585,
+        "K": 0.00585,
+        "W": 0.00585
+      },
+      "level1_clinical_counts": {
+        "P": 4.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "D": 0.041096,
+        "E": 0.041096,
+        "F": 0.013699,
+        "G": 0.109589,
+        "H": 0.013699,
+        "K": 0.013699,
+        "N": 0.041096,
+        "P": 0.287671,
+        "S": 0.219178,
+        "T": 0.136986,
+        "W": 0.013699,
+        "Y": 0.068493
+      },
+      "n_clinical_seqs": 2,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "GNINPTSGY",
+        "ARIDPYGGG"
+      ]
+    },
+    "53": {
+      "combined_preferred": "T",
+      "combined_freq": {
+        "T": 0.25292,
+        "Y": 0.24867,
+        "A": 0.12433,
+        "S": 0.12328,
+        "D": 0.10627,
+        "E": 0.06801,
+        "N": 0.02976,
+        "W": 0.02551,
+        "G": 0.0085,
+        "K": 0.00425,
+        "R": 0.00425,
+        "V": 0.00425
+      },
+      "level1_clinical_counts": {
+        "T": 2.0,
+        "A": 1.0,
+        "Y": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "D": 0.280899,
+        "E": 0.179775,
+        "G": 0.022472,
+        "K": 0.011236,
+        "N": 0.078652,
+        "R": 0.011236,
+        "S": 0.325843,
+        "T": 0.011236,
+        "V": 0.011236,
+        "W": 0.067416
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "NINPTSGYT",
+        "GGVWAGGAT",
+        "RIDPYGGGT"
+      ]
+    },
+    "54": {
+      "combined_preferred": "G",
+      "combined_freq": {
+        "G": 0.63656,
+        "S": 0.27842,
+        "D": 0.06801,
+        "A": 0.0085,
+        "E": 0.00425,
+        "R": 0.00425
+      },
+      "level1_clinical_counts": {
+        "S": 2.0,
+        "G": 3.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.022472,
+        "D": 0.179775,
+        "E": 0.011236,
+        "G": 0.696629,
+        "R": 0.011236,
+        "S": 0.078652
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "INPTSGYTE",
+        "GVWAGGATD",
+        "IDPYGGGTK"
+      ]
+    },
+    "55": {
+      "combined_preferred": "G",
+      "combined_freq": {
+        "G": 0.85122,
+        "S": 0.08927,
+        "N": 0.017,
+        "D": 0.01275,
+        "R": 0.01275,
+        "T": 0.0085,
+        "I": 0.00425,
+        "L": 0.00425
+      },
+      "level1_clinical_counts": {
+        "G": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "D": 0.033708,
+        "G": 0.606742,
+        "I": 0.011236,
+        "L": 0.011236,
+        "N": 0.044944,
+        "R": 0.033708,
+        "S": 0.235955,
+        "T": 0.022472
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "NPTSGYTEN",
+        "VWAGGATDY",
+        "DPYGGGTKH"
+      ]
+    },
+    "56": {
+      "combined_preferred": "Y",
+      "combined_freq": {
+        "Y": 0.25292,
+        "G": 0.24867,
+        "S": 0.18704,
+        "A": 0.13284,
+        "T": 0.05526,
+        "N": 0.04676,
+        "R": 0.02125,
+        "D": 0.01275,
+        "I": 0.01275,
+        "K": 0.01275,
+        "V": 0.0085,
+        "F": 0.00425,
+        "M": 0.00425
+      },
+      "level1_clinical_counts": {
+        "Y": 2.0,
+        "A": 1.0,
+        "G": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.022472,
+        "D": 0.033708,
+        "F": 0.011236,
+        "I": 0.033708,
+        "K": 0.033708,
+        "M": 0.011236,
+        "N": 0.123596,
+        "R": 0.05618,
+        "S": 0.494382,
+        "T": 0.146067,
+        "V": 0.022472,
+        "Y": 0.011236
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "PTSGYTENN",
+        "WAGGATDYN",
+        "PYGGGTKHN"
+      ]
+    },
+    "57": {
+      "combined_preferred": "T",
+      "combined_freq": {
+        "T": 0.87247,
+        "I": 0.08077,
+        "A": 0.01275,
+        "P": 0.0085,
+        "S": 0.0085,
+        "E": 0.00425,
+        "F": 0.00425,
+        "M": 0.00425,
+        "R": 0.00425
+      },
+      "level1_clinical_counts": {
+        "T": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.033708,
+        "E": 0.011236,
+        "F": 0.011236,
+        "I": 0.213483,
+        "M": 0.011236,
+        "P": 0.022472,
+        "R": 0.011236,
+        "S": 0.022472,
+        "T": 0.662921
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "TSGYTENNQ",
+        "AGGATDYNS",
+        "YGGGTKHNE"
+      ]
+    },
+    "58": {
+      "combined_preferred": "K",
+      "combined_freq": {
+        "K": 0.25292,
+        "E": 0.24867,
+        "D": 0.14559,
+        "Y": 0.11052,
+        "S": 0.08077,
+        "G": 0.03401,
+        "T": 0.03401,
+        "N": 0.02551,
+        "H": 0.017,
+        "R": 0.01275,
+        "A": 0.0085,
+        "V": 0.0085,
+        "W": 0.0085,
+        "F": 0.00425,
+        "I": 0.00425,
+        "P": 0.00425
+      },
+      "level1_clinical_counts": {
+        "E": 2.0,
+        "D": 1.0,
+        "K": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.022472,
+        "D": 0.05618,
+        "F": 0.011236,
+        "G": 0.089888,
+        "H": 0.044944,
+        "I": 0.011236,
+        "K": 0.011236,
+        "N": 0.067416,
+        "P": 0.011236,
+        "R": 0.033708,
+        "S": 0.213483,
+        "T": 0.089888,
+        "V": 0.022472,
+        "W": 0.022472,
+        "Y": 0.292135
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "SGYTENNQR",
+        "GGATDYNSA",
+        "GGGTKHNEK"
+      ]
+    },
+    "59": {
+      "combined_preferred": "Y",
+      "combined_freq": {
+        "Y": 0.47291,
+        "H": 0.25717,
+        "N": 0.24867,
+        "V": 0.0085,
+        "I": 0.00425,
+        "Q": 0.00425,
+        "T": 0.00425
+      },
+      "level1_clinical_counts": {
+        "N": 2.0,
+        "Y": 1.0,
+        "H": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "H": 0.022472,
+        "I": 0.011236,
+        "Q": 0.011236,
+        "T": 0.011236,
+        "V": 0.022472,
+        "Y": 0.921348
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "GYTENNQRF",
+        "GATDYNSAL",
+        "GGTKHNEKF"
+      ]
+    },
+    "60": {
+      "combined_preferred": "N",
+      "combined_freq": {
+        "N": 0.65142,
+        "A": 0.30607,
+        "T": 0.02551,
+        "G": 0.00425,
+        "P": 0.00425,
+        "S": 0.00425,
+        "V": 0.00425
+      },
+      "level1_clinical_counts": {
+        "N": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.808989,
+        "G": 0.011236,
+        "N": 0.078652,
+        "P": 0.011236,
+        "S": 0.011236,
+        "T": 0.067416,
+        "V": 0.011236
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "YTENNQRFK",
+        "ATDYNSALK",
+        "GTKHNEKFK"
+      ]
+    },
+    "60A": {
+      "combined_preferred": "T",
+      "combined_freq": {
+        "T": 1.0
+      },
+      "level1_clinical_counts": {},
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "T": 1.0
+      },
+      "n_clinical_seqs": 0,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": []
+    },
+    "61": {
+      "combined_preferred": "Q",
+      "combined_freq": {
+        "Q": 0.30818,
+        "D": 0.27631,
+        "E": 0.26142,
+        "S": 0.12433,
+        "P": 0.02551,
+        "R": 0.00425
+      },
+      "level1_clinical_counts": {
+        "Q": 2.0,
+        "S": 1.0,
+        "E": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "D": 0.730337,
+        "E": 0.033708,
+        "P": 0.067416,
+        "Q": 0.157303,
+        "R": 0.011236
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "TENNQRFKD",
+        "TDYNSALKS",
+        "TKHNEKFKR"
+      ]
+    },
+    "62": {
+      "combined_preferred": "K",
+      "combined_freq": {
+        "K": 0.30818,
+        "S": 0.27206,
+        "R": 0.25292,
+        "A": 0.14984,
+        "F": 0.01275,
+        "P": 0.00425
+      },
+      "level1_clinical_counts": {
+        "R": 2.0,
+        "A": 1.0,
+        "K": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.067416,
+        "F": 0.033708,
+        "K": 0.157303,
+        "P": 0.011236,
+        "R": 0.011236,
+        "S": 0.719101
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "ENNQRFKDR",
+        "DYNSALKSR",
+        "KHNEKFKRR"
+      ]
+    },
+    "63": {
+      "combined_preferred": "F",
+      "combined_freq": {
+        "F": 0.58235,
+        "V": 0.26781,
+        "L": 0.13284,
+        "A": 0.0085,
+        "I": 0.00425,
+        "M": 0.00425
+      },
+      "level1_clinical_counts": {
+        "F": 4.0,
+        "L": 1.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.022472,
+        "F": 0.224719,
+        "I": 0.011236,
+        "L": 0.022472,
+        "M": 0.011236,
+        "V": 0.707865
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "NNQRFKDRL",
+        "YNSALKSRL",
+        "HNEKFKRRF"
+      ]
+    },
+    "64": {
+      "combined_preferred": "K",
+      "combined_freq": {
+        "K": 0.88522,
+        "Q": 0.10202,
+        "R": 0.0085,
+        "E": 0.00425
+      },
+      "level1_clinical_counts": {
+        "K": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "E": 0.011236,
+        "K": 0.696629,
+        "Q": 0.269663,
+        "R": 0.022472
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "NQRFKDRLT",
+        "NSALKSRLT",
+        "NEKFKRRFT"
+      ]
+    },
+    "65": {
+      "combined_preferred": "G",
+      "combined_freq": {
+        "G": 0.37408,
+        "D": 0.25292,
+        "R": 0.24867,
+        "S": 0.12433
+      },
+      "level1_clinical_counts": {
+        "D": 2.0,
+        "S": 1.0,
+        "R": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "D": 0.011236,
+        "G": 0.988764
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "QRFKDRLTL",
+        "SALKSRLTI",
+        "EKFKRRFTI"
+      ]
+    },
+    "66": {
+      "combined_preferred": "R",
+      "combined_freq": {
+        "R": 0.98725,
+        "Q": 0.01275
+      },
+      "level1_clinical_counts": {
+        "R": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "Q": 0.033708,
+        "R": 0.966292
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "RFKDRLTLT",
+        "ALKSRLTIT",
+        "KFKRRFTIS"
+      ]
+    },
+    "67": {
+      "combined_preferred": "F",
+      "combined_freq": {
+        "F": 0.52923,
+        "L": 0.44101,
+        "I": 0.02551,
+        "Y": 0.00425
+      },
+      "level1_clinical_counts": {
+        "L": 3.0,
+        "F": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "F": 0.741573,
+        "I": 0.067416,
+        "L": 0.179775,
+        "Y": 0.011236
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "FKDRLTLTA",
+        "LKSRLTITR",
+        "FKRRFTISR"
+      ]
+    },
+    "68": {
+      "combined_preferred": "T",
+      "combined_freq": {
+        "T": 0.95749,
+        "S": 0.02551,
+        "I": 0.0085,
+        "A": 0.00425,
+        "V": 0.00425
+      },
+      "level1_clinical_counts": {
+        "T": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.011236,
+        "I": 0.022472,
+        "S": 0.067416,
+        "T": 0.88764,
+        "V": 0.011236
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "KDRLTLTAD",
+        "KSRLTITRD",
+        "KRRFTISRD"
+      ]
+    },
+    "69": {
+      "combined_preferred": "I",
+      "combined_freq": {
+        "I": 0.66631,
+        "L": 0.31668,
+        "V": 0.01275,
+        "M": 0.00425
+      },
+      "level1_clinical_counts": {
+        "L": 2.0,
+        "I": 3.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "I": 0.775281,
+        "L": 0.179775,
+        "M": 0.011236,
+        "V": 0.033708
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "DRLTLTADT",
+        "SRLTITRDT",
+        "RRFTISRDN"
+      ]
+    },
+    "70": {
+      "combined_preferred": "S",
+      "combined_freq": {
+        "S": 0.53773,
+        "T": 0.45802,
+        "A": 0.00425
+      },
+      "level1_clinical_counts": {
+        "T": 3.0,
+        "S": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.011236,
+        "S": 0.764045,
+        "T": 0.224719
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "RLTLTADTS",
+        "RLTITRDTS",
+        "RFTISRDNA"
+      ]
+    },
+    "71": {
+      "combined_preferred": "R",
+      "combined_freq": {
+        "R": 0.62806,
+        "A": 0.32943,
+        "I": 0.01275,
+        "K": 0.01275,
+        "T": 0.01275,
+        "G": 0.00425
+      },
+      "level1_clinical_counts": {
+        "A": 2.0,
+        "R": 3.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.213483,
+        "G": 0.011236,
+        "I": 0.033708,
+        "K": 0.033708,
+        "R": 0.674157,
+        "T": 0.033708
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "LTLTADTST",
+        "LTITRDTSK",
+        "FTISRDNAK"
+      ]
+    },
+    "72": {
+      "combined_preferred": "D",
+      "combined_freq": {
+        "D": 0.99575,
+        "S": 0.00425
+      },
+      "level1_clinical_counts": {
+        "D": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "D": 0.988764,
+        "S": 0.011236
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "TLTADTSTN",
+        "TITRDTSKN",
+        "TISRDNAKN"
+      ]
+    },
+    "73": {
+      "combined_preferred": "N",
+      "combined_freq": {
+        "N": 0.50797,
+        "T": 0.46227,
+        "D": 0.01275,
+        "S": 0.01275,
+        "A": 0.00425
+      },
+      "level1_clinical_counts": {
+        "T": 3.0,
+        "N": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.011236,
+        "D": 0.033708,
+        "N": 0.685393,
+        "S": 0.033708,
+        "T": 0.235955
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "LTADTSTNT",
+        "ITRDTSKNT",
+        "ISRDNAKNT"
+      ]
+    },
+    "74": {
+      "combined_preferred": "A",
+      "combined_freq": {
+        "A": 0.52498,
+        "S": 0.46227,
+        "T": 0.0085,
+        "D": 0.00425
+      },
+      "level1_clinical_counts": {
+        "S": 3.0,
+        "A": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.730337,
+        "D": 0.011236,
+        "S": 0.235955,
+        "T": 0.022472
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "TADTSTNTA",
+        "TRDTSKNTV",
+        "SRDNAKNTL"
+      ]
+    },
+    "75": {
+      "combined_preferred": "K",
+      "combined_freq": {
+        "K": 0.62381,
+        "T": 0.31243,
+        "Q": 0.03826,
+        "N": 0.01275,
+        "E": 0.0085,
+        "R": 0.00425
+      },
+      "level1_clinical_counts": {
+        "T": 2.0,
+        "K": 3.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "E": 0.022472,
+        "K": 0.662921,
+        "N": 0.033708,
+        "Q": 0.101124,
+        "R": 0.011236,
+        "T": 0.168539
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "ADTSTNTAY",
+        "RDTSKNTVF",
+        "RDNAKNTLY"
+      ]
+    },
+    "76": {
+      "combined_preferred": "N",
+      "combined_freq": {
+        "N": 0.99575,
+        "K": 0.00425
+      },
+      "level1_clinical_counts": {
+        "N": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "K": 0.011236,
+        "N": 0.988764
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "DTSTNTAYM",
+        "DTSKNTVFL",
+        "DNAKNTLYL"
+      ]
+    },
+    "77": {
+      "combined_preferred": "T",
+      "combined_freq": {
+        "T": 0.95749,
+        "Q": 0.02551,
+        "A": 0.0085,
+        "I": 0.0085
+      },
+      "level1_clinical_counts": {
+        "T": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.022472,
+        "I": 0.022472,
+        "Q": 0.067416,
+        "T": 0.88764
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "TSTNTAYME",
+        "TSKNTVFLQ",
+        "NAKNTLYLQ"
+      ]
+    },
+    "78": {
+      "combined_preferred": "L",
+      "combined_freq": {
+        "L": 0.51222,
+        "A": 0.30818,
+        "V": 0.14984,
+        "F": 0.017,
+        "G": 0.00425,
+        "I": 0.00425,
+        "M": 0.00425
+      },
+      "level1_clinical_counts": {
+        "A": 2.0,
+        "V": 1.0,
+        "L": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.157303,
+        "F": 0.044944,
+        "G": 0.011236,
+        "I": 0.011236,
+        "L": 0.696629,
+        "M": 0.011236,
+        "V": 0.067416
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "STNTAYMEL",
+        "SKNTVFLQM",
+        "AKNTLYLQM"
+      ]
+    },
+    "79": {
+      "combined_preferred": "Y",
+      "combined_freq": {
+        "Y": 0.81615,
+        "F": 0.13284,
+        "S": 0.03401,
+        "A": 0.0085,
+        "V": 0.00425,
+        "W": 0.00425
+      },
+      "level1_clinical_counts": {
+        "Y": 4.0,
+        "F": 1.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.022472,
+        "F": 0.022472,
+        "S": 0.089888,
+        "V": 0.011236,
+        "W": 0.011236,
+        "Y": 0.842697
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "TNTAYMELS",
+        "KNTVFLQMH",
+        "KNTLYLQMN"
+      ]
+    },
+    "80": {
+      "combined_preferred": "L",
+      "combined_freq": {
+        "L": 0.69182,
+        "M": 0.30818
+      },
+      "level1_clinical_counts": {
+        "M": 2.0,
+        "L": 3.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "L": 0.842697,
+        "M": 0.157303
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "NTAYMELSS",
+        "NTVFLQMHS",
+        "NTLYLQMNS"
+      ]
+    },
+    "81": {
+      "combined_preferred": "Q",
+      "combined_freq": {
+        "Q": 0.65781,
+        "E": 0.32093,
+        "H": 0.01275,
+        "D": 0.00425,
+        "V": 0.00425
+      },
+      "level1_clinical_counts": {
+        "E": 2.0,
+        "Q": 3.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "D": 0.011236,
+        "E": 0.191011,
+        "H": 0.033708,
+        "Q": 0.752809,
+        "V": 0.011236
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "TAYMELSSL",
+        "TVFLQMHSL",
+        "TLYLQMNSL"
+      ]
+    },
+    "82": {
+      "combined_preferred": "M",
+      "combined_freq": {
+        "M": 0.64506,
+        "L": 0.35494
+      },
+      "level1_clinical_counts": {
+        "L": 2.0,
+        "M": 3.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "L": 0.280899,
+        "M": 0.719101
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "AYMELSSLR",
+        "VFLQMHSLQ",
+        "LYLQMNSLK"
+      ]
+    },
+    "82A": {
+      "combined_preferred": "N",
+      "combined_freq": {
+        "N": 0.49522,
+        "S": 0.33369,
+        "H": 0.12858,
+        "D": 0.02551,
+        "T": 0.01275,
+        "R": 0.00425
+      },
+      "level1_clinical_counts": {
+        "S": 2.0,
+        "H": 1.0,
+        "N": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "D": 0.067416,
+        "H": 0.011236,
+        "N": 0.651685,
+        "R": 0.011236,
+        "S": 0.224719,
+        "T": 0.033708
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "YMELSSLRS",
+        "FLQMHSLQS",
+        "YLQMNSLKT"
+      ]
+    },
+    "82B": {
+      "combined_preferred": "S",
+      "combined_freq": {
+        "S": 0.95749,
+        "N": 0.03401,
+        "R": 0.00425,
+        "T": 0.00425
+      },
+      "level1_clinical_counts": {
+        "S": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "N": 0.089888,
+        "R": 0.011236,
+        "S": 0.88764,
+        "T": 0.011236
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "MELSSLRSA",
+        "LQMHSLQSE",
+        "LQMNSLKTE"
+      ]
+    },
+    "82C": {
+      "combined_preferred": "L",
+      "combined_freq": {
+        "L": 0.97449,
+        "M": 0.02551
+      },
+      "level1_clinical_counts": {
+        "L": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "L": 0.932584,
+        "M": 0.067416
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "ELSSLRSAD",
+        "QMHSLQSED",
+        "QMNSLKTED"
+      ]
+    },
+    "83": {
+      "combined_preferred": "K",
+      "combined_freq": {
+        "K": 0.51222,
+        "R": 0.31668,
+        "Q": 0.13709,
+        "T": 0.02976,
+        "A": 0.00425
+      },
+      "level1_clinical_counts": {
+        "R": 2.0,
+        "Q": 1.0,
+        "K": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.011236,
+        "K": 0.696629,
+        "Q": 0.033708,
+        "R": 0.179775,
+        "T": 0.078652
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "LSSLRSADT",
+        "MHSLQSEDT",
+        "MNSLKTEDT"
+      ]
+    },
+    "84": {
+      "combined_preferred": "T",
+      "combined_freq": {
+        "T": 0.54198,
+        "S": 0.43676,
+        "A": 0.0085,
+        "I": 0.0085,
+        "V": 0.00425
+      },
+      "level1_clinical_counts": {
+        "S": 3.0,
+        "T": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.022472,
+        "I": 0.022472,
+        "S": 0.168539,
+        "T": 0.775281,
+        "V": 0.011236
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "SSLRSADTA",
+        "HSLQSEDTA",
+        "NSLKTEDTA"
+      ]
+    },
+    "85": {
+      "combined_preferred": "E",
+      "combined_freq": {
+        "E": 0.67057,
+        "A": 0.30393,
+        "D": 0.017,
+        "T": 0.0085
+      },
+      "level1_clinical_counts": {
+        "A": 2.0,
+        "E": 3.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.146067,
+        "D": 0.044944,
+        "E": 0.786517,
+        "T": 0.022472
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "SLRSADTAM",
+        "SLQSEDTAT",
+        "SLKTEDTAT"
+      ]
+    },
+    "86": {
+      "combined_preferred": "D",
+      "combined_freq": {
+        "D": 1.0
+      },
+      "level1_clinical_counts": {
+        "D": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "D": 1.0
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "LRSADTAMY",
+        "LQSEDTATY",
+        "LKTEDTATY"
+      ]
+    },
+    "87": {
+      "combined_preferred": "T",
+      "combined_freq": {
+        "T": 0.98725,
+        "A": 0.0085,
+        "S": 0.00425
+      },
+      "level1_clinical_counts": {
+        "T": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.022472,
+        "S": 0.011236,
+        "T": 0.966292
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "RSADTAMYY",
+        "QSEDTATYY",
+        "KTEDTATYY"
+      ]
+    },
+    "88": {
+      "combined_preferred": "A",
+      "combined_freq": {
+        "A": 0.98725,
+        "G": 0.01275
+      },
+      "level1_clinical_counts": {
+        "A": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.966292,
+        "G": 0.033708
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "SADTAMYYC",
+        "SEDTATYYC",
+        "TEDTATYYC"
+      ]
+    },
+    "89": {
+      "combined_preferred": "T",
+      "combined_freq": {
+        "T": 0.64931,
+        "M": 0.28267,
+        "V": 0.05951,
+        "A": 0.00425,
+        "K": 0.00425
+      },
+      "level1_clinical_counts": {
+        "M": 2.0,
+        "T": 3.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.011236,
+        "K": 0.011236,
+        "M": 0.089888,
+        "T": 0.730337,
+        "V": 0.157303
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "ADTAMYYCA",
+        "EDTATYYCA",
+        "EDTATYYCV"
+      ]
+    },
+    "90": {
+      "combined_preferred": "Y",
+      "combined_freq": {
+        "Y": 0.99575,
+        "H": 0.00425
+      },
+      "level1_clinical_counts": {
+        "Y": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "H": 0.011236,
+        "Y": 0.988764
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "DTAMYYCAR",
+        "DTATYYCAR",
+        "DTATYYCVR"
+      ]
+    },
+    "91": {
+      "combined_preferred": "Y",
+      "combined_freq": {
+        "Y": 0.97449,
+        "H": 0.017,
+        "F": 0.0085
+      },
+      "level1_clinical_counts": {
+        "Y": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "F": 0.022472,
+        "H": 0.044944,
+        "Y": 0.932584
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "TAMYYCARW",
+        "TATYYCARD",
+        "TATYYCVRS"
+      ]
+    },
+    "92": {
+      "combined_preferred": "C",
+      "combined_freq": {
+        "C": 1.0
+      },
+      "level1_clinical_counts": {
+        "C": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "C": 1.0
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "AMYYCARWG",
+        "ATYYCARDG",
+        "ATYYCVRSG"
+      ]
+    },
+    "93": {
+      "combined_preferred": "A",
+      "combined_freq": {
+        "A": 0.64506,
+        "V": 0.28267,
+        "T": 0.04251,
+        "G": 0.0085,
+        "L": 0.0085,
+        "I": 0.00425,
+        "M": 0.00425,
+        "S": 0.00425
+      },
+      "level1_clinical_counts": {
+        "A": 3.0,
+        "V": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.719101,
+        "G": 0.022472,
+        "I": 0.011236,
+        "L": 0.022472,
+        "M": 0.011236,
+        "S": 0.011236,
+        "T": 0.11236,
+        "V": 0.089888
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "MYYCARWGF",
+        "TYYCARDGG",
+        "TYYCVRSGY"
+      ]
+    },
+    "94": {
+      "combined_preferred": "R",
+      "combined_freq": {
+        "R": 0.83846,
+        "K": 0.03826,
+        "S": 0.03401,
+        "G": 0.02976,
+        "T": 0.02125,
+        "A": 0.0085,
+        "M": 0.0085,
+        "N": 0.0085,
+        "D": 0.00425,
+        "E": 0.00425,
+        "F": 0.00425
+      },
+      "level1_clinical_counts": {
+        "R": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.022472,
+        "D": 0.011236,
+        "E": 0.011236,
+        "F": 0.011236,
+        "G": 0.078652,
+        "K": 0.101124,
+        "M": 0.022472,
+        "N": 0.022472,
+        "R": 0.573034,
+        "S": 0.089888,
+        "T": 0.05618
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "YYCARWGFK",
+        "YYCARDGGY",
+        "YYCVRSGYD"
+      ]
+    },
+    "95": {
+      "combined_preferred": "S",
+      "combined_freq": {
+        "S": 0.28692,
+        "W": 0.25717,
+        "D": 0.20085,
+        "G": 0.06376,
+        "R": 0.03826,
+        "A": 0.03401,
+        "E": 0.017,
+        "I": 0.017,
+        "T": 0.017,
+        "H": 0.01275,
+        "V": 0.01275,
+        "Y": 0.01275,
+        "L": 0.0085,
+        "N": 0.0085,
+        "K": 0.00425,
+        "P": 0.00425,
+        "Q": 0.00425
+      },
+      "level1_clinical_counts": {
+        "W": 2.0,
+        "D": 1.0,
+        "S": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.089888,
+        "D": 0.202247,
+        "E": 0.044944,
+        "G": 0.168539,
+        "H": 0.033708,
+        "I": 0.044944,
+        "K": 0.011236,
+        "L": 0.022472,
+        "N": 0.022472,
+        "P": 0.011236,
+        "Q": 0.011236,
+        "R": 0.101124,
+        "S": 0.101124,
+        "T": 0.044944,
+        "V": 0.033708,
+        "W": 0.022472,
+        "Y": 0.033708
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "YCARWGFKY",
+        "YCARDGGYS",
+        "YCVRSGYDY"
+      ]
+    },
+    "96": {
+      "combined_preferred": "G",
+      "combined_freq": {
+        "G": 0.68186,
+        "P": 0.04299,
+        "A": 0.03439,
+        "D": 0.03439,
+        "L": 0.03009,
+        "N": 0.03009,
+        "V": 0.0258,
+        "F": 0.0215,
+        "R": 0.0215,
+        "S": 0.0215,
+        "T": 0.0172,
+        "I": 0.0129,
+        "W": 0.0086,
+        "Y": 0.0086,
+        "E": 0.0043,
+        "H": 0.0043
+      },
+      "level1_clinical_counts": {
+        "G": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.090909,
+        "D": 0.090909,
+        "E": 0.011364,
+        "F": 0.056818,
+        "G": 0.159091,
+        "H": 0.011364,
+        "I": 0.034091,
+        "L": 0.079545,
+        "N": 0.079545,
+        "P": 0.113636,
+        "R": 0.056818,
+        "S": 0.056818,
+        "T": 0.045455,
+        "V": 0.068182,
+        "W": 0.022727,
+        "Y": 0.022727
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "CARWGFKYD",
+        "CARDGGYSS",
+        "CVRSGYDYY"
+      ]
+    },
+    "97": {
+      "combined_preferred": "Y",
+      "combined_freq": {
+        "Y": 0.28736,
+        "F": 0.25297,
+        "G": 0.18452,
+        "S": 0.06879,
+        "T": 0.04299,
+        "D": 0.03439,
+        "A": 0.0215,
+        "P": 0.0215,
+        "R": 0.0172,
+        "W": 0.0172,
+        "L": 0.0086,
+        "N": 0.0086,
+        "V": 0.0086,
+        "C": 0.0043,
+        "E": 0.0043,
+        "H": 0.0043,
+        "K": 0.0043,
+        "M": 0.0043,
+        "Q": 0.0043
+      },
+      "level1_clinical_counts": {
+        "F": 2.0,
+        "G": 1.0,
+        "Y": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.056818,
+        "C": 0.011364,
+        "D": 0.090909,
+        "E": 0.011364,
+        "F": 0.011364,
+        "G": 0.159091,
+        "H": 0.011364,
+        "K": 0.011364,
+        "L": 0.022727,
+        "M": 0.011364,
+        "N": 0.022727,
+        "P": 0.056818,
+        "Q": 0.011364,
+        "R": 0.045455,
+        "S": 0.181818,
+        "T": 0.113636,
+        "V": 0.022727,
+        "W": 0.045455,
+        "Y": 0.102273
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "ARWGFKYDG",
+        "ARDGGYSSS",
+        "VRSGYDYYF"
+      ]
+    },
+    "98": {
+      "combined_preferred": "D",
+      "combined_freq": {
+        "D": 0.28386,
+        "K": 0.24867,
+        "Y": 0.16393,
+        "G": 0.06599,
+        "A": 0.04839,
+        "L": 0.0264,
+        "R": 0.0264,
+        "W": 0.022,
+        "F": 0.0176,
+        "P": 0.0176,
+        "S": 0.0132,
+        "V": 0.0132,
+        "C": 0.0088,
+        "H": 0.0088,
+        "I": 0.0088,
+        "N": 0.0088,
+        "T": 0.0088,
+        "E": 0.0044,
+        "M": 0.0044
+      },
+      "level1_clinical_counts": {
+        "K": 2.0,
+        "Y": 1.0,
+        "D": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.127907,
+        "C": 0.023256,
+        "D": 0.093023,
+        "E": 0.011628,
+        "F": 0.046512,
+        "G": 0.174419,
+        "H": 0.023256,
+        "I": 0.023256,
+        "L": 0.069767,
+        "M": 0.011628,
+        "N": 0.023256,
+        "P": 0.046512,
+        "R": 0.069767,
+        "S": 0.034884,
+        "T": 0.023256,
+        "V": 0.034884,
+        "W": 0.05814,
+        "Y": 0.104651
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "RWGFKYDGE",
+        "RDGGYSSST",
+        "RSGYDYYFD"
+      ]
+    },
+    "99": {
+      "combined_preferred": "Y",
+      "combined_freq": {
+        "Y": 0.55138,
+        "S": 0.17347,
+        "G": 0.05405,
+        "D": 0.03931,
+        "W": 0.02948,
+        "A": 0.02457,
+        "I": 0.02457,
+        "R": 0.02457,
+        "T": 0.01965,
+        "V": 0.01965,
+        "C": 0.00491,
+        "E": 0.00491,
+        "F": 0.00491,
+        "K": 0.00491,
+        "L": 0.00491,
+        "M": 0.00491,
+        "P": 0.00491,
+        "Q": 0.00491
+      },
+      "level1_clinical_counts": {
+        "Y": 4.0,
+        "S": 1.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.064935,
+        "C": 0.012987,
+        "D": 0.103896,
+        "E": 0.012987,
+        "F": 0.012987,
+        "G": 0.142857,
+        "I": 0.064935,
+        "K": 0.012987,
+        "L": 0.012987,
+        "M": 0.012987,
+        "P": 0.012987,
+        "Q": 0.012987,
+        "R": 0.064935,
+        "S": 0.12987,
+        "T": 0.051948,
+        "V": 0.051948,
+        "W": 0.077922,
+        "Y": 0.142857
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "WGFKYDGEW",
+        "DGGYSSSTL",
+        "SGYDYYFDV"
+      ]
+    },
+    "100": {
+      "combined_preferred": "Y",
+      "combined_freq": {
+        "Y": 0.28902,
+        "D": 0.2638,
+        "S": 0.14451,
+        "G": 0.08071,
+        "F": 0.03027,
+        "L": 0.02522,
+        "R": 0.02522,
+        "T": 0.02522,
+        "A": 0.02018,
+        "P": 0.02018,
+        "E": 0.01513,
+        "N": 0.01513,
+        "W": 0.01513,
+        "H": 0.01009,
+        "I": 0.01009,
+        "V": 0.01009
+      },
+      "level1_clinical_counts": {
+        "D": 2.0,
+        "S": 1.0,
+        "Y": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.053333,
+        "D": 0.04,
+        "E": 0.04,
+        "F": 0.08,
+        "G": 0.213333,
+        "H": 0.026667,
+        "I": 0.026667,
+        "L": 0.066667,
+        "N": 0.04,
+        "P": 0.053333,
+        "R": 0.066667,
+        "S": 0.053333,
+        "T": 0.066667,
+        "V": 0.026667,
+        "W": 0.04,
+        "Y": 0.106667
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "GFKYDGEWS",
+        "GGYSSSTLY",
+        "GYDYYFDVW"
+      ]
+    },
+    "100A": {
+      "combined_preferred": "G",
+      "combined_freq": {
+        "G": 0.30599,
+        "F": 0.28879,
+        "S": 0.16446,
+        "Y": 0.05159,
+        "T": 0.03439,
+        "P": 0.02866,
+        "D": 0.02293,
+        "V": 0.02293,
+        "W": 0.0172,
+        "A": 0.01146,
+        "H": 0.01146,
+        "L": 0.01146,
+        "E": 0.00573,
+        "I": 0.00573,
+        "M": 0.00573,
+        "N": 0.00573,
+        "Q": 0.00573
+      },
+      "level1_clinical_counts": {
+        "G": 2.0,
+        "S": 1.0,
+        "F": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.030303,
+        "D": 0.060606,
+        "E": 0.015152,
+        "F": 0.106061,
+        "G": 0.151515,
+        "H": 0.030303,
+        "I": 0.015152,
+        "L": 0.030303,
+        "M": 0.015152,
+        "N": 0.015152,
+        "P": 0.075758,
+        "Q": 0.015152,
+        "S": 0.106061,
+        "T": 0.090909,
+        "V": 0.060606,
+        "W": 0.045455,
+        "Y": 0.136364
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "FKYDGEWSF",
+        "GYSSSTLYA",
+        "YDYYFDVWG"
+      ]
+    },
+    "100B": {
+      "combined_preferred": "E",
+      "combined_freq": {
+        "E": 0.39778,
+        "T": 0.19098,
+        "G": 0.08699,
+        "S": 0.05536,
+        "I": 0.04745,
+        "Y": 0.04745,
+        "P": 0.03163,
+        "D": 0.02373,
+        "A": 0.01582,
+        "F": 0.01582,
+        "L": 0.01582,
+        "N": 0.01582,
+        "V": 0.01582,
+        "C": 0.00791,
+        "H": 0.00791,
+        "K": 0.00791,
+        "R": 0.00791,
+        "W": 0.00791
+      },
+      "level1_clinical_counts": {
+        "E": 2.0,
+        "T": 1.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.037037,
+        "C": 0.018519,
+        "D": 0.055556,
+        "E": 0.037037,
+        "F": 0.037037,
+        "G": 0.203704,
+        "H": 0.018519,
+        "I": 0.111111,
+        "K": 0.018519,
+        "L": 0.037037,
+        "N": 0.037037,
+        "P": 0.074074,
+        "R": 0.018519,
+        "S": 0.12963,
+        "V": 0.037037,
+        "W": 0.018519,
+        "Y": 0.111111
+      },
+      "n_clinical_seqs": 2,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "KYDGEWSFD",
+        "YSSSTLYAM"
+      ]
+    },
+    "100C": {
+      "combined_preferred": "W",
+      "combined_freq": {
+        "W": 0.41176,
+        "L": 0.21085,
+        "G": 0.07945,
+        "Y": 0.05959,
+        "D": 0.03973,
+        "I": 0.02979,
+        "A": 0.01986,
+        "C": 0.01986,
+        "F": 0.01986,
+        "N": 0.01986,
+        "P": 0.01986,
+        "S": 0.01986,
+        "V": 0.01986,
+        "K": 0.00993,
+        "R": 0.00993,
+        "T": 0.00993
+      },
+      "level1_clinical_counts": {
+        "W": 2.0,
+        "L": 1.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.046512,
+        "C": 0.046512,
+        "D": 0.093023,
+        "F": 0.046512,
+        "G": 0.186047,
+        "I": 0.069767,
+        "K": 0.023256,
+        "L": 0.046512,
+        "N": 0.046512,
+        "P": 0.046512,
+        "R": 0.023256,
+        "S": 0.046512,
+        "T": 0.023256,
+        "V": 0.046512,
+        "W": 0.069767,
+        "Y": 0.139535
+      },
+      "n_clinical_seqs": 2,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "YDGEWSFDV",
+        "SSSTLYAMD"
+      ]
+    },
+    "100D": {
+      "combined_preferred": "S",
+      "combined_freq": {
+        "S": 0.41755,
+        "Y": 0.2503,
+        "F": 0.0949,
+        "G": 0.03559,
+        "I": 0.03559,
+        "A": 0.02373,
+        "D": 0.02373,
+        "P": 0.02373,
+        "R": 0.02373,
+        "T": 0.02373,
+        "W": 0.02373,
+        "C": 0.01186,
+        "V": 0.01186
+      },
+      "level1_clinical_counts": {
+        "S": 2.0,
+        "Y": 1.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.055556,
+        "C": 0.027778,
+        "D": 0.055556,
+        "F": 0.222222,
+        "G": 0.083333,
+        "I": 0.083333,
+        "P": 0.055556,
+        "R": 0.055556,
+        "S": 0.083333,
+        "T": 0.055556,
+        "V": 0.027778,
+        "W": 0.055556,
+        "Y": 0.138889
+      },
+      "n_clinical_seqs": 2,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "DGEWSFDVW",
+        "SSTLYAMDA"
+      ]
+    },
+    "100E": {
+      "combined_preferred": "F",
+      "combined_freq": {
+        "F": 0.46738,
+        "A": 0.20807,
+        "V": 0.06833,
+        "Y": 0.06833,
+        "G": 0.05125,
+        "D": 0.03416,
+        "S": 0.03416,
+        "T": 0.03416,
+        "H": 0.01708,
+        "P": 0.01708
+      },
+      "level1_clinical_counts": {
+        "F": 2.0,
+        "A": 1.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.04,
+        "D": 0.08,
+        "F": 0.2,
+        "G": 0.12,
+        "H": 0.04,
+        "P": 0.04,
+        "S": 0.08,
+        "T": 0.08,
+        "V": 0.16,
+        "Y": 0.16
+      },
+      "n_clinical_seqs": 2,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "GEWSFDVWG",
+        "STLYAMDAW"
+      ]
+    },
+    "100F": {
+      "combined_preferred": "M",
+      "combined_freq": {
+        "M": 0.48683,
+        "F": 0.14255,
+        "G": 0.11404,
+        "I": 0.11404,
+        "A": 0.05702,
+        "Y": 0.05702,
+        "D": 0.02851
+      },
+      "level1_clinical_counts": {
+        "M": 1.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.111111,
+        "D": 0.055556,
+        "F": 0.277778,
+        "G": 0.222222,
+        "I": 0.222222,
+        "Y": 0.111111
+      },
+      "n_clinical_seqs": 1,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "TLYAMDAWG"
+      ]
+    },
+    "100G": {
+      "combined_preferred": "F",
+      "combined_freq": {
+        "F": 0.4,
+        "G": 0.1,
+        "I": 0.1,
+        "M": 0.1,
+        "S": 0.1,
+        "V": 0.1,
+        "Y": 0.1
+      },
+      "level1_clinical_counts": {},
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "F": 0.4,
+        "G": 0.1,
+        "I": 0.1,
+        "M": 0.1,
+        "S": 0.1,
+        "V": 0.1,
+        "Y": 0.1
+      },
+      "n_clinical_seqs": 0,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": []
+    },
+    "100H": {
+      "combined_preferred": "G",
+      "combined_freq": {
+        "G": 0.5,
+        "I": 0.25,
+        "R": 0.25
+      },
+      "level1_clinical_counts": {},
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "G": 0.5,
+        "I": 0.25,
+        "R": 0.25
+      },
+      "n_clinical_seqs": 0,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": []
+    },
+    "100I": {
+      "combined_preferred": "F",
+      "combined_freq": {
+        "F": 0.33333,
+        "I": 0.33333,
+        "S": 0.33333
+      },
+      "level1_clinical_counts": {},
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "F": 0.333333,
+        "I": 0.333333,
+        "S": 0.333333
+      },
+      "n_clinical_seqs": 0,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": []
+    },
+    "101": {
+      "combined_preferred": "D",
+      "combined_freq": {
+        "D": 0.87672,
+        "G": 0.03826,
+        "Q": 0.017,
+        "V": 0.017,
+        "H": 0.0085,
+        "L": 0.0085,
+        "N": 0.0085,
+        "P": 0.0085,
+        "E": 0.00425,
+        "F": 0.00425,
+        "S": 0.00425,
+        "Y": 0.00425
+      },
+      "level1_clinical_counts": {
+        "D": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "D": 0.674157,
+        "E": 0.011236,
+        "F": 0.011236,
+        "G": 0.101124,
+        "H": 0.022472,
+        "L": 0.022472,
+        "N": 0.022472,
+        "P": 0.022472,
+        "Q": 0.044944,
+        "S": 0.011236,
+        "V": 0.044944,
+        "Y": 0.011236
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "EWSFDVWGA",
+        "LYAMDAWGQ",
+        "DYYFDVWGQ"
+      ]
+    },
+    "102": {
+      "combined_preferred": "V",
+      "combined_freq": {
+        "V": 0.51859,
+        "Y": 0.20405,
+        "A": 0.12433,
+        "L": 0.07227,
+        "F": 0.02125,
+        "I": 0.017,
+        "D": 0.01275,
+        "S": 0.01275,
+        "C": 0.00425,
+        "G": 0.00425,
+        "H": 0.00425,
+        "N": 0.00425
+      },
+      "level1_clinical_counts": {
+        "V": 4.0,
+        "A": 1.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "C": 0.011236,
+        "D": 0.033708,
+        "F": 0.05618,
+        "G": 0.011236,
+        "H": 0.011236,
+        "I": 0.044944,
+        "L": 0.191011,
+        "N": 0.011236,
+        "S": 0.033708,
+        "V": 0.05618,
+        "Y": 0.539326
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "WSFDVWGAG",
+        "YAMDAWGQG",
+        "YYFDVWGQG"
+      ]
+    },
+    "103": {
+      "combined_preferred": "W",
+      "combined_freq": {
+        "W": 0.98725,
+        "C": 0.00425,
+        "L": 0.00425,
+        "R": 0.00425
+      },
+      "level1_clinical_counts": {
+        "W": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "C": 0.011236,
+        "L": 0.011236,
+        "R": 0.011236,
+        "W": 0.966292
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "SFDVWGAGT",
+        "AMDAWGQGT",
+        "YFDVWGQGT"
+      ]
+    },
+    "104": {
+      "combined_preferred": "G",
+      "combined_freq": {
+        "G": 1.0
+      },
+      "level1_clinical_counts": {
+        "G": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "G": 1.0
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "FDVWGAGTT",
+        "MDAWGQGTT",
+        "FDVWGQGTL"
+      ]
+    },
+    "105": {
+      "combined_preferred": "Q",
+      "combined_freq": {
+        "Q": 0.64081,
+        "A": 0.24867,
+        "H": 0.07227,
+        "P": 0.017,
+        "R": 0.017,
+        "V": 0.00425
+      },
+      "level1_clinical_counts": {
+        "A": 2.0,
+        "Q": 3.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "H": 0.191011,
+        "P": 0.044944,
+        "Q": 0.707865,
+        "R": 0.044944,
+        "V": 0.011236
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "DVWGAGTTV",
+        "DAWGQGTTV",
+        "DVWGQGTLV"
+      ]
+    },
+    "106": {
+      "combined_preferred": "G",
+      "combined_freq": {
+        "G": 0.9915,
+        "D": 0.00425,
+        "R": 0.00425
+      },
+      "level1_clinical_counts": {
+        "G": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "D": 0.011236,
+        "G": 0.977528,
+        "R": 0.011236
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "VWGAGTTVT",
+        "AWGQGTTVT",
+        "VWGQGTLVT"
+      ]
+    },
+    "107": {
+      "combined_preferred": "T",
+      "combined_freq": {
+        "T": 0.77045,
+        "A": 0.19554,
+        "V": 0.02551,
+        "S": 0.0085
+      },
+      "level1_clinical_counts": {
+        "T": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.516854,
+        "S": 0.022472,
+        "T": 0.393258,
+        "V": 0.067416
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "WGAGTTVTV",
+        "WGQGTTVTV",
+        "WGQGTLVTV"
+      ]
+    },
+    "108": {
+      "combined_preferred": "L",
+      "combined_freq": {
+        "L": 0.52498,
+        "T": 0.37725,
+        "I": 0.06801,
+        "Q": 0.02125,
+        "M": 0.00425,
+        "S": 0.00425
+      },
+      "level1_clinical_counts": {
+        "T": 3.0,
+        "L": 2.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "I": 0.179775,
+        "L": 0.730337,
+        "M": 0.011236,
+        "Q": 0.05618,
+        "S": 0.011236,
+        "T": 0.011236
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "GAGTTVTVS",
+        "GQGTTVTVS",
+        "GQGTLVTVS"
+      ]
+    },
+    "109": {
+      "combined_preferred": "V",
+      "combined_freq": {
+        "V": 0.9915,
+        "I": 0.0085
+      },
+      "level1_clinical_counts": {
+        "V": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "I": 0.022472,
+        "V": 0.977528
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "AGTTVTVSS",
+        "QGTTVTVSA",
+        "QGTLVTVSS"
+      ]
+    },
+    "110": {
+      "combined_preferred": "T",
+      "combined_freq": {
+        "T": 0.97449,
+        "A": 0.01275,
+        "I": 0.0085,
+        "R": 0.00425
+      },
+      "level1_clinical_counts": {
+        "T": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.033708,
+        "I": 0.022472,
+        "R": 0.011236,
+        "T": 0.932584
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "GTTVTVSS-",
+        "GTTVTVSA-",
+        "GTLVTVSS-"
+      ]
+    },
+    "111": {
+      "combined_preferred": "V",
+      "combined_freq": {
+        "V": 0.99575,
+        "G": 0.00425
+      },
+      "level1_clinical_counts": {
+        "V": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "G": 0.011236,
+        "V": 0.988764
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "TTVTVSS--",
+        "TTVTVSA--",
+        "TLVTVSS--"
+      ]
+    },
+    "112": {
+      "combined_preferred": "S",
+      "combined_freq": {
+        "S": 0.99077,
+        "P": 0.00923
+      },
+      "level1_clinical_counts": {
+        "S": 5.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "P": 0.02439,
+        "S": 0.97561
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "TVTVSS---",
+        "TVTVSA---",
+        "LVTVSS---"
+      ]
+    },
+    "113": {
+      "combined_preferred": "S",
+      "combined_freq": {
+        "S": 0.80185,
+        "A": 0.14279,
+        "Q": 0.05537
+      },
+      "level1_clinical_counts": {
+        "S": 4.0,
+        "A": 1.0
+      },
+      "level2_scaffold_counts": {},
+      "level3_germline_freq": {
+        "A": 0.04878,
+        "Q": 0.146341,
+        "S": 0.804878
+      },
+      "n_clinical_seqs": 3,
+      "n_scaffold_seqs": 0,
+      "9mer_contexts": [
+        "VTVSS----",
+        "VTVSA----"
+      ]
+    }
+  }
+}

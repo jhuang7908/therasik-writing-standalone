@@ -1,0 +1,295 @@
+{
+  "version": "4.3",
+  "standard": "VH_VL_HUMANIZATION_DESIGN_STANDARD",
+  "date": "2026-02-18",
+  "description": "Machine-readable rules for VH/VL antibody humanization. STRICTLY SEPARATED from VHH logic.",
+  "warning": "DO NOT mix with VHH humanization config (tier_system_config.json).",
+
+  "numbering_scheme": "IMGT",
+  "tools": {
+    "numbering": "Anarcii",
+    "structure_prediction": "ImmuneBuilder/ABodyBuilder2",
+    "immunogenicity": "IEDB_API"
+  },
+
+  "cdr_imgt_ranges": {
+    "VH": {
+      "CDR1": [27, 38],
+      "CDR2": [56, 65],
+      "CDR3": [105, 117]
+    },
+    "VL": {
+      "CDR1": [27, 38],
+      "CDR2": [56, 65],
+      "CDR3": [105, 117]
+    }
+  },
+
+  "cdr_union_ranges": {
+    "description": "Union of Kabat+Chothia+IMGT+Contact definitions. All positions within these ranges are grafted from mouse, never humanized.",
+    "VH": {
+      "CDR1_union": [26, 38],
+      "CDR2_union": [55, 65],
+      "CDR3_union": [105, 117]
+    },
+    "VL": {
+      "CDR1_union": [27, 38],
+      "CDR2_union": [56, 65],
+      "CDR3_union": [105, 117]
+    }
+  },
+
+  "framework_selection_protocol": {
+    "step_order": ["2.1_cdr_gate", "2.2_golden_pairs", "2.3_vernier_score", "2.4_fr_identity"],
+
+    "step_2_1_cdr_gate": {
+      "description": "Hard filter: human germline CDR lengths must exactly match mouse antibody",
+      "required_match": ["H1", "H2", "L1"],
+      "data_source_vh3": "data/germlines/human_ig_aa/vh_numbered/human_vh_numbered_and_split.json",
+      "data_source_ighv": "data/germlines/human_ig_aa/IGHV_aa.json",
+      "data_source_igkv": "data/germlines/human_ig_aa/IGKV_aa.json",
+      "performance_rule": "Single batch Anarcii call, cache results to JSON. Never call per-sequence."
+    },
+
+    "step_2_2_golden_pairs": {
+      "description": "Prioritize VH/VL combinations with high frequency in 458-engineered antibody database",
+      "data_source": "data/humanization_assay/vh_vl_pairing_report.md",
+      "tier_natural_engineered_both_high": "FIRST_CHOICE",
+      "tier_engineered_high_only": "SECOND_CHOICE",
+      "tier_neither": "PROHIBITED"
+    },
+
+    "step_2_3_vernier_score": {
+      "description": "Tier-weighted Vernier zone residue matching",
+      "tiers": {
+        "T1": {
+          "positions_VH": [71],
+          "positions_VL": [71],
+          "weight": 3.0
+        },
+        "T2": {
+          "positions_VH": [2, 27, 28, 29, 30, 69, 93, 94],
+          "positions_VL": [36, 46],
+          "weight": 2.0
+        },
+        "T3": {
+          "positions_VH": [48, 49, 67, 73, 78],
+          "positions_VL": [2, 4, 49, 69, 98],
+          "weight": 1.0
+        }
+      },
+      "score_rules": {
+        "exact_match": 2.0,
+        "same_chemical_class": 0.5,
+        "mismatch": 0.0
+      }
+    },
+
+    "step_2_4_fr_identity": {
+      "description": "Framework region sequence identity, calculated after masking Union CDR ranges",
+      "regions": ["FR1", "FR2", "FR3"]
+    },
+
+    "combined_score_formula": {
+      "vernier_weight": 0.6,
+      "fr_identity_weight": 0.3,
+      "golden_bonus_weight": 0.1
+    },
+
+    "output": "Top-3 VH candidates + Top-3 VL candidates for human review"
+  },
+
+  "structure_calculation": {
+    "required_metrics": [
+      {
+        "name": "SASA",
+        "unit": "Angstrom^2",
+        "description": "Solvent Accessible Surface Area per Vernier residue"
+      },
+      {
+        "name": "contact_number",
+        "unit": "count",
+        "cutoff_angstrom": 4.5,
+        "description": "Heavy atom contacts within 4.5 Ang (packing density)"
+      },
+      {
+        "name": "vh_vl_angle",
+        "unit": "degrees",
+        "description": "Inter-domain angle between VH and VL main axes"
+      },
+      {
+        "name": "vernier_cdr_distance",
+        "unit": "Angstrom",
+        "description": "Distance from each Vernier residue to nearest CDR atom"
+      }
+    ],
+    "thresholds": {
+      "SASA_buried_must_keep": 20,
+      "SASA_exposed_can_try": 50,
+      "contact_high_packing_keep": 28,
+      "contact_low_packing_try": 15,
+      "cdr_contact_distance_keep": 4.5
+    }
+  },
+
+  "backmutation_rules": {
+    "hard_constraints": [
+      {
+        "id": "HC1",
+        "name": "Gly_Pro_rule",
+        "condition": "mouse Vernier residue is G or P",
+        "decision": "KEEP_MOUSE",
+        "reason": "Backbone dihedral constraints"
+      },
+      {
+        "id": "HC2",
+        "name": "Cys_disulfide_rule",
+        "condition": "residue involved in disulfide bond",
+        "decision": "KEEP_MOUSE"
+      },
+      {
+        "id": "HC3",
+        "name": "Tier1_default_keep",
+        "positions_VH": [71, 94],
+        "positions_VL": [71, 49],
+        "decision": "KEEP_MOUSE_default",
+        "reason": "T1 positions require structural evidence to override"
+      },
+      {
+        "id": "HC4",
+        "name": "Buried_SASA",
+        "condition": "SASA < 20",
+        "decision": "KEEP_MOUSE"
+      },
+      {
+        "id": "HC5",
+        "name": "CDR_direct_contact",
+        "condition": "distance_to_CDR < 4.5 Ang",
+        "decision": "KEEP_MOUSE"
+      },
+      {
+        "id": "HC6",
+        "name": "Buried_salt_bridge",
+        "condition": "part of buried salt bridge pair",
+        "decision": "KEEP_MOUSE_paired"
+      }
+    ],
+
+    "soft_constraints": [
+      {
+        "id": "SC1",
+        "name": "VH_VL_angle_redline",
+        "condition": "mouse L1 >= 11 AND selected human framework L1 <= 10",
+        "angle_change_prediction": "> 5 degrees",
+        "force_keep": ["VH_71", "VH_94", "VL_49"],
+        "note": "Three interface positions are co-dependent, must be treated together"
+      },
+      {
+        "id": "SC2",
+        "name": "L1_VL71_binding",
+        "condition": "mouse L1 canonical_class != human framework L1 canonical_class",
+        "force_keep": ["VL_71"],
+        "data_support": "VL71 environment determined 55% by L1 length, r=0.55"
+      },
+      {
+        "id": "SC3",
+        "name": "VH_core_module_coupling",
+        "condition": "decided to keep VH_71",
+        "check_also": ["VH_73", "VH_78"],
+        "decision": "if mouse != human at VH73/VH78, keep mouse",
+        "data_support": "VH71-VH73 correlation r=0.75, VH71-VH78 r=0.61"
+      },
+      {
+        "id": "SC4",
+        "name": "H2_VH71_correction",
+        "condition": "mouse H2 = H2-10 AND human framework H2 = H2-9",
+        "force_keep": ["VH_71"]
+      },
+      {
+        "id": "SC5",
+        "name": "VH48_VH67_antagonism",
+        "condition": "modifying VH_48",
+        "check_also": ["VH_67"],
+        "decision": "avoid introducing bulky residues at both positions simultaneously",
+        "data_support": "negative correlation r=-0.45"
+      }
+    ],
+
+    "coupling_table": [
+      {"trigger": "VH_71", "check": ["VH_73", "VH_78"], "cluster": 1},
+      {"trigger": "VL_71", "check": ["VL_36"], "cluster": 2},
+      {"trigger": "VH_48", "check": ["VH_67"], "cluster": "antagonist"},
+      {"trigger": "VH_94", "check": ["VH_93", "VL_4"], "cluster": 3}
+    ],
+
+    "sequence_assembly_rules": [
+      "Start from human germline sequence",
+      "Replace Union CDR ranges with mouse CDR sequences",
+      "Apply backmutation list residue by residue",
+      "Self-check: exact string match of mouse CDR1/CDR2/CDR3 in final sequence"
+    ]
+  },
+
+  "qc_thresholds": {
+    "structural_fidelity": {
+      "CDR_RMSD_max_angstrom": 0.5,
+      "VH_VL_angle_deviation_max_degrees": 3.0
+    },
+    "vernier_packing": {
+      "data_source": "data/humanization_assay/vernier_framework_patterns.json",
+      "reference_key_template": "H1-{H1}-?|H2-{H2}-?|L1-{L1}-?",
+      "pass_condition": "P5 <= contact_number <= P95",
+      "fail_low_cavity": "< P5 — large to small substitution, structural instability",
+      "fail_high_clash": "> P95 — small to large substitution, folding failure"
+    },
+    "surface_properties": {
+      "SAP_check": "no abnormally large hydrophobic patches",
+      "pI_acceptable_range": [5.0, 9.0]
+    },
+    "chemical_liabilities": [
+      {"type": "N_glycosylation", "pattern": "N-X-S/T (X!=P)", "location": "CDR or exposed FR", "severity": "HIGH"},
+      {"type": "deamidation", "pattern": "NG or NS", "severity": "MEDIUM"},
+      {"type": "isomerization", "pattern": "DG or DS", "severity": "MEDIUM"},
+      {"type": "oxidation", "pattern": "exposed Met (SASA>50) or Trp in CDR3", "severity": "MEDIUM"},
+      {"type": "free_Cys", "pattern": "non-disulfide Cys", "severity": "HIGH"}
+    ],
+    "immunogenicity": {
+      "tool": "IEDB_API",
+      "peptide_lengths": [9, 15],
+      "hla_alleles": "27 high-frequency HLA-DRB1",
+      "mhc_class": "II",
+      "clustering_filter": true,
+      "germline_filter": "exclude peptides matching human germline 100%"
+    }
+  },
+
+  "compliance_rules": {
+    "must_do": [
+      "Execute phases in order: 1 -> 2 -> 3 -> 4 -> 5, no skipping",
+      "Use pre-computed cache for VH3 numbering in Phase 2.1",
+      "Single batch Anarcii call per germline database (not per sequence)",
+      "Complete structure modeling before making backmutation decisions",
+      "Base backmutation decisions on actual computed SASA and contact numbers",
+      "Generate humanization_proposal.json and obtain human confirmation before assembly",
+      "CDR self-check: exact string match after assembly",
+      "Load packing reference ranges dynamically from vernier_framework_patterns.json"
+    ],
+    "must_not_do": [
+      "Mix VHH rules, data, or modules with VH/VL workflow",
+      "Skip structure modeling and make backmutation decisions empirically",
+      "Humanize any residue within Union CDR ranges",
+      "Call Anarcii individually per sequence (performance violation)",
+      "Use AI-generated amino acids (only mouse or human germline sequences allowed)"
+    ]
+  },
+
+  "data_sources": {
+    "vernier_framework_patterns": "data/humanization_assay/vernier_framework_patterns.json",
+    "vh_vl_pairing_report": "data/humanization_assay/vh_vl_pairing_report.md",
+    "vernier_correlation_report": "data/humanization_assay/vernier_correlation_report.md",
+    "structure_metrics_summary": "data/humanization_assay/structure_metrics_summary.json",
+    "human_vh3_numbered": "data/germlines/human_ig_aa/vh_numbered/human_vh_numbered_and_split.json",
+    "ighv_aa": "data/germlines/human_ig_aa/IGHV_aa.json",
+    "igkv_aa": "data/germlines/human_ig_aa/IGKV_aa.json"
+  }
+}

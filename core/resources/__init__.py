@@ -1,0 +1,41 @@
+"""AbEngineCore shared resource paths (germline, etc.)."""
+
+from .germline_resources import (
+    AA_FC,
+    AA_IG,
+    FC_NT,
+    GERMLINES,
+    IMGT_VQUEST,
+    aa_fc_fasta,
+    aa_ig_fasta,
+    fc_probe_identity,
+    human_ighv_identity_fallback,
+    load_human_ighv_aa_index,
+    load_ighv_aa_index,
+    load_igkv_aa_index,
+    load_iglv_aa_index,
+    parse_imgt_aa_fasta,
+    summarize_fc_aa_libraries,
+    vl_identity_imgt,
+    vh_identity_imgt,
+)
+
+__all__ = [
+    "AA_FC",
+    "AA_IG",
+    "FC_NT",
+    "GERMLINES",
+    "IMGT_VQUEST",
+    "aa_fc_fasta",
+    "aa_ig_fasta",
+    "fc_probe_identity",
+    "human_ighv_identity_fallback",
+    "load_human_ighv_aa_index",
+    "load_ighv_aa_index",
+    "load_igkv_aa_index",
+    "load_iglv_aa_index",
+    "parse_imgt_aa_fasta",
+    "summarize_fc_aa_libraries",
+    "vl_identity_imgt",
+    "vh_identity_imgt",
+]

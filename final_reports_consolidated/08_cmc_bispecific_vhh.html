@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow">
+<title>InSynBio AbEngineCore | Bispecific VHH CMC — dual-7D12</title>
+
+<style>
+:root{
+  --accent:#1b4fad; --accent2:#2d6cdf; --bg:#f4f7f9; --card:#fff;
+  --border:#d0d7e2; --muted:#5a6a80;
+  --pass:#1a7a3c; --fail:#b91c1c; --warn:#92610a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg); color:#2c3e50; margin:0; padding:20px; line-height:1.5; font-size:13px;
+}
+.page{
+  max-width:900px; margin:0 auto; background:#fff;
+  padding:32px 40px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,.05);
+}
+.report-header{
+  background:var(--accent); color:#fff; padding:20px 28px; border-radius:8px;
+  margin-bottom:18px; display:flex; justify-content:space-between; align-items:flex-end;
+}
+.report-header h1{font-size:1.35rem;font-weight:700;margin:0 0 4px;color:#fff;letter-spacing:-.02em}
+.report-header .sub{font-size:.84rem;font-weight:600;opacity:.95;line-height:1.45;color:#fff}
+.report-header .ts{font-size:.78rem;font-weight:600;opacity:.92;text-align:right}
+.report-header .header-meta{margin-top:10px;font-size:.76rem;font-weight:600;opacity:.9;line-height:1.45;width:100%}
+.report-header .header-meta div{margin-top:2px}
+@media print{.report-header .header-meta{color:#fff!important;opacity:1}}
+.card.accent h1{font-size:1.25rem;font-weight:800;color:var(--accent);letter-spacing:.01em;margin-bottom:8px}
+h2{color:var(--accent); font-size:.98rem; margin:0 0 12px; padding-bottom:6px; border-bottom:2px solid var(--border)}
+.meta{font-size:.78rem;color:var(--muted);margin-top:4px;line-height:1.5}
+.badge{display:inline-block;padding:2px 9px;border-radius:10px;font-size:.7rem;font-weight:700;vertical-align:middle}
+.pass{background:#d1fae5;color:var(--pass);border:1px solid #6ee7b7}
+.warn{background:#fef3c7;color:var(--warn);border:1px solid #fcd34d}
+.fail{background:#fee2e2;color:var(--fail);border:1px solid #fca5a5}
+.card{background:var(--card); border:1px solid var(--border); border-radius:8px; padding:18px 20px; margin-bottom:16px;box-shadow:0 1px 3px rgba(15,23,42,.06)}
+.card.accent{border-color:#aac4ee; background:#f8fafc}
+.score-row{display:flex;align-items:flex-end;gap:32px;margin:8px 0 12px;flex-wrap:wrap}
+.score-val{font-size:2.1rem;font-weight:800;color:var(--accent)}
+.score-lbl{font-size:.72rem;color:var(--muted);margin-bottom:4px}
+.score-rank{font-size:1.15rem;font-weight:700;color:var(--pass)}
+table{width:100%;border-collapse:collapse;font-size:.83rem;margin-top:8px}
+th,td{padding:7px 12px;border-bottom:1px solid #eef;text-align:left;vertical-align:top}
+th{background:#e8eef8; color:var(--accent); font-weight:600; font-size:.74rem; text-transform:uppercase; letter-spacing:.04em; border-bottom:2px solid var(--border)}
+.risk-low{color:var(--pass);font-weight:600}
+.risk-mod{color:var(--warn);font-weight:600}
+.risk-high{color:var(--fail);font-weight:600}
+.interp{font-size:.78rem;color:var(--muted);line-height:1.5;margin-top:4px}
+pre.seqblk{
+  white-space:pre-wrap;word-break:break-all;font-size:.78rem;
+  font-family:Consolas,'Courier New',monospace;
+  background:#f8fafd;padding:12px 14px;border-radius:6px;border:1px solid var(--border);
+  color:#1a2030;line-height:1.8;
+}
+footer{text-align:center;color:#8899aa;font-size:.72rem;margin-top:28px;padding-top:12px;border-top:1px solid var(--border)}
+footer a{color:#1b4fad}
+.param-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:10px;font-size:.76rem}
+@media (max-width:900px){.param-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.param-grid{grid-template-columns:1fr}}
+.param-cell{border:1px solid var(--border);border-radius:6px;padding:8px 10px;background:#f8fafc;line-height:1.35}
+.param-cell .pn{font-size:.66rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.param-cell .pv{font-size:.8rem;font-weight:700;margin-top:3px;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.param-cell .pv .rk{font-size:.65rem;font-weight:600;color:var(--muted)}
+.param-cell .gate{font-size:.62rem;color:var(--muted);margin-top:4px;line-height:1.3}
+.param-cell .interp2{font-size:.62rem;color:var(--muted);margin-top:4px;line-height:1.35}
+.param-dot{display:inline-block;width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:2px}
+.param-dot.low{background:var(--pass)}.param-dot.mod{background:var(--warn)}.param-dot.high{background:var(--fail)}.param-dot.na{background:#94a3b8}
+@media print{
+  body{background:#fff;font-size:10.5px;color:#000;padding:0}
+  .page{max-width:100%;padding:0;box-shadow:none}
+  .report-header{background:var(--accent) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .report-header h1,.report-header .sub,.report-header .ts,.report-header .header-meta{color:#fff!important;opacity:1}
+  /* Permit card pagination to reduce large white gaps in exported PDFs. */
+  .card{break-inside:auto;page-break-inside:auto;border:1px solid #ccc;margin-bottom:10px}
+  .card h2{break-after:avoid;page-break-after:avoid}
+  .param-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="report-header" style="margin-bottom:20px"><div><h1>InSynBio AbEngineCore</h1><div class="sub">Bispecific VHH-linker-VHH CMC Report | CMC Standard v1.0</div>        <div class="header-meta">
+        <div><strong>Report format (suite)</strong>: 4.1.1</div>
+        <div><strong>Service</strong>: Bispecific VHH-linker-VHH CMC &nbsp;·&nbsp; <strong>Service report</strong>: v1.3 &nbsp;·&nbsp; <strong>Content variant</strong>: Bispecific VHH CMC Standard v1.0 · source-matched per-arm context</div>
+        <div><strong>Protocol</strong>: 5.1.0 &nbsp;|&nbsp; <strong>Analysis</strong>: 5.1.1 &nbsp;|&nbsp; <strong>Build</strong>: 20260503-002 &nbsp;|&nbsp; <strong>Environment</strong>: DEV</div>
+        <div>Project / construct: <strong>dual-7D12</strong> &nbsp;·&nbsp; Targets: Target-A (7D12 epitope 1) + Target-B (7D12 epitope 2)</div>
+        <div>Generated: 2026-05-11 18:58 UTC</div>
+        </div></div><div class="ts">2026-05-11 18:58 UTC<br><span style='font-size:.7rem;opacity:.6'>CONFIDENTIAL</span></div></div>
+<div class="cohort-provenance" style="margin:10px 0;padding:10px 14px;border:1px solid #cbd5e1;border-radius:6px;background:#f8fafc;font-size:.78rem;color:#1f2937"><div style="font-weight:600;color:#1e3a8a;margin-bottom:6px">Reference cohort provenance</div><table style="width:100%;border-collapse:collapse;color:#1f2937"><tr style="color:#475569;font-size:.72rem;text-align:left"><th style="padding:2px 4px;color:#1e3a8a">Panel type</th><th style="padding:2px 4px;color:#1e3a8a">Release ID</th><th style="padding:2px 4px;color:#1e3a8a">Purpose in this report</th></tr><tbody style="color:#1f2937"><tr><td><strong>Clinical VHH benchmark panel</strong></td><td>R2026.05</td><td>Per-arm clinical VHH developability</td></tr><tr><td><strong>Structural VHH benchmark panel</strong></td><td>R2026.05</td><td>Per-arm hallmark / FR2 context</td></tr></tbody></table><div style="margin-top:6px;color:#64748b;font-size:.72rem">Reference range derived from internal source-matched benchmark panel (frozen release: R2026.05). Detailed cohort composition is confidential.</div></div>
+
+<div class="card">
+  <h2>§Seq — Construct Sequences</h2>
+  <p class="interp" style="margin-bottom:8px">Per-arm sequences and assembled fusion construct (251 aa total).</p>
+  <div style="background:#f8fafd;border:1px solid var(--border);border-radius:6px;padding:10px 12px;margin-bottom:8px">
+    <div style="font-size:.7rem;font-weight:700;color:var(--accent2);margin-bottom:4px">Arm 1 — Target-A (7D12 epitope 1) &nbsp;<span style="font-weight:400;color:#8a9ab0">(120 aa)</span></div>
+    <div style="font-family:Consolas,monospace;font-size:.76rem;word-break:break-all;line-height:1.9;color:#1a2030"><span style="margin-right:8px;letter-spacing:.04em">QVQLQESGGG</span><span style="margin-right:8px;letter-spacing:.04em">SVQAGGSLRL</span><span style="margin-right:8px;letter-spacing:.04em">SCAASGRTFS</span><span style="margin-right:8px;letter-spacing:.04em">SYAMGWFRQA</span><span style="margin-right:8px;letter-spacing:.04em">PGKEREGVAA</span><span style="margin-right:8px;letter-spacing:.04em">ISSSGGSTYY</span><span style="margin-right:8px;letter-spacing:.04em">ADSVKGRFTI</span><span style="margin-right:8px;letter-spacing:.04em">SRDNAKNTVY</span><span style="margin-right:8px;letter-spacing:.04em">LQMNSLKPED</span><span style="margin-right:8px;letter-spacing:.04em">TAVYYCAAAG</span><span style="margin-right:8px;letter-spacing:.04em">LGSSTWLDYW</span><span style="margin-right:8px;letter-spacing:.04em">GQGTQVTVSS</span></div>
+  </div>
+  <div style="background:#fdf6e3;border:1px solid #fde68a;border-radius:6px;padding:10px 12px;margin-bottom:8px">
+    <div style="font-size:.7rem;font-weight:700;color:#92400e;margin-bottom:4px">Linker: (G4S)3 &nbsp;<span style="font-weight:400;color:#8a9ab0">(15 aa)</span></div>
+    <div style="font-family:Consolas,monospace;font-size:.76rem;color:#78350f;letter-spacing:.05em">GGGGSGGGGSGGGGS</div>
+  </div>
+  <div style="background:#f8fafd;border:1px solid var(--border);border-radius:6px;padding:10px 12px;margin-bottom:8px">
+    <div style="font-size:.7rem;font-weight:700;color:var(--accent2);margin-bottom:4px">Arm 2 — Target-B (7D12 epitope 2) &nbsp;<span style="font-weight:400;color:#8a9ab0">(116 aa)</span></div>
+    <div style="font-family:Consolas,monospace;font-size:.76rem;word-break:break-all;line-height:1.9;color:#1a2030"><span style="margin-right:8px;letter-spacing:.04em">EVQLVESGGG</span><span style="margin-right:8px;letter-spacing:.04em">LVQPGGSLRL</span><span style="margin-right:8px;letter-spacing:.04em">SCAASGFTFS</span><span style="margin-right:8px;letter-spacing:.04em">RYGMSWVRQA</span><span style="margin-right:8px;letter-spacing:.04em">PGKGLEWVSA</span><span style="margin-right:8px;letter-spacing:.04em">ISSGGGSTYY</span><span style="margin-right:8px;letter-spacing:.04em">PDSVKGRFTI</span><span style="margin-right:8px;letter-spacing:.04em">SRDNSKNTLY</span><span style="margin-right:8px;letter-spacing:.04em">LQMNSLRAED</span><span style="margin-right:8px;letter-spacing:.04em">TAVYYCARQG</span><span style="margin-right:8px;letter-spacing:.04em">LPGDYWGQGT</span><span style="margin-right:8px;letter-spacing:.04em">LVTVSS</span></div>
+  </div>
+  <div style="background:#f0f4ff;border:1px solid #c7d5f0;border-radius:6px;padding:10px 12px"><div style="font-size:.7rem;font-weight:700;color:var(--accent);margin-bottom:4px">Fusion construct (Arm1–Linker–Arm2) — 251 aa</div><div style="font-family:Consolas,monospace;font-size:.76rem;word-break:break-all;line-height:1.9;color:#1a2030"><span style="margin-right:8px;letter-spacing:.04em">QVQLQESGGG</span><span style="margin-right:8px;letter-spacing:.04em">SVQAGGSLRL</span><span style="margin-right:8px;letter-spacing:.04em">SCAASGRTFS</span><span style="margin-right:8px;letter-spacing:.04em">SYAMGWFRQA</span><span style="margin-right:8px;letter-spacing:.04em">PGKEREGVAA</span><span style="margin-right:8px;letter-spacing:.04em">ISSSGGSTYY</span><span style="margin-right:8px;letter-spacing:.04em">ADSVKGRFTI</span><span style="margin-right:8px;letter-spacing:.04em">SRDNAKNTVY</span><span style="margin-right:8px;letter-spacing:.04em">LQMNSLKPED</span><span style="margin-right:8px;letter-spacing:.04em">TAVYYCAAAG</span><span style="margin-right:8px;letter-spacing:.04em">LGSSTWLDYW</span><span style="margin-right:8px;letter-spacing:.04em">GQGTQVTVSS</span><span style="margin-right:8px;letter-spacing:.04em">GGGGSGGGGS</span><span style="margin-right:8px;letter-spacing:.04em">GGGGSEVQLV</span><span style="margin-right:8px;letter-spacing:.04em">ESGGGLVQPG</span><span style="margin-right:8px;letter-spacing:.04em">GSLRLSCAAS</span><span style="margin-right:8px;letter-spacing:.04em">GFTFSRYGMS</span><span style="margin-right:8px;letter-spacing:.04em">WVRQAPGKGL</span><span style="margin-right:8px;letter-spacing:.04em">EWVSAISSGG</span><span style="margin-right:8px;letter-spacing:.04em">GSTYYPDSVK</span><span style="margin-right:8px;letter-spacing:.04em">GRFTISRDNS</span><span style="margin-right:8px;letter-spacing:.04em">KNTLYLQMNS</span><span style="margin-right:8px;letter-spacing:.04em">LRAEDTAVYY</span><span style="margin-right:8px;letter-spacing:.04em">CARQGLPGDY</span><span style="margin-right:8px;letter-spacing:.04em">WGQGTLVTVS</span><span style="margin-right:8px;letter-spacing:.04em">S</span></div></div>
+</div>
+
+<div class="card accent">
+  <h2>§0 — Fusion construct summary</h2>
+  <div class="score-row">
+    <div><div class="score-val">8.85</div><div class="score-lbl">Fusion pI</div></div>
+    <div><div class="score-val">-0.31</div><div class="score-lbl">Fusion GRAVY</div></div>
+    <div><div class="score-val">0.03</div><div class="score-lbl">ΔpI (arms)</div></div>
+    <div><div class="score-rank">WARN</div><div class="score-lbl">Overall status</div></div>
+  </div>
+  <table style="margin-top:12px">
+    <tr><th>Recommended linker</th><td class="mono">(G4S)3</td></tr>
+    <tr><th>Linker sequence</th><td class="mono" style="font-size:.8rem">GGGGSGGGGSGGGGS</td></tr>
+    <tr><th>Linker GRAVY (hydrophobicity)</th>
+        <td>-0.480
+        &nbsp;<span style="color:#b45309">WARN</span>
+        <span style="font-size:.7rem;color:#6b7280">(G4S-type linkers: GRAVY ≈ −0.5 to −0.7; more negative = lower aggregation risk)</span></td></tr>
+    <tr><th>Linker rationale</th><td>SmartLink primary: (G4S)3 (fusion pI=8.85, pi_flag=warn). Passing fusion rows: 0.</td></tr>
+    <tr><th>Fusion instability</th><td>43.20</td></tr>
+    <tr><th>ER expression score</th><td>0.38</td></tr>
+    <tr><th>Flags</th><td>1 fusion row(s) with warn-tier pI</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>Arm 1 — Target-A (7D12 epitope 1)</h2>
+  <div style="background:#f8fafd;border:1px solid var(--border);border-radius:6px;padding:10px 12px;margin-bottom:10px"><div style="font-size:.7rem;font-weight:700;color:var(--accent2);margin-bottom:4px">Sequence &nbsp;<span style="font-weight:400;color:#8a9ab0">(120 aa)</span></div><div style="font-family:Consolas,monospace;font-size:.76rem;word-break:break-all;line-height:1.9;color:#1a2030"><span style="margin-right:8px;letter-spacing:.04em">QVQLQESGGG</span><span style="margin-right:8px;letter-spacing:.04em">SVQAGGSLRL</span><span style="margin-right:8px;letter-spacing:.04em">SCAASGRTFS</span><span style="margin-right:8px;letter-spacing:.04em">SYAMGWFRQA</span><span style="margin-right:8px;letter-spacing:.04em">PGKEREGVAA</span><span style="margin-right:8px;letter-spacing:.04em">ISSSGGSTYY</span><span style="margin-right:8px;letter-spacing:.04em">ADSVKGRFTI</span><span style="margin-right:8px;letter-spacing:.04em">SRDNAKNTVY</span><span style="margin-right:8px;letter-spacing:.04em">LQMNSLKPED</span><span style="margin-right:8px;letter-spacing:.04em">TAVYYCAAAG</span><span style="margin-right:8px;letter-spacing:.04em">LGSSTWLDYW</span><span style="margin-right:8px;letter-spacing:.04em">GQGTQVTVSS</span></div></div>
+  <table style="margin-bottom:10px">
+    <tr><th>Overall status</th><td>PASS</td></tr>
+    <tr><th>pI</th><td>8.64</td></tr>
+    <tr><th>GRAVY</th><td>-0.34</td></tr>
+    <tr><th>SAP (sequence)</th><td>0.57</td></tr>
+    
+    <tr style="background:#fdf6e3"><th colspan="2" style="font-size:.72rem;text-transform:uppercase;letter-spacing:.04em">VHH-Specific (FR2 / Cys)</th></tr>
+    <tr><th>FR2 hallmark tetrad (K37/44/45/47)</th>
+        <td><span style="font-family:monospace">FERG</span> &nbsp;<span style="color:#15803d">✓ PASS</span></td></tr>
+    <tr><th>Exposed FR2 hydrophobicity</th>
+        <td>0.224 &nbsp;<span style="color:#b91c1c">FAIL</span>
+        <span style="font-size:.7rem;color:#6b7280"> (benchmark p25–p75: −1.150–−0.457; release R2026.05)</span></td></tr>
+    <tr><th>Noncanonical Cys</th><td>0 </td></tr>
+    
+  </table>
+  <h2 style="font-size:.84rem;color:var(--accent);margin-top:4px;border-bottom:none">Developability metrics</h2>
+  
+<div class="param-grid" style="margin-top:8px">
+  <div class="param-cell"><div class="pn">ADI Score / 100</div>
+    <div class="pv"><span class="param-dot low"></span>
+    <span>100.0</span></div>
+    <div class="gate">A≥80 / B≥60 / C≥40</div></div><div class="param-cell"><div class="pn">Isoelectric point (pI)</div><div class="pv"><span class="param-dot low"></span><span>8.640</span><span class="rk">p25-p75 ✓</span></div><div class="gate">Normal: 5.130–8.990</div></div><div class="param-cell"><div class="pn">GRAVY (hydrophobicity)</div><div class="pv"><span class="param-dot low"></span><span>-0.339</span><span class="rk">p25-p75 ✓</span></div><div class="gate">Normal: -0.368–-0.208</div></div><div class="param-cell"><div class="pn">Instability index</div><div class="pv"><span class="param-dot low"></span><span>40.400</span><span class="rk">p25-p75 ✓</span></div><div class="gate">Normal: 33.600–44.300</div></div><div class="param-cell"><div class="pn">Net charge (pH 7)</div><div class="pv"><span class="param-dot low"></span><span>1.740</span><span class="rk">p25-p75 ✓</span></div><div class="gate">Normal: -1.950–2.800</div></div><div class="param-cell"><div class="pn">Hydrophobic patch (9-mer)</div><div class="pv"><span class="param-dot low"></span><span>0.556</span><span class="rk">p5-p25</span></div><div class="gate">Normal: 0.556–0.639</div></div><div class="param-cell"><div class="pn">Charge patch (7-mer)</div><div class="pv"><span class="param-dot low"></span><span>2.000</span><span class="rk">p5-p25</span></div><div class="gate">Normal: 2.000–3.000</div></div><div class="param-cell"><div class="pn">SAP score</div><div class="pv"><span class="param-dot low"></span><span>0.571</span><span class="rk">p5-p25</span></div><div class="gate">Normal: 0.714–0.714</div></div><div class="param-cell"><div class="pn">Aggregation motifs</div><div class="pv"><span class="param-dot low"></span><span>3</span><span class="rk">p5-p25</span></div><div class="gate">Normal: 3.000–4.000</div></div><div class="param-cell"><div class="pn">hydro_cluster_count</div><div class="pv"><span class="param-dot low"></span><span>2</span><span class="rk">p75-p95</span></div><div class="gate">Normal: 0.000–1.000</div></div><div class="param-cell"><div class="pn">N-glycosylation sites</div><div class="pv"><span class="param-dot low"></span><span>0</span><span class="rk">p5-p25</span></div><div class="gate">Normal: 0.000–0.000</div></div><div class="param-cell"><div class="pn">Deamidation sites</div><div class="pv"><span class="param-dot low"></span><span>1</span><span class="rk">p5-p25</span></div><div class="gate">Normal: 1.000–2.000</div></div><div class="param-cell"><div class="pn">Isomerization sites</div><div class="pv"><span class="param-dot low"></span><span>1</span><span class="rk">p5-p25</span></div><div class="gate">Normal: 1.000–2.000</div></div><div class="param-cell"><div class="pn">Oxidation-prone residues</div><div class="pv"><span class="param-dot low"></span><span>5</span><span class="rk">p25-p75 ✓</span></div><div class="gate">Normal: 4.000–6.000</div></div><div class="param-cell"><div class="pn">Free Cys</div><div class="pv"><span class="param-dot low"></span><span>0</span><span class="rk">p5-p25</span></div><div class="gate">Normal: 0.000–0.000</div></div>
+</div>
+</div>
+
+<div class="card">
+  <h2>Arm 2 — Target-B (7D12 epitope 2)</h2>
+  <div style="background:#f8fafd;border:1px solid var(--border);border-radius:6px;padding:10px 12px;margin-bottom:10px"><div style="font-size:.7rem;font-weight:700;color:var(--accent2);margin-bottom:4px">Sequence &nbsp;<span style="font-weight:400;color:#8a9ab0">(116 aa)</span></div><div style="font-family:Consolas,monospace;font-size:.76rem;word-break:break-all;line-height:1.9;color:#1a2030"><span style="margin-right:8px;letter-spacing:.04em">EVQLVESGGG</span><span style="margin-right:8px;letter-spacing:.04em">LVQPGGSLRL</span><span style="margin-right:8px;letter-spacing:.04em">SCAASGFTFS</span><span style="margin-right:8px;letter-spacing:.04em">RYGMSWVRQA</span><span style="margin-right:8px;letter-spacing:.04em">PGKGLEWVSA</span><span style="margin-right:8px;letter-spacing:.04em">ISSGGGSTYY</span><span style="margin-right:8px;letter-spacing:.04em">PDSVKGRFTI</span><span style="margin-right:8px;letter-spacing:.04em">SRDNSKNTLY</span><span style="margin-right:8px;letter-spacing:.04em">LQMNSLRAED</span><span style="margin-right:8px;letter-spacing:.04em">TAVYYCARQG</span><span style="margin-right:8px;letter-spacing:.04em">LPGDYWGQGT</span><span style="margin-right:8px;letter-spacing:.04em">LVTVSS</span></div></div>
+  <table style="margin-bottom:10px">
+    <tr><th>Overall status</th><td>PASS</td></tr>
+    <tr><th>pI</th><td>8.67</td></tr>
+    <tr><th>GRAVY</th><td>-0.27</td></tr>
+    <tr><th>SAP (sequence)</th><td>0.71</td></tr>
+    
+    <tr style="background:#fdf6e3"><th colspan="2" style="font-size:.72rem;text-transform:uppercase;letter-spacing:.04em">VHH-Specific (FR2 / Cys)</th></tr>
+    <tr><th>FR2 hallmark tetrad (K37/44/45/47)</th>
+        <td><span style="font-family:monospace">VGLW</span> &nbsp;<span style="color:#b45309">⚠ WARN</span></td></tr>
+    <tr><th>Exposed FR2 hydrophobicity</th>
+        <td>-0.080 &nbsp;<span style="color:#b45309">WARN</span>
+        <span style="font-size:.7rem;color:#6b7280"> (benchmark p25–p75: −1.150–−0.457; release R2026.05)</span></td></tr>
+    <tr><th>Noncanonical Cys</th><td>0 </td></tr>
+    
+  </table>
+  <h2 style="font-size:.84rem;color:var(--accent);margin-top:4px;border-bottom:none">Developability metrics</h2>
+  
+<div class="param-grid" style="margin-top:8px">
+  <div class="param-cell"><div class="pn">ADI Score / 100</div>
+    <div class="pv"><span class="param-dot low"></span>
+    <span>100.0</span></div>
+    <div class="gate">A≥80 / B≥60 / C≥40</div></div><div class="param-cell"><div class="pn">Isoelectric point (pI)</div><div class="pv"><span class="param-dot low"></span><span>8.670</span><span class="rk">p25-p75 ✓</span></div><div class="gate">Normal: 5.130–8.990</div></div><div class="param-cell"><div class="pn">GRAVY (hydrophobicity)</div><div class="pv"><span class="param-dot low"></span><span>-0.266</span><span class="rk">p25-p75 ✓</span></div><div class="gate">Normal: -0.368–-0.208</div></div><div class="param-cell"><div class="pn">Instability index</div><div class="pv"><span class="param-dot low"></span><span>39.000</span><span class="rk">p25-p75 ✓</span></div><div class="gate">Normal: 33.600–44.300</div></div><div class="param-cell"><div class="pn">Net charge (pH 7)</div><div class="pv"><span class="param-dot low"></span><span>1.820</span><span class="rk">p25-p75 ✓</span></div><div class="gate">Normal: -1.950–2.800</div></div><div class="param-cell"><div class="pn">Hydrophobic patch (9-mer)</div><div class="pv"><span class="param-dot low"></span><span>0.556</span><span class="rk">p5-p25</span></div><div class="gate">Normal: 0.556–0.639</div></div><div class="param-cell"><div class="pn">Charge patch (7-mer)</div><div class="pv"><span class="param-dot low"></span><span>2.000</span><span class="rk">p5-p25</span></div><div class="gate">Normal: 2.000–3.000</div></div><div class="param-cell"><div class="pn">SAP score</div><div class="pv"><span class="param-dot low"></span><span>0.714</span><span class="rk">p5-p25</span></div><div class="gate">Normal: 0.714–0.714</div></div><div class="param-cell"><div class="pn">Aggregation motifs</div><div class="pv"><span class="param-dot low"></span><span>0</span><span class="rk">&lt;p5</span></div><div class="gate">Normal: 3.000–4.000</div></div><div class="param-cell"><div class="pn">hydro_cluster_count</div><div class="pv"><span class="param-dot low"></span><span>0</span><span class="rk">p5-p25</span></div><div class="gate">Normal: 0.000–1.000</div></div><div class="param-cell"><div class="pn">N-glycosylation sites</div><div class="pv"><span class="param-dot low"></span><span>0</span><span class="rk">p5-p25</span></div><div class="gate">Normal: 0.000–0.000</div></div><div class="param-cell"><div class="pn">Deamidation sites</div><div class="pv"><span class="param-dot low"></span><span>2</span><span class="rk">p25-p75 ✓</span></div><div class="gate">Normal: 1.000–2.000</div></div><div class="param-cell"><div class="pn">Isomerization sites</div><div class="pv"><span class="param-dot low"></span><span>1</span><span class="rk">p5-p25</span></div><div class="gate">Normal: 1.000–2.000</div></div><div class="param-cell"><div class="pn">Oxidation-prone residues</div><div class="pv"><span class="param-dot low"></span><span>5</span><span class="rk">p25-p75 ✓</span></div><div class="gate">Normal: 4.000–6.000</div></div><div class="param-cell"><div class="pn">Free Cys</div><div class="pv"><span class="param-dot low"></span><span>0</span><span class="rk">p5-p25</span></div><div class="gate">Normal: 0.000–0.000</div></div>
+</div>
+</div>
+
+<footer>InSynBio Research &nbsp;·&nbsp; <a href="https://www.insynbio.com">https://www.insynbio.com</a> &nbsp;·&nbsp; 2026-05-11 18:58 UTC &nbsp;·&nbsp; CONFIDENTIAL &nbsp;·&nbsp; Use Ctrl+P → Save as PDF to export.</footer>
+</div>
+</body>
+</html>

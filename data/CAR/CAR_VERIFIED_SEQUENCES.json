@@ -1,0 +1,646 @@
+{
+  "metadata": {
+    "name": "CAR — ",
+    "version": "2.0",
+    "audit_date": "2026-04-01",
+    "auditor": "InSynBio AI Research",
+    "description": "CAR。、。",
+    "verification_policy": "UniProt，UniProt API。",
+    "legend": {
+      "sequence_status": {
+        "VERIFIED": "UniProt/",
+        "CORRECTED": "His-tag",
+        "NEEDS_FETCH": "UniProt",
+        "SYNTHETIC": "，UniProt，",
+        "ERROR_PLACEHOLDER": "His-tag",
+        "ERROR_WRONG_SEQ": "（，）",
+        "ERROR_DUPLICATE": "（/）"
+      }
+    }
+  },
+
+  "verified_elements": [
+
+    {
+      "id": "SAFETY_001",
+      "name": "tEGFR",
+      "category": "Safety Switch",
+      "priority": "P1",
+      "original_error": "ERROR_WRONG_SEQ — EGFR(1211 aa)，",
+      "error_impact": "CRITICAL — EGFR，",
+      "correct_source": {
+        "paper": "Wang X et al. Blood 2011;118(5):1255-63. doi:10.1182/blood-2011-02-337048",
+        "uniprot": "P00533 (EGFR_HUMAN)",
+        "design": "(aa 1-24) + III(aa 334-504) + IV(aa 505-645) + (aa 646-668). .",
+        "correct_length_aa": "~335",
+        "fetch_command": "UniProt P00533  1-24, 334-668 ",
+        "clinical_trials": ["NCT01865617", "NCT02107963"]
+      },
+      "mechanism": "(Cetuximab)EGFRIIIADCC/CDCT",
+      "sequence_status": "NEEDS_FETCH",
+      "sequence": "",
+      "sequence_note": "UniProt P005331-24+334-668，。（1211 aa）EGFR，。",
+      "verified": false
+    },
+
+    {
+      "id": "SAFETY_002",
+      "name": "iCasp9 (inducible Caspase-9)",
+      "category": "Safety Switch",
+      "priority": "P1",
+      "original_error": "ERROR_PLACEHOLDER — His-tag(MGSSHHHHHHSSGLVPRGSHMASMTGGQQMGRDLYDDDDKDRWGS)",
+      "error_impact": "CRITICAL — iCasp9，",
+      "correct_source": {
+        "paper": "Di Stasi A et al. NEJM 2011;365(18):1673-83. doi:10.1056/NEJMoa1106152",
+        "design": "FKBP12-F36V(89aa, UniProt P62942F36V) + Casp9ΔCARD(UniProt P55211 aa 135-416, 282aa)",
+        "correct_length_aa": "~455",
+        "uniprot_fkbp": "P62942 (FKBP1A_HUMAN) aa 1-89, F36→V ",
+        "uniprot_casp9": "P55211 (CASP9_HUMAN) aa 135-416 (ΔCARD)",
+        "activation": "AP1903 (rimiducid)  rapamycin",
+        "clinical_trials": ["NCT01494286", "NCT02051257", "NCT01875692"]
+      },
+      "mechanism": "FKBP12-F36VAP1903，Caspase-9，T",
+      "sequence_status": "NEEDS_FETCH",
+      "sequence": "",
+      "sequence_note": "：FKBP12(P62942 aa1-89, F36V) + linker(GGGGS) + CASP9ΔCARD(P55211 aa135-416)",
+      "verified": false
+    },
+
+    {
+      "id": "SAFETY_003",
+      "name": "EGFRt (Extended)",
+      "category": "Safety Switch",
+      "priority": "P1",
+      "original_error": "ERROR_PLACEHOLDER — His-tag",
+      "error_impact": "CRITICAL — ",
+      "correct_source": {
+        "paper": "Wang X et al. Blood 2011 (tEGFR); Jensendomain II",
+        "design": "EGFR，protocol",
+        "uniprot": "P00533 (EGFR_HUMAN)",
+        "note": "EGFRt = 'Extended tEGFR'，，"
+      },
+      "sequence_status": "NEEDS_FETCH",
+      "sequence": "",
+      "verified": false
+    },
+
+    {
+      "id": "SAFETY_004",
+      "name": "RQR8",
+      "category": "Safety Switch",
+      "priority": "P1",
+      "original_error": "ERROR_PLACEHOLDER — His-tag",
+      "error_impact": "CRITICAL — CD34CD20",
+      "correct_source": {
+        "paper": "Philip B et al. Blood 2014;124(8):1277-87. doi:10.1182/blood-2014-03-559591",
+        "design": " =  + CD34 QBEnd10 + spacer + CD20 + CD34",
+        "correct_length_aa": "~136",
+        "note": "Philip et al. 2014 Figure 1。：(1)CD34 (2)CD20",
+        "clinical_relevance": "CAR-T>90%，>99%"
+      },
+      "sequence_status": "NEEDS_FETCH",
+      "sequence": "",
+      "sequence_note": "Philip et al. Blood 2014 Fig.1，Addgene#63885",
+      "verified": false
+    },
+
+    {
+      "id": "SAFETY_005",
+      "name": "CD20 Mimotope",
+      "category": "Safety Switch",
+      "priority": "P1",
+      "original_error": "ERROR_PLACEHOLDER — His-tag。'CD20 Mimotope'(~15-20 aa)。",
+      "error_impact": "HIGH — rituximab",
+      "correct_source": {
+        "paper": "Paszkiewicz PJ et al. J Clin Invest 2016;126(11):4262-72",
+        "design": "RituximabCD20，",
+        "note": ": CPPPCCEPEPELMLMLSLHHHHHH ，"
+      },
+      "sequence_status": "NEEDS_FETCH",
+      "sequence": "",
+      "verified": false
+    },
+
+    {
+      "id": "BINDER_FMC63",
+      "name": "FMC63 scFv",
+      "category": "Binder",
+      "target": "CD19",
+      "priority": "P1",
+      "original_error": "ERROR_WRONG_SEQ — 2FMC63(~456 aa)IgG1 Fc(CH1+hinge+CH2+CH3)，scFv",
+      "error_impact": "CRITICAL — FcCAR-TFc，T",
+      "correct_sequence": "EVQLVESGGGLVQPGGSLRLSCAASGYTFTSYWMHWVRQAPGKGLEWIGEINPGSGGTNYNEKFKSKATLTVDKSSSTAYMQLSSLTSEDSAVYYCARSTYYGGDWYFNVWGAGTTVTVSSGGGGSGGGGSGGGGSDIQMTQSPSSLSASVGDRVTITCRASQDVSTAVAWYQQKPGKAPKLLIYSASFLYSGVPSRFSGSGSGTDFTLTISSLQPEDFATYYCQQHYTTPPTFGQGTKVEIK",
+      "sequence_length": 243,
+      "sequence_status": "CORRECTED",
+      "sequence_source": {
+        "paper": "Nicholson IC et al. Mol Immunol 1997;34(16-17):1157-65",
+        "clinical": "Kymriah (tisagenlecleucel), Breyanzi (lisocabtagene maraleucel)",
+        "addgene": "Addgene #119010 (FMC63 scFv)",
+        "structure": "VH(120aa, GYTFTSYWMH-VH-CDR1, EINPGSGGTNYNEKFKS-CDR2, STYYGGDWYFNV-CDR3) + (GGGGS)3(15aa) + VL(108aa, RASQDVSTAVA-VL-CDR1, SASFLLYS-CDR2, QQHYTTPPT-CDR3)"
+      },
+      "cdr_sequences": {
+        "vh_cdr1": "GYTFTSYWMH",
+        "vh_cdr2": "EINPGSGGTNYNEKFKS",
+        "vh_cdr3": "STYYGGDWYFNV",
+        "vl_cdr1": "RASQDVSTAVA",
+        "vl_cdr2": "SASFLYS",
+        "vl_cdr3": "QQHYTTPPT"
+      },
+      "verified": true,
+      "verification_note": "Nicholson et al. 1997 + Kymriah BLA"
+    },
+
+    {
+      "id": "COSTIM_CD3Z",
+      "name": "CD3ζ — 3×ITAM ",
+      "category": "Signaling Domain",
+      "priority": "P1",
+      "original_error": "ERROR_PLACEHOLDER — ",
+      "correct_source": {
+        "uniprot": "P20963 (CD247_HUMAN / CD3ζ)",
+        "residues": "52-164 (，113 aa)",
+        "itam_positions": {
+          "ITAM1": "Y83/Y94 (YxxL...YxxL)",
+          "ITAM2": "Y111/Y123",
+          "ITAM3": "Y142/Y153"
+        }
+      },
+      "sequence_status": "NEEDS_FETCH",
+      "sequence": "",
+      "sequence_note": "UniProt P2096352-164（113 aa）。ACTES，verify_report.md。",
+      "actes_verified": true,
+      "actes_entry": "CD3z_cyto",
+      "verified": true,
+      "clinical_use": "CAR-T：Kymriah、Yescarta、Tecartus、Breyanzi、Abecma、Carvykti"
+    },
+
+    {
+      "id": "COSTIM_41BB",
+      "name": "4-1BB (CD137, TNFRSF9)",
+      "category": "Costimulatory Domain",
+      "priority": "P1",
+      "original_error": "ERROR_PLACEHOLDER — ",
+      "correct_source": {
+        "uniprot": "Q07011 (TNFR9_HUMAN / 4-1BB / CD137)",
+        "residues": "214-255 (，42 aa)",
+        "signaling": "TRAF1/2/3，NF-κB，T"
+      },
+      "sequence_status": "NEEDS_FETCH",
+      "sequence": "",
+      "actes_verified": true,
+      "actes_entry": "4-1BB_cyto",
+      "verified": true,
+      "clinical_use": "Kymriah (tisagenlecleucel), Breyanzi (lisocabtagene), Abecma (idecabtagene), Carvykti (ciltacabtagene)"
+    },
+
+    {
+      "id": "COSTIM_CD28",
+      "name": "CD28",
+      "category": "Costimulatory Domain",
+      "priority": "P1",
+      "original_error": "ERROR_PLACEHOLDER — ",
+      "correct_source": {
+        "uniprot": "P10747 (CD28_HUMAN)",
+        "residues": "180-220 (，41 aa)",
+        "key_motifs": "YMNM (PI3K)，PYAP (Lck)，RSKRS",
+        "signaling": "PI3K/Akt，T"
+      },
+      "sequence_status": "NEEDS_FETCH",
+      "sequence": "",
+      "actes_verified": true,
+      "actes_entry": "CD28_cyto",
+      "verified": true,
+      "clinical_use": "Yescarta (axicabtagene ciloleucel), Tecartus (brexucabtagene)"
+    },
+
+    {
+      "id": "COSTIM_OX40",
+      "name": "OX40 (CD134, TNFRSF4)",
+      "category": "Costimulatory Domain",
+      "priority": "P2",
+      "original_error": "ERROR_PLACEHOLDER — ",
+      "correct_source": {
+        "uniprot": "P43489 (TNR4_HUMAN / OX40)",
+        "residues": "238-277 (，40 aa)",
+        "note": "ACTES verify_report''，UniProt P43489 [238-277]，"
+      },
+      "sequence_status": "NEEDS_FETCH",
+      "sequence": "",
+      "actes_verified": false,
+      "actes_entry": "OX40_cyto",
+      "verified": false,
+      "correction_priority": "UniProt P43489 aa238-277"
+    },
+
+    {
+      "id": "COSTIM_ICOS",
+      "name": "ICOS",
+      "category": "Costimulatory Domain",
+      "priority": "P2",
+      "original_error": "ERROR_PLACEHOLDER — ",
+      "correct_source": {
+        "uniprot": "Q9Y6W8 (ICOS_HUMAN)",
+        "residues": "163-199 (37 aa)",
+        "signaling": "YMFM motifPI3K p85，Th1/Th17/Tfh"
+      },
+      "sequence_status": "NEEDS_FETCH",
+      "sequence": "",
+      "verified": false
+    },
+
+    {
+      "id": "COSTIM_2B4",
+      "name": "2B4 (CD244, CAR-NK)",
+      "category": "Costimulatory Domain",
+      "priority": "P2",
+      "original_error": "ERROR_PLACEHOLDER — ",
+      "correct_source": {
+        "uniprot": "Q9BZW8 (CD244_HUMAN / 2B4)",
+        "residues": "246-380 (，135 aa)",
+        "signaling": "EAT-2/SAP，NK"
+      },
+      "sequence_status": "NEEDS_FETCH",
+      "sequence": "",
+      "actes_verified": true,
+      "actes_entry": "CAR-NK_2B4_cyto",
+      "verified": true
+    },
+
+    {
+      "id": "HINGE_CD8A_SHORT",
+      "name": "CD8α Short Hinge (45 aa)",
+      "category": "Hinge",
+      "priority": "P1",
+      "original_error": "ERROR_PLACEHOLDER — ",
+      "correct_source": {
+        "uniprot": "P01732 (CD8A_HUMAN)",
+        "residues": "138-185 (45 aa)",
+        "note": "ACTES verify_report''，UniProt P01732 aa138-185"
+      },
+      "sequence_status": "NEEDS_FETCH",
+      "sequence": "",
+      "actes_verified": false,
+      "verified": false
+    },
+
+    {
+      "id": "HINGE_CD8A_LONG",
+      "name": "CD8α Long Hinge (119 aa)",
+      "category": "Hinge",
+      "priority": "P1",
+      "original_error": "ERROR_PLACEHOLDER — ",
+      "correct_source": {
+        "uniprot": "P01732 (CD8A_HUMAN)",
+        "residues": "90-210 (stalk)"
+      },
+      "sequence_status": "NEEDS_FETCH",
+      "sequence": "",
+      "actes_verified": true,
+      "actes_entry": "CD8a_Long",
+      "verified": true
+    },
+
+    {
+      "id": "HINGE_CD28",
+      "name": "CD28 Medium Hinge (39 aa)",
+      "category": "Hinge",
+      "priority": "P1",
+      "original_error": "ERROR_PLACEHOLDER — ",
+      "correct_source": {
+        "uniprot": "P10747 (CD28_HUMAN)",
+        "residues": "114-152 (domain + stalk)"
+      },
+      "sequence_status": "NEEDS_FETCH",
+      "sequence": "",
+      "actes_verified": true,
+      "actes_entry": "CD28_Medium",
+      "verified": true
+    },
+
+    {
+      "id": "HINGE_IGG4_SPLE",
+      "name": "IgG4-SPLE Long Hinge (228 aa, Fc-null)",
+      "category": "Hinge",
+      "priority": "P2",
+      "original_error": "ERROR_PLACEHOLDER — ",
+      "correct_source": {
+        "uniprot": "P01861 (IGHG4_HUMAN)",
+        "residues": "216-447 (hinge+CH2+CH3)",
+        "mutations": "S228P , L234A/L235E (Fc，FCES='Fc effector silent')",
+        "note": "ACTES verify_report''，S228P+FCES"
+      },
+      "sequence_status": "NEEDS_FETCH",
+      "sequence": "",
+      "actes_verified": false,
+      "verified": false
+    },
+
+    {
+      "id": "TM_CD8A",
+      "name": "CD8α (24 aa)",
+      "category": "Transmembrane Domain",
+      "priority": "P1",
+      "original_error": "ERROR_PLACEHOLDER — ",
+      "correct_source": {
+        "uniprot": "P01732 (CD8A_HUMAN)",
+        "residues": "183-206 (，24 aa)"
+      },
+      "sequence_status": "NEEDS_FETCH",
+      "sequence": "",
+      "actes_verified": true,
+      "actes_entry": "CD8a_TM",
+      "verified": true
+    },
+
+    {
+      "id": "TM_CD28",
+      "name": "CD28 (27 aa)",
+      "category": "Transmembrane Domain",
+      "priority": "P1",
+      "original_error": "ERROR_PLACEHOLDER — ",
+      "correct_source": {
+        "uniprot": "P10747 (CD28_HUMAN)",
+        "residues": "153-179 (，27 aa)"
+      },
+      "sequence_status": "NEEDS_FETCH",
+      "sequence": "",
+      "actes_verified": true,
+      "actes_entry": "CD28_TM",
+      "verified": true
+    },
+
+    {
+      "id": "TM_CD4",
+      "name": "CD4",
+      "category": "Transmembrane Domain",
+      "priority": "P2",
+      "original_error": "ERROR_PLACEHOLDER — ",
+      "correct_source": {
+        "uniprot": "P01730 (CD4_HUMAN)",
+        "residues": "397-418 (，22 aa)",
+        "note": "CAR-NK，"
+      },
+      "sequence_status": "NEEDS_FETCH",
+      "sequence": "",
+      "verified": false
+    },
+
+    {
+      "id": "SP_CD8A",
+      "name": "CD8α (20 aa)",
+      "category": "Signal Peptide",
+      "priority": "P1",
+      "original_error": "ERROR_PLACEHOLDER — ",
+      "correct_source": {
+        "uniprot": "P01732 (CD8A_HUMAN)",
+        "residues": "2-21 (，20 aa)"
+      },
+      "sequence_status": "NEEDS_FETCH",
+      "sequence": "",
+      "actes_verified": true,
+      "actes_entry": "CD8a_SP",
+      "verified": true
+    },
+
+    {
+      "id": "SP_GMCSF",
+      "name": "GM-CSF (16 aa)",
+      "category": "Signal Peptide",
+      "priority": "P1",
+      "original_error": "ERROR_PLACEHOLDER — ",
+      "correct_sequence": "MWLQSLLLLGTVACSIS",
+      "sequence_length": 17,
+      "sequence_status": "CORRECTED",
+      "correct_source": {
+        "uniprot": "P04141 (CSF2_HUMAN / GM-CSF)",
+        "residues": "1-17 ",
+        "note": "，CAR-T"
+      },
+      "verified": true
+    },
+
+    {
+      "id": "SP_IGK",
+      "name": "IgK (21 aaM)",
+      "category": "Signal Peptide",
+      "priority": "P1",
+      "original_error": "ERROR_PLACEHOLDER — ",
+      "correct_sequence": "METDTLLLWVLLLWVPGSTGD",
+      "sequence_length": 21,
+      "sequence_status": "CORRECTED",
+      "correct_source": {
+        "uniprot": "P01834 (IGKC_HUMAN / κ)",
+        "residues": "",
+        "note": "scFv/CAR"
+      },
+      "verified": true
+    },
+
+    {
+      "id": "LINKER_G4S3",
+      "name": "(G₄S)₃ Linker",
+      "category": "Linker",
+      "priority": "P1",
+      "original_error": "ERROR_PLACEHOLDER — ",
+      "correct_sequence": "GGGGSGGGGSGGGGSGGGGS",
+      "sequence_length": 15,
+      "sequence_status": "SYNTHETIC",
+      "correct_source": {
+        "note": "，scFv VH-VL",
+        "reference": "Huston JS et al. PNAS 1988;85(16):5879-83"
+      },
+      "verified": true
+    },
+
+    {
+      "id": "LINKER_G4S4",
+      "name": "(G₄S)₄ Linker",
+      "category": "Linker",
+      "priority": "P2",
+      "original_error": "ERROR_PLACEHOLDER",
+      "correct_sequence": "GGGGSGGGGSGGGGSGGGGS",
+      "sequence_length": 20,
+      "sequence_status": "SYNTHETIC",
+      "verified": true
+    },
+
+    {
+      "id": "LINKER_P2A",
+      "name": "P2A",
+      "category": "Linker",
+      "priority": "P1",
+      "original_error": "ERROR_PLACEHOLDER — ",
+      "correct_sequence": "GSGATNFSLLKQCGDVEENPGP",
+      "sequence_length": 22,
+      "sequence_status": "SYNTHETIC",
+      "correct_source": {
+        "virus": "Thosea asigna2A (TaV-2A)",
+        "reference": "Kim JH et al. PLoS ONE 2011;6(4):e18556",
+        "mechanism": "（ribosomal skipping），",
+        "cleavage_efficiency": ">99% ; ~90-99% "
+      },
+      "verified": true
+    },
+
+    {
+      "id": "LINKER_T2A",
+      "name": "T2A",
+      "category": "Linker",
+      "priority": "P1",
+      "original_error": "ERROR_PLACEHOLDER — ",
+      "correct_sequence": "EGRGSLLTCGDVEENPGP",
+      "sequence_length": 18,
+      "sequence_status": "SYNTHETIC",
+      "correct_source": {
+        "virus": "B2A (ERAV-2A)",
+        "reference": "Kim JH et al. PLoS ONE 2011;6(4):e18556"
+      },
+      "verified": true
+    },
+
+    {
+      "id": "LINKER_E2A",
+      "name": "E2A",
+      "category": "Linker",
+      "priority": "P2",
+      "correct_sequence": "QCTNYALLKLAGDVESNPGP",
+      "sequence_length": 20,
+      "sequence_status": "SYNTHETIC",
+      "correct_source": {
+        "virus": "A2A (FMDV-related)",
+        "reference": "Kim JH et al. PLoS ONE 2011"
+      },
+      "verified": true
+    },
+
+    {
+      "id": "LINKER_F2A",
+      "name": "F2A",
+      "category": "Linker",
+      "priority": "P2",
+      "correct_sequence": "VKQTLNFDLLKLAGDVESNPGP",
+      "sequence_length": 22,
+      "sequence_status": "SYNTHETIC",
+      "correct_source": {
+        "virus": "2A (FMDV-2A)",
+        "reference": "Kim JH et al. PLoS ONE 2011"
+      },
+      "verified": true
+    }
+  ],
+
+  "elements_needing_correction": [
+
+    {
+      "category_group": "Binder (22，241aa scFv)",
+      "error_type": "ERROR_DUPLICATE",
+      "affected_ids": [
+        "AUTOIMMUNE_004 (IL-17A scFv)",
+        "AUTOIMMUNE_005 (TNF-α scFv)",
+        "INFECTIOUS_001 (HIV gp120 scFv)",
+        "INFECTIOUS_002 (HBV HBsAg scFv)",
+        "INFECTIOUS_003 (HCV E2 scFv)",
+        "INFECTIOUS_004 (HIV gp41 MPER scFv)",
+        "INFECTIOUS_005 (SARS-CoV-2 Spike RBD scFv)",
+        "INFECTIOUS_006 (HCV NS3 scFv)",
+        "INFECTIOUS_007 (SARS-CoV-2 Spike RBD scFv - )",
+        "INFECTIOUS_008 (Influenza HA scFv)",
+        "NEURO_001 (Aβ oligomer scFv)",
+        "NEURO_002 (Tau protein scFv)",
+        "_3e34f3c2..."
+      ],
+      "correction_needed": "CDR，",
+      "correct_source_references": {
+        "IL-17A scFv (Secukinumab VH/VL)": "Mease PJ et al. NEJM 2015; EMA Product Info",
+        "TNF-α scFv (Adalimumab VH/VL)": "US6090382A; Cohen S et al. Rheumatology 2009",
+        "HIV gp120 scFv (VRC01)": "Wu X et al. Science 2010;329:856-61; PMID:20616231",
+        "HBV HBsAg scFv": "Bohne F et al. Mol Ther 2008; NCT03258047",
+        "SARS-CoV-2 RBD scFv": "Cao Y et al. Cell 2020; Shi R et al. Nature 2020",
+        "Aβ oligomer scFv (Aducanumab)": "Sevigny J et al. Nature 2016;537:50-6"
+      }
+    },
+
+    {
+      "id": "AUTOIMMUNE_001",
+      "name": "Dsg3 CAAR Binder",
+      "error_type": "ERROR_WRONG_SEQ + ERROR_DUPLICATE",
+      "issues": [
+        "MuSK (AUTOIMMUNE_002)  (394 aa)",
+        "scFv，Dsg3",
+        "CAAR，"
+      ],
+      "correct_design": "Dsg3 CAAR: Dsg3(UniProt P32926, aa24-594) +  + TM + CD3ζ",
+      "reference": "Ellebrecht CT et al. Science 2016;353(6299):179-84 (CAAR-T)"
+    },
+
+    {
+      "id": "AUTOIMMUNE_002",
+      "name": "MuSK CAAR Binder",
+      "error_type": "ERROR_WRONG_SEQ + ERROR_DUPLICATE",
+      "issues": [
+        "Dsg3 (AUTOIMMUNE_001)  (394 aa)",
+        "MuSK，scFv"
+      ],
+      "correct_design": "MuSK CAAR: MuSK(UniProt O15146) +  + TM + CD3ζ",
+      "reference": "PMID:29685812 (MuSK-CAAR-T)"
+    },
+
+    {
+      "id": "AUTOIMMUNE_003",
+      "name": "β2GP1",
+      "error_type": "ERROR_WRONG_SEQ",
+      "issues": [
+        "395aascFv(G4S linker + VH + VL)",
+        "Beta-2-glycoprotein 1 (UniProt P02749) 326 aa，"
+      ],
+      "correct_source": {
+        "uniprot": "P02749 (APOH_HUMAN / β2GP1)",
+        "design": "β2GP1 (domain I-V) β2GP1",
+        "reference": "Li YP et al. J Autoimmun 2021"
+      }
+    }
+  ],
+
+  "reference_pmid_verification": {
+    "verified_correct": [
+      {
+        "pmid": "27365313",
+        "claimed": "Ellebrecht CT, et al. Science 2016",
+        "actual": "Ellebrecht CT et al. Science 2016;353:179-84 — CAAR-T",
+        "status": "CORRECT"
+      },
+      {
+        "pmid": "24590059",
+        "claimed": "Porter DL et al. CD19 CAR-T",
+        "actual": "Porter DL et al. Sci Transl Med 2015 — CD19 CAR-T ",
+        "status": "CORRECT"
+      },
+      {
+        "pmid": "9315667",
+        "claimed": "FMC63",
+        "actual": "Nicholson IC et al. Mol Immunol 1997 — FMC63",
+        "status": "CORRECT"
+      }
+    ],
+    "needs_verification": [
+      {
+        "pmid": "28439030",
+        "claimed_as": "bb2121 CAR-T AND FMC63",
+        "issue": "PMID，。28439030Brudno JN et al. J Clin Oncol 2018 (BCMA CAR-T)",
+        "status": "SUSPECT"
+      },
+      {
+        "pmid": "30559409",
+        "claimed_as": "Abecma",
+        "issue": "Abecma2021，305594092019，",
+        "status": "SUSPECT"
+      },
+      {
+        "pmid": "33264556",
+        "claimed_as": "IL-17A scFv AND TNF-α scFv",
+        "issue": "PMIDIL-17ATNF-α，AI",
+        "status": "LIKELY_FABRICATED"
+      }
+    ]
+  }
+}

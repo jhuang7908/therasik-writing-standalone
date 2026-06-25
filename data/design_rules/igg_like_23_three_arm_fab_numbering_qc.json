@@ -1,0 +1,778 @@
+{
+  "meta": {
+    "source": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\data\\design_rules\\igg_like_23_three_arm_fab.json",
+    "description": "Numbering QC (ARANCII Kabat) for 23 three-arm V regions; V-C junction sanity.",
+    "checks": [
+      "VH/VL recognized and numbered (ARANCII default scheme)",
+      "chain_type H (heavy) or K/L (light)",
+      "last numbered position (non-gap): VH 100-140, VL 95-135 (scheme-dependent)",
+      "n_residues from numbering == V sequence length"
+    ]
+  },
+  "summary": {
+    "pass": 23,
+    "warn": 0,
+    "fail": 0
+  },
+  "per_antibody": [
+    {
+      "antibody_id": "Amostomig",
+      "overall": "pass",
+      "VH1": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 134
+      },
+      "VH2": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 122
+      },
+      "VL": {
+        "numbered": true,
+        "chain_type": "L",
+        "last_kabat_pos": [
+          127,
+          ""
+        ],
+        "n_residues": 110
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Anbenitamab",
+      "overall": "pass",
+      "VH1": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 119
+      },
+      "VH2": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 120
+      },
+      "VL": {
+        "numbered": true,
+        "chain_type": "K",
+        "last_kabat_pos": [
+          127,
+          ""
+        ],
+        "n_residues": 107
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Davutamig",
+      "overall": "pass",
+      "VH1": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 121
+      },
+      "VH2": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 117
+      },
+      "VL": {
+        "numbered": true,
+        "chain_type": "K",
+        "last_kabat_pos": [
+          127,
+          ""
+        ],
+        "n_residues": 108
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Emicizumab",
+      "overall": "pass",
+      "VH1": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 119
+      },
+      "VH2": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 123
+      },
+      "VL": {
+        "numbered": true,
+        "chain_type": "K",
+        "last_kabat_pos": [
+          127,
+          ""
+        ],
+        "n_residues": 107
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Etentamig",
+      "overall": "pass",
+      "VH1": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 123
+      },
+      "VH2": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 119
+      },
+      "VL": {
+        "numbered": true,
+        "chain_type": "K",
+        "last_kabat_pos": [
+          127,
+          ""
+        ],
+        "n_residues": 107
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Marlotamig",
+      "overall": "pass",
+      "VH1": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 121
+      },
+      "VH2": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 122
+      },
+      "VL": {
+        "numbered": true,
+        "chain_type": "K",
+        "last_kabat_pos": [
+          127,
+          ""
+        ],
+        "n_residues": 108
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Navicixizumab",
+      "overall": "pass",
+      "VH1": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 119
+      },
+      "VH2": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 121
+      },
+      "VL": {
+        "numbered": true,
+        "chain_type": "K",
+        "last_kabat_pos": [
+          127,
+          ""
+        ],
+        "n_residues": 111
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Nezastomig",
+      "overall": "pass",
+      "VH1": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 124
+      },
+      "VH2": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 122
+      },
+      "VL": {
+        "numbered": true,
+        "chain_type": "K",
+        "last_kabat_pos": [
+          127,
+          ""
+        ],
+        "n_residues": 108
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Odronextamab",
+      "overall": "pass",
+      "VH1": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 127
+      },
+      "VH2": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 123
+      },
+      "VL": {
+        "numbered": true,
+        "chain_type": "K",
+        "last_kabat_pos": [
+          127,
+          ""
+        ],
+        "n_residues": 107
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Pamvatamig",
+      "overall": "pass",
+      "VH1": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 123
+      },
+      "VH2": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 122
+      },
+      "VL": {
+        "numbered": true,
+        "chain_type": "K",
+        "last_kabat_pos": [
+          127,
+          ""
+        ],
+        "n_residues": 107
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Peluntamig",
+      "overall": "pass",
+      "VH1": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 114
+      },
+      "VH2": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 118
+      },
+      "VL": {
+        "numbered": true,
+        "chain_type": "K",
+        "last_kabat_pos": [
+          127,
+          ""
+        ],
+        "n_residues": 107
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Petosemtamab",
+      "overall": "pass",
+      "VH1": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 120
+      },
+      "VH2": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 127
+      },
+      "VL": {
+        "numbered": true,
+        "chain_type": "K",
+        "last_kabat_pos": [
+          127,
+          ""
+        ],
+        "n_residues": 107
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Rezetamig",
+      "overall": "pass",
+      "VH1": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 123
+      },
+      "VH2": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 118
+      },
+      "VL": {
+        "numbered": true,
+        "chain_type": "K",
+        "last_kabat_pos": [
+          127,
+          ""
+        ],
+        "n_residues": 107
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Runimotamab",
+      "overall": "pass",
+      "VH1": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 120
+      },
+      "VH2": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 119
+      },
+      "VL": {
+        "numbered": true,
+        "chain_type": "K",
+        "last_kabat_pos": [
+          127,
+          ""
+        ],
+        "n_residues": 107
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Safimestomig",
+      "overall": "pass",
+      "VH1": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 124
+      },
+      "VH2": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 119
+      },
+      "VL": {
+        "numbered": true,
+        "chain_type": "K",
+        "last_kabat_pos": [
+          127,
+          ""
+        ],
+        "n_residues": 107
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Simridarlimab",
+      "overall": "pass",
+      "VH1": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 115
+      },
+      "VH2": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 132
+      },
+      "VL": {
+        "numbered": true,
+        "chain_type": "K",
+        "last_kabat_pos": [
+          127,
+          ""
+        ],
+        "n_residues": 107
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Surovatamig",
+      "overall": "pass",
+      "VH1": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 123
+      },
+      "VH2": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 116
+      },
+      "VL": {
+        "numbered": true,
+        "chain_type": "K",
+        "last_kabat_pos": [
+          127,
+          ""
+        ],
+        "n_residues": 107
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Tepoditamab",
+      "overall": "pass",
+      "VH1": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 118
+      },
+      "VH2": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 118
+      },
+      "VL": {
+        "numbered": true,
+        "chain_type": "K",
+        "last_kabat_pos": [
+          127,
+          ""
+        ],
+        "n_residues": 107
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Ubamatamab",
+      "overall": "pass",
+      "VH1": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 117
+      },
+      "VH2": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 124
+      },
+      "VL": {
+        "numbered": true,
+        "chain_type": "K",
+        "last_kabat_pos": [
+          127,
+          ""
+        ],
+        "n_residues": 108
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Velinotamig",
+      "overall": "pass",
+      "VH1": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 118
+      },
+      "VH2": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 121
+      },
+      "VL": {
+        "numbered": true,
+        "chain_type": "K",
+        "last_kabat_pos": [
+          127,
+          ""
+        ],
+        "n_residues": 107
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Vonsetamig",
+      "overall": "pass",
+      "VH1": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 125
+      },
+      "VH2": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 124
+      },
+      "VL": {
+        "numbered": true,
+        "chain_type": "K",
+        "last_kabat_pos": [
+          127,
+          ""
+        ],
+        "n_residues": 108
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Zenocutuzumab",
+      "overall": "pass",
+      "VH1": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 124
+      },
+      "VH2": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 121
+      },
+      "VL": {
+        "numbered": true,
+        "chain_type": "K",
+        "last_kabat_pos": [
+          127,
+          ""
+        ],
+        "n_residues": 107
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Zifibancimig",
+      "overall": "pass",
+      "VH1": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 115
+      },
+      "VH2": {
+        "numbered": true,
+        "chain_type": "H",
+        "last_kabat_pos": [
+          128,
+          ""
+        ],
+        "n_residues": 115
+      },
+      "VL": {
+        "numbered": true,
+        "chain_type": "K",
+        "last_kabat_pos": [
+          127,
+          ""
+        ],
+        "n_residues": 107
+      },
+      "warnings": [],
+      "errors": []
+    }
+  ]
+}

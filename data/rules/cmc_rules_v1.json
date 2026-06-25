@@ -1,0 +1,89 @@
+{
+  "_meta": {
+    "version": "1.2.0",
+    "source": "InSynBio AbEngineCore CMC Rules",
+    "reference_population": "AbRef-458 (n=458 approved/clinical humanized mAbs)",
+    "note": "FR-only mutation suggestions for CMC optimization. CDR residues are advisory-only and must not receive automated substitution lists."
+  },
+  "metric_rules": {
+    "pI": {
+      "label": "Isoelectric Point (pI)",
+      "action_high": {
+        "suggestion": "Replace surface-exposed K/R in FR regions with Q/E/N to lower pI toward p25–p75 range (6.85–8.74).",
+        "rationale": "High pI (>p95=9.09) increases risk of non-specific binding and self-association at physiological pH."
+      },
+      "action_low": {
+        "suggestion": "Replace surface D/E in FR regions with N/Q to raise pI toward p5–p95 range (5.20–9.09).",
+        "rationale": "Low pI (<p5=5.20) may reduce protein stability and expression yield."
+      }
+    },
+    "GRAVY": {
+      "label": "GRAVY Hydrophobicity",
+      "action_high": {
+        "suggestion": "Replace hydrophobic FR residues (I/L/V/F) with polar equivalents (T/S/N/Q) to reduce GRAVY.",
+        "rationale": "High GRAVY (>p95=-0.19) indicates excessive hydrophobicity, elevating aggregation and HIC retention risk."
+      },
+      "action_low": {
+        "suggestion": "No automated hydrophobic-core enrichment is recommended from sequence score alone; review structure and expression context before considering FR changes.",
+        "rationale": "Very low GRAVY may indicate poor expression or stability in hydrophobic regions."
+      }
+    },
+    "instability_index": {
+      "label": "Instability Index",
+      "action_high": {
+        "suggestion": "Avoid D/E-K/R adjacent pairs and W/Y in FR loops. Replace instability-contributing dipeptides (DP, DG, WP) with stable alternatives.",
+        "rationale": "Instability index >p95 (47.1) predicts reduced protein stability. Target: p25–p75 (33.2–41.6)."
+      },
+      "action_low": {
+        "suggestion": "No action needed — low instability index is favorable.",
+        "rationale": "Instability index below p5 (27.7) indicates high stability."
+      }
+    },
+    "net_charge_pH7": {
+      "label": "Net Charge at pH 7",
+      "action_high": {
+        "suggestion": "Replace FR K/R residues with Q/N or introduce conservative D/E to reduce positive charge. Avoid positions involved in antigen binding.",
+        "rationale": "Excessive positive net charge (>p95=5.9) is associated with non-specific tissue binding and polyreactivity."
+      },
+      "action_low": {
+        "suggestion": "Replace FR D/E with N/Q to reduce negative charge. Avoid CDR residues.",
+        "rationale": "Strong negative net charge (<p5=-3.4) may reduce expression and solubility in standard conditions."
+      }
+    },
+    "hydro_patch_max9": {
+      "label": "Hydrophobic Patch (max 9-mer)",
+      "action_high": {
+        "suggestion": "Identify 9-mer window with highest hydrophobic fraction. Replace 1-2 hydrophobic FR residues (L/I/V/F/W) with T/S/N to reduce patch. Avoid CDR positions.",
+        "rationale": "Hydrophobic patch >p95 (0.78) is a key predictor of aggregation propensity and viscosity."
+      }
+    },
+    "charge_patch_max7": {
+      "label": "Charge Patch (max 7-mer)",
+      "action_high": {
+        "suggestion": "Neutralize the most charged 7-mer window. Replace 1-2 K/R or D/E residues in FR with neutral residues (Q/N/A).",
+        "rationale": "Dense charge patches (>p95=4.0) can cause non-specific electrostatic interactions."
+      }
+    },
+    "agg_motifs": {
+      "label": "Aggregation Motifs",
+      "action_high": {
+        "suggestion": "Introduce T/S/N substitutions at hydrophobic runs (≥3 consecutive AILMFWV). Target FR positions first, especially in FR2/FR3.",
+        "rationale": "Multiple aggregation motifs (>p95=2.0) predict high risk during manufacturing and storage."
+      }
+    },
+    "deamidation_sites": {
+      "label": "Deamidation Sites (NG/NS)",
+      "action_high": {
+        "suggestion": "For FR liabilities only: consider conservative motif cleanup after protected-position filtering. CDR NG/NS findings are advisory-only and require structural and functional validation.",
+        "rationale": "Multiple deamidation sites (>p95=3.0) indicate chemical instability risk during storage."
+      }
+    },
+    "isomerization_sites": {
+      "label": "Isomerization Sites (DG/DS)",
+      "action_high": {
+        "suggestion": "For FR liabilities only: consider conservative motif cleanup after protected-position filtering. CDR DG/DS findings are advisory-only and require structural and functional validation.",
+        "rationale": "Multiple isomerization sites (>p95=3.0) indicate aspartate rearrangement risk affecting potency."
+      }
+    }
+  }
+}

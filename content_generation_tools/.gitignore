@@ -1,0 +1,22 @@
+# venvs and build artifacts
+venv_linux/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# generated outputs (large, not for git)
+outputs/
+uploads/
+*.pptx
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.db
+
+# embedded repos (add as submodules separately if needed)
+deckweaver/
+ppt-templates/
+space-design/

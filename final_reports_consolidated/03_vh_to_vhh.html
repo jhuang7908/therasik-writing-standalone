@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>InSynBio AbEngineCore | VH→VHH Conversion Report</title>
+<style>
+:root{--ok:#059669;--warn:#d97706;--fail:#dc2626;--muted:#5a6a80;--bg:#f4f7f9;
+      --panel:#ffffff;--card:#fff;--border:#d0d7e2;--accent:#1b4fad;--accent2:#2d6cdf}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:#2c3e50;font-size:13px;line-height:1.5;padding:20px}
+.page{max-width:900px;margin:0 auto;background:var(--panel);padding:32px 40px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.05)}
+.report-header{background:var(--accent);color:#fff;padding:20px 28px;border-radius:8px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:flex-end}
+.report-header h1{margin:0 0 4px;font-size:1.35rem;font-weight:700;color:#fff;letter-spacing:-0.02em}
+.report-header .sub{font-size:.84rem;font-weight:600;opacity:.95;margin-top:2px;line-height:1.45;color:#fff}
+.report-header .sub b{color:#fff}
+.report-header .ts{text-align:right;font-size:.78rem;font-weight:600;opacity:.92;color:#fff}
+.header-meta{width:100%;margin-top:10px;font-size:.76rem;font-weight:600;opacity:.9;line-height:1.45}
+.header-meta div{margin-top:2px}
+.section{background:var(--card);border:1px solid var(--border);border-radius:8px;
+          margin-bottom:16px;overflow:hidden}
+.section h3{font-size:0.85rem;font-weight:700;padding:10px 16px;background:#f3f4f6;
+             border-bottom:1px solid var(--border);color:#374151}
+.section-body{padding:14px 16px}
+table.kv{width:100%;border-collapse:collapse}
+table.kv td,.lbl{padding:5px 8px;vertical-align:top}
+table.kv tr:nth-child(even){background:#f9fafb}
+.lbl{color:#6b7280;font-weight:600;width:38%;white-space:nowrap}
+.mono{font-family:monospace;font-size:0.85em;word-break:break-all}
+.seq-block{margin:8px 0;background:#f8f9fa;border:1px solid #e9ecef;
+            border-radius:6px;padding:10px 12px}
+.seq-label{font-size:0.78rem;font-weight:700;color:#495057;margin-bottom:6px}
+.seq-len{font-weight:400;color:#6b7280}
+.seq-body{font-family:'Courier New',monospace;font-size:0.82em;letter-spacing:.04em;
+           word-break:break-all;line-height:1.7}
+.chunk{margin-right:4px}
+.badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:700}
+.badge-ok{background:#d1fae5;color:#065f46}
+.badge-warn{background:#fef3c7;color:#92400e}
+.badge-fail{background:#fee2e2;color:#991b1b}
+.badge-info{background:#dbeafe;color:#1e40af}
+.warn-row td{color:var(--warn)!important}
+.muted{color:var(--muted);font-style:italic}
+.flag-list{list-style:none;padding:0}
+.flag-list li{padding:4px 8px;border-left:3px solid var(--warn);margin-bottom:6px;
+               font-size:0.82rem;background:#fffbeb}
+.flag-list li.ok{border-color:var(--ok);background:#f0fdf4}
+.discussion-box{margin-top:12px;padding:12px;background:#f8fafc;border-radius:6px;border:1px solid #e2e8f0;border-left:4px solid var(--accent2)}
+.discussion-title{font-size:11px;font-weight:700;color:var(--accent);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em}
+.discussion-content{font-size:11px;color:#334155;line-height:1.5;margin:0}
+footer{text-align:center;color:var(--muted);font-size:0.75rem;margin-top:24px;padding-top:12px;
+        border-top:1px solid var(--border)}
+@media print {
+  body { background:#fff; font-size:10.5px; color:#000; padding:0 }
+  .page { max-width:100%; padding:0; box-shadow:none }
+  .report-header { background:#1b4fad !important; -webkit-print-color-adjust:exact; print-color-adjust:exact }
+  .report-header h1,
+  .report-header .sub,
+  .report-header .sub b,
+  .report-header .ts,
+  .report-header .header-meta { color:#fff !important; opacity:1 }
+  /* Allow section splitting to avoid large trailing blank areas in PDF pages. */
+  .section { break-inside:auto; page-break-inside:auto; border:1px solid #ccc; margin-bottom:10px }
+  .section h3 { break-after:avoid; page-break-after:avoid }
+  footer { margin-top:14px }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="report-header">
+  <div>
+    <h1>InSynBio AbEngineCore</h1>
+    <div class="sub">VH→VHH Conversion Report &nbsp;|&nbsp; V1.8 Protocol</div>
+    <div class="sub" style="margin-top:4px">Project: <b>HumanVH_QC_Regen</b> &nbsp;·&nbsp; Source: <b>human</b></div>
+            <div class="header-meta">
+        <div><strong>Report format (suite)</strong>: 4.1.1</div>
+        <div><strong>Service</strong>: VH→VHH Conversion &nbsp;·&nbsp; <strong>Service report</strong>: v1.8.6 &nbsp;·&nbsp; <strong>Content variant</strong>: v1.8.4</div>
+        <div><strong>Protocol</strong>: V1.8 &nbsp;|&nbsp; <strong>Analysis</strong>: AbEngineCore VH to VHH Conversion Standard v1.8.4 &nbsp;|&nbsp; <strong>Build</strong>: 20260503-002 &nbsp;|&nbsp; <strong>Environment</strong>: DEV</div>
+        <div>UI Build: 20260510-V5.5.1-vhvl-format-v15-console-runmode</div>
+        <div>API Version: 1.0.0 (FastAPI)</div>
+        </div>
+<div class="cohort-provenance" style="margin:10px 0;padding:10px 14px;border:1px solid #cbd5e1;border-radius:6px;background:#f8fafc;font-size:.78rem;color:#1f2937"><div style="font-weight:600;color:#1e3a8a;margin-bottom:6px">Reference cohort provenance</div><table style="width:100%;border-collapse:collapse;color:#1f2937"><tr style="color:#475569;font-size:.72rem;text-align:left"><th style="padding:2px 4px;color:#1e3a8a">Panel type</th><th style="padding:2px 4px;color:#1e3a8a">Release ID</th><th style="padding:2px 4px;color:#1e3a8a">Purpose in this report</th></tr><tbody style="color:#1f2937"><tr><td><strong>Engineered single-domain benchmark panel</strong></td><td>R2026.05</td><td>Autonomous VH/VHH-like framework reference</td></tr><tr><td><strong>Clinical VHH benchmark panel</strong></td><td>R2026.05</td><td>Post-conversion single-domain comparison</td></tr><tr><td><strong>Structural VHH benchmark panel</strong></td><td>R2026.05</td><td>Extended structural context</td></tr></tbody></table><div style="margin-top:6px;color:#64748b;font-size:.72rem">Reference range derived from internal source-matched benchmark panel (frozen release: R2026.05). Detailed cohort composition is confidential.</div></div>
+  </div>
+  <div class="ts">2026-05-11 19:44 UTC<br><span style="font-size:.7rem;opacity:.6">CONFIDENTIAL</span></div>
+</div>
+
+
+<div style="margin-bottom:18px;border-radius:10px;border:2px solid #dc2626;background:#fef2f2;padding:16px 20px">
+  <div style="font-size:1.05rem;font-weight:800;color:#dc2626;margin-bottom:8px">⛔ HIGH RISK — DO NOT PROCEED TO EXPRESSION</div>
+  <table class="kv" style="width:100%">
+    <tr><td class='lbl' style="color:#dc2626">Success probability</td><td><strong style="color:#dc2626;font-size:1.05rem">14%</strong> <span style='color:#6b7280;font-size:11px'>(confidence: high)</span></td></tr>
+    <tr><td class='lbl' style="color:#dc2626">Primary blocker</td><td>pI = 5.27 (target ≥ 6.0)</td></tr>
+    <tr><td class='lbl' style="color:#dc2626">Recommended action</td><td><strong>Option A — STOP &amp; REDESIGN</strong></td></tr>
+  </table>
+</div>
+
+
+<div class="section">
+  <h3>§0 — Executive Summary</h3>
+  <div class="section-body">
+    <table class="kv">
+      <tr><td class='lbl'>Feasibility verdict</td><td>FEASIBLE  <span class='badge badge-ok'>FEASIBLE</span></td></tr>
+      <tr><td class='lbl'>Risk level</td><td>LOW</td></tr>
+      <tr><td class='lbl'>Client sequence name</td><td>HumanVH_QC_Regen</td></tr>
+      <tr><td class='lbl'>Source class</td><td>human</td></tr>
+      <tr><td class='lbl'>Input format</td><td>VH domain (direct input)</td></tr>
+      <tr><td class='lbl'>Path</td><td>Path C1 (framework-preserving)</td></tr>
+      <tr><td class='lbl'>Selected strategy</td><td>cdr_graft_to_scaffold</td></tr>
+      <tr><td class='lbl'>Selected template</td><td>Gocatamig1</td></tr>
+      <tr><td class='lbl'>Selected germline</td><td>IGHV3-23*01</td></tr>
+      <tr><td class='lbl'>VH length</td><td>119 aa</td></tr>
+      <tr><td class='lbl'>CDR2 length (Kabat)</td><td>17 aa</td></tr>
+      <tr><td class='lbl'>CDR3 length (Kabat)</td><td>10 aa</td></tr>
+      <tr><td class='lbl'>Mutations applied</td><td>0</td></tr>
+      <tr><td class='lbl'>Structure computed</td><td>Yes</td></tr>
+    </table>
+    
+        <div class="discussion-box">
+          <div class="discussion-title">Executive Discussion</div>
+          <p class="discussion-content">The conversion of the donor VH sequence to a VHH single-domain format is assessed as <strong>FEASIBLE</strong>. The selected <strong>cdr_graft_to_scaffold</strong> strategy balances framework stability with paratope preservation. The resulting sequence aligns with clinical developability benchmarks for nanobody therapeutics, with specific attention paid to the structural integrity of the CDR loops.</p>
+        </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>§0.5 — Source-Specific Engineering Advisory</h3>
+  <div class="section-body">
+    
+<table class="kv" style="margin-bottom:8px">
+  <tr><td class="lbl">Source</td><td><strong>Humanized / Human mAb VH</strong></td></tr>
+  <tr><td class="lbl">Engineering path</td><td>Path C1 — Framework-preserving camelization</td></tr>
+  <tr><td class="lbl">VAM priority</td>
+      <td><span style="color:#b56300;font-weight:700">MEDIUM</span>
+      — validate binding post-conversion; VAM available if affinity needs improvement</td></tr>
+</table>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px">
+  <div>
+    <div style="font-size:11px;font-weight:700;color:#b56300;margin-bottom:4px">⚠ Source-Specific Risks</div>
+    <ul style="font-size:11px;line-height:1.6;margin:0;padding-left:16px"><li style='color:#b56300'>Hallmark mutations at 44/45/47 may affect VH-VL interface if paired VL is retained downstream.</li></ul>
+  </div>
+  <div>
+    <div style="font-size:11px;font-weight:700;color:#1a6b3c;margin-bottom:4px">✓ Source Strengths</div>
+    <ul style="font-size:11px;line-height:1.6;margin:0;padding-left:16px"><li style='color:#1a6b3c'>Human IGHV framework — highest germline similarity, lowest immunogenicity baseline.</li><li style='color:#1a6b3c'>Framework-preserving strategy minimizes CDR conformation shift risk.</li></ul>
+  </div>
+</div>
+<div style="margin-top:10px">
+  <div style="font-size:11px;font-weight:700;color:#1e3a5f;margin-bottom:4px">→ Recommended Engineering Steps</div>
+  <ol style="font-size:11px;line-height:1.6;margin:0;padding-left:18px"><li>Hallmark and solubility engineering (standard).</li><li>CDR conformation check (RMSD) post-conversion.</li></ol>
+</div>
+
+  </div>
+</div>
+
+<div class="section">
+  <h3>§1 — Feasibility Assessment Notes</h3>
+  <div class="section-body">
+    <ul class="flag-list">
+      <li>CDR3 length estimated at 10 aa, CDR2 length estimated at 17 aa.</li><li>CDR2 length 17 aa (long) — hallmark residue at position 50 adjusted to preserve CDR2 conformation.</li><li>Applied hallmark mutations: G44E, L45R (interface reshaping prioritized).</li><li>Applied solubility-enhancing mutations (standard CDR3 profile): S35N/G, K94R.</li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="section">
+  <h3>§1.5 — Risk Attribution Matrix</h3>
+  <div class="section-body">
+    <table class="kv" style="font-size:12px">
+      <thead>
+        <tr style='background:#f1f5f9;font-weight:700;color:#0f172a'>
+          <td>Risk Dimension</td><td>Current</td><td>Safety Threshold</td><td>Attribution Source</td><td>Severity</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>pI</td><td class='mono'>5.27</td><td>≥ 6.0</td><td style='font-size:11px;color:#475569'>CDR3 acidic residue density (D/E)</td><td style='color:#dc2626;font-weight:700'>🔴 BLOCKER</td></tr><tr><td>Framework Neo-epitopes</td><td class='mono'>detected</td><td>absent</td><td style='font-size:11px;color:#475569'>Frame-switch CDR-graft junction (IGHV1/4 → IGHV3 VHH)</td><td style='color:#d97706;font-weight:700'>🟡 WARN</td></tr>
+      </tbody>
+    </table>
+    <p style='font-size:11px;color:#64748b;margin-top:8px'>
+      Severity grades: <strong style='color:#dc2626'>BLOCKER</strong> = mandatory redesign; <strong style='color:#d97706'>WARN</strong> = conditional progression; <strong style='color:#1e40af'>INFO</strong> = engineering note.
+    </p>
+  </div>
+</div>
+
+
+<div class="section">
+  <h3>§1.7 — Glycan-Dependent Epitope Risk Layer (V1.7)</h3>
+  <div class="section-body">
+    <table class="kv">
+      <tr><td class='lbl'>Risk level</td><td>NONE</td></tr>
+      <tr><td class='lbl'>Penalty factor</td><td>1.0</td></tr>
+      <tr><td class='lbl'>Known glycan-contact antibody</td><td>No</td></tr>
+      <tr><td class='lbl'>CDR-H3 glycan motifs</td><td>None detected</td></tr>
+      <tr><td class='lbl'>VL decoupling risk</td><td>MODERATE</td></tr>
+      <tr><td class='lbl'>Checker version</td><td>v1.7.1_glycan_checker_2026-04-30</td></tr>
+    </table>
+    
+    <p style='font-size:11px;color:#64748b;margin-top:8px'>
+      V1.7 applies this layer after V1.5/V1.6 evidence. A penalty factor below 1.0 is multiplied into the final success probability and may upgrade the verdict or action recommendation.
+    </p>
+  </div>
+</div>
+
+<div class="section">
+  <h3>§2 — Framework Optimization Summary (Kabat)</h3>
+  <div class="section-body">
+    <table class="kv">
+      <tr><td colspan='2' class='muted'>No mutations applied (or conversion error).</td></tr>
+      
+    </table>
+    
+        <div class="discussion-box">
+          <div class="discussion-title">Engineering Discussion</div>
+          <p class="discussion-content">Framework optimization focuses on enhancing the solubility and stability of the single-domain format. Key substitutions at interface positions (Kabat 44, 45, 47) mimic the natural VHH 'hallmark' residues, effectively masking the former VH-VL interface. Where necessary, back-mutations (reversions) to parent residues or solubility-enhancing substitutions are applied to balance framework hydrophobicity with conformational integrity. The selection of these sites is guided by structural plausibility and alignment with clinical nanobody benchmarks.</p>
+        </div>
+    
+  </div>
+</div>
+
+
+
+<div class="section">
+  <h3>§3 — Structural Conservation Analysis (ImmuneBuilder)</h3>
+  <div class="section-body">
+    <table class="kv">
+      <tr><td class='lbl'>Input VH pLDDT</td><td>80.6</td></tr>
+      <tr class=""><td class='lbl'>Converted VHH pLDDT</td>
+        <td>84.9</td></tr>
+      <tr><td class='lbl'>H1 Cα RMSD</td><td class=''>1.38 Å</td></tr><tr><td class='lbl'>H2 Cα RMSD</td><td class=''>1.28 Å</td></tr><tr><td class='lbl'>H3 Cα RMSD</td><td class='warn-row'>2.75 Å  ⚠</td></tr>
+    </table>
+    
+        <div class="discussion-box">
+          <div class="discussion-title">Structural Discussion</div>
+          <p class="discussion-content">Structural modeling using the <strong>ImmuneBuilder (NanoBodyBuilder2)</strong> architecture confirms high conformational preservation across the CDR regions. The low RMSD values indicate that the framework substitutions and hallmark engineering have not induced significant backbone shifts in the antigen-binding loops. The high confidence scores (pLDDT) for the converted VHH support the feasibility of the engineered fold as a stable single-domain therapeutic candidate.</p>
+        </div>
+  </div>
+</div>
+
+  <div class="section">
+  <h3>§4 — Physicochemical Profiling</h3>
+  <div class="section-body">
+    <table class="kv">
+      <tr><td class='lbl'>pI (Estimated)</td>
+        <td class="warn-row">5.27 ⚠ Outside 5.5–9.5</td></tr>
+      <tr><td class='lbl'>GRAVY (Hydrophobicity)</td>
+        <td class="">-0.524</td></tr>
+      <tr><td class='lbl'>Instability Index</td>
+        <td class="">24.30</td></tr>
+      <tr><td class='lbl'>AbNatiV2 Δ (Naturalness)</td>
+        <td>-0.019 <span style='font-size:11px;color:#64748b'>(VHH2 - VH2 proxy)</span></td></tr>
+      <tr><td class='lbl'>HPR Index (Humanness)</td>
+        <td>0.829 <span style='font-size:11px;color:#64748b'>(9-mer human coverage)</span></td></tr>
+      <tr><td class='lbl'>Sequence length</td><td>119 aa</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h3>§5 — Clinical Developability Assessment</h3>
+  <div class="section-body">
+    <table class="kv">
+      <tr><td class='lbl'>Overall status</td><td>FAIL</td></tr>
+      <tr><td class='lbl'>Developability score</td><td>59.200</td></tr>
+    </table>
+    <div style='font-size:11px;color:#e6a817;margin-top:4px'>⚠ cdr_scan:WARN:deamidation</div><div style='font-size:11px;color:#e6a817;margin-top:4px'>⚠ cdr_scan:WARN:isomerization</div><div style='font-size:11px;color:#d32f2f;margin-top:4px'>❌ developability:FAIL:GRAVY_out_of_range(-0.52)</div><div style='font-size:11px;color:#1e40af;margin-top:4px;background:rgba(30,64,175,0.05);padding:2px 6px;border-radius:3px'>ℹ️ immunogenicity:HIGH_RISK_FR_EPITOPE — 10 stability-induced engineering sites in hydrophilic FR.</div><div style='font-size:11px;color:#1e40af;margin-top:4px;background:rgba(30,64,175,0.05);padding:2px 6px;border-radius:3px'>ℹ️ immunogenicity:BROAD_BINDER_FR — 10 stability-induced broad binders in hydrophilic FR bind ≥15/27 alleles.</div><div style='font-size:11px;color:#e6a817;margin-top:4px'>⚠ immunogenicity:WARN:LARGE_CHARGED_SURFACE_PATCH — 1 hydrophilic patches with ≥4 charged residues (BCR / innate immune recognition risk).</div>
+    
+        <div class="discussion-box">
+          <div class="discussion-title">Developability Discussion</div>
+          <p class="discussion-content">The candidate has been benchmarked against a clinical reference panel of successful VHH therapeutics. The overall status of <strong>FAIL</strong> reflects a profile suitable for downstream process development. Prioritization is given to physical stability and expression yield, with immunogenicity risks audited at the framework level to ensure a favorable safety profile for clinical translation.</p>
+        </div>
+    <div style='margin-top:12px;padding:10px 14px;border-radius:6px;border-left:4px solid #d32f2f;background:#fff8f8'><div style='font-size:12px;font-weight:700;color:#d32f2f;margin-bottom:4px'>❌ Conversion Advisory: Inherent CDR chemistry barrier</div><div style='font-size:11px;line-height:1.5;color:#444'>pI=5.27 and net charge pH7 are below the VHH developability window. The acidic residues responsible (E/D/Y in CDR3) are likely required for antigen binding — removing them would compromise activity. VH→VHH single-domain conversion is NOT recommended for this sequence without CDR3 redesign or de-novo affinity maturation. Note: this VH works as an IgG because the VL chain and Fc provide complementary pI balance; those are absent in a VHH.</div><div style='font-size:11px;margin-top:6px;color:#555'><strong>Optimization Path:</strong> De-novo CDR3 redesign targeting pI &gt;6.0, or retain as IgG/Fab format.</div></div>
+  </div>
+</div>
+
+
+<div class="section">
+  <h3>§5.5 — Action Roadmap (V1.5)</h3>
+  <div class="section-body">
+    <p style='font-size:11px;color:#475569;margin-bottom:10px'>
+      Three deterministic paths forward based on the Risk Attribution Matrix. The recommended option is highlighted; alternatives are shown for owner review.
+    </p>
+    <div style='border:2px solid #dc2626;background:#fef2f2;border-radius:8px;padding:12px 14px;margin-bottom:8px'><div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:4px'><div style='font-weight:700;font-size:0.9rem'>STOP &amp; REDESIGN</div><span style='background:#dc2626;color:#fff;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700'>RECOMMENDED</span></div><div style='font-size:11px;color:#64748b;margin-bottom:6px'>De-novo CDR3 / Targeted Liability / VHH Humanization</div><table class='kv' style='font-size:11px'><tr><td class='lbl'>Time</td><td>1–3 business days</td></tr><tr><td class='lbl'>pI delta</td><td>+1.5 to +2.5</td></tr><tr><td class='lbl'>Affinity loss</td><td>&lt; 30%</td></tr><tr><td class='lbl'>Cost</td><td>Algorithm time only</td></tr><tr><td class='lbl'>Use case</td><td>BLOCKER-level risk present</td></tr></table></div><div style='border:2px solid #cbd5e1;background:#fff;border-radius:8px;padding:12px 14px;margin-bottom:8px'><div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:4px'><div style='font-weight:700;font-size:0.9rem'>RESCUE WITH FC FUSION</div></div><div style='font-size:11px;color:#64748b;margin-bottom:6px'>Convert to Tetravalent VHH-Fc-VHH Modular Platform</div><table class='kv' style='font-size:11px'><tr><td class='lbl'>Time</td><td>~1 business day (sequence design)</td></tr><tr><td class='lbl'>pI delta</td><td>+1.0 to +1.5</td></tr><tr><td class='lbl'>Affinity loss</td><td>&lt; 5% (Avidity boost)</td></tr><tr><td class='lbl'>Cost</td><td>Loses single-domain advantage</td></tr><tr><td class='lbl'>Use case</td><td>Borderline pI with non-redesignable CDR</td></tr></table></div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>§6 — Ranked Conversion Candidates</h3>
+  <div class="section-body">
+    <table class="kv">
+      <tr><td class='lbl'>#1 cdr_graft_to_scaffold</td><td>Gocatamig1 | score=59.200 | status=FAIL | FR=0.593</td></tr><tr><td class='lbl'>#2 cdr_graft_to_scaffold+phase45</td><td>Tixentamig | score=55.300 | status=FAIL | FR=0.604</td></tr><tr><td class='lbl'>#3 cdr_graft_to_scaffold</td><td>Tixentamig | score=53.600 | status=FAIL | FR=0.604</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h3>§7 — Sequences</h3>
+  <div class="section-body">
+    <div class='seq-block'><div class='seq-label'>Input VH <span class='seq-len'>119 aa</span></div><div class='seq-body'><span class="chunk">QVQLVQSGAE</span> <span class="chunk">VKKPGASVKV</span> <span class="chunk">SCKASGYTFT</span> <span class="chunk">DYYMHWVRQA</span> <span class="chunk">PGQGLEWMGW</span> <span class="chunk">INPNSGGTNY</span> <span class="chunk">AQKFQGRVTM</span> <span class="chunk">TRDTSISTAY</span> <span class="chunk">MELSRLRSDD</span> <span class="chunk">TAVYYCARDY</span> <span class="chunk">GSNKGFDYWG</span> <span class="chunk">QGTLVTVSS</span></div></div>
+    <div class='seq-block'><div class='seq-label'>Converted VHH <span class='seq-len'>119 aa</span></div><div class='seq-body'><span class="chunk">EVQLVESGGG</span> <span class="chunk">LVQPGGSLKL</span> <span class="chunk">SCAASGYTFT</span> <span class="chunk">DYYINWVRQA</span> <span class="chunk">PGKGLEWVAR</span> <span class="chunk">INPNSGGTYY</span> <span class="chunk">ADQVKDRFTI</span> <span class="chunk">SRDDSKNTAY</span> <span class="chunk">LQMNNLKTED</span> <span class="chunk">TAVYYCARDY</span> <span class="chunk">GSNKGFDYWG</span> <span class="chunk">QGTLVTVSS</span></div></div>
+  </div>
+</div>
+
+<footer>
+  InSynBio Research &nbsp;·&nbsp; <a href="https://www.insynbio.com">https://www.insynbio.com</a>
+  &nbsp;·&nbsp; 2026-05-11 19:44 UTC &nbsp;·&nbsp; CONFIDENTIAL &nbsp;·&nbsp;
+  Use Ctrl+P → Save as PDF to export this report.
+</footer>
+
+</div>
+
+<!-- abenginecore-report-qc: PASS -->
+<div style='position:fixed;bottom:10px;right:12px;z-index:9999;background:#fff;border:2px solid #059669;border-radius:8px;padding:4px 10px;font-size:.72rem;font-weight:700;color:#059669;box-shadow:0 2px 8px rgba(0,0,0,.12);cursor:default' title='AbEngineCore Report QC — PASS&#10;FAIL: 0  WARN: 0'>QC: PASS</div>
+</body>
+</html>

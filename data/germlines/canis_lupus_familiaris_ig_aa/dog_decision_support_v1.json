@@ -1,0 +1,138 @@
+{
+  "artifact_id": "dog_decision_support_v1",
+  "species": "Canis_lupus_familiaris",
+  "built_at": "2026-02-22 12:55:23",
+  "inputs": {
+    "clinical_anchor_library": "data\\germlines\\canis_lupus_familiaris_ig_aa\\dog_production_germline_library_v1.json",
+    "population_priors": "data\\germlines\\canis_lupus_familiaris_ig_aa\\dog_repertoire_and_dla_stats.json",
+    "population_priors_meta": {
+      "description": "Canine BCR Repertoire Stats and DLA Allele Frequencies for Engineering",
+      "version": "1.0",
+      "date": "2026-02-21",
+      "sources": [
+        "Molecular characterization of the VH repertoire in Canis familiaris (VH usage)",
+        "Frequency and distribution of alleles of canine MHC-II ... in 25 AKC breeds (DLA)",
+        "IMGT Repertoire (IG and TR)"
+      ]
+    }
+  },
+  "tiers": {
+    "tier1_clinical_anchors": {
+      "vh_v": [
+        {
+          "gene": "IGHV3-35*01",
+          "seen_in": [
+            "Lokivetmab"
+          ],
+          "best_identity": 0.9559
+        },
+        {
+          "gene": "IGHV3-19*01",
+          "seen_in": [
+            "Bedinvetmab"
+          ],
+          "best_identity": 0.9412
+        },
+        {
+          "gene": "IGHV3-9*01",
+          "seen_in": [
+            "Landogrozumab"
+          ],
+          "best_identity": 0.9265
+        }
+      ],
+      "vl_v": [
+        {
+          "locus": "IGK",
+          "gene": "IGKV3-18*02",
+          "seen_in": [
+            "Lokivetmab"
+          ],
+          "best_identity": 1.0
+        },
+        {
+          "locus": "IGL",
+          "gene": "IGLV1-162*01",
+          "seen_in": [
+            "Bedinvetmab"
+          ],
+          "best_identity": 0.913
+        },
+        {
+          "locus": "IGK",
+          "gene": "IGKV2-11*01",
+          "seen_in": [
+            "Landogrozumab"
+          ],
+          "best_identity": 0.7
+        }
+      ],
+      "notes": [
+        "Derived from in-repo clinical canine antibody references (PDBs).",
+        "These are the highest-confidence, production-proven scaffolds available in this repo."
+      ]
+    },
+    "tier2_population_priors": {
+      "vh_gene_usage": {
+        "summary": "Canine VH repertoire is dominated by the VH1 family (approx. 80 genes), with limited usage of VH2 and VH3. Diversity is driven mainly by CDR3 junctional diversity and SHM rather than V-gene variety.",
+        "dominant_family": "VH1",
+        "high_frequency_genes": [
+          {
+            "gene": "VH1-62",
+            "human_homolog": "VH3-21",
+            "note": "High frequency in multiple breeds; preferred scaffold candidate."
+          },
+          {
+            "gene": "VH1-44",
+            "human_homolog": "VH3-23",
+            "note": "High frequency in multiple breeds; preferred scaffold candidate."
+          }
+        ]
+      },
+      "dla_core_panel": {
+        "description": "High-frequency, cross-breed shared alleles for broad coverage immunogenicity assessment. These alleles represent the 'common denominators' across major dog breeds.",
+        "alleles": [
+          {
+            "locus": "DLA-DRB1",
+            "allele": "DLA-DRB1*00101",
+            "frequency_note": "Shared by 16/25 AKC breeds"
+          },
+          {
+            "locus": "DLA-DRB1",
+            "allele": "DLA-DRB1*01501",
+            "frequency_note": "Shared by 19/25 AKC breeds"
+          },
+          {
+            "locus": "DLA-DQA1",
+            "allele": "DLA-DQA1*00101",
+            "frequency_note": "Major allele, monoallelic in some breeds (e.g., English Setter)"
+          },
+          {
+            "locus": "DLA-DQA1",
+            "allele": "DLA-DQA1*00601",
+            "frequency_note": "Widely shared across breeds"
+          },
+          {
+            "locus": "DLA-DQB1",
+            "allele": "DLA-DQB1*00201",
+            "frequency_note": "Shared by 17/25 AKC breeds"
+          },
+          {
+            "locus": "DLA-DQB1",
+            "allele": "DLA-DQB1*02301",
+            "frequency_note": "Shared by 18/25 AKC breeds"
+          }
+        ]
+      },
+      "notes": [
+        "Population priors are meant to approximate broad tolerance / prevalence across dog populations.",
+        "If you have breed-stratified V/J usage and DLA frequencies, place normalized tables under data/repertoire/canis_lupus_familiaris/."
+      ]
+    }
+  },
+  "decision_policy": [
+    "Default scaffold selection order: Tier 1 (clinical anchors) > Tier 2 (population priors).",
+    "If Tier1/Tier2 scaffolds are still insufficient, use surface reshaping  on a selected scaffold and then run a structure-gated rescue loop (Phase4→5) on vernier/surface sites.",
+    "For immunogenicity checks in dogs, start from the DLA core panel and expand per target breed/population when frequency tables are available."
+  ]
+}

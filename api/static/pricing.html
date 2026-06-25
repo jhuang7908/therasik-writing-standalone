@@ -1,0 +1,500 @@
+<!-- insynbio-pricing-2026-05-31-owner-v2 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — InSynBio Console</title>
+<style>
+  :root {
+    --bg: #090d16;
+    --panel: #0f1726;
+    --text: #f0f6fc;
+    --muted: #8ea0b8;
+    --accent: #21c7d9;
+    --accent-rgb: 33, 199, 217;
+    --line: #2a3a55;
+    --success: #3fb950;
+    --warn: #d4a72c;
+  }
+  html.theme-beige, [data-theme='beige'] {
+    --bg: #fdfaf3; --panel: #f7f2e8; --text: #4a3f35; --muted: #8c7e6d;
+    --accent: #b08d57; --accent-rgb: 176,141,87; --line: #e6dec9; --success: #388e3c;
+  }
+  html.theme-gruvbox, [data-theme='gruvbox'] {
+    --bg: #282828; --panel: #3c3836; --text: #ebdbb2; --muted: #a89984;
+    --accent: #fabd2f; --accent-rgb: 250,189,47; --line: #504945; --success: #b8bb26;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font: 500 14px/1.6 "Inter", -apple-system, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    padding: 60px 20px;
+    transition: background 0.3s, color 0.3s;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* Header */
+  header { text-align: center; margin-bottom: 16px; }
+  .back-link { display:inline-flex; align-items:center; gap:5px; font-size:12px; color:var(--muted); text-decoration:none; margin-bottom:24px; }
+  .back-link:hover { color:var(--accent); }
+  h1 { font-size: 34px; font-weight: 800; color: var(--accent); margin-bottom: 10px; }
+  p.subtitle { color: var(--muted); font-size: 15px; max-width: 680px; margin: 0 auto 10px; line-height:1.7; }
+  .rate-badge { display:inline-block; background:rgba(var(--accent-rgb),0.12); border:1px solid var(--accent); border-radius:20px; padding:6px 16px; font-size:12px; font-weight:700; color:var(--accent); margin-bottom:28px; max-width:920px; line-height:1.5; }
+  .positioning-note {
+    max-width:760px; margin:0 auto 32px; padding:14px 18px; border-radius:12px;
+    border:1px solid var(--line); background:rgba(var(--accent-rgb),0.06); color:var(--muted); font-size:13px; line-height:1.65; text-align:left;
+  }
+  .positioning-note b { color:var(--text); }
+
+  /* Pricing grid */
+  .tier-section { margin-bottom: 28px; }
+  .tier-section h2 {
+    font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 12px 4px;
+  }
+  .pricing-grid {
+    display: grid; gap: 12px; align-items: stretch;
+  }
+  .pricing-grid.try-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pricing-grid.sub-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pricing-grid.enterprise-row { grid-template-columns: minmax(0, 1fr); max-width: 420px; margin: 0 auto; }
+  @media (max-width: 960px) {
+    .pricing-grid.try-row, .pricing-grid.sub-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 640px) {
+    .pricing-grid.try-row, .pricing-grid.sub-row { grid-template-columns: 1fr; }
+    body { padding: 40px 16px; }
+    h1 { font-size: 28px; }
+  }
+
+  .card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 18px; display: flex; flex-direction: column;
+    transition: transform 0.2s, border-color 0.2s;
+    position: relative; min-width: 0;
+  }
+  html.theme-beige .card, [data-theme='beige'] .card { background:#fff; box-shadow:0 4px 12px rgba(0,0,0,0.04); }
+  .card:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .card.featured { border: 2px solid var(--accent); box-shadow: 0 0 24px rgba(var(--accent-rgb),0.18); }
+  .badge {
+    position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+    background: var(--accent); color: var(--bg); font-size: 10px; font-weight: 800;
+    padding: 2px 12px; border-radius: 20px; white-space: nowrap; letter-spacing: 0.05em;
+  }
+
+  .tier-name { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 8px; }
+  .price { font-size: 30px; font-weight: 800; margin-bottom: 3px; }
+  .price span { font-size: 14px; font-weight: 500; color: var(--muted); }
+  .credits { font-size: 14px; font-weight: 700; color: var(--accent); margin-bottom: 18px; }
+  .features { list-style: none; flex: 1; margin-bottom: 22px; }
+  .features li { font-size: 12.5px; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px; opacity: 0.9; }
+  .features li::before { content: "✓"; color: var(--success); font-weight: 800; flex-shrink:0; }
+  .features li.na { opacity: 0.4; }
+  .features li.na::before { content: "–"; color: var(--muted); }
+
+  .btn {
+    display: block; text-align: center; padding: 10px 8px; border-radius: 7px;
+    text-decoration: none; font-weight: 700; font-size: 13px; cursor: pointer;
+    border: none; transition: opacity 0.2s, background 0.2s;
+  }
+  .btn.primary { background: var(--accent); color: var(--bg); }
+  .btn.outline { border: 1.5px solid var(--accent); color: var(--accent); background: transparent; }
+  .btn.muted-btn { border: 1.5px solid var(--line); color: var(--muted); background: transparent; }
+  .btn:hover { opacity: 0.85; }
+
+  /* Academic bar */
+  .academic-bar {
+    background: rgba(var(--accent-rgb), 0.08); border: 1px dashed var(--accent);
+    border-radius: 10px; padding: 14px 20px; display: flex; align-items: center;
+    justify-content: space-between; gap: 16px; margin-bottom: 40px; flex-wrap: wrap;
+  }
+  .academic-badge { background: var(--accent); color: var(--bg); padding: 2px 10px; border-radius: 4px; font-size: 11px; font-weight: 800; }
+
+  /* Credit usage table */
+  .usage-section { margin-bottom: 40px; overflow-x: auto; }
+  .usage-section h2 { font-size: 18px; font-weight: 700; margin-bottom: 16px; }
+  .usage-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .usage-table th { text-align:left; color:var(--muted); font-weight:600; padding:8px 12px; border-bottom:1px solid var(--line); font-size:11px; text-transform:uppercase; letter-spacing:0.06em; }
+  .usage-table td { padding: 9px 12px; border-bottom: 1px solid var(--line); }
+  .usage-table tr:last-child td { border-bottom: none; }
+  .usage-table tr:hover td { background: rgba(var(--accent-rgb),0.04); }
+  .tag { display:inline-block; padding:1px 7px; border-radius:4px; font-size:10px; font-weight:700; }
+  .tag.free { background:rgba(63,185,80,0.15); color:var(--success); }
+  .tag.std { background:rgba(var(--accent-rgb),0.15); color:var(--accent); }
+  .tag.heavy { background:rgba(212,167,44,0.15); color:var(--warn); }
+
+  /* Payment section */
+  .payment-section { margin-bottom: 40px; }
+  .payment-section h2 { font-size:18px; font-weight:700; margin-bottom:16px; }
+  .pay-card {
+    background: var(--panel); border:1px solid var(--line); border-radius:12px; padding:24px;
+  }
+  html.theme-beige .pay-card { background:#fff; }
+  .pay-card p { font-size:13px; color:var(--muted); line-height:1.7; margin-bottom:12px; }
+  .pay-card a { color:var(--accent); }
+  .stripe-badge { display:inline-flex; align-items:center; gap:6px; font-size:11px; color:var(--muted); margin-top:8px; }
+
+  /* Data security note */
+  .security-note {
+    background: rgba(63,185,80,0.06); border:1px solid rgba(63,185,80,0.3);
+    border-radius:10px; padding:16px 20px; font-size:12.5px; line-height:1.7;
+    margin-bottom:40px; color:var(--text);
+  }
+  .security-note b { color:var(--success); }
+
+  /* FAQ */
+  .faq { margin-bottom:50px; }
+  .faq h2 { font-size:18px; font-weight:700; margin-bottom:20px; }
+  .faq-item { border-bottom:1px solid var(--line); padding:14px 0; }
+  .faq-item:last-child { border-bottom:none; }
+  .faq-q { font-weight:700; font-size:13.5px; margin-bottom:6px; }
+  .faq-a { font-size:13px; color:var(--muted); line-height:1.7; }
+
+  footer { text-align:center; color:var(--muted); font-size:12px; padding-top:20px; border-top:1px solid var(--line); }
+  footer a { color:var(--muted); text-decoration:none; }
+  footer a:hover { color:var(--accent); }
+</style>
+<script>
+  (function() {
+    const theme = localStorage.getItem('insynbio-console-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.className = theme === 'dark' ? '' : 'theme-' + theme;
+  })();
+  window.addEventListener('storage', function(e) {
+    if (e.key === 'insynbio-console-theme') {
+      const t = e.newValue || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+      document.documentElement.className = t === 'dark' ? '' : 'theme-' + t;
+    }
+  });
+</script>
+</head>
+<body>
+<div class="container">
+
+  <a href="/" class="back-link">← Back to Console</a>
+
+  <header>
+    <h1>Pricing</h1>
+    <p class="subtitle">In silico antibody engineering — not wet-lab CRO. Standard VH/VL humanization is the pricing baseline; other workflows scale by commercial value and technical rarity.</p>
+    <div class="rate-badge">Signup: 30,000 credits (~$300) + 10 free assistant turns &nbsp;·&nbsp; $10 = 1,000 credits &nbsp;·&nbsp; Lab ~4/mo ($149) &nbsp;·&nbsp; Pro ~11/mo ($399) &nbsp;·&nbsp; Company 2× Pro ($799)</div>
+  </header>
+
+  <div class="positioning-note">
+    <b>In silico self-service, not wet-lab CRO.</b> Use InSynBio to screen and optimize candidates in hours, then send your best leads to CRO expression and validation. Offline workflows (VAM, de novo CDR, AF2 multimer, HADDOCK) are <b>quoted on request</b> — no public list price.
+  </div>
+
+  <div class="tier-section">
+    <h2>Try &amp; Top-up</h2>
+    <div class="pricing-grid try-row">
+
+    <!-- Free Trial -->
+    <div class="card">
+      <div class="tier-name">Free Trial</div>
+      <div class="price">$0</div>
+      <div class="credits">30,000 credits on signup (~$300 PAYG)</div>
+      <ul class="features">
+        <li><b>30,000 trial credits</b> — ~1.5× standard VH/VL humanization (20k)</li>
+        <li>+ 10 complimentary AI assistant turns</li>
+        <li>.edu / .edu.cn emails: <b>+20%</b> (36,000 credits)</li>
+        <li>All workflows accessible</li>
+        <li>Full deliverable report</li>
+        <li class="na">Priority queue</li>
+        <li class="na">Team accounts</li>
+      </ul>
+      <a href="/" class="btn outline">Get Started Free</a>
+    </div>
+
+    <!-- Pay-as-you-go -->
+    <div class="card">
+      <div class="tier-name">Pay-as-you-go</div>
+      <div class="price">$10 <span>/ top-up</span></div>
+      <div class="credits">1,000 credits · never expire</div>
+      <ul class="features">
+        <li><b>First paid run: 100% refund if unsatisfied</b></li>
+        <li>Top up as you need</li>
+        <li>Credits never expire</li>
+        <li>No monthly commitment</li>
+        <li>Instant Stripe checkout</li>
+        <li class="na">Team accounts</li>
+      </ul>
+      <a href="/" class="btn outline">Top Up Credits</a>
+    </div>
+
+    </div>
+  </div>
+
+  <!-- Research & Commercial Subscriptions -->
+  <div class="tier-section">
+    <h2>Research &amp; Commercial Subscriptions</h2>
+    <div class="pricing-grid sub-row">
+
+    <!-- Lab -->
+    <div class="card featured">
+      <div class="badge">MOST POPULAR</div>
+      <div class="tier-name">Lab</div>
+      <div class="price">$149 <span>/ month</span></div>
+      <div class="credits">80,000 credits / month · $1,490/year</div>
+      <ul class="features">
+        <li><b>~4 standard humanization runs/month</b></li>
+        <li>Online self-service analyses only</li>
+        <li>Credits reset monthly</li>
+        <li>Priority compute queue</li>
+        <li>Email support (48h)</li>
+        <li class="na">Offline VAM campaigns</li>
+      </ul>
+      <a href="mailto:contact@insynbio.com?subject=Lab%20Subscription" class="btn primary">Subscribe</a>
+    </div>
+
+    <!-- Pro -->
+    <div class="card">
+      <div class="tier-name">Pro</div>
+      <div class="price">$399 <span>/ month</span></div>
+      <div class="credits">220,000 credits / month · $3,990/year</div>
+      <ul class="features">
+        <li><b>~11 standard humanization runs/month</b></li>
+        <li>Online self-service analyses only</li>
+        <li>Up to 3 team accounts</li>
+        <li>Priority compute queue</li>
+        <li>Custom report branding</li>
+        <li class="na">Offline VAM campaigns</li>
+      </ul>
+      <a href="mailto:contact@insynbio.com?subject=Pro%20Subscription" class="btn outline">Subscribe</a>
+    </div>
+
+    <!-- Company -->
+    <div class="card">
+      <div class="tier-name">Company</div>
+      <div class="price">$799 <span>/ month</span></div>
+      <div class="credits">220,000 credits / month · $7,990/year</div>
+      <ul class="features">
+        <li><b>~11 standard humanizations/month (same as Pro)</b></li>
+        <li>2× Pro price · commercial-use license</li>
+        <li>Commercial-use reporting support</li>
+        <li>Up to 5 team accounts</li>
+        <li>Priority compute queue</li>
+        <li>Custom report branding</li>
+        <li class="na">Offline VAM campaigns</li>
+      </ul>
+      <a href="mailto:contact@insynbio.com?subject=Company%20Subscription" class="btn outline">Subscribe</a>
+    </div>
+    </div>
+  </div>
+
+  <!-- Enterprise -->
+  <div class="tier-section">
+    <h2>Enterprise</h2>
+    <div class="pricing-grid enterprise-row">
+
+    <!-- Enterprise -->
+    <div class="card">
+      <div class="tier-name">Enterprise</div>
+      <div class="price" style="font-size:22px">Custom</div>
+      <div class="credits">Private deployment available</div>
+      <ul class="features">
+        <li>On-premise / VPC deployment</li>
+        <li>Unlimited users &amp; credits</li>
+        <li>Sequence data never leaves your infra</li>
+        <li>SLA &amp; uptime guarantee</li>
+        <li>CRO / wet-lab integration</li>
+        <li>Custom API &amp; SSO</li>
+      </ul>
+      <a href="mailto:contact@insynbio.com?subject=Enterprise%20Inquiry" class="btn muted-btn">Contact Sales</a>
+    </div>
+    </div>
+  </div>
+
+  <!-- Academic discount bar -->
+  <div class="academic-bar">
+    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+      <span class="academic-badge">ACADEMIC</span>
+      <span>Academic labs and early-stage startups may request discounted access after institutional verification.</span>
+    </div>
+    <a href="/" class="btn outline" style="white-space:nowrap; padding:7px 16px; font-size:12px;">Sign Up</a>
+  </div>
+
+  <!-- Credit usage reference -->
+  <div class="usage-section">
+    <h2>Credit Usage Reference</h2>
+    <p style="color:var(--muted); font-size:13px; margin-bottom:14px;">Baseline = <b>1.0× standard VH/VL humanization (20,000 credits)</b>. Displayed prices match console debit amounts. Offline expert workflows are not listed — contact for quote.</p>
+    <table class="usage-table">
+      <thead>
+        <tr>
+          <th>Workflow</th>
+          <th>Typical Cost</th>
+          <th>Notes</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>VH/VL Humanization — Quick / Standard / Enhanced</td>
+          <td>10,000 / 20,000 / 30,000 credits</td>
+          <td>Standard = 1.0× baseline · same debit as console Run Mode badges</td>
+          <td><span class="tag std">Baseline</span></td>
+        </tr>
+        <tr>
+          <td>VHH Humanization — Quick / Standard / Enhanced</td>
+          <td>15,000 / 30,000 / 45,000 credits</td>
+          <td>1.5× VH/VL baseline · 29-item checklist</td>
+          <td><span class="tag heavy">Specialty</span></td>
+        </tr>
+        <tr>
+          <td>VH/VL or VHH Recheck</td>
+          <td>5,000 credits</td>
+          <td>Donor + candidate virtual recheck</td>
+          <td><span class="tag std">Standard</span></td>
+        </tr>
+        <tr>
+          <td>CMC developability (one service)</td>
+          <td>10,000 snapshot · <b>25,000 with Smart-CMC</b></td>
+          <td>Single debit — not two separate products</td>
+          <td><span class="tag std">Standard</span></td>
+        </tr>
+        <tr>
+          <td>Knowledge atlases (clinical / target / ADA / CMC ref)</td>
+          <td>500 credits <span style="color:var(--muted);font-size:11px">($5.00)</span></td>
+          <td>Per lookup · ADA atlas for reference (no ADA design service)</td>
+          <td><span class="tag std">Standard</span></td>
+        </tr>
+        <tr>
+          <td>Bispecific assembly (IgG-like or tandem)</td>
+          <td>12,000 credits</td>
+          <td>Construct assembly + ranked output</td>
+          <td><span class="tag std">Standard</span></td>
+        </tr>
+        <tr>
+          <td>Bispecific analyzer / SmartLink</td>
+          <td>5,000 credits</td>
+          <td>Pairing or linker recommendation</td>
+          <td><span class="tag std">Standard</span></td>
+        </tr>
+        <tr>
+          <td>Bispecific VHH CMC</td>
+          <td>10,000 credits <span style="color:var(--muted);font-size:11px">($100 PAYG)</span></td>
+          <td>Dual-VHH fusion developability panel</td>
+          <td><span class="tag heavy">Specialty</span></td>
+        </tr>
+        <tr>
+          <td>CAR-T design (any scenario)</td>
+          <td>10,000 credits</td>
+          <td>Component selection + ranked construct</td>
+          <td><span class="tag std">Standard</span></td>
+        </tr>
+        <tr>
+          <td>VH→VHH conversion</td>
+          <td>25,000 credits</td>
+          <td>Path C engineering · provisional list price</td>
+          <td><span class="tag heavy">Specialty</span></td>
+        </tr>
+        <tr>
+          <td>Virtual Affinity Maturation (VAM) · de novo CDR · AF2 · HADDOCK</td>
+          <td>Contact for quote</td>
+          <td>Offline expert / heavy compute — no public price</td>
+          <td><span class="tag heavy">Offline</span></td>
+        </tr>
+        <tr>
+          <td>Fv / VHH structure prediction</td>
+          <td>2,500 credits <span style="color:var(--muted);font-size:11px">($25 PAYG)</span></td>
+          <td>ABodyBuilder2 / NanoBodyBuilder2 · bulk discount in console</td>
+          <td><span class="tag std">Standard</span></td>
+        </tr>
+        <tr>
+          <td>cDNA codon optimization</td>
+          <td>1,000 credits</td>
+          <td>Per chain · optional bundle policy TBD</td>
+          <td><span class="tag std">Standard</span></td>
+        </tr>
+        <tr>
+          <td>FASTA annotation / segmentation</td>
+          <td>Free</td>
+          <td>IMGT / Kabat / Chothia numbering</td>
+          <td><span class="tag free">Free</span></td>
+        </tr>
+        <tr>
+          <td>AI Assistant — Brief / Detailed</td>
+          <td>30 / 120 credits <span style="color:var(--muted);font-size:11px">(first 10 turns free)</span></td>
+          <td>After complimentary trial turns</td>
+          <td><span class="tag std">Standard</span></td>
+        </tr>
+        <tr>
+          <td>FASTA annotation / numbering</td>
+          <td>Free</td>
+          <td>IMGT / Kabat / Chothia</td>
+          <td><span class="tag free">Free</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Data security note -->
+  <div class="security-note">
+    <b>&#128274; Sequence Data Security:</b> Input sequences are processed in memory for computation only and are <b>never stored</b> on InSynBio servers after job completion. Job output files are held temporarily for download and automatically purged. Enterprise customers can opt for private on-premise deployment where sequences never leave their infrastructure.
+  </div>
+
+  <!-- Payment -->
+  <div class="payment-section">
+    <h2>Payment</h2>
+    <div class="pay-card">
+      <p>All payments are processed securely via <b>Stripe</b>. We accept all major credit and debit cards (Visa, Mastercard, Amex). Lab, Pro, and Company plans are available monthly or annually; invoices and receipts are sent automatically to your registered email.</p>
+      <p>For <b>offline VAM campaigns</b> and <b>Enterprise</b> contracts, purchase orders (PO), wire transfers, and annual invoicing are available. Contact <a href="mailto:contact@insynbio.com">contact@insynbio.com</a> to arrange.</p>
+      <div class="stripe-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        Secured by Stripe · PCI DSS compliant · No card data stored by InSynBio
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">Do unused credits roll over?</div>
+      <div class="faq-a">Pay-as-you-go credits never expire. Lab, Pro, and Company credits reset at the start of each billing cycle and do not roll over. New accounts receive <b>30,000 trial credits</b> (36,000 with .edu email) plus <b>10 complimentary AI assistant turns</b>. Coupon codes grant additional credits as defined per coupon.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Can I upgrade or cancel my subscription anytime?</div>
+      <div class="faq-a">Yes. You can upgrade, downgrade, or cancel at any time by contacting <a href="mailto:contact@insynbio.com">contact@insynbio.com</a>. Cancellations take effect at the end of the current billing period.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Is my antibody sequence data kept confidential?</div>
+      <div class="faq-a">Yes. Sequences are processed in-memory and purged after job completion. We do not use client sequences to train models or share them with third parties. See our <a href="/privacy">Privacy Policy</a> for full details. Enterprise customers can deploy on private infrastructure.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Do you offer academic or startup discounts?</div>
+      <div class="faq-a">Academic institutions and early-stage biotech startups may qualify for verified discount programs. Discounts are reviewed manually to keep self-service pricing aligned with market value.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Is there a money-back guarantee for first-time users?</div>
+      <div class="faq-a">Yes. Your <b>first paid analysis</b> on InSynBio (any standard humanization, CMC, or design workflow) is covered by a 100% money-back guarantee. If the output does not meet expectations, contact <a href="mailto:contact@insynbio.com">contact@insynbio.com</a> within 14 days and we will refund the credit cost in full. This applies once per account and excludes offline VAM campaigns and Enterprise contracts.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Are offline VAM or wet-lab services included?</div>
+      <div class="faq-a">No. Lab, Pro, and Company plans cover ordinary online self-service analysis only. Full VAM campaigns, manual expert analysis, wet-lab experiments, and CRO execution are quoted separately.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Can I get an API key for programmatic access?</div>
+      <div class="faq-a">API access is available on Company and Enterprise plans. Contact <a href="mailto:contact@insynbio.com">contact@insynbio.com</a> to request your API key and integration documentation.</div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2026 InSynBio. All rights reserved. &nbsp;|&nbsp;
+    <a href="/terms">Terms of Service</a> &nbsp;|&nbsp;
+    <a href="/privacy">Privacy Policy</a> &nbsp;|&nbsp;
+    <a href="mailto:contact@insynbio.com">contact@insynbio.com</a>
+  </footer>
+
+</div>
+</body>
+</html>

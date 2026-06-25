@@ -1,0 +1,294 @@
+{
+  "version": "2026.05.safe-public-v6",
+  "last_updated": "2026-05-31",
+  "audience": "customer_visible_assistant",
+  "purpose": "Safe reference knowledge for the Therasik and InSynBio console assistants. Educational Q&A and report interpretation — no chat-based sequence design.",
+  "output_policy": [
+    "Interpretation and education: explain terms, disease/indication strategy, format selection, developability concepts, and interpret report metrics/WARN/FAIL.",
+    "Allowed knowledge domains (no attached report required): Smart-CMC developability framing (snapshot vs FR-only optimization concepts); Smart CAR-T/CAR-M architecture strategy; Smart ADC target/linker/payload/DAR framing; bispecific/multispecific format and pairing strategy; ADA clinical context via ADA Clinical Atlas (reference only, not a prediction service); CMC/developability risk categories; antibody humanization principles; nanobody/VHH engineering concepts.",
+    "For ADA questions without a billable ADA design module: cite clinical ADA atlas context when available, explain immunogenicity risk categories, and route formal developability work to IgG/VHH CMC Snapshot or Smart-CMC-enabled CMC runs — do not invent ADA rates for the user's sequence.",
+    "Smart-ADC, Smart-CAR-T, Smart-CMC case logic and NIH/NCBI access rules live in a separate assistant-internal layer (not shown on public web pages). Do not link users to case-study HTML pages or internal wiki URLs.",
+    "For questions in allowed domains, answer with: conclusion, risk category, engineering rationale at concept level, recommended platform workflow name, and wet-lab validation route. Do not refuse solely because no report is attached.",
+    "Do not reveal internal algorithms, thresholds, scoring formulas, private database size, source tables, framework selection method, germline ranking logic, back-mutation decision rules, server paths, or toolchain details.",
+    "Do not generate novel therapeutic sequences in chat. Do not prescribe ANY residue-level mutation, substitution, graft, CDR/framework change, liability fix, or redesign unless the attached report context already contains those formal computational outputs. Structural similarity analysis and PDB matching based on provided NCBI evidence is permitted.",
+    "When the user asks for molecule-specific residue-level changes without a report, route them to the appropriate platform workflow (humanization, CMC evaluation, Virtual Affinity Maturation, CAR-T assembler, bispecific analyzer, etc.) and wet-lab validation — do not guess sequences or point mutations.",
+    "For business inquiries, pricing, or custom project collaborations, suggest contacting the expert team (contact@therasik.com or contact@insynbio.com) for human consultation.",
+    "If evidence is insufficient for a factual claim, state that context is insufficient and recommend a report run or expert review."
+  ],
+  "categories": {
+    "Antibody Structural Biology": [
+      {
+        "term": "VH/VL Pairing",
+        "definition": "The relative orientation and compatibility of antibody heavy-chain and light-chain variable domains. Pairing quality affects CDR geometry, antigen access, and developability.",
+        "definition_zh": "抗体重链与轻链可变区之间的相对取向和兼容性。配对质量会影响 CDR 构象、抗原可及性和可开发性。"
+      },
+      {
+        "term": "Structural Similarity Humanization",
+        "definition": "A humanization principle that prioritizes preserving binding-loop geometry and Fv architecture rather than relying only on sequence similarity.",
+        "definition_zh": "一种人源化原则，优先保持结合环构象和 Fv 架构，而不是只依赖序列相似性。"
+      },
+      {
+        "term": "CDR Preservation",
+        "definition": "Maintaining the antigen-binding loops during framework engineering so binding activity can be tested from a focused, lower-risk candidate set.",
+        "definition_zh": "在框架工程中保持抗原结合环，使结合活性能够在更聚焦、风险更低的候选方案中验证。"
+      },
+      {
+        "term": "Vernier Support",
+        "definition": "Framework residues can support CDR loop shape. Customer-facing reports should discuss the concept as structural support, not expose site-by-site internal decision rules.",
+        "definition_zh": "部分框架残基会支撑 CDR 环构象。客户可见报告应解释为结构支撑概念，不展示逐位点内部决策规则。"
+      },
+      {
+        "term": "VHH Structural Humanization",
+        "definition": "VHH engineering should consider hydrophobic exposure, CDR length, hallmark framework behavior, and monodomain stability as a coupled design problem.",
+        "definition_zh": "VHH 工程需同时考虑疏水暴露、CDR 长度、框架特征和单域稳定性，是一个耦合设计问题。"
+      }
+    ],
+    "Antibody Humanization": [
+      {
+        "term": "Murine to Human Framework Grafting",
+        "definition": "Humanization typically grafts donor CDRs onto a human germline framework while preserving binding geometry. The workflow selects human acceptor frameworks, verifies CDR integrity, and evaluates immunogenicity and developability before back-mutation decisions in formal runs.",
+        "definition_zh": "人源化通常将供体 CDR 移植到人胚系框架上，同时尽量保持结合几何。正式流程会选择人源接受框架、验证 CDR 完整性，并在正式计算中评估免疫原性与可开发性后再做回复突变决策。"
+      },
+      {
+        "term": "Germline Selection Concept",
+        "definition": "Acceptor germline choice balances sequence identity, structural compatibility, and developability. Chat may explain the concept and route to VH/VL Humanization; do not disclose internal ranking formulas or thresholds.",
+        "definition_zh": "接受胚系选择需平衡序列同源性、结构兼容性和可开发性。聊天可解释概念并引导至 VH/VL 人源化模块；不得披露内部排序公式或阈值。"
+      },
+      {
+        "term": "Humanization vs Affinity Maturation",
+        "definition": "Humanization addresses species immunogenicity and framework compatibility; affinity maturation addresses binding strength. Order matters: humanize first for clinical frameworks, then maturate if needed.",
+        "definition_zh": "人源化解决种属免疫原性与框架兼容；亲和力成熟解决结合强度。顺序上通常先人源化获得临床可用框架，再按需做亲和力优化。"
+      },
+      {
+        "term": "Humanization Validation Path",
+        "definition": "Typical validation: binding retention (SPR/ELISA), thermal stability, expression titer, developability snapshot, and optionally structural QC before lead nomination.",
+        "definition_zh": "典型验证：结合活性保留（SPR/ELISA）、热稳定性、表达量、可开发性快照，必要时加结构 QC 后再提名 lead。"
+      }
+    ],
+    "Nanobody and VHH": [
+      {
+        "term": "VHH / Nanobody Basics",
+        "definition": "Single-domain camelid antibodies lack a light chain. They often have long CDR3, hallmark framework residues, and unique developability considerations versus IgG Fv.",
+        "definition_zh": "骆驼科单域抗体无轻链，常具有较长 CDR3、特征性框架残基，以及不同于 IgG Fv 的可开发性特点。"
+      },
+      {
+        "term": "VHH Humanization Strategy",
+        "definition": "VHH humanization may use framework grafting, hallmark correction, and hydrophobic patch mitigation while preserving CDR3-mediated binding. Route molecule-specific work to VHH Humanization in the console.",
+        "definition_zh": "VHH 人源化可通过框架移植、特征残基修正和疏水斑块缓解进行，同时保持 CDR3 介导的结合。分子级方案请走 Console 的 VHH 人源化流程。"
+      },
+      {
+        "term": "VHH Developability Focus",
+        "definition": "VHH CMC review should emphasize aggregation, pI/charge, CDR3 length, free Cys, N-glyc motifs, and thermostability as a set — not a single metric.",
+        "definition_zh": "VHH 的 CMC 评估应综合聚集、pI/电荷、CDR3 长度、游离 Cys、N-糖基化基序和热稳定性，而非单一指标。"
+      },
+      {
+        "term": "VHH Format Options",
+        "definition": "VHH can be used as monomer, bivalent/tandem, fusion to Fc or albumin, or as CAR binder. Format choice depends on half-life, avidity, and manufacturing path.",
+        "definition_zh": "VHH 可作为单体、双价/串联、与 Fc 或白蛋白融合，或作为 CAR 结合域。格式选择取决于半衰期、亲和价和制备路径。"
+      }
+    ],
+    "Smart-CMC": [
+      {
+        "term": "Smart-CMC Single Service",
+        "definition": "Smart-CMC is not a separate product from CMC developability screening. One console service covers developability snapshot plus FR-only optimization suggestions when enabled (single debit). Use IgG CMC Snapshot, VHH CMC Snapshot, or CMC Optimization entry — not a second checkout.",
+        "definition_zh": "Smart-CMC 与 CMC 可开发性筛查为同一服务，非独立商品。启用后一次扣费包含快照评估与框架区优化建议；请走 IgG/VHH CMC 或 CMC Optimization 入口，勿重复计费。"
+      },
+      {
+        "term": "Smart-CMC vs Wet-Lab",
+        "definition": "Smart-CMC outputs are computational FR-only suggestions for developability risks (charge, aggregation, liabilities). Binding and potency must be confirmed experimentally. CDR changes are out of scope unless a formal redesign workflow is commissioned offline.",
+        "definition_zh": "Smart-CMC 输出为计算框架区建议，用于可开发性风险；结合与活性须湿实验确认。除非线下正式重设计，不涉及 CDR 改造。"
+      }
+    ],
+    "ADA and Immunogenicity Reference": [
+      {
+        "term": "ADA Clinical Atlas",
+        "definition": "The ADA Clinical Atlas indexes reported treatment-emergent ADA rates from approved and late-stage antibodies for benchmarking — not a sequence-level ADA predictor. For molecule-specific immunogenicity, run VH/VL humanization with immunogenicity section or CMC snapshot; use the assistant to interpret atlas matches and HPR context.",
+        "definition_zh": "ADA 临床图谱收录已批准/后期抗体的报告 ADA 率，用于对标，非序列级预测。分子特异性免疫原性请走人源化免疫原性章节或 CMC 快照；助手可解读图谱匹配与 HPR 背景。"
+      },
+      {
+        "term": "ADA AI Guidance Without ADA Service",
+        "definition": "There is no standalone ADA engineering billable service. The AI assistant may explain ADA biology, clinical benchmark context, and mitigation strategies (formulation, humanization, CMC FR fixes) and route users to Smart-CMC-enabled CMC or humanization workflows.",
+        "definition_zh": "无独立 ADA 工程计费服务。AI 助手可解释 ADA 生物学、临床对标与缓解策略，并引导至 Smart-CMC CMC 或人源化流程。"
+      }
+    ],
+    "CMC Developability": [
+      {
+        "term": "Developability Balance",
+        "definition": "CMC assessment should interpret charge, hydrophobicity, aggregation tendency, chemical liabilities, glycosylation motifs, and free cysteine risk together rather than as a single score.",
+        "definition_zh": "CMC 评估应综合解释电荷、疏水性、聚集倾向、化学修饰风险、糖基化基序和游离半胱氨酸风险，而不是只给一个总分。"
+      },
+      {
+        "term": "FR-only Optimization",
+        "definition": "When a framework region is the safer location for developability correction, recommended changes should avoid disturbing CDR-mediated antigen binding unless formal redesign is requested.",
+        "definition_zh": "当框架区更适合进行可开发性修正时，建议应尽量避免影响 CDR 介导的抗原结合，除非客户明确要求正式重设计。"
+      },
+      {
+        "term": "Aggregation Risk Explanation",
+        "definition": "Aggregation risk can arise from exposed hydrophobic patches, unusual charge distribution, unstable local motifs, or format-driven spatial crowding.",
+        "definition_zh": "聚集风险可来自暴露疏水斑块、异常电荷分布、不稳定局部基序或分子格式导致的空间拥挤。"
+      },
+      {
+        "term": "CMC Recommendation Style",
+        "definition": "A customer-facing CMC answer should state the likely risk category, why it matters experimentally, and which validation experiment should follow.",
+        "definition_zh": "面向客户的 CMC 回答应说明风险类别、该风险为什么影响实验，以及后续应进行哪类验证实验。"
+      },
+      {
+        "term": "Developability vs Potency Tradeoff",
+        "definition": "Developability fixes in CDR can affect binding; FR-only fixes are preferred when potency must be preserved. Formal CMC reports identify risk location; wet-lab confirms impact.",
+        "definition_zh": "在 CDR 做可开发性修正可能影响结合；需保留活性时优先框架区修正。正式 CMC 报告定位风险区域，湿实验确认影响。"
+      }
+    ],
+    "Multispecific Antibody Design": [
+      {
+        "term": "Format Selection",
+        "definition": "Bispecific and multispecific formats should be chosen according to target biology, desired mechanism, valency, geometry, half-life needs, and CMC burden.",
+        "definition_zh": "双特异和多特异格式应根据靶点生物学、作用机制、价态、空间几何、半衰期需求和 CMC 负担选择。"
+      },
+      {
+        "term": "Pairing Stability",
+        "definition": "Chain pairing and domain proximity can create wrong-pairing, steric hindrance, and expression risks. Explain these as structural compatibility concerns.",
+        "definition_zh": "链配对和结构域邻近可能带来错配、空间位阻和表达风险。应将其解释为结构兼容性问题。"
+      },
+      {
+        "term": "Linker Orientation",
+        "definition": "Linker choice should preserve binding access while avoiding excessive flexibility, steric clash, and aggregation-prone exposure.",
+        "definition_zh": "Linker 选择应保持结合可及性，同时避免过度柔性、空间冲突和易聚集表面暴露。"
+      },
+      {
+        "term": "Multispecific Validation Path",
+        "definition": "Recommended validation usually includes expression titer, SEC purity, thermal stability, target-binding assays for each arm, and functional co-engagement assays.",
+        "definition_zh": "建议验证通常包括表达量、SEC 纯度、热稳定性、各结合臂靶点结合实验和功能性共同结合实验。"
+      },
+      {
+        "term": "T-cell Engager vs IgG-like Bispecific",
+        "definition": "T-cell engagers prioritize synapse formation and safety window; IgG-like bispecifics prioritize half-life and manufacturability. Target pair and indication drive format.",
+        "definition_zh": "T 细胞衔接器优先免疫突触形成与安全窗口；IgG 样双特异优先半衰期与可制造性。靶点对和适应症决定格式。"
+      }
+    ],
+    "Smart ADC Design": [
+      {
+        "term": "Smart ADC Decision Layers",
+        "definition": "ADC design spans target antigen density/internalization, linker stability/cleavability, payload class, DAR distribution, and therapeutic index. Explain these layers conceptually; molecule-specific linker-payload matching requires formal ADC workflow or expert review.",
+        "definition_zh": "ADC 设计涵盖靶点抗原密度/内吞、连接子稳定性/可裂解性、载荷类型、DAR 分布和治疗窗。聊天可概念性解释；分子级 linker-payload 匹配需正式 ADC 流程或专家评估。"
+      },
+      {
+        "term": "Linker and Payload Framing",
+        "definition": "Cleavable linkers suit internalizing targets with lysosomal release; non-cleavable linkers rely on antibody degradation. Payload choice balances potency, bystander effect, and off-target toxicity.",
+        "definition_zh": "可裂解连接子适合内吞靶点并在溶酶体释放；不可裂解连接子依赖抗体降解。载荷选择需平衡效力、旁观者效应和脱靶毒性。"
+      },
+      {
+        "term": "ADC Developability",
+        "definition": "ADC CMC adds conjugation heterogeneity, hydrophobicity shift, aggregation after conjugation, and stability of linker-payload. Assess naked antibody developability first.",
+        "definition_zh": "ADC 的 CMC 还需考虑偶联异质性、疏水性变化、偶联后聚集和 linker-payload 稳定性。通常先评估裸抗可开发性。"
+      },
+      {
+        "term": "ADC Validation Path",
+        "definition": "Early ADC validation: antigen expression panel, internalization assay, conjugation DAR characterization, cytotoxicity on target+ cells, off-target cell panel, and stability under storage conditions.",
+        "definition_zh": "ADC 早期验证：抗原表达谱、内吞实验、DAR 表征、靶阳性细胞毒性、脱靶细胞 panel 及储存稳定性。"
+      }
+    ],
+    "Smart CAR-T and CAR-M Design": [
+      {
+        "term": "Smart CAR Design",
+        "definition": "Smart CAR design maps target biology, indication, cell chassis, antigen density, tissue context, and safety needs to a rational construct direction.",
+        "definition_zh": "Smart CAR 设计把靶点生物学、适应症、效应细胞、抗原密度、组织环境和安全需求映射为理性的构型方向。"
+      },
+      {
+        "term": "CAR-T Construct Layers",
+        "definition": "A CAR construct can be discussed as binder, hinge, transmembrane region, intracellular signaling, safety control, delivery, and manufacturing path.",
+        "definition_zh": "CAR 构型可按结合域、铰链区、跨膜区、胞内信号、安全控制、递送方式和制备路径进行解释。"
+      },
+      {
+        "term": "In-Vivo CAR Strategy",
+        "definition": "In-vivo CAR (LNP-mRNA, AAV, or direct vector) requires compact constructs, T-cell targeting for delivery, and careful dose/safety control versus ex-vivo manufacturing. Route formal assembly to cart-invivo-* workflows in the console.",
+        "definition_zh": "In-vivo CAR（LNP-mRNA、AAV 或直接载体）需要紧凑构型、T 细胞靶向递送，以及相对 ex-vivo 更严格的剂量/安全控制。正式组装请走 Console 的 cart-invivo-* 流程。"
+      },
+      {
+        "term": "CAR-M Scenario Transfer",
+        "definition": "CAR-M design extends CAR logic to macrophage biology and can be considered for infection, solid-tumor microenvironment, and immune-modulation scenarios.",
+        "definition_zh": "CAR-M 设计把 CAR 逻辑扩展到巨噬细胞生物学，可用于感染、实体瘤微环境和免疫调节场景的早期判断。"
+      },
+      {
+        "term": "Smart CAR Safety Framing",
+        "definition": "Customer-facing CAR guidance should flag antigen specificity, on-target/off-tissue risk, exhaustion or persistence needs, inflammatory payload risk, and manufacturability.",
+        "definition_zh": "面向客户的 CAR 建议应提示靶点特异性、on-target/off-tissue 风险、耗竭或持久性需求、炎症载荷风险和可制造性。"
+      },
+      {
+        "term": "CAR Validation Path",
+        "definition": "Early validation should connect construct design to expression, surface display, cytotoxicity or phagocytosis assays, cytokine profile, persistence, and safety assays.",
+        "definition_zh": "早期验证应把构型设计与表达、表面展示、杀伤或吞噬实验、细胞因子谱、持久性和安全性实验连接起来。"
+      }
+    ],
+    "Platform Workflow Routing": [
+      {
+        "term": "VH/VL Humanization Workflow",
+        "definition": "Console: VH/VL Humanization module for murine/rabbit donor antibodies. Use when the user needs formal grafted sequences and checklist reports.",
+        "definition_zh": "Console：VH/VL 人源化模块，适用于鼠源/兔源供体抗体，输出正式 graft 序列与 checklist 报告。"
+      },
+      {
+        "term": "VHH Humanization Workflow",
+        "definition": "Console: VHH Humanization for nanobody/camelid sequences with VHH-specific developability and structural QC.",
+        "definition_zh": "Console：VHH 人源化，适用于纳米抗体/骆驼科序列，含 VHH 专用可开发性与结构 QC。"
+      },
+      {
+        "term": "CMC Snapshot Workflow",
+        "definition": "Console: IgG CMC Snapshot or VHH CMC Snapshot for developability risk screening (10k credits). Enable Smart-CMC on the same form for FR-only optimization suggestions (25k credits total, one service).",
+        "definition_zh": "Console：IgG/VHH CMC Snapshot（10k）。同一表单启用 Smart-CMC 则含框架区优化建议（合计 25k，单一服务）。"
+      },
+      {
+        "term": "CAR-T Assembler Workflow",
+        "definition": "Console: CAR-T Design module (car-t-assembler, cart-exvivo-*, cart-invivo-*) for rule-based construct assembly and FASTA output — not chat-based design.",
+        "definition_zh": "Console：CAR-T Design 模块（car-t-assembler、cart-exvivo-*、cart-invivo-*）做规则驱动组装与 FASTA 输出，非聊天设计。"
+      },
+      {
+        "term": "Bispecific Workflow",
+        "definition": "Console: Bispecific Analyzer and Bispecific Assembler for format feasibility, pairing risk, and tandem/scFv-like assembly.",
+        "definition_zh": "Console：双特异分析器与组装器，用于格式可行性、配对风险和 tandem/scFv 类组装。"
+      },
+      {
+        "term": "ADC and Offline Deep Design",
+        "definition": "Smart ADC molecule-specific linker/payload/DAR optimization may require offline expert projects or future ADC console modules; chat provides concept framing and validation routes.",
+        "definition_zh": "Smart ADC 分子级 linker/payload/DAR 优化可能需要线下专家项目或后续 ADC 模块；聊天提供概念框架与验证路线。"
+      }
+    ],
+    "Assistant Output Boundary": [
+      {
+        "term": "No Internal Reasoning Disclosure",
+        "definition": "The assistant may use curated knowledge to answer, but must not reveal hidden reasoning, proprietary decision trees, thresholds, database composition, framework-selection logic, or back-mutation logic.",
+        "definition_zh": "助手可以使用经整理的知识回答问题，但不得暴露隐藏推理、专有决策树、阈值、数据库组成、框架选择逻辑或回突变逻辑。"
+      },
+      {
+        "term": "Customer-Safe Answer Shape",
+        "definition": "Preferred answer structure: conclusion, risk category, engineering interpretation, recommended next action (including console workflow name), and wet-lab validation route.",
+        "definition_zh": "推荐回答结构：结论、风险类别、工程解释、建议动作（含 Console 流程名）和湿实验验证路线。"
+      },
+      {
+        "term": "Strategic Q&A Allowed Without Report",
+        "definition": "Questions about CAR-T, ADC, bispecific format, CMC concepts, humanization principles, or VHH biology are allowed as educational answers. Only residue-level or sequence-level prescriptions require an attached formal report.",
+        "definition_zh": "关于 CAR-T、ADC、双特异格式、CMC 概念、人源化原则或 VHH 生物学的提问，允许作知识性解答。仅残基级或序列级处方需要附带正式报告。"
+      },
+      {
+        "term": "Insufficient Context Response",
+        "definition": "If the user asks for unsupported residue-level or sequence-level decisions, state that a formal workflow or report is required instead of guessing.",
+        "definition_zh": "当用户要求无上下文支持的残基级或序列级决策时，应说明需要正式流程或报告，不要猜测。"
+      }
+    ],
+    "Affinity Maturation and Mutation Guidance": [
+      {
+        "term": "Interpretation-Only for Residue Prescription",
+        "definition": "Residue-level mutation or graft suggestions must come from a completed platform report attached to the chat. Concept-level humanization or developability education is still allowed.",
+        "definition_zh": "残基级突变或 graft 建议必须来自聊天中附加的已完成平台报告。概念级人源化或可开发性教育仍允许。"
+      },
+      {
+        "term": "No Chat-Based Sequence Prescription",
+        "definition": "No mutation, substitution, graft, humanization back-mutation, liability fix, or CDR/framework redesign may be suggested in chat without formal report evidence.",
+        "definition_zh": "无正式报告依据时，聊天中不得建议任何突变、替换、graft、人源化回复突变、liability 修复或 CDR/框架改造。"
+      },
+      {
+        "term": "Workflow Routing Instead of Guessing",
+        "definition": "When sequence change is needed, name the correct platform workflow (humanization, CMC, Virtual Affinity Maturation, CAR-T assembler, bispecific analyzer, etc.) and the wet-lab validation path — do not invent candidates.",
+        "definition_zh": "需要序列级方案时，应指明对应平台正式流程（人源化、CMC、虚拟亲和力成熟、CAR-T 组装、双特异分析等）及湿实验验证路径，不得臆造候选。"
+      }
+    ]
+  }
+}

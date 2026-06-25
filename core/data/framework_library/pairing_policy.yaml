@@ -1,0 +1,43 @@
+pairing_policy:
+  version: "v0"
+  notes:
+    - "This file defines allowed/encouraged pairing constraints between framework libraries and FR4/J segments."
+    - "FR4/J is treated as a compatibility component (not design freedom)."
+    - "Rules are currently placeholders; fill with explicit constraints once VH/VL framework entries are fully segmented."
+
+  # Three-layer pairing policy (VH framework -> VL framework list)
+  recommended_pairs:
+    # Known strong pairing:
+    # - VH3 main frameworks prefer VK1-39 / VK3-20
+    "VH3":
+      - "VK1-39"
+      - "VK3-20"
+    TODO: []
+
+  allowed_pairs:
+    # When aggregation/high-concentration issues occur, allow switching to IGLV2-14
+    conditional:
+      - condition: "high_concentration_formulation == true or aggregation_risk == true"
+        allow_vl_switch_to:
+          - "IGLV2-14"
+        reason: "Mitigate aggregation/high-concentration formulation risk by allowing a λ framework option."
+    TODO: {}
+
+  discouraged_pairs:
+    # Keep empty unless we have explicit evidence; do not infer.
+    TODO:
+      reason: "TODO (assembly/aggregation/charge/steric constraints)"
+      pairs: []
+
+  vh:
+    allowed_families: "TODO"
+    default_fr4_j_segment_set:
+      heavy_j: ["IGHJ1*01", "IGHJ2*01", "IGHJ3*01", "IGHJ4*01", "IGHJ5*01"]
+
+  vl:
+    allowed_families: "TODO"
+    light_chain_types: ["kappa", "lambda"]  # NOTE: entries currently include kappa only (IGKV); lambda policy is TODO
+    default_j_segments:
+      kappa: "TODO"
+      lambda: "TODO"
+

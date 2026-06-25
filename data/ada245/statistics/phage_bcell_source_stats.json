@@ -1,0 +1,107 @@
+{
+  "source": "data/ada245/database/ada_master_245_curated.csv",
+  "n_rows": 245,
+  "status": "exploratory_baseline_not_normal_range",
+  "note": "Current file has discovery_platform. HPR proxy is IMGT VH/VL mean because true promb HPR and AbLang2 columns are not present in this CSV.",
+  "platforms": {
+    "B-cell Sorting": {
+      "n_total": 8,
+      "n_with_ada": 7,
+      "names": [
+        "Bezlotoxumab",
+        "Cilgavimab",
+        "Nirsevimab",
+        "Tixagevimab",
+        "Lecanemab",
+        "Aducanumab",
+        "Atoltivimab",
+        "Maftivimab"
+      ],
+      "ada": {
+        "mean": 2.443,
+        "median": 3.4,
+        "min": 0.0,
+        "max": 5.0
+      },
+      "metrics_all": {
+        "hpr_proxy_imgt_mean": {"n": 7, "mean": 0.9382, "median": 0.955},
+        "GRAVY": {"n": 7, "mean": -0.2903, "median": -0.306},
+        "instability_index": {"n": 7, "mean": 44.1429, "median": 44.5},
+        "pI": {"n": 7, "mean": 8.1143, "median": 8.64},
+        "immuno_tcia_score": {"n": 7, "mean": 0.6668, "median": 0.7068}
+      },
+      "threshold_slices": {
+        "ada_ge_5pct": {
+          "n_high": 1,
+          "means_high": {
+            "hpr_proxy_imgt_mean": 0.8765,
+            "GRAVY": -0.17,
+            "instability_index": 44.5,
+            "pI": 4.6,
+            "immuno_tcia_score": 0.6782
+          }
+        },
+        "ada_ge_10pct": {"n_high": 0, "means_high": {}},
+        "ada_ge_15pct": {"n_high": 0, "means_high": {}}
+      }
+    },
+    "Phage Display": {
+      "n_total": 7,
+      "n_with_ada": 7,
+      "names": [
+        "Lanadelumab",
+        "Necitumumab",
+        "Camrelizumab",
+        "Ranibizumab",
+        "Belimumab",
+        "Ramucirumab",
+        "Sintilimab"
+      ],
+      "ada": {
+        "mean": 7.329,
+        "median": 4.8,
+        "min": 2.0,
+        "max": 20.4
+      },
+      "metrics_all": {
+        "hpr_proxy_imgt_mean": {"n": 7, "mean": 0.8827, "median": 0.9212},
+        "GRAVY": {"n": 7, "mean": -0.2344, "median": -0.2},
+        "instability_index": {"n": 7, "mean": 39.5, "median": 38.4},
+        "pI": {"n": 7, "mean": 7.7514, "median": 7.81},
+        "immuno_tcia_score": {"n": 7, "mean": 0.6833, "median": 0.7531}
+      },
+      "threshold_slices": {
+        "ada_ge_5pct": {
+          "n_high": 3,
+          "means_high": {
+            "hpr_proxy_imgt_mean": 0.9065,
+            "GRAVY": -0.248,
+            "instability_index": 38.7,
+            "pI": 7.6767,
+            "immuno_tcia_score": 0.7698
+          }
+        },
+        "ada_ge_10pct": {
+          "n_high": 2,
+          "means_high": {
+            "hpr_proxy_imgt_mean": 0.9238,
+            "GRAVY": -0.2095,
+            "instability_index": 39.5,
+            "pI": 8.345,
+            "immuno_tcia_score": 0.7781
+          }
+        },
+        "ada_ge_15pct": {
+          "n_high": 1,
+          "means_high": {
+            "hpr_proxy_imgt_mean": 0.9045,
+            "GRAVY": -0.167,
+            "instability_index": 38.4,
+            "pI": 7.85,
+            "immuno_tcia_score": 0.7646
+          }
+        }
+      }
+    }
+  }
+}

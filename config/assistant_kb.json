@@ -1,0 +1,200 @@
+{
+  "version": "1.2",
+  "last_updated": "2026-05-21",
+  "categories": {
+    "Antibody & Protein Basics": [
+      {
+        "term": "IMGT V-domain",
+        "definition": "The international ImMunoGeneTics information system standard for antibody numbering and region definition (FR1-FR4, CDR1-CDR3).",
+        "definition_zh": "国际免疫遗传学信息系统标准，用于抗体编号和区域定义（FR1-FR4, CDR1-CDR3）。"
+      },
+      {
+        "term": "VHH Hallmarks",
+        "definition": "Specific framework-2 positions (IMGT 44, 45, 47) that distinguish camelid VHH from VH, typically increasing solubility (e.g., F42, E44, R45, F47).",
+        "definition_zh": "区分驼科动物 VHH 与人源 VH 的特定框架-2 位点（IMGT 44, 45, 47），通常可增加溶解度。"
+      },
+      {
+        "term": "CDR Preservation",
+        "definition": "A mandatory quality gate ensuring the antigen-binding loops (CDRs) are 100% identical to the donor after framework humanization.",
+        "definition_zh": "强制性质控门控，确保框架人源化后抗原结合环（CDR）与供体 100% 一致。"
+      },
+      {
+        "term": "Framework Identity (PRF)",
+        "definition": "A framework-only identity metric that measures the percentage of human-matching residues in the framework regions, excluding CDRs. Threshold: VH < 85% or VL < 80% → humanization recommended.",
+        "definition_zh": "仅框架区域的同源性指标。阈值：VH < 85% 或 VL < 80% 时建议进行人源化。"
+      },
+      {
+        "term": "Vernier Zone",
+        "definition": "A set of framework residues that support the conformation of CDR loops; maintaining these is critical for affinity preservation.",
+        "definition_zh": "支撑 CDR 环构象的一组框架残基；维持这些位点对保持亲和力至关重要。"
+      }
+    ],
+    "Structure & Metrics": [
+      {
+        "term": "SAP Score (Spatial Aggregation Propensity)",
+        "definition": "Structure-based metric for surface hydrophobicity. InSynBio Threshold: any CDR position > 0.5 or FR > 1.0 is flagged as high risk.",
+        "definition_zh": "基于结构的表面疏水性指标。阈值：任一 CDR 位点 > 0.5 或 FR > 1.0 被标记为高风险。"
+      },
+      {
+        "term": "pLDDT",
+        "definition": "Predicted Local Distance Difference Test — confidence metric for structure prediction. High: ≥ 70; Low: < 50. CDR-H3 average < 50 is flagged for high uncertainty.",
+        "definition_zh": "结构预测置信度指标。高：≥ 70；低：< 50。CDR-H3 平均值 < 50 提示高不确定性。"
+      },
+      {
+        "term": "VH-VL Packing Angle",
+        "definition": "Angle between VH and VL β-sheet planes. Normal: 35°–47°. Flag: < 30° or > 52°. Clinical median (AbRef-1142): 40.5°.",
+        "definition_zh": "VH 和 VL β-折叠平面之间的夹角。正常范围：35°–47°。临床中位数：40.5°。"
+      },
+      {
+        "term": "ΔΔG (Delta Delta G)",
+        "definition": "Change in binding free energy upon mutation. Negative values (e.g., -1.5 kcal/mol) indicate improved binding affinity or stability.",
+        "definition_zh": "突变引起的结合自由能变化。负值（如 -1.5 kcal/mol）表示亲和力或稳定性提高。"
+      },
+      {
+        "term": "RMSD",
+        "definition": "Root Mean Square Deviation — measure of average distance between atoms of superimposed proteins; lower values indicate higher structural similarity.",
+        "definition_zh": "叠合蛋白质原子间平均距离的度量；数值越低表示结构相似性越高。"
+      }
+    ],
+    "CMC & Developability Thresholds": [
+      {
+        "term": "Isoelectric Point (pI)",
+        "definition": "pH at which protein has no net charge. InSynBio Flag: pI > 9.0 or < 5.5. Clinical median: 8.1. Optimal for SC: 6.5–8.5.",
+        "definition_zh": "蛋白质净电荷为零时的 pH 值。标记阈值：pI > 9.0 或 < 5.5。临床中位数：8.1。"
+      },
+      {
+        "term": "GRAVY Score",
+        "definition": "Grand Average of Hydropathicity. Flag: > 0 (unusually hydrophobic). Typical IgG: -0.3 to -0.1.",
+        "definition_zh": "平均亲水性指数。标记阈值：> 0（异常疏水）。典型 IgG 为 -0.3 至 -0.1。"
+      },
+      {
+        "term": "Instability Index",
+        "definition": "Sequence-based predictor of stability. Flag: > 40 (predicted unstable).",
+        "definition_zh": "基于序列的稳定性预测指标。标记阈值：> 40（预测不稳定）。"
+      },
+      {
+        "term": "Net Charge at pH 7.4",
+        "definition": "Sum of ionizable charges. Flag: > +15 (high viscosity risk). Optimal for SC: -5 to +5.",
+        "definition_zh": "生理 pH 下的净电荷。标记阈值：> +15（高粘度风险）。皮下注射理想范围：-5 至 +5。"
+      },
+      {
+        "term": "PSH (Patches of Surface Hydrophobicity)",
+        "definition": "Total hydrophobic surface area. Flag: top 20% of clinical distribution (AbRef-1142).",
+        "definition_zh": "表面总疏水面积。标记阈值：临床分布的前 20% (AbRef-1142)。"
+      },
+      {
+        "term": "Paired Fv Naturalness (p_abnativ2)",
+        "definition": "Measures how 'human-like' a VH/VL pair is. Threshold: < 0.70 FAIL, 0.70-0.80 WARN, ≥ 0.80 PASS, target ≥ 0.83.",
+        "definition_zh": "衡量 VH/VL 配对的“类人性”。阈值：< 0.70 失败，≥ 0.80 通过。"
+      }
+    ],
+    "Fc Engineering Mutations": [
+      {
+        "term": "LALA (L234A/L235A)",
+        "definition": "Standard effector silencing (ADCC/CDC ablation) in IgG1. Public domain.",
+        "definition_zh": "IgG1 标准效应功能沉默突变（消除 ADCC/CDC）。公有领域。"
+      },
+      {
+        "term": "LALA-PG (L234A/L235A/P329G)",
+        "definition": "Most effective silencing variant; completely abolishes FcγR and C1q binding. Active patent (Roche).",
+        "definition_zh": "最有效的沉默变体；完全消除 FcγR 和 C1q 结合。罗氏专利。"
+      },
+      {
+        "term": "LS (M428L/N434S)",
+        "definition": "Half-life extension (11-fold FcRn affinity increase at pH 6.0). Clinical gold standard.",
+        "definition_zh": "半衰期延长突变（pH 6.0 下 FcRn 亲和力提高 11 倍）。临床金标准。"
+      },
+      {
+        "term": "YTE (M252Y/S254T/T256E)",
+        "definition": "Half-life extension (~10-fold FcRn affinity increase). May slightly increase pH 7.4 binding.",
+        "definition_zh": "半衰期延长突变（FcRn 亲和力提高约 10 倍）。"
+      },
+      {
+        "term": "GASDALIE (G236A/S239D/A330L/I332E)",
+        "definition": "Potent ADCC enhancement (1000-fold FcγRIIIa increase). Active patent (Xencor).",
+        "definition_zh": "强效 ADCC 增强突变（FcγRIIIa 结合力提高 1000 倍）。Xencor 专利。"
+      },
+      {
+        "term": "Afucosylation (FUT8-KO)",
+        "definition": "Removal of core fucose to increase FcγRIIIa affinity 50-100x. Most clinically validated ADCC enhancement.",
+        "definition_zh": "去除核心岩藻糖以提高 FcγRIIIa 亲和力 50-100 倍。最成熟的 ADCC 增强方法。"
+      }
+    ],
+    "Bispecific Antibody Formats": [
+      {
+        "term": "Knob-into-Hole (KiH)",
+        "definition": "Fc engineering (T366W knob / T366S-L368A-Y407V hole) for heterodimerization. Public domain.",
+        "definition_zh": "用于异二聚体化的 Fc 工程技术（杵臼结构）。公有领域。"
+      },
+      {
+        "term": "Electrostatic Steering (DD/KK)",
+        "definition": "Charge-based heterodimerization (K409D-K392D / D399K-E356K). High thermal stability.",
+        "definition_zh": "基于电荷排斥/吸引的异二聚体化技术。热稳定性高。"
+      },
+      {
+        "term": "DuoBody",
+        "definition": "Matched mutations (F405L and K409R) driving controlled Fab-arm exchange. High purity.",
+        "definition_zh": "通过受控 Fab 臂交换实现的双抗技术。纯度高。"
+      },
+      {
+        "term": "Tandem scFv",
+        "definition": "Two scFvs connected by a flexible linker (e.g., GGGGSx3) on a single polypeptide chain.",
+        "definition_zh": "在单条多肽链上通过柔性 Linker 连接的两个 scFv。"
+      },
+      {
+        "term": "IgG-like Bispecific",
+        "definition": "Asymmetric antibody with two different Fabs, often using KiH or common light chain.",
+        "definition_zh": "具有两个不同 Fab 的不对称抗体，常使用 KiH 或共同轻链。"
+      }
+    ],
+    "CAR-T Component Library (ACTES)": [
+      {
+        "term": "Signal Peptide (Leader)",
+        "definition": "N-terminal peptide (e.g., CD8α SP, GM-CSF SP) directing surface expression. CD8α is the clinical default.",
+        "definition_zh": "引导表面表达的 N 端肽（如 CD8α SP）。CD8α 是临床默认选择。"
+      },
+      {
+        "term": "Hinge & Spacer",
+        "definition": "Structural region (e.g., CD8α, IgG4-Fc) providing optimal distance for antigen binding. Longer spacers are often better for proximal epitopes.",
+        "definition_zh": "提供抗原结合最佳距离的结构区域。较长的 Spacer 通常适用于靠近细胞膜的表位。"
+      },
+      {
+        "term": "Costimulatory Domain",
+        "definition": "Signaling domains (4-1BB, CD28). 4-1BB promotes persistence/memory; CD28 promotes rapid/potent activation.",
+        "definition_zh": "共刺激结构域。4-1BB 促进持久性/记忆；CD28 促进快速/强效激活。"
+      },
+      {
+        "term": "Primary Signaling Domain",
+        "definition": "The CD3ζ (zeta) chain containing ITAM motifs for T-cell activation signal 1.",
+        "definition_zh": "包含 ITAM 基序的 CD3ζ 链，提供 T 细胞激活的第一信号。"
+      },
+      {
+        "term": "Regulatory Tier (T1-T3)",
+        "definition": "T1: Approved products (e.g., Kymriah, Yescarta); T2: Clinical trials; T3: Preclinical/Research.",
+        "definition_zh": "T1：已上市产品；T2：临床试验阶段；T3：临床前/研究阶段。"
+      }
+    ],
+    "Chemical Liabilities": [
+      {
+        "term": "Deamidation (NG/NS)",
+        "definition": "Asn → Asp conversion. NG is high risk in CDRs; disrupts conformation. Mutation: N→Q or N→S.",
+        "definition_zh": "天冬酰胺转变为天冬氨酸。CDR 中的 NG 基序具有高风险。突变建议：N→Q 或 N→S。"
+      },
+      {
+        "term": "Oxidation (Met/Trp)",
+        "definition": "Met → sulfoxide; Trp → photo-oxidation. CDR Met/Trp are high risk for potency loss. Mutation: M→L.",
+        "definition_zh": "甲硫氨酸/色氨酸氧化。CDR 中的 Met/Trp 具有高活性损失风险。突变建议：M→L。"
+      },
+      {
+        "term": "Asp Isomerization (DG/DS)",
+        "definition": "Asp → iso-Asp. DG in CDR-H3 is critical risk. Mutation: D→E.",
+        "definition_zh": "天冬氨酸异构化。CDR-H3 中的 DG 是关键风险。突变建议：D→E。"
+      },
+      {
+        "term": "Free Cysteine",
+        "definition": "Unpaired Cys outside canonical disulfides. High risk for aggregation/heterogeneity.",
+        "definition_zh": "非典型二硫键外的游离半胱氨酸。具有高聚合/异质性风险。"
+      }
+    ]
+  }
+}

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InSynBio - Intelligent CAR-T Design /  CAR-T </title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --surface-color: #ffffff;
+            --surface-hover: #f1f5f9;
+            --primary: #0284c7;
+            /* Professional Blue */
+            --primary-light: #e0f2fe;
+            --secondary: #0ea5e9;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Nav Header */
+        header {
+            background: var(--surface-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        header nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        header nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Layout */
+        .container {
+            display: flex;
+            padding: 3rem 5%;
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Sidebar - 10 Modules */
+        .sidebar {
+            flex: 0 0 300px;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            height: calc(100vh - 120px);
+            position: sticky;
+            top: 100px;
+            overflow-y: auto;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .sidebar h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 0.8rem;
+        }
+
+        .module-list {
+            list-style: none;
+        }
+
+        .module-list li {
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 6px;
+            background: var(--surface-color);
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .module-list li:hover {
+            background: var(--surface-hover);
+            border-left: 3px solid var(--primary);
+        }
+
+        .module-list li .en {
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: block;
+            color: var(--text-main);
+        }
+
+        .module-list li .zh {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+        }
+
+        .hero {
+            padding: 3rem;
+            text-align: center;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .section-title::before {
+            content: '';
+            width: 6px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        /* Cards */
+        .glass-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Concept Grid */
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .concept-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .concept-item p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .concept-item strong {
+            color: var(--text-main);
+        }
+
+        /* Example Code Block */
+        .code-block {
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            color: #e2e8f0;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+
+        .code-block .comment {
+            color: #94a3b8;
+        }
+
+        .code-block .keyword {
+            color: #38bdf8;
+        }
+
+        .code-block .string {
+            color: #a7f3d0;
+        }
+
+        /* Form styling */
+        .form-container {
+            background: var(--surface-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        .form-group label .zh {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-left: 8px;
+            font-weight: 400;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-main);
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: #ffffff;
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+
+        .btn-submit:hover {
+            background: #0369a1;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 3rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            background: var(--surface-color);
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                height: auto;
+                position: static;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">InSynBio</div>
+        <nav>
+            <a href="https://www.insynbio.com/index.html">Home</a>
+            <a href="https://www.insynbio.com/InSynBio_Antibody_Developability_Assessment_Page.html">Antibody
+                Assessment</a>
+            <a href="#" style="color: var(--primary);">Intelligent CAR-T</a>
+            <a href="#consult">Consultation</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar: 10 Modules -->
+        <aside class="sidebar">
+            <h3>Library Modules </h3>
+            <ul class="module-list">
+                <li><span class="en">1. Clinical Scaffolds</span><span class="zh"> (CAR-T/NK/M)</span></li>
+                <li><span class="en">2. Hinge Architectures</span><span class="zh"></span></li>
+                <li><span class="en">3. Leaders / Signal Peptides</span><span class="zh"></span></li>
+                <li><span class="en">4. Transmembrane Domains</span><span class="zh"></span></li>
+                <li><span class="en">5. Costimulatory Core</span><span class="zh"></span></li>
+                <li><span class="en">6. Tandem Linkers</span><span class="zh">/</span></li>
+                <li><span class="en">7. Switch Receptors</span><span class="zh"> (PD-L1)</span></li>
+                <li><span class="en">8. Armored Cytokines</span><span class="zh"> (IL-15/12)</span></li>
+                <li><span class="en">9. Safety Switches</span><span class="zh"> (iCasp9/tEGFR)</span></li>
+                <li><span class="en">10. 2A Cleavage Peptides</span><span class="zh"></span></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <div class="hero">
+                <h1>ACTES Intelligent <span>CAR-T Design</span></h1>
+                <p>AI-Driven Poly-cistronic Architecture Generation for Solid Tumors, In-Vivo Delivery, and Bispecific
+                    Modalities.<br> 161 。</p>
+            </div>
+
+            <h2 class="section-title">Concept & Innovation </h2>
+            <div class="concept-grid">
+                <div class="glass-card concept-item">
+                    <h4>Affinity & Kinetics </h4>
+                    <p>Matches <strong>Kd</strong> and <strong>Koff</strong> constraints to antigen density. Implements
+                        affinity-tuning for toxic targets (HER2) and fast off-rates to prevent T-cell
+                        exhaustion.<br>，。</p>
+                </div>
+                <div class="glass-card concept-item">
+                    <h4>Steric Hindrance </h4>
+                    <p>Dynamically selects Short CD8a hinges for proximal targets, or IgG4-Long scaffolds for distal
+                        targets to cross bulky glycocalyx spatial barriers.<br>/，/。</p>
+                </div>
+                <div class="glass-card concept-item">
+                    <h4>TME Armoring </h4>
+                    <p>Detects immunosuppressive traits (PD-L1, TGFB, Stromal exclusion) and auto-integrates Switch
+                        Receptors or Armored Cytokines to convert suppression to
+                        activation.<br>（、TGF-b），。</p>
+                </div>
+                <div class="glass-card concept-item">
+                    <h4>In-Vivo & Viral Limits </h4>
+                    <p>Implements rigorous checks for AAV/LNP transduction. Automatically strips out heavy payloads to
+                        ensure the blueprint compiles within tight 4.7kb viral
+                        sizes.<br>（In-vivo），。</p>
+                </div>
+            </div>
+
+            <h2 class="section-title">Real-world Example </h2>
+            <div class="glass-card">
+                <p style="margin-bottom: 1rem;"><strong>Scenario:</strong> Generating an In-Vivo CAR-T sequence
+                    targeting Liver Cancer (GPC3), characterized by a highly fibrotic/stromal microenvironment. <br>
+                    <span style="color: var(--text-muted); font-size: 0.9rem;">： (In-vivo)， (GPC3)
+                        。</span>
+                </p>
+
+                <div class="code-block">
+                    <span class="comment"># [CLINICAL ARCHITECTURE ENGINE] Diagnosing Design Blueprint for: GPC3</span>
+                    <span class="keyword">>>></span> <span class="string">IN-VIVO DELIVERY</span>: Vector packaging
+                    constraints apply (AAV/LNP). Prioritizing compact components.
+                    <span class="keyword">>>></span> <span class="string">HINGE/SCAFFOLD</span>: Membrane-proximal
+                    target -> Enforcing Short Hinge (4-1BB_Base / CD8a).
+                    <span class="keyword">>>></span> <span class="string">SOLID TUMOR DETECTED</span>: Evaluating TME
+                    countermeasures...
+                    - ⚠️ IN-VIVO LIMIT: Skipping large TME Armour to respect viral vector packaging limits (~4.7kb).
+
+                    <span class="comment">============================================================</span>
+                    <span class="string">🧬 CLINICAL CELLULAR THERAPY ARCHITECTURE: GPC3_HCC_INVIVO_CAR 🧬</span>
+                    <span class="comment">============================================================</span>
+                    CHASSIS: In-Vivo CAR-T Vector (Scaffold: 4-1BB_Base)
+                    AFFINITY: 1 nM - 50 nM (Moderate to High)
+
+                    🛠️ CORE ARCHITECTURE MODULES:
+                    [1] LEADER: CD8a
+                    [2] HINGE: CD8a
+                    [3] TM/COSTIM: CD8a / 4-1BB
+                    [4] SIGNALING: CD3z
+                    <span class="comment">------------------------------------------------------------</span>
+                    Total AA Length (CAR only): 482
+                    Total Vector Polyprotein DNA: ~1.44 kb (Fits strictly inside AAV limit)
+                </div>
+            </div>
+
+            <h2 class="section-title" id="consult">Design Consultation </h2>
+            <div class="glass-card form-container">
+                <p style="margin-bottom: 2rem; color: var(--text-muted);">Provide your biological parameters below, and
+                    our Intelligent Engine will compile an optimized multi-cistronic structural plan.
+                    <br>，。</p>
+
+                <form
+                    onsubmit="event.preventDefault; alert('Evaluation Request Submitted to InSynBio Design Engine! / ，1-2。');">
+                    <div class="form-group">
+                        <label>Target Disease / Indication <span class="zh">/ (e.g., Solid Tumor GBM,
+                                B-ALL)</span></label>
+                        <input type="text" class="form-control" placeholder="e.g. Glioblastoma Multiforme (GBM)"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Target Antigen(s) <span class="zh"> (If Bispecific, list both /
+                                )</span></label>
+                        <input type="text" class="form-control" placeholder="e.g. EGFRvIII OR CD19, CD22" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>TME / Delivery Flags <span class="zh"></span></label>
+                        <select class="form-control">
+                            <option>Standard Ex-vivo Cell Therapy </option>
+                            <option>Highly Immunosuppressive / Stromal (/)</option>
+                            <option>In-Vivo Delivery (LNP/AAV)</option>
+                            <option>CNS/BBB Penetration </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Binder Sequence (Optional) <span class="zh">/VHH </span></label>
+                        <textarea class="form-control"
+                            placeholder="Paste amino acid sequence here (FASTA format)... If blank, we will assess using our internal library."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Request Design Blueprint / </button>
+                </form>
+            </div>
+
+        </main>
+    </div>
+
+    <footer>
+        © 2026 InSynBio · AI for Life Sciences | contact@insynbio.com
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+name: US Life Hub — Subscriber Newsletter
+
+on:
+  schedule:
+    # Mon + Thu @ 09:00 America/New_York (EDT=13:00 UTC / EST=14:00 UTC)
+    - cron: "0 13 * * 1,4"
+    - cron: "0 14 * * 1,4"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (no send, no subscription update)"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: uslifehub-newsletter
+  cancel-in-progress: false
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout suite repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Checkout insynbio-website (fresh hub search index)
+        uses: actions/checkout@v4
+        with:
+          repository: jhuang7908/insynbio-website
+          ref: master
+          path: insynbio-web-sync
+          token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+
+      - name: Sync hub search index for personalization
+        run: |
+          cp insynbio-web-sync/hub_search_index.json insynbio-web-source/hub_search_index.json
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install --upgrade pip python-dotenv
+
+      - name: Write SMTP env
+        run: |
+          mkdir -p content_generation_tools
+          cat > content_generation_tools/.env << 'EOF'
+          INSYNBIO_SMTP_HOST=${{ secrets.INSYNBIO_SMTP_HOST }}
+          INSYNBIO_SMTP_PORT=${{ secrets.INSYNBIO_SMTP_PORT }}
+          INSYNBIO_SMTP_USER=${{ secrets.INSYNBIO_SMTP_USER }}
+          INSYNBIO_SMTP_PASS=${{ secrets.INSYNBIO_SMTP_PASS }}
+          EOF
+
+      - name: DST slot gate (Mon/Thu 09:00 ET — scheduled only)
+        id: slot
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          SCHED="${{ github.event.schedule }}"
+          TZ_ZONE=$(TZ=America/New_York date +%Z)
+          DOW=$(TZ=America/New_York date +%u)
+          RUN="false"
+          if [[ "$DOW" == "1" || "$DOW" == "4" ]]; then
+            if [[ "$TZ_ZONE" == "EDT" && "$SCHED" == "0 13 * * 1,4" ]]; then RUN="true"; fi
+            if [[ "$TZ_ZONE" != "EDT" && "$SCHED" == "0 14 * * 1,4" ]]; then RUN="true"; fi
+          fi
+          echo "run=$RUN" >> "$GITHUB_OUTPUT"
+          echo "Schedule: $SCHED, TZ: $TZ_ZONE, weekday: $DOW, run: $RUN"
+
+      - name: Send personalized subscriber newsletter
+        if: steps.slot.outputs.run == 'true'
+        run: |
+          EXTRA=""
+          if [[ "${{ github.event.inputs.dry_run }}" == "true" ]]; then
+            EXTRA="--dry-run"
+          fi
+          python scripts/send_community_newsletters.py $EXTRA
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+
+      - name: Commit subscription campaign state
+        if: steps.slot.outputs.run == 'true' && github.event.inputs.dry_run != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/community_events/subscriptions.json || true
+          git diff --staged --quiet || git commit -m "chore(uslifehub): subscriber newsletter campaign state $(TZ=America/New_York date '+%Y-%m-%d %H:%M ET')"
+          git push || true

@@ -1,0 +1,709 @@
+{
+  "metadata": {
+    "description": "Entries that cannot be included in any verified database. Subcategories: (1) wrong_pmid_no_alternative — PMID confirmed to point to unrelated paper; (2) ada_value_is_not_ada_incidence — claimed value is CV/CI/ORR/PRNT, not ADA incidence; (3) ai_batch_fake_pmid — AI-generated evidence chain with fake PMID.",
+    "generated_utc": "2026-03-31T16:02:57.748337+00:00",
+    "total": 54,
+    "by_reason": {
+      "ada_value_is_not_ada_incidence": 6,
+      "ai_batch_fake_pmid": 45,
+      "wrong_pmid_no_alternative": 3
+    }
+  },
+  "entries": [
+    {
+      "antibody_name": "Abciximab",
+      "ada_value_display": "",
+      "class_evidence_tier": "?",
+      "cannot_verify_reason": "wrong_pmid_no_alternative",
+      "detail": "PMID 15987447 is a COX-2 paper; DailyMed not found; no ADA source verified"
+    },
+    {
+      "antibody_name": "Aducanumab",
+      "ada_value_display": "0.4%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 33361324 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/33361324/"
+      ],
+      "pmids_extracted": [
+        "33361324"
+      ]
+    },
+    {
+      "antibody_name": "Atoltivimab",
+      "ada_value_display": "80%",
+      "class_evidence_tier": "B",
+      "cannot_verify_reason": "ada_value_is_not_ada_incidence",
+      "detail": "80% is PRNT-80 viral inhibition rate, not ADA incidence",
+      "evidence_source": "250",
+      "citation_urls": [
+        "https://api.fda.gov/drug/label.json"
+      ],
+      "pmids_extracted": []
+    },
+    {
+      "antibody_name": "Axatilimab",
+      "ada_value_display": "16.3%",
+      "class_evidence_tier": "B",
+      "cannot_verify_reason": "ada_value_is_not_ada_incidence",
+      "detail": "16.3% is CV (PK variability), not ADA incidence",
+      "evidence_source": "250",
+      "citation_urls": [
+        "https://api.fda.gov/drug/label.json"
+      ],
+      "pmids_extracted": []
+    },
+    {
+      "antibody_name": "Bamlanivimab",
+      "ada_value_display": "2.1%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 33528553 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/33528553/"
+      ],
+      "pmids_extracted": [
+        "33528553"
+      ]
+    },
+    {
+      "antibody_name": "Belantamab",
+      "ada_value_display": "",
+      "class_evidence_tier": "?",
+      "cannot_verify_reason": "wrong_pmid_no_alternative",
+      "detail": "PMID 31711027 is a carbon materials paper; DailyMed not found for belantamab"
+    },
+    {
+      "antibody_name": "Cadonilimab",
+      "ada_value_display": "",
+      "class_evidence_tier": "?",
+      "cannot_verify_reason": "wrong_pmid_no_alternative",
+      "detail": "PMID 34807181 is a metal-mirror paper; Chinese NMPA drug with no FDA/DailyMed entry"
+    },
+    {
+      "antibody_name": "Clesrovimab",
+      "ada_value_display": "22.6%",
+      "class_evidence_tier": "B",
+      "cannot_verify_reason": "ada_value_is_not_ada_incidence",
+      "detail": "22.6% is CV (PK variability), not ADA incidence",
+      "evidence_source": "250",
+      "citation_urls": [
+        "https://api.fda.gov/drug/label.json"
+      ],
+      "pmids_extracted": []
+    },
+    {
+      "antibody_name": "Crovalimab",
+      "ada_value_display": "10-15%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 34276736 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/34276736/"
+      ],
+      "pmids_extracted": [
+        "34276736"
+      ]
+    },
+    {
+      "antibody_name": "Depemokimab",
+      "ada_value_display": "95%",
+      "class_evidence_tier": "B",
+      "cannot_verify_reason": "ada_value_is_not_ada_incidence",
+      "detail": "95% is 95% CI confidence interval, not ADA incidence",
+      "evidence_source": "250",
+      "citation_urls": [
+        "https://api.fda.gov/drug/label.json"
+      ],
+      "pmids_extracted": []
+    },
+    {
+      "antibody_name": "Domvanalimab",
+      "ada_value_display": "17.2%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ada_value_is_not_ada_incidence",
+      "detail": "17.2% is ORR (objective response rate), not ADA incidence",
+      "evidence_source": "250",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/40592848/"
+      ],
+      "pmids_extracted": [
+        "40592848"
+      ]
+    },
+    {
+      "antibody_name": "Emapalumab",
+      "ada_value_display": "10%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 30352551 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/30352551/"
+      ],
+      "pmids_extracted": [
+        "30352551"
+      ]
+    },
+    {
+      "antibody_name": "Etesevimab",
+      "ada_value_display": "1.7%",
+      "class_evidence_tier": "C",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID none verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [],
+      "pmids_extracted": []
+    },
+    {
+      "antibody_name": "Evinacumab",
+      "ada_value_display": "2%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 33446410 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/33446410/"
+      ],
+      "pmids_extracted": [
+        "33446410"
+      ]
+    },
+    {
+      "antibody_name": "Favezelimab",
+      "ada_value_display": "42.9%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ada_value_is_not_ada_incidence",
+      "detail": "42.9% likely ORR/tumor-shrinkage, not ADA incidence; PMID unverified",
+      "evidence_source": "250",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/40668662/"
+      ],
+      "pmids_extracted": [
+        "40668662"
+      ]
+    },
+    {
+      "antibody_name": "Garadacimab",
+      "ada_value_display": "<2%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 33446255 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/33446255/"
+      ],
+      "pmids_extracted": [
+        "33446255"
+      ]
+    },
+    {
+      "antibody_name": "Glofitamab",
+      "ada_value_display": "<1%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 31562122 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/31562122/"
+      ],
+      "pmids_extracted": [
+        "31562122"
+      ]
+    },
+    {
+      "antibody_name": "Ibalizumab",
+      "ada_value_display": "<2%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 29854862 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/29854862/"
+      ],
+      "pmids_extracted": [
+        "29854862"
+      ]
+    },
+    {
+      "antibody_name": "Inebilizumab",
+      "ada_value_display": "10-15%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 32251791 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/32251791/"
+      ],
+      "pmids_extracted": [
+        "32251791"
+      ]
+    },
+    {
+      "antibody_name": "Lebrikizumab",
+      "ada_value_display": "5.2%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 27372567 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/27372567/"
+      ],
+      "pmids_extracted": [
+        "27372567"
+      ]
+    },
+    {
+      "antibody_name": "Leronlimab",
+      "ada_value_display": "10-15%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 32203083 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/32203083/"
+      ],
+      "pmids_extracted": [
+        "32203083"
+      ]
+    },
+    {
+      "antibody_name": "Levilimab",
+      "ada_value_display": "<2%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 33388064 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/33388064/"
+      ],
+      "pmids_extracted": [
+        "33388064"
+      ]
+    },
+    {
+      "antibody_name": "Loncastuximab",
+      "ada_value_display": "10.3%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 31697826 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/31697826/"
+      ],
+      "pmids_extracted": [
+        "31697826"
+      ]
+    },
+    {
+      "antibody_name": "Mirikizumab",
+      "ada_value_display": "5.6%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 32387475 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/32387475/"
+      ],
+      "pmids_extracted": [
+        "32387475"
+      ]
+    },
+    {
+      "antibody_name": "Miromavimab",
+      "ada_value_display": "1.5%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 34855524 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/34855524/"
+      ],
+      "pmids_extracted": [
+        "34855524"
+      ]
+    },
+    {
+      "antibody_name": "Mirvetuximab",
+      "ada_value_display": "10-15%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 29395716 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/29395716/"
+      ],
+      "pmids_extracted": [
+        "29395716"
+      ]
+    },
+    {
+      "antibody_name": "Mosunetuzumab",
+      "ada_value_display": "<2%",
+      "class_evidence_tier": "C",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID none verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [],
+      "pmids_extracted": []
+    },
+    {
+      "antibody_name": "Moxetumomab",
+      "ada_value_display": "10-15%",
+      "class_evidence_tier": "C",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID none verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [],
+      "pmids_extracted": []
+    },
+    {
+      "antibody_name": "Nemolizumab",
+      "ada_value_display": "5.6%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 30289238 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/30289238/"
+      ],
+      "pmids_extracted": [
+        "30289238"
+      ]
+    },
+    {
+      "antibody_name": "Netakimab",
+      "ada_value_display": "10-15%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 31566737 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/31566737/"
+      ],
+      "pmids_extracted": [
+        "31566737"
+      ]
+    },
+    {
+      "antibody_name": "Nimotuzumab",
+      "ada_value_display": "10-15%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 22576171 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/22576171/"
+      ],
+      "pmids_extracted": [
+        "22576171"
+      ]
+    },
+    {
+      "antibody_name": "Obiltoxaximab",
+      "ada_value_display": "<2%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 27021312 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/27021312/"
+      ],
+      "pmids_extracted": [
+        "27021312"
+      ]
+    },
+    {
+      "antibody_name": "Olokizumab",
+      "ada_value_display": "10-15%",
+      "class_evidence_tier": "C",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID none verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [],
+      "pmids_extracted": []
+    },
+    {
+      "antibody_name": "Pabinafusp",
+      "ada_value_display": "<2%",
+      "class_evidence_tier": "C",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID none verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [],
+      "pmids_extracted": []
+    },
+    {
+      "antibody_name": "Pemivibart",
+      "ada_value_display": "10-15%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 30265425 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/30265425/"
+      ],
+      "pmids_extracted": [
+        "30265425"
+      ]
+    },
+    {
+      "antibody_name": "Penpulimab",
+      "ada_value_display": "10-15%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 33524450 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/33524450/"
+      ],
+      "pmids_extracted": [
+        "33524450"
+      ]
+    },
+    {
+      "antibody_name": "Polatuzumab",
+      "ada_value_display": "<1%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 31201130 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/31201130/"
+      ],
+      "pmids_extracted": [
+        "31201130"
+      ]
+    },
+    {
+      "antibody_name": "Racotumomab",
+      "ada_value_display": "10-15%",
+      "class_evidence_tier": "C",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID none verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [],
+      "pmids_extracted": []
+    },
+    {
+      "antibody_name": "Recaticimab",
+      "ada_value_display": "<1%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 32767679 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/32767679/"
+      ],
+      "pmids_extracted": [
+        "32767679"
+      ]
+    },
+    {
+      "antibody_name": "Regdanvimab",
+      "ada_value_display": "10%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 34183044 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/34183044/"
+      ],
+      "pmids_extracted": [
+        "34183044"
+      ]
+    },
+    {
+      "antibody_name": "Relatlimab",
+      "ada_value_display": "<2%",
+      "class_evidence_tier": "C",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID none verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [],
+      "pmids_extracted": []
+    },
+    {
+      "antibody_name": "Rozanolixizumab",
+      "ada_value_display": "10-15%",
+      "class_evidence_tier": "C",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID none verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [],
+      "pmids_extracted": []
+    },
+    {
+      "antibody_name": "Satumomab",
+      "ada_value_display": "10-15%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 8648089 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/8648089/"
+      ],
+      "pmids_extracted": [
+        "8648089"
+      ]
+    },
+    {
+      "antibody_name": "Sintilimab",
+      "ada_value_display": "<2%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 30621725 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/30621725/"
+      ],
+      "pmids_extracted": [
+        "30621725"
+      ]
+    },
+    {
+      "antibody_name": "Spesolimab",
+      "ada_value_display": "10-15%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 31806488 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/31806488/"
+      ],
+      "pmids_extracted": [
+        "31806488"
+      ]
+    },
+    {
+      "antibody_name": "Sutimlimab",
+      "ada_value_display": "10%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 33462941 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/33462941/"
+      ],
+      "pmids_extracted": [
+        "33462941"
+      ]
+    },
+    {
+      "antibody_name": "Tafasitamab",
+      "ada_value_display": "10%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 32333849 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/32333849/"
+      ],
+      "pmids_extracted": [
+        "32333849"
+      ]
+    },
+    {
+      "antibody_name": "Tafolecimab",
+      "ada_value_display": "10-15%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 35326524 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/35326524/"
+      ],
+      "pmids_extracted": [
+        "35326524"
+      ]
+    },
+    {
+      "antibody_name": "Tagitanlimab",
+      "ada_value_display": "<1%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 33837950 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/33837950/"
+      ],
+      "pmids_extracted": [
+        "33837950"
+      ]
+    },
+    {
+      "antibody_name": "Tebentafusp",
+      "ada_value_display": "10-15%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 35106386 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/35106386/"
+      ],
+      "pmids_extracted": [
+        "35106386"
+      ]
+    },
+    {
+      "antibody_name": "Teclistamab",
+      "ada_value_display": "<2%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 34402163 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/34402163/"
+      ],
+      "pmids_extracted": [
+        "34402163"
+      ]
+    },
+    {
+      "antibody_name": "Timigutuzumab",
+      "ada_value_display": "10-15%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 34540688 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/34540688/"
+      ],
+      "pmids_extracted": [
+        "34540688"
+      ]
+    },
+    {
+      "antibody_name": "Vilobelimab",
+      "ada_value_display": "10-15%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 33619099 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/33619099/"
+      ],
+      "pmids_extracted": [
+        "33619099"
+      ]
+    },
+    {
+      "antibody_name": "Vunakizumab",
+      "ada_value_display": "10-15%",
+      "class_evidence_tier": "A",
+      "cannot_verify_reason": "ai_batch_fake_pmid",
+      "detail": "evidence_source=''; PMID 31138300 verified to point to unrelated paper",
+      "evidence_source": "",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/31138300/"
+      ],
+      "pmids_extracted": [
+        "31138300"
+      ]
+    }
+  ]
+}

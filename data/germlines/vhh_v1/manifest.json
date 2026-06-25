@@ -1,0 +1,127 @@
+{
+  "asset_type": "germline",
+  "version": "vhh_v1",
+  "description": "VHH-compatible germline assets with IMGT/Kabat numbering, VHH hallmark scoring, and CDR1/CDR2 canonical proxy scores",
+  "includes": {
+    "canonical_proxy": true,
+    "imgt_numbering": true,
+    "kabat_numbering": true,
+    "segments": ["FR1", "CDR1", "FR2", "CDR2", "FR3"],
+    "vhh_hallmark": true
+  },
+  "cleaning_rules": {
+    "imgt_numbering_required": true,
+    "kabat_numbering_required": true,
+    "segments_required": ["FR1", "CDR1", "FR2", "CDR2", "FR3"],
+    "standard_aa_only": true,
+    "description": "Rules aligned with v1_clean pipeline"
+  },
+  "vhh_hallmark": {
+    "version": "1.0.0",
+    "positions": [37, 44, 45, 47],
+    "scoring_scheme": "hit_ratio",
+    "classification": {
+      "vhh_like": "score >= 0.75 (3/4 or 4/4 positions match VHH-typical AAs)",
+      "vh_like": "score <= 0.25 (0/4 or 1/4 positions match VHH-typical AAs)",
+      "ambiguous": "0.25 < score < 0.75 (2/4 positions match VHH-typical AAs)"
+    },
+    "position_definitions": {
+      "37": {
+        "typical_vhh_aas": ["F", "Y", "V"],
+        "typical_human_vh_aas": ["V", "I", "L"]
+      },
+      "44": {
+        "typical_vhh_aas": ["E", "Q", "D"],
+        "typical_human_vh_aas": ["G"]
+      },
+      "45": {
+        "typical_vhh_aas": ["R", "K"],
+        "typical_human_vh_aas": ["L"]
+      },
+      "47": {
+        "typical_vhh_aas": ["W"],
+        "typical_human_vh_aas": ["W"]
+      }
+    }
+  },
+  "canonical_proxy_definition": {
+    "proxy_score": "0.6 * cluster_percentile + 0.4 * rep_identity",
+    "scope": ["CDR1", "CDR2"],
+    "note": "Sequence-based proxy; no structural canonical class assignment. Uses IMGT length bucket for percentile calculation."
+  },
+  "canonical_proxy": {
+    "agg_mode": "min",
+    "weight": 0.10,
+    "formula": "0.6 * percentile + 0.4 * rep_identity",
+    "enabled": true,
+    "identity_threshold": 0.80
+  },
+  "scaffold_ranking": {
+    "canonical_proxy_enabled": true,
+    "vhh_hallmark_enabled": true,
+    "vhh_hallmark_weight": 0.15,
+    "germline_asset_version": "vhh_v1"
+  },
+  "vhh_assets": {
+    "scaffold_library": "data/germlines/vhh_v1/vhh_scaffold_library_v1.jsonl",
+    "special_fr_templates": "data/germlines/vhh_v1/vhh_special_fr_templates_v1.jsonl",
+    "usage": {
+      "scaffold_library": " stage1 scaffold ranking （，264）",
+      "special_fr_templates": "FR-only ， FR /， stage1（82）"
+    }
+  },
+  "generated_by": {
+    "pipeline": [
+      "build_vhh_germline_assets_v1.py",
+      "build_vhh_v1_canonical_proxy.py"
+    ],
+    "date": "2025-12-13"
+  },
+  "source_data": {
+    "raw_fasta_dir": "data/germlines/vhh_v1/raw_fasta/",
+    "description": "Input FASTA files containing human VH3-like/VHH-compatible germlines and camelid VHH germlines"
+  },
+  "files": {
+    "vhh_germline_assets_clean": {
+      "path": "vhh_germline_assets_clean.jsonl",
+      "description": "Clean germline sequences with IMGT/Kabat numbering, segmentation, and VHH hallmark scoring"
+    },
+    "vhh_germline_assets_clean_with_canonical_proxy": {
+      "path": "vhh_germline_assets_clean_with_canonical_proxy.jsonl",
+      "description": "Clean germline sequences with canonical proxy annotations for CDR1/CDR2"
+    },
+    "clusters": {
+      "cdr1": {
+        "assignments": "clusters/cdr1_cluster_assignments.csv",
+        "summary": "clusters/cdr1_cluster_summary.csv",
+        "representatives": "clusters/cdr1_representatives.fasta"
+      },
+      "cdr2": {
+        "assignments": "clusters/cdr2_cluster_assignments.csv",
+        "summary": "clusters/cdr2_cluster_summary.csv",
+        "representatives": "clusters/cdr2_representatives.fasta"
+      },
+      "description": "CDR1/CDR2 cluster assignments, summaries, and representative sequences"
+    },
+    "qc": {
+      "dropped": {
+        "path": "qc/vhh_germline_assets_dropped.csv",
+        "description": "Sequences dropped during cleaning with reasons"
+      },
+      "canonical_proxy_qc": {
+        "path": "qc/canonical_proxy_qc.csv",
+        "description": "Quality control summary for canonical proxy annotations"
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+

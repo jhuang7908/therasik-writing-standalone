@@ -1,0 +1,21 @@
+================================================================================
+CDR3 HYDROPHOBICITY & HUMANIZATION ANALYSIS
+================================================================================
+1. Correlation: CDR3 Hydrophobicity vs FR2 Human Identity
+   rho = 0.037, p = 0.8803
+   -> No significant direct correlation.
+   (Expected: Negative correlation. More hydrophobic CDR3 -> Lower FR2 Human%)
+
+2. Critical Threshold Analysis (CDR3 Length 10-13)
+ID              | Len | Hydro  | FR2_Human% | Status
+------------------------------------------------------------
+Gocatamig2      | 11  | -0.63  | 17.6       | Alpaca-like
+Letolizumab     | 11  | -1.00  | 23.5       | Alpaca-like
+Porustobart     | 13  | -0.13  | 17.6       | Alpaca-like
+
+3. Global Human Identity (Proxy for T20) by Strategy
+                     mean       std  count
+strategy_group                            
+BM              91.093750  4.033205      8
+Native          85.000000  0.000000      4
+SR              89.285714  2.147812      7

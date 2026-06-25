@@ -1,0 +1,70 @@
+{
+  "version": "1.0",
+  "built_at": "2026-04-15T03:12:14Z",
+  "purpose": "IGLV λ-chain priors for Phase 2 framework selection when κ-based Golden Pairs are insufficient",
+  "limitations": [
+    "842 engineered+natural assignment CSV is κ-only (IGKV) in the current repository snapshot — no joint VH–IGLV frequencies from that file.",
+    "Explicit VH–IGLV pairs below are sparse; use together with Vernier score + CDR gate + clinical precedent search.",
+    "Marginal IGLV counts are not VH–VL co-occurrence frequencies."
+  ],
+  "sources": {
+    "842_antibody_germline_assignment": {
+      "path": "data/humanization_assay/842_antibody_germline_assignment.csv",
+      "rows_total": 842,
+      "rows_vl_iglv": 0
+    },
+    "framework_route_examples": {
+      "path": "data/thera_sabdab/features/framework_route_examples_slice_1.csv",
+      "explicit_iglv_rows": 2
+    },
+    "thera_germline_mapping_marginal_vl": {
+      "path": "data/thera_sabdab/out/thera_germline_mapping.csv",
+      "iglv_genes_listed": 3
+    }
+  },
+  "joint_vh_iglv_pairs_ranked": [
+    {
+      "vh_germline": "IGHV3-48*01",
+      "vl_germline": "IGLV8-61*01",
+      "count": 1,
+      "source": "framework_route_examples_slice_1"
+    },
+    {
+      "vh_germline": "IGHV3-23*04",
+      "vl_germline": "IGLV3-9*01",
+      "count": 1,
+      "source": "framework_route_examples_slice_1"
+    }
+  ],
+  "explicit_examples": [
+    {
+      "antibody_id": "Cusatuzumab",
+      "vh_germline": "IGHV3-48*01",
+      "vl_germline": "IGLV8-61*01",
+      "source": "thera_sabdab/framework_route_examples_slice_1.csv"
+    },
+    {
+      "antibody_id": "Prolgolimab",
+      "vh_germline": "IGHV3-23*04",
+      "vl_germline": "IGLV3-9*01",
+      "source": "thera_sabdab/framework_route_examples_slice_1.csv"
+    }
+  ],
+  "marginal_iglv_vl_usage": [
+    {
+      "vl_germline": "IGLV1-44*01",
+      "count": 64,
+      "note": "Marginal VL usage in Thera-SAbDab-derived mapping (not VH–VL joint frequency)"
+    },
+    {
+      "vl_germline": "IGLV3-1*01",
+      "count": 41,
+      "note": "Marginal VL usage in Thera-SAbDab-derived mapping (not VH–VL joint frequency)"
+    },
+    {
+      "vl_germline": "IGLV2-14*01",
+      "count": 27,
+      "note": "Marginal VL usage in Thera-SAbDab-derived mapping (not VH–VL joint frequency)"
+    }
+  ]
+}

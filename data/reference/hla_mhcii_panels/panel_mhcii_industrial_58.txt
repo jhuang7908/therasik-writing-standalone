@@ -1,0 +1,85 @@
+# InSynBio Industrial MHC-II Panel (n=58)
+# Designed for comprehensive IND-enabling immunogenicity profiling.
+# Covers HLA-DR (primary and secondary), HLA-DQ, and HLA-DP across global superpopulations.
+# Format compatible with IEDB / NetMHCIIpan.
+
+# ---------------------------------------------------------
+# 1. HLA-DRB1 (35 alleles) - Primary DR beta chains
+# Covers >90% of EUR, EAS, AFR, AMR, SAS populations
+# ---------------------------------------------------------
+DRB1*01:01
+DRB1*01:02
+DRB1*03:01
+DRB1*03:02
+DRB1*04:01
+DRB1*04:02
+DRB1*04:03
+DRB1*04:04
+DRB1*04:05
+DRB1*04:06
+DRB1*04:07
+DRB1*04:08
+DRB1*07:01
+DRB1*07:02
+DRB1*08:01
+DRB1*08:02
+DRB1*08:03
+DRB1*09:01
+DRB1*09:02
+DRB1*10:01
+DRB1*11:01
+DRB1*11:02
+DRB1*11:03
+DRB1*11:04
+DRB1*12:01
+DRB1*13:01
+DRB1*13:02
+DRB1*13:03
+DRB1*13:05
+DRB1*14:01
+DRB1*14:02
+DRB1*15:01
+DRB1*15:02
+DRB1*15:03
+DRB1*15:17
+DRB1*16:01
+
+# ---------------------------------------------------------
+# 2. HLA-DRB3/4/5 (6 alleles) - Secondary DR beta chains
+# Highly expressed in specific populations (e.g., African)
+# ---------------------------------------------------------
+DRB3*01:01
+DRB3*02:02
+DRB3*03:01
+DRB4*01:01
+DRB5*01:01
+DRB5*02:02
+
+# ---------------------------------------------------------
+# 3. HLA-DQ (10 heterodimers)
+# Major contributors to specific autoimmune/immunogenicity risks
+# Format: DQA1*XX:XX/DQB1*YY:YY
+# ---------------------------------------------------------
+DQA1*05:01/DQB1*02:01
+DQA1*03:01/DQB1*03:02
+DQA1*01:01/DQB1*05:01
+DQA1*01:02/DQB1*06:02
+DQA1*03:03/DQB1*02:01
+DQA1*04:01/DQB1*04:02
+DQA1*06:01/DQB1*03:01
+DQA1*01:03/DQB1*06:03
+DQA1*05:05/DQB1*03:01
+DQA1*03:02/DQB1*03:03
+
+# ---------------------------------------------------------
+# 4. HLA-DP (7 heterodimers)
+# Completes the MHC-II presentation profile
+# Format: DPA1*XX:XX/DPB1*YY:YY
+# ---------------------------------------------------------
+DPA1*01:03/DPB1*02:01
+DPA1*01:03/DPB1*04:01
+DPA1*01:03/DPB1*04:02
+DPA1*02:01/DPB1*05:01
+DPA1*01:03/DPB1*03:01
+DPA1*02:02/DPB1*09:01
+DPA1*02:01/DPB1*01:01

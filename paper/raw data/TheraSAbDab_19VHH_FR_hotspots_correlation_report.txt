@@ -1,0 +1,153 @@
+====================================================================================================
+Comprehensive FR Analysis: Germlines, Hallmarks, Vernier Zones vs CDR Conformations
+====================================================================================================
+
+Questions:
+  1. Do FR germline frameworks correlate with CDR2 fold or CDR3 length?
+  2. Do VHH hallmark positions correlate with CDR conformations?
+  3. Do Vernier zone residues adapt to different CDR structures?
+
+## 1. FR Germline Type Distribution
+
+FR1 germline type:
+  shared: 19 (100.0%)
+FR2 germline type:
+  human: 12 (63.2%)
+  shared: 7 (36.8%)
+FR3 germline type:
+  shared: 11 (57.9%)
+  human: 8 (42.1%)
+FR4 germline type:
+  human: 18 (94.7%)
+  shared: 1 (5.3%)
+
+## 2. FR Germline Type vs CDR2 Canonical Fold
+
+FR1 germline by CDR2 fold:
+  H2-9-1: shared:6
+  H2-10-1: shared:12
+
+FR2 germline by CDR2 fold:
+  H2-9-1: shared:5, human:1
+  H2-10-1: human:10, shared:2
+
+FR3 germline by CDR2 fold:
+  H2-9-1: human:3, shared:3
+  H2-10-1: shared:8, human:4
+
+FR4 germline by CDR2 fold:
+  H2-9-1: human:6
+  H2-10-1: human:11, shared:1
+
+## 3. FR Germline Type vs CDR3 Length
+
+FR1 germline by CDR3 length:
+  short      (n= 3): shared:3
+  medium     (n= 5): shared:5
+  long       (n= 8): shared:8
+  very_long  (n= 3): shared:3
+
+FR2 germline by CDR3 length:
+  short      (n= 3): human:2, shared:1
+  medium     (n= 5): human:3, shared:2
+  long       (n= 8): human:4, shared:4
+  very_long  (n= 3): human:3
+
+FR3 germline by CDR3 length:
+  short      (n= 3): human:2, shared:1
+  medium     (n= 5): human:3, shared:2
+  long       (n= 8): shared:6, human:2
+  very_long  (n= 3): shared:2, human:1
+
+FR4 germline by CDR3 length:
+  short      (n= 3): human:2, shared:1
+  medium     (n= 5): human:5
+  long       (n= 8): human:8
+  very_long  (n= 3): human:3
+
+## 4. VHH Hallmark Positions vs CDR Conformations
+
+Hallmark humanization score by CDR2 fold:
+  H2-9-1: 0.0H / 1.0C (median)
+  H2-10-1: 0.0H / 2.0C (median)
+
+Hallmark humanization score by CDR3 length:
+  short      (n= 3): 0.0H / 2.0C
+  medium     (n= 5): 0.0H / 1.0C
+  long       (n= 8): 0.0H / 2.0C
+  very_long  (n= 3): 0.0H / 1.0C
+
+Hallmark humanization score by strategy:
+  BM: 0.0H / 1.5C
+  SR: 0.0H / 1.0C
+  Native: 0.0H / 2.0C
+
+## 5. Vernier Zone Residue Conservation
+
+Conservation at Vernier zone positions:
+  IMGT   2: V (100%) | V:19
+  IMGT   4: L (100%) | L:19
+  IMGT  27: G (89%) | G:17, S:1, T:1
+  IMGT  28: R (42%) | R:8, F:4, K:2
+  IMGT  30: F (58%) | F:11, V:5, S:2
+  IMGT  48: K (100%) | K:19
+  IMGT  66: Y (47%) | Y:9, T:3, S:2
+  IMGT  67: Y (89%) | Y:17, L:2
+  IMGT  68: A (74%) | A:14, P:2, M:1
+  ... (10 more Vernier positions)
+
+## 6. Key Correlation Findings
+
+1. FR1 germline framework:
+   - 19/19 molecules have 'shared' FR1 (human = camelid)
+   → FR1 is EVOLUTIONARILY CONSERVED across species
+
+2. VHH hallmarks vs CDR2 fold:
+   - H2-9-1: 0.0 human hallmarks (median)
+   - H2-10-1: 0.0 human hallmarks (median)
+   - Mann-Whitney U test: p = 0.5557
+   → No correlation between CDR2 fold and hallmark humanization
+
+3. VHH hallmarks vs CDR3 length:
+   - Short CDR3 (≤10aa): 0.0 human hallmarks
+   - Long CDR3 (≥16aa): 0.0 human hallmarks
+   - Mann-Whitney U test: p = 1.0000
+   → No correlation between CDR3 length and hallmark humanization
+
+## 7. Individual Molecule Profiles (sorted by CDR3 length)
+
+antibody_id      | CDR3 | H2_fold | FR1_germ | FR2_germ | FR3_germ | FR4_germ | Hallmark | Strategy
+--------------------------------------------------------------------------------------------------------------
+Enristomig      |    5 | H2-9-1  | shared   | shared   | human    | human    | 0H/1C    | BM
+Brivekimig2     |    8 | H2-10-1 | shared   | human    | shared   | shared   | 0H/2C    | BM
+Ozoralizumab    |    8 | H2-10-1 | shared   | human    | human    | human    | 0H/2C    | SR
+Gocatamig2      |   11 | H2-9-1  | shared   | shared   | human    | human    | 0H/1C    | BM
+Letolizumab     |   11 | H2-10-1 | shared   | human    | shared   | human    | 1H/1C    | BM
+Porustobart     |   13 | H2-9-1  | shared   | human    | shared   | human    | 0H/1C    | BM
+Podentamig1     |   14 | unknown | shared   | human    | human    | human    | 0H/1C    | Native
+Vobarilizumab   |   15 | H2-9-1  | shared   | shared   | human    | human    | 0H/1C    | SR
+Sonelokimab1    |   16 | H2-10-1 | shared   | shared   | shared   | human    | 0H/2C    | Native
+Ozekibart       |   16 | H2-10-1 | shared   | shared   | human    | human    | 0H/2C    | BM
+Brivekimig1     |   16 | H2-10-1 | shared   | human    | shared   | human    | 0H/2C    | Native
+Isecarosmab     |   17 | H2-10-1 | shared   | human    | shared   | human    | 0H/2C    | Native
+Sonelokimab2    |   17 | H2-10-1 | shared   | human    | shared   | human    | 0H/1C    | SR
+Tarperprumig    |   17 | H2-9-1  | shared   | shared   | shared   | human    | 0H/2C    | BM
+Gefurulimab     |   17 | H2-9-1  | shared   | shared   | shared   | human    | 0H/2C    | BM
+Rimteravimab    |   18 | H2-10-1 | shared   | human    | human    | human    | 0H/2C    | SR
+Erfonrilimab    |   21 | H2-10-1 | shared   | human    | shared   | human    | 0H/1C    | SR
+Caplacizumab    |   21 | H2-10-1 | shared   | human    | human    | human    | 0H/1C    | SR
+Envafolimab     |   21 | H2-10-1 | shared   | human    | shared   | human    | 0H/1C    | SR
+
+## 8. COMPREHENSIVE SUMMARY
+
+Framework germline usage:
+  FR1: shared (100%)
+  FR2: human (63%)
+  FR3: shared (58%)
+  FR4: human (95%)
+
+VHH hallmark patterns:
+  Camelid-like: 18/19 (95%)
+  Human-like: 0/19 (0%)
+
+====================================================================================================

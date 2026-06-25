@@ -1,0 +1,525 @@
+{
+  "_meta": {
+    "schema_version": "1.1.0",
+    "description": "Single source of truth (SSOT) for AbEngineCore standard paths, version labels, primary config files, and selected runtime pipeline policies. Edit ONLY this file for pipeline identity/policy; then run sync + validation scripts.",
+    "last_updated": "2026-05-09",
+    "aligns_with_registry": "config/abenginecore_registry.json → pipeline_release_matrix",
+    "governance": "LOCKED tier standards/docs still require owner approval to edit; SSOT drives drift detection vs registry + generates docs/_generated/ for human-readable alignment.",
+    "policy_scope_note": "Runtime policies below are intended to prevent drift between VHH algorithm/process decisions and management/reporting tools."
+  },
+  "standards": [
+    {
+      "id": "regular_antibody_vh_vl_humanization",
+      "display_name": "VH/VL murine/chimeric → human (full checklist)",
+      "version": "V5.5.1",
+      "release_id": "V5.5.1_VH_VL_Humanization",
+      "standard_file": "docs/VH_VL_HUMANIZATION_STANDARD_V4.4.md",
+      "config_files": [
+        "config/vh_vl_humanization_v490.json",
+        "config/vh_vl_humanization_v44.json",
+        "config/clinical_842_9mer_db.json",
+        "config/oas_human_9mer_v1.json.gz"
+      ],
+      "registry_pipeline_key": "regular_antibody_vh_vl_humanization",
+      "supersedes": "V5.5.0_VH_VL_Humanization",
+      "config_note": "Primary execution: v490.json (_meta.version 5.5.1). V5.5.1 (2026-05-09): client-safe reporting patch for the V5.5.0 post-humanization paired Fv naturalness QC gate. Customer-facing outputs use Paired Fv Naturalness QC and show only PASS/WARN/FAIL plus recommended action; internal JSON retains p_abnativ2.paired_humanness and pairing_likelihood. Gate behavior remains V5.5.0: paired_humanness <0.70 = FAIL, 0.70-0.80 = WARN, >=0.80 = PASS, target >=0.83. Inherits V5.4.3 Balanced CMC Polish and V5.4.0 structure-driven fallback."
+    },
+    {
+      "id": "crossspecies_engine",
+      "display_name": "CrossSpecies Engine — meta-standard for cross-species antibody engineering (SR-1.0 / DFR-1.0 / AG-1.0)",
+      "version": "V1.0",
+      "release_id": "V1.0_CrossSpecies_Engine",
+      "standard_file": "docs/CROSSSPECIES_ENGINE_STANDARD_V1.0.md",
+      "config_files": [
+        "config/crossspecies_adapter_template.json",
+        "config/crossspecies_adapters/canis_lupus_familiaris__VH_VL.json",
+        "config/crossspecies_adapters/canis_lupus_familiaris__VHH.json",
+        "config/crossspecies_adapters/felis_catus__VH_VL.json",
+        "config/crossspecies_adapters/felis_catus__VHH.json",
+        "config/crossspecies_adapters/camelid__VHH_to_human.json",
+        "config/crossspecies_adapters/oryctolagus_cuniculus__VH_VL_to_human.json",
+        "config/crossspecies_adapters/mus_musculus__VH_VL_to_human.json",
+        "config/crossspecies_adapters/gallus_gallus__VH_VL_to_human.json",
+        "config/crossspecies_adapters/bos_taurus__VH_VL_to_human.json",
+        "config/crossspecies_adapters/equus_caballus__VH_VL_to_human.json"
+      ],
+      "registry_pipeline_key": "crossspecies_engine",
+      "supersedes": null,
+      "config_note": "Engine-layer meta-standard; parallel to (never replaces) species standards. Three frozen tracks: SR-1.0 Surface Reshaping (always available), DFR-1.0 DeepFR (frequency + 4 structural vetoes: hallmark / Cys / SASA<5 Å² / CDR-proximal <5 Å), AG-1.0 Anchor Graft (clinically validated acceptors only). Forbidden: naive merged mutation union without three-gate re-screen; AG-1.0 on dog/cat VHH (no canine/feline single-domain clinical scaffold). Promoted from V0.1 by owner approval 2026-05-07."
+    },
+    {
+      "id": "pet_antibody_petization",
+      "display_name": "Petization — unified caninization + felinization (dog/cat)",
+      "version": "V1.0.0",
+      "release_id": "V1.0.0_Petization",
+      "standard_file": "docs/PETIZATION_STANDARD_V1.0.md",
+      "config_files": [
+        "scripts/run_petization_pipeline.py",
+        "data/germlines/canis_lupus_familiaris_ig_aa/dog_scaffold_cmc_optimization_tier1_tier2_v1.json",
+        "data/germlines/felis_catus_ig_aa/cat_scaffold_cmc_optimization_tier1_tier2_v1.json"
+      ],
+      "registry_pipeline_key": "pet_antibody_petization",
+      "registry_alias_keys": [
+        "feline_antibody_felinization",
+        "canine_antibody_caninization"
+      ],
+      "supersedes": "feline_antibody_felinization (V1.0.0_Felinization, deprecated 2026-04-29 evening)",
+      "config_note": "Standard doc V1.2.0: §3.5 FR4 — default universal_clinical (UP-FR4: VH WGQGTLVTVSS; VLκ FGQGTKLEIK; VLλ FGGGTHLTVL); CLI flag --fr4-strategy {universal_clinical,donor_retention}; implementation petization_cli_v1.3.0 in scripts/run_petization_pipeline.py. V1.0.1+: §2.4 felinization Track A vs Track B (B default for new cat programs). 3-track auto-routing (graft_vernier / surface_reshaping / deep_fr_anchor); species-aware CMC; internal-only API (/internal/petization/run, /internal/pet-console). Registry cohort key unchanged: release_id V1.0.0_Petization (see abenginecore_registry pipeline_release_matrix). Ops: docs/PETIZATION_CAT_DUAL_TRACK_V1.md.",
+      "internal_only": true,
+      "public_api_surface": false
+    },
+    {
+      "id": "vhh_humanization_path_a",
+      "display_name": "VHH humanization Path A (camelid / clinical VHH)",
+      "version": "V5.0",
+      "release_id": "V5.0_VHH_Humanization",
+      "standard_file": "docs/VHH_HUMANIZATION_DESIGN_STANDARD.md",
+      "config_files": [
+        "config/tier_system_config.json",
+        "config/clinical_842_9mer_db.json",
+        "data/reference/VHH68_reference_stats_v1.json"
+      ],
+      "registry_pipeline_key": "vhh_humanization_path_a",
+      "supersedes": "V4.0_VHH_Humanization",
+      "config_note": "V5.0 (2026-05-16, Owner-approved Evolution Log): Structure-driven upgrade with five mandatory changes. (1) Template library: clinical-VHH only (drop 90 synthetic VH3-SAFE). (2) FR identity cutoff lowered 0.70->0.65 (permissive 0.60 with audit log). (3) Hallmark decisions driven by CDR3 length + SAP/pI: FULL (CDR3>=17aa AND SAP>0.714), PARTIAL (CDR3 12-17aa AND pI<=9.0), MINIMAL (CDR3<12aa AND net_basic<=4). (4) Non-Hallmark back-mutation requires IgFold/ABodyBuilder2 structure prediction + SASA + CDR-distance + DeepFR-CTX 9-mer voting; dynamic Tier per template. (5) No-template fallback: DeepFR-CTX-VHH 9-aa context voting (config/clinical_842_9mer_db.json), G/P/C hard-protected. V4.0 prescreen gates retained (CDR3 hard >=25aa, SAP hard >0.771)."
+    },
+    {
+      "id": "vh_to_vhh_conversion_path_b2_c",
+      "display_name": "VH → VHH conversion (Path B2/C)",
+      "version": "V1.8.17",
+      "release_id": "V1.8.17_VH_to_VHH_Conversion",
+      "standard_file": "docs/VH_TO_VHH_CONVERSION_STANDARD_V1.8.md",
+      "config_files": [
+        "scripts/run_cd3_v1815.py",
+        "scripts/structure_sasa_v1816.py",
+        "scripts/run_cd3_v1817.py",
+        "scripts/v1814_cohort_validation.py"
+      ],
+      "registry_pipeline_key": "vh_to_vhh_conversion_path_b2_c",
+      "supersedes": "V1.8.16_VH_to_VHH_Conversion",
+      "config_note": "V1.8.17 (2026-05-16, Owner-approved alignment): Governing standard VH_TO_VHH_CONVERSION_STANDARD_V1.8.md § header V1.8.17. Inherits V1.8.16 structure SASA gate (Section 1a.2; scripts/structure_sasa_v1816.py). Adds Stealth tier net_basic/pI-conditional routing (NONE/MINIMAL/STANDARD/FULL), Y91/F91 + W103 monitoring metrics (scripts/run_cd3_v1817.py cohort notes). Public Console/API deployment branch identifier: V1.8.17.IGHV3 — same algorithm standard with IGHV3-family-only pre-flight gate on POST /vh_to_vhh/*."
+    },
+    {
+      "id": "virtual_affinity_maturation",
+      "display_name": "Virtual Affinity Maturation (VAM) — 6-tool ΔΔG pipeline",
+      "version": "V1.7",
+      "release_id": "V1.7_Virtual_Affinity_Maturation",
+      "standard_file": "docs/VIRTUAL_AFFINITY_MATURATION_STANDARD.md",
+      "parent_standard_file": "docs/VIRTUAL_AFFINITY_MATURATION_STANDARD.md",
+      "config_files": [
+        "config/vam_antigen_profile.json",
+        "core/structure/affinity_energy_toolkit.py",
+        "core/structure/cdr_fingerprint_prior.py",
+        "core/cmc/sequence_liability_filter.py",
+        "scripts/run_pag1_vam_postfilter.py",
+        "scripts/run_pag1_vam_pipeline.py",
+        "tools/Boltz/colab/run_boltz2_pag1.ipynb"
+      ],
+      "registry_pipeline_key": "virtual_affinity_maturation",
+      "supersedes": "V1.6.1_Virtual_Affinity_Maturation",
+      "config_note": "V1.7 (2026-06-02, owner-approved alignment): canonicalizes (1) Stage-5 MM/GBSA per-site WT-self repack baseline as mandatory (AffinityEnergyToolkit.run_mmgbsa_selfref; ddg_corrected = dg(mut) - dg(WT_self@site); asymmetric WT baseline forbidden); (2) CHECK 6 coordinate = IMGT-segmented CDR index (CDR1 27-38 / CDR2 56-65 / CDR3 105-117), union enumeration index forbidden, out-of-range = NOT_RUN; (3) CHECK 7 coordinate = PDB chain_records authoritative linear index, cdr_start+union_index forbidden. Reliability: single-frame MM/GBSA on flexible short peptide is corroboration-only (EvoEF2 primary + cross-tool sign agreement); HADDOCK3 optional/non-additive for <=30aa flexible-peptide Scenario A (Boltz-2 + lightweight relax is the accepted Stage-0 source). Inherits V1.6.1: Boltz-2 PRIMARY Stage 0, AF3 server PROHIBITED, Scenario A dual gate ipTM>=0.80 + PAE<5.0A, CHECK 1-8. Standard_file corrected to the existing parent doc (former V1.6 path was dangling)."
+    },
+    {
+      "id": "de_novo_cdr_design",
+      "display_name": "De Novo CDR Design & Patent Escape",
+      "version": "V5.2",
+      "release_id": "V5.2_De_Novo_CDR_Design",
+      "standard_file": "docs/DE_NOVO_CDR_DESIGN_STANDARD.md",
+      "config_files": [
+        "config/abenginecore_registry.json",
+        "core/structure/cdr_fingerprint_prior.py"
+      ],
+      "registry_pipeline_key": "de_novo_cdr_design",
+      "config_note": "V5.2 (2026-05-01) alignment with VAM V1.6.1: Boltz-2 Stage 0; mandatory CHECK 6 Fingerprint Prior (FH-358/VHH-71); short-peptide dual gate; AF3 server prohibited."
+    },
+    {
+      "id": "sequence_delivery_standard",
+      "display_name": "Sequence Delivery — retrieval, assembly, codon optimization, and QA",
+      "version": "V1.0.0",
+      "release_id": "V1.0.0_Sequence_Delivery",
+      "standard_file": "core/sequence_delivery/__init__.py",
+      "config_files": [
+        "core/sequence_delivery/codon_optimizer.py",
+        "scripts/run_sequence_delivery.py"
+      ],
+      "registry_pipeline_key": "sequence_delivery_standard",
+      "config_note": "Unified CHO-1.0 codon table; standardized SP+V+C assembly; multi-gate QA (diff/GC/stop/FR4)."
+    },
+    {
+      "id": "cmc_developability_assessment",
+      "display_name": "CMC Developability Assessment and Mutation Policy",
+      "version": "V1.4.0",
+      "release_id": "V1.4.0_CMC_Developability",
+      "standard_file": "docs/CMC_DEVELOPABILITY_STANDARD_V1.1.md",
+      "config_files": [
+        "data/rules/cmc_mutation_policy_v1_2.json",
+        "data/rules/cmc_rules_v1.json",
+        "data/reference/VHH68_reference_stats_v1.json",
+        "data/reference/CDR_physchem_AbRef458_v1.json",
+        "data/reference/CDR_physchem_VHH71_v1.json",
+        "core/cmc/cmc_mutation_policy.py",
+        "core/cmc/fr_mutation_sites.py",
+        "core/cmc/vhh_cmc_engine.py",
+        "core/cmc/regular_ab_developability.py",
+        "api/routers/cmc.py"
+      ],
+      "registry_pipeline_key": "cmc_developability_assessment",
+      "supersedes": "V1.3.1_CMC_Developability",
+      "config_note": "V1.4.0 (2026-05-15): Smart-CMC safety upgrade. (1) Mandatory aggregation-motif lookahead guard. (2) CDR-driven hydrophobic patch detection and suppression. (3) Adaptive pI/net_charge safe-zone trimming (p25-p75). (4) Integrated CDR Fingerprint metrics (all_cdr_gravy) for both VH/VL and VHH. Removed acid_density due to reference data absence."
+    }
+  ],
+  "runtime_policies": {
+    "murine_vhvl_humanization": {
+      "policy_family": "vhvl_humanization",
+      "standard_id": "regular_antibody_vh_vl_humanization",
+      "pathway": "VHVL",
+      "allowed_strategies": [
+        "DeepFR-CTX",
+        "DeepFR-CTX-CMC",
+        "DEEP-FR",
+        "Graft+Vernier",
+        "Surface_Reshape",
+        "9AA-CTX_OAS-Assist"
+      ],
+      "default_strategy": "auto",
+      "strategy_priority": [
+        "DeepFR-CTX",
+        "DeepFR-CTX-CMC",
+        "DEEP-FR",
+        "Graft+Vernier",
+        "9AA-CTX_OAS-Assist",
+        "Surface_Reshape"
+      ],
+      "strategy_policy": {
+        "primary_routes": [
+          "DeepFR-CTX",
+          "DeepFR-CTX-CMC",
+          "DEEP-FR",
+          "Graft+Vernier"
+        ],
+        "fallback_routes": [
+          "9AA-CTX_OAS-Assist",
+          "Surface_Reshape"
+        ],
+        "use_9aa_ctx_oas_assist_when": [
+          "DEEP-FR fails affinity retention or structure-conservation gates",
+          "Graft+Vernier fails affinity retention or structure-conservation gates",
+          "minimal framework disruption is preferred over maximum humanness score",
+          "VL is already human-compatible and VH requires targeted FR cleanup only"
+        ],
+        "do_not_use_9aa_ctx_oas_assist_as": [
+          "default primary route",
+          "replacement for DeepFR-CTX balanced humanization",
+          "replacement for DEEP-FR humanness maximization baseline",
+          "replacement for structure QC",
+          "standalone acceptance without CMC veto and global sanity check"
+        ],
+        "9aa_ctx_oas_assist_definition": "Clinical-842 VH/VK 9-mer context is the primary evidence source; OAS human 9-mers are auxiliary population support; BLOSUM adaptive ratio, protected-position tiers, CMC veto, and global sanity rollback remain mandatory.",
+        "deepfr_ctx_definition": "DeepFR-CTX combines DeepFR framework humanization with 9AA contextual clinical/OAS guard-and-rescue filtering. DeepFR proposes the high-humanness FR candidate; 9AA-CTX audits each changed FR residue, rescues OAS-supported DeepFR residues, and rolls back only hard CMC/structure vetoes to the donor residue. Formal implementation: core/humanization/ctx_guard.py::apply_deepfr_ctx.",
+        "deepfr_ctx_cmc_definition": "DeepFR-CTX-CMC is a developability-optimized variant of DeepFR-CTX. It applies a Balanced CMC Polish layer (FR-only conservative substitutions) to maximize the ADI score and maintain clinical-range hydrophobicity (GRAVY), while ensuring structural conservation and HPR > 0.80."
+      },
+      "datasets": {
+        "clinical_9mer_primary": "config/clinical_842_9mer_db.json",
+        "oas_9mer_assist": "config/oas_human_9mer_v1.json.gz",
+        "oas_source": "promb human-oas; OAS 9-mers present in >=10% of subjects; binary presence/absence support"
+      },
+      "phase_order": [
+        "sequence_input",
+        "strategy_generation",
+        "structure_prediction",
+        "basic_structure_qc",
+        "mini_cmc",
+        "affinity_or_structure_conservation_gate",
+        "strategy_selection_reporting"
+      ],
+      "structure_policy": {
+        "required": true,
+        "default_predictor": "ABodyBuilder2",
+        "allowed_predictors": [
+          "ABodyBuilder2",
+          "ImmuneBuilder"
+        ],
+        "forbidden_predictors": []
+      },
+      "evaluator_policy": {
+        "allowed_modules": [
+          "developability",
+          "germline",
+          "cmc_advisor",
+          "hpr_index",
+          "abnativ"
+        ],
+        "forbidden_modules": [
+          "tap",
+          "structure_13param"
+        ]
+      },
+      "qc_policy": {
+        "required_checks": [
+          "cdr_preservation",
+          "structure_conservation",
+          "free_cys",
+          "n_glyc_creation",
+          "pro_gly_backbone_veto",
+          "basic_developability_screen",
+          "p_abnativ2_paired_humanness_qc"
+        ],
+        "forbidden_checks": []
+      }
+    },
+    "camelid_wt": {
+      "policy_family": "vhh_humanization",
+      "standard_id": "vhh_humanization_path_a",
+      "pathway": "A",
+      "allowed_strategies": [
+        "S1",
+        "S2",
+        "S3"
+      ],
+      "default_strategy": "auto",
+      "phase_order": [
+        "sequence_input",
+        "vhh_humanization_engine",
+        "structure_prediction",
+        "basic_structure_qc",
+        "developability_reporting"
+      ],
+      "structure_policy": {
+        "required": true,
+        "default_predictor": "NanoBodyBuilder2",
+        "allowed_predictors": [
+          "NanoBodyBuilder2"
+        ],
+        "forbidden_predictors": [
+          "IgFold"
+        ]
+      },
+      "evaluator_policy": {
+        "allowed_modules": [
+          "developability",
+          "cdr_scan",
+          "germline",
+          "cmc_advisor"
+        ],
+        "forbidden_modules": [
+          "immunogenicity",
+          "tap",
+          "structure_13param"
+        ]
+      },
+      "qc_policy": {
+        "required_checks": [
+          "hydro_patch_max9",
+          "charge_patch_max7",
+          "free_cys",
+          "deamidation_sites",
+          "isomerization_sites",
+          "radius_of_gyration"
+        ],
+        "forbidden_checks": [
+          "atomic_clash",
+          "interface_clash"
+        ]
+      },
+      "ranking_policy_v25": {
+        "enabled": true,
+        "source_module": "core/vhh_qa_ranking_stability.py",
+        "decision_tiers": {
+          "A": {
+            "rule": "swap_risk < 0.40 and stability_score >= 0.70",
+            "recommended_output_mode": "single_lead",
+            "label": "Stable single lead"
+          },
+          "B": {
+            "rule": "0.40 <= swap_risk < 0.60 (or moderate uncertainty)",
+            "recommended_output_mode": "lead_plus_consensus",
+            "label": "Lead + consensus mutations"
+          },
+          "C": {
+            "rule": "swap_risk >= 0.60 (near tie) or stability_score < 0.40",
+            "recommended_output_mode": "dual_lead_plus_consensus",
+            "label": "Dual lead + consensus"
+          },
+          "D": {
+            "rule": "swap_risk >= 0.80 or (swap_risk >= 0.60 and >=2 consistency_issues)",
+            "recommended_output_mode": "manual_review_required",
+            "label": "Unstable ranking; manual/experimental tie-break"
+          }
+        }
+      },
+      "lead_selection_policy_v27": {
+        "enabled": true,
+        "evaluation_limit": 3,
+        "selection_mode": "deterministic_rescue",
+        "hard_gates": [
+          "donor_structure_available",
+          "humanized_structure_available",
+          "cdr_rmsd_available",
+          "cdr_rmsd_per_loop <= 2.0A",
+          "mini_cmc_available",
+          "instability_index <= 40"
+        ],
+        "fallback_rule": "If no evaluated candidate passes all hard gates, retain ranking Top-1 for comparison only and annotate the report."
+      }
+    },
+    "transgenic_mouse": {
+      "policy_family": "vhh_humanization",
+      "standard_id": "vhh_humanization_path_a",
+      "pathway": "B1",
+      "allowed_strategies": [],
+      "default_strategy": "S2",
+      "phase_order": [
+        "sequence_input",
+        "vhh_optimization_engine",
+        "structure_prediction",
+        "basic_structure_qc",
+        "developability_reporting"
+      ],
+      "structure_policy": {
+        "required": true,
+        "default_predictor": "NanoBodyBuilder2",
+        "allowed_predictors": [
+          "NanoBodyBuilder2"
+        ],
+        "forbidden_predictors": [
+          "IgFold"
+        ]
+      },
+      "evaluator_policy": {
+        "allowed_modules": [
+          "developability",
+          "cdr_scan",
+          "germline",
+          "cmc_advisor"
+        ],
+        "forbidden_modules": [
+          "immunogenicity",
+          "tap",
+          "structure_13param"
+        ]
+      },
+      "qc_policy": {
+        "required_checks": [
+          "hydro_patch_max9",
+          "charge_patch_max7",
+          "free_cys",
+          "deamidation_sites",
+          "isomerization_sites",
+          "radius_of_gyration"
+        ],
+        "forbidden_checks": [
+          "atomic_clash",
+          "interface_clash"
+        ]
+      }
+    },
+    "murine_wt_vh": {
+      "policy_family": "vh_to_vhh_dual_engineering",
+      "standard_id": "vh_to_vhh_conversion_path_b2_c",
+      "pathway": "C2",
+      "allowed_strategies": [
+        "S2",
+        "S3"
+      ],
+      "default_strategy": "S2",
+      "phase_order": [
+        "sequence_input",
+        "dual_engineering",
+        "structure_prediction",
+        "pi_tuning_and_sdab_adaptation",
+        "basic_structure_qc",
+        "developability_reporting"
+      ],
+      "structure_policy": {
+        "required": true,
+        "default_predictor": "NanoBodyBuilder2",
+        "allowed_predictors": [
+          "NanoBodyBuilder2"
+        ],
+        "forbidden_predictors": [
+          "IgFold"
+        ]
+      },
+      "evaluator_policy": {
+        "allowed_modules": [
+          "developability",
+          "cdr_scan",
+          "germline",
+          "cmc_advisor"
+        ],
+        "forbidden_modules": [
+          "immunogenicity",
+          "tap",
+          "structure_13param"
+        ]
+      },
+      "qc_policy": {
+        "required_checks": [
+          "hydro_patch_max9",
+          "charge_patch_max7",
+          "free_cys",
+          "deamidation_sites",
+          "isomerization_sites",
+          "radius_of_gyration"
+        ],
+        "forbidden_checks": [
+          "atomic_clash",
+          "interface_clash"
+        ]
+      }
+    },
+    "conventional_vh": {
+      "policy_family": "vh_to_vhh_conversion",
+      "standard_id": "vh_to_vhh_conversion_path_b2_c",
+      "pathway": "C1",
+      "allowed_strategies": [],
+      "default_strategy": "",
+      "phase_order": [
+        "vh_feasibility",
+        "optional_vhh_quality_eval",
+        "structure_prediction",
+        "pi_tuning_and_sdab_adaptation",
+        "basic_structure_qc",
+        "developability_reporting"
+      ],
+      "structure_policy": {
+        "required": true,
+        "default_predictor": "NanoBodyBuilder2",
+        "allowed_predictors": [
+          "NanoBodyBuilder2"
+        ],
+        "forbidden_predictors": [
+          "IgFold"
+        ]
+      },
+      "evaluator_policy": {
+        "allowed_modules": [
+          "developability",
+          "cdr_scan",
+          "germline",
+          "cmc_advisor"
+        ],
+        "forbidden_modules": [
+          "immunogenicity",
+          "tap",
+          "structure_13param"
+        ]
+      },
+      "qc_policy": {
+        "required_checks": [
+          "hydro_patch_max9",
+          "charge_patch_max7",
+          "free_cys",
+          "deamidation_sites",
+          "isomerization_sites",
+          "radius_of_gyration"
+        ],
+        "forbidden_checks": [
+          "atomic_clash",
+          "interface_clash"
+        ]
+      },
+      "_v1817_note": "V1.8.17 (2026-05-16): (1) Stealth tier changed from CDR3-length-based to net_basic/pI-conditional (NONE net_basic<=2 / MINIMAL 3-4 / STANDARD 5-6 / FULL >=7 or pI>=9.0). Structural audit (n=6 CD3 Fv panel, ABodyBuilder2): all Stealth K positions are surface-exposed in Fv (SASA ~94 A2) — NOT VL-shielded. Stealth = charge management only. (2) Y91/F91 and W103 added as monitoring metrics (no mutation). n=130 VHH cohort: CDR3-drape on Y91 confirmed (r=-0.23, p=0.008) but effect size small. Hallmark (L45R/W47G/G44E) and VL-safety SASA gate (50 A2 threshold) UNCHANGED from V1.8.16. Script: scripts/run_cd3_v1817.py"
+    }
+  }
+}

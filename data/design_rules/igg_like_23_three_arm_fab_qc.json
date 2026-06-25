@@ -1,0 +1,479 @@
+{
+  "meta": {
+    "source": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\data\\design_rules\\igg_like_23_three_arm_fab.json",
+    "description": "QC for 23 three-arm Fab concatenated sequences",
+    "checks": [
+      "valid_aa: only ACDEFGHIKLMNPQRSTVWY",
+      "C_terminus: heavy ends with reference CH1, light with reference CL",
+      "V_length: VH 100-150 aa, VL 95-125 aa",
+      "Fab_length: heavy_fab 200-250 aa, light_fab 200-230 aa"
+    ]
+  },
+  "summary": {
+    "pass": 23,
+    "warn": 0,
+    "fail": 0
+  },
+  "per_antibody": [
+    {
+      "antibody_id": "Amostomig",
+      "overall": "pass",
+      "checks": {
+        "heavy_fab_1_valid_aa": true,
+        "heavy_fab_2_valid_aa": true,
+        "light_fab_valid_aa": true,
+        "heavy_fab_1_C_matches_CH1": true,
+        "heavy_fab_2_C_matches_CH1": true,
+        "light_fab_C_matches_CL": true,
+        "VH1_len_plausible": true,
+        "VH2_len_plausible": true,
+        "VL_len_plausible": true,
+        "heavy_fab_1_len_plausible": true,
+        "heavy_fab_2_len_plausible": true,
+        "light_fab_len_plausible": true
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Anbenitamab",
+      "overall": "pass",
+      "checks": {
+        "heavy_fab_1_valid_aa": true,
+        "heavy_fab_2_valid_aa": true,
+        "light_fab_valid_aa": true,
+        "heavy_fab_1_C_matches_CH1": true,
+        "heavy_fab_2_C_matches_CH1": true,
+        "light_fab_C_matches_CL": true,
+        "VH1_len_plausible": true,
+        "VH2_len_plausible": true,
+        "VL_len_plausible": true,
+        "heavy_fab_1_len_plausible": true,
+        "heavy_fab_2_len_plausible": true,
+        "light_fab_len_plausible": true
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Davutamig",
+      "overall": "pass",
+      "checks": {
+        "heavy_fab_1_valid_aa": true,
+        "heavy_fab_2_valid_aa": true,
+        "light_fab_valid_aa": true,
+        "heavy_fab_1_C_matches_CH1": true,
+        "heavy_fab_2_C_matches_CH1": true,
+        "light_fab_C_matches_CL": true,
+        "VH1_len_plausible": true,
+        "VH2_len_plausible": true,
+        "VL_len_plausible": true,
+        "heavy_fab_1_len_plausible": true,
+        "heavy_fab_2_len_plausible": true,
+        "light_fab_len_plausible": true
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Emicizumab",
+      "overall": "pass",
+      "checks": {
+        "heavy_fab_1_valid_aa": true,
+        "heavy_fab_2_valid_aa": true,
+        "light_fab_valid_aa": true,
+        "heavy_fab_1_C_matches_CH1": true,
+        "heavy_fab_2_C_matches_CH1": true,
+        "light_fab_C_matches_CL": true,
+        "VH1_len_plausible": true,
+        "VH2_len_plausible": true,
+        "VL_len_plausible": true,
+        "heavy_fab_1_len_plausible": true,
+        "heavy_fab_2_len_plausible": true,
+        "light_fab_len_plausible": true
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Etentamig",
+      "overall": "pass",
+      "checks": {
+        "heavy_fab_1_valid_aa": true,
+        "heavy_fab_2_valid_aa": true,
+        "light_fab_valid_aa": true,
+        "heavy_fab_1_C_matches_CH1": true,
+        "heavy_fab_2_C_matches_CH1": true,
+        "light_fab_C_matches_CL": true,
+        "VH1_len_plausible": true,
+        "VH2_len_plausible": true,
+        "VL_len_plausible": true,
+        "heavy_fab_1_len_plausible": true,
+        "heavy_fab_2_len_plausible": true,
+        "light_fab_len_plausible": true
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Marlotamig",
+      "overall": "pass",
+      "checks": {
+        "heavy_fab_1_valid_aa": true,
+        "heavy_fab_2_valid_aa": true,
+        "light_fab_valid_aa": true,
+        "heavy_fab_1_C_matches_CH1": true,
+        "heavy_fab_2_C_matches_CH1": true,
+        "light_fab_C_matches_CL": true,
+        "VH1_len_plausible": true,
+        "VH2_len_plausible": true,
+        "VL_len_plausible": true,
+        "heavy_fab_1_len_plausible": true,
+        "heavy_fab_2_len_plausible": true,
+        "light_fab_len_plausible": true
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Navicixizumab",
+      "overall": "pass",
+      "checks": {
+        "heavy_fab_1_valid_aa": true,
+        "heavy_fab_2_valid_aa": true,
+        "light_fab_valid_aa": true,
+        "heavy_fab_1_C_matches_CH1": true,
+        "heavy_fab_2_C_matches_CH1": true,
+        "light_fab_C_matches_CL": true,
+        "VH1_len_plausible": true,
+        "VH2_len_plausible": true,
+        "VL_len_plausible": true,
+        "heavy_fab_1_len_plausible": true,
+        "heavy_fab_2_len_plausible": true,
+        "light_fab_len_plausible": true
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Nezastomig",
+      "overall": "pass",
+      "checks": {
+        "heavy_fab_1_valid_aa": true,
+        "heavy_fab_2_valid_aa": true,
+        "light_fab_valid_aa": true,
+        "heavy_fab_1_C_matches_CH1": true,
+        "heavy_fab_2_C_matches_CH1": true,
+        "light_fab_C_matches_CL": true,
+        "VH1_len_plausible": true,
+        "VH2_len_plausible": true,
+        "VL_len_plausible": true,
+        "heavy_fab_1_len_plausible": true,
+        "heavy_fab_2_len_plausible": true,
+        "light_fab_len_plausible": true
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Odronextamab",
+      "overall": "pass",
+      "checks": {
+        "heavy_fab_1_valid_aa": true,
+        "heavy_fab_2_valid_aa": true,
+        "light_fab_valid_aa": true,
+        "heavy_fab_1_C_matches_CH1": true,
+        "heavy_fab_2_C_matches_CH1": true,
+        "light_fab_C_matches_CL": true,
+        "VH1_len_plausible": true,
+        "VH2_len_plausible": true,
+        "VL_len_plausible": true,
+        "heavy_fab_1_len_plausible": true,
+        "heavy_fab_2_len_plausible": true,
+        "light_fab_len_plausible": true
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Pamvatamig",
+      "overall": "pass",
+      "checks": {
+        "heavy_fab_1_valid_aa": true,
+        "heavy_fab_2_valid_aa": true,
+        "light_fab_valid_aa": true,
+        "heavy_fab_1_C_matches_CH1": true,
+        "heavy_fab_2_C_matches_CH1": true,
+        "light_fab_C_matches_CL": true,
+        "VH1_len_plausible": true,
+        "VH2_len_plausible": true,
+        "VL_len_plausible": true,
+        "heavy_fab_1_len_plausible": true,
+        "heavy_fab_2_len_plausible": true,
+        "light_fab_len_plausible": true
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Peluntamig",
+      "overall": "pass",
+      "checks": {
+        "heavy_fab_1_valid_aa": true,
+        "heavy_fab_2_valid_aa": true,
+        "light_fab_valid_aa": true,
+        "heavy_fab_1_C_matches_CH1": true,
+        "heavy_fab_2_C_matches_CH1": true,
+        "light_fab_C_matches_CL": true,
+        "VH1_len_plausible": true,
+        "VH2_len_plausible": true,
+        "VL_len_plausible": true,
+        "heavy_fab_1_len_plausible": true,
+        "heavy_fab_2_len_plausible": true,
+        "light_fab_len_plausible": true
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Petosemtamab",
+      "overall": "pass",
+      "checks": {
+        "heavy_fab_1_valid_aa": true,
+        "heavy_fab_2_valid_aa": true,
+        "light_fab_valid_aa": true,
+        "heavy_fab_1_C_matches_CH1": true,
+        "heavy_fab_2_C_matches_CH1": true,
+        "light_fab_C_matches_CL": true,
+        "VH1_len_plausible": true,
+        "VH2_len_plausible": true,
+        "VL_len_plausible": true,
+        "heavy_fab_1_len_plausible": true,
+        "heavy_fab_2_len_plausible": true,
+        "light_fab_len_plausible": true
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Rezetamig",
+      "overall": "pass",
+      "checks": {
+        "heavy_fab_1_valid_aa": true,
+        "heavy_fab_2_valid_aa": true,
+        "light_fab_valid_aa": true,
+        "heavy_fab_1_C_matches_CH1": true,
+        "heavy_fab_2_C_matches_CH1": true,
+        "light_fab_C_matches_CL": true,
+        "VH1_len_plausible": true,
+        "VH2_len_plausible": true,
+        "VL_len_plausible": true,
+        "heavy_fab_1_len_plausible": true,
+        "heavy_fab_2_len_plausible": true,
+        "light_fab_len_plausible": true
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Runimotamab",
+      "overall": "pass",
+      "checks": {
+        "heavy_fab_1_valid_aa": true,
+        "heavy_fab_2_valid_aa": true,
+        "light_fab_valid_aa": true,
+        "heavy_fab_1_C_matches_CH1": true,
+        "heavy_fab_2_C_matches_CH1": true,
+        "light_fab_C_matches_CL": true,
+        "VH1_len_plausible": true,
+        "VH2_len_plausible": true,
+        "VL_len_plausible": true,
+        "heavy_fab_1_len_plausible": true,
+        "heavy_fab_2_len_plausible": true,
+        "light_fab_len_plausible": true
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Safimestomig",
+      "overall": "pass",
+      "checks": {
+        "heavy_fab_1_valid_aa": true,
+        "heavy_fab_2_valid_aa": true,
+        "light_fab_valid_aa": true,
+        "heavy_fab_1_C_matches_CH1": true,
+        "heavy_fab_2_C_matches_CH1": true,
+        "light_fab_C_matches_CL": true,
+        "VH1_len_plausible": true,
+        "VH2_len_plausible": true,
+        "VL_len_plausible": true,
+        "heavy_fab_1_len_plausible": true,
+        "heavy_fab_2_len_plausible": true,
+        "light_fab_len_plausible": true
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Simridarlimab",
+      "overall": "pass",
+      "checks": {
+        "heavy_fab_1_valid_aa": true,
+        "heavy_fab_2_valid_aa": true,
+        "light_fab_valid_aa": true,
+        "heavy_fab_1_C_matches_CH1": true,
+        "heavy_fab_2_C_matches_CH1": true,
+        "light_fab_C_matches_CL": true,
+        "VH1_len_plausible": true,
+        "VH2_len_plausible": true,
+        "VL_len_plausible": true,
+        "heavy_fab_1_len_plausible": true,
+        "heavy_fab_2_len_plausible": true,
+        "light_fab_len_plausible": true
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Surovatamig",
+      "overall": "pass",
+      "checks": {
+        "heavy_fab_1_valid_aa": true,
+        "heavy_fab_2_valid_aa": true,
+        "light_fab_valid_aa": true,
+        "heavy_fab_1_C_matches_CH1": true,
+        "heavy_fab_2_C_matches_CH1": true,
+        "light_fab_C_matches_CL": true,
+        "VH1_len_plausible": true,
+        "VH2_len_plausible": true,
+        "VL_len_plausible": true,
+        "heavy_fab_1_len_plausible": true,
+        "heavy_fab_2_len_plausible": true,
+        "light_fab_len_plausible": true
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Tepoditamab",
+      "overall": "pass",
+      "checks": {
+        "heavy_fab_1_valid_aa": true,
+        "heavy_fab_2_valid_aa": true,
+        "light_fab_valid_aa": true,
+        "heavy_fab_1_C_matches_CH1": true,
+        "heavy_fab_2_C_matches_CH1": true,
+        "light_fab_C_matches_CL": true,
+        "VH1_len_plausible": true,
+        "VH2_len_plausible": true,
+        "VL_len_plausible": true,
+        "heavy_fab_1_len_plausible": true,
+        "heavy_fab_2_len_plausible": true,
+        "light_fab_len_plausible": true
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Ubamatamab",
+      "overall": "pass",
+      "checks": {
+        "heavy_fab_1_valid_aa": true,
+        "heavy_fab_2_valid_aa": true,
+        "light_fab_valid_aa": true,
+        "heavy_fab_1_C_matches_CH1": true,
+        "heavy_fab_2_C_matches_CH1": true,
+        "light_fab_C_matches_CL": true,
+        "VH1_len_plausible": true,
+        "VH2_len_plausible": true,
+        "VL_len_plausible": true,
+        "heavy_fab_1_len_plausible": true,
+        "heavy_fab_2_len_plausible": true,
+        "light_fab_len_plausible": true
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Velinotamig",
+      "overall": "pass",
+      "checks": {
+        "heavy_fab_1_valid_aa": true,
+        "heavy_fab_2_valid_aa": true,
+        "light_fab_valid_aa": true,
+        "heavy_fab_1_C_matches_CH1": true,
+        "heavy_fab_2_C_matches_CH1": true,
+        "light_fab_C_matches_CL": true,
+        "VH1_len_plausible": true,
+        "VH2_len_plausible": true,
+        "VL_len_plausible": true,
+        "heavy_fab_1_len_plausible": true,
+        "heavy_fab_2_len_plausible": true,
+        "light_fab_len_plausible": true
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Vonsetamig",
+      "overall": "pass",
+      "checks": {
+        "heavy_fab_1_valid_aa": true,
+        "heavy_fab_2_valid_aa": true,
+        "light_fab_valid_aa": true,
+        "heavy_fab_1_C_matches_CH1": true,
+        "heavy_fab_2_C_matches_CH1": true,
+        "light_fab_C_matches_CL": true,
+        "VH1_len_plausible": true,
+        "VH2_len_plausible": true,
+        "VL_len_plausible": true,
+        "heavy_fab_1_len_plausible": true,
+        "heavy_fab_2_len_plausible": true,
+        "light_fab_len_plausible": true
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Zenocutuzumab",
+      "overall": "pass",
+      "checks": {
+        "heavy_fab_1_valid_aa": true,
+        "heavy_fab_2_valid_aa": true,
+        "light_fab_valid_aa": true,
+        "heavy_fab_1_C_matches_CH1": true,
+        "heavy_fab_2_C_matches_CH1": true,
+        "light_fab_C_matches_CL": true,
+        "VH1_len_plausible": true,
+        "VH2_len_plausible": true,
+        "VL_len_plausible": true,
+        "heavy_fab_1_len_plausible": true,
+        "heavy_fab_2_len_plausible": true,
+        "light_fab_len_plausible": true
+      },
+      "warnings": [],
+      "errors": []
+    },
+    {
+      "antibody_id": "Zifibancimig",
+      "overall": "pass",
+      "checks": {
+        "heavy_fab_1_valid_aa": true,
+        "heavy_fab_2_valid_aa": true,
+        "light_fab_valid_aa": true,
+        "heavy_fab_1_C_matches_CH1": true,
+        "heavy_fab_2_C_matches_CH1": true,
+        "light_fab_C_matches_CL": true,
+        "VH1_len_plausible": true,
+        "VH2_len_plausible": true,
+        "VL_len_plausible": true,
+        "heavy_fab_1_len_plausible": true,
+        "heavy_fab_2_len_plausible": true,
+        "light_fab_len_plausible": true
+      },
+      "warnings": [],
+      "errors": []
+    }
+  ]
+}

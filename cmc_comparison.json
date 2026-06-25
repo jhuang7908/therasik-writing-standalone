@@ -1,0 +1,1387 @@
+{
+  "Tanezumab": {
+    "project_name": "Tanezumab",
+    "ab_type": "AntibodyType.FULLY_HUMAN",
+    "modules_run": [
+      "developability",
+      "cdr_scan",
+      "cmc_advisor",
+      "germline"
+    ],
+    "results": {
+      "developability": {
+        "status": "PASS",
+        "pI_fab_estimate": 8.61,
+        "GRAVY": -0.328,
+        "instability_index": 33.7,
+        "net_charge_pH7": 2.9,
+        "hydro_patch_max9": 0.667,
+        "charge_patch_max7": 3.0,
+        "clinical_population": "humanized_458",
+        "clinical_score": 84.4,
+        "clinical_percentile_ranks": {
+          "pI": {
+            "value": 8.61,
+            "band": "p25\u2013p75",
+            "gate": "PASS",
+            "ref_p5": 5.197,
+            "ref_p25": 6.85,
+            "ref_p50": 8.3,
+            "ref_p75": 8.74,
+            "ref_p95": 9.09,
+            "population": "humanized_458",
+            "n_ref": 458
+          },
+          "GRAVY": {
+            "value": -0.328,
+            "band": "p25\u2013p75",
+            "gate": "PASS",
+            "ref_p5": -0.475,
+            "ref_p25": -0.397,
+            "ref_p50": -0.339,
+            "ref_p75": -0.28,
+            "ref_p95": -0.192,
+            "population": "humanized_458",
+            "n_ref": 458
+          },
+          "instability_index": {
+            "value": 33.7,
+            "band": "p25\u2013p75",
+            "gate": "PASS",
+            "ref_p5": 27.67,
+            "ref_p25": 33.225,
+            "ref_p50": 37.8,
+            "ref_p75": 41.6,
+            "ref_p95": 47.1,
+            "population": "humanized_458",
+            "n_ref": 458
+          },
+          "net_charge_pH7": {
+            "value": 2.9,
+            "band": "p25\u2013p75",
+            "gate": "PASS",
+            "ref_p5": -3.405,
+            "ref_p25": -0.1,
+            "ref_p50": 1.9,
+            "ref_p75": 3.8,
+            "ref_p95": 5.9,
+            "population": "humanized_458",
+            "n_ref": 458
+          },
+          "hydro_patch_max9": {
+            "value": 0.667,
+            "band": "p25\u2013p75",
+            "gate": "PASS",
+            "ref_p5": 0.556,
+            "ref_p25": 0.556,
+            "ref_p50": 0.556,
+            "ref_p75": 0.667,
+            "ref_p95": 0.778,
+            "population": "humanized_458",
+            "n_ref": 458
+          },
+          "charge_patch_max7": {
+            "value": 3.0,
+            "band": "p5\u2013p25",
+            "gate": "PASS",
+            "ref_p5": 2.0,
+            "ref_p25": 3.0,
+            "ref_p50": 3.0,
+            "ref_p75": 3.0,
+            "ref_p95": 4.0,
+            "population": "humanized_458",
+            "n_ref": 458
+          }
+        },
+        "rule_source": "clinical",
+        "note": "pI and instability are sequence-level estimates; confirm post-expression. Gates reference: humanized_458 clinical population.",
+        "flags": []
+      },
+      "cdr_scan": {
+        "status": "PASS",
+        "total_liabilities": 4,
+        "liabilities": [
+          {
+            "type": "deamidation",
+            "pattern": "NS",
+            "pos": 59,
+            "severity": "MEDIUM"
+          },
+          {
+            "type": "isomerization",
+            "pattern": "DG",
+            "pos": 53,
+            "severity": "MEDIUM"
+          },
+          {
+            "type": "free_Cys_candidate",
+            "pos": 94,
+            "severity": "HIGH"
+          },
+          {
+            "type": "free_Cys_candidate",
+            "pos": 208,
+            "severity": "HIGH"
+          }
+        ],
+        "flags": [
+          "WARN:isomerization",
+          "WARN:deamidation"
+        ]
+      },
+      "cmc_advisor": {
+        "status": "PASS",
+        "reference_population": "AbRef clinical panel",
+        "evaluation_standard": "CMC_STANDARD_v1.0",
+        "reference_dataset": "AbRef458_v1",
+        "metrics_version": "METRICS_v1",
+        "ADI": 82.66,
+        "ADI_percentile": null,
+        "ADI_interpretation": "Excellent",
+        "metrics": {
+          "pI": {
+            "value": 8.61,
+            "label": "pI",
+            "percentile_band": "p25\u2013p75",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 5.197,
+            "ref_p25": 6.85,
+            "ref_p50": 8.3,
+            "ref_p75": 8.74,
+            "ref_p95": 9.09,
+            "ref_n": 458
+          },
+          "GRAVY": {
+            "value": -0.328,
+            "label": "GRAVY hydrophobicity",
+            "percentile_band": "p25\u2013p75",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": -0.475,
+            "ref_p25": -0.397,
+            "ref_p50": -0.339,
+            "ref_p75": -0.28,
+            "ref_p95": -0.192,
+            "ref_n": 458
+          },
+          "instability_index": {
+            "value": 33.7,
+            "label": "Instability Index",
+            "percentile_band": "p25\u2013p75",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 27.67,
+            "ref_p25": 33.225,
+            "ref_p50": 37.8,
+            "ref_p75": 41.6,
+            "ref_p95": 47.1,
+            "ref_n": 458
+          },
+          "net_charge_pH7": {
+            "value": 2.9,
+            "label": "Net charge (pH 7)",
+            "percentile_band": "p25\u2013p75",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": -3.381,
+            "ref_p25": -0.1075,
+            "ref_p50": 1.89,
+            "ref_p75": 3.8075,
+            "ref_p95": 5.88,
+            "ref_n": 458
+          },
+          "hydro_patch_max9": {
+            "value": 0.667,
+            "label": "Hydrophobic patch max (9mer)",
+            "percentile_band": "p25\u2013p75",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 0.556,
+            "ref_p25": 0.556,
+            "ref_p50": 0.556,
+            "ref_p75": 0.667,
+            "ref_p95": 0.778,
+            "ref_n": 458
+          },
+          "charge_patch_max7": {
+            "value": 3.0,
+            "label": "Charge patch max (7mer)",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 2.0,
+            "ref_p25": 3.0,
+            "ref_p50": 3.0,
+            "ref_p75": 3.0,
+            "ref_p95": 4.0,
+            "ref_n": 458
+          },
+          "SAP_score": {
+            "value": 0.714,
+            "label": "SAP score",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "lower_is_better",
+            "ref_p5": 0.571,
+            "ref_p25": 0.714,
+            "ref_p50": 0.714,
+            "ref_p75": 0.714,
+            "ref_p95": 0.857,
+            "ref_n": 458
+          },
+          "Fv_charge_asymmetry": {
+            "value": 1.176,
+            "label": "Fv charge asymmetry",
+            "percentile_band": "p25\u2013p75",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "lower_is_better",
+            "ref_p5": 0.0789,
+            "ref_p25": 1.0005,
+            "ref_p50": 1.9985,
+            "ref_p75": 3.0933,
+            "ref_p95": 6.1801,
+            "ref_n": 458
+          },
+          "agg_motifs": {
+            "value": 2,
+            "label": "Aggregation Risk",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 1.0,
+            "ref_p25": 2.0,
+            "ref_p50": 3.0,
+            "ref_p75": 4.0,
+            "ref_p95": 6.0,
+            "ref_n": 458
+          },
+          "hydro_cluster_count": {
+            "value": 2,
+            "label": "Hydrophobic Density",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 1.0,
+            "ref_p25": 2.0,
+            "ref_p50": 3.0,
+            "ref_p75": 4.0,
+            "ref_p95": 5.0,
+            "ref_n": 458
+          },
+          "glycosylation_sites": {
+            "value": [],
+            "label": "PTM Site Count",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 0.0,
+            "ref_p25": 0.0,
+            "ref_p50": 0.0,
+            "ref_p75": 0.0,
+            "ref_p95": 0.0,
+            "ref_n": 458
+          },
+          "deamidation_sites": {
+            "value": [
+              59
+            ],
+            "label": "Deamidation Risk",
+            "percentile_band": "p25\u2013p75",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 0.0,
+            "ref_p25": 0.0,
+            "ref_p50": 1.0,
+            "ref_p75": 2.0,
+            "ref_p95": 3.0,
+            "ref_n": 458
+          },
+          "isomerization_sites": {
+            "value": [
+              53
+            ],
+            "label": "Isomerization Risk",
+            "percentile_band": "p25\u2013p75",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 0.0,
+            "ref_p25": 0.0,
+            "ref_p50": 1.0,
+            "ref_p75": 1.0,
+            "ref_p95": 3.0,
+            "ref_n": 458
+          },
+          "oxidation_sites": {
+            "value": [
+              35,
+              46,
+              51,
+              68,
+              100,
+              110,
+              124,
+              155
+            ],
+            "label": "Oxidation Risk",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 7.0,
+            "ref_p25": 8.0,
+            "ref_p50": 9.0,
+            "ref_p75": 10.0,
+            "ref_p95": 11.0,
+            "ref_n": 458
+          },
+          "free_cys": {
+            "value": [
+              21,
+              94,
+              143,
+              208
+            ],
+            "label": "Free Cys Count",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 4.0,
+            "ref_p25": 4.0,
+            "ref_p50": 4.0,
+            "ref_p75": 4.0,
+            "ref_p95": 4.0,
+            "ref_n": 458
+          }
+        },
+        "gate_summary": {
+          "PASS": 15,
+          "WARN": 0,
+          "FAIL": 0
+        },
+        "mutation_suggestions": [],
+        "flags": []
+      },
+      "germline": {
+        "status": "PASS",
+        "method": "sequence_identity",
+        "db_antibody_match": null,
+        "flags": [
+          "INFO:germline_db_miss \u2014 novel sequence; precomputed Vernier data unavailable"
+        ],
+        "germline_species": "Homo_sapiens",
+        "closest_vh_germline": "unknown",
+        "vh_germline_identity_pct": 0.0,
+        "germline_search_db": "data/germlines/human_VH3_germlines.json",
+        "closest_vl_germline": "IGKV1-33*01",
+        "vl_germline_identity_pct": 87.4,
+        "vl_germline_locus": "IGKV",
+        "vl_igkv_candidate": "IGKV1-33*01",
+        "vl_igkv_identity_pct": 87.4,
+        "vl_iglv_candidate": "IGLV4-7-1*01",
+        "vl_iglv_identity_pct": 25.0,
+        "germline_vl_search_db": "data/germlines/aa_translated/IG/Homo_sapiens/IGKV_aa.fasta;data/germlines/aa_translated/IG/Homo_sapiens/IGLV_aa.fasta",
+        "Fc_libraries": {
+          "species": "Homo_sapiens",
+          "segments": {
+            "IGHC": {
+              "n_records": 124,
+              "paths": [
+                "data/germlines/aa_translated/Fc/Homo_sapiens/IGHC_aa.fasta"
+              ],
+              "path": "data/germlines/aa_translated/Fc/Homo_sapiens/IGHC_aa.fasta"
+            },
+            "IGKC": {
+              "n_records": 5,
+              "paths": [
+                "data/germlines/aa_translated/Fc/Homo_sapiens/IGKC_aa.fasta"
+              ],
+              "path": "data/germlines/aa_translated/Fc/Homo_sapiens/IGKC_aa.fasta"
+            },
+            "IGLC": {
+              "n_records": 32,
+              "paths": [
+                "data/germlines/aa_translated/Fc/Homo_sapiens/IGLC_aa.fasta"
+              ],
+              "path": "data/germlines/aa_translated/Fc/Homo_sapiens/IGLC_aa.fasta"
+            }
+          }
+        },
+        "VH": {
+          "top_match": "unknown",
+          "top_match_identity": 0.0,
+          "species": "Homo_sapiens"
+        },
+        "VL": {
+          "top_match": "IGKV1-33*01",
+          "top_match_identity": 87.4,
+          "locus": "IGKV",
+          "species": "Homo_sapiens"
+        },
+        "note": "Sequence not in precomputed database (842 clinical antibodies). Install ANARCI for live Vernier zone numbering of novel sequences."
+      },
+      "_qa": {
+        "status": "PASS",
+        "n_pass": 9,
+        "n_warn": 0,
+        "n_fail": 0,
+        "input_hash": "33b99014f529cef0",
+        "strict_qa": false,
+        "checks": []
+      }
+    },
+    "overall_flags": [
+      "cdr_scan:WARN:isomerization",
+      "cdr_scan:WARN:deamidation",
+      "germline:INFO:germline_db_miss \u2014 novel sequence; precomputed Vernier data unavailable"
+    ],
+    "overall_status": "WARN",
+    "generated_at": "2026-05-23T02:30:40.780688"
+  },
+  "V3": {
+    "project_name": "V3",
+    "ab_type": "AntibodyType.DOG",
+    "modules_run": [
+      "developability",
+      "cdr_scan",
+      "cmc_advisor",
+      "germline"
+    ],
+    "results": {
+      "developability": {
+        "status": "PASS",
+        "pI_fab_estimate": 6.18,
+        "GRAVY": -0.296,
+        "instability_index": 43.9,
+        "net_charge_pH7": -1.0,
+        "hydro_patch_max9": 0.667,
+        "charge_patch_max7": 3.0,
+        "clinical_population": "humanized_458",
+        "clinical_score": 69.6,
+        "clinical_percentile_ranks": {
+          "pI": {
+            "value": 6.18,
+            "band": "p5\u2013p25",
+            "gate": "PASS",
+            "ref_p5": 5.197,
+            "ref_p25": 6.85,
+            "ref_p50": 8.3,
+            "ref_p75": 8.74,
+            "ref_p95": 9.09,
+            "population": "humanized_458",
+            "n_ref": 458
+          },
+          "GRAVY": {
+            "value": -0.296,
+            "band": "p25\u2013p75",
+            "gate": "PASS",
+            "ref_p5": -0.475,
+            "ref_p25": -0.397,
+            "ref_p50": -0.339,
+            "ref_p75": -0.28,
+            "ref_p95": -0.192,
+            "population": "humanized_458",
+            "n_ref": 458
+          },
+          "instability_index": {
+            "value": 43.9,
+            "band": "p75\u2013p95",
+            "gate": "PASS",
+            "ref_p5": 27.67,
+            "ref_p25": 33.225,
+            "ref_p50": 37.8,
+            "ref_p75": 41.6,
+            "ref_p95": 47.1,
+            "population": "humanized_458",
+            "n_ref": 458
+          },
+          "net_charge_pH7": {
+            "value": -1.0,
+            "band": "p5\u2013p25",
+            "gate": "PASS",
+            "ref_p5": -3.405,
+            "ref_p25": -0.1,
+            "ref_p50": 1.9,
+            "ref_p75": 3.8,
+            "ref_p95": 5.9,
+            "population": "humanized_458",
+            "n_ref": 458
+          },
+          "hydro_patch_max9": {
+            "value": 0.667,
+            "band": "p25\u2013p75",
+            "gate": "PASS",
+            "ref_p5": 0.556,
+            "ref_p25": 0.556,
+            "ref_p50": 0.556,
+            "ref_p75": 0.667,
+            "ref_p95": 0.778,
+            "population": "humanized_458",
+            "n_ref": 458
+          },
+          "charge_patch_max7": {
+            "value": 3.0,
+            "band": "p5\u2013p25",
+            "gate": "PASS",
+            "ref_p5": 2.0,
+            "ref_p25": 3.0,
+            "ref_p50": 3.0,
+            "ref_p75": 3.0,
+            "ref_p95": 4.0,
+            "population": "humanized_458",
+            "n_ref": 458
+          }
+        },
+        "rule_source": "clinical",
+        "note": "pI and instability are sequence-level estimates; confirm post-expression. Gates reference: humanized_458 clinical population.",
+        "flags": []
+      },
+      "cdr_scan": {
+        "status": "PASS",
+        "total_liabilities": 5,
+        "liabilities": [
+          {
+            "type": "deamidation",
+            "pattern": "NS",
+            "pos": 59,
+            "severity": "MEDIUM"
+          },
+          {
+            "type": "isomerization",
+            "pattern": "DG",
+            "pos": 53,
+            "severity": "MEDIUM"
+          },
+          {
+            "type": "isomerization",
+            "pattern": "DS",
+            "pos": 71,
+            "severity": "MEDIUM"
+          },
+          {
+            "type": "free_Cys_candidate",
+            "pos": 94,
+            "severity": "HIGH"
+          },
+          {
+            "type": "free_Cys_candidate",
+            "pos": 208,
+            "severity": "HIGH"
+          }
+        ],
+        "flags": [
+          "WARN:isomerization",
+          "WARN:deamidation"
+        ]
+      },
+      "cmc_advisor": {
+        "status": "FAIL",
+        "reference_population": "AbRef clinical panel",
+        "evaluation_standard": "CMC_STANDARD_v1.0",
+        "reference_dataset": "AbRef458_v1",
+        "metrics_version": "METRICS_v1",
+        "ADI": 66.0,
+        "ADI_percentile": null,
+        "ADI_interpretation": "Acceptable",
+        "metrics": {
+          "pI": {
+            "value": 6.18,
+            "label": "pI",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 5.197,
+            "ref_p25": 6.85,
+            "ref_p50": 8.3,
+            "ref_p75": 8.74,
+            "ref_p95": 9.09,
+            "ref_n": 458
+          },
+          "GRAVY": {
+            "value": -0.296,
+            "label": "GRAVY hydrophobicity",
+            "percentile_band": "p25\u2013p75",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": -0.475,
+            "ref_p25": -0.397,
+            "ref_p50": -0.339,
+            "ref_p75": -0.28,
+            "ref_p95": -0.192,
+            "ref_n": 458
+          },
+          "instability_index": {
+            "value": 43.9,
+            "label": "Instability Index",
+            "percentile_band": "p75\u2013p95",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 27.67,
+            "ref_p25": 33.225,
+            "ref_p50": 37.8,
+            "ref_p75": 41.6,
+            "ref_p95": 47.1,
+            "ref_n": 458
+          },
+          "net_charge_pH7": {
+            "value": -1.02,
+            "label": "Net charge (pH 7)",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": -3.381,
+            "ref_p25": -0.1075,
+            "ref_p50": 1.89,
+            "ref_p75": 3.8075,
+            "ref_p95": 5.88,
+            "ref_n": 458
+          },
+          "hydro_patch_max9": {
+            "value": 0.667,
+            "label": "Hydrophobic patch max (9mer)",
+            "percentile_band": "p25\u2013p75",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 0.556,
+            "ref_p25": 0.556,
+            "ref_p50": 0.556,
+            "ref_p75": 0.667,
+            "ref_p95": 0.778,
+            "ref_n": 458
+          },
+          "charge_patch_max7": {
+            "value": 3.0,
+            "label": "Charge patch max (7mer)",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 2.0,
+            "ref_p25": 3.0,
+            "ref_p50": 3.0,
+            "ref_p75": 3.0,
+            "ref_p95": 4.0,
+            "ref_n": 458
+          },
+          "SAP_score": {
+            "value": 0.714,
+            "label": "SAP score",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "lower_is_better",
+            "ref_p5": 0.571,
+            "ref_p25": 0.714,
+            "ref_p50": 0.714,
+            "ref_p75": 0.714,
+            "ref_p95": 0.857,
+            "ref_n": 458
+          },
+          "Fv_charge_asymmetry": {
+            "value": 0.818,
+            "label": "Fv charge asymmetry",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "lower_is_better",
+            "ref_p5": 0.0789,
+            "ref_p25": 1.0005,
+            "ref_p50": 1.9985,
+            "ref_p75": 3.0933,
+            "ref_p95": 6.1801,
+            "ref_n": 458
+          },
+          "agg_motifs": {
+            "value": 4,
+            "label": "Aggregation Risk",
+            "percentile_band": "p25\u2013p75",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 1.0,
+            "ref_p25": 2.0,
+            "ref_p50": 3.0,
+            "ref_p75": 4.0,
+            "ref_p95": 6.0,
+            "ref_n": 458
+          },
+          "hydro_cluster_count": {
+            "value": 4,
+            "label": "Hydrophobic Density",
+            "percentile_band": "p25\u2013p75",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 1.0,
+            "ref_p25": 2.0,
+            "ref_p50": 3.0,
+            "ref_p75": 4.0,
+            "ref_p95": 5.0,
+            "ref_n": 458
+          },
+          "glycosylation_sites": {
+            "value": [],
+            "label": "PTM Site Count",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 0.0,
+            "ref_p25": 0.0,
+            "ref_p50": 0.0,
+            "ref_p75": 0.0,
+            "ref_p95": 0.0,
+            "ref_n": 458
+          },
+          "deamidation_sites": {
+            "value": [
+              59
+            ],
+            "label": "Deamidation Risk",
+            "percentile_band": "p25\u2013p75",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 0.0,
+            "ref_p25": 0.0,
+            "ref_p50": 1.0,
+            "ref_p75": 2.0,
+            "ref_p95": 3.0,
+            "ref_n": 458
+          },
+          "isomerization_sites": {
+            "value": [
+              53,
+              71
+            ],
+            "label": "Isomerization Risk",
+            "percentile_band": "p75\u2013p95",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 0.0,
+            "ref_p25": 0.0,
+            "ref_p50": 1.0,
+            "ref_p75": 1.0,
+            "ref_p95": 3.0,
+            "ref_n": 458
+          },
+          "oxidation_sites": {
+            "value": [
+              35,
+              46,
+              51,
+              100,
+              110,
+              155
+            ],
+            "label": "Oxidation Risk",
+            "percentile_band": "p0\u2013p5",
+            "gate": "FAIL",
+            "gate_note": "Oxidation Risk (6.0) < AbRef-458 observed range",
+            "direction": "in_range",
+            "ref_p5": 7.0,
+            "ref_p25": 8.0,
+            "ref_p50": 9.0,
+            "ref_p75": 10.0,
+            "ref_p95": 11.0,
+            "ref_n": 458
+          },
+          "free_cys": {
+            "value": [
+              21,
+              94,
+              143,
+              208
+            ],
+            "label": "Free Cys Count",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 4.0,
+            "ref_p25": 4.0,
+            "ref_p50": 4.0,
+            "ref_p75": 4.0,
+            "ref_p95": 4.0,
+            "ref_n": 458
+          }
+        },
+        "gate_summary": {
+          "PASS": 14,
+          "WARN": 0,
+          "FAIL": 1
+        },
+        "mutation_suggestions": [],
+        "flags": [
+          "FAIL:Oxidation Risk (6.0) < AbRef-458 observed range"
+        ]
+      },
+      "germline": {
+        "status": "PASS",
+        "method": "sequence_identity",
+        "db_antibody_match": null,
+        "flags": [
+          "INFO:germline_db_miss \u2014 novel sequence; precomputed Vernier data unavailable"
+        ],
+        "germline_species": "Canis_lupus_familiaris",
+        "closest_vh_germline": "IGHV3-52*01",
+        "vh_germline_identity_pct": 75.5,
+        "germline_search_db": "data/germlines/aa_translated/IG/Canis_lupus_familiaris/IGHV_aa.fasta",
+        "closest_vl_germline": "IGKV3-18*02",
+        "vl_germline_identity_pct": 84.2,
+        "vl_germline_locus": "IGKV",
+        "vl_igkv_candidate": "IGKV3-18*02",
+        "vl_igkv_identity_pct": 84.2,
+        "vl_iglv_candidate": "IGLV8-102*01",
+        "vl_iglv_identity_pct": 42.0,
+        "germline_vl_search_db": "data/germlines/aa_translated/IG/Canis_lupus_familiaris/IGKV_aa.fasta;data/germlines/aa_translated/IG/Canis_lupus_familiaris/IGLV_aa.fasta",
+        "Fc_libraries": {
+          "species": "Canis_lupus_familiaris",
+          "segments": {
+            "IGHC": {
+              "n_records": 11,
+              "paths": [
+                "data/germlines/aa_translated/Fc/Canis_lupus_familiaris/IGHC_aa.fasta"
+              ],
+              "path": "data/germlines/aa_translated/Fc/Canis_lupus_familiaris/IGHC_aa.fasta"
+            },
+            "IGKC": {
+              "n_records": 2,
+              "paths": [
+                "data/germlines/aa_translated/Fc/Canis_lupus_familiaris/IGKC_aa.fasta"
+              ],
+              "path": "data/germlines/aa_translated/Fc/Canis_lupus_familiaris/IGKC_aa.fasta"
+            },
+            "IGLC": {
+              "n_records": 9,
+              "paths": [
+                "data/germlines/aa_translated/Fc/Canis_lupus_familiaris/IGLC_aa.fasta"
+              ],
+              "path": "data/germlines/aa_translated/Fc/Canis_lupus_familiaris/IGLC_aa.fasta"
+            }
+          }
+        },
+        "VH": {
+          "top_match": "IGHV3-52*01",
+          "top_match_identity": 75.5,
+          "species": "Canis_lupus_familiaris"
+        },
+        "VL": {
+          "top_match": "IGKV3-18*02",
+          "top_match_identity": 84.2,
+          "locus": "IGKV",
+          "species": "Canis_lupus_familiaris"
+        },
+        "note": "Sequence not in precomputed database (842 clinical antibodies). Install ANARCI for live Vernier zone numbering of novel sequences."
+      },
+      "_qa": {
+        "status": "PASS",
+        "n_pass": 9,
+        "n_warn": 0,
+        "n_fail": 0,
+        "input_hash": "a492632ef69010eb",
+        "strict_qa": false,
+        "checks": []
+      }
+    },
+    "overall_flags": [
+      "cdr_scan:WARN:isomerization",
+      "cdr_scan:WARN:deamidation",
+      "cmc_advisor:FAIL:Oxidation Risk (6.0) < AbRef-458 observed range",
+      "germline:INFO:germline_db_miss \u2014 novel sequence; precomputed Vernier data unavailable"
+    ],
+    "overall_status": "FAIL",
+    "generated_at": "2026-05-23T02:30:41.921570"
+  },
+  "V4": {
+    "project_name": "V4",
+    "ab_type": "AntibodyType.DOG",
+    "modules_run": [
+      "developability",
+      "cdr_scan",
+      "cmc_advisor",
+      "germline"
+    ],
+    "results": {
+      "developability": {
+        "status": "PASS",
+        "pI_fab_estimate": 6.97,
+        "GRAVY": -0.296,
+        "instability_index": 31.9,
+        "net_charge_pH7": -0.0,
+        "hydro_patch_max9": 0.778,
+        "charge_patch_max7": 4.0,
+        "clinical_population": "humanized_458",
+        "clinical_score": 58.3,
+        "clinical_percentile_ranks": {
+          "pI": {
+            "value": 6.97,
+            "band": "p25\u2013p75",
+            "gate": "PASS",
+            "ref_p5": 5.197,
+            "ref_p25": 6.85,
+            "ref_p50": 8.3,
+            "ref_p75": 8.74,
+            "ref_p95": 9.09,
+            "population": "humanized_458",
+            "n_ref": 458
+          },
+          "GRAVY": {
+            "value": -0.296,
+            "band": "p25\u2013p75",
+            "gate": "PASS",
+            "ref_p5": -0.475,
+            "ref_p25": -0.397,
+            "ref_p50": -0.339,
+            "ref_p75": -0.28,
+            "ref_p95": -0.192,
+            "population": "humanized_458",
+            "n_ref": 458
+          },
+          "instability_index": {
+            "value": 31.9,
+            "band": "p5\u2013p25",
+            "gate": "PASS",
+            "ref_p5": 27.67,
+            "ref_p25": 33.225,
+            "ref_p50": 37.8,
+            "ref_p75": 41.6,
+            "ref_p95": 47.1,
+            "population": "humanized_458",
+            "n_ref": 458
+          },
+          "net_charge_pH7": {
+            "value": -0.0,
+            "band": "p25\u2013p75",
+            "gate": "PASS",
+            "ref_p5": -3.405,
+            "ref_p25": -0.1,
+            "ref_p50": 1.9,
+            "ref_p75": 3.8,
+            "ref_p95": 5.9,
+            "population": "humanized_458",
+            "n_ref": 458
+          },
+          "hydro_patch_max9": {
+            "value": 0.778,
+            "band": "p75\u2013p95",
+            "gate": "PASS",
+            "ref_p5": 0.556,
+            "ref_p25": 0.556,
+            "ref_p50": 0.556,
+            "ref_p75": 0.667,
+            "ref_p95": 0.778,
+            "population": "humanized_458",
+            "n_ref": 458
+          },
+          "charge_patch_max7": {
+            "value": 4.0,
+            "band": "p75\u2013p95",
+            "gate": "PASS",
+            "ref_p5": 2.0,
+            "ref_p25": 3.0,
+            "ref_p50": 3.0,
+            "ref_p75": 3.0,
+            "ref_p95": 4.0,
+            "population": "humanized_458",
+            "n_ref": 458
+          }
+        },
+        "rule_source": "clinical",
+        "note": "pI and instability are sequence-level estimates; confirm post-expression. Gates reference: humanized_458 clinical population.",
+        "flags": []
+      },
+      "cdr_scan": {
+        "status": "PASS",
+        "total_liabilities": 7,
+        "liabilities": [
+          {
+            "type": "deamidation",
+            "pattern": "NS",
+            "pos": 59,
+            "severity": "MEDIUM"
+          },
+          {
+            "type": "deamidation",
+            "pattern": "NS",
+            "pos": 182,
+            "severity": "MEDIUM"
+          },
+          {
+            "type": "deamidation",
+            "pattern": "NS",
+            "pos": 185,
+            "severity": "MEDIUM"
+          },
+          {
+            "type": "isomerization",
+            "pattern": "DG",
+            "pos": 53,
+            "severity": "MEDIUM"
+          },
+          {
+            "type": "free_Cys_candidate",
+            "pos": 91,
+            "severity": "HIGH"
+          },
+          {
+            "type": "free_Cys_candidate",
+            "pos": 139,
+            "severity": "HIGH"
+          },
+          {
+            "type": "free_Cys_candidate",
+            "pos": 204,
+            "severity": "HIGH"
+          }
+        ],
+        "flags": [
+          "WARN:isomerization",
+          "WARN:deamidation"
+        ]
+      },
+      "cmc_advisor": {
+        "status": "PASS",
+        "reference_population": "AbRef clinical panel",
+        "evaluation_standard": "CMC_STANDARD_v1.0",
+        "reference_dataset": "AbRef458_v1",
+        "metrics_version": "METRICS_v1",
+        "ADI": 58.52,
+        "ADI_percentile": null,
+        "ADI_interpretation": "Moderate risk",
+        "metrics": {
+          "pI": {
+            "value": 6.97,
+            "label": "pI",
+            "percentile_band": "p25\u2013p75",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 5.197,
+            "ref_p25": 6.85,
+            "ref_p50": 8.3,
+            "ref_p75": 8.74,
+            "ref_p95": 9.09,
+            "ref_n": 458
+          },
+          "GRAVY": {
+            "value": -0.296,
+            "label": "GRAVY hydrophobicity",
+            "percentile_band": "p25\u2013p75",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": -0.475,
+            "ref_p25": -0.397,
+            "ref_p50": -0.339,
+            "ref_p75": -0.28,
+            "ref_p95": -0.192,
+            "ref_n": 458
+          },
+          "instability_index": {
+            "value": 31.9,
+            "label": "Instability Index",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 27.67,
+            "ref_p25": 33.225,
+            "ref_p50": 37.8,
+            "ref_p75": 41.6,
+            "ref_p95": 47.1,
+            "ref_n": 458
+          },
+          "net_charge_pH7": {
+            "value": -0.02,
+            "label": "Net charge (pH 7)",
+            "percentile_band": "p25\u2013p75",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": -3.381,
+            "ref_p25": -0.1075,
+            "ref_p50": 1.89,
+            "ref_p75": 3.8075,
+            "ref_p95": 5.88,
+            "ref_n": 458
+          },
+          "hydro_patch_max9": {
+            "value": 0.778,
+            "label": "Hydrophobic patch max (9mer)",
+            "percentile_band": "p75\u2013p95",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 0.556,
+            "ref_p25": 0.556,
+            "ref_p50": 0.556,
+            "ref_p75": 0.667,
+            "ref_p95": 0.778,
+            "ref_n": 458
+          },
+          "charge_patch_max7": {
+            "value": 4.0,
+            "label": "Charge patch max (7mer)",
+            "percentile_band": "p75\u2013p95",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 2.0,
+            "ref_p25": 3.0,
+            "ref_p50": 3.0,
+            "ref_p75": 3.0,
+            "ref_p95": 4.0,
+            "ref_n": 458
+          },
+          "SAP_score": {
+            "value": 0.857,
+            "label": "SAP score",
+            "percentile_band": "p75\u2013p95",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "lower_is_better",
+            "ref_p5": 0.571,
+            "ref_p25": 0.714,
+            "ref_p50": 0.714,
+            "ref_p75": 0.714,
+            "ref_p95": 0.857,
+            "ref_n": 458
+          },
+          "Fv_charge_asymmetry": {
+            "value": 2.102,
+            "label": "Fv charge asymmetry",
+            "percentile_band": "p25\u2013p75",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "lower_is_better",
+            "ref_p5": 0.0789,
+            "ref_p25": 1.0005,
+            "ref_p50": 1.9985,
+            "ref_p75": 3.0933,
+            "ref_p95": 6.1801,
+            "ref_n": 458
+          },
+          "agg_motifs": {
+            "value": 5,
+            "label": "Aggregation Risk",
+            "percentile_band": "p75\u2013p95",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 1.0,
+            "ref_p25": 2.0,
+            "ref_p50": 3.0,
+            "ref_p75": 4.0,
+            "ref_p95": 6.0,
+            "ref_n": 458
+          },
+          "hydro_cluster_count": {
+            "value": 2,
+            "label": "Hydrophobic Density",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 1.0,
+            "ref_p25": 2.0,
+            "ref_p50": 3.0,
+            "ref_p75": 4.0,
+            "ref_p95": 5.0,
+            "ref_n": 458
+          },
+          "glycosylation_sites": {
+            "value": [],
+            "label": "PTM Site Count",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 0.0,
+            "ref_p25": 0.0,
+            "ref_p50": 0.0,
+            "ref_p75": 0.0,
+            "ref_p95": 0.0,
+            "ref_n": 458
+          },
+          "deamidation_sites": {
+            "value": [
+              59,
+              182,
+              185
+            ],
+            "label": "Deamidation Risk",
+            "percentile_band": "p75\u2013p95",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 0.0,
+            "ref_p25": 0.0,
+            "ref_p50": 1.0,
+            "ref_p75": 2.0,
+            "ref_p95": 3.0,
+            "ref_n": 458
+          },
+          "isomerization_sites": {
+            "value": [
+              53
+            ],
+            "label": "Isomerization Risk",
+            "percentile_band": "p25\u2013p75",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 0.0,
+            "ref_p25": 0.0,
+            "ref_p50": 1.0,
+            "ref_p75": 1.0,
+            "ref_p95": 3.0,
+            "ref_n": 458
+          },
+          "oxidation_sites": {
+            "value": [
+              35,
+              51,
+              81,
+              88,
+              97,
+              107,
+              151
+            ],
+            "label": "Oxidation Risk",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 7.0,
+            "ref_p25": 8.0,
+            "ref_p50": 9.0,
+            "ref_p75": 10.0,
+            "ref_p95": 11.0,
+            "ref_n": 458
+          },
+          "free_cys": {
+            "value": [
+              21,
+              91,
+              139,
+              204
+            ],
+            "label": "Free Cys Count",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 4.0,
+            "ref_p25": 4.0,
+            "ref_p50": 4.0,
+            "ref_p75": 4.0,
+            "ref_p95": 4.0,
+            "ref_n": 458
+          }
+        },
+        "gate_summary": {
+          "PASS": 15,
+          "WARN": 0,
+          "FAIL": 0
+        },
+        "mutation_suggestions": [],
+        "flags": []
+      },
+      "germline": {
+        "status": "PASS",
+        "method": "sequence_identity",
+        "db_antibody_match": null,
+        "flags": [
+          "INFO:germline_db_miss \u2014 novel sequence; precomputed Vernier data unavailable"
+        ],
+        "germline_species": "Canis_lupus_familiaris",
+        "closest_vh_germline": "IGHV3-78*01",
+        "vh_germline_identity_pct": 73.5,
+        "germline_search_db": "data/germlines/aa_translated/IG/Canis_lupus_familiaris/IGHV_aa.fasta",
+        "closest_vl_germline": "IGLV1-115*01",
+        "vl_germline_identity_pct": 65.7,
+        "vl_germline_locus": "IGLV",
+        "vl_igkv_candidate": "IGKV2-5*01",
+        "vl_igkv_identity_pct": 12.2,
+        "vl_iglv_candidate": "IGLV1-115*01",
+        "vl_iglv_identity_pct": 65.7,
+        "germline_vl_search_db": "data/germlines/aa_translated/IG/Canis_lupus_familiaris/IGKV_aa.fasta;data/germlines/aa_translated/IG/Canis_lupus_familiaris/IGLV_aa.fasta",
+        "Fc_libraries": {
+          "species": "Canis_lupus_familiaris",
+          "segments": {
+            "IGHC": {
+              "n_records": 11,
+              "paths": [
+                "data/germlines/aa_translated/Fc/Canis_lupus_familiaris/IGHC_aa.fasta"
+              ],
+              "path": "data/germlines/aa_translated/Fc/Canis_lupus_familiaris/IGHC_aa.fasta"
+            },
+            "IGKC": {
+              "n_records": 2,
+              "paths": [
+                "data/germlines/aa_translated/Fc/Canis_lupus_familiaris/IGKC_aa.fasta"
+              ],
+              "path": "data/germlines/aa_translated/Fc/Canis_lupus_familiaris/IGKC_aa.fasta"
+            },
+            "IGLC": {
+              "n_records": 9,
+              "paths": [
+                "data/germlines/aa_translated/Fc/Canis_lupus_familiaris/IGLC_aa.fasta"
+              ],
+              "path": "data/germlines/aa_translated/Fc/Canis_lupus_familiaris/IGLC_aa.fasta"
+            }
+          }
+        },
+        "VH": {
+          "top_match": "IGHV3-78*01",
+          "top_match_identity": 73.5,
+          "species": "Canis_lupus_familiaris"
+        },
+        "VL": {
+          "top_match": "IGLV1-115*01",
+          "top_match_identity": 65.7,
+          "locus": "IGLV",
+          "species": "Canis_lupus_familiaris"
+        },
+        "note": "Sequence not in precomputed database (842 clinical antibodies). Install ANARCI for live Vernier zone numbering of novel sequences."
+      },
+      "_qa": {
+        "status": "PASS",
+        "n_pass": 9,
+        "n_warn": 0,
+        "n_fail": 0,
+        "input_hash": "6d436146ff0aa822",
+        "strict_qa": false,
+        "checks": []
+      }
+    },
+    "overall_flags": [
+      "cdr_scan:WARN:isomerization",
+      "cdr_scan:WARN:deamidation",
+      "germline:INFO:germline_db_miss \u2014 novel sequence; precomputed Vernier data unavailable"
+    ],
+    "overall_status": "WARN",
+    "generated_at": "2026-05-23T02:30:42.565579"
+  }
+}

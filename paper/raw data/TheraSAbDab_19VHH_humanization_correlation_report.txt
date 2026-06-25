@@ -1,0 +1,58 @@
+====================================================================================================
+VHH Humanization Correlation Analysis: Strategy vs. Structure
+====================================================================================================
+
+Hypothesis: Is humanization driven by 'Strategy' labels or 'Structural' constraints?
+
+## 1. Does Strategy Label (BM/SR/Native) Predict Human Identity?
+
+Median Human Identity by Strategy:
+Region                    | BM (n=8)   | SR (n=7)   | Native (n=4) | P-value (Kruskal)
+------------------------------------------------------------------------------------------
+global_human_identity_pct | 90.0       | 88.8       | 85.0       | 0.0085     **
+fr1_human_pct             | 98.0       | 100.0      | 96.0       | 0.1682     
+fr2_human_pct             | 17.6       | 17.6       | 17.6       | 0.6507     
+fr3_human_pct             | 14.7       | 14.3       | 14.3       | 0.1944     
+fr4_human_pct             | 9.1        | 9.1        | 9.1        | 0.5028     
+
+Observation:
+  - If p < 0.05, the strategy label significantly affects humanization.
+  - If p > 0.05, the strategy label is irrelevant to the actual sequence.
+
+## 2. Structural Constraints: CDR2 Canonical Fold
+
+Comparison: H2-9-1 (short CDR2) vs H2-10-1 (long CDR2)
+Feature                        | H2-9-1 (n=6)    | H2-10-1 (n=12)  | P-value (MWU)  
+------------------------------------------------------------------------------------------
+FR2 Human %                    | 17.6            | 17.6            | 0.7963     
+FR2 Camelid %                  | 17.6            | 11.8            | 0.0142     **
+Global Human %                 | 90.0            | 88.8            | 0.4790     
+Camelid Hallmarks              | 1.0             | 2.0             | 0.3587     
+
+## 3. Structural Constraints: CDR3 Length
+
+Correlation (Spearman) between CDR3 Length and FR Identity:
+  - CDR3 Length vs FR4 Human %         : rho =  0.326, p = 0.1737 
+  - CDR3 Length vs FR3 Human %         : rho =  0.080, p = 0.7446 
+  - CDR3 Length vs FR2 Human %         : rho =  0.092, p = 0.7076 
+  - CDR3 Length vs Global Human %      : rho = -0.265, p = 0.2723 
+
+## 4. The Hallmark Paradox
+
+Does increasing Global Humanization lead to loss of Camelid Hallmarks?
+  - Global Human % vs Camelid Hallmark Count: rho = -0.155, p = 0.5253
+  → NO Correlation: Even highly humanized VHHs retain camelid hallmarks.
+
+## 5. FINAL CONCLUSIONS ON VHH HUMANIZATION DRIVERS
+
+1. STRATEGY LABEL VALIDITY:
+   - ✅ Strategy labels correlate with sequence differences.
+
+2. STRUCTURAL DRIVERS:
+   - ❌ CDR2 Canonical Fold does not significantly drive FR2 humanization.
+
+3. HALLMARK CONSERVATION:
+   - Camelid hallmarks are retained INDEPENDENTLY of humanization level.
+   - They are structural necessities, not variable features.
+
+====================================================================================================

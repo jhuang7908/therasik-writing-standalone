@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "source": "mBER (Manifold Bio) mber-open repo + bioRxiv 2025.09.26.678877",
+    "description": "VHH frameworks based on human IGHV3-23 (L5V, S74A). Table S1 in paper SI has full list; default from repo example below.",
+    "reference": "https://github.com/manifoldbio/mber-open",
+    "paper_supplement": "Download Supplementary Information from https://www.biorxiv.org/content/10.1101/2025.09.26.678877v1 for Table S1"
+  },
+  "frameworks": [
+    {
+      "id": "mber_default_IGHV3-23_L5V_S74A",
+      "description": "Default masked sequence from protocols/examples/vhh_settings_example.yml",
+      "mutations_vs_IGHV3_23": [
+        "L5V",
+        "S74A"
+      ],
+      "masked_sequence": "EVQLVESGGGLVQPGGSLRLSCAASG*********WFRQAPGKEREF***********NADSVKGRFTISRDNAKNTLYLQMNSLRAEDTAVYYC************WGQGTLVTVSS",
+      "fixed_framework_only": "EVQLVESGGGLVQPGGSLRLSCAASG WFRQAPGKEREF NADSVKGRFTISRDNAKNTLYLQMNSLRAEDTAVYYC WGQGTLVTVSS",
+      "cdr1_length": 9,
+      "cdr2_length": 11,
+      "cdr3_length": 12,
+      "hallmark_positions_IMGT": [
+        37,
+        44,
+        45,
+        47
+      ],
+      "note": "Replace * with designed CDR residues; CDR3 length is variable in practice (use <CDR3> in Table S1)"
+    }
+  ],
+  "table_s1_instructions": "To add more frameworks from the paper: download the Supplementary Information PDF, export Table S1 as CSV/TSV (or paste sequences), then run scripts/fetch_mber_vhh_frameworks.py --table-s1 <path>"
+}

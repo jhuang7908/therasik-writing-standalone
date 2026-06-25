@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: creative-studio
+    runtime: python
+    rootDir: content_generation_tools/creative_studio
+    buildCommand: pip install -r requirements_cloud.txt
+    startCommand: python serve_local.py
+    envVars:
+      - key: DEEPSEEK_API_KEY
+        sync: false          # set in Render dashboard
+      - key: OPENAI_API_KEY
+        sync: false          # set in Render dashboard
+      - key: SECRET_KEY
+        generateValue: true  # auto-generated secure key
+      - key: PORT
+        value: 10000         # Render assigns PORT automatically
+    disk:
+      name: studio-data
+      mountPath: /data
+      sizeGB: 1

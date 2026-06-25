@@ -1,0 +1,811 @@
+{
+  "meta": {
+    "source": "slice_4_bispecific_engineering",
+    "subset": "scfv_like",
+    "description": "Bispecific scFv-like (with linker): BiTE, Tandem scFv, Mixed mAb+scFv, etc.",
+    "count": 50
+  },
+  "antibody_ids": [
+    "Acapatamab",
+    "Azerutamig",
+    "Bavunalimab",
+    "Cabotamig",
+    "Cadonilimab",
+    "Cugrastomig",
+    "Danvilostomig",
+    "Donzakimig1",
+    "Duvortuxizumab",
+    "Eluvixtamab",
+    "Emerfetamab",
+    "Emfizatamab1",
+    "Emfizatamab2",
+    "Emirodatamab",
+    "Etevritamab",
+    "Flotetuzumab",
+    "Givastomig",
+    "Gresonitamab",
+    "Imvotamab",
+    "Inezetamab",
+    "Ingitamig",
+    "Istiratumab",
+    "Ivonescimab",
+    "Izalontamab",
+    "Izuralimab",
+    "Lorigerlimab",
+    "Mipletamig",
+    "Nebratamig1",
+    "Nebratamig2",
+    "Nivatrotamab",
+    "Obertamig",
+    "Obrindatamab",
+    "Opugotamig",
+    "Pacanalotamab",
+    "Pasotuxizumab",
+    "Pasritamig",
+    "Pavurutamab",
+    "Plamotamab",
+    "Ragistomig",
+    "Solitomab",
+    "Tarlatamab",
+    "Tebotelimab",
+    "Tibulizumab",
+    "Tidutamab",
+    "Tovecimig",
+    "Vepsitamab",
+    "Vibecotamab",
+    "Vudalimab",
+    "Xaluritamig",
+    "Xirestomig"
+  ],
+  "records": [
+    {
+      "antibody_id": "Acapatamab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific scFv",
+      "targets": [
+        "FOLH1/GCPII/PSMA",
+        "CD3E"
+      ],
+      "target_raw": "FOLH1/GCPII/PSMA;CD3E",
+      "target_count": 2,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Phase-I/II",
+      "fc_isotype": "NA;NA",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Azerutamig",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific Mixed mAb and scFv-CH2-CH3",
+      "targets": [
+        "KLRK1/NKG2D/CD314",
+        "ERBB2/CD340/HER2"
+      ],
+      "target_raw": "KLRK1/NKG2D/CD314;ERBB2/CD340/HER2",
+      "target_count": 2,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Phase-II",
+      "fc_isotype": "G1;G1",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Bavunalimab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific Mixed mAb and scFv",
+      "targets": [
+        "LAG3/CD223",
+        "CTLA4/CD152"
+      ],
+      "target_raw": "LAG3/CD223;CTLA4/CD152",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "G1;NA",
+      "demand_type": "other"
+    },
+    {
+      "antibody_id": "Cabotamig",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific (VH-G1CH1h-G4CH2CH3-scFv)",
+      "targets": [
+        "CDH17",
+        "CD3E"
+      ],
+      "target_raw": "CDH17;CD3E",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "G1",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Cadonilimab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific Mixed mAb and scFv",
+      "targets": [
+        "PDCD1/CD279/PD1",
+        "CTLA4/CD152"
+      ],
+      "target_raw": "PDCD1/CD279/PD1;CTLA4/CD152",
+      "target_count": 2,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Approved",
+      "fc_isotype": "G1;NA",
+      "demand_type": "immune_costim"
+    },
+    {
+      "antibody_id": "Cugrastomig",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific Mixed mAb and scFv",
+      "targets": [
+        "LAG3/CD223",
+        "PDCD1/CD279/PD1"
+      ],
+      "target_raw": "LAG3/CD223;PDCD1/CD279/PD1",
+      "target_count": 2,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Phase-I/II",
+      "fc_isotype": "G1;NA",
+      "demand_type": "immune_costim"
+    },
+    {
+      "antibody_id": "Danvilostomig",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific Mixed mAb and scFv",
+      "targets": [
+        "CTLA4/CD152",
+        "PDCD1/CD279/PD1"
+      ],
+      "target_raw": "CTLA4/CD152;PDCD1/CD279/PD1",
+      "target_count": 2,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Phase-II",
+      "fc_isotype": "G1;NA",
+      "demand_type": "immune_costim"
+    },
+    {
+      "antibody_id": "Donzakimig1",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Trispecific (G1(VH-CH1-h)-scFv_L-kappa-scFv); Bispecific entry",
+      "targets": [
+        "IL22",
+        "ALB"
+      ],
+      "target_raw": "IL22;ALB",
+      "target_count": 2,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Phase-I/II",
+      "fc_isotype": "G1;NA",
+      "demand_type": "other"
+    },
+    {
+      "antibody_id": "Duvortuxizumab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific scFv with Crossover",
+      "targets": [
+        "CD19",
+        "CD3E"
+      ],
+      "target_raw": "CD19;CD3E",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "NA;NA",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Eluvixtamab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific scFv",
+      "targets": [
+        "SIGLEC3/CD33/p67",
+        "CD3E"
+      ],
+      "target_raw": "SIGLEC3/CD33/p67;CD3E",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "NA;NA",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Emerfetamab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific scFv",
+      "targets": [
+        "SIGLEC3/CD33/p67",
+        "CD3E"
+      ],
+      "target_raw": "SIGLEC3/CD33/p67;CD3E",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "NA;NA",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Emfizatamab1",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Tetraspecific (scFv-IgG-scFv-scFv; Bispecific entry 1)",
+      "targets": [
+        "CD3E",
+        "CD19"
+      ],
+      "target_raw": "CD3E;CD19",
+      "target_count": 2,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Phase-II",
+      "fc_isotype": "NA;G1",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Emfizatamab2",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Tetraspecific (scFv-IgG-scFv-scFv; Bispecific entry 2)",
+      "targets": [
+        "PDL1/CD274",
+        "TNFRSF9/CD137/4-1BB"
+      ],
+      "target_raw": "PDL1/CD274;TNFRSF9/CD137/4-1BB",
+      "target_count": 2,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Phase-II",
+      "fc_isotype": "NA;NA",
+      "demand_type": "immune_costim"
+    },
+    {
+      "antibody_id": "Emirodatamab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific scFv-scFv-scFc",
+      "targets": [
+        "FLT3/CD135/FLK2",
+        "CD3E"
+      ],
+      "target_raw": "FLT3/CD135/FLK2;CD3E",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "NA;NA",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Etevritamab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific scFv",
+      "targets": [
+        "EGFR/ERBB1/HER1",
+        "CD3E"
+      ],
+      "target_raw": "EGFR/ERBB1/HER1;CD3E",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "NA;NA",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Flotetuzumab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific scFv with Crossover",
+      "targets": [
+        "IL3RA/CD123",
+        "CD3E"
+      ],
+      "target_raw": "IL3RA/CD123;CD3E",
+      "target_count": 2,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Phase-I/II",
+      "fc_isotype": "NA;NA",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Givastomig",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific (G1-scFv_L-kappa)",
+      "targets": [
+        "CLDN18",
+        "TNFRSF9/CD137/4-1BB"
+      ],
+      "target_raw": "CLDN18;TNFRSF9/CD137/4-1BB",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "G1;NA",
+      "demand_type": "other"
+    },
+    {
+      "antibody_id": "Gresonitamab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific scFv-scFv-scFc",
+      "targets": [
+        "CLDN18",
+        "CD3E"
+      ],
+      "target_raw": "CLDN18;CD3E",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "G1;G1",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Imvotamab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Pentameric IgM with Fused scFv (Bispecific)",
+      "targets": [
+        "CD3E",
+        "MS4A1/CD20"
+      ],
+      "target_raw": "CD3E;MS4A1/CD20",
+      "target_count": 2,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Phase-II",
+      "fc_isotype": "M",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Inezetamab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific Mixed mAb and scFv",
+      "targets": [
+        "CD40",
+        "MSLN"
+      ],
+      "target_raw": "CD40;MSLN",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "G1;NA",
+      "demand_type": "dual_tumor"
+    },
+    {
+      "antibody_id": "Ingitamig",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific Mixed mAb and tandem mAb/scFv",
+      "targets": [
+        "TNFRSF17/CD269/BCMA/TNFRSF13A",
+        "KLRK1/NKG2D/CD314"
+      ],
+      "target_raw": "TNFRSF17/CD269/BCMA/TNFRSF13A;KLRK1/NKG2D/CD314",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "G1;G1",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Istiratumab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific Mixed mAb and scFv",
+      "targets": [
+        "IGF1R/CD221",
+        "ERBB3/HER3"
+      ],
+      "target_raw": "IGF1R/CD221;ERBB3/HER3",
+      "target_count": 2,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Phase-II",
+      "fc_isotype": "G1;NA",
+      "demand_type": "other"
+    },
+    {
+      "antibody_id": "Ivonescimab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific (G1-kappa_scFv)",
+      "targets": [
+        "VEGFA",
+        "PDCD1/CD279/PD1"
+      ],
+      "target_raw": "VEGFA;PDCD1/CD279/PD1",
+      "target_count": 2,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Approved",
+      "fc_isotype": "G1",
+      "demand_type": "immune_costim"
+    },
+    {
+      "antibody_id": "Izalontamab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific Mixed mAb and scFv",
+      "targets": [
+        "EGFR/ERBB1/HER1",
+        "ERBB3/HER3"
+      ],
+      "target_raw": "EGFR/ERBB1/HER1;ERBB3/HER3",
+      "target_count": 2,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Phase-III",
+      "fc_isotype": "G1;NA",
+      "demand_type": "dual_tumor"
+    },
+    {
+      "antibody_id": "Izuralimab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific Mixed mAb and scFv",
+      "targets": [
+        "ICOS/CD278",
+        "PDCD1/CD279/PD1"
+      ],
+      "target_raw": "ICOS/CD278;PDCD1/CD279/PD1",
+      "target_count": 2,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Phase-II",
+      "fc_isotype": "G1;NA",
+      "demand_type": "immune_costim"
+    },
+    {
+      "antibody_id": "Lorigerlimab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific Mixed scFv (scFv-CH2-CH3-scFv)",
+      "targets": [
+        "PDCD1/CD279/PD1",
+        "CTLA4/CD152"
+      ],
+      "target_raw": "PDCD1/CD279/PD1;CTLA4/CD152",
+      "target_count": 2,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Phase-II",
+      "fc_isotype": "G4;G4",
+      "demand_type": "immune_costim"
+    },
+    {
+      "antibody_id": "Mipletamig",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific Mixed scFv (scFv-CH2-CH3-scFv)",
+      "targets": [
+        "IL3RA/CD123",
+        "CD3E"
+      ],
+      "target_raw": "IL3RA/CD123;CD3E",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "G1;G1",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Nebratamig1",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Tetraspecific scFv-IgG-scFv-scFv (Bispecific entry 1)",
+      "targets": [
+        "TNFRSF9/CD137/4-1BB",
+        "PDL1/CD274"
+      ],
+      "target_raw": "TNFRSF9/CD137/4-1BB;PDL1/CD274",
+      "target_count": 2,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Phase-I/II",
+      "fc_isotype": "NA;G1",
+      "demand_type": "immune_costim"
+    },
+    {
+      "antibody_id": "Nebratamig2",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Tetraspecific scFv-IgG-scFv-scFv (Bispecific entry 2)",
+      "targets": [
+        "ROR1",
+        "CD3D and CD3E"
+      ],
+      "target_raw": "ROR1;CD3D and CD3E",
+      "target_count": 2,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Phase-I/II",
+      "fc_isotype": "NA;NA",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Nivatrotamab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific Mixed mAb and scFv",
+      "targets": [
+        "GD2",
+        "CD3E"
+      ],
+      "target_raw": "GD2;CD3E",
+      "target_count": 2,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Phase-I/II",
+      "fc_isotype": "G1;NA",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Obertamig",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific Mixed mAb and scFv",
+      "targets": [
+        "CD3E",
+        "HLA-G"
+      ],
+      "target_raw": "CD3E;HLA-G",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "G1;NA",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Obrindatamab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific scFv with Domain Crossover",
+      "targets": [
+        "B7H3/CD276",
+        "CD3E"
+      ],
+      "target_raw": "B7H3/CD276;CD3E",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "NA;NA",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Opugotamig",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific Mixed mAb and scFv ((G1_L-kappa)_scFvkh-G1(h-CH2-CH3))",
+      "targets": [
+        "FOLR1",
+        "FOLR1"
+      ],
+      "target_raw": "FOLR1;FOLR1",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "G1;G1",
+      "demand_type": "other"
+    },
+    {
+      "antibody_id": "Pacanalotamab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific scFv",
+      "targets": [
+        "TNFRSF17/CD269/BCMA/TNFRSF13A",
+        "CD3E"
+      ],
+      "target_raw": "TNFRSF17/CD269/BCMA/TNFRSF13A;CD3E",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "NA;NA",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Pasotuxizumab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific scFv",
+      "targets": [
+        "FOLH1/GCPII/PSMA",
+        "CD3E"
+      ],
+      "target_raw": "FOLH1/GCPII/PSMA;CD3E",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "NA;NA",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Pasritamig",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific Mixed Domains ((H-gamma1_L-kappa)_scFvkh-G1(h-CH2-CH3))",
+      "targets": [
+        "KLK2/KLK2A2/hGK-1/hK2",
+        "CD3E"
+      ],
+      "target_raw": "KLK2/KLK2A2/hGK-1/hK2;CD3E",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "G1;G1",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Pavurutamab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific scFv",
+      "targets": [
+        "TNFRSF17/CD269/BCMA/TNFRSF13A",
+        "CD3E"
+      ],
+      "target_raw": "TNFRSF17/CD269/BCMA/TNFRSF13A;CD3E",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "NA;NA",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Plamotamab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific Mixed mAb and scFv",
+      "targets": [
+        "MS4A1/CD20",
+        "CD3E"
+      ],
+      "target_raw": "MS4A1/CD20;CD3E",
+      "target_count": 2,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Phase-II",
+      "fc_isotype": "G1;G1",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Ragistomig",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific (G1-scFv_L-kappa)",
+      "targets": [
+        "PDL1/CD274",
+        "TNFRSF9/CD137/4-1BB"
+      ],
+      "target_raw": "PDL1/CD274;TNFRSF9/CD137/4-1BB",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "G1;NA",
+      "demand_type": "immune_costim"
+    },
+    {
+      "antibody_id": "Solitomab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific scFv",
+      "targets": [
+        "EPCAM/CD326",
+        "CD3E"
+      ],
+      "target_raw": "EPCAM/CD326;CD3E",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "NA;NA",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Tarlatamab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific scFv",
+      "targets": [
+        "DLL3",
+        "CD3E"
+      ],
+      "target_raw": "DLL3;CD3E",
+      "target_count": 2,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Approved",
+      "fc_isotype": "NA;NA",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Tebotelimab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific scFv with Crossover",
+      "targets": [
+        "PDCD1/CD279/PD1",
+        "LAG3/CD223"
+      ],
+      "target_raw": "PDCD1/CD279/PD1;LAG3/CD223",
+      "target_count": 2,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Phase-II/III",
+      "fc_isotype": "G4;G4",
+      "demand_type": "immune_costim"
+    },
+    {
+      "antibody_id": "Tibulizumab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific Mixed mAb and scFv",
+      "targets": [
+        "TNFSF13B/CD257/BAFF",
+        "IL17A"
+      ],
+      "target_raw": "TNFSF13B/CD257/BAFF;IL17A",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "G4;G4",
+      "demand_type": "other"
+    },
+    {
+      "antibody_id": "Tidutamab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific Mixed mAb and scFv",
+      "targets": [
+        "SSTR2",
+        "CD3E"
+      ],
+      "target_raw": "SSTR2;CD3E",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "G1;G1",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Tovecimig",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific Mixed mAb and scFv",
+      "targets": [
+        "VEGFA"
+      ],
+      "target_raw": "VEGFA",
+      "target_count": 1,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Phase-II/III",
+      "fc_isotype": "G1;NA",
+      "demand_type": "other"
+    },
+    {
+      "antibody_id": "Vepsitamab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific (scFv-scFv-scFc)",
+      "targets": [
+        "MUC17",
+        "CD3E"
+      ],
+      "target_raw": "MUC17;CD3E",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "NA;NA",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Vibecotamab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific Mixed mAb and scFv",
+      "targets": [
+        "IL3RA/CD123",
+        "CD3E"
+      ],
+      "target_raw": "IL3RA/CD123;CD3E",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "G1;G1",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Vudalimab",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific Mixed mAb and scFv",
+      "targets": [
+        "CTLA4/CD152",
+        "PDCD1/CD279/PD1"
+      ],
+      "target_raw": "CTLA4/CD152;PDCD1/CD279/PD1",
+      "target_count": 2,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Phase-II",
+      "fc_isotype": "G1;G1",
+      "demand_type": "immune_costim"
+    },
+    {
+      "antibody_id": "Xaluritamig",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific Mixed mAb and scFv",
+      "targets": [
+        "STEAP1",
+        "CD3"
+      ],
+      "target_raw": "STEAP1;CD3",
+      "target_count": 2,
+      "phase_bucket": "phase_II_plus",
+      "phase_raw": "Phase-III",
+      "fc_isotype": "G1;NA",
+      "demand_type": "TCE"
+    },
+    {
+      "antibody_id": "Xirestomig",
+      "format_class": "bispecific_scFv_like",
+      "format_raw": "Bispecific (G1-scFv_L2 dimer)",
+      "targets": [
+        "PDL1/CD274",
+        "TNFRSF9/CD137/4-1BB"
+      ],
+      "target_raw": "PDL1/CD274;TNFRSF9/CD137/4-1BB",
+      "target_count": 2,
+      "phase_bucket": "phase_I",
+      "phase_raw": "Phase-I",
+      "fc_isotype": "G1;NA",
+      "demand_type": "immune_costim"
+    }
+  ]
+}

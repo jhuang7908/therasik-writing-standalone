@@ -1,0 +1,335 @@
+{
+  "batch_id": "cd3_vh_to_vhh_batch_manifest_v1",
+  "batch_version": "1.0.0",
+  "target_antigen": "human CD3E (CD3ε)",
+  "generated_at_utc": "2026-05-16T11:35:32.905115+00:00",
+  "n_entries": 6,
+  "polarity_label_policy": "Functional polarity strings are program/class narratives marked verification_status=inferred; they are not agonist/treg assay readouts.",
+  "entries": [
+    {
+      "entry_id": "sp34_murine_vh_blinatumomab",
+      "display_name": "SP34 CD3 arm (murine, Blinatumomab)",
+      "original_antibody_format": "VH_only",
+      "genetics_class": "murine",
+      "has_reconstructed_scfv_in_panel": true,
+      "cdr3_kabat": "YYDDHYCLDY",
+      "cdr3_annotation_method": "anarcii_kabat",
+      "vh_aa_sha256": "273f142e9d34368cb0ddca1595600daacb78ee87b73de8e775e0ae4200ddda35",
+      "cd3_program_framing": {
+        "functional_polarity": "t_cell_engager_arm_cytolytic_context",
+        "note": "Murine SP34-class binder used as the CD3 arm in blinatumomab (BiTE); cytolytic outcome is context- and format-dependent (co-target, avidity, dose). [inferred from public modality class]",
+        "verification_status": "inferred"
+      },
+      "vh_to_vhh_job_id": "cd3_v2v_sp34_murine_vh_blinatumomab",
+      "source_class_request": "murine_mab",
+      "output_dir_relative": ".job_storage/cd3_v2v_sp34_murine_vh_blinatumomab",
+      "job_status": "done",
+      "elapsed_sec": 35.6,
+      "result_slim": {
+        "converted_sequence": "EVQLVESGGGLIQPGGSLRLSCAVSGYTFTRYTMHWVRQAPGKGLEWVSVINPSRGYTNYNQKFKDRFTISRDNSKNTLYLQMNSLRAEDTAVYYCARYYDDHYSLDYWGQGTMVTVSS",
+        "input_vh_used": "DIKLQSGAELARPGASVKMSCKTSGYTFTRYTMHWVKQRPGQGLEWIGYINPSRGYTNYNQKFKDKATLTTDKSSSTAYMQLSSLTSEDSAVYYCARYYDDHYCLDYWGQGTTLTVSS",
+        "verdict_severity": "LOW_RISK",
+        "primary_recommendation": "C",
+        "expressibility_verdict": {
+          "verdict": "WARN",
+          "criteria": [
+            {
+              "metric": "CDR3 length",
+              "value": 10,
+              "status": "PASS",
+              "reason": "≥ 10 aa: adequate interface coverage"
+            },
+            {
+              "metric": "CDR3 compactness",
+              "value": 6.14,
+              "status": "PASS",
+              "reason": "≤ 6.5 Å: compact CDR3"
+            },
+            {
+              "metric": "AbNatiV Δ",
+              "value": -0.0552,
+              "status": "WARN",
+              "reason": "-0.074 to -0.050: borderline; marginal VHH naturalness gain"
+            }
+          ]
+        },
+        "cdr3_length": 10,
+        "feasibility_verdict": "FEASIBLE_WITH_CAUTION",
+        "cmc_status": "FAIL",
+        "mutations_applied": [
+          "C114S (Path C Liability-gate)"
+        ]
+      }
+    },
+    {
+      "entry_id": "teplizumab_vh_vl",
+      "display_name": "Teplizumab (humanized murine, Tzield)",
+      "original_antibody_format": "IgG_VH_VL_pair",
+      "genetics_class": "humanized",
+      "has_reconstructed_scfv_in_panel": true,
+      "cdr3_kabat": "YYDDHYCLDY",
+      "cdr3_annotation_method": "anarcii_kabat",
+      "vh_aa_sha256": "f5d32d4c214a280c613b9ae3f14422cae31f65576f8cf7fc9fa29529d24da776",
+      "cd3_program_framing": {
+        "functional_polarity": "immunomodulatory_regulatory_leaning",
+        "note": "Anti-CD3 mAb developed for T1D with immunomodulatory / partial agonist framing in program narratives. [inferred from public indication/clinical class]",
+        "verification_status": "inferred"
+      },
+      "vh_to_vhh_job_id": "cd3_v2v_teplizumab_vh_vl",
+      "source_class_request": "humanized_mab",
+      "output_dir_relative": ".job_storage/cd3_v2v_teplizumab_vh_vl",
+      "job_status": "done",
+      "elapsed_sec": 15.3,
+      "result_slim": {
+        "converted_sequence": "EVQLVESGGGLVQPGGSLRLSCAASGYTFTRYTMHWVRQAPGKGLEWVSAINPSRGYTNYNQKVKDRFTISRDNAKNTLYLQMNSLRAEDTAVYYCARYYDDHYSLDYWGQGTLVTVSS",
+        "input_vh_used": "QVQLVQSGGGVVQPGRSLRLSCKASGYTFTRYTMHWVRQAPGKGLEWIGYINPSRGYTNYNQKVKDRFTISRDNSKNTAFLQMDSLRPEDTGVYFCARYYDDHYCLDYWGQGTPVTVSS",
+        "verdict_severity": "LOW_RISK",
+        "primary_recommendation": "C",
+        "expressibility_verdict": {
+          "verdict": "FAIL",
+          "criteria": [
+            {
+              "metric": "CDR3 length",
+              "value": 10,
+              "status": "PASS",
+              "reason": "≥ 10 aa: adequate interface coverage"
+            },
+            {
+              "metric": "CDR3 compactness",
+              "value": 6.01,
+              "status": "PASS",
+              "reason": "≤ 6.5 Å: compact CDR3"
+            },
+            {
+              "metric": "AbNatiV Δ",
+              "value": -0.1094,
+              "status": "FAIL",
+              "reason": "< -0.074: sequence globally too VH-like even after conversion; latent aggregation risk"
+            }
+          ]
+        },
+        "cdr3_length": 10,
+        "feasibility_verdict": "FEASIBLE_WITH_CAUTION",
+        "cmc_status": "FAIL",
+        "mutations_applied": [
+          "C114S (Path C Liability-gate)"
+        ]
+      }
+    },
+    {
+      "entry_id": "visilizumab_vh_vl",
+      "display_name": "Visilizumab (humanized murine)",
+      "original_antibody_format": "IgG_VH_VL_pair",
+      "genetics_class": "humanized",
+      "has_reconstructed_scfv_in_panel": true,
+      "cdr3_kabat": "SAYYDYDGFAY",
+      "cdr3_annotation_method": "anarcii_kabat",
+      "vh_aa_sha256": "3eecb7a654b2b476a13af3e944ef98956d7d0c1d72f3240473c3e4437998a4a2",
+      "cd3_program_framing": {
+        "functional_polarity": "mixed_context_dependent",
+        "note": "Humanized CD3 mAb with historical apoptosis / immune-suppression use cases; not equivalent to a TCE arm nor a single clean agonist label. [inferred]",
+        "verification_status": "inferred"
+      },
+      "vh_to_vhh_job_id": "cd3_v2v_visilizumab_vh_vl",
+      "source_class_request": "humanized_mab",
+      "output_dir_relative": ".job_storage/cd3_v2v_visilizumab_vh_vl",
+      "job_status": "done",
+      "elapsed_sec": 18.3,
+      "result_slim": {
+        "converted_sequence": "EVQLVESGGGLVQPGGSLRLSCAASGYTFISYTMHWVRQAPGKGLEWVSAINPRSGYTHYNQKLKDRFTISRDNAKNTLYLQMNSLRAEDTAVYYCARSAYYDYDGFAYWGQGTLVTVSS",
+        "input_vh_used": "QVQLVQSGAEVKKPGASVKVSCKASGYTFISYTMHWVRQAPGQGLEWMGYINPRSGYTHYNQKLKDKATLTADKSASTAYMELSSLRSEDTAVYYCARSAYYDYDGFAYWGQGTLVTVSS",
+        "verdict_severity": "LOW_RISK",
+        "primary_recommendation": "C",
+        "expressibility_verdict": {
+          "verdict": "FAIL",
+          "criteria": [
+            {
+              "metric": "CDR3 length",
+              "value": 11,
+              "status": "PASS",
+              "reason": "≥ 10 aa: adequate interface coverage"
+            },
+            {
+              "metric": "CDR3 compactness",
+              "value": 5.8,
+              "status": "PASS",
+              "reason": "≤ 6.5 Å: compact CDR3"
+            },
+            {
+              "metric": "AbNatiV Δ",
+              "value": -0.0784,
+              "status": "FAIL",
+              "reason": "< -0.074: sequence globally too VH-like even after conversion; latent aggregation risk"
+            }
+          ]
+        },
+        "cdr3_length": 11,
+        "feasibility_verdict": "FEASIBLE",
+        "cmc_status": "FAIL",
+        "mutations_applied": []
+      }
+    },
+    {
+      "entry_id": "otelixizumab_vh_vl",
+      "display_name": "Otelixizumab (humanized murine)",
+      "original_antibody_format": "IgG_VH_VL_pair",
+      "genetics_class": "humanized",
+      "has_reconstructed_scfv_in_panel": true,
+      "cdr3_kabat": "FRQYSGGFDY",
+      "cdr3_annotation_method": "anarcii_kabat",
+      "vh_aa_sha256": "8fcdfcddfef0124ef47d817c487f831cd448788c089ff67c5fc0efa6dab2f66e",
+      "cd3_program_framing": {
+        "functional_polarity": "immunomodulatory_regulatory_leaning",
+        "note": "Humanized CD3 mAb evaluated in MS with modulation-oriented program framing. [inferred]",
+        "verification_status": "inferred"
+      },
+      "vh_to_vhh_job_id": "cd3_v2v_otelixizumab_vh_vl",
+      "source_class_request": "humanized_mab",
+      "output_dir_relative": ".job_storage/cd3_v2v_otelixizumab_vh_vl",
+      "job_status": "done",
+      "elapsed_sec": 20.5,
+      "result_slim": {
+        "converted_sequence": "EVQLVESGGGLVQPGGSLRLSCAASGFTFSSFPMAWVRQAPGKGLEWVSEISTSGGRTYYRDSVKGRFTISRDNAKNTLYLQMNSLRPEDTAVYYCAKFRQYSGGFDYRGQGTLVTVSS",
+        "input_vh_used": "EVQLLESGGGLVQPGGSLRLSCAASGFTFSSFPMAWVRQAPGKGLEWVSTISTSGGRTYYRDSVKGRFTISRDNSKNTLYLQMNSLRAEDTAVYYCAKFRQYSGGFDYWGQGTLVTVSS",
+        "verdict_severity": "LOW_RISK",
+        "primary_recommendation": "C",
+        "expressibility_verdict": {
+          "verdict": "WARN",
+          "criteria": [
+            {
+              "metric": "CDR3 length",
+              "value": 10,
+              "status": "PASS",
+              "reason": "≥ 10 aa: adequate interface coverage"
+            },
+            {
+              "metric": "CDR3 compactness",
+              "value": 5.75,
+              "status": "PASS",
+              "reason": "≤ 6.5 Å: compact CDR3"
+            },
+            {
+              "metric": "AbNatiV Δ",
+              "value": -0.0649,
+              "status": "WARN",
+              "reason": "-0.074 to -0.050: borderline; marginal VHH naturalness gain"
+            }
+          ]
+        },
+        "cdr3_length": 10,
+        "feasibility_verdict": "FEASIBLE",
+        "cmc_status": "FAIL",
+        "mutations_applied": []
+      }
+    },
+    {
+      "entry_id": "foralumab_vh_vl",
+      "display_name": "Foralumab / NI-0401 (fully human)",
+      "original_antibody_format": "IgG_VH_VL_pair",
+      "genetics_class": "fully_human",
+      "has_reconstructed_scfv_in_panel": true,
+      "cdr3_kabat": "QMGYWHFDL",
+      "cdr3_annotation_method": "anarcii_kabat",
+      "vh_aa_sha256": "dedb72297d1183e06823972acf39cb21cd1147cd4aa85502f96f5a546e7cd869",
+      "cd3_program_framing": {
+        "functional_polarity": "tolerance_oral_anti_CD3_regulatory_leaning",
+        "note": "Fully human anti-CD3 (NI-0401 / foralumab) with tolerance / regulatory-style positioning in public materials. [inferred]",
+        "verification_status": "inferred"
+      },
+      "vh_to_vhh_job_id": "cd3_v2v_foralumab_vh_vl",
+      "source_class_request": "human_mab",
+      "output_dir_relative": ".job_storage/cd3_v2v_foralumab_vh_vl",
+      "job_status": "done",
+      "elapsed_sec": 22.1,
+      "result_slim": {
+        "converted_sequence": "EVQLVESGGGLVQPGGSLRLSCAASGFKFSGYGMHWVRQAPGKGLEWVSEIWYDGSKKYYVDSVKGRFTISRDNAKNTLYLQMNSLRPEDTAVYYCARQMGYWHFDLRGQGTLVTVSS",
+        "input_vh_used": "QVQLVESGGGVVQPGRSLRLSCAASGFKFSGYGMHWVRQAPGKGLEWVAVIWYDGSKKYYVDSVKGRFTISRDNSKNTLYLQMNSLRAEDTAVYYCARQMGYWHFDLWGRGTLVTVSS",
+        "verdict_severity": "LOW_RISK",
+        "primary_recommendation": "C",
+        "expressibility_verdict": {
+          "verdict": "FAIL",
+          "criteria": [
+            {
+              "metric": "CDR3 length",
+              "value": 9,
+              "status": "WARN",
+              "reason": "8–9 aa: borderline interface coverage; structural verification required"
+            },
+            {
+              "metric": "CDR3 compactness",
+              "value": 5.5,
+              "status": "PASS",
+              "reason": "≤ 6.5 Å: compact CDR3"
+            },
+            {
+              "metric": "AbNatiV Δ",
+              "value": -0.0877,
+              "status": "FAIL",
+              "reason": "< -0.074: sequence globally too VH-like even after conversion; latent aggregation risk"
+            }
+          ]
+        },
+        "cdr3_length": 9,
+        "feasibility_verdict": "FEASIBLE",
+        "cmc_status": "FAIL",
+        "mutations_applied": []
+      }
+    },
+    {
+      "entry_id": "okt3_humanized_scfv_actes",
+      "display_name": "OKT3-class humanized scFv (ACTES canonical)",
+      "original_antibody_format": "scFv_VH_linker_VL",
+      "genetics_class": "humanized",
+      "has_reconstructed_scfv_in_panel": true,
+      "cdr3_kabat": "YYDDHYCLDY",
+      "cdr3_annotation_method": "anarcii_kabat",
+      "vh_aa_sha256": "b7c0a261d29e6c4ec4a76eaec11867ee298b166ecde77af55b08fdd845180a39",
+      "cd3_program_framing": {
+        "functional_polarity": "strong_pan_T_cell_CD3_engagement_risk",
+        "note": "OKT3-class CD3 binders are associated with broad T cell activation and CRS risk as intact mAbs; scFv fragment removes Fc but retains epitope/affinity context. [inferred from class history]",
+        "verification_status": "inferred"
+      },
+      "vh_to_vhh_job_id": "cd3_v2v_okt3_humanized_scfv_actes",
+      "source_class_request": "humanized_mab",
+      "output_dir_relative": ".job_storage/cd3_v2v_okt3_humanized_scfv_actes",
+      "job_status": "done",
+      "elapsed_sec": 16.2,
+      "result_slim": {
+        "converted_sequence": "EVQLVESGGGLVQPGGSLRLSCAASGYTFTRYTMHWVRQAPGKGLEWVSAINPSRGYTNYNQKFKDRFTISRDNAKNTLYLQMNSLRAEDTAVYYCARYYDDHYSLDYWGQGTLVTVSS",
+        "input_vh_used": "QVQLVQSGAEVKKPGASVKVSCKASGYTFTRYTMHWVRQAPGQGLEWIGYINPSRGYTNYNQKFKDRVTMTRDTSTSTVYMELSSLRSEDTAVYYCARYYDDHYCLDYWGQGTLVTVSS",
+        "verdict_severity": "LOW_RISK",
+        "primary_recommendation": "C",
+        "expressibility_verdict": {
+          "verdict": "FAIL",
+          "criteria": [
+            {
+              "metric": "CDR3 length",
+              "value": 10,
+              "status": "PASS",
+              "reason": "≥ 10 aa: adequate interface coverage"
+            },
+            {
+              "metric": "CDR3 compactness",
+              "value": 5.8,
+              "status": "PASS",
+              "reason": "≤ 6.5 Å: compact CDR3"
+            },
+            {
+              "metric": "AbNatiV Δ",
+              "value": -0.1077,
+              "status": "FAIL",
+              "reason": "< -0.074: sequence globally too VH-like even after conversion; latent aggregation risk"
+            }
+          ]
+        },
+        "cdr3_length": 10,
+        "feasibility_verdict": "FEASIBLE_WITH_CAUTION",
+        "cmc_status": "FAIL",
+        "mutations_applied": [
+          "C114S (Path C Liability-gate)"
+        ]
+      }
+    }
+  ],
+  "n_completed": 6
+}

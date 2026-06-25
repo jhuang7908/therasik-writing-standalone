@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InSynBio AbEngineCore — Demo</title>
+<style>
+:root {
+  --bg: #0d1117; --surface: #161b22; --border: #30363d;
+  --accent: #00b4d8; --accent2: #0096c7; --text: #e6edf3;
+  --muted: #8b949e; --pass: #3fb950; --warn: #d29922; --fail: #f85149;
+  --radius: 8px; --font: 'Inter', system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: var(--font);
+       font-size: 14px; line-height: 1.6; }
+
+/* ── Layout ── */
+header { background: var(--surface); border-bottom: 1px solid var(--border);
+         padding: 16px 32px; display: flex; align-items: center; gap: 16px; }
+header h1 { font-size: 18px; font-weight: 700; color: var(--accent); }
+header span { font-size: 12px; color: var(--muted); }
+main { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+/* ── Tabs ── */
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 28px; }
+.tab { padding: 10px 20px; border-radius: var(--radius) var(--radius) 0 0;
+       cursor: pointer; color: var(--muted); font-size: 13px; font-weight: 500;
+       border: 1px solid transparent; border-bottom: none; transition: .15s; }
+.tab:hover { color: var(--text); background: rgba(255,255,255,.04); }
+.tab.active { color: var(--accent); background: var(--surface);
+              border-color: var(--border); margin-bottom: -1px; }
+
+/* ── Panel ── */
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* ── Form ── */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: 12px; color: var(--muted); font-weight: 500; }
+.field textarea, .field input, .field select {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  color: var(--text); padding: 10px 12px; font-family: 'Consolas', monospace;
+  font-size: 12px; resize: vertical; transition: border-color .15s; }
+.field textarea:focus, .field input:focus, .field select:focus {
+  outline: none; border-color: var(--accent); }
+.field textarea { min-height: 90px; }
+
+.row { display: flex; gap: 12px; margin-top: 8px; }
+.btn { padding: 10px 24px; border: none; border-radius: var(--radius); cursor: pointer;
+       font-weight: 600; font-size: 13px; transition: .15s; }
+.btn-primary { background: var(--accent); color: #000; }
+.btn-primary:hover { background: var(--accent2); }
+.btn-primary:disabled { opacity: .4; cursor: not-allowed; }
+.btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--muted); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+.btn-secondary { background: #21262d; border: 1px solid var(--border); color: var(--text); text-decoration:none; display:inline-block; padding:6px 14px; border-radius:var(--radius); font-size:12px; font-weight:600; }
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── Status bar ── */
+.status-bar { margin: 16px 0; padding: 10px 14px; border-radius: var(--radius);
+              border: 1px solid var(--border); font-size: 12px; display: none; }
+.status-bar.running { border-color: var(--accent); background: rgba(0,180,216,.08);
+                       display: flex; align-items: center; gap: 10px; }
+.spinner { width: 14px; height: 14px; border: 2px solid var(--border);
+           border-top-color: var(--accent); border-radius: 50%;
+           animation: spin .7s linear infinite; flex-shrink: 0; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Results ── */
+.result-box { background: var(--surface); border: 1px solid var(--border);
+              border-radius: var(--radius); margin-top: 20px; overflow: hidden; }
+.result-header { padding: 12px 16px; border-bottom: 1px solid var(--border);
+                 display: flex; align-items: center; justify-content: space-between; }
+.result-header h3 { font-size: 13px; font-weight: 600; }
+.badge { padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+.badge-pass { background: rgba(63,185,80,.15); color: var(--pass); border: 1px solid var(--pass); }
+.badge-warn { background: rgba(210,153,34,.15); color: var(--warn); border: 1px solid var(--warn); }
+.badge-fail { background: rgba(248,81,73,.15); color: var(--fail); border: 1px solid var(--fail); }
+
+/* ── Metric grid ── */
+.metric-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+               gap: 12px; padding: 16px; }
+.metric-card { background: var(--bg); border: 1px solid var(--border);
+               border-radius: var(--radius); padding: 12px 14px; }
+.metric-card .label { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+.metric-card .value { font-size: 22px; font-weight: 700; color: var(--text); }
+.metric-card .unit { font-size: 11px; color: var(--muted); margin-left: 3px; }
+.metric-card.ok { border-color: var(--pass); }
+.metric-card.warn { border-color: var(--warn); }
+.metric-card.fail { border-color: var(--fail); }
+
+/* ── Sequence cards ── */
+.seq-card { margin: 8px 16px; padding: 12px 14px; background: var(--bg);
+            border: 1px solid var(--border); border-radius: var(--radius); }
+.seq-card h4 { font-size: 11px; color: var(--muted); margin-bottom: 6px; }
+.seq-card pre { font-family: 'Consolas', monospace; font-size: 11px;
+                color: #79c0ff; word-break: break-all; white-space: pre-wrap; }
+
+/* ── Flag list ── */
+.flag-list { padding: 0 16px 16px; display: flex; flex-wrap: wrap; gap: 6px; }
+.flag { font-size: 11px; padding: 3px 9px; border-radius: 10px; }
+.flag-fail { background: rgba(248,81,73,.15); color: var(--fail); }
+.flag-warn { background: rgba(210,153,34,.15); color: var(--warn); }
+.flag-info { background: rgba(0,180,216,.1); color: var(--accent); }
+
+/* ── Section heading ── */
+.section-title { font-size: 11px; font-weight: 700; color: var(--muted);
+                 text-transform: uppercase; letter-spacing: .08em;
+                 padding: 12px 16px 4px; border-top: 1px solid var(--border); }
+.download-row { padding: 12px 16px; display: flex; gap: 10px; }
+a.btn { text-decoration: none; display: inline-block; }
+
+/* ── Candidate table ── */
+.cand-table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 8px 16px 16px; width: calc(100% - 32px); }
+.cand-table th { color: var(--muted); font-weight: 600; text-align: left;
+                 padding: 6px 10px; border-bottom: 1px solid var(--border); }
+.cand-table td { padding: 6px 10px; border-bottom: 1px solid rgba(255,255,255,.04); }
+.cand-table tr:hover td { background: rgba(255,255,255,.03); }
+.rank-badge { width: 22px; height: 22px; border-radius: 50%; display: inline-flex;
+              align-items: center; justify-content: center; font-size: 11px;
+              font-weight: 700; background: var(--accent); color: #000; }
+
+/* ── Percentile bar ── */
+.pct-row { display: flex; align-items: center; gap: 10px; padding: 4px 16px; font-size: 12px; }
+.pct-label { width: 180px; color: var(--muted); flex-shrink: 0; }
+.pct-track { flex: 1; background: var(--border); border-radius: 4px; height: 6px; }
+.pct-fill { height: 6px; border-radius: 4px; background: var(--accent); }
+.pct-val { width: 40px; text-align: right; color: var(--text); font-weight: 600; }
+
+.note { font-size: 11px; color: var(--muted); padding: 6px 16px 12px;
+        font-style: italic; }
+</style>
+</head>
+<body>
+
+<header>
+  <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+    <circle cx="14" cy="14" r="13" stroke="#00b4d8" stroke-width="1.5"/>
+    <path d="M8 14c0-3.3 2.7-6 6-6s6 2.7 6 6-2.7 6-6 6" stroke="#00b4d8"
+          stroke-width="2" stroke-linecap="round"/>
+    <circle cx="14" cy="14" r="2.5" fill="#00b4d8"/>
+  </svg>
+  <h1>InSynBio AbEngineCore</h1>
+  <span>Antibody Engineering Platform · Demo</span>
+</header>
+
+<main>
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('vh_vl')">VH/VL Humanization</div>
+    <div class="tab" onclick="switchTab('vhh')">VHH Humanization</div>
+    <div class="tab" onclick="switchTab('cmc_igg')">CMC · IgG/VH+VL</div>
+    <div class="tab" onclick="switchTab('cmc_vhh')">CMC · VHH</div>
+    <div class="tab" onclick="switchTab('cmc_bs')">CMC · Bispecific VHH</div>
+  </div>
+
+  <!-- ── VH/VL Humanization ── -->
+  <div class="panel active" id="panel-vh_vl">
+    <div class="grid2">
+      <div class="field">
+        <label>VH Sequence * <span id="vhvl-vh-note" style="color:var(--muted);font-weight:400">(Mouse demo: murine anti-CD20 VH)</span></label>
+        <textarea id="vhvl-vh">QVQLQQSGPELVKPGASLKLSCTASGFNIKDTYIHWVKQRPEQGLEWIGRIYPTNGYTRYDPKFQDKATITADTSSNTAYLQVSRLTSEDTAVYYCSRWGGDGFYAMDYWGQGASVTVSS</textarea>
+      </div>
+      <div class="field">
+        <label>VL Sequence * <span id="vhvl-vl-note" style="color:var(--muted);font-weight:400">(Mouse demo: murine kappa VL)</span></label>
+        <textarea id="vhvl-vl">DIQMTQSPSSLSASVGDRVTITCRASQDVNTAVAWYQQKPGKAPKLLIYSASFLYSGVPSRFSGSGSGTDFTLTISSLQPEDFATYYCQQHYTTPPTFGQGTKVEIK</textarea>
+      </div>
+      <div class="field">
+        <label>Source Species (V4.8.0 donor routing)</label>
+        <select id="vhvl-species" onchange="applyVhvlDemo(this.value)">
+          <option value="mouse">Mouse</option>
+          <option value="rat">Rat</option>
+          <option value="rabbit">Rabbit</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Report Format</label>
+        <select id="vhvl-fmt">
+          <option value="pdf">PDF</option>
+          <option value="html">HTML</option>
+          <option value="both">Both</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <button class="btn btn-ghost" onclick="applyVhvlDemo(document.getElementById('vhvl-species').value)">Load Species Demo</button>
+      <button class="btn btn-primary" onclick="runHumanization('vh_vl')">Run VH/VL Humanization</button>
+    </div>
+    <div class="note" id="vhvl-demo-note" style="padding-left:0">
+      V4.8.0 demo set: Mouse anti-CD20-like pair, Rat Campath-1G, Rabbit M8b-B1.
+    </div>
+    <div class="status-bar" id="status-vh_vl"></div>
+    <div id="result-vh_vl"></div>
+  </div>
+
+  <!-- ── VHH Humanization ── -->
+  <div class="panel" id="panel-vhh">
+    <div class="grid2">
+      <div class="field" style="grid-column:1/-1">
+        <label>VHH Sequence * <span style="color:var(--muted);font-weight:400">(：alpaca VHH, 124 aa)</span></label>
+        <textarea id="vhh-seq" rows="3">QVKLEESGGGSVQTGGSLRLTCAASGRTSRSYGMGWFRQAPGKEREFVSGISWRGDSTGYADSVKGRFTISRDNAKNTVDLQMNSLKPEDTAIYYCAAAAGSAWYGTLYEYDYWGQGTQVTVSS</textarea>
+      </div>
+      <div class="field">
+        <label>Source Species</label>
+        <select id="vhh-species">
+          <option value="alpaca">Alpaca</option>
+          <option value="camel">Camel</option>
+          <option value="llama">Llama</option>
+          <option value="dog">Dog (Caninization)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Humanization Strategy</label>
+        <select id="vhh-panel">
+          <option value="A">A — Conservative (≤8 mutations, surface only)</option>
+          <option value="B">B — Moderate (Vernier + FR2)</option>
+          <option value="C">C — Aggressive (all non-CDR non-hallmark)</option>
+          <option value="all">All (A + B + C, ranked)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Top K Candidates</label>
+        <input type="number" id="vhh-topk" value="3" min="1" max="10">
+      </div>
+      <div class="field">
+        <label>Report Format</label>
+        <select id="vhh-fmt">
+          <option value="pdf">PDF</option>
+          <option value="html">HTML</option>
+          <option value="both">Both</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <button class="btn btn-primary" onclick="runHumanization('vhh')">Run VHH Humanization</button>
+    </div>
+    <div class="status-bar" id="status-vhh"></div>
+    <div id="result-vhh"></div>
+  </div>
+
+  <!-- ── CMC IgG ── -->
+  <div class="panel" id="panel-cmc_igg">
+    <div class="grid2">
+      <div class="field">
+        <label>VH Sequence * <span style="color:var(--muted);font-weight:400">(120 aa)</span></label>
+        <textarea id="cigg-vh">QVQLQQSGPELVKPGASLKLSCTASGFNIKDTYIHWVKQRPEQGLEWIGRIYPTNGYTRYDPKFQDKATITADTSSNTAYLQVSRLTSEDTAVYYCSRWGGDGFYAMDYWGQGASVTVSS</textarea>
+      </div>
+      <div class="field">
+        <label>VL Sequence * <span style="color:var(--muted);font-weight:400">(107 aa)</span></label>
+        <textarea id="cigg-vl">DIQMTQSPSSLSASVGDRVTITCRASQDVNTAVAWYQQKPGKAPKLLIYSASFLYSGVPSRFSGSGSGTDFTLTISSLQPEDFATYYCQQHYTTPPTFGQGTKVEIK</textarea>
+      </div>
+      <div class="field">
+        <label>Antibody Type</label>
+        <select id="cigg-type">
+          <option value="humanized">Humanized</option>
+          <option value="fully_human">Fully Human</option>
+          <option value="IgG1">IgG1</option>
+          <option value="IgG4">IgG4</option>
+          <option value="scFv">scFv</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Report Format</label>
+        <select id="cigg-fmt"><option value="pdf">PDF</option><option value="html">HTML</option></select>
+      </div>
+    </div>
+    <div class="row">
+      <button class="btn btn-primary" onclick="runCMC('igg')">Run CMC Assessment</button>
+    </div>
+    <div class="status-bar" id="status-cmc_igg"></div>
+    <div id="result-cmc_igg"></div>
+  </div>
+
+  <!-- ── CMC VHH ── -->
+  <div class="panel" id="panel-cmc_vhh">
+    <div class="field">
+      <label>VHH Sequence * <span style="color:var(--muted);font-weight:400">(：124 aa)</span></label>
+      <textarea id="cvhh-seq" rows="3">QVKLEESGGGSVQTGGSLRLTCAASGRTSRSYGMGWFRQAPGKEREFVSGISWRGDSTGYADSVKGRFTISRDNAKNTVDLQMNSLKPEDTAIYYCAAAAGSAWYGTLYEYDYWGQGTQVTVSS</textarea>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <button class="btn btn-primary" onclick="runCMC('vhh')">Run VHH CMC Assessment</button>
+      <select id="cvhh-fmt" style="padding:8px 12px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); color:var(--text);">
+        <option value="pdf">PDF</option><option value="html">HTML</option>
+      </select>
+    </div>
+    <div class="status-bar" id="status-cmc_vhh"></div>
+    <div id="result-cmc_vhh"></div>
+  </div>
+
+  <!-- ── CMC Bispecific ── -->
+  <div class="panel" id="panel-cmc_bs">
+    <div class="grid2">
+      <div class="field">
+        <label>VHH Arm 1 Sequence * <span style="color:var(--muted);font-weight:400">(e.g. anti-CD3, 124 aa)</span></label>
+        <textarea id="cbs-arm1">QVKLEESGGGSVQTGGSLRLTCAASGRTSRSYGMGWFRQAPGKEREFVSGISWRGDSTGYADSVKGRFTISRDNAKNTVDLQMNSLKPEDTAIYYCAAAAGSAWYGTLYEYDYWGQGTQVTVSS</textarea>
+      </div>
+      <div class="field">
+        <label>VHH Arm 2 Sequence * <span style="color:var(--muted);font-weight:400">(e.g. anti-HER2, 116 aa)</span></label>
+        <textarea id="cbs-arm2">EVQLVESGGGLVQPGGSLRLSCAASGRTSRSYGMGWFRQAPGKEREFVAGISWRGDSTGYADSVKGRFTISRDNAKNTLYLQMNSLRAEDTAVYYCAAAAGSAWYGTLYEYDYWGQGTLVTVSS</textarea>
+      </div>
+      <div class="field">
+        <label>Arm 1 Target</label>
+        <input type="text" id="cbs-t1" value="Target_A">
+      </div>
+      <div class="field">
+        <label>Arm 2 Target</label>
+        <input type="text" id="cbs-t2" value="Target_B">
+      </div>
+      <div class="field">
+        <label>Linker</label>
+        <input type="text" id="cbs-linker" value="(G4S)3">
+      </div>
+      <div class="field">
+        <label>Report Format</label>
+        <select id="cbs-fmt"><option value="pdf">PDF</option><option value="html">HTML</option></select>
+      </div>
+    </div>
+    <div class="row">
+      <button class="btn btn-primary" onclick="runCMC('bispecific')">Run Bispecific CMC</button>
+    </div>
+    <div class="status-bar" id="status-cmc_bs"></div>
+    <div id="result-cmc_bs"></div>
+  </div>
+</main>
+
+<script>
+// ── Tab switching ──────────────────────────────────────────────────────────
+function switchTab(id) {
+  document.querySelectorAll('.tab').forEach((t,i) => {
+    const ids = ['vh_vl','vhh','cmc_igg','cmc_vhh','cmc_bs'];
+    t.classList.toggle('active', ids[i] === id);
+  });
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+}
+
+// ── Sequence validation ────────────────────────────────────────────────────
+const VALID_AA = /^[ACDEFGHIKLMNPQRSTVWY]+$/;
+const VHVL_DEMOS = {
+  mouse: {
+    title: 'Mouse demo',
+    vhNote: 'Mouse demo: murine anti-CD20 VH',
+    vlNote: 'Mouse demo: murine kappa VL',
+    helper: 'Mouse (Mus musculus) demo pair for standard VH/VL humanization.',
+    vh: 'QVQLQQSGPELVKPGASLKLSCTASGFNIKDTYIHWVKQRPEQGLEWIGRIYPTNGYTRYDPKFQDKATITADTSSNTAYLQVSRLTSEDTAVYYCSRWGGDGFYAMDYWGQGASVTVSS',
+    vl: 'DIQMTQSPSSLSASVGDRVTITCRASQDVNTAVAWYQQKPGKAPKLLIYSASFLYSGVPSRFSGSGSGTDFTLTISSLQPEDFATYYCQQHYTTPPTFGQGTKVEIK'
+  },
+  rat: {
+    title: 'Rat demo',
+    vhNote: 'Rat demo: Campath-1G VH (Alemtuzumab parent)',
+    vlNote: 'Rat demo: Campath-1G VL',
+    helper: 'Rat (Rattus norvegicus) demo pair routed to donor_species = rattus_norvegicus.',
+    vh: 'EVKLLESGGGLVQPGGSMRLSCAGSGFTFTDFYMNWIRQPAGKAPEWLGFIRDKAKGYTTEYNPSVKGRFTISRDNTQNMLYLQMNTLRAEDTATYYCAREGHTAAPFDYWGQGVMVTVSS',
+    vl: 'DIKMTQSPSFLSASVGDRVTLNCKASQNIDKYLNWYQQKLGESPKLLIYNTNNLQTGIPSRFSGSGSGTDFTLTISSLQPEDVATYFCLQHISRPRTFGTGTKLELK'
+  },
+  rabbit: {
+    title: 'Rabbit demo',
+    vhNote: 'Rabbit demo: M8b-B1 VH',
+    vlNote: 'Rabbit demo: M8b-B1 VL (lambda-prone rabbit case)',
+    helper: 'Rabbit (Oryctolagus cuniculus) demo pair routed to donor_species = oryctolagus_cuniculus.',
+    vh: 'QSLEESGGDLVKPGASLTLTCTASGFSFSGSYYMCWVRQAPGKGLEWIACIYDGSYDGSSDNAYYASWAKGRFTISKTSSTTVTLQMTSLTAADTATYFCARGVYFYAGHFVIMRYFVLWGPGTLVTVSS',
+    vl: 'AQVLTQTPSSVSAAVGGTVSISCQSSQSVYSNYLSWYQQKPGQPPKLLIYDASTLASGVPSRFKGSGSGTQFTLTISGVQCDDAATYYCQGSYYSSDWYPFGGGTEVVVK'
+  }
+};
+
+function applyVhvlDemo(species) {
+  const demo = VHVL_DEMOS[species] || VHVL_DEMOS.mouse;
+  document.getElementById('vhvl-vh').value = demo.vh;
+  document.getElementById('vhvl-vl').value = demo.vl;
+  document.getElementById('vhvl-vh-note').textContent = `(${demo.vhNote})`;
+  document.getElementById('vhvl-vl-note').textContent = `(${demo.vlNote})`;
+  document.getElementById('vhvl-demo-note').textContent = `${demo.title}: ${demo.helper}`;
+}
+
+function validateSeq(seq, label, minLen, maxLen) {
+  if (!seq) return `${label}：`;
+  if (seq.length < minLen) return `${label}：（${seq.length} aa， ${minLen} aa）`;
+  if (seq.length > maxLen) return `${label}：（${seq.length} aa， ${maxLen} aa）`;
+  if (!VALID_AA.test(seq)) return `${label}：，`;
+  return null;
+}
+
+// ── API calls ──────────────────────────────────────────────────────────────
+const API = ''; // same origin
+
+async function runHumanization(type) {
+  let body, errors = [];
+  if (type === 'vh_vl') {
+    const vh = document.getElementById('vhvl-vh').value.trim.replace(/\s/g,'').toUpperCase;
+    const vl = document.getElementById('vhvl-vl').value.trim.replace(/\s/g,'').toUpperCase;
+    const species = document.getElementById('vhvl-species').value;
+    const speciesLabel = species.charAt(0).toUpperCase + species.slice(1);
+    const e1 = validateSeq(vh, `${speciesLabel} VH`, 100, 145);
+    const e2 = validateSeq(vl, `${speciesLabel} VL`, 95, 130);
+    if (e1) errors.push(e1);
+    if (e2) errors.push(e2);
+    body = { vh_sequence: vh, vl_sequence: vl,
+             source_species: species,
+             project_name: `vhvl_${species}_demo`,
+             report_format: document.getElementById('vhvl-fmt').value };
+  } else {
+    const vhh = document.getElementById('vhh-seq').value.trim.replace(/\s/g,'').toUpperCase;
+    const e1 = validateSeq(vhh, 'VHH', 110, 140);
+    if (e1) errors.push(e1);
+    body = { vhh_sequence: vhh,
+             source_species: document.getElementById('vhh-species').value,
+             strategy: document.getElementById('vhh-panel').value,
+             top_k: parseInt(document.getElementById('vhh-topk').value),
+             report_format: document.getElementById('vhh-fmt').value };
+  }
+
+  const statusEl = document.getElementById('status-' + (type === 'vh_vl' ? 'vh_vl' : 'vhh'));
+  const resultEl = document.getElementById('result-' + (type === 'vh_vl' ? 'vh_vl' : 'vhh'));
+
+  if (errors.length) { showError(resultEl, '：\n' + errors.join('\n')); return; }
+
+  showRunning(statusEl, type === 'vh_vl'
+    ? 'Running VH/VL humanization — ABodyBuilder2 structure prediction (~60s)…'
+    : 'Running VHH humanization…');
+  resultEl.innerHTML = '';
+
+  try {
+    const t0 = Date.now;
+    const res = await fetch(API + '/humanize/' + (type === 'vh_vl' ? 'vh_vl' : 'vhh'), {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(body)
+    });
+    const data = await res.json;
+    hideRunning(statusEl);
+    if (!res.ok) { showError(resultEl, data.detail || JSON.stringify(data)); return; }
+    renderHumanizationResult(resultEl, data, type);
+  } catch(e) { hideRunning(statusEl); showError(resultEl, e.message); }
+}
+
+async function runCMC(type) {
+  let body, panelId, errors = [];
+  if (type === 'igg') {
+    panelId = 'cmc_igg';
+    const vh = document.getElementById('cigg-vh').value.trim.replace(/\s/g,'').toUpperCase;
+    const vl = document.getElementById('cigg-vl').value.trim.replace(/\s/g,'').toUpperCase;
+    const e1 = validateSeq(vh, 'VH', 100, 145);
+    const e2 = validateSeq(vl, 'VL', 95, 130);
+    if (e1) errors.push(e1);
+    if (e2) errors.push(e2);
+    body = {
+      vh_sequence: vh,
+      vl_sequence: vl,
+      antibody_type: document.getElementById('cigg-type').value,
+      report_format: document.getElementById('cigg-fmt').value,
+    };
+  } else if (type === 'vhh') {
+    panelId = 'cmc_vhh';
+    const vhh = document.getElementById('cvhh-seq').value.trim.replace(/\s/g,'').toUpperCase;
+    const e1 = validateSeq(vhh, 'VHH', 110, 140);
+    if (e1) errors.push(e1);
+    body = { vhh_sequence: vhh, report_format: document.getElementById('cvhh-fmt').value };
+  } else {
+    panelId = 'cmc_bs';
+    const a1 = document.getElementById('cbs-arm1').value.trim.replace(/\s/g,'').toUpperCase;
+    const a2 = document.getElementById('cbs-arm2').value.trim.replace(/\s/g,'').toUpperCase;
+    const e1 = validateSeq(a1, 'Arm 1 VHH', 110, 140);
+    const e2 = validateSeq(a2, 'Arm 2 VHH', 110, 140);
+    if (e1) errors.push(e1);
+    if (e2) errors.push(e2);
+    body = {
+      arm1_sequence: a1, arm2_sequence: a2,
+      arm1_target: document.getElementById('cbs-t1').value,
+      arm2_target: document.getElementById('cbs-t2').value,
+      linker: document.getElementById('cbs-linker').value,
+      report_format: document.getElementById('cbs-fmt').value,
+    };
+  }
+
+  const statusEl = document.getElementById('status-' + panelId);
+  const resultEl = document.getElementById('result-' + panelId);
+
+  if (errors.length) { showError(resultEl, '：\n' + errors.join('\n')); return; }
+
+  showRunning(statusEl, 'Running CMC assessment…');
+  resultEl.innerHTML = '';
+
+  try {
+    const res = await fetch(API + '/cmc/' + type, {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(body)
+    });
+    const data = await res.json;
+    hideRunning(statusEl);
+    if (!res.ok) { showError(resultEl, data.detail || JSON.stringify(data)); return; }
+    renderCMCResult(resultEl, data, type);
+  } catch(e) { hideRunning(statusEl); showError(resultEl, e.message); }
+}
+
+// ── Render helpers ─────────────────────────────────────────────────────────
+function showRunning(el, msg) {
+  el.className = 'status-bar running';
+  el.innerHTML = `<div class="spinner"></div><span>${msg}</span>`;
+}
+function hideRunning(el) { el.className = 'status-bar'; el.innerHTML = ''; }
+function showError(el, msg) {
+  el.innerHTML = `<div class="result-box"><div class="result-header">
+    <h3>Error</h3><span class="badge badge-fail">FAILED</span></div>
+    <div style="padding:16px;font-size:12px;color:var(--fail);white-space:pre-wrap">${msg}</div></div>`;
+}
+
+function badgeClass(status) {
+  if (!status) return 'badge-warn';
+  const s = status.toUpperCase;
+  if (s === 'PASS') return 'badge-pass';
+  if (s === 'FAIL' || s === 'FAILED') return 'badge-fail';
+  return 'badge-warn';
+}
+function fmt(v, dec=2) { return v == null ? '—' : (typeof v === 'number' ? v.toFixed(dec) : v); }
+function metricFlag(v, lo_warn, hi_warn) {
+  if (v == null) return '';
+  if (lo_warn != null && v < lo_warn) return 'warn';
+  if (hi_warn != null && v > hi_warn) return 'warn';
+  return 'ok';
+}
+
+applyVhvlDemo('mouse');
+
+function renderHumanizationResult(el, data, type) {
+  const r = data.result || data;
+  const elapsed = data.elapsed_sec ? `${data.elapsed_sec}s` : '';
+  const status = r.checklist_status || 'DONE';
+
+  let html = `<div class="result-box">
+  <div class="result-header">
+    <h3>${type === 'vh_vl' ? 'VH/VL Humanization' : 'VHH Humanization'} Result
+      ${elapsed ? `<span style="font-size:11px;color:var(--muted);margin-left:8px">${elapsed}</span>` : ''}</h3>
+    <span class="badge ${badgeClass(status)}">${status}</span>
+  </div>`;
+
+  // Key parameters section
+  html += `<div class="section-title">Key Parameters</div><div class="metric-grid">`;
+
+  if (type === 'vh_vl') {
+    html += metricCard('VH Germline', r.vh_germline || '—', '');
+    html += metricCard('VH FR Identity', r.vh_germline_identity != null ? fmt(r.vh_germline_identity)+'%' : '—', '',
+                       r.vh_germline_identity != null && r.vh_germline_identity < 70 ? 'warn' : 'ok');
+    html += metricCard('VL Germline', r.vl_germline || '—', '');
+    html += metricCard('VL FR Identity', r.vl_germline_identity != null ? fmt(r.vl_germline_identity)+'%' : '—', '',
+                       r.vl_germline_identity != null && r.vl_germline_identity < 70 ? 'warn' : 'ok');
+    html += metricCard('AbLang Score', r.ablang_score != null ? fmt(r.ablang_score) : '—', '',
+                       r.ablang_score != null && r.ablang_score < -4 ? 'warn' : 'ok');
+    html += metricCard('Rec. Back Mutations', r.backmutation_count ?? '0', '',
+                       r.backmutation_count > 8 ? 'warn' : 'ok');
+    html += metricCard('CDR Class', r.cdr_canonical_class || '—', '');
+    html += metricCard('Structure', r.structure_mode || (r.structure_computed ? 'COMPUTED' : 'DRY_RUN'), '',
+                       r.structure_mode === 'DRY_RUN' ? 'warn' : 'ok');
+    if (r.plddt != null)
+      html += metricCard('Mouse pLDDT', fmt(r.plddt, 1), '', r.plddt < 70 ? 'warn' : 'ok');
+    if (r.humanized_plddt != null)
+      html += metricCard('Humanized pLDDT', fmt(r.humanized_plddt, 1), '', r.humanized_plddt < 70 ? 'warn' : 'ok');
+    if (r.vh_vl_angle_deg != null)
+      html += metricCard('Mouse VH/VL Angle', fmt(r.vh_vl_angle_deg, 1), '°');
+    if (r.humanized_angle_deg != null)
+      html += metricCard('Hum. VH/VL Angle', fmt(r.humanized_angle_deg, 1), '°');
+    if (r.angle_delta_deg != null)
+      html += metricCard('Angle Δ', fmt(r.angle_delta_deg, 1), '°', Math.abs(r.angle_delta_deg) > 3 ? 'warn' : 'ok');
+    if (r.rmsd_to_reference != null)
+      html += metricCard('Mean CDR RMSD', fmt(r.rmsd_to_reference, 2), 'Å', r.rmsd_to_reference > 3 ? 'warn' : 'ok');
+    html += metricCard('Vernier Risks', (r.vernier_risk_positions || []).length, '');
+  } else {
+    html += metricCard('Human VH3', r.human_vh3_germline || '—', '');
+    html += metricCard('VH3 Identity', fmt(r.human_vh3_identity), '%',
+                       r.human_vh3_identity != null && r.human_vh3_identity < 70 ? 'warn' : 'ok');
+    html += metricCard('FR2 Identity', fmt(r.fr2_identity), '%',
+                       r.fr2_identity != null && r.fr2_identity < 75 ? 'warn' : 'ok');
+    html += metricCard('CDR3 Length', r.cdr3_length ?? '—', 'aa');
+    html += metricCard('AbLang Score', fmt(r.ablang_score), '');
+    html += `<div class="metric-card ${r.hallmarks_ok ? 'ok' : 'warn'}">
+      <div class="label">VHH Four-site Display</div>
+      <div style="font-size:12px;margin-top:4px;font-family:monospace">
+        37:<b>${r.hallmark_37||'?'}</b> 44:<b>${r.hallmark_44||'?'}</b>
+        45:<b>${r.hallmark_45||'?'}</b> 47:<b>${r.hallmark_47||'?'}</b>
+      </div>
+      <div style="font-size:11px;margin-top:4px;color:${r.hallmarks_ok?'var(--pass)':'var(--warn)'}">
+        ${r.hallmarks_ok ? '✓ FR2 hallmark 44/45/47 acceptable' : '⚠ Review FR2 hallmark 44/45/47'}</div></div>`;
+    html += metricCard('SAP Score', fmt(r.sap_score), '');
+    html += metricCard('Strategy', r.strategy_applied || '—', '');
+  }
+  html += `</div>`;
+
+  // CDR sequences
+  if (r.cdrs && Object.keys(r.cdrs).length > 0) {
+    html += `<div class="section-title">CDR Sequences</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;padding:8px 16px 12px">`;
+    for (const [k,v] of Object.entries(r.cdrs)) {
+      html += `<div style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:8px 12px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:3px">${k}</div>
+        <div style="font-family:monospace;font-size:12px;color:#79c0ff">${v}</div></div>`;
+    }
+    html += `</div>`;
+  }
+
+  // Top candidates
+  const cands = r.candidates || [];
+  if (cands.length > 0) {
+    if (type === 'vh_vl') {
+      // VH/VL: show germline pairs with FR identity scores
+      html += `<div class="section-title">Top Germline Framework Candidates</div>
+      <table class="cand-table"><thead><tr>
+        <th>#</th><th>VH Germline</th><th>VL Germline</th>
+        <th>VH FR ID%</th><th>VL FR ID%</th><th>Avg FR ID%</th></tr></thead><tbody>`;
+      cands.slice(0,5).forEach((c,i) => {
+        const fmtPct = v => v != null ? v.toFixed(1)+'%' : '—';
+        html += `<tr>
+          <td><span class="rank-badge">${c.rank||i+1}</span></td>
+          <td style="font-family:monospace">${c.vh_germline||'—'}</td>
+          <td style="font-family:monospace">${c.vl_germline||'—'}</td>
+          <td>${fmtPct(c.vh_fr_id)}</td>
+          <td>${fmtPct(c.vl_fr_id)}</td>
+          <td><b>${fmtPct(c.score)}</b></td></tr>`;
+      });
+      html += `</tbody></table>`;
+      // Per-CDR RMSD table
+      if (r.cdr_rmsd && Object.keys(r.cdr_rmsd).length > 0) {
+        html += `<div class="section-title">Per-CDR Cα RMSD (mouse vs. humanized)</div>
+        <table class="cand-table"><thead><tr>
+          <th>CDR Loop</th><th>Cα RMSD (Å)</th><th>QC</th></tr></thead><tbody>`;
+        Object.entries(r.cdr_rmsd).sort.forEach(([cdr, rmsd]) => {
+          if (typeof rmsd !== 'number') return;
+          const qc = rmsd < 1.0 ? '✓ Conserved' : rmsd < 2.0 ? '⚠ Perturbed' : '✗ Deviated';
+          const cls = rmsd < 1.0 ? 'color:var(--pass)' : rmsd < 2.0 ? 'color:var(--warn)' : 'color:var(--fail)';
+          html += `<tr><td>${cdr}</td><td style="font-family:monospace">${rmsd.toFixed(2)}</td>
+            <td style="font-size:11px;${cls}">${qc}</td></tr>`;
+        });
+        html += `</tbody></table>`;
+      }
+    } else {
+      // VHH: show sequence candidates
+      html += `<div class="section-title">Top Candidates</div>
+      <table class="cand-table"><thead><tr>
+        <th>#</th><th>Panel</th><th>Sequence</th><th>AbLang</th></tr></thead><tbody>`;
+      cands.slice(0,5).forEach((c,i) => {
+        const seq = c.sequence || '';
+        html += `<tr>
+          <td><span class="rank-badge">${i+1}</span></td>
+          <td>${c.panel || c.strategy || '—'}</td>
+          <td style="font-family:monospace;font-size:11px">${seq.slice(0,40)}${seq.length>40?'…':''}</td>
+          <td>${c.ablang_score != null ? c.ablang_score.toFixed(2) : '—'}</td></tr>`;
+      });
+      html += `</tbody></table>`;
+    }
+  }
+
+  // Clinical drugs sharing VH/VL germline (same JSON as HTML report §3)
+  if (type === 'vh_vl' && Array.isArray(r.clinical_precedents) && r.clinical_precedents.length > 0) {
+    const esc = (s) => (s == null ? '' : String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'));
+    html += `<div class="section-title">Clinical drugs (similar VH/VL germline)</div>
+    <p class="hint" style="margin:-4px 16px 8px;font-size:11px;color:var(--muted);line-height:1.45">ThErA-SAbDAb slice; ADA only if the drug is in the 136-drug panel. Structured field: <code>result.clinical_precedents</code> (also <code>result.json</code> per job).</p>
+    <div style="overflow-x:auto;padding:0 8px 8px">
+    <table class="cand-table" style="min-width:720px"><thead><tr>
+      <th>Drug</th><th>VH GL</th><th>VL GL</th><th>VH FR%</th><th>VL FR%</th>
+      <th>Target</th><th>Indication</th><th>Phase</th><th>ADA</th><th>Match</th></tr></thead><tbody>`;
+    r.clinical_precedents.forEach((p) => {
+      const ada = p.ada_rate;
+      const adaHtml = (ada && ada !== '—') ? `<b style="color:#c0392b">${esc(ada)}</b>` : '<span style="color:#888;font-size:11px">Not in panel</span>';
+      const ind = (p.indication && String(p.indication).length > 48) ? esc(String(p.indication).slice(0,48)) + '…' : esc(p.indication || '—');
+      html += `<tr>
+        <td><b>${esc(p.name)}</b></td>
+        <td style="font-family:monospace;font-size:11px">${esc(p.vh_germline)}</td>
+        <td style="font-family:monospace;font-size:11px">${esc(p.vl_germline)}</td>
+        <td>${p.vh_fr_id != null ? esc(p.vh_fr_id) + '%' : '—'}</td>
+        <td>${p.vl_fr_id != null ? esc(p.vl_fr_id) + '%' : '—'}</td>
+        <td style="font-size:11px;max-width:140px">${esc(p.target)}</td>
+        <td style="font-size:11px;max-width:120px" title="${esc(p.indication||'')}">${ind}</td>
+        <td style="font-size:11px">${esc(p.approval_year)}</td>
+        <td style="font-size:11px">${adaHtml}</td>
+        <td style="font-size:11px;white-space:nowrap">${esc(p.match_type)}</td></tr>`;
+    });
+    html += `</tbody></table></div>`;
+  }
+
+  // Best sequence
+  const bestSeq = r.humanized_sequence || r.humanized_vh;
+  if (bestSeq) {
+    html += `<div class="section-title">Best Candidate Sequence</div>
+    <div class="seq-card"><h4>${type==='vh_vl'?'Humanized VH':'Humanized VHH'}</h4>
+    <pre>${bestSeq}</pre></div>`;
+    if (r.humanized_vl) {
+      html += `<div class="seq-card"><h4>Humanized VL</h4><pre>${r.humanized_vl}</pre></div>`;
+    }
+  }
+
+  // Download bar: ZIP only
+  const ex = data.extra || {};
+  const dls = [];
+  if (ex.zip_url) {
+    dls.push(`<a class="btn btn-primary" href="${ex.zip_url}" download title="：PDF++PDB+README">📦 </a>`);
+  }
+  if (dls.length > 0) {
+    html += `<div class="download-row" style="gap:8px;flex-wrap:wrap">${dls.join('')}</div>`;
+    html += `<p class="hint" style="margin-top:10px;font-size:11px;color:var(--muted);line-height:1.5">：PDF、mouse/humanized FASTA、mouse/humanized PDB、README_.txt。。</p>`;
+  }
+
+  html += `</div>`;
+  el.innerHTML = html;
+}
+
+function renderCMCResult(el, data, type) {
+  const r = data.result || data;
+  const elapsed = data.elapsed_sec ? `${data.elapsed_sec}s` : '';
+  const status = r.overall_status || 'DONE';
+
+  let html = `<div class="result-box">
+  <div class="result-header">
+    <h3>CMC Developability Assessment
+      ${elapsed ? `<span style="font-size:11px;color:var(--muted);margin-left:8px">${elapsed}</span>` : ''}</h3>
+    <span class="badge ${badgeClass(status)}">${status}</span>
+  </div>`;
+
+  if (type === 'bispecific') {
+    // Bispecific: show fusion metrics + per-arm summary
+    html += `<div class="section-title">Fusion-Level Metrics</div><div class="metric-grid">`;
+    html += metricCard('Fusion pI', fmt(r.fusion_pI), '', metricFlag(r.fusion_pI, 4.5, 9.5));
+    html += metricCard('Fusion GRAVY', fmt(r.fusion_GRAVY), '', metricFlag(r.fusion_GRAVY, null, -0.05));
+    html += metricCard('Instability', fmt(r.fusion_instability), '', metricFlag(r.fusion_instability, null, 50));
+    html += metricCard('pI Delta', fmt(r.pI_delta), '', r.pI_delta > 2 ? 'warn' : 'ok');
+    html += metricCard('ER Score', fmt(r.er_expression_score), '');
+    html += `</div>`;
+    html += `<div class="section-title">SmartLink™ Recommendation</div>
+    <div style="padding:10px 16px 14px">
+      <div style="font-weight:600;color:var(--accent)">${r.recommended_linker || '—'}</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px">${r.linker_rationale || ''}</div>
+    </div>`;
+
+    // Per-arm
+    for (const arm of ['arm1','arm2']) {
+      const a = r[arm] || {};
+      const tgt = r[arm+'_target'] || arm;
+      html += `<div class="section-title">${tgt} (${arm.toUpperCase}) — ADI: ${fmt(a.adi_score,1)} / Grade ${a.adi_grade||'—'}</div>
+      <div class="metric-grid">`;
+      html += vhhMetricCards(a);
+      html += `</div>`;
+    }
+  } else if (type === 'vhh') {
+    // VHH: 14 metrics + ADI
+    html += `<div class="section-title">ADI Score · VHH42 Reference (n=42 clinical VHHs)</div>`;
+    html += `<div style="padding:12px 16px;display:flex;align-items:center;gap:20px">
+      <div style="text-align:center">
+        <div style="font-size:40px;font-weight:800;color:${adiColor(r.adi_score)}">${fmt(r.adi_score,1)}</div>
+        <div style="font-size:13px;color:var(--muted)">/ 100</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:32px;font-weight:800;color:${adiColor(r.adi_score)}">${r.adi_grade||'—'}</div>
+        <div style="font-size:12px;color:var(--muted)">Grade</div>
+      </div>
+      <div style="font-size:12px;color:var(--muted);flex:1">
+        A ≥ 80 &nbsp;·&nbsp; B 60–79 &nbsp;·&nbsp; C 40–59 &nbsp;·&nbsp; D &lt; 40
+      </div></div>`;
+
+    html += `<div class="section-title">14 Metrics</div><div class="metric-grid">`;
+    html += vhhMetricCards(r);
+    html += `</div>`;
+
+    // Percentile ranks
+    const pcts = r.percentile_ranks || {};
+    if (Object.keys(pcts).length > 0) {
+      html += `<div class="section-title">Percentile vs VHH42 Reference</div>`;
+      for (const [k,v] of Object.entries(pcts)) {
+        html += `<div class="pct-row">
+          <span class="pct-label">${k}</span>
+          <div class="pct-track"><div class="pct-fill" style="width:${v}%"></div></div>
+          <span class="pct-val">${v?.toFixed(0)||'—'}%</span></div>`;
+      }
+      html += `<div class="note">Percentile = % of VHH42 reference panel with values in safer range than this antibody.</div>`;
+    }
+
+  } else {
+    // IgG: full metric grid + clinical score
+    html += `<div class="section-title">Biophysical Properties</div><div class="metric-grid">`;
+    html += metricCard('pI (Fab)', fmt(r.pI_fab), '', metricFlag(r.pI_fab, 4.5, 9.5));
+    html += metricCard('GRAVY', fmt(r.GRAVY), '', r.GRAVY > -0.1 ? 'warn' : 'ok');
+    html += metricCard('Instability', fmt(r.instability_index), '', r.instability_index > 40 ? 'warn' : 'ok');
+    html += metricCard('Hydro Patch', fmt(r.hydro_patch_max9), '', r.hydro_patch_max9 > 0.75 ? 'warn' : 'ok');
+    html += metricCard('Charge Patch', fmt(r.charge_patch_max7), '', r.charge_patch_max7 > 4 ? 'warn' : 'ok');
+    html += metricCard('Net Charge pH7', fmt(r.net_charge_pH7), '');
+    html += `</div>`;
+
+    html += `<div class="section-title">Sequence Liabilities</div><div class="metric-grid">`;
+    html += metricCard('Deamidation', r.n_deamidation ?? '—', 'sites', r.n_deamidation > 3 ? 'warn' : 'ok');
+    html += metricCard('Isomerization', r.n_isomerization ?? '—', 'sites', r.n_isomerization > 3 ? 'warn' : 'ok');
+    html += metricCard('Oxidation', r.n_oxidation ?? '—', 'sites', r.n_oxidation > 7 ? 'warn' : 'ok');
+    html += metricCard('Glycosylation', r.n_glycosylation ?? '—', 'sites', r.n_glycosylation > 1 ? 'warn' : 'ok');
+    html += `</div>`;
+
+    html += `<div class="section-title">Germline Identity &amp; Immunogenicity</div><div class="metric-grid">`;
+    html += metricCard('VH Germline ID', fmt(r.germline_identity_vh), '%', r.germline_identity_vh < 70 ? 'warn' : 'ok');
+    html += metricCard('VL Germline ID', fmt(r.germline_identity_vl), '%', r.germline_identity_vl < 70 ? 'warn' : 'ok');
+    html += metricCard('Immuno Risk', r.immunogenicity_risk || '—', '',
+                       r.immunogenicity_risk === 'high' ? 'fail' : r.immunogenicity_risk === 'medium' ? 'warn' : 'ok');
+    html += metricCard('MHCII Clusters', r.n_mhcii_clusters_high_medium ?? '—', '');
+    html += `</div>`;
+
+    // Clinical score
+    if (r.clinical_score != null) {
+      html += `<div class="section-title">Clinical Comparison · AbRef-458 (n=458 approved mAbs)</div>
+      <div style="padding:14px 16px;display:flex;align-items:center;gap:20px">
+        <div style="text-align:center">
+          <div style="font-size:40px;font-weight:800;color:${r.clinical_score>70?'var(--pass)':r.clinical_score>40?'var(--warn)':'var(--fail)'}">${r.clinical_score.toFixed(1)}</div>
+          <div style="font-size:12px;color:var(--muted)">Clinical Score</div>
+        </div>
+        <div style="font-size:12px;color:var(--muted)">
+          Percentile rank across 458 approved/clinical mAbs.<br>
+          Population: <b>${r.clinical_population||'—'}</b>
+        </div></div>`;
+    }
+
+    // CMC advisor
+    if (r.cmc_n_warn > 0 || r.cmc_n_fail > 0) {
+      html += `<div class="section-title">CMC Advisor (${r.cmc_n_warn} warnings, ${r.cmc_n_fail} fails)</div>`;
+      (r.mutation_suggestions || []).slice(0,5).forEach(s => {
+        html += `<div style="padding:4px 16px;font-size:12px">
+          → ${s.position||''} <b>${s.from||''}→${s.to||''}</b>: ${s.rationale||''}</div>`;
+      });
+    }
+  }
+
+  if (data.report_url) {
+    html += `<div class="download-row">
+      <a class="btn btn-primary" href="${data.report_url}" target="_blank">Download HTML Report</a></div>`;
+  }
+
+  html += `</div>`;
+  el.innerHTML = html;
+}
+
+function metricCard(label, value, unit, status='') {
+  return `<div class="metric-card ${status}">
+    <div class="label">${label}</div>
+    <div><span class="value">${value}</span><span class="unit">${unit}</span></div></div>`;
+}
+
+function vhhMetricCards(r) {
+  let h = '';
+  h += metricCard('pI', fmt(r.pI), '', metricFlag(r.pI, 4.5, 9.5));
+  h += metricCard('GRAVY', fmt(r.GRAVY), '', r.GRAVY > -0.05 ? 'warn' : 'ok');
+  h += metricCard('Instability', fmt(r.instability_index), '', r.instability_index > 50 ? 'warn' : 'ok');
+  h += metricCard('Net Charge pH7', fmt(r.net_charge_pH7), '');
+  h += metricCard('Hydro Patch', fmt(r.hydro_patch_max9), '', r.hydro_patch_max9 > 0.75 ? 'warn' : 'ok');
+  h += metricCard('Charge Patch', fmt(r.charge_patch_max7), '', r.charge_patch_max7 > 4 ? 'warn' : 'ok');
+  h += metricCard('SAP Score', fmt(r.SAP_score), '', r.SAP_score > 0.857 ? 'warn' : 'ok');
+  h += metricCard('Agg Motifs', r.agg_motifs ?? '—', '', r.agg_motifs > 5 ? 'warn' : 'ok');
+  h += metricCard('Hydro Clusters', r.hydro_cluster_count ?? '—', '');
+  h += metricCard('Glycosylation', r.glycosylation_sites ?? '—', 'sites');
+  h += metricCard('Deamidation', r.deamidation_sites ?? '—', 'sites');
+  h += metricCard('Isomerization', r.isomerization_sites ?? '—', 'sites');
+  h += metricCard('Oxidation', r.oxidation_sites ?? '—', 'sites');
+  h += metricCard('Free Cys', r.free_cys ?? '—', '');
+  return h;
+}
+
+function adiColor(score) {
+  if (score == null) return 'var(--muted)';
+  if (score >= 80) return 'var(--pass)';
+  if (score >= 60) return 'var(--warn)';
+  return 'var(--fail)';
+}
+</script>
+</body>
+</html>

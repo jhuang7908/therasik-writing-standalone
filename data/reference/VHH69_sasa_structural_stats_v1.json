@@ -1,0 +1,95 @@
+{
+  "_meta": {
+    "benchmark_id": "VHH69_sasa_structural_v1",
+    "status": "active_reference",
+    "source": "vhh_structural_union_index.json (clinical_vhh n=40 + database_b n=29)",
+    "n_input": 69,
+    "n_computed": 69,
+    "n_errors": 0,
+    "generated_by": "scripts/build_sasa_reference_stats.py",
+    "metrics": [
+      "psh",
+      "ppc",
+      "pnc",
+      "sap_sasa",
+      "cdr_H1_sasa",
+      "cdr_H2_sasa",
+      "cdr_H3_sasa",
+      "plddt"
+    ],
+    "note": "plddt not available from vhh_cmc_engine (no B-factor extraction yet); all 69 structural metrics computed correctly"
+  },
+  "structural_metrics": {
+    "psh": {
+      "n": 69,
+      "mean": 16.9141,
+      "stdev": 2.9839,
+      "p5": 13.1254,
+      "p25": 14.768,
+      "p50": 16.275,
+      "p75": 18.469,
+      "p95": 22.39
+    },
+    "ppc": {
+      "n": 69,
+      "mean": 1.3188,
+      "stdev": 0.4962,
+      "p5": 1.0,
+      "p25": 1.0,
+      "p50": 1.0,
+      "p75": 2.0,
+      "p95": 2.0
+    },
+    "pnc": {
+      "n": 69,
+      "mean": 1.9855,
+      "stdev": 0.1195,
+      "p5": 2.0,
+      "p25": 2.0,
+      "p50": 2.0,
+      "p75": 2.0,
+      "p95": 2.0
+    },
+    "sap_sasa": {
+      "n": 69,
+      "mean": 0.9585,
+      "stdev": 0.0604,
+      "p5": 0.8327,
+      "p25": 0.9412,
+      "p50": 0.9834,
+      "p75": 1.0,
+      "p95": 1.0
+    },
+    "cdr_H1_sasa": {
+      "n": 69,
+      "mean": 60.2239,
+      "stdev": 11.5697,
+      "p5": 41.496,
+      "p25": 52.72,
+      "p50": 56.7,
+      "p75": 68.71,
+      "p95": 80.61
+    },
+    "cdr_H2_sasa": {
+      "n": 69,
+      "mean": 54.849,
+      "stdev": 12.0385,
+      "p5": 37.198,
+      "p25": 44.85,
+      "p50": 53.09,
+      "p75": 58.57,
+      "p95": 75.9
+    },
+    "cdr_H3_sasa": {
+      "n": 69,
+      "mean": 61.781,
+      "stdev": 12.0673,
+      "p5": 43.646,
+      "p25": 53.82,
+      "p50": 61.51,
+      "p75": 74.23,
+      "p95": 78.908
+    }
+  },
+  "errors": []
+}

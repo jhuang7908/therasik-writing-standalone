@@ -1,0 +1,93 @@
+{
+  "scaffold_id": "NVHH-H1",
+  "version": "1.0.0",
+  "layer": "engineered",
+  "description": "Humanized, developability-optimized VHH scaffold derived from NVHH-N1 and camelid VHH templates (4W6Y_B, 6EZW_A). Keeps VHH FR2 hallmarks while shifting FR1/FR3 towards human VH3-23-like patterns.",
+  "parent_scaffold_id": "NVHH-N1",
+  "species_group": "Camelidae → humanized_VH3_like",
+  "source_templates": [
+    { "ref_id": "PDB_4W6Y_B", "role": "true_native_vhh" },
+    { "ref_id": "PDB_6EZW_A", "role": "true_native_vhh" },
+    { "ref_id": "NVHH-N1",    "role": "consensus_framework_parent" }
+  ],
+  "provenance_checks": {
+    "has_true_native_template": true,
+    "parent_exists_in_02_consensus_native": true,
+    "is_consensus_based": true,
+    "is_engineered": true,
+    "is_exact_copy_of_any_native": false,
+    "imgt_numbering_available": false,
+    "needs_anarci_numbering": true,
+    "manually_reviewed": false
+  },
+  "framework_sequences": {
+    "FR1": "EVQLVESGGGLVQPGGSLRLSCAAS",
+    "FR2": "WFRQAPGKEREFVSA",
+    "FR3": "RFTISRDNSKNTLYLQMNSLRAEDTAVYYC",
+    "FR4": "WGQGTQVTVSS"
+  },
+  "full_template_with_placeholders": "EVQLVESGGGLVQPGGSLRLSCAAS[CDR1]WFRQAPGKEREFVSA[CDR2]RFTISRDNSKNTLYLQMNSLRAEDTAVYYC[CDR3]WGQGTQVTVSS",
+  "cdr_constraints": {
+    "cdr1_length_allowed": [6, 7, 8],
+    "cdr2_length_allowed": [8, 9, 10],
+    "cdr3_length_allowed": [10, 11, 12, 13, 14, 15, 16],
+    "canonical_classes": {
+      "cdr1": ["H1-1", "H1-2"],
+      "cdr2": ["H2-1", "H2-2", "H2-3"]
+    },
+    "notes": "NVHH-H1  VHH 。"
+  },
+  "mutation_log": [
+    {
+      "from_scaffold_id": "NVHH-N1",
+      "region": "FR1",
+      "local_change": "Q1E",
+      "from": "Q",
+      "to": "E",
+      "category": "humanization + CMC",
+      "reason": "Align N-terminus to human VH3-23 consensus and reduce risk of N-terminal pyroglutamate formation.",
+      "from_true_native": false,
+      "engineered": true,
+      "needs_exact_imgt_mapping": true
+    },
+    {
+      "from_scaffold_id": "NVHH-N1",
+      "region": "FR3",
+      "local_change": "FR3_block_replacement",
+      "from": "RFTISRDNAKNTVYLQMNSLKPEDTAVYYC",
+      "to":   "RFTISRDNSKNTLYLQMNSLRAEDTAVYYC",
+      "category": "humanization + developability",
+      "reason": "Replace FR3 with VH3-like consensus: DNAKNTVY→DNSKNTLY, LKPEDTA→LRAEDTA, to increase humanness and remove potential glycosylation/aggregation hotspots.",
+      "from_true_native": false,
+      "engineered": true,
+      "needs_exact_imgt_mapping": true
+    }
+  ],
+  "vhh_hallmarks": {
+    "fr2_hallmarks_preserved": true,
+    "comment": "FR2  VHH （F/Y37, E/Q44, R45），。"
+  },
+  "developability_profile": {
+    "design_goals": {
+      "humanness_target_t20": 0.85,
+      "tm_target_celsius": 65,
+      "aggregation_risk": "low_to_medium",
+      "pI_range": "7.0–8.5"
+    },
+    "rationale": [
+      "FR1/FR3  human VH3-23 。",
+      "FR2  VHH hallmark 。",
+      "。"
+    ]
+  },
+  "intended_use": {
+    "recommended_stage": "Preclinical candidate optimization",
+    "typical_workflow": [
+      "Step 1:  NVHH-N1  CDR ，/。",
+      "Step 2:  CDR ， FR1/FR3  NVHH-H1 ，。",
+      "Step 3:  CMC  back-mutation 。"
+    ],
+    "notes_for_reports": "：' VHH ， VH3-23 ， VHH FR2  hallmark， CDR 。'"
+  }
+}
+

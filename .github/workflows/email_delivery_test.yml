@@ -1,0 +1,97 @@
+name: Email Delivery Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      to:
+        description: "Recipient address"
+        required: true
+        type: string
+        default: "mail.jing.huang@gmail.com"
+
+permissions:
+  contents: read
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Send well-formed test email
+        shell: bash
+        env:
+          INSYNBIO_SMTP_HOST: ${{ secrets.INSYNBIO_SMTP_HOST }}
+          INSYNBIO_SMTP_PORT: ${{ secrets.INSYNBIO_SMTP_PORT }}
+          INSYNBIO_SMTP_USER: ${{ secrets.INSYNBIO_SMTP_USER }}
+          INSYNBIO_SMTP_PASS: ${{ secrets.INSYNBIO_SMTP_PASS }}
+          INSYNBIO_EMAIL_SENDER: ${{ secrets.INSYNBIO_EMAIL_SENDER }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          MAIL_TO: ${{ github.event.inputs.to }}
+        run: |
+          python - << 'PY'
+          import os, smtplib, time
+          from email.mime.text import MIMEText
+          from email.utils import formatdate, make_msgid
+
+          to = os.environ["MAIL_TO"].strip()
+          stamp = time.strftime("%Y%m%d-%H%M%S", time.gmtime())
+          tag = f"INSYNBIO-DELIVERY-TEST-{stamp}"
+
+          profiles = []
+          host = os.environ.get("INSYNBIO_SMTP_HOST", "").strip()
+          if host:
+              sender = (os.environ.get("INSYNBIO_EMAIL_SENDER") or os.environ.get("INSYNBIO_SMTP_USER") or "").strip()
+              profiles.append({
+                  "label": "PRIMARY-privateemail",
+                  "host": host,
+                  "port": int((os.environ.get("INSYNBIO_SMTP_PORT") or "587").strip() or "587"),
+                  "user": os.environ.get("INSYNBIO_SMTP_USER", "").strip(),
+                  "password": os.environ.get("INSYNBIO_SMTP_PASS", "").strip(),
+                  "from": sender,
+              })
+          guser = os.environ.get("GMAIL_USER", "").strip()
+          gpass = os.environ.get("GMAIL_APP_PASSWORD", "").strip()
+          if guser and gpass:
+              profiles.append({
+                  "label": "FALLBACK-gmail",
+                  "host": "smtp.gmail.com",
+                  "port": 587,
+                  "user": guser,
+                  "password": gpass,
+                  "from": guser,
+              })
+
+          if not profiles:
+              raise SystemExit("No SMTP profile configured")
+
+          last_err = None
+          for p in profiles:
+              try:
+                  domain = p["from"].split("@", 1)[1] if "@" in p["from"] else None
+                  msg = MIMEText(
+                      f"InSynBio delivery test.\nUnique tag: {tag}\nVia: {p['label']}\n"
+                      f"Search this tag in Gmail (incl. Spam / All Mail) to confirm receipt.\n",
+                      "plain", "utf-8",
+                  )
+                  msg["Subject"] = tag
+                  msg["From"] = p["from"]
+                  msg["To"] = to
+                  msg["Date"] = formatdate(localtime=True)
+                  msg["Message-ID"] = make_msgid(domain=domain)
+                  with smtplib.SMTP(p["host"], p["port"], timeout=45) as s:
+                      s.starttls()
+                      if p["user"] and p["password"]:
+                          s.login(p["user"], p["password"])
+                      s.sendmail(p["from"], [to], msg.as_string())
+                  print(f"SENT ok via {p['label']} from={p['from']} to={to}")
+                  print(f"SUBJECT_TAG={tag}")
+                  raise SystemExit(0)
+              except SystemExit:
+                  raise
+              except Exception as exc:
+                  last_err = f"{p['label']}: {exc}"
+                  print(f"FAILED {last_err}")
+
+          raise SystemExit(f"All profiles failed: {last_err}")
+          PY

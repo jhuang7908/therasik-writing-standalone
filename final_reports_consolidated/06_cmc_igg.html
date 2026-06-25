@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow">
+<title>InSynBio AbEngineCore | IgG CMC Report — unified_shell_cmc_igg</title>
+
+<style>
+:root{--ok:#059669;--warn:#d97706;--fail:#dc2626;--muted:#6b7280;--bg:#f9fafb;
+     --card:#fff;--border:#d0d7e2;--accent:#1b4fad;--accent2:#2d6cdf}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:#f4f7f9;color:#2c3e50;font-size:13px;line-height:1.5;padding:20px}
+.page{max-width:900px;margin:0 auto;background:#fff;padding:32px 40px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.05)}
+.report-header{background:var(--accent);color:#fff;padding:20px 28px;border-radius:8px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:flex-end}
+.report-header h1{font-size:1.35rem;font-weight:700;margin:0 0 4px;color:#fff;letter-spacing:-.02em}
+.report-header .sub{font-size:.84rem;font-weight:600;opacity:.95;line-height:1.45;color:#fff}
+.report-header .ts{font-size:.78rem;font-weight:600;opacity:.92;text-align:right}
+.header-meta{width:100%;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.22);
+             display:flex;flex-direction:column;gap:4px;font-family:ui-monospace,monospace;font-size:0.72rem;opacity:.75}
+.section{background:var(--card);border:1px solid var(--border);border-radius:8px;margin-bottom:16px;overflow:hidden}
+.section h3{font-size:0.85rem;font-weight:700;padding:10px 16px;background:#f3f4f6;border-bottom:1px solid var(--border);color:#374151}
+.section-body{padding:14px 16px}
+table.kv{width:100%;border-collapse:collapse;font-size:0.82rem}
+table.kv td{padding:6px 8px;vertical-align:top;border-bottom:1px solid #f3f4f6}
+table.kv tr:nth-child(even){background:#f9fafb}
+.lbl{color:#6b7280;font-weight:600;width:38%;white-space:nowrap}
+.badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:0.72rem;font-weight:700}
+.badge-ok{background:#d1fae5;color:#065f46}.badge-warn{background:#fef3c7;color:#92400e}.badge-fail{background:#fee2e2;color:#991b1b}.badge-info{background:#dbeafe;color:#1e40af}
+.seq-block{margin:10px 0;background:#f8f9fa;border:1px solid #e9ecef;border-radius:6px;padding:10px 12px}
+.seq-label{font-size:0.78rem;font-weight:700;color:#495057;margin-bottom:6px}
+.seq-len{font-weight:400;color:#6b7280}
+.seq-body{font-family:'Consolas','Courier New',monospace;font-size:0.82em;letter-spacing:.03em;word-break:break-all;line-height:1.7;color:#111}
+.data-table{width:100%;border-collapse:collapse;font-size:0.82rem;margin-top:8px}
+.data-table th,.data-table td{padding:8px 10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+.data-table th{background:#f3f4f6;color:#374151;font-weight:600;font-size:0.74rem}
+.score-row{display:flex;align-items:flex-end;gap:28px;margin:8px 0 4px;flex-wrap:wrap}
+.score-val{font-size:2rem;font-weight:800;color:var(--accent)}
+.score-lbl{font-size:0.72rem;color:var(--muted);margin-bottom:4px}
+.score-rank{font-size:1.05rem;font-weight:700;color:var(--ok)}
+.interp{font-size:0.8rem;color:var(--muted);line-height:1.5;margin-top:6px}
+.risk-low{color:var(--ok);font-weight:600}.risk-mod{color:var(--warn);font-weight:600}.risk-high{color:var(--fail);font-weight:600}
+.flag-list{list-style:none;padding:0;margin:8px 0 0 0}
+.flag-list li{padding:6px 10px;border-left:3px solid var(--warn);margin-bottom:6px;font-size:0.82rem;background:#fffbeb}
+.flag-hint{font-size:0.72rem;color:var(--muted);margin-top:4px;line-height:1.45;max-width:52rem}
+.cdr-box{margin-top:14px;padding:10px 14px;background:#fffbeb;border:1px solid #fcd34d;border-radius:6px}
+footer{text-align:center;color:var(--muted);font-size:0.75rem;margin-top:24px;padding-top:12px;border-top:1px solid var(--border)}
+.param-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:10px;font-size:0.76rem}
+@media(max-width:900px){.param-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.param-grid{grid-template-columns:1fr}}
+.param-cell{border:1px solid var(--border);border-radius:6px;padding:8px 10px;background:#fafafa;line-height:1.35}
+.param-title-row{display:flex;align-items:center;gap:6px;min-width:0}
+.param-title-row .pn{font-size:0.66rem;color:var(--muted);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+.param-cell .pv{margin-top:6px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.param-cell .pv-val{font-size:0.95rem;font-weight:800;color:#111;letter-spacing:-0.02em}
+.param-cell .pv .rk{font-size:0.68rem;font-weight:700}
+.param-cell .gate{font-size:0.62rem;color:var(--muted);margin-top:6px;line-height:1.45}
+.param-cell .gate-ref{margin-top:4px;font-size:0.6rem;color:var(--muted);opacity:.92}
+.param-cell .interp2{font-size:0.62rem;color:var(--muted);margin-top:4px;line-height:1.35}
+.param-panel-intro{margin-bottom:6px}
+.param-panel-bullets{margin:0 0 12px 18px;padding:0;font-size:0.78rem;color:var(--muted);line-height:1.5}
+.param-panel-bullets li{margin-bottom:4px}
+.param-grid-hint{font-size:0.76rem;color:var(--muted);margin-bottom:6px}
+.param-dot{display:inline-block;width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:2px}
+.param-dot.low{background:var(--ok)}.param-dot.mod{background:var(--warn)}.param-dot.high{background:var(--fail)}.param-dot.na{background:#94a3b8}
+.muted{color:var(--muted);font-style:italic}
+@media print{
+  body{background:#fff;font-size:10.5px;color:#000;padding:0}
+  .page{max-width:100%;padding:0;box-shadow:none}
+  .report-header{background:#1b4fad!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .report-header h1,.report-header .sub,.report-header .ts,.report-header .header-meta{color:#fff!important;opacity:1}
+  /* Permit section pagination to reduce trailing blank space in PDF pages. */
+  .section{break-inside:auto;page-break-inside:auto;margin-bottom:10px}
+  .section h3{break-after:avoid;page-break-after:avoid}
+  .param-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+</style>
+
+</head>
+<body>
+<!-- IgG CMC layout: vhvl-parity-light-20260501-v2 param-panel | if missing = stale cache or old API -->
+<div class="page">
+<div class="report-header">
+  <div>
+  <h1>InSynBio AbEngineCore</h1>
+  <div class="sub">IgG / VH+VL CMC Developability Report &nbsp;|&nbsp; CMC Standard v1.3</div>
+  <div class="sub" style="margin-top:4px">Project: <b>unified_shell_cmc_igg</b> &nbsp;·&nbsp; Status: <span class="badge badge-warn">WARN</span></div>
+              <div class="header-meta">
+        <div><strong>Report format (suite)</strong>: 4.1.1</div>
+        <div><strong>Service</strong>: IgG / VH+VL CMC Developability &nbsp;·&nbsp; <strong>Service report</strong>: v1.5</div>
+        <div><strong>Protocol</strong>: 5.1.0 &nbsp;|&nbsp; <strong>Analysis</strong>: 5.1.1 &nbsp;|&nbsp; <strong>Build</strong>: 20260503-002 &nbsp;|&nbsp; <strong>Environment</strong>: DEV</div>
+        <div>Report layout shell: igG-cmc-vhvl-parity-20260501-v2</div>
+        </div>
+      <div class="cohort-provenance" style="margin:10px 0;padding:10px 14px;border:1px solid #cbd5e1;border-radius:6px;background:#f8fafc;font-size:.78rem"><div style="font-weight:600;color:#1e3a8a;margin-bottom:6px">Reference cohort provenance</div><table style="width:100%;border-collapse:collapse;color:#1f2937"><tr style="color:#475569;font-size:.72rem;text-align:left"><th style="padding:2px 4px">Panel type</th><th style="padding:2px 4px">Release ID</th><th style="padding:2px 4px">Purpose in this report</th></tr><tbody style="color:#1f2937"><tr><td><strong>Engineered VH/VL benchmark panel</strong></td><td>R2026.05</td><td>Engineered/clinical IgG VH/VL CMC reference</td></tr><tr><td><strong>Natural VH/VL benchmark panel</strong></td><td>R2026.05</td><td>Human IgG natural-baseline distribution</td></tr></tbody></table><div style="margin-top:6px;color:#64748b;font-size:.72rem">Reference range derived from internal source-matched benchmark panel (frozen release: R2026.05). Detailed cohort composition is confidential.</div></div>
+  </div>
+  <div class="ts">2026-05-11 12:35 UTC<br><span style="font-size:.7rem;opacity:.6">CONFIDENTIAL</span></div>
+</div>
+
+<div class="section">
+  <h3>§0 — Run summary</h3>
+  <div class="section-body">
+  <table class="kv">
+    <tr><td class="lbl">Overall status</td><td><span class="badge badge-warn">WARN</span></td></tr>
+    <tr><td class="lbl">Developability index / 100</td><td>69.7</td></tr>
+    <tr><td class="lbl">Reference composite (0–100)</td><td>88.5</td></tr>
+    <tr><td class="lbl">Percentile summary</td><td>Top 12% of Engineered clinical VH/VL reference</td></tr>
+    <tr><td class="lbl">Reference standard</td><td>Engineered clinical VH/VL reference</td></tr>
+    <tr><td class="lbl">Frozen stats file</td><td>data\reference\AbRef458_27m_stats_v1.json</td></tr>
+    <tr><td class="lbl">Antibody origin</td><td>humanized</td></tr>
+    <tr><td class="lbl">HPR Index</td><td>1.0000 <span class="interp" style="font-size:.75rem">(variable-region human peptide repertoire compatibility)</span></td></tr>
+    <tr><td class="lbl">p-AbNatiV2 Likelihood</td><td>0.0020 <span class="interp" style="font-size:.75rem">(VH/VL pairing likelihood proxy)</span></td></tr>
+    <tr><td class="lbl">p-AbNatiV2 Humanness</td><td>0.9893 <span class="interp" style="font-size:.75rem">(paired variable-region naturalness)</span></td></tr>
+    <tr><td class="lbl">TCIA (sequence)</td><td>0.6306 &nbsp;<span class="interp" style="font-size:.75rem">(HIGH)</span> <span class="interp" style="font-size:.75rem">(MHC-II T-cell immunogenicity index, 0–1)</span></td></tr>
+  </table>
+  
+  
+  </div>
+</div>
+
+<div class="section"><h3>§1 — Submitted VH / VL sequences</h3><div class="section-body"><p class="interp">1-letter amino acids as submitted for this run.</p><div class="seq-block"><div class="seq-label">VH <span class="seq-len">(119 aa)</span></div><div class="seq-body">EVQLVESGGGLVQPGGSLRLSCAASGFTFSSYWMSWVRQAPGKGLEWVANIKQDGSEKYYVDSVKGRFTISRDNAKNSLYLQMNSLRAEDTAVYYCARSPYYYYGMDVWGQGTTVTVSS</div></div><div class="seq-block"><div class="seq-label">VL <span class="seq-len">(108 aa)</span></div><div class="seq-body">EIVLTQSPGTLSLSPGERATLSCRASQSVSSNYLAWYQQKPGQAPRLLIYGASTRATGIPDRFSGSGSGTDFTLTISRLEPEDFAVYYCQQYNNWPRTFGQGTKVEIK</div></div></div></div>
+<div class="section"><h3>§1b — IMGT segmentation (FR / CDR)</h3><div class="section-body"><p class="interp">Regions from ANARCII IMGT numbering + pipeline FR/CDR boundaries (same path as humanization/VHH tooling).</p><div style="margin-top:12px"><strong>VH</strong> (IMGT)</div><table class="data-table" style="margin-top:6px"><tr><th>Region</th><th>Len</th><th>Sequence</th></tr><tr><td>FR1</td><td>25</td><td style="font-family:ui-monospace,monospace;font-size:.72rem;word-break:break-all">EVQLVESGGGLVQPGGSLRLSCAAS</td></tr><tr><td>CDR1</td><td>8</td><td style="font-family:ui-monospace,monospace;font-size:.72rem;word-break:break-all">GFTFSSYW</td></tr><tr><td>FR2</td><td>17</td><td style="font-family:ui-monospace,monospace;font-size:.72rem;word-break:break-all">MSWVRQAPGKGLEWVAN</td></tr><tr><td>CDR2</td><td>8</td><td style="font-family:ui-monospace,monospace;font-size:.72rem;word-break:break-all">IKQDGSEK</td></tr><tr><td>FR3</td><td>38</td><td style="font-family:ui-monospace,monospace;font-size:.72rem;word-break:break-all">YYVDSVKGRFTISRDNAKNSLYLQMNSLRAEDTAVYYC</td></tr><tr><td>CDR3</td><td>12</td><td style="font-family:ui-monospace,monospace;font-size:.72rem;word-break:break-all">ARSPYYYYGMDV</td></tr><tr><td>FR4</td><td>11</td><td style="font-family:ui-monospace,monospace;font-size:.72rem;word-break:break-all">WGQGTTVTVSS</td></tr></table><div style="margin-top:12px"><strong>VL</strong> (IMGT)</div><table class="data-table" style="margin-top:6px"><tr><th>Region</th><th>Len</th><th>Sequence</th></tr><tr><td>FR1</td><td>26</td><td style="font-family:ui-monospace,monospace;font-size:.72rem;word-break:break-all">EIVLTQSPGTLSLSPGERATLSCRAS</td></tr><tr><td>CDR1</td><td>7</td><td style="font-family:ui-monospace,monospace;font-size:.72rem;word-break:break-all">QSVSSNY</td></tr><tr><td>FR2</td><td>17</td><td style="font-family:ui-monospace,monospace;font-size:.72rem;word-break:break-all">LAWYQQKPGQAPRLLIY</td></tr><tr><td>CDR2</td><td>3</td><td style="font-family:ui-monospace,monospace;font-size:.72rem;word-break:break-all">GAS</td></tr><tr><td>FR3</td><td>36</td><td style="font-family:ui-monospace,monospace;font-size:.72rem;word-break:break-all">TRATGIPDRFSGSGSGTDFTLTISRLEPEDFAVYYC</td></tr><tr><td>CDR3</td><td>9</td><td style="font-family:ui-monospace,monospace;font-size:.72rem;word-break:break-all">QQYNNWPRT</td></tr><tr><td>FR4</td><td>10</td><td style="font-family:ui-monospace,monospace;font-size:.72rem;word-break:break-all">FGQGTKVEIK</td></tr></table></div></div>
+
+<div class="section">
+  <h3>§2 — In-silico Fv structure modeling</h3>
+  <div class="section-body">
+  <p class="interp">
+    Confidence (pLDDT-equivalent): <strong>97.2</strong>
+    &nbsp;&middot;&nbsp; VH–VL angle proxy: <strong>84.7</strong>°
+  </p>
+  <p class="interp">In-silico Fv model for visualization and manual review of FR candidate sites; not a crystal structure.</p>
+  <p style="font-size:.78rem;margin-top:6px">
+    <a href="Fv_ABodyBuilder2.pdb" download style="color:var(--accent)">Download Fv model (PDB)</a>
+    (same folder as this report)
+  </p>
+  </div>
+</div>
+
+<div class="section">
+  <h3>§3 — Reference clinical benchmark</h3>
+  <div class="section-body">
+  <div class="score-row">
+    <div><div class="score-val">69.7</div><div class="score-lbl">Developability Index / 100</div></div>
+    <div>
+      <div class="score-val" style="font-size:1.75rem">88.5</div>
+      <div class="score-lbl">Reference composite index (0–100)</div>
+      <div class="score-rank" style="margin-top:8px">Top 12% of Engineered clinical VH/VL reference</div>
+      <div class="score-lbl" style="margin-top:2px">Percentile rank vs selected reference panel</div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>§4 — Key physicochemical metrics</h3>
+  <div class="section-body">
+  <table class="data-table">
+    <tr><th>Metric</th><th>Value</th><th>Threshold / Note</th></tr>
+    <tr><td>pI (Fab)</td><td>8.61</td><td>4.5–9.5 preferred</td></tr>
+    <tr><td>Instability Index</td><td class="risk-high">43.9</td><td>&lt; 40 recommended (Guruprasad et al. 1990)</td></tr>
+    <tr><td>GRAVY</td><td>-0.396</td><td>&lt; −0.1 preferred</td></tr>
+    <tr><td>Deamidation sites (NG / NS / NN motifs)</td><td>2</td><td>0 preferred in CDR; FR ≤ 2 acceptable</td></tr>
+    <tr><td>Oxidation sites (Met, Trp)</td><td>0</td><td>0 preferred in CDR; FR ≤ 2 acceptable</td></tr>
+    <tr><td>Glycosylation sites (N-X-S/T)</td><td>0</td><td>0 in V-domain; Fc N297 retained</td></tr>
+  </table>
+  </div>
+</div>
+
+<div class="section">
+  <h3>§5 — Reference developability panel (25 tiles; 27 indicators)</h3>
+  <div class="section-body">
+  <p class="interp param-panel-intro">All reported values are interpreted only against reference distributions generated with the same internal calculation protocol. Cross-method thresholds are not mixed.</p><ul class="param-panel-bullets"><li>Gene-engineered humanized antibodies use the engineered clinical VH/VL reference primary gate (approved-style mAb drug space), distinct from the fully-human natural cohort.</li><li>Fully human regular antibodies are reviewed for naturalness and clinical drug-space compatibility.</li></ul>
+  <p class="param-grid-hint">3-column tile grid (25 developability metrics in this section). <strong>29 indicators</strong> = these 25 + §0 <strong>HPR Index</strong> + <strong>TCIA</strong> + <strong>p-AbNatiV2 (Pairing & Humanness)</strong>. AbLang2 PLL may remain in internal JSON, but is not used as a visible CMC / humanness headline metric.</p>
+  <div class="param-grid"><div class="param-cell" title="pI"><div class="param-title-row"><span class="param-dot low"></span><span class="pn">pI</span></div><div class="pv"><span class="pv-val">8.61</span><span class="rk risk-low">LOW</span></div><div class="gate">Gate (intersection): 5.2-9.09<div class="gate-ref">Reference band: p25–p75 (core)</div></div><div class="interp2">Within the preferred regular-antibody reference region.</div></div><div class="param-cell" title="GRAVY"><div class="param-title-row"><span class="param-dot low"></span><span class="pn">GRAVY</span></div><div class="pv"><span class="pv-val">-0.396</span><span class="rk risk-low">LOW</span></div><div class="gate">Gate (intersection): -0.475--0.192<div class="gate-ref">Reference band: p25–p75 (core)</div></div><div class="interp2">Within the preferred regular-antibody reference region.</div></div><div class="param-cell" title="Instability index"><div class="param-title-row"><span class="param-dot mod"></span><span class="pn">Instability</span></div><div class="pv"><span class="pv-val">43.9</span><span class="rk risk-mod">MODERATE</span></div><div class="gate">Gate (intersection): 27.7-47.1<div class="gate-ref">Reference band: p5–p95 (broad)</div></div><div class="interp2">Within the broad p5–p95 band but outside the preferred core; Guruprasad-type indices &gt;40 warrant motif review even when still inside the out…</div></div><div class="param-cell" title="Net charge at pH 7"><div class="param-title-row"><span class="param-dot low"></span><span class="pn">Net charge at pH 7</span></div><div class="pv"><span class="pv-val">2.81</span><span class="rk risk-low">LOW</span></div><div class="gate">Gate (intersection): -3.38-5.88<div class="gate-ref">Reference band: p25–p75 (core)</div></div><div class="interp2">Within the preferred regular-antibody reference region.</div></div><div class="param-cell" title="Charge patch"><div class="param-title-row"><span class="param-dot low"></span><span class="pn">Charge patch</span></div><div class="pv"><span class="pv-val">3.0</span><span class="rk risk-low">LOW</span></div><div class="gate">Gate (intersection): 2-4<div class="gate-ref">Reference band: p25–p75 (core)</div></div><div class="interp2">Within the preferred regular-antibody reference region.</div></div><div class="param-cell" title="VH/VL charge asymmetry"><div class="param-title-row"><span class="param-dot low"></span><span class="pn">VH/VL charge asymmetry</span></div><div class="pv"><span class="pv-val">1.004</span><span class="rk risk-low">LOW</span></div><div class="gate">Gate (intersection): 0.0789-6.18<div class="gate-ref">Reference band: ≤ p75 (favorable)</div></div><div class="interp2">Within the preferred regular-antibody reference region.</div></div><div class="param-cell" title="Hydrophobic patch"><div class="param-title-row"><span class="param-dot low"></span><span class="pn">Hydrophobic patch</span></div><div class="pv"><span class="pv-val">0.556</span><span class="rk risk-low">LOW</span></div><div class="gate">Gate (intersection): 0.556-0.778<div class="gate-ref">Reference band: p25–p75 (core)</div></div><div class="interp2">Within the preferred regular-antibody reference region.</div></div><div class="param-cell" title="Surface hydrophobicity risk"><div class="param-title-row"><span class="param-dot low"></span><span class="pn">Surface hydrophobicity risk</span></div><div class="pv"><span class="pv-val">0.714</span><span class="rk risk-low">LOW</span></div><div class="gate">Gate (intersection): 0.571-0.857<div class="gate-ref">Reference band: ≤ p75 (favorable)</div></div><div class="interp2">Within the preferred regular-antibody reference region.</div></div><div class="param-cell" title="Aggregation motifs"><div class="param-title-row"><span class="param-dot mod"></span><span class="pn">Aggregation motifs</span></div><div class="pv"><span class="pv-val">5.0</span><span class="rk risk-mod">MODERATE</span></div><div class="gate">Gate (intersection): 1-6<div class="gate-ref">Reference band: p75–p95 (elevated)</div></div><div class="interp2">Within the broader clinical reference space but should be monitored.</div></div><div class="param-cell" title="Hydrophobic cluster count"><div class="param-title-row"><span class="param-dot mod"></span><span class="pn">Hydrophobic cluster count</span></div><div class="pv"><span class="pv-val">5.0</span><span class="rk risk-mod">MODERATE</span></div><div class="gate">Gate (intersection): 1-5<div class="gate-ref">Reference band: p75–p95 (elevated)</div></div><div class="interp2">Within the broader clinical reference space but should be monitored.</div></div><div class="param-cell" title="Glycosylation sites"><div class="param-title-row"><span class="param-dot low"></span><span class="pn">Glycosylation sites</span></div><div class="pv"><span class="pv-val">0.0</span><span class="rk risk-low">LOW</span></div><div class="gate">Gate (intersection): 0-0<div class="gate-ref">Reference band: ≤ p75 (favorable)</div></div><div class="interp2">Within the preferred regular-antibody reference region.</div></div><div class="param-cell" title="Deamidation sites"><div class="param-title-row"><span class="param-dot low"></span><span class="pn">Deamidation sites</span></div><div class="pv"><span class="pv-val">2.0</span><span class="rk risk-low">LOW</span></div><div class="gate">Gate (intersection): 0-3<div class="gate-ref">Reference band: ≤ p75 (favorable)</div></div><div class="interp2">Within the preferred regular-antibody reference region.</div></div><div class="param-cell" title="Isomerization sites"><div class="param-title-row"><span class="param-dot mod"></span><span class="pn">Isomerization sites</span></div><div class="pv"><span class="pv-val">2.0</span><span class="rk risk-mod">MODERATE</span></div><div class="gate">Gate (intersection): 0-3<div class="gate-ref">Reference band: p75–p95 (elevated)</div></div><div class="interp2">Within the broader clinical reference space but should be monitored.</div></div><div class="param-cell" title="Oxidation sites"><div class="param-title-row"><span class="param-dot low"></span><span class="pn">Oxidation sites</span></div><div class="pv"><span class="pv-val">9.0</span><span class="rk risk-low">LOW</span></div><div class="gate">Gate (intersection): 7-11<div class="gate-ref">Reference band: ≤ p75 (favorable)</div></div><div class="interp2">Within the preferred regular-antibody reference region.</div></div><div class="param-cell" title="Free cysteine"><div class="param-title-row"><span class="param-dot low"></span><span class="pn">Free cysteine</span></div><div class="pv"><span class="pv-val">4.0</span><span class="rk risk-low">LOW</span></div><div class="gate">Gate (intersection): 4-4<div class="gate-ref">Reference band: ≤ p75 (favorable)</div></div><div class="interp2">Within the preferred regular-antibody reference region.</div></div><div class="param-cell" title="Total CDR length"><div class="param-title-row"><span class="param-dot high"></span><span class="pn">Total CDR length</span></div><div class="pv"><span class="pv-val">47.0</span><span class="rk risk-high">HIGH</span></div><div class="gate">Gate (intersection): 60-72<div class="gate-ref">Reference band: Outside p5–p95</div></div><div class="interp2">Metric is outside the regular-antibody reference region.</div></div><div class="param-cell" title="Surface hydrophobic patch profile"><div class="param-title-row"><span class="param-dot low"></span><span class="pn">Surface hydrophobic patch profile</span></div><div class="pv"><span class="pv-val">278.73</span><span class="rk risk-low">LOW</span></div><div class="gate">Gate (intersection): 191-957<div class="gate-ref">Reference band: ≤ p75 (favorable)</div></div><div class="interp2">Within the preferred regular-antibody reference region.</div></div><div class="param-cell" title="Positive charge patch profile"><div class="param-title-row"><span class="param-dot low"></span><span class="pn">Positive charge patch profile</span></div><div class="pv"><span class="pv-val">2.0</span><span class="rk risk-low">LOW</span></div><div class="gate">Gate (intersection): 1.1-4<div class="gate-ref">Reference band: ≤ p75 (favorable)</div></div><div class="interp2">Within the preferred regular-antibody reference region.</div></div><div class="param-cell" title="Negative charge patch profile"><div class="param-title-row"><span class="param-dot low"></span><span class="pn">Negative charge patch profile</span></div><div class="pv"><span class="pv-val">2.0</span><span class="rk risk-low">LOW</span></div><div class="gate">Gate (intersection): 1-5<div class="gate-ref">Reference band: ≤ p75 (favorable)</div></div><div class="interp2">Within the preferred regular-antibody reference region.</div></div><div class="param-cell" title="Fv charge symmetry profile"><div class="param-title-row"><span class="param-dot mod"></span><span class="pn">Fv charge symmetry profile</span></div><div class="pv"><span class="pv-val">6.0</span><span class="rk risk-mod">MODERATE</span></div><div class="gate">Gate (intersection): -6.3-12.3<div class="gate-ref">Reference band: p75–p95 (elevated)</div></div><div class="interp2">Within the broader clinical reference space but should be monitored.</div></div><div class="param-cell" title="VH/VL orientation"><div class="param-title-row"><span class="param-dot mod"></span><span class="pn">VH/VL orientation</span></div><div class="pv"><span class="pv-val">84.7</span><span class="rk risk-mod">MODERATE</span></div><div class="gate">Gate (intersection): 74.6-87.4<div class="gate-ref">Reference band: p5–p95 (broad)</div></div><div class="interp2">Within the broader clinical reference space but should be monitored.</div></div><div class="param-cell" title="VH/VL interface contacts"><div class="param-title-row"><span class="param-dot low"></span><span class="pn">VH/VL interface contacts</span></div><div class="pv"><span class="pv-val">73.0</span><span class="rk risk-low">LOW</span></div><div class="gate">Gate (intersection): 56-83<div class="gate-ref">Reference band: p25–p75 (core)</div></div><div class="interp2">Within the preferred regular-antibody reference region.</div></div><div class="param-cell" title="Mean interface distance"><div class="param-title-row"><span class="param-dot low"></span><span class="pn">Mean interface distance</span></div><div class="pv"><span class="pv-val">4.652</span><span class="rk risk-low">LOW</span></div><div class="gate">Gate (intersection): 4.55-4.74<div class="gate-ref">Reference band: p25–p75 (core)</div></div><div class="interp2">Within the preferred regular-antibody reference region.</div></div><div class="param-cell" title="Minimum interface distance"><div class="param-title-row"><span class="param-dot high"></span><span class="pn">Minimum interface distance</span></div><div class="pv"><span class="pv-val">2.753</span><span class="rk risk-high">HIGH</span></div><div class="gate">Gate (intersection): 0.583-2.68<div class="gate-ref">Reference band: Outside p5–p95</div></div><div class="interp2">Metric is outside the regular-antibody reference region.</div></div><div class="param-cell" title="Vernier exposure profile"><div class="param-title-row"><span class="param-dot low"></span><span class="pn">Vernier exposure profile</span></div><div class="pv"><span class="pv-val">480.049</span><span class="rk risk-low">LOW</span></div><div class="gate">Gate (intersection): 462-625<div class="gate-ref">Reference band: ≤ p75 (favorable)</div></div><div class="interp2">Within the preferred regular-antibody reference region.</div></div></div>
+  
+  </div>
+</div>
+
+
+<div class="section">
+  <h3>§6 — Engineering actions &amp; optimization suggestions</h3>
+  <div class="section-body">
+  <p class="interp" style="margin-bottom:10px">
+    <strong>FR-only</strong> = framework regions only (CDRs are not targets for automated substitution lists).
+    Prioritize non-critical, surface-exposed framework positions to improve charge balance, hydrophobic profile,
+    and stability while preserving CDR binding regions.
+    CDR findings below are <em>advisory</em> and require structure-based validation before any change.
+  </p>
+  <table class="data-table">
+    <tr><th>Scope</th><th>Target metric</th><th>Current → Target range</th><th>Priority</th><th>Recommended action</th></tr>
+    <tr><td>FR-only</td><td>Framework observations (no auto site list)</td><td><span class='interp'>No numeric current/target pair was emitted for this row — often a qualitative liability flag without an automated FR substitution shortlist. Cross-check HIGH / MODERATE rows in the developability tile panel (§5) above and any CDR advisories below.</span></td><td><span class='badge badge-warn'>MEDIUM</span></td><td>The liability scan recorded framework-region notes, but no HIGH-gated metric row produced an FR substitution shortlist for this response (or all candidate positions were filtered). Review the liability findings in context; this line alone is not a substitute for the 25-parameter gate outcome.</td></tr>
+  </table>
+  
+<div class="cdr-box">
+  <strong style="font-size:.82rem;color:var(--warn)">CDR Advisory Warnings (do not modify without structural validation)</strong>
+  <ul style="margin:6px 0 0 16px;font-size:.8rem;line-height:1.8"><li>Position <strong>76</strong>: deamidation — CDR finding is advisory (functional CDRs often retain liabilities); do not modify without structural validation.</li><li>Position <strong>83</strong>: deamidation — CDR finding is advisory (functional CDRs often retain liabilities); do not modify without structural validation.</li><li>Position <strong>53</strong>: isomerization — CDR finding is advisory (functional CDRs often retain liabilities); do not modify without structural validation.</li><li>Position <strong>61</strong>: isomerization — CDR finding is advisory (functional CDRs often retain liabilities); do not modify without structural validation.</li></ul>
+</div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>§7 — CMC flags</h3>
+  <div class="section-body">
+  <ul class="flag-list"><li>cdr_scan:WARN:deamidation<div class='flag-hint'>Sequence scan reported asparagine deamidation–associated motifs; see liability counts in the run summary and any CDR advisories in Section 6 for position context.</div></li><li>cdr_scan:WARN:isomerization<div class='flag-hint'>Sequence scan reported isomerization–sensitive motifs; treat as advisory unless structure confirms solvent exposure and process relevance.</div></li><li>germline:INFO:germline_db_miss — novel sequence; precomputed Vernier data unavailable</li></ul>
+  <p class="interp" style="margin-top:12px">
+    Each line is a compact pipeline token; expanded interpretation appears in Sections 0–6 (metrics, panel, and engineering table).
+    Detailed action prioritization is summarized in Section 8.
+  </p>
+  </div>
+</div>
+
+<div class="section">
+  <h3>§8 — Optimization roadmap</h3>
+  <div class="section-body">
+  <ul class="param-panel-bullets"><li>Position Selection: Target non-critical, surface-exposed framework (FR) positions. Strictly avoid CDRs, Vernier zone residues, and positions within 5 Å of the CDR loops or VH/VL interface.</li><li>Mutation Rules: Apply distinct strategies based on surface properties. Use conservative substitutions at exposed hydrophobic patches to reduce aggregation risk, and utilize polar/charged surfaces for pI and net-charge tuning.</li><li>CDR Advisories: Treat all CDR liabilities as strictly advisory. Many highly successful clinical antibodies contain sequence liabilities within CDRs that are essential for antigen binding; modifications require explicit structural and functional validation.</li></ul>
+  <p class="interp">Action sequencing is FR-first and evidence-driven; maintain uniform report format across runs.</p>
+  </div>
+</div>
+
+<footer>InSynBio Research &nbsp;·&nbsp; 2026-05-11 12:35 UTC &nbsp;·&nbsp; CONFIDENTIAL &nbsp;·&nbsp; Use Ctrl+P → Save as PDF to export.</footer>
+</div>
+</body>
+</html>

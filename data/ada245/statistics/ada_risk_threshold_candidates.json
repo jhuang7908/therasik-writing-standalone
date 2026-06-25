@@ -1,0 +1,160 @@
+{
+  "source_csv": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\data\\ada245\\database\\ada_master_245_curated.csv",
+  "n_rows_file": 216,
+  "ada_threshold_pct": 10.0,
+  "disclaimer": "Candidate thresholds from retrospective cohort; not SSOT until owner-approved config freeze.",
+  "global": {
+    "label_definition": "high_risk = ada_first_pct >= 10.0",
+    "stratum": "global (all rows with ADA%)",
+    "rows_total_in_frame": 215,
+    "rows_with_ada": 215,
+    "metrics": [
+      {
+        "metric": "immuno_tcia_score",
+        "n_valid": 129,
+        "n_high_risk": 48,
+        "n_low_risk": 81,
+        "orientation": "higher_is_risk",
+        "auc": 0.49202674897119336,
+        "youden_threshold_raw": 0.5961,
+        "sensitivity": 0.875,
+        "specificity": 0.19753086419753085,
+        "median_high_risk": 0.68645,
+        "median_low_risk": 0.6816,
+        "rule_text": "high ADA risk if immuno_tcia_score >= 0.5961",
+        "note": "AUC near random — do not use this metric alone for gating."
+      },
+      {
+        "metric": "hpr_proxy_pct_IMGT_mean",
+        "n_valid": 133,
+        "n_high_risk": 49,
+        "n_low_risk": 84,
+        "orientation": "lower_is_risk",
+        "auc": 0.6212342079689018,
+        "youden_threshold_raw": 92.39999999999999,
+        "sensitivity": 0.8775510204081632,
+        "specificity": 0.39285714285714285,
+        "median_high_risk": 83.94,
+        "median_low_risk": 86.925,
+        "rule_text": "high ADA risk if hpr_proxy_pct_IMGT_mean <= 92.4",
+        "note": ""
+      }
+    ]
+  },
+  "by_genetics_class": {
+    "genetically_human": {
+      "label_definition": "high_risk = ada_first_pct >= 10.0",
+      "stratum": "thera_genetics_class=genetically_human",
+      "rows_total_in_frame": 27,
+      "rows_with_ada": 27,
+      "metrics": [
+        {
+          "metric": "immuno_tcia_score",
+          "n_valid": 27,
+          "n_high_risk": 9,
+          "n_low_risk": 18,
+          "orientation": "higher_is_risk",
+          "auc": 0.6141975308641976,
+          "youden_threshold_raw": 0.7101,
+          "sensitivity": 0.6666666666666666,
+          "specificity": 0.6111111111111112,
+          "median_high_risk": 0.7145,
+          "median_low_risk": 0.69555,
+          "rule_text": "high ADA risk if immuno_tcia_score >= 0.7101",
+          "note": ""
+        },
+        {
+          "metric": "hpr_proxy_pct_IMGT_mean",
+          "n_valid": 27,
+          "n_high_risk": 9,
+          "n_low_risk": 18,
+          "orientation": "lower_is_risk",
+          "auc": 0.6358024691358025,
+          "youden_threshold_raw": 87.13,
+          "sensitivity": 0.6666666666666666,
+          "specificity": 0.7222222222222222,
+          "median_high_risk": 69.46,
+          "median_low_risk": 95.4075,
+          "rule_text": "high ADA risk if hpr_proxy_pct_IMGT_mean <= 87.13",
+          "note": ""
+        }
+      ]
+    },
+    "humanised": {
+      "label_definition": "high_risk = ada_first_pct >= 10.0",
+      "stratum": "thera_genetics_class=humanised",
+      "rows_total_in_frame": 51,
+      "rows_with_ada": 51,
+      "metrics": [
+        {
+          "metric": "immuno_tcia_score",
+          "n_valid": 30,
+          "n_high_risk": 15,
+          "n_low_risk": 15,
+          "orientation": "higher_is_risk",
+          "auc": 0.5644444444444445,
+          "youden_threshold_raw": 0.6,
+          "sensitivity": 0.8,
+          "specificity": 0.4,
+          "median_high_risk": 0.6436,
+          "median_low_risk": 0.6282,
+          "rule_text": "high ADA risk if immuno_tcia_score >= 0.6",
+          "note": ""
+        },
+        {
+          "metric": "hpr_proxy_pct_IMGT_mean",
+          "n_valid": 30,
+          "n_high_risk": 15,
+          "n_low_risk": 15,
+          "orientation": "lower_is_risk",
+          "auc": 0.44222222222222224,
+          "youden_threshold_raw": 79.38000000000001,
+          "sensitivity": 0.5333333333333333,
+          "specificity": 0.6666666666666666,
+          "median_high_risk": 79.38000000000001,
+          "median_low_risk": 81.265,
+          "rule_text": "high ADA risk if hpr_proxy_pct_IMGT_mean <= 79.38",
+          "note": "AUC near random — do not use this metric alone for gating."
+        }
+      ]
+    },
+    "humanized": {
+      "label_definition": "high_risk = ada_first_pct >= 10.0",
+      "stratum": "thera_genetics_class=humanized",
+      "rows_total_in_frame": 46,
+      "rows_with_ada": 46,
+      "metrics": [
+        {
+          "metric": "immuno_tcia_score",
+          "n_valid": 38,
+          "n_high_risk": 16,
+          "n_low_risk": 22,
+          "orientation": "lower_is_risk",
+          "auc": 0.5525568181818181,
+          "youden_threshold_raw": 0.6449,
+          "sensitivity": 0.3125,
+          "specificity": 0.8636363636363636,
+          "median_high_risk": 0.69365,
+          "median_low_risk": 0.7130000000000001,
+          "rule_text": "high ADA risk if immuno_tcia_score <= 0.6449",
+          "note": ""
+        },
+        {
+          "metric": "hpr_proxy_pct_IMGT_mean",
+          "n_valid": 42,
+          "n_high_risk": 17,
+          "n_low_risk": 25,
+          "orientation": "higher_is_risk",
+          "auc": 0.5847058823529412,
+          "youden_threshold_raw": 87.6,
+          "sensitivity": 0.5294117647058824,
+          "specificity": 0.8,
+          "median_high_risk": 87.6,
+          "median_low_risk": 85.9,
+          "rule_text": "high ADA risk if hpr_proxy_pct_IMGT_mean >= 87.6",
+          "note": ""
+        }
+      ]
+    }
+  }
+}

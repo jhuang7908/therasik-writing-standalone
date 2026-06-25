@@ -1,0 +1,195 @@
+{
+  "_meta": {
+    "schema_version": "1.1.0",
+    "purpose": "VAM V1.6 antigen-type adaptive parameter profile. Single source of truth for scenario-specific thresholds and tool overrides. Replaces hardcoded scenario branches in V1.5.x.",
+    "generated": "2026-05-01",
+    "last_updated": "2026-05-01",
+    "version_history": {
+      "1.0.0": "Initial V1.6 profile with 4 scenarios A/B/C/D",
+      "1.1.0": "V1.6.1 patch — Stage 0 tool selection (Boltz-2 primary, AF3 server prohibited for production), short-peptide ipTM/PAE calibration"
+    },
+    "consumer_modules": [
+      "core/structure/structural_integrity_veto.py (V1.6 scenario-aware thresholds)",
+      "core/structure/affinity_energy_toolkit.py (tool selection per scenario)",
+      "scripts/affinity_energy_cli.py (--scenario flag dispatch)",
+      "tools/Boltz/colab/run_boltz2_pag1.ipynb (Stage 0 reference notebook)"
+    ],
+    "scenario_axes": {
+      "primary": "antigen size + chemistry (protein / short_peptide / hapten)",
+      "secondary": "antibody format (vh_vl / vhh) — affects fingerprint database choice"
+    },
+    "fingerprint_routing": {
+      "vh_vl": "data/reference/CDR_physchem_thresholds_v1.json (AbRef-458, n=458)",
+      "vhh": "data/reference/CDR_physchem_VHH71_v1.json (VHH-71, n=68; for design_prior fall back to CDR_physchem_thresholds_v1.json::vhh_* until VHH-71 priors regenerated)"
+    },
+    "stage0_tool_governance": {
+      "primary_tool_default": "Boltz-2",
+      "rationale": "Boltz-2 is MIT-licensed, AF3-class accuracy on antibody-antigen and protein-peptide complexes, integrated affinity head usable as Stage 7 ensemble third vote.",
+      "fallback_tool": "Boltz-1",
+      "forbidden_tools_commercial_production": [
+        "AF3_server (alphafoldserver.com) — non-commercial-only ToS; logged-in jobs are auditable by Isomorphic Labs",
+        "Chai-1 (no commercial license) — requires per-org license negotiation; do not use for IND / patent / external deliverables"
+      ],
+      "ad_hoc_sanity_check_allowed": [
+        "AF3_server is permitted for one-off validation experiments NOT entering any deliverable; outputs MUST NOT be cited in IND, patents, external reports, or model training data."
+      ]
+    },
+    "affinity_head_ensemble_policy": {
+      "tool": "Boltz-2 affinity head (affinity_pred_value, affinity_probability_binary)",
+      "use_as": "Stage 7 ensemble third vote alongside ESM-IF1 complex score and EvoEF2 reverse veto residual",
+      "weight": 0.25,
+      "do_not_use_as": [
+        "absolute IC50/Kd predictor — affinity head training data is sparse on short peptides (<15 aa)",
+        "single-decision metric — always combine with at least 2 orthogonal signals"
+      ],
+      "scenario_specific_calibration": "Scenario A (short peptide): treat affinity_pred_value as relative-ranking signal only; Scenario D (hapten): not validated, default to skip."
+    }
+  },
+  "scenarios": {
+    "B": {
+      "label": "Protein antigen + VH/VL or VHH (canonical scenario)",
+      "antigen_length_max": null,
+      "antigen_chemistry": "protein",
+      "stage0": {
+        "primary_tool": "Boltz-2",
+        "fallback_tool": "Boltz-1",
+        "forbidden_tools_commercial": ["AF3_server", "Chai-1_no_license"],
+        "iptm_min": 0.70,
+        "pae_interface_max_angstrom": 8.0,
+        "msa_policy": "antibody_chain_empty + antigen_chain_default",
+        "haddock3_sampling": 100,
+        "haddock3_seletop": 50,
+        "haddock3_air_floor_restraint": false
+      },
+      "stage5_evoef2": {
+        "veto_ddg_kcal_mol": 1.5,
+        "rationale": "Standard threshold; protein-protein interfaces have wide energy range and high SNR."
+      },
+      "stage6_contact_veto": {
+        "critical_contact_threshold": 3,
+        "rationale": "Protein antigens have many contact residues; n>=3 is the V1.5.1 default."
+      },
+      "tool_overrides": {
+        "prodigy": "enabled",
+        "mmgbsa": "enabled",
+        "antifold": "enabled",
+        "esm_if1": "enabled",
+        "boltz2_affinity_head": "enabled_as_stage7_third_vote"
+      }
+    },
+    "A": {
+      "label": "Short peptide antigen (<=30 aa) + VH/VL or VHH — e.g. PAG-1 ECD",
+      "antigen_length_max": 30,
+      "antigen_chemistry": "peptide",
+      "stage0": {
+        "primary_tool": "Boltz-2",
+        "fallback_tool": "Boltz-1",
+        "forbidden_tools_commercial": ["AF3_server", "Chai-1_no_license"],
+        "iptm_min": 0.80,
+        "iptm_calibration_note": "Short-peptide ligand chains exhibit optimistic ipTM bias; raise threshold from 0.70 to 0.80 and add PAE cross-check below.",
+        "pae_interface_max_angstrom": 5.0,
+        "pae_check_residues": "all_antigen_residues_vs_all_CDR_residues",
+        "msa_policy": "all_chains_empty",
+        "msa_rationale": "Antibody MSA is contaminated by germline homologs; short peptides + GS linkers have no meaningful homologs. Empty MSA is the documented best practice.",
+        "haddock3_sampling": 200,
+        "haddock3_seletop": 100,
+        "haddock3_air_floor_restraint": true,
+        "rationale": "Peptide flexibility requires higher sampling; floor restraint repels GS-linker / membrane-side direction."
+      },
+      "stage5_evoef2": {
+        "veto_ddg_kcal_mol": 3.0,
+        "rationale": "Short peptide has narrow ΔΔG range (low SNR); only flag extreme clashes."
+      },
+      "stage6_contact_veto": {
+        "critical_contact_threshold": 2,
+        "rationale": "Few peptide contacts; lowering to n>=2 prevents over-conservative veto on small interfaces."
+      },
+      "tool_overrides": {
+        "prodigy": "skip",
+        "prodigy_rationale": "PRODIGY contact-based scoring has no discrimination on peptide antigens (Absci benchmark global AUC ~0.46).",
+        "mmgbsa": "enabled",
+        "antifold": "enabled",
+        "esm_if1": "enabled",
+        "boltz2_affinity_head": "enabled_as_relative_ranking_only",
+        "boltz2_affinity_head_caveat": "Short peptides under-represented in Boltz-2 affinity head training; use as relative ranking, never absolute IC50/Kd."
+      },
+      "examples": ["PAG-1 ECD 8aa", "MHC peptide", "linear epitope"]
+    },
+    "C": {
+      "label": "Protein antigen + VHH (alias of B for VHH; kept for V1.2 decision-matrix backward compat)",
+      "antigen_length_max": null,
+      "antigen_chemistry": "protein",
+      "inherits_from": "B",
+      "extra_constraints": {
+        "vhh_hallmark_sites": [37, 44, 45, 47],
+        "vhh_hallmark_rule": "Never mutate hallmark positions; redirect any candidate hitting these to PASS-only (no MUT)."
+      }
+    },
+    "D": {
+      "label": "Hapten / small-molecule antigen + VH/VL — e.g. Ab278 fentanyl",
+      "antigen_length_max": null,
+      "antigen_chemistry": "hapten",
+      "stage0": {
+        "primary_tool": "Boltz-2",
+        "fallback_tool": "Boltz-1",
+        "forbidden_tools_commercial": ["AF3_server", "Chai-1_no_license"],
+        "iptm_min": 0.75,
+        "pae_interface_max_angstrom": 6.0,
+        "msa_policy": "antibody_chain_empty + ligand_smiles_input",
+        "haddock3_sampling": 200,
+        "haddock3_seletop": 100,
+        "haddock3_air_floor_restraint": false,
+        "rationale": "Hapten pose uncertainty is high; sample more orientations. Boltz-2 supports SMILES ligands directly."
+      },
+      "stage5_evoef2": {
+        "veto_ddg_kcal_mol": 1.5,
+        "rationale": "EvoEF2 small-molecule energy terms are usable; standard threshold applies."
+      },
+      "stage6_contact_veto": {
+        "critical_contact_threshold": 2,
+        "rationale": "Haptens have few residues but many heavy-atom contacts per residue; threshold counts contacts at the residue level."
+      },
+      "tool_overrides": {
+        "prodigy": "use_prodigy_lig",
+        "prodigy_rationale": "Standard PRODIGY assumes protein-protein; PRODIGY-LIG is the validated hapten variant.",
+        "mmgbsa": "not_applicable_unless_acpype",
+        "mmgbsa_rationale": "Single-trajectory MM/GBSA needs GAFF parameters for the ligand; ACPYPE preprocessing is required or tool is skipped.",
+        "antifold": "enabled",
+        "esm_if1": "enabled",
+        "boltz2_affinity_head": "skip",
+        "boltz2_affinity_head_rationale": "Hapten affinity head not validated in current Boltz-2 release; skip until calibrated."
+      },
+      "examples": ["Ab278 anti-fentanyl", "anti-cocaine", "anti-digoxin"]
+    }
+  },
+  "shared_v16_gates": {
+    "check_6_design_prior": {
+      "enabled_by_default": true,
+      "min_aa_freq_to_keep": 0.005,
+      "weighted_sampling": true,
+      "fallback_when_freq_zero": "skip_position",
+      "rationale": "Drop AAs observed at <0.5% frequency in natural antibodies at this CDR position; saves 30-50% downstream compute."
+    },
+    "check_7_sequence_liability": {
+      "enabled_by_default": true,
+      "veto_motifs": ["NxS/T_new", "NG", "NS_new_at_terminal", "DG", "DS_new_at_terminal"],
+      "warn_motifs": ["MET_oxidation_exposed", "TRP_oxidation_exposed", "longest_hydrophobic_run_above_p95"],
+      "rationale": "Sequence-only screen at O(seq) cost; uses CDR_physchem_thresholds_v1.json p95/p99 bands."
+    },
+    "check_8_relax_and_clash": {
+      "enabled_by_default": true,
+      "minimization_steps": 500,
+      "minimization_tolerance_kj_mol_nm": 10.0,
+      "minimization_force_field": "amber14-all.xml + implicit/gbn2.xml",
+      "vdw_overlap_warn_angstrom": 0.4,
+      "vdw_overlap_veto_angstrom": 0.6,
+      "scope": "antigen_antibody_interface_heavy_atoms",
+      "rationale": "MolProbity standard; >0.4 A is a flagged clash, >0.6 A cannot relax and is hard-vetoed."
+    }
+  },
+  "compatibility": {
+    "v15_2_fallback": "If --scenario flag is omitted at CLI, system auto-detects via antigen length and chemistry, then applies V1.5.2 hardcoded defaults (equivalent to scenario B).",
+    "downgrade_path": "Set --skip-v16-gates to disable CHECK 6/7/8 entirely; system reverts to V1.5.2 behaviour.",
+    "stage0_tool_override": "CLI flag --stage0-tool {boltz2,boltz1,chai1,af2_multimer} override scenario default; non-Boltz options require --commercial-license-confirmed flag in production runs."
+  }
+}

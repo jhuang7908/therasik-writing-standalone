@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internal Caninization / Petization — VHH_H3_RMSD_Repair</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f8fafc;color:#1e293b;font-size:14px;line-height:1.6}
+.report-wrap{max-width:980px;margin:0 auto;padding:24px 16px}
+.report-header{background:linear-gradient(135deg,#1e3a5f 0%,#2563eb 100%);color:#fff;border-radius:10px 10px 0 0;padding:28px 32px 20px}
+.report-header h1{font-size:22px;font-weight:700;letter-spacing:.3px}
+.report-header .subtitle{font-size:13px;opacity:.85;margin-top:4px}
+.meta-bar{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px}
+.meta-pill{background:rgba(255,255,255,.15);border-radius:20px;padding:3px 12px;font-size:11.5px}
+.provenance-block{background:#f0f4ff;border:1px solid #c7d7f7;border-radius:0 0 8px 8px;padding:10px 20px;font-size:12px;color:#334155;display:flex;flex-wrap:wrap;gap:16px;margin-bottom:18px}
+.provenance-block span{white-space:nowrap}
+.section{background:#fff;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:14px;overflow:hidden}
+.section-header{background:#f1f5f9;border-bottom:1px solid #e2e8f0;padding:10px 18px;font-weight:700;font-size:13px;color:#1e3a5f;display:flex;align-items:center;gap:8px}
+.section-body{padding:16px 18px}
+.badge{display:inline-block;border-radius:12px;padding:2px 10px;font-size:11.5px;font-weight:700}
+.pass{background:#dcfce7;color:#166534}.warn{background:#fef3c7;color:#92400e}.fail{background:#fee2e2;color:#991b1b}.info{background:#e0f2fe;color:#075985}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+.metric-card{border:1px solid #e2e8f0;border-radius:6px;padding:10px 14px;background:#fafafa}
+.metric-label{font-size:11px;color:#64748b;margin-bottom:3px}
+.metric-value{font-size:16px;font-weight:700;color:#1e293b}
+.metric-sub{font-size:11px;color:#94a3b8;margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:6px}
+th{background:#f1f5f9;font-weight:700;padding:7px 10px;text-align:left;border-bottom:2px solid #e2e8f0;color:#334155}
+td{padding:6px 10px;border-bottom:1px solid #f1f5f9;vertical-align:top}
+tr:last-child td{border-bottom:none}tr:hover td{background:#f8fafc}
+.seq-box{font-family:'Consolas','Courier New',monospace;font-size:12.5px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:12px 14px;line-height:1.8;word-break:break-all;margin-top:6px}
+.alert-warn{background:#fef3c7;border-left:4px solid #f59e0b;color:#78350f;padding:10px 14px;margin:6px 0}
+.alert-info{background:#e0f2fe;border-left:4px solid #0ea5e9;color:#0c4a6e;padding:10px 14px;margin:6px 0}
+.alert-pass{background:#dcfce7;border-left:4px solid #22c55e;color:#14532d;padding:10px 14px;margin:6px 0}
+.alert-box{border-radius:6px;padding:10px 14px;margin:6px 0;font-size:12.5px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.highlight-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:12px 14px;margin-top:8px}
+.divider{border:none;border-top:1px solid #e2e8f0;margin:10px 0}
+.seq-legend{font-size:11px;color:#64748b;margin-top:6px}
+.overall-status{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:8px;font-weight:700;font-size:15px;background:#dcfce7;color:#166534;border:2px solid #22c55e}
+@media print{body{background:#fff}.report-wrap{max-width:100%;padding:8px}.section{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="report-wrap">
+<div class="report-header">
+  <h1>Internal Caninization Report (DOG VH/VL)</h1>
+  <div class="subtitle">Internal API delivery · PETIZATION_STANDARD V1.2.0 · Structure QC · CMC · CDR preservation</div>
+  <div class="meta-bar">
+    <span class="meta-pill">Protocol: PETIZATION_STANDARD V1.2.0</span>
+    <span class="meta-pill">Analysis: petization_cli_v1.4.0 (Engine V5.1.0)</span>
+    <span class="meta-pill">Report Format: V4.1</span>
+    <span class="meta-pill">Project: VHH_H3_RMSD_Repair</span>
+    <span class="meta-pill">Generated: 2026-05-11T22:30:31</span>
+    <span class="meta-pill">Job: job_vhh_repair_001</span>
+    <span class="meta-pill">API: POST /internal/petization/run</span>
+  </div>
+</div>
+<div class="provenance-block">
+  <span>Input strategy request: surface_reshaping</span>
+  <span>Strategy (resolved): surface_reshaping</span>
+  <span>VH routing: surface_reshaping</span>
+  <span>VL routing: none</span>
+  <span>FR4 policy: universal_clinical</span>
+  <span>Scaffold: IGHV3-35*01 / —</span>
+</div>
+
+<div class="section">
+  <div class="section-header">§0  Overview & Overall Status</div>
+  <div class="section-body">
+    <div style="margin-bottom:12px"><span class="badge warn" style="font-size:14px;padding:8px 14px">Overall WARN</span> <span class="badge pass">CDR check: PASS</span> <span class="badge warn">Structure: WARN</span></div>
+    <div class="grid-3">
+      <div class="metric-card">
+        <div class="metric-label">VH germline (selected)</div>
+        <div class="metric-value">IGHV3-35*01</div>
+        <div class="metric-sub">Tier tier1 · FR id 74.65%</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">VL germline (selected)</div>
+        <div class="metric-value">—</div>
+        <div class="metric-sub">Tier — · FR id —%</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Framework differences (donor &rarr; petized)</div>
+        <div class="metric-value">13</div>
+        <div class="metric-sub">VH 13 · VL 0 · Back-muts VH 0 / VL 0</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Fv pI (concat)</div>
+        <div class="metric-value">—</div>
+        <div class="metric-sub">ProteinAnalysis on VH+VL concatenate</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Fv GRAVY / Instability</div>
+        <div class="metric-value">—</div>
+        <div class="metric-sub">Instability —</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Structure QC</div>
+        <div class="metric-value">WARN</div>
+        <div class="metric-sub">pLDDT — · RMSD — Å · angle —°</div>
+      </div>
+    </div>
+    <div class="highlight-box">
+      <strong>Design note:</strong> This report is generated only from the internal petization engine JSON.
+      Competitive naming, clinical precedence tables, and antigen-contact claims are intentionally omitted unless present in upstream project data — add them via project memoranda linked to this <code>job_id</code>.
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">§1  Input QC — Sequence validation (petized output)</div>
+  <div class="section-body">
+    <table>
+      <tr><th>Chain</th><th>Length</th><th>Cys count</th><th>N-glyc (NxS/T)</th><th>Non-standard AA</th><th>Status</th></tr>
+      <tr>
+        <td>VH</td><td>120 aa</td><td>2</td><td>0</td><td>None</td>
+        <td><span class="badge pass">PASS</span></td>
+      </tr>
+      <tr>
+        <td>VL</td><td>0 aa</td><td>0</td><td>0</td><td>None</td>
+        <td><span class="badge pass">PASS</span></td>
+      </tr>
+    </table>
+    <hr class="divider">
+    <strong>Scaffold registry selection</strong>
+    <table>
+      <tr><th>Chain</th><th>Germline</th><th>Tier</th><th>FR identity (%)</th><th>CDR length match</th><th>Registry source</th></tr>
+      <tr>
+        <td>VH</td>
+        <td>IGHV3-35*01</td>
+        <td>tier1</td>
+        <td>74.65</td>
+        <td>True</td>
+        <td>dog/cat scaffold JSON</td>
+      </tr>
+      <tr>
+        <td>VL</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td>None</td>
+        <td>dog/cat scaffold JSON</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">§2  CDR Segments — Donor preservation</div>
+  <div class="section-body">
+    <table>
+      <tr><th>CDR</th><th>Donor (input)</th><th>Len</th><th>Petized</th><th>Len</th><th>Identity</th><th>Status</th></tr>
+      <tr><td>CDR-H1</td><td style="font-family:monospace;color:#1a56db;font-weight:700">GRTFSSYAMG</td><td>10</td><td style="font-family:monospace">GRTFSSYAMG</td><td>10</td><td>100%</td><td><span class="badge pass">PASS</span></td></tr><tr><td>CDR-H2</td><td style="font-family:monospace;color:#1a56db;font-weight:700">AISSSGGSTYYADSVKG</td><td>17</td><td style="font-family:monospace">AISSSGGSTYYADSVKG</td><td>17</td><td>100%</td><td><span class="badge pass">PASS</span></td></tr><tr><td>CDR-H3</td><td style="font-family:monospace;color:#1a56db;font-weight:700">AGLGSSTWLDY</td><td>11</td><td style="font-family:monospace">AGLGSSTWLDY</td><td>11</td><td>100%</td><td><span class="badge pass">PASS</span></td></tr><tr><td>CDR-L1</td><td style="font-family:monospace;color:#1a56db;font-weight:700">—</td><td>0</td><td style="font-family:monospace">—</td><td>0</td><td>100%</td><td><span class="badge pass">PASS</span></td></tr><tr><td>CDR-L2</td><td style="font-family:monospace;color:#1a56db;font-weight:700">—</td><td>0</td><td style="font-family:monospace">—</td><td>0</td><td>100%</td><td><span class="badge pass">PASS</span></td></tr><tr><td>CDR-L3</td><td style="font-family:monospace;color:#1a56db;font-weight:700">—</td><td>0</td><td style="font-family:monospace">—</td><td>0</td><td>100%</td><td><span class="badge pass">PASS</span></td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">§3  Scaffold selection &amp; Vernier / back-mutations</div>
+  <div class="section-body">
+    <div class="two-col">
+      <div>
+        <strong>VH Vernier / back-mutations (scaffold &rarr; donor)</strong>
+        <table>
+          <tr><th>Kabat</th><th>Scaffold</th><th>Donor</th><th>Region</th><th>Rationale</th></tr>
+          <tr><td colspan='5' style='color:#64748b;font-style:italic'>No recorded Vernier/back-mutations for VH.</td></tr>
+        </table>
+      </div>
+      <div>
+        <strong>VL Vernier / back-mutations</strong>
+        <table>
+          <tr><th>Kabat</th><th>Scaffold</th><th>Donor</th><th>Region</th><th>Rationale</th></tr>
+          <tr><td colspan='5' style='color:#64748b;font-style:italic'>No recorded Vernier/back-mutations for VL.</td></tr>
+        </table>
+      </div>
+    </div>
+    <hr class="divider">
+    <strong>Surface reshaping mutations</strong> (if any)
+    <div class="two-col" style="margin-top:8px">
+      <div><table><tr><th>VH</th></tr><tr><td>Q1E</td></tr><tr><td>Q5V</td></tr><tr><td>G10D</td></tr><tr><td>S11L</td></tr><tr><td>Q13K</td></tr><tr><td>G15V</td></tr><tr><td>A23V</td></tr><tr><td>M82L</td></tr><tr><td>N82AQ</td></tr><tr><td>K83R</td></tr><tr><td>P84A</td></tr><tr><td>V89L</td></tr></table></div>
+      <div><table><tr><th>VL</th></tr><tr><td style='color:#64748b;font-style:italic'>None</td></tr></table></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">§3.5  Structure QC — pLDDT, RMSD, packing</div>
+  <div class="section-body">
+    <table>
+      <tr><th>Metric</th><th>Value</th><th>Status</th><th>Interpretation</th></tr>
+      <tr><td>Structure QC</td><td>WARN</td><td><span class="badge warn">REVIEW</span></td><td>Phase 4.5 backend output.</td></tr>
+      <tr><td>pLDDT</td><td>—</td><td>—</td><td>Model confidence (tool-native scale).</td></tr>
+      <tr><td>Global RMSD</td><td>— Å</td><td>—</td><td>Fv backbone deviation check.</td></tr>
+      <tr><td>VH–VL packing angle</td><td>—°</td><td>—</td><td>Orientation vs reference build.</td></tr>
+    </table>
+    <table style="margin-top:10px">
+      <tr><th>Loop</th><th>Cα RMSD</th><th>Status</th><th>Note</th></tr>
+      <tr><td colspan='4' style='color:#64748b;font-style:italic'>No per-CDR RMSD breakdown returned (see global RMSD row).</td></tr>
+    </table>
+    <p style="margin-top:8px;font-size:12.5px"><strong>Issues:</strong> None</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">§4  CMC developability — chain scan</div>
+  <div class="section-body">
+    <div class="grid-3">
+      <div class="metric-card">
+        <div class="metric-label">VH pI / GRAVY / Instab</div>
+        <div class="metric-value">8.04 / -0.111</div>
+        <div class="metric-sub">Instability 42.82 · WARN</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">VL pI / GRAVY / Instab</div>
+        <div class="metric-value">— / —</div>
+        <div class="metric-sub">Instability — · —</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Fv combine (quick)</div>
+        <div class="metric-value">pI —</div>
+        <div class="metric-sub">GRAVY — · Instability —</div>
+      </div>
+    </div>
+    <div class="two-col" style="margin-top:12px">
+      <div>
+        <strong>VH liability scan</strong>
+        <p style="font-size:12px;color:#475569;margin-top:6px">Isomerization: 2 site(s); Oxidation: 4 site(s); Scan summary: {&amp;#x27;total_flags&amp;#x27;: 6, &amp;#x27;risk_level&amp;#x27;: &amp;#x27;high&amp;#x27;}</p>
+      </div>
+      <div>
+        <strong>VL liability scan</strong>
+        <p style="font-size:12px;color:#475569;margin-top:6px">—</p>
+      </div>
+    </div>
+    <div class="two-col" style="margin-top:12px">
+      <div>
+        <strong>VH species / developability flags</strong>
+        <div style='margin:6px 0;font-size:12.5px'><span class="badge warn">WARN</span> <strong>instability_elevated</strong> — instability_index=42.8 (WARN threshold 35–45)</div><div style='margin:6px 0;font-size:12.5px'><span class="badge warn">WARN</span> <strong>oxidation_M_vernier_kabat34</strong> — Met at Vernier/CDR-proximal Kabat 34 — elevated oxidation risk; consider M→L</div><div style='margin:6px 0;font-size:12.5px'><span class="badge warn">WARN</span> <strong>oxidation_W_surface_kabat103</strong> — Trp at surface-exposed Kabat 103 — monitor photo-oxidation</div>
+      </div>
+      <div>
+        <strong>VL species / developability flags</strong>
+        <p style='font-size:12px;color:#64748b;margin-top:6px'>No species-specific flags recorded.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">§5  Framework substitutions — petized vs donor input</div>
+  <div class="section-body">
+    <div class="two-col">
+      <div>
+        <strong>VH (13 positions)</strong>
+        <table>
+          <tr><th>Pos</th><th>Donor</th><th>Petized</th><th>Region</th><th>NGF contact?</th></tr>
+          <tr><td>1</td><td>Q</td><td>E</td><td>FR1</td><td>No · No</td></tr><tr><td>5</td><td>Q</td><td>V</td><td>FR1</td><td>No · No</td></tr><tr><td>10</td><td>G</td><td>D</td><td>FR1</td><td>No · No</td></tr><tr><td>11</td><td>S</td><td>L</td><td>FR1</td><td>No · No</td></tr><tr><td>13</td><td>Q</td><td>K</td><td>FR1</td><td>No · No</td></tr><tr><td>15</td><td>G</td><td>V</td><td>FR1</td><td>No · No</td></tr><tr><td>23</td><td>A</td><td>V</td><td>FR1</td><td>No · No</td></tr><tr><td>82</td><td>M</td><td>L</td><td>FR3</td><td>No · No</td></tr><tr><td>82</td><td>N</td><td>Q</td><td>FR3</td><td>No · No</td></tr><tr><td>83</td><td>K</td><td>R</td><td>FR3</td><td>No · No</td></tr><tr><td>84</td><td>P</td><td>A</td><td>FR3</td><td>No · No</td></tr><tr><td>89</td><td>V</td><td>L</td><td>FR3</td><td>No · No</td></tr><tr><td>108</td><td>Q</td><td>L</td><td>FR4</td><td>No · No</td></tr>
+        </table>
+      </div>
+      <div>
+        <strong>VL (0 positions)</strong>
+        <table>
+          <tr><th>Pos</th><th>Donor</th><th>Petized</th><th>Region</th><th>NGF contact?</th></tr>
+          <tr><td colspan='5' style='color:#64748b;font-style:italic'>No framework differences vs input donor (unexpected — verify numbering).</td></tr>
+        </table>
+      </div>
+    </div>
+    <p style="font-size:12px;color:#64748b;margin-top:8px">Antigen contact column is placeholder "No" unless a project complex/PDB is wired into the petization run for contact marking.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">§6  Patent &amp; competitive differentiation (FTO checkpoint)</div>
+  <div class="section-body">
+    <table>
+      <tr><th>Checkpoint</th><th>Owner action</th><th>Status</th></tr>
+      <tr><td>Compare VH/VL germline genes vs competitor filings</td><td>Patent counsel + sequence alignment package</td><td><span class="badge info">REVIEW</span></td></tr>
+      <tr><td>Back-mutation footprint vs prior art</td><td>Claim chart / file history</td><td><span class="badge info">REVIEW</span></td></tr>
+      <tr><td>Fc / isotype selection</td><td>Cross-check with freedom-to-operate memo</td><td><span class="badge info">REVIEW</span></td></tr>
+    </table>
+    <div class="highlight-box">
+      Figures naming approved veterinary antibodies are <em>not</em> auto-inserted here (external claims require verified sources). Attach program FTO tables to this job folder when available.
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">§7  Final sequences (highlighted)</div>
+  <div class="section-body">
+    <strong>VH — 120 aa (CDR blue · FR change vs donor amber)</strong>
+    <div class="seq-box"><span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">E</span>VQL<span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">V</span>ESGG<span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">D</span><span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">L</span>V<span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">K</span>A<span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">V</span>GSLRLSC<span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">V</span>AS<span style="color:#1a56db;font-weight:700">G</span><span style="color:#1a56db;font-weight:700">R</span><span style="color:#1a56db;font-weight:700">T</span><span style="color:#1a56db;font-weight:700">F</span><span style="color:#1a56db;font-weight:700">S</span><span style="color:#1a56db;font-weight:700">S</span><span style="color:#1a56db;font-weight:700">Y</span><span style="color:#1a56db;font-weight:700">A</span><span style="color:#1a56db;font-weight:700">M</span><span style="color:#1a56db;font-weight:700">G</span>WFRQAPGKEREGVA<span style="color:#1a56db;font-weight:700">A</span><span style="color:#1a56db;font-weight:700">I</span><span style="color:#1a56db;font-weight:700">S</span><span style="color:#1a56db;font-weight:700">S</span><span style="color:#1a56db;font-weight:700">S</span><span style="color:#1a56db;font-weight:700">G</span><span style="color:#1a56db;font-weight:700">G</span><span style="color:#1a56db;font-weight:700">S</span><span style="color:#1a56db;font-weight:700">T</span><span style="color:#1a56db;font-weight:700">Y</span><span style="color:#1a56db;font-weight:700">Y</span><span style="color:#1a56db;font-weight:700">A</span><span style="color:#1a56db;font-weight:700">D</span><span style="color:#1a56db;font-weight:700">S</span><span style="color:#1a56db;font-weight:700">V</span><span style="color:#1a56db;font-weight:700">K</span><span style="color:#1a56db;font-weight:700">G</span>RFTISRDNAKNTVYLQ<span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">L</span><span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">Q</span>SL<span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">R</span><span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">A</span>EDTA<span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">L</span>YYCAA<span style="color:#1a56db;font-weight:700">A</span><span style="color:#1a56db;font-weight:700">G</span><span style="color:#1a56db;font-weight:700">L</span><span style="color:#1a56db;font-weight:700">G</span><span style="color:#1a56db;font-weight:700">S</span><span style="color:#1a56db;font-weight:700">S</span><span style="color:#1a56db;font-weight:700">T</span><span style="color:#1a56db;font-weight:700">W</span><span style="color:#1a56db;font-weight:700">L</span><span style="color:#1a56db;font-weight:700">D</span><span style="color:#1a56db;font-weight:700">Y</span>WGQGT<span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">L</span>VTVSS</div>
+    <div class="seq-legend"><span style="color:#1a56db;font-weight:700">■ CDR</span> <span style="background:#fef3c7;color:#92400e;border-radius:2px;padding:0 3px">■</span> Framework change vs donor</div>
+    <strong style="display:block;margin-top:12px">VH — plain</strong>
+    <div class="seq-box" style="color:#1e3a5f">EVQLVESGGDLVKAVGSLRLSCVASGRTFSSYAMGWFRQAPGKEREGVAAISSSGGSTYYADSVKGRFTISRDNAKNTVYLQLQSLRAEDTALYYCAAAGLGSSTWLDYWGQGTLVTVSS</div>
+
+    <strong style="display:block;margin-top:16px">VL — 0 aa</strong>
+    <div class="seq-box"></div>
+    <strong style="display:block;margin-top:12px">VL — plain</strong>
+    <div class="seq-box" style="color:#1e3a5f"></div>
+
+    <hr class="divider">
+    <div class="two-col">
+      <div>
+        <strong>VH donor vs petized (pairwise)</strong>
+        <div class="seq-box" style="font-size:11.5px"><span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">E</span>VQL<span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">V</span>ESGG<span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">D</span><span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">L</span>V<span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">K</span>A<span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">V</span>GSLRLSC<span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">V</span>AS<span style="color:#1a56db;font-weight:700">G</span><span style="color:#1a56db;font-weight:700">R</span><span style="color:#1a56db;font-weight:700">T</span><span style="color:#1a56db;font-weight:700">F</span><span style="color:#1a56db;font-weight:700">S</span><span style="color:#1a56db;font-weight:700">S</span><span style="color:#1a56db;font-weight:700">Y</span><span style="color:#1a56db;font-weight:700">A</span><span style="color:#1a56db;font-weight:700">M</span><span style="color:#1a56db;font-weight:700">G</span>WFRQAPGKEREGVA<span style="color:#1a56db;font-weight:700">A</span><span style="color:#1a56db;font-weight:700">I</span><span style="color:#1a56db;font-weight:700">S</span><span style="color:#1a56db;font-weight:700">S</span><span style="color:#1a56db;font-weight:700">S</span><span style="color:#1a56db;font-weight:700">G</span><span style="color:#1a56db;font-weight:700">G</span><span style="color:#1a56db;font-weight:700">S</span><span style="color:#1a56db;font-weight:700">T</span><span style="color:#1a56db;font-weight:700">Y</span><span style="color:#1a56db;font-weight:700">Y</span><span style="color:#1a56db;font-weight:700">A</span><span style="color:#1a56db;font-weight:700">D</span><span style="color:#1a56db;font-weight:700">S</span><span style="color:#1a56db;font-weight:700">V</span><span style="color:#1a56db;font-weight:700">K</span><span style="color:#1a56db;font-weight:700">G</span>RFTISRDNAKNTVYLQ<span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">L</span><span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">Q</span>SL<span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">R</span><span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">A</span>EDTA<span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">L</span>YYCAA<span style="color:#1a56db;font-weight:700">A</span><span style="color:#1a56db;font-weight:700">G</span><span style="color:#1a56db;font-weight:700">L</span><span style="color:#1a56db;font-weight:700">G</span><span style="color:#1a56db;font-weight:700">S</span><span style="color:#1a56db;font-weight:700">S</span><span style="color:#1a56db;font-weight:700">T</span><span style="color:#1a56db;font-weight:700">W</span><span style="color:#1a56db;font-weight:700">L</span><span style="color:#1a56db;font-weight:700">D</span><span style="color:#1a56db;font-weight:700">Y</span>WGQGT<span style="background:#fef3c7;color:#92400e;font-weight:700;border-radius:2px;padding:0 1px">L</span>VTVSS</div>
+      </div>
+      <div>
+        <strong>VL donor vs petized</strong>
+        <div class="seq-box" style="font-size:11.5px"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">§8  Optional: multi-candidate comparison</div>
+  <div class="section-body">
+    <p style="font-size:13px">Run a second <code>/internal/petization/run</code> with baseline sequences and diff JSON; or use the project comparison HTML template. This section is intentionally single-candidate.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">§9  Advisory &amp; recommendations</div>
+  <div class="section-body">
+    <div class="alert-pass"><strong>[PASS] CDR fidelity:</strong> All six CDR spans match donor input.</div><div class="alert-warn"><strong>[WARN] Structure QC:</strong> Status WARN. Review metrics and issues.</div><div class="alert-warn"><strong>[WARN] CMC VH:</strong> review flags below; may be acceptable with formulation monitoring.</div><div class="alert-info"><strong>[INFO] Patent / FTO:</strong> Germline pairing and framework edits must be reviewed against program claims and competitor sequences. This report does not provide legal conclusions.</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">§10  Delivery checklist</div>
+  <div class="section-body">
+    <ul style="margin-left:18px;font-size:13px;line-height:1.7">
+      <li>[ ] CDR preservation signed off (engine + Kabat spot-check)</li>
+      <li>[ ] Structure QC artifact archived under job <code>job_vhh_repair_001</code></li>
+      <li>[ ] CMC flags triaged (VH/VL overall WARN / None)</li>
+      <li>[ ] Expression construct + signal peptide defined</li>
+      <li>[ ] FTO / competitive sequence review attached</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">§11  API provenance</div>
+  <div class="section-body">
+    <table>
+      <tr><th>Field</th><th>Value</th></tr>
+      <tr><td>Endpoint</td><td>POST /internal/petization/run</td></tr>
+      <tr><td>job_id</td><td>job_vhh_repair_001</td></tr>
+      <tr><td>Generated</td><td>2026-05-11T22:30:31</td></tr>
+      <tr><td>Standard</td><td>docs/PETIZATION_STANDARD_V1.0.md</td></tr>
+    </table>
+    <p style="margin-top:12px;font-size:11px;color:#ef4444;font-weight:700">INTERNAL ONLY — NOT FOR PUBLIC DISTRIBUTION</p>
+  </div>
+</div>
+
+</div>
+
+<!-- abenginecore-report-qc: WARN -->
+<div style='position:fixed;bottom:10px;right:12px;z-index:9999;background:#fff;border:2px solid #d97706;border-radius:8px;padding:4px 10px;font-size:.72rem;font-weight:700;color:#d97706;box-shadow:0 2px 8px rgba(0,0,0,.12);cursor:default' title='AbEngineCore Report QC — WARN&#10;FAIL: 0  WARN: 1'>QC: WARN</div>
+<!-- abenginecore-qc-details -->
+<div style='display:none' id='_abenginecore_qc_details'><div style='font-size:.68rem;color:#6b7280;margin-top:2px'>[WARN] J/summary_rows_missing: Executive summary (§0) is missing required status rows: overall</div></div>
+</body>
+</html>

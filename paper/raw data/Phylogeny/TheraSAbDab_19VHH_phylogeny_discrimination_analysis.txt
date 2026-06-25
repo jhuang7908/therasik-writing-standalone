@@ -1,0 +1,52 @@
+================================================================================
+Phylogenetic Discrimination Analysis: FR2 vs FR3 vs Combined
+================================================================================
+
+References used:
+  - Human_IGHV3-23 (Reference_Human)
+  - Human_IGHV3-13 (Reference_Human)
+  - Alpaca_IGHV3-3 (Reference_Alpaca)
+  - Alpaca_IGHV3-1 (Reference_Alpaca)
+  - Mouse_IGHV1-72 (Reference_Mouse_Outgroup)
+
+## Region: FR2
+Tree File: TheraSAbDab_19VHH_FR2_anchored.newick
+Mean Human-Shift Score: -0.0774
+1. Strategy Discrimination (P-value): 0.0251
+   - BM Mean: 0.000
+   - SR Mean: -0.097
+   - Native Mean: -0.199
+2. CDR2 Fold Discrimination (P-value): 0.0734
+   - H2-9-1 Mean: -0.010
+   - H2-10-1 Mean: -0.105
+3. CDR3 Length Correlation: rho=-0.604, p=0.0062
+-> VERDICT: Strategy-Driven
+------------------------------------------------------------
+
+## Region: FR3
+Tree File: TheraSAbDab_19VHH_FR3_anchored.newick
+Mean Human-Shift Score: 0.0291
+1. Strategy Discrimination (P-value): 0.0921
+   - BM Mean: 0.049
+   - SR Mean: 0.017
+   - Native Mean: 0.010
+2. CDR2 Fold Discrimination (P-value): 0.7022
+   - H2-9-1 Mean: 0.035
+   - H2-10-1 Mean: 0.031
+3. CDR3 Length Correlation: rho=-0.037, p=0.8807
+-> VERDICT: No strong discrimination
+------------------------------------------------------------
+
+## Region: FR2+FR3
+Tree File: TheraSAbDab_19VHH_FR2_FR3_anchored.newick
+Mean Human-Shift Score: -0.0038
+1. Strategy Discrimination (P-value): 0.0106
+   - BM Mean: 0.034
+   - SR Mean: -0.018
+   - Native Mean: -0.055
+2. CDR2 Fold Discrimination (P-value): 0.2054
+   - H2-9-1 Mean: 0.021
+   - H2-10-1 Mean: -0.011
+3. CDR3 Length Correlation: rho=-0.486, p=0.0350
+-> VERDICT: Strategy-Driven
+------------------------------------------------------------

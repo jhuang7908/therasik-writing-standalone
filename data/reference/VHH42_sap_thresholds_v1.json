@@ -1,0 +1,26 @@
+{
+  "_meta": {
+    "source": "data/reference/VHH42_reference_stats_v1.json",
+    "metric": "hydro_patch_max9 (sequence proxy for SAP)",
+    "n": 42,
+    "generated_by": "scripts/compute_vhh42_sap_thresholds.py",
+    "description": "VHH42 SAP/hydro_patch_max9 thresholds for V2.2 Humanization Standard"
+  },
+  "thresholds": {
+    "p50": {
+      "value": 0.556,
+      "tier": "green",
+      "meaning": "Optimal zone (S3 target)"
+    },
+    "p75": {
+      "value": 0.639,
+      "tier": "yellow",
+      "meaning": "Warning zone (S2 target)"
+    },
+    "p90": {
+      "value": 0.75,
+      "tier": "red",
+      "meaning": "Danger zone (S1 upper limit, triggers reshaping)"
+    }
+  }
+}

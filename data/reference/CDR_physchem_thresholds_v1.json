@@ -1,0 +1,2530 @@
+{
+  "_meta": {
+    "purpose": "CDR per-loop physchem thresholds for VAM Stage 2.5 + de-novo CDR design priors",
+    "generated": "2026-04-30",
+    "version": "v1",
+    "rule_summary": {
+      "upper_only_metrics": [
+        "longest_hydrophobic_run",
+        "longest_same_sign_charge_run",
+        "agg_motif_count",
+        "n_glyc_motif",
+        "deamidation_motif",
+        "isomerization_motif",
+        "charge_asymmetry"
+      ],
+      "two_sided_metrics": [
+        "net_charge_pH7",
+        "gravy"
+      ],
+      "hard_bounds": [
+        "free_cys"
+      ],
+      "warn_quantile": "p95 (upper) / p5-p95 window (two-sided)",
+      "veto_quantile": "p99 (upper) / p1_extrapolated-p99 window (two-sided)"
+    },
+    "sources": {
+      "vh_vl": {
+        "label": "AbRef-458 (engineered_459_atlas master_table)",
+        "n": 458,
+        "cdr_definition": "IMGT (segmented in master_table.csv)"
+      },
+      "vhh": {
+        "label": "VHH42 (vhh_39_cdr_fr_segments)",
+        "n": 39,
+        "cdr_definition": "IMGT (segmented upstream by ANARCII)"
+      }
+    },
+    "consumer_modules": [
+      "core/structure/structural_integrity_veto.py (VAM Stage 2.5)",
+      "future de-novo CDR design module (ProteinMPNN / RFAntibody bias)",
+      "core/evaluation/evaluator.py (CDR-level supplement to Fv-level SAP/PPC)"
+    ],
+    "policy": "AbRef-458 powers vh_*/vl_* loci; VHH42 powers vhh_* loci. The two are NOT pooled.",
+    "comparison_semantics": "Strict greater-than against quantile bounds (x > p99 -> VETO, x > p95 -> WARN, else PASS). Equality at the bound counts as PASS so degenerate-zero distributions on motif counts behave correctly.",
+    "holdout_validation": {
+      "source": "data/humanization_assay/384_natural_segmentation.csv",
+      "n_metric_locus_pairs": 60,
+      "n_pass_>=_85pct": 50,
+      "ratio": 0.8333,
+      "interpretation": "Engineered-derived thresholds applied to natural antibodies. PASS rate ~80-85% on a few metrics (e.g. vh_cdr3 gravy, vl_cdr3 NG/DG motifs) reflects genuine engineered-vs-natural differences (CDR liability scrubbing during engineering), not threshold artifacts.",
+      "metric_locus_pairs_below_85pct": [
+        {
+          "locus": "vh_cdr2",
+          "metric": "agg_motif_count",
+          "pass_rate": 0.7031
+        },
+        {
+          "locus": "vh_cdr2",
+          "metric": "isomerization_motif",
+          "pass_rate": 0.8125
+        },
+        {
+          "locus": "vh_cdr2",
+          "metric": "net_charge_pH7",
+          "pass_rate": 0.8438
+        },
+        {
+          "locus": "vh_cdr3",
+          "metric": "net_charge_pH7",
+          "pass_rate": 0.8255
+        },
+        {
+          "locus": "vh_cdr3",
+          "metric": "gravy",
+          "pass_rate": 0.7995
+        },
+        {
+          "locus": "vl_cdr1",
+          "metric": "longest_hydrophobic_run",
+          "pass_rate": 0.8151
+        },
+        {
+          "locus": "vl_cdr2",
+          "metric": "net_charge_pH7",
+          "pass_rate": 0.8411
+        },
+        {
+          "locus": "vl_cdr2",
+          "metric": "gravy",
+          "pass_rate": 0.8307
+        },
+        {
+          "locus": "vl_cdr3",
+          "metric": "deamidation_motif",
+          "pass_rate": 0.8385
+        },
+        {
+          "locus": "vl_cdr3",
+          "metric": "isomerization_motif",
+          "pass_rate": 0.8438
+        }
+      ]
+    }
+  },
+  "loci": {
+    "vh_cdr1": {
+      "n_samples": 458,
+      "thresholds": {
+        "longest_hydrophobic_run": {
+          "rule": "upper_bound",
+          "warn": 2.0,
+          "veto": 3.0,
+          "source_p50": 1.0,
+          "source_p95": 2.0,
+          "source_p99": 3.0,
+          "source_max": 3.0
+        },
+        "longest_same_sign_charge_run": {
+          "rule": "upper_bound",
+          "warn": 1.0,
+          "veto": 2.0,
+          "source_p50": 0.0,
+          "source_p95": 1.0,
+          "source_p99": 2.0,
+          "source_max": 2.0
+        },
+        "agg_motif_count": {
+          "rule": "upper_bound",
+          "warn": 1.0,
+          "veto": 1.0,
+          "source_p50": 0.0,
+          "source_p95": 1.0,
+          "source_p99": 1.0,
+          "source_max": 1.0
+        },
+        "n_glyc_motif": {
+          "rule": "upper_bound",
+          "warn": 0.0,
+          "veto": 0.0,
+          "source_p50": 0.0,
+          "source_p95": 0.0,
+          "source_p99": 0.0,
+          "source_max": 1.0
+        },
+        "deamidation_motif": {
+          "rule": "upper_bound",
+          "warn": 0.0,
+          "veto": 1.0,
+          "source_p50": 0.0,
+          "source_p95": 0.0,
+          "source_p99": 1.0,
+          "source_max": 1.0
+        },
+        "isomerization_motif": {
+          "rule": "upper_bound",
+          "warn": 0.0,
+          "veto": 1.0,
+          "source_p50": 0.0,
+          "source_p95": 0.0,
+          "source_p99": 1.0,
+          "source_max": 1.0
+        },
+        "charge_asymmetry": {
+          "rule": "upper_bound",
+          "warn": 1.0,
+          "veto": 2.0,
+          "source_p50": 0.0,
+          "source_p95": 1.0,
+          "source_p99": 2.0,
+          "source_max": 3.0
+        },
+        "net_charge_pH7": {
+          "rule": "two_sided",
+          "warn_lo": -1.0,
+          "warn_hi": 1.0,
+          "veto_lo": -2.0,
+          "veto_hi": 2.0,
+          "source_p50": 0.0,
+          "source_iqr": 1.0
+        },
+        "gravy": {
+          "rule": "two_sided",
+          "warn_lo": -1.07,
+          "warn_hi": 0.59,
+          "veto_lo": -1.44,
+          "veto_hi": 1.43,
+          "source_p50": -0.3,
+          "source_iqr": 1.0
+        },
+        "free_cys": {
+          "rule": "hard_bound",
+          "warn": 1,
+          "veto": 2,
+          "rationale": "Free Cys in CDR is intrinsically risky regardless of population frequency."
+        }
+      },
+      "design_prior": {
+        "length_range": {
+          "min": 8.0,
+          "max": 9.0,
+          "p50": 8.0
+        },
+        "aa_freq_by_position": [
+          {
+            "D": 0.0044,
+            "E": 0.0022,
+            "G": 0.9847,
+            "N": 0.0022,
+            "S": 0.0066
+          },
+          {
+            "D": 0.0022,
+            "E": 0.0022,
+            "F": 0.4061,
+            "G": 0.0218,
+            "H": 0.0109,
+            "I": 0.0131,
+            "L": 0.0109,
+            "N": 0.0022,
+            "R": 0.0022,
+            "S": 0.0066,
+            "Y": 0.5218
+          },
+          {
+            "A": 0.0262,
+            "D": 0.0328,
+            "E": 0.0066,
+            "F": 0.0044,
+            "H": 0.0022,
+            "I": 0.0371,
+            "K": 0.0109,
+            "N": 0.0415,
+            "P": 0.0109,
+            "R": 0.0044,
+            "S": 0.2424,
+            "T": 0.5699,
+            "V": 0.0087,
+            "Y": 0.0022
+          },
+          {
+            "F": 0.7511,
+            "I": 0.1135,
+            "L": 0.1245,
+            "S": 0.0044,
+            "T": 0.0044,
+            "V": 0.0022
+          },
+          {
+            "A": 0.0044,
+            "D": 0.0044,
+            "E": 0.0066,
+            "F": 0.0022,
+            "G": 0.0022,
+            "I": 0.0153,
+            "K": 0.0371,
+            "M": 0.0022,
+            "N": 0.0197,
+            "P": 0.0044,
+            "Q": 0.0022,
+            "R": 0.0131,
+            "S": 0.3712,
+            "T": 0.5131,
+            "W": 0.0022
+          },
+          {
+            "A": 0.0153,
+            "D": 0.2031,
+            "E": 0.0153,
+            "G": 0.059,
+            "H": 0.0197,
+            "I": 0.0044,
+            "K": 0.0153,
+            "L": 0.0044,
+            "M": 0.0022,
+            "N": 0.1681,
+            "R": 0.0437,
+            "S": 0.3341,
+            "T": 0.1026,
+            "V": 0.0022,
+            "W": 0.0022,
+            "Y": 0.0087
+          },
+          {
+            "A": 0.0197,
+            "C": 0.0022,
+            "D": 0.0415,
+            "F": 0.0415,
+            "G": 0.0328,
+            "H": 0.0109,
+            "I": 0.0022,
+            "K": 0.0044,
+            "L": 0.0022,
+            "M": 0.0022,
+            "N": 0.0306,
+            "P": 0.0022,
+            "Q": 0.0044,
+            "S": 0.0699,
+            "T": 0.0349,
+            "Y": 0.6987
+          },
+          {
+            "A": 0.0677,
+            "D": 0.0437,
+            "E": 0.0175,
+            "F": 0.0197,
+            "G": 0.2118,
+            "H": 0.0153,
+            "I": 0.0175,
+            "K": 0.0044,
+            "L": 0.0153,
+            "M": 0.0022,
+            "N": 0.0721,
+            "P": 0.0066,
+            "R": 0.0044,
+            "S": 0.024,
+            "T": 0.0371,
+            "V": 0.0371,
+            "W": 0.1943,
+            "Y": 0.2096
+          },
+          {
+            "A": 0.2917,
+            "D": 0.0208,
+            "H": 0.0417,
+            "I": 0.0208,
+            "L": 0.0417,
+            "M": 0.2708,
+            "S": 0.125,
+            "T": 0.0208,
+            "V": 0.0208,
+            "W": 0.0208,
+            "Y": 0.125
+          },
+          {
+            "C": 0.0625,
+            "G": 0.8125,
+            "S": 0.125
+          }
+        ],
+        "length_histogram": {
+          "8": 410,
+          "9": 32,
+          "10": 16
+        }
+      }
+    },
+    "vh_cdr2": {
+      "n_samples": 458,
+      "thresholds": {
+        "longest_hydrophobic_run": {
+          "rule": "upper_bound",
+          "warn": 2.0,
+          "veto": 3.0,
+          "source_p50": 1.0,
+          "source_p95": 2.0,
+          "source_p99": 3.0,
+          "source_max": 3.0
+        },
+        "longest_same_sign_charge_run": {
+          "rule": "upper_bound",
+          "warn": 2.0,
+          "veto": 3.0,
+          "source_p50": 1.0,
+          "source_p95": 2.0,
+          "source_p99": 3.0,
+          "source_max": 3.0
+        },
+        "agg_motif_count": {
+          "rule": "upper_bound",
+          "warn": 0.0,
+          "veto": 1.0,
+          "source_p50": 0.0,
+          "source_p95": 0.0,
+          "source_p99": 1.0,
+          "source_max": 1.0
+        },
+        "n_glyc_motif": {
+          "rule": "upper_bound",
+          "warn": 0.0,
+          "veto": 0.0,
+          "source_p50": 0.0,
+          "source_p95": 0.0,
+          "source_p99": 0.0,
+          "source_max": 1.0
+        },
+        "deamidation_motif": {
+          "rule": "upper_bound",
+          "warn": 1.0,
+          "veto": 1.0,
+          "source_p50": 0.0,
+          "source_p95": 1.0,
+          "source_p99": 1.0,
+          "source_max": 2.0
+        },
+        "isomerization_motif": {
+          "rule": "upper_bound",
+          "warn": 1.0,
+          "veto": 1.0,
+          "source_p50": 0.0,
+          "source_p95": 1.0,
+          "source_p99": 1.0,
+          "source_max": 2.0
+        },
+        "charge_asymmetry": {
+          "rule": "upper_bound",
+          "warn": 2.15,
+          "veto": 3.0,
+          "source_p50": 1.0,
+          "source_p95": 2.15,
+          "source_p99": 3.0,
+          "source_max": 4.0
+        },
+        "net_charge_pH7": {
+          "rule": "two_sided",
+          "warn_lo": -2.15,
+          "warn_hi": 1.01,
+          "veto_lo": -3.15,
+          "veto_hi": 2.01,
+          "source_p50": 0.0,
+          "source_iqr": 1.0
+        },
+        "gravy": {
+          "rule": "two_sided",
+          "warn_lo": -1.54,
+          "warn_hi": 0.56,
+          "veto_lo": -2.07,
+          "veto_hi": 1.56,
+          "source_p50": -0.59,
+          "source_iqr": 1.0
+        },
+        "free_cys": {
+          "rule": "hard_bound",
+          "warn": 1,
+          "veto": 2,
+          "rationale": "Free Cys in CDR is intrinsically risky regardless of population frequency."
+        }
+      },
+      "design_prior": {
+        "length_range": {
+          "min": 7.0,
+          "max": 8.0,
+          "p50": 8.0
+        },
+        "aa_freq_by_position": [
+          {
+            "F": 0.0131,
+            "I": 0.9345,
+            "L": 0.0044,
+            "M": 0.0109,
+            "N": 0.0022,
+            "S": 0.0022,
+            "T": 0.0044,
+            "V": 0.0284
+          },
+          {
+            "A": 0.0022,
+            "C": 0.0022,
+            "D": 0.1266,
+            "E": 0.0022,
+            "F": 0.0153,
+            "G": 0.0175,
+            "H": 0.0371,
+            "I": 0.0131,
+            "K": 0.0131,
+            "L": 0.024,
+            "M": 0.0022,
+            "N": 0.214,
+            "P": 0.0022,
+            "Q": 0.0044,
+            "R": 0.0502,
+            "S": 0.2096,
+            "T": 0.024,
+            "W": 0.0895,
+            "Y": 0.1507
+          },
+          {
+            "A": 0.0328,
+            "D": 0.0066,
+            "E": 0.0066,
+            "F": 0.0022,
+            "G": 0.0524,
+            "H": 0.0022,
+            "I": 0.0087,
+            "K": 0.0044,
+            "L": 0.0153,
+            "M": 0.0022,
+            "N": 0.0109,
+            "P": 0.4847,
+            "R": 0.024,
+            "S": 0.1419,
+            "T": 0.083,
+            "V": 0.0044,
+            "W": 0.0415,
+            "Y": 0.0764
+          },
+          {
+            "A": 0.0393,
+            "D": 0.1157,
+            "E": 0.0415,
+            "F": 0.0044,
+            "G": 0.3144,
+            "H": 0.0066,
+            "I": 0.0087,
+            "K": 0.0568,
+            "L": 0.0087,
+            "M": 0.0044,
+            "N": 0.0742,
+            "R": 0.0262,
+            "S": 0.1354,
+            "T": 0.0284,
+            "V": 0.0087,
+            "Y": 0.1266
+          },
+          {
+            "A": 0.0218,
+            "D": 0.131,
+            "E": 0.0066,
+            "F": 0.0044,
+            "G": 0.3166,
+            "H": 0.0044,
+            "I": 0.0044,
+            "K": 0.0044,
+            "L": 0.0022,
+            "M": 0.0022,
+            "N": 0.1747,
+            "P": 0.0066,
+            "Q": 0.0044,
+            "R": 0.0087,
+            "S": 0.1681,
+            "T": 0.0939,
+            "V": 0.0044,
+            "Y": 0.0415
+          },
+          {
+            "A": 0.024,
+            "D": 0.1288,
+            "E": 0.0153,
+            "F": 0.0131,
+            "G": 0.4607,
+            "I": 0.0131,
+            "K": 0.0109,
+            "L": 0.0022,
+            "N": 0.0611,
+            "Q": 0.0022,
+            "R": 0.0262,
+            "S": 0.1834,
+            "T": 0.0284,
+            "V": 0.0131,
+            "Y": 0.0175
+          },
+          {
+            "A": 0.0131,
+            "D": 0.1048,
+            "E": 0.0721,
+            "F": 0.0109,
+            "G": 0.131,
+            "H": 0.0218,
+            "I": 0.0262,
+            "K": 0.0437,
+            "L": 0.0066,
+            "M": 0.0022,
+            "N": 0.1223,
+            "P": 0.0044,
+            "Q": 0.0022,
+            "R": 0.0349,
+            "S": 0.083,
+            "T": 0.1878,
+            "V": 0.0109,
+            "Y": 0.1223
+          },
+          {
+            "A": 0.041,
+            "D": 0.0027,
+            "F": 0.0055,
+            "G": 0.0027,
+            "H": 0.0027,
+            "I": 0.0929,
+            "K": 0.0082,
+            "L": 0.0027,
+            "N": 0.0027,
+            "P": 0.0765,
+            "S": 0.0546,
+            "T": 0.6421,
+            "V": 0.0137,
+            "Y": 0.0519
+          },
+          {
+            "A": 0.6957,
+            "E": 0.0435,
+            "G": 0.087,
+            "P": 0.0435,
+            "T": 0.087,
+            "Y": 0.0435
+          },
+          {
+            "A": 0.0476,
+            "I": 0.0476,
+            "T": 0.9048
+          }
+        ],
+        "length_histogram": {
+          "7": 92,
+          "8": 343,
+          "9": 2,
+          "10": 21
+        }
+      }
+    },
+    "vh_cdr3": {
+      "n_samples": 458,
+      "thresholds": {
+        "longest_hydrophobic_run": {
+          "rule": "upper_bound",
+          "warn": 3.0,
+          "veto": 4.0,
+          "source_p50": 2.0,
+          "source_p95": 3.0,
+          "source_p99": 4.0,
+          "source_max": 5.0
+        },
+        "longest_same_sign_charge_run": {
+          "rule": "upper_bound",
+          "warn": 2.0,
+          "veto": 2.0,
+          "source_p50": 1.0,
+          "source_p95": 2.0,
+          "source_p99": 2.0,
+          "source_max": 4.0
+        },
+        "agg_motif_count": {
+          "rule": "upper_bound",
+          "warn": 1.0,
+          "veto": 2.0,
+          "source_p50": 0.0,
+          "source_p95": 1.0,
+          "source_p99": 2.0,
+          "source_max": 2.0
+        },
+        "n_glyc_motif": {
+          "rule": "upper_bound",
+          "warn": 0.0,
+          "veto": 0.0,
+          "source_p50": 0.0,
+          "source_p95": 0.0,
+          "source_p99": 0.0,
+          "source_max": 1.0
+        },
+        "deamidation_motif": {
+          "rule": "upper_bound",
+          "warn": 0.0,
+          "veto": 1.0,
+          "source_p50": 0.0,
+          "source_p95": 0.0,
+          "source_p99": 1.0,
+          "source_max": 2.0
+        },
+        "isomerization_motif": {
+          "rule": "upper_bound",
+          "warn": 1.0,
+          "veto": 1.0,
+          "source_p50": 0.0,
+          "source_p95": 1.0,
+          "source_p99": 1.0,
+          "source_max": 2.0
+        },
+        "charge_asymmetry": {
+          "rule": "upper_bound",
+          "warn": 3.0,
+          "veto": 4.0,
+          "source_p50": 1.0,
+          "source_p95": 3.0,
+          "source_p99": 4.0,
+          "source_max": 4.0
+        },
+        "net_charge_pH7": {
+          "rule": "two_sided",
+          "warn_lo": -2.0,
+          "warn_hi": 2.0,
+          "veto_lo": -3.2,
+          "veto_hi": 3.0,
+          "source_p50": 0.0,
+          "source_iqr": 1.2
+        },
+        "gravy": {
+          "rule": "two_sided",
+          "warn_lo": -1.57,
+          "warn_hi": 0.21,
+          "veto_lo": -2.57,
+          "veto_hi": 1.07,
+          "source_p50": -0.71,
+          "source_iqr": 1.0
+        },
+        "free_cys": {
+          "rule": "hard_bound",
+          "warn": 1,
+          "veto": 2,
+          "rationale": "Free Cys in CDR is intrinsically risky regardless of population frequency."
+        }
+      },
+      "design_prior": {
+        "length_range": {
+          "min": 7.0,
+          "max": 16.0,
+          "p50": 12.0
+        },
+        "aa_freq_by_position": [
+          {
+            "A": 0.7991,
+            "E": 0.0044,
+            "G": 0.0218,
+            "L": 0.0044,
+            "N": 0.0022,
+            "S": 0.0284,
+            "T": 0.0873,
+            "V": 0.0502,
+            "Y": 0.0022
+          },
+          {
+            "A": 0.0175,
+            "C": 0.0022,
+            "D": 0.0022,
+            "E": 0.0044,
+            "G": 0.0109,
+            "H": 0.0087,
+            "I": 0.0087,
+            "K": 0.0328,
+            "L": 0.0044,
+            "N": 0.0175,
+            "P": 0.0022,
+            "Q": 0.0022,
+            "R": 0.7773,
+            "S": 0.0524,
+            "T": 0.0415,
+            "V": 0.0087,
+            "Y": 0.0066
+          },
+          {
+            "A": 0.0328,
+            "D": 0.0873,
+            "E": 0.0873,
+            "F": 0.0284,
+            "G": 0.1878,
+            "H": 0.0568,
+            "I": 0.024,
+            "K": 0.0022,
+            "L": 0.0546,
+            "M": 0.0218,
+            "N": 0.0328,
+            "P": 0.0328,
+            "Q": 0.0306,
+            "R": 0.0873,
+            "S": 0.1026,
+            "T": 0.0131,
+            "V": 0.0197,
+            "W": 0.0393,
+            "Y": 0.059
+          },
+          {
+            "A": 0.0437,
+            "D": 0.1135,
+            "E": 0.0349,
+            "F": 0.0328,
+            "G": 0.2249,
+            "H": 0.0175,
+            "I": 0.0175,
+            "K": 0.0175,
+            "L": 0.0568,
+            "M": 0.0153,
+            "N": 0.0218,
+            "P": 0.0393,
+            "Q": 0.0066,
+            "R": 0.0742,
+            "S": 0.0655,
+            "T": 0.048,
+            "V": 0.024,
+            "W": 0.0218,
+            "Y": 0.1245
+          },
+          {
+            "A": 0.0306,
+            "D": 0.1072,
+            "E": 0.0131,
+            "F": 0.0503,
+            "G": 0.1619,
+            "H": 0.0263,
+            "I": 0.0525,
+            "K": 0.0088,
+            "L": 0.0328,
+            "M": 0.0088,
+            "N": 0.035,
+            "P": 0.0525,
+            "Q": 0.0066,
+            "R": 0.0569,
+            "S": 0.0503,
+            "T": 0.035,
+            "V": 0.0284,
+            "W": 0.0263,
+            "Y": 0.2166
+          },
+          {
+            "A": 0.0469,
+            "D": 0.1116,
+            "E": 0.0112,
+            "F": 0.0513,
+            "G": 0.1808,
+            "H": 0.0179,
+            "I": 0.0134,
+            "K": 0.0089,
+            "L": 0.0491,
+            "M": 0.0022,
+            "N": 0.0424,
+            "P": 0.0201,
+            "R": 0.0513,
+            "S": 0.0625,
+            "T": 0.067,
+            "V": 0.029,
+            "W": 0.0179,
+            "Y": 0.2165
+          },
+          {
+            "A": 0.0477,
+            "D": 0.0636,
+            "E": 0.0068,
+            "F": 0.0682,
+            "G": 0.1477,
+            "H": 0.0182,
+            "I": 0.0182,
+            "K": 0.0068,
+            "L": 0.0205,
+            "M": 0.0205,
+            "N": 0.0682,
+            "P": 0.0364,
+            "Q": 0.0068,
+            "R": 0.0409,
+            "S": 0.1045,
+            "T": 0.0523,
+            "V": 0.0295,
+            "W": 0.0182,
+            "Y": 0.225
+          },
+          {
+            "A": 0.081,
+            "D": 0.1343,
+            "E": 0.0208,
+            "F": 0.1065,
+            "G": 0.1204,
+            "H": 0.0093,
+            "I": 0.0116,
+            "K": 0.0046,
+            "L": 0.044,
+            "M": 0.0231,
+            "N": 0.037,
+            "P": 0.0509,
+            "Q": 0.0023,
+            "R": 0.0116,
+            "S": 0.0718,
+            "T": 0.0324,
+            "V": 0.0255,
+            "W": 0.037,
+            "Y": 0.1759
+          },
+          {
+            "A": 0.0576,
+            "C": 0.0024,
+            "D": 0.1175,
+            "E": 0.012,
+            "F": 0.0983,
+            "G": 0.1103,
+            "H": 0.012,
+            "I": 0.0048,
+            "K": 0.0024,
+            "L": 0.024,
+            "M": 0.048,
+            "N": 0.0144,
+            "P": 0.0408,
+            "R": 0.0072,
+            "S": 0.0767,
+            "T": 0.0504,
+            "V": 0.0456,
+            "W": 0.0384,
+            "Y": 0.2374
+          },
+          {
+            "A": 0.1141,
+            "D": 0.1432,
+            "E": 0.0133,
+            "F": 0.1326,
+            "G": 0.0822,
+            "H": 0.0027,
+            "I": 0.0106,
+            "L": 0.0371,
+            "M": 0.0292,
+            "N": 0.0318,
+            "P": 0.0159,
+            "R": 0.0318,
+            "S": 0.0531,
+            "T": 0.0212,
+            "V": 0.0318,
+            "W": 0.061,
+            "Y": 0.1883
+          },
+          {
+            "A": 0.1212,
+            "D": 0.1606,
+            "E": 0.003,
+            "F": 0.0939,
+            "G": 0.0424,
+            "H": 0.0303,
+            "I": 0.0212,
+            "K": 0.003,
+            "L": 0.0364,
+            "M": 0.0697,
+            "N": 0.0152,
+            "P": 0.0303,
+            "Q": 0.0091,
+            "R": 0.003,
+            "S": 0.0303,
+            "T": 0.0182,
+            "V": 0.0424,
+            "W": 0.0212,
+            "Y": 0.2485
+          },
+          {
+            "A": 0.0772,
+            "D": 0.1912,
+            "E": 0.0074,
+            "F": 0.136,
+            "G": 0.0184,
+            "H": 0.011,
+            "I": 0.0147,
+            "K": 0.0037,
+            "L": 0.0331,
+            "M": 0.0625,
+            "N": 0.0221,
+            "P": 0.0147,
+            "R": 0.0257,
+            "S": 0.0257,
+            "T": 0.0184,
+            "V": 0.0551,
+            "W": 0.0294,
+            "Y": 0.2537
+          },
+          {
+            "A": 0.06,
+            "D": 0.225,
+            "E": 0.02,
+            "F": 0.11,
+            "G": 0.02,
+            "I": 0.015,
+            "L": 0.05,
+            "M": 0.045,
+            "N": 0.02,
+            "P": 0.01,
+            "R": 0.01,
+            "S": 0.015,
+            "T": 0.02,
+            "V": 0.02,
+            "W": 0.03,
+            "Y": 0.33
+          },
+          {
+            "A": 0.0588,
+            "D": 0.1985,
+            "E": 0.0147,
+            "F": 0.1324,
+            "G": 0.0074,
+            "I": 0.0074,
+            "K": 0.0074,
+            "L": 0.0368,
+            "M": 0.0294,
+            "N": 0.0147,
+            "Q": 0.0074,
+            "R": 0.0074,
+            "S": 0.0147,
+            "T": 0.0221,
+            "V": 0.0809,
+            "W": 0.0368,
+            "Y": 0.3235
+          },
+          {
+            "A": 0.1154,
+            "D": 0.1795,
+            "F": 0.1026,
+            "G": 0.0128,
+            "H": 0.0128,
+            "L": 0.0256,
+            "M": 0.0513,
+            "S": 0.0256,
+            "V": 0.0641,
+            "W": 0.0128,
+            "Y": 0.3974
+          },
+          {
+            "D": 0.2273,
+            "E": 0.0227,
+            "F": 0.1364,
+            "G": 0.0227,
+            "H": 0.0227,
+            "M": 0.0455,
+            "P": 0.0227,
+            "V": 0.1591,
+            "W": 0.0227,
+            "Y": 0.3182
+          },
+          {
+            "A": 0.0435,
+            "D": 0.2609,
+            "I": 0.087,
+            "M": 0.087,
+            "P": 0.0435,
+            "S": 0.0435,
+            "V": 0.1739,
+            "Y": 0.2609
+          },
+          {
+            "D": 0.2308,
+            "E": 0.0769,
+            "F": 0.0769,
+            "H": 0.0769,
+            "N": 0.0769,
+            "V": 0.2308,
+            "Y": 0.2308
+          },
+          {
+            "A": 0.3333,
+            "G": 0.1667,
+            "L": 0.1667,
+            "Y": 0.3333
+          },
+          {
+            "L": 1.0
+          },
+          {
+            "D": 1.0
+          },
+          {
+            "A": 0.5,
+            "V": 0.5
+          }
+        ],
+        "length_histogram": {
+          "4": 1,
+          "5": 9,
+          "6": 8,
+          "7": 8,
+          "8": 15,
+          "9": 40,
+          "10": 47,
+          "11": 58,
+          "12": 72,
+          "13": 64,
+          "14": 58,
+          "15": 34,
+          "16": 21,
+          "17": 10,
+          "18": 7,
+          "19": 4,
+          "22": 2
+        }
+      }
+    },
+    "vl_cdr1": {
+      "n_samples": 458,
+      "thresholds": {
+        "longest_hydrophobic_run": {
+          "rule": "upper_bound",
+          "warn": 2.0,
+          "veto": 2.0,
+          "source_p50": 1.0,
+          "source_p95": 2.0,
+          "source_p99": 2.0,
+          "source_max": 4.0
+        },
+        "longest_same_sign_charge_run": {
+          "rule": "upper_bound",
+          "warn": 1.0,
+          "veto": 2.0,
+          "source_p50": 1.0,
+          "source_p95": 1.0,
+          "source_p99": 2.0,
+          "source_max": 3.0
+        },
+        "agg_motif_count": {
+          "rule": "upper_bound",
+          "warn": 0.0,
+          "veto": 1.0,
+          "source_p50": 0.0,
+          "source_p95": 0.0,
+          "source_p99": 1.0,
+          "source_max": 1.0
+        },
+        "n_glyc_motif": {
+          "rule": "upper_bound",
+          "warn": 0.0,
+          "veto": 0.0,
+          "source_p50": 0.0,
+          "source_p95": 0.0,
+          "source_p99": 0.0,
+          "source_max": 1.0
+        },
+        "deamidation_motif": {
+          "rule": "upper_bound",
+          "warn": 1.0,
+          "veto": 1.0,
+          "source_p50": 0.0,
+          "source_p95": 1.0,
+          "source_p99": 1.0,
+          "source_max": 2.0
+        },
+        "isomerization_motif": {
+          "rule": "upper_bound",
+          "warn": 1.0,
+          "veto": 2.0,
+          "source_p50": 0.0,
+          "source_p95": 1.0,
+          "source_p99": 2.0,
+          "source_max": 2.0
+        },
+        "charge_asymmetry": {
+          "rule": "upper_bound",
+          "warn": 3.0,
+          "veto": 3.0,
+          "source_p50": 1.0,
+          "source_p95": 3.0,
+          "source_p99": 3.0,
+          "source_max": 4.0
+        },
+        "net_charge_pH7": {
+          "rule": "two_sided",
+          "warn_lo": -2.0,
+          "warn_hi": 2.0,
+          "veto_lo": -3.1,
+          "veto_hi": 3.1,
+          "source_p50": 0.0,
+          "source_iqr": 1.1
+        },
+        "gravy": {
+          "rule": "two_sided",
+          "warn_lo": -1.8,
+          "warn_hi": 0.17,
+          "veto_lo": -2.17,
+          "veto_hi": 1.17,
+          "source_p50": -0.82,
+          "source_iqr": 1.0
+        },
+        "free_cys": {
+          "rule": "hard_bound",
+          "warn": 1,
+          "veto": 2,
+          "rationale": "Free Cys in CDR is intrinsically risky regardless of population frequency."
+        }
+      },
+      "design_prior": {
+        "length_range": {
+          "min": 5.0,
+          "max": 12.0,
+          "p50": 6.0
+        },
+        "aa_freq_by_position": [
+          {
+            "A": 0.0022,
+            "D": 0.0109,
+            "E": 0.1572,
+            "G": 0.0044,
+            "H": 0.0022,
+            "K": 0.0699,
+            "L": 0.0022,
+            "N": 0.0044,
+            "Q": 0.6026,
+            "R": 0.0109,
+            "S": 0.1157,
+            "T": 0.0175
+          },
+          {
+            "A": 0.0066,
+            "D": 0.2118,
+            "G": 0.0502,
+            "H": 0.0131,
+            "I": 0.0109,
+            "K": 0.0022,
+            "L": 0.0044,
+            "N": 0.1114,
+            "P": 0.0022,
+            "R": 0.0131,
+            "S": 0.5524,
+            "T": 0.0175,
+            "Y": 0.0044
+          },
+          {
+            "A": 0.0109,
+            "G": 0.0022,
+            "I": 0.3472,
+            "L": 0.2249,
+            "N": 0.0087,
+            "P": 0.0022,
+            "R": 0.0022,
+            "S": 0.0066,
+            "V": 0.393,
+            "Y": 0.0022
+          },
+          {
+            "A": 0.0175,
+            "D": 0.0963,
+            "E": 0.0197,
+            "F": 0.0088,
+            "G": 0.0985,
+            "H": 0.0175,
+            "I": 0.0219,
+            "L": 0.1466,
+            "N": 0.0897,
+            "P": 0.0044,
+            "Q": 0.0044,
+            "R": 0.0241,
+            "S": 0.2495,
+            "T": 0.0109,
+            "V": 0.105,
+            "W": 0.0022,
+            "Y": 0.0832
+          },
+          {
+            "A": 0.0022,
+            "D": 0.0394,
+            "E": 0.0109,
+            "F": 0.0022,
+            "G": 0.0438,
+            "H": 0.1204,
+            "I": 0.0306,
+            "K": 0.0372,
+            "N": 0.2079,
+            "Q": 0.0044,
+            "R": 0.0131,
+            "S": 0.1554,
+            "T": 0.1707,
+            "V": 0.0022,
+            "Y": 0.1597
+          },
+          {
+            "A": 0.1232,
+            "D": 0.0545,
+            "E": 0.0142,
+            "F": 0.0308,
+            "G": 0.0118,
+            "H": 0.0095,
+            "I": 0.0095,
+            "K": 0.0024,
+            "L": 0.0095,
+            "N": 0.0972,
+            "R": 0.0355,
+            "S": 0.3128,
+            "T": 0.0213,
+            "V": 0.0071,
+            "W": 0.0237,
+            "Y": 0.237
+          },
+          {
+            "A": 0.0146,
+            "D": 0.0976,
+            "F": 0.0098,
+            "G": 0.3366,
+            "H": 0.0049,
+            "I": 0.0049,
+            "N": 0.2732,
+            "Q": 0.0049,
+            "R": 0.0341,
+            "S": 0.1122,
+            "T": 0.0244,
+            "V": 0.0049,
+            "Y": 0.078
+          },
+          {
+            "A": 0.0266,
+            "D": 0.0904,
+            "E": 0.0053,
+            "F": 0.0053,
+            "G": 0.3777,
+            "H": 0.0106,
+            "I": 0.0585,
+            "K": 0.0106,
+            "L": 0.0053,
+            "M": 0.0053,
+            "N": 0.2128,
+            "Q": 0.016,
+            "R": 0.0106,
+            "S": 0.0213,
+            "T": 0.0426,
+            "V": 0.0053,
+            "W": 0.0106,
+            "Y": 0.0851
+          },
+          {
+            "D": 0.0167,
+            "F": 0.0111,
+            "G": 0.0056,
+            "H": 0.0222,
+            "I": 0.0556,
+            "K": 0.0722,
+            "L": 0.0056,
+            "N": 0.3,
+            "P": 0.0056,
+            "Q": 0.15,
+            "R": 0.0389,
+            "S": 0.2611,
+            "T": 0.0056,
+            "Y": 0.05
+          },
+          {
+            "A": 0.0058,
+            "D": 0.0058,
+            "F": 0.152,
+            "K": 0.193,
+            "L": 0.0292,
+            "P": 0.0058,
+            "R": 0.0058,
+            "S": 0.0058,
+            "T": 0.4561,
+            "Y": 0.1404
+          },
+          {
+            "F": 0.0435,
+            "N": 0.2957,
+            "Y": 0.6609
+          },
+          {
+            "F": 0.1176,
+            "H": 0.0294,
+            "Y": 0.8529
+          }
+        ],
+        "length_histogram": {
+          "3": 1,
+          "5": 35,
+          "6": 217,
+          "7": 17,
+          "8": 8,
+          "9": 9,
+          "10": 56,
+          "11": 81,
+          "12": 34
+        }
+      }
+    },
+    "vl_cdr2": {
+      "n_samples": 454,
+      "thresholds": {
+        "longest_hydrophobic_run": {
+          "rule": "upper_bound",
+          "warn": 2.0,
+          "veto": 2.0,
+          "source_p50": 1.0,
+          "source_p95": 2.0,
+          "source_p99": 2.0,
+          "source_max": 2.0
+        },
+        "longest_same_sign_charge_run": {
+          "rule": "upper_bound",
+          "warn": 1.0,
+          "veto": 1.0,
+          "source_p50": 0.0,
+          "source_p95": 1.0,
+          "source_p99": 1.0,
+          "source_max": 3.0
+        },
+        "agg_motif_count": {
+          "rule": "upper_bound",
+          "warn": 0.0,
+          "veto": 0.0,
+          "source_p50": 0.0,
+          "source_p95": 0.0,
+          "source_p99": 0.0,
+          "source_max": 0.0
+        },
+        "n_glyc_motif": {
+          "rule": "upper_bound",
+          "warn": 0.0,
+          "veto": 0.0,
+          "source_p50": 0.0,
+          "source_p95": 0.0,
+          "source_p99": 0.0,
+          "source_max": 0.0
+        },
+        "deamidation_motif": {
+          "rule": "upper_bound",
+          "warn": 0.0,
+          "veto": 0.0,
+          "source_p50": 0.0,
+          "source_p95": 0.0,
+          "source_p99": 0.0,
+          "source_max": 1.0
+        },
+        "isomerization_motif": {
+          "rule": "upper_bound",
+          "warn": 0.0,
+          "veto": 0.0,
+          "source_p50": 0.0,
+          "source_p95": 0.0,
+          "source_p99": 0.0,
+          "source_max": 1.0
+        },
+        "charge_asymmetry": {
+          "rule": "upper_bound",
+          "warn": 1.0,
+          "veto": 1.0,
+          "source_p50": 0.0,
+          "source_p95": 1.0,
+          "source_p99": 1.0,
+          "source_max": 3.0
+        },
+        "net_charge_pH7": {
+          "rule": "two_sided",
+          "warn_lo": -1.0,
+          "warn_hi": 1.0,
+          "veto_lo": -2.0,
+          "veto_hi": 1.0,
+          "source_p50": 0.0,
+          "source_iqr": 1.0
+        },
+        "gravy": {
+          "rule": "two_sided",
+          "warn_lo": -2.0,
+          "warn_hi": 1.6,
+          "veto_lo": -3.13,
+          "veto_hi": 2.4,
+          "source_p50": -0.1,
+          "source_iqr": 1.13
+        },
+        "free_cys": {
+          "rule": "hard_bound",
+          "warn": 1,
+          "veto": 2,
+          "rationale": "Free Cys in CDR is intrinsically risky regardless of population frequency."
+        }
+      },
+      "design_prior": {
+        "length_range": {
+          "min": 3.0,
+          "max": 3.0,
+          "p50": 3.0
+        },
+        "aa_freq_by_position": [
+          {
+            "A": 0.0991,
+            "D": 0.0595,
+            "E": 0.011,
+            "F": 0.0242,
+            "G": 0.1123,
+            "H": 0.0132,
+            "K": 0.0771,
+            "L": 0.0683,
+            "N": 0.0286,
+            "P": 0.0022,
+            "Q": 0.0242,
+            "R": 0.0881,
+            "S": 0.1322,
+            "T": 0.0154,
+            "V": 0.011,
+            "W": 0.0947,
+            "Y": 0.1388
+          },
+          {
+            "A": 0.5242,
+            "D": 0.0088,
+            "E": 0.0022,
+            "G": 0.0264,
+            "I": 0.0088,
+            "L": 0.0022,
+            "M": 0.033,
+            "N": 0.0044,
+            "P": 0.0022,
+            "Q": 0.0044,
+            "R": 0.0022,
+            "S": 0.0022,
+            "T": 0.2335,
+            "V": 0.1454
+          },
+          {
+            "A": 0.0022,
+            "D": 0.0176,
+            "F": 0.0066,
+            "I": 0.0022,
+            "K": 0.0286,
+            "N": 0.0396,
+            "Q": 0.0022,
+            "R": 0.0088,
+            "S": 0.8414,
+            "T": 0.0485,
+            "Y": 0.0022
+          }
+        ],
+        "length_histogram": {
+          "3": 454
+        }
+      }
+    },
+    "vl_cdr3": {
+      "n_samples": 458,
+      "thresholds": {
+        "longest_hydrophobic_run": {
+          "rule": "upper_bound",
+          "warn": 2.0,
+          "veto": 3.0,
+          "source_p50": 1.0,
+          "source_p95": 2.0,
+          "source_p99": 3.0,
+          "source_max": 4.0
+        },
+        "longest_same_sign_charge_run": {
+          "rule": "upper_bound",
+          "warn": 2.0,
+          "veto": 2.0,
+          "source_p50": 0.0,
+          "source_p95": 2.0,
+          "source_p99": 2.0,
+          "source_max": 2.0
+        },
+        "agg_motif_count": {
+          "rule": "upper_bound",
+          "warn": 0.0,
+          "veto": 1.0,
+          "source_p50": 0.0,
+          "source_p95": 0.0,
+          "source_p99": 1.0,
+          "source_max": 2.0
+        },
+        "n_glyc_motif": {
+          "rule": "upper_bound",
+          "warn": 0.0,
+          "veto": 0.0,
+          "source_p50": 0.0,
+          "source_p95": 0.0,
+          "source_p99": 0.0,
+          "source_max": 0.0
+        },
+        "deamidation_motif": {
+          "rule": "upper_bound",
+          "warn": 0.0,
+          "veto": 1.0,
+          "source_p50": 0.0,
+          "source_p95": 0.0,
+          "source_p99": 1.0,
+          "source_max": 1.0
+        },
+        "isomerization_motif": {
+          "rule": "upper_bound",
+          "warn": 0.0,
+          "veto": 1.0,
+          "source_p50": 0.0,
+          "source_p95": 0.0,
+          "source_p99": 1.0,
+          "source_max": 1.0
+        },
+        "charge_asymmetry": {
+          "rule": "upper_bound",
+          "warn": 2.0,
+          "veto": 2.0,
+          "source_p50": 0.0,
+          "source_p95": 2.0,
+          "source_p99": 2.0,
+          "source_max": 3.0
+        },
+        "net_charge_pH7": {
+          "rule": "two_sided",
+          "warn_lo": -2.0,
+          "warn_hi": 1.1,
+          "veto_lo": -2.9,
+          "veto_hi": 2.1,
+          "source_p50": 0.0,
+          "source_iqr": 1.0
+        },
+        "gravy": {
+          "rule": "two_sided",
+          "warn_lo": -2.39,
+          "warn_hi": 0.02,
+          "veto_lo": -3.09,
+          "veto_hi": 0.85,
+          "source_p50": -1.17,
+          "source_iqr": 1.07
+        },
+        "free_cys": {
+          "rule": "hard_bound",
+          "warn": 1,
+          "veto": 2,
+          "rationale": "Free Cys in CDR is intrinsically risky regardless of population frequency."
+        }
+      },
+      "design_prior": {
+        "length_range": {
+          "min": 8.0,
+          "max": 10.0,
+          "p50": 9.0
+        },
+        "aa_freq_by_position": [
+          {
+            "A": 0.0328,
+            "F": 0.0611,
+            "G": 0.024,
+            "H": 0.0568,
+            "K": 0.0087,
+            "L": 0.0808,
+            "M": 0.0175,
+            "Q": 0.6332,
+            "S": 0.048,
+            "T": 0.0044,
+            "V": 0.0131,
+            "W": 0.0109,
+            "Y": 0.0087
+          },
+          {
+            "A": 0.0022,
+            "C": 0.0022,
+            "E": 0.0044,
+            "G": 0.0131,
+            "H": 0.0786,
+            "L": 0.0197,
+            "M": 0.0022,
+            "N": 0.0502,
+            "Q": 0.8013,
+            "S": 0.0197,
+            "T": 0.0022,
+            "V": 0.0044
+          },
+          {
+            "A": 0.0328,
+            "D": 0.0349,
+            "E": 0.0044,
+            "F": 0.0284,
+            "G": 0.1463,
+            "H": 0.1245,
+            "I": 0.0044,
+            "L": 0.0153,
+            "M": 0.0022,
+            "N": 0.0415,
+            "Q": 0.0022,
+            "R": 0.0262,
+            "S": 0.2162,
+            "T": 0.0218,
+            "V": 0.0218,
+            "W": 0.0655,
+            "Y": 0.2118
+          },
+          {
+            "A": 0.0197,
+            "D": 0.0546,
+            "E": 0.0131,
+            "F": 0.0197,
+            "G": 0.0131,
+            "H": 0.0437,
+            "I": 0.0066,
+            "K": 0.0415,
+            "L": 0.0524,
+            "N": 0.1266,
+            "Q": 0.0044,
+            "R": 0.0284,
+            "S": 0.1834,
+            "T": 0.1114,
+            "V": 0.0044,
+            "W": 0.0415,
+            "Y": 0.2358
+          },
+          {
+            "A": 0.0197,
+            "D": 0.0284,
+            "E": 0.1659,
+            "F": 0.0087,
+            "G": 0.059,
+            "H": 0.1179,
+            "I": 0.0328,
+            "K": 0.0328,
+            "L": 0.0175,
+            "M": 0.0022,
+            "N": 0.0721,
+            "P": 0.0022,
+            "Q": 0.0109,
+            "R": 0.0284,
+            "S": 0.2686,
+            "T": 0.1048,
+            "V": 0.0044,
+            "Y": 0.024
+          },
+          {
+            "A": 0.0218,
+            "C": 0.0022,
+            "D": 0.0699,
+            "E": 0.0044,
+            "F": 0.0873,
+            "G": 0.0218,
+            "H": 0.0066,
+            "I": 0.0306,
+            "L": 0.1397,
+            "N": 0.0546,
+            "P": 0.0066,
+            "Q": 0.0044,
+            "R": 0.0022,
+            "S": 0.0721,
+            "T": 0.1026,
+            "V": 0.131,
+            "W": 0.0349,
+            "Y": 0.2074
+          },
+          {
+            "A": 0.0022,
+            "D": 0.0022,
+            "E": 0.0022,
+            "F": 0.0044,
+            "G": 0.0153,
+            "H": 0.0066,
+            "I": 0.0066,
+            "L": 0.0109,
+            "N": 0.0044,
+            "P": 0.8665,
+            "Q": 0.0044,
+            "R": 0.0197,
+            "S": 0.0131,
+            "T": 0.0109,
+            "W": 0.0197,
+            "Y": 0.0109
+          },
+          {
+            "A": 0.0066,
+            "C": 0.0022,
+            "D": 0.0022,
+            "E": 0.0044,
+            "F": 0.1165,
+            "G": 0.0044,
+            "H": 0.011,
+            "I": 0.0088,
+            "L": 0.167,
+            "M": 0.0022,
+            "N": 0.0198,
+            "P": 0.1143,
+            "Q": 0.0022,
+            "R": 0.0527,
+            "S": 0.0264,
+            "T": 0.0703,
+            "V": 0.011,
+            "W": 0.1912,
+            "Y": 0.1868
+          },
+          {
+            "A": 0.0117,
+            "D": 0.0023,
+            "F": 0.007,
+            "G": 0.007,
+            "H": 0.0023,
+            "I": 0.0047,
+            "K": 0.0023,
+            "L": 0.014,
+            "M": 0.0047,
+            "N": 0.0047,
+            "R": 0.0023,
+            "S": 0.014,
+            "T": 0.8692,
+            "V": 0.0257,
+            "W": 0.007,
+            "Y": 0.021
+          },
+          {
+            "A": 0.0556,
+            "D": 0.1111,
+            "E": 0.0278,
+            "G": 0.0833,
+            "L": 0.0556,
+            "N": 0.0278,
+            "P": 0.0556,
+            "S": 0.0556,
+            "T": 0.3611,
+            "V": 0.0833,
+            "W": 0.0278,
+            "Y": 0.0556
+          },
+          {
+            "A": 0.1333,
+            "C": 0.0667,
+            "E": 0.0667,
+            "L": 0.0667,
+            "N": 0.2,
+            "T": 0.1333,
+            "V": 0.2,
+            "Y": 0.1333
+          },
+          {
+            "A": 0.3333,
+            "F": 0.1111,
+            "G": 0.2222,
+            "N": 0.1111,
+            "V": 0.2222
+          },
+          {
+            "T": 0.5,
+            "V": 0.5
+          }
+        ],
+        "length_histogram": {
+          "6": 1,
+          "7": 2,
+          "8": 27,
+          "9": 392,
+          "10": 21,
+          "11": 6,
+          "12": 7,
+          "13": 2
+        }
+      }
+    },
+    "vhh_cdr1": {
+      "n_samples": 39,
+      "thresholds": {
+        "longest_hydrophobic_run": {
+          "rule": "upper_bound",
+          "warn": 2.0,
+          "veto": 3.24,
+          "source_p50": 1.0,
+          "source_p95": 2.0,
+          "source_p99": 3.24,
+          "source_max": 4.0
+        },
+        "longest_same_sign_charge_run": {
+          "rule": "upper_bound",
+          "warn": 2.0,
+          "veto": 2.0,
+          "source_p50": 1.0,
+          "source_p95": 2.0,
+          "source_p99": 2.0,
+          "source_max": 2.0
+        },
+        "agg_motif_count": {
+          "rule": "upper_bound",
+          "warn": 0.0,
+          "veto": 0.0,
+          "source_p50": 0.0,
+          "source_p95": 0.0,
+          "source_p99": 0.0,
+          "source_max": 0.0
+        },
+        "n_glyc_motif": {
+          "rule": "upper_bound",
+          "warn": 0.0,
+          "veto": 0.0,
+          "source_p50": 0.0,
+          "source_p95": 0.0,
+          "source_p99": 0.0,
+          "source_max": 0.0
+        },
+        "deamidation_motif": {
+          "rule": "upper_bound",
+          "warn": 0.0,
+          "veto": 0.0,
+          "source_p50": 0.0,
+          "source_p95": 0.0,
+          "source_p99": 0.0,
+          "source_max": 0.0
+        },
+        "isomerization_motif": {
+          "rule": "upper_bound",
+          "warn": 0.0,
+          "veto": 0.0,
+          "source_p50": 0.0,
+          "source_p95": 0.0,
+          "source_p99": 0.0,
+          "source_max": 0.0
+        },
+        "charge_asymmetry": {
+          "rule": "upper_bound",
+          "warn": 3.0,
+          "veto": 3.0,
+          "source_p50": 1.0,
+          "source_p95": 3.0,
+          "source_p99": 3.0,
+          "source_max": 3.0
+        },
+        "net_charge_pH7": {
+          "rule": "two_sided",
+          "warn_lo": -1.0,
+          "warn_hi": 3.0,
+          "veto_lo": -1.0,
+          "veto_hi": 3.0,
+          "source_p50": 0.0,
+          "source_iqr": 1.0
+        },
+        "gravy": {
+          "rule": "two_sided",
+          "warn_lo": -1.31,
+          "warn_hi": 0.89,
+          "veto_lo": -1.43,
+          "veto_hi": 0.98,
+          "source_p50": -0.19,
+          "source_iqr": 1.07
+        },
+        "free_cys": {
+          "rule": "hard_bound",
+          "warn": 1,
+          "veto": 2,
+          "rationale": "Free Cys in CDR is intrinsically risky regardless of population frequency."
+        }
+      },
+      "design_prior": {
+        "length_range": {
+          "min": 8.0,
+          "max": 8.0,
+          "p50": 8.0
+        },
+        "aa_freq_by_position": [
+          {
+            "E": 0.0513,
+            "G": 0.8974,
+            "S": 0.0256,
+            "T": 0.0256
+          },
+          {
+            "F": 0.4103,
+            "G": 0.1026,
+            "H": 0.0513,
+            "K": 0.0769,
+            "L": 0.0256,
+            "N": 0.0256,
+            "R": 0.2564,
+            "S": 0.0513
+          },
+          {
+            "I": 0.0513,
+            "M": 0.0769,
+            "P": 0.0513,
+            "S": 0.1026,
+            "T": 0.6923,
+            "V": 0.0256
+          },
+          {
+            "F": 0.6923,
+            "I": 0.0256,
+            "L": 0.0513,
+            "S": 0.0769,
+            "V": 0.1282,
+            "Y": 0.0256
+          },
+          {
+            "A": 0.0256,
+            "D": 0.0256,
+            "E": 0.0256,
+            "K": 0.0256,
+            "N": 0.1026,
+            "P": 0.0256,
+            "R": 0.0256,
+            "S": 0.7436
+          },
+          {
+            "A": 0.0256,
+            "D": 0.0513,
+            "E": 0.0256,
+            "H": 0.0256,
+            "I": 0.0769,
+            "K": 0.1026,
+            "L": 0.0256,
+            "N": 0.1282,
+            "R": 0.0769,
+            "S": 0.3846,
+            "T": 0.0256,
+            "W": 0.0256,
+            "Y": 0.0256
+          },
+          {
+            "E": 0.0263,
+            "F": 0.0263,
+            "H": 0.0526,
+            "I": 0.0263,
+            "K": 0.0263,
+            "L": 0.0263,
+            "N": 0.0789,
+            "R": 0.0789,
+            "S": 0.0263,
+            "Y": 0.6316
+          },
+          {
+            "A": 0.3947,
+            "C": 0.0789,
+            "G": 0.0526,
+            "L": 0.0263,
+            "P": 0.0789,
+            "S": 0.0263,
+            "V": 0.1842,
+            "W": 0.0789,
+            "Y": 0.0789
+          },
+          {
+            "A": 1.0
+          }
+        ],
+        "length_histogram": {
+          "6": 1,
+          "8": 37,
+          "9": 1
+        }
+      }
+    },
+    "vhh_cdr2": {
+      "n_samples": 39,
+      "thresholds": {
+        "longest_hydrophobic_run": {
+          "rule": "upper_bound",
+          "warn": 2.0,
+          "veto": 2.0,
+          "source_p50": 1.0,
+          "source_p95": 2.0,
+          "source_p99": 2.0,
+          "source_max": 2.0
+        },
+        "longest_same_sign_charge_run": {
+          "rule": "upper_bound",
+          "warn": 1.1,
+          "veto": 2.0,
+          "source_p50": 1.0,
+          "source_p95": 1.1,
+          "source_p99": 2.0,
+          "source_max": 2.0
+        },
+        "agg_motif_count": {
+          "rule": "upper_bound",
+          "warn": 0.1,
+          "veto": 1.0,
+          "source_p50": 0.0,
+          "source_p95": 0.1,
+          "source_p99": 1.0,
+          "source_max": 1.0
+        },
+        "n_glyc_motif": {
+          "rule": "upper_bound",
+          "warn": 0.0,
+          "veto": 0.0,
+          "source_p50": 0.0,
+          "source_p95": 0.0,
+          "source_p99": 0.0,
+          "source_max": 0.0
+        },
+        "deamidation_motif": {
+          "rule": "upper_bound",
+          "warn": 1.0,
+          "veto": 1.0,
+          "source_p50": 0.0,
+          "source_p95": 1.0,
+          "source_p99": 1.0,
+          "source_max": 1.0
+        },
+        "isomerization_motif": {
+          "rule": "upper_bound",
+          "warn": 0.1,
+          "veto": 1.0,
+          "source_p50": 0.0,
+          "source_p95": 0.1,
+          "source_p99": 1.0,
+          "source_max": 1.0
+        },
+        "charge_asymmetry": {
+          "rule": "upper_bound",
+          "warn": 2.0,
+          "veto": 2.0,
+          "source_p50": 0.0,
+          "source_p95": 2.0,
+          "source_p99": 2.0,
+          "source_max": 2.0
+        },
+        "net_charge_pH7": {
+          "rule": "two_sided",
+          "warn_lo": -2.0,
+          "warn_hi": 2.0,
+          "veto_lo": -2.0,
+          "veto_hi": 2.0,
+          "source_p50": 0.0,
+          "source_iqr": 1.0
+        },
+        "gravy": {
+          "rule": "two_sided",
+          "warn_lo": -1.32,
+          "warn_hi": 0.5,
+          "veto_lo": -1.32,
+          "veto_hi": 0.84,
+          "source_p50": -0.17,
+          "source_iqr": 1.0
+        },
+        "free_cys": {
+          "rule": "hard_bound",
+          "warn": 1,
+          "veto": 2,
+          "rationale": "Free Cys in CDR is intrinsically risky regardless of population frequency."
+        }
+      },
+      "design_prior": {
+        "length_range": {
+          "min": 7.0,
+          "max": 10.0,
+          "p50": 8.0
+        },
+        "aa_freq_by_position": [
+          {
+            "I": 0.8718,
+            "L": 0.0769,
+            "T": 0.0256,
+            "V": 0.0256
+          },
+          {
+            "E": 0.0256,
+            "G": 0.0513,
+            "H": 0.0256,
+            "I": 0.0256,
+            "L": 0.0769,
+            "N": 0.1795,
+            "R": 0.1026,
+            "S": 0.4103,
+            "T": 0.0256,
+            "Y": 0.0769
+          },
+          {
+            "D": 0.0256,
+            "G": 0.3333,
+            "R": 0.0769,
+            "S": 0.2051,
+            "T": 0.1282,
+            "W": 0.2051,
+            "Y": 0.0256
+          },
+          {
+            "D": 0.0513,
+            "G": 0.0513,
+            "K": 0.1026,
+            "N": 0.0513,
+            "P": 0.0256,
+            "Q": 0.0513,
+            "R": 0.1026,
+            "S": 0.4359,
+            "T": 0.1282
+          },
+          {
+            "A": 0.0256,
+            "D": 0.0513,
+            "G": 0.641,
+            "K": 0.0513,
+            "S": 0.1282,
+            "Y": 0.1026
+          },
+          {
+            "A": 0.0256,
+            "D": 0.1026,
+            "E": 0.0769,
+            "G": 0.3333,
+            "I": 0.0513,
+            "L": 0.0513,
+            "N": 0.1026,
+            "R": 0.0256,
+            "S": 0.1538,
+            "T": 0.0769
+          },
+          {
+            "A": 0.0789,
+            "D": 0.0526,
+            "I": 0.1316,
+            "K": 0.0263,
+            "N": 0.1053,
+            "R": 0.0263,
+            "S": 0.4474,
+            "T": 0.1053,
+            "V": 0.0263
+          },
+          {
+            "I": 0.0645,
+            "T": 0.7742,
+            "V": 0.0323,
+            "Y": 0.129
+          },
+          {
+            "A": 1.0
+          },
+          {
+            "T": 1.0
+          }
+        ],
+        "length_histogram": {
+          "6": 1,
+          "7": 7,
+          "8": 27,
+          "10": 4
+        }
+      }
+    },
+    "vhh_cdr3": {
+      "n_samples": 39,
+      "thresholds": {
+        "longest_hydrophobic_run": {
+          "rule": "upper_bound",
+          "warn": 3.1,
+          "veto": 4.0,
+          "source_p50": 2.0,
+          "source_p95": 3.1,
+          "source_p99": 4.0,
+          "source_max": 4.0
+        },
+        "longest_same_sign_charge_run": {
+          "rule": "upper_bound",
+          "warn": 2.0,
+          "veto": 2.0,
+          "source_p50": 1.0,
+          "source_p95": 2.0,
+          "source_p99": 2.0,
+          "source_max": 2.0
+        },
+        "agg_motif_count": {
+          "rule": "upper_bound",
+          "warn": 1.0,
+          "veto": 1.0,
+          "source_p50": 0.0,
+          "source_p95": 1.0,
+          "source_p99": 1.0,
+          "source_max": 1.0
+        },
+        "n_glyc_motif": {
+          "rule": "upper_bound",
+          "warn": 0.0,
+          "veto": 0.0,
+          "source_p50": 0.0,
+          "source_p95": 0.0,
+          "source_p99": 0.0,
+          "source_max": 0.0
+        },
+        "deamidation_motif": {
+          "rule": "upper_bound",
+          "warn": 1.0,
+          "veto": 1.0,
+          "source_p50": 0.0,
+          "source_p95": 1.0,
+          "source_p99": 1.0,
+          "source_max": 1.0
+        },
+        "isomerization_motif": {
+          "rule": "upper_bound",
+          "warn": 1.0,
+          "veto": 1.0,
+          "source_p50": 0.0,
+          "source_p95": 1.0,
+          "source_p99": 1.0,
+          "source_max": 1.0
+        },
+        "charge_asymmetry": {
+          "rule": "upper_bound",
+          "warn": 3.1,
+          "veto": 5.24,
+          "source_p50": 1.0,
+          "source_p95": 3.1,
+          "source_p99": 5.24,
+          "source_max": 6.0
+        },
+        "net_charge_pH7": {
+          "rule": "two_sided",
+          "warn_lo": -3.1,
+          "warn_hi": 1.1,
+          "veto_lo": -6.0,
+          "veto_hi": 2.0,
+          "source_p50": -1.0,
+          "source_iqr": 4.0
+        },
+        "gravy": {
+          "rule": "two_sided",
+          "warn_lo": -1.06,
+          "warn_hi": -0.0,
+          "veto_lo": -1.22,
+          "veto_hi": 0.17,
+          "source_p50": -0.4,
+          "source_iqr": 1.0
+        },
+        "free_cys": {
+          "rule": "hard_bound",
+          "warn": 1,
+          "veto": 2,
+          "rationale": "Free Cys in CDR is intrinsically risky regardless of population frequency."
+        }
+      },
+      "design_prior": {
+        "length_range": {
+          "min": 8.0,
+          "max": 21.0,
+          "p50": 16.0
+        },
+        "aa_freq_by_position": [
+          {
+            "A": 0.6667,
+            "G": 0.0513,
+            "N": 0.0513,
+            "T": 0.1026,
+            "V": 0.1026,
+            "Y": 0.0256
+          },
+          {
+            "A": 0.5897,
+            "F": 0.0256,
+            "I": 0.0256,
+            "K": 0.0769,
+            "R": 0.2051,
+            "T": 0.0256,
+            "V": 0.0513
+          },
+          {
+            "A": 0.0769,
+            "D": 0.2051,
+            "F": 0.0256,
+            "G": 0.1026,
+            "H": 0.1026,
+            "I": 0.0256,
+            "R": 0.0769,
+            "S": 0.0513,
+            "T": 0.0256,
+            "V": 0.1282,
+            "Y": 0.1795
+          },
+          {
+            "A": 0.0769,
+            "D": 0.1538,
+            "E": 0.0256,
+            "F": 0.0513,
+            "G": 0.1538,
+            "I": 0.0256,
+            "K": 0.0256,
+            "L": 0.0513,
+            "P": 0.1026,
+            "Q": 0.0513,
+            "R": 0.0769,
+            "S": 0.1026,
+            "T": 0.0769,
+            "V": 0.0256
+          },
+          {
+            "D": 0.0256,
+            "E": 0.0513,
+            "F": 0.0769,
+            "G": 0.1026,
+            "I": 0.2051,
+            "K": 0.0256,
+            "L": 0.0256,
+            "N": 0.1026,
+            "P": 0.0769,
+            "R": 0.0769,
+            "S": 0.0769,
+            "T": 0.0513,
+            "V": 0.0256,
+            "W": 0.0513,
+            "Y": 0.0256
+          },
+          {
+            "A": 0.0263,
+            "D": 0.1053,
+            "E": 0.1053,
+            "F": 0.1579,
+            "G": 0.1842,
+            "H": 0.0263,
+            "I": 0.0263,
+            "L": 0.1053,
+            "P": 0.0263,
+            "R": 0.0263,
+            "V": 0.0526,
+            "Y": 0.1579
+          },
+          {
+            "A": 0.1316,
+            "D": 0.1053,
+            "F": 0.0526,
+            "G": 0.3421,
+            "N": 0.0789,
+            "S": 0.1053,
+            "T": 0.0789,
+            "V": 0.0526,
+            "Y": 0.0526
+          },
+          {
+            "A": 0.1842,
+            "D": 0.1842,
+            "E": 0.0263,
+            "K": 0.0263,
+            "N": 0.1579,
+            "P": 0.1579,
+            "R": 0.0789,
+            "S": 0.0263,
+            "T": 0.0263,
+            "V": 0.0263,
+            "Y": 0.1053
+          },
+          {
+            "A": 0.0294,
+            "D": 0.0882,
+            "G": 0.2353,
+            "H": 0.0294,
+            "I": 0.0294,
+            "L": 0.0588,
+            "P": 0.0588,
+            "S": 0.2059,
+            "T": 0.1176,
+            "V": 0.0882,
+            "W": 0.0294,
+            "Y": 0.0294
+          },
+          {
+            "A": 0.2424,
+            "C": 0.0909,
+            "D": 0.0606,
+            "F": 0.0909,
+            "G": 0.0303,
+            "K": 0.0606,
+            "P": 0.0606,
+            "Q": 0.0303,
+            "R": 0.0606,
+            "S": 0.0606,
+            "T": 0.0303,
+            "V": 0.0303,
+            "W": 0.0303,
+            "Y": 0.1212
+          },
+          {
+            "A": 0.0303,
+            "D": 0.1212,
+            "E": 0.0303,
+            "F": 0.0909,
+            "G": 0.0303,
+            "I": 0.0909,
+            "L": 0.0303,
+            "M": 0.1818,
+            "R": 0.0303,
+            "S": 0.0303,
+            "T": 0.1818,
+            "V": 0.0303,
+            "Y": 0.1212
+          },
+          {
+            "A": 0.0323,
+            "D": 0.2258,
+            "G": 0.0968,
+            "I": 0.0645,
+            "L": 0.0968,
+            "N": 0.0323,
+            "Q": 0.0645,
+            "R": 0.0323,
+            "S": 0.2258,
+            "V": 0.0323,
+            "W": 0.0645,
+            "Y": 0.0323
+          },
+          {
+            "D": 0.0345,
+            "E": 0.069,
+            "I": 0.0345,
+            "K": 0.0345,
+            "N": 0.0345,
+            "R": 0.1379,
+            "V": 0.1724,
+            "W": 0.0345,
+            "Y": 0.4483
+          },
+          {
+            "D": 0.2273,
+            "E": 0.0455,
+            "F": 0.0455,
+            "N": 0.0455,
+            "R": 0.0455,
+            "S": 0.0909,
+            "T": 0.1818,
+            "W": 0.1818,
+            "Y": 0.1364
+          },
+          {
+            "A": 0.2381,
+            "D": 0.1429,
+            "E": 0.0952,
+            "L": 0.0476,
+            "S": 0.1429,
+            "W": 0.0952,
+            "Y": 0.2381
+          },
+          {
+            "A": 0.05,
+            "D": 0.1,
+            "E": 0.1,
+            "P": 0.05,
+            "S": 0.25,
+            "Y": 0.45
+          },
+          {
+            "D": 0.0833,
+            "G": 0.25,
+            "N": 0.0833,
+            "P": 0.0833,
+            "S": 0.0833,
+            "Y": 0.4167
+          },
+          {
+            "A": 0.375,
+            "D": 0.25,
+            "E": 0.125,
+            "Y": 0.25
+          },
+          {
+            "E": 0.1429,
+            "F": 0.4286,
+            "Y": 0.4286
+          },
+          {
+            "Q": 0.6,
+            "T": 0.2,
+            "Y": 0.2
+          },
+          {
+            "D": 0.2,
+            "F": 0.2,
+            "Y": 0.6
+          },
+          {
+            "Y": 1.0
+          }
+        ],
+        "length_histogram": {
+          "5": 1,
+          "8": 4,
+          "9": 1,
+          "11": 2,
+          "12": 2,
+          "13": 7,
+          "14": 1,
+          "15": 1,
+          "16": 8,
+          "17": 4,
+          "18": 1,
+          "19": 2,
+          "21": 4,
+          "22": 1
+        }
+      }
+    }
+  }
+}

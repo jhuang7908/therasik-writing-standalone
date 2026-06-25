@@ -1,0 +1,320 @@
+{
+  "metadata": {
+    "script": "fetch_verified_sequences.py",
+    "generated": "2026-04-01",
+    "policy": "UniProt REST API，"
+  },
+  "uniprot_fetched": [
+    {
+      "id": "CD8a_SP",
+      "name": "CD8α",
+      "category": "Signal Peptide",
+      "uniprot": "P01732",
+      "residues": "2-21",
+      "sequence": "ALPVTALLLPLALLLHAARP",
+      "length": 20,
+      "sequence_status": "FETCHED_FROM_UNIPROT",
+      "note": "CD8A_HUMAN ，CAR-T",
+      "verified": true
+    },
+    {
+      "id": "GM-CSF_SP",
+      "name": "GM-CSF",
+      "category": "Signal Peptide",
+      "uniprot": "P04141",
+      "residues": "1-17",
+      "sequence": "MWLQSLLLLGTVACSIS",
+      "length": 17,
+      "sequence_status": "FETCHED_FROM_UNIPROT",
+      "note": "CSF2_HUMAN ",
+      "verified": true
+    },
+    {
+      "id": "CD8a_Short",
+      "name": "CD8α Short Hinge (45 aa)",
+      "category": "Hinge",
+      "uniprot": "P01732",
+      "residues": "138-182",
+      "sequence": "TTTPAPRPPTPAPTIASQPLSLRPEACRPAAGGAVHTRGLDFACD",
+      "length": 45,
+      "sequence_status": "FETCHED_FROM_UNIPROT",
+      "note": "CD8A_HUMAN stalk-only ",
+      "verified": true
+    },
+    {
+      "id": "CD8a_Long",
+      "name": "CD8α Long Hinge (119 aa)",
+      "category": "Hinge",
+      "uniprot": "P01732",
+      "residues": "90-210",
+      "sequence": "SGKRLGDTFVLTLSDFRRENEGYYFCSALSNSIMYFSHFVPVFLPAKPTTTPAPRPPTPAPTIASQPLSLRPEACRPAAGGAVHTRGLDFACDIYIWAPLAGTCGVLLLSLVITLYCNHRN",
+      "length": 121,
+      "sequence_status": "FETCHED_FROM_UNIPROT",
+      "note": "CD8A_HUMAN （stalk）",
+      "verified": true
+    },
+    {
+      "id": "CD28_Medium",
+      "name": "CD28 Medium Hinge (39 aa)",
+      "category": "Hinge",
+      "uniprot": "P10747",
+      "residues": "114-152",
+      "sequence": "IEVMYPPPYLDNEKSNGTIIHVKGKHLCPSPLFPGPSKP",
+      "length": 39,
+      "sequence_status": "FETCHED_FROM_UNIPROT",
+      "note": "CD28_HUMAN stalk",
+      "verified": true
+    },
+    {
+      "id": "CD8a_TM",
+      "name": "CD8α (24 aa)",
+      "category": "Transmembrane Domain",
+      "uniprot": "P01732",
+      "residues": "183-206",
+      "sequence": "IYIWAPLAGTCGVLLLSLVITLYC",
+      "length": 24,
+      "sequence_status": "FETCHED_FROM_UNIPROT",
+      "note": "CD8A_HUMAN TM，",
+      "verified": true
+    },
+    {
+      "id": "CD28_TM",
+      "name": "CD28 (27 aa)",
+      "category": "Transmembrane Domain",
+      "uniprot": "P10747",
+      "residues": "153-179",
+      "sequence": "FWVLVVVGGVLACYSLLVTVAFIIFWV",
+      "length": 27,
+      "sequence_status": "FETCHED_FROM_UNIPROT",
+      "note": "CD28_HUMAN TM，，",
+      "verified": true
+    },
+    {
+      "id": "CD4_TM",
+      "name": "CD4 (22 aa)",
+      "category": "Transmembrane Domain",
+      "uniprot": "P01730",
+      "residues": "397-418",
+      "sequence": "MALIVLGGVAGLLLFIGLGIFF",
+      "length": 22,
+      "sequence_status": "FETCHED_FROM_UNIPROT",
+      "note": "CD4_HUMAN TM，CAR-NK",
+      "verified": true
+    },
+    {
+      "id": "CD3z_TM",
+      "name": "CD3ζ",
+      "category": "Transmembrane Domain",
+      "uniprot": "P20963",
+      "residues": "22-51",
+      "sequence": "QSFGLLDPKLCYLLDGILFIYGVILTALFL",
+      "length": 30,
+      "sequence_status": "FETCHED_FROM_UNIPROT",
+      "note": "CD247_HUMAN TM（CAR，CD8a/CD28 TM）",
+      "verified": true
+    },
+    {
+      "id": "CD3z_cyto",
+      "name": "CD3ζ — 3×ITAM  (113 aa)",
+      "category": "Signaling Domain",
+      "uniprot": "P20963",
+      "residues": "52-164",
+      "sequence": "RVKFSRSADAPAYQQGQNQLYNELNLGRREEYDVLDKRRGRDPEMGGKPQRRKNPQEGLYNELQKDKMAEAYSEIGMKGERRRGKGHDGLYQGLSTATKDTYDALHMQALPPR",
+      "length": 113,
+      "sequence_status": "FETCHED_FROM_UNIPROT",
+      "note": "CD247_HUMAN ，3ITAM，CAR",
+      "verified": true
+    },
+    {
+      "id": "4-1BB_cyto",
+      "name": "4-1BB (42 aa)",
+      "category": "Costimulatory Domain",
+      "uniprot": "Q07011",
+      "residues": "214-255",
+      "sequence": "KRGRKKLLYIFKQPFMRPVQTTQEEDGCSCRFPEEEEGGCEL",
+      "length": 42,
+      "sequence_status": "FETCHED_FROM_UNIPROT",
+      "note": "TNFR9_HUMAN (CD137/4-1BB) ，TRAF，T",
+      "verified": true
+    },
+    {
+      "id": "CD28_cyto",
+      "name": "CD28 (41 aa)",
+      "category": "Costimulatory Domain",
+      "uniprot": "P10747",
+      "residues": "180-220",
+      "sequence": "RSKRSRLLHSDYMNMTPRRPGPTRKHYQPYAPPRDFAAYRS",
+      "length": 41,
+      "sequence_status": "FETCHED_FROM_UNIPROT",
+      "note": "CD28_HUMAN ，PI3K/Akt，",
+      "verified": true
+    },
+    {
+      "id": "OX40_cyto",
+      "name": "OX40 (40 aa)",
+      "category": "Costimulatory Domain",
+      "uniprot": "P43489",
+      "residues": "238-277",
+      "sequence": "YLLRRDQRLPPDAHKPPGGGSFRTPIQEEQADAHSTLAKI",
+      "length": 40,
+      "sequence_status": "FETCHED_FROM_UNIPROT",
+      "note": "TNR4_HUMAN (CD134/OX40) ，TRAF，",
+      "verified": true
+    },
+    {
+      "id": "ICOS_cyto",
+      "name": "ICOS (37 aa)",
+      "category": "Costimulatory Domain",
+      "uniprot": "Q9Y6W8",
+      "residues": "163-199",
+      "sequence": "WLTKKKYSSSVHDPNGEYMFMRAVNTAKKSRLTDVTL",
+      "length": 37,
+      "sequence_status": "FETCHED_FROM_UNIPROT",
+      "note": "ICOS_HUMAN ，YMFM motif，Th17/Tfh",
+      "verified": true
+    },
+    {
+      "id": "CAR-NK_2B4_cyto",
+      "name": "2B4 (135 aa，CAR-NK)",
+      "category": "Costimulatory Domain",
+      "uniprot": "Q9BZW8",
+      "residues": "246-380",
+      "sequence": "ACFCVWRRKRKEKQSETSPKEFLTIYEDVKDLKTRRNHEQEQTFPGGGSTIYSMIQSQSSAPTSQEPAYTLYSLIQPSRKSGSRKRNHSPSFNSTIYEVIGKSQPKAQNPARLSRKELENFDVYS",
+      "length": 125,
+      "sequence_status": "FETCHED_FROM_UNIPROT",
+      "note": "CD244_HUMAN (2B4) ，NK",
+      "verified": true
+    },
+    {
+      "id": "tEGFR_SP_DomIII_DomIV_TM",
+      "name": "tEGFR (EGFR, ~335 aa)",
+      "category": "Safety Switch",
+      "uniprot": "P00533",
+      "residues": "1-668",
+      "sequence": "MRPSGTAGAALLALLAALCPASRARKVCNGIGIGEFKDSLSINATNIKHFKNCTSISGDLHILPVAFRGDSFTHTPPLDPQELDILKTVKEITGFLLIQAWPENRTDLHAFENLEIIRGRTKQHGQFSLAVVSLNITSLGLRSLKEISDGDVIISGNKNLCYANTINWKKLFGTSGQKTKIISNRGENSCKATGQVCHALCSPEGCWGPEPRDCVSCRNVSRGRECVDKCNLLEGEPREFVENSECIQCHPECLPQAMNITCTGRGPDNCIQCAHYIDGPHCVKTCPAGVMGENNTLVWKYADAGHVCHLCHPNCTYGCTGPGLEGCPTNGPKIPSIATGMVGALLLLLVVALGIGLFM",
+      "length": 359,
+      "sequence_status": "FETCHED_FROM_UNIPROT",
+      "note": "EGFR_HUMAN：(1-24)+DomIII(334-504)+DomIV(505-645)+TM(646-668)，DomI/II(25-333)(669-1210). 1-668，.",
+      "verified": true,
+      "assembly": {
+        "segments": [
+          {
+            "desc": "",
+            "start": 1,
+            "end": 24
+          },
+          {
+            "desc": "Domain III",
+            "start": 334,
+            "end": 504
+          },
+          {
+            "desc": "Domain IV",
+            "start": 505,
+            "end": 645
+          },
+          {
+            "desc": "Transmembrane",
+            "start": 646,
+            "end": 668
+          }
+        ],
+        "reference": "Wang X et al. Blood 2011;118(5):1255-63"
+      }
+    }
+  ],
+  "synthetic": [
+    {
+      "id": "G4S3",
+      "name": "(G₄S)₃ Linker",
+      "category": "Linker",
+      "sequence": "GGGGSGGGGSGGGGS",
+      "length": 15,
+      "source": "，Huston JS et al. PNAS 1988;85:5879"
+    },
+    {
+      "id": "G4S4",
+      "name": "(G₄S)₄ Linker",
+      "category": "Linker",
+      "sequence": "GGGGSGGGGSGGGGSGGGGS",
+      "length": 20,
+      "source": ""
+    },
+    {
+      "id": "G4S5",
+      "name": "(G₄S)₅ Linker",
+      "category": "Linker",
+      "sequence": "GGGGSGGGGSGGGGSGGGGSGGGGS",
+      "length": 25,
+      "source": ""
+    },
+    {
+      "id": "P2A",
+      "name": "P2A (Thosea asigna)",
+      "category": "Linker",
+      "sequence": "GSGATNFSLLKQCGDVEENPGP",
+      "length": 22,
+      "source": "Kim JH et al. PLoS ONE 2011;6(4):e18556",
+      "note": "，>99%"
+    },
+    {
+      "id": "T2A",
+      "name": "T2A (B)",
+      "category": "Linker",
+      "sequence": "EGRGSLLTCGDVEENPGP",
+      "length": 18,
+      "source": "Kim JH et al. PLoS ONE 2011"
+    },
+    {
+      "id": "E2A",
+      "name": "E2A (A)",
+      "category": "Linker",
+      "sequence": "QCTNYALLKLAGDVESNPGP",
+      "length": 20,
+      "source": "Kim JH et al. PLoS ONE 2011"
+    },
+    {
+      "id": "F2A",
+      "name": "F2A ",
+      "category": "Linker",
+      "sequence": "VKQTLNFDLLKLAGDVESNPGP",
+      "length": 22,
+      "source": "Kim JH et al. PLoS ONE 2011"
+    },
+    {
+      "id": "FMC63_scFv",
+      "name": "FMC63 scFv (CD19, 243 aa)",
+      "category": "Binder",
+      "target": "CD19",
+      "sequence": "EVQLVESGGGLVQPGGSLRLSCAASGYTFTSYWMHWVRQAPGKGLEWIGEINPGSGGTNYNEKFKSKATLTVDKSSSTAYMQLSSLTSEDSAVYYCARSTYYGGDWYFNVWGAGTTVTVSSGGGGSGGGGSGGGGSDIQMTQSPSSLSASVGDRVTITCRASQDVSTAVAWYQQKPGKAPKLLIYSASFLYSGVPSRFSGSGSGTDFTLTISSLQPEDFATYYCQQHYTTPPTFGQGTKVEIK",
+      "length": 243,
+      "source": "Nicholson IC et al. Mol Immunol 1997;34:1157-65; Kymriah BLA",
+      "cdrs": {
+        "VH_CDR1": "GYTFTSYWMH",
+        "VH_CDR2": "EINPGSGGTNYNEKFKS",
+        "VH_CDR3": "STYYGGDWYFNV",
+        "VL_CDR1": "RASQDVSTAVA",
+        "VL_CDR2": "SASFLYS",
+        "VL_CDR3": "QQHYTTPPT"
+      },
+      "note": "（Addgene #119010）"
+    },
+    {
+      "id": "GM-CSF_SP",
+      "name": "GM-CSF (17 aa)",
+      "category": "Signal Peptide",
+      "sequence": "MWLQSLLLLGTVACSIS",
+      "length": 17,
+      "source": "UniProt P04141 (CSF2_HUMAN) "
+    },
+    {
+      "id": "IgK_SP",
+      "name": "IgKappa (21 aa)",
+      "category": "Signal Peptide",
+      "sequence": "METDTLLLWVLLLWVPGSTGD",
+      "length": 21,
+      "source": "UniProt P01834 (IGKC_HUMAN) "
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,110 @@
+{
+  "deck_name": "humanized-mice-front-immunol-2026",
+  "narrative": "single_story",
+  "main_article": {
+    "pmid": "42023233",
+    "pmcid": "PMC13096022",
+    "title": "A comprehensive analysis of humanized mouse models for the study of cancer immunotherapies",
+    "doi": "10.3389/fimmu.2026.1730378"
+  },
+  "slides": [
+    {
+      "slide_num": 1,
+      "title": "突破性发现：人源化小鼠免疫评估新范式",
+      "subtitle": "Front Immunol 2026 · Hu-CD34+ vs Hu-PBMC",
+      "key_points": [
+        "系统比较两大HIS模型重建动力学与毒性",
+        "PD-1、IL-2Cx与TCE疗效因模型而异",
+        "为临床前联合用药策略提供依据"
+      ],
+      "visual_description": "White humanized lab mouse with immune cell network, PD-1 antibody and tumor cell metaphors, hand-drawn technical explainer style",
+      "narration": "本周聚焦Front Immunol 2026系统综述：Hu-CD34+与Hu-PBMC两大人源化模型，如何影响肿瘤免疫药物临床前评估。",
+      "render_engine": "gpt-image-2"
+    },
+    {
+      "slide_num": 2,
+      "title": "免疫重建动力学：慢热 vs 速攻",
+      "subtitle": "Hu-CD34+ 12–16周 vs Hu-PBMC 1–2周",
+      "key_points": [
+        "Hu-CD34+：多谱系重建，18周嵌合率50–70%",
+        "Hu-PBMC：7天内T细胞占比超90%",
+        "NSG-SGM3加速重建但毒性更高"
+      ],
+      "visual_description": "Dual curve chart comparing CD34+ slow S-curve vs PBMC rapid T-cell engraftment over weeks",
+      "chart_spec": {
+        "x_axis": {"label": "Weeks", "min": 0, "max": 24, "unit": "weeks"},
+        "y_axis": {"label": "Human chimerism", "min": 0, "max": 100, "unit": "%"},
+        "curves": [
+          "Hu-CD34+ blue S-curve peaking 50-70% at weeks 12-16",
+          "Hu-PBMC orange rapid curve peaking 90%+ T cells by week 1-2"
+        ]
+      },
+      "narration": "Hu-CD34+模型需要12到16周完成多谱系重建，而Hu-PBMC模型在一到两周内即可实现高效T细胞植入。",
+      "render_engine": "gpt-image-2"
+    },
+    {
+      "slide_num": 3,
+      "title": "SGM3加速重建的代价：39%致死率",
+      "subtitle": "Weeks 10–17 髓系过度激活窗口",
+      "key_points": [
+        "NSG-SGM3中7/18小鼠需安乐死",
+        "致死高峰出现在第10–17周",
+        "选型需平衡速度与实验窗口"
+      ],
+      "visual_description": "Survival or toxicity timeline showing mortality spike weeks 10-17 in NSG-SGM3 humanized mice",
+      "chart_spec": {
+        "x_axis": {"label": "Weeks", "min": 0, "max": 20, "unit": "weeks"},
+        "y_axis": {"label": "Survival", "min": 0, "max": 100, "unit": "%"},
+        "curves": [
+          "Survival drops from 100% to 61% by week 20",
+          "Major drop zone weeks 10-17 due to myeloid hyperactivation"
+        ]
+      },
+      "narration": "在NSG-SGM3背景中，虽然免疫重建加速，但第10到17周出现高达39%的致死风险，实验窗口必须精打细算。",
+      "render_engine": "gpt-image-2"
+    },
+    {
+      "slide_num": 4,
+      "title": "免疫疗法疗效：模型决定结论",
+      "subtitle": "PD-1温和 · EpCAM-CD3 TCE 3/9 CR",
+      "key_points": [
+        "PD-1在Hu-CD34+中响应异质、整体温和",
+        "EpCAM-CD3双抗在Hu-PBMC中3/9完全缓解",
+        "IL-2Cx有效但加速GvHD发生"
+      ],
+      "visual_description": "Bar or comparison panel: anti-PD1 modest response, EpCAM-CD3 bispecific 3/9 complete response, IL-2 complex strong but GvHD warning",
+      "narration": "PD-1单抗在Hu-CD34+模型中效果受限，而EpCAM-CD3 T细胞衔接器在Hu-PBMC模型中实现了3只小鼠的完全肿瘤消退。",
+      "render_engine": "gpt-image-2"
+    },
+    {
+      "slide_num": 5,
+      "title": "研发启示：选对模型与联合策略",
+      "subtitle": "TCE/IL-2Cx vs PD-1需不同评估路径",
+      "key_points": [
+        "TCE与IL-2Cx适合现有HIS平台快速验证",
+        "PD-1单药可能低估潜力，需APC增强联用",
+        "MHC双敲除有望延长GvHD-free窗口"
+      ],
+      "visual_description": "Decision flowchart for choosing Hu-CD34+ vs Hu-PBMC and combo strategies with Flt3L or CD40 agonist for PD-1",
+      "narration": "对于T细胞衔接器和IL-2Cx，现有HIS模型是可靠平台；PD-1则需要联合增强APC功能的策略才能更贴近临床。",
+      "render_engine": "gpt-image-2"
+    },
+    {
+      "slide_num": 6,
+      "title": "参考文献",
+      "subtitle": "主线 + 关联阅读",
+      "key_points": [
+        "① 主线 Front Immunol 2026 PMID 42023233 DOI 10.3389/fimmu.2026.1730378",
+        "② EpCAM-CD3 TCE疗效（Hu-PBMC 3/9 CR）同上",
+        "③ MHC-KO低GvHD模型 Yaguchi 2018 PMID 29151581 DOI 10.1038/cmi.2017.106"
+      ],
+      "visual_description": "Clean reference list slide, hand-drawn style, three verified citations with PMID and DOI",
+      "narration": "参考文献已列出，主线文献与关联模型论文均可通过PMID和DOI反向检索。",
+      "render_engine": "gpt-image-2"
+    }
+  ],
+  "references": [
+    {"role": "main", "pmid": "42023233", "doi": "10.3389/fimmu.2026.1730378", "title": "A comprehensive analysis of humanized mouse models for the study of cancer immunotherapies", "journal": "Front Immunol"},
+    {"role": "related", "pmid": "29151581", "doi": "10.1038/cmi.2017.106", "title": "Immune suppression in humanized mouse MHC models", "journal": "Cell Mol Immunol"}
+  ]
+}

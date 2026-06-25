@@ -1,0 +1,122 @@
+{
+  "panel_id": "cd3_engineered_vh_panel_v1",
+  "panel_version": "1.0.0",
+  "target_antigen": "human CD3E (CD3ε; TCR–CD3 complex)",
+  "dedupe_rule": "Distinct Kabat VH CDR-H3 amino-acid sequence; one conversion input per CDR-H3.",
+  "n_unique_cdrh3": 4,
+  "n_raw_entries": 6,
+  "groups": [
+    {
+      "cdrh3_kabat": "YYDDHYCLDY",
+      "cdrh3_annotation_method": "anarcii_kabat",
+      "lineage_key": "ffba53a716481dff",
+      "lineage_members": [
+        {
+          "entry_id": "okt3_humanized_scfv_actes",
+          "display_name": "OKT3-class humanized scFv (ACTES canonical)",
+          "genetics": "humanized",
+          "input_format": "scFv",
+          "vh_aa": "QVQLVQSGAEVKKPGASVKVSCKASGYTFTRYTMHWVRQAPGQGLEWIGYINPSRGYTNYNQKFKDRVTMTRDTSTSTVYMELSSLRSEDTAVYYCARYYDDHYCLDYWGQGTLVTVSS",
+          "vl_aa": "DIQMTQSPSSLSASVGDRVTITCSASSSVSYMNWYQQKPGKAPKRLIYDTSKLASGVPSRFSGSGSGTDFTLTISSLQPEDFATYYCQQWSSNPFTFGQGTKVEIK",
+          "scfv_aa": "QVQLVQSGAEVKKPGASVKVSCKASGYTFTRYTMHWVRQAPGQGLEWIGYINPSRGYTNYNQKFKDRVTMTRDTSTSTVYMELSSLRSEDTAVYYCARYYDDHYCLDYWGQGTLVTVSSGGGGSGGGGSGGGGSDIQMTQSPSSLSASVGDRVTITCSASSSVSYMNWYQQKPGKAPKRLIYDTSKLASGVPSRFSGSGSGTDFTLTISSLQPEDFATYYCQQWSSNPFTFGQGTKVEIK",
+          "source_note": "data/actes_sequences/ACTES_sequences_canonical.fasta (OKT3_scFv)",
+          "cdrh3_kabat": "YYDDHYCLDY",
+          "cdrh3_annotation_method": "anarcii_kabat"
+        },
+        {
+          "entry_id": "teplizumab_vh_vl",
+          "display_name": "Teplizumab (humanized murine, Tzield)",
+          "genetics": "humanized",
+          "input_format": "VH_VL",
+          "vh_aa": "QVQLVQSGGGVVQPGRSLRLSCKASGYTFTRYTMHWVRQAPGKGLEWIGYINPSRGYTNYNQKVKDRFTISRDNSKNTAFLQMDSLRPEDTGVYFCARYYDDHYCLDYWGQGTPVTVSS",
+          "vl_aa": "DIQMTQSPSSLSASVGDRVTITCSASSSVSYMNWYQQTPGKAPKRWIYDTSKLASGVPSRFSGSGSGTDYTFTISSLQPEDIATYYCQQWSSNPFTFGQGTKLQIT",
+          "scfv_aa": "QVQLVQSGGGVVQPGRSLRLSCKASGYTFTRYTMHWVRQAPGKGLEWIGYINPSRGYTNYNQKVKDRFTISRDNSKNTAFLQMDSLRPEDTGVYFCARYYDDHYCLDYWGQGTPVTVSSGGGGSGGGGSGGGGSDIQMTQSPSSLSASVGDRVTITCSASSSVSYMNWYQQTPGKAPKRWIYDTSKLASGVPSRFSGSGSGTDYTFTISSLQPEDIATYYCQQWSSNPFTFGQGTKLQIT",
+          "source_note": "data/engineered_459_atlas/master_table.csv",
+          "cdrh3_kabat": "YYDDHYCLDY",
+          "cdrh3_annotation_method": "anarcii_kabat"
+        },
+        {
+          "entry_id": "sp34_murine_vh_blinatumomab",
+          "display_name": "SP34 CD3 arm (murine, Blinatumomab)",
+          "genetics": "murine",
+          "input_format": "VH",
+          "vh_aa": "DIKLQSGAELARPGASVKMSCKTSGYTFTRYTMHWVKQRPGQGLEWIGYINPSRGYTNYNQKFKDKATLTTDKSSSTAYMQLSSLTSEDSAVYYCARYYDDHYCLDYWGQGTTLTVSS",
+          "vl_aa": "DIQLTQSPAIMSASPGEKVTMTCRASSSVSYMNWYQQKSGTSPKRWIYDTSKVASGVPYRFSGSGSGTSYSLTISSMEAEDAATYYCQQWSSNPLTFGAGTKLELK",
+          "scfv_aa": "DIKLQSGAELARPGASVKMSCKTSGYTFTRYTMHWVKQRPGQGLEWIGYINPSRGYTNYNQKFKDKATLTTDKSSSTAYMQLSSLTSEDSAVYYCARYYDDHYCLDYWGQGTTLTVSSGGGGSGGGGSGGGGSDIQLTQSPAIMSASPGEKVTMTCRASSSVSYMNWYQQKSGTSPKRWIYDTSKVASGVPYRFSGSGSGTSYSLTISSMEAEDAATYYCQQWSSNPLTFGAGTKLELK",
+          "source_note": "data/reference/SP34_CD3mab_Blinatumomab_CD3_arm_vh_vl_v1.fasta",
+          "cdrh3_kabat": "YYDDHYCLDY",
+          "cdrh3_annotation_method": "anarcii_kabat"
+        }
+      ],
+      "vh_for_conversion": "QVQLVQSGAEVKKPGASVKVSCKASGYTFTRYTMHWVRQAPGQGLEWIGYINPSRGYTNYNQKFKDRVTMTRDTSTSTVYMELSSLRSEDTAVYYCARYYDDHYCLDYWGQGTLVTVSS",
+      "vh_source_entry_id": "okt3_humanized_scfv_actes",
+      "source_class_for_vh2vhh": "humanized_mab"
+    },
+    {
+      "cdrh3_kabat": "SAYYDYDGFAY",
+      "cdrh3_annotation_method": "anarcii_kabat",
+      "lineage_key": "f73de0b89bffc264",
+      "lineage_members": [
+        {
+          "entry_id": "visilizumab_vh_vl",
+          "display_name": "Visilizumab (humanized murine)",
+          "genetics": "humanized",
+          "input_format": "VH_VL",
+          "vh_aa": "QVQLVQSGAEVKKPGASVKVSCKASGYTFISYTMHWVRQAPGQGLEWMGYINPRSGYTHYNQKLKDKATLTADKSASTAYMELSSLRSEDTAVYYCARSAYYDYDGFAYWGQGTLVTVSS",
+          "vl_aa": "DIQMTQSPSSLSASVGDRVTITCSASSSVSYMNWYQQKPGKAPKRLIYDTSKLASGVPSRFSGSGSGTDFTLTISSLQPEDFATYYCQQWSSNPPTFGGGTKVEIK",
+          "scfv_aa": "QVQLVQSGAEVKKPGASVKVSCKASGYTFISYTMHWVRQAPGQGLEWMGYINPRSGYTHYNQKLKDKATLTADKSASTAYMELSSLRSEDTAVYYCARSAYYDYDGFAYWGQGTLVTVSSGGGGSGGGGSGGGGSDIQMTQSPSSLSASVGDRVTITCSASSSVSYMNWYQQKPGKAPKRLIYDTSKLASGVPSRFSGSGSGTDFTLTISSLQPEDFATYYCQQWSSNPPTFGGGTKVEIK",
+          "source_note": "data/engineered_459_atlas + ada curation",
+          "cdrh3_kabat": "SAYYDYDGFAY",
+          "cdrh3_annotation_method": "anarcii_kabat"
+        }
+      ],
+      "vh_for_conversion": "QVQLVQSGAEVKKPGASVKVSCKASGYTFISYTMHWVRQAPGQGLEWMGYINPRSGYTHYNQKLKDKATLTADKSASTAYMELSSLRSEDTAVYYCARSAYYDYDGFAYWGQGTLVTVSS",
+      "vh_source_entry_id": "visilizumab_vh_vl",
+      "source_class_for_vh2vhh": "humanized_mab"
+    },
+    {
+      "cdrh3_kabat": "FRQYSGGFDY",
+      "cdrh3_annotation_method": "anarcii_kabat",
+      "lineage_key": "ade31eac71e99dab",
+      "lineage_members": [
+        {
+          "entry_id": "otelixizumab_vh_vl",
+          "display_name": "Otelixizumab (humanized murine)",
+          "genetics": "humanized",
+          "input_format": "VH_VL",
+          "vh_aa": "EVQLLESGGGLVQPGGSLRLSCAASGFTFSSFPMAWVRQAPGKGLEWVSTISTSGGRTYYRDSVKGRFTISRDNSKNTLYLQMNSLRAEDTAVYYCAKFRQYSGGFDYWGQGTLVTVSS",
+          "vl_aa": "DIQLTQPNSVSTSLGSTVKLSCTLSSGNIENNYVHWYQLYEGRSPTTMIYDDDKRPDGVPDRFSGSIDRSSNSAFLTIHNVAIEDEAIYFCHSYVSSFNVFGGGTKLTVL",
+          "scfv_aa": "EVQLLESGGGLVQPGGSLRLSCAASGFTFSSFPMAWVRQAPGKGLEWVSTISTSGGRTYYRDSVKGRFTISRDNSKNTLYLQMNSLRAEDTAVYYCAKFRQYSGGFDYWGQGTLVTVSSGGGGSGGGGSGGGGSDIQLTQPNSVSTSLGSTVKLSCTLSSGNIENNYVHWYQLYEGRSPTTMIYDDDKRPDGVPDRFSGSIDRSSNSAFLTIHNVAIEDEAIYFCHSYVSSFNVFGGGTKLTVL",
+          "source_note": "data/engineered_459_atlas/master_table.csv",
+          "cdrh3_kabat": "FRQYSGGFDY",
+          "cdrh3_annotation_method": "anarcii_kabat"
+        }
+      ],
+      "vh_for_conversion": "EVQLLESGGGLVQPGGSLRLSCAASGFTFSSFPMAWVRQAPGKGLEWVSTISTSGGRTYYRDSVKGRFTISRDNSKNTLYLQMNSLRAEDTAVYYCAKFRQYSGGFDYWGQGTLVTVSS",
+      "vh_source_entry_id": "otelixizumab_vh_vl",
+      "source_class_for_vh2vhh": "humanized_mab"
+    },
+    {
+      "cdrh3_kabat": "QMGYWHFDL",
+      "cdrh3_annotation_method": "anarcii_kabat",
+      "lineage_key": "de1c1f1cc79e0639",
+      "lineage_members": [
+        {
+          "entry_id": "foralumab_vh_vl",
+          "display_name": "Foralumab / NI-0401 (fully human)",
+          "genetics": "fully_human",
+          "input_format": "VH_VL",
+          "vh_aa": "QVQLVESGGGVVQPGRSLRLSCAASGFKFSGYGMHWVRQAPGKGLEWVAVIWYDGSKKYYVDSVKGRFTISRDNSKNTLYLQMNSLRAEDTAVYYCARQMGYWHFDLWGRGTLVTVSS",
+          "vl_aa": "EIVLTQSPATLSLSPGERATLSCRASQSVSSYLAWYQQKPGQAPRLLIYDASNRATGIPARFSGSGSGTDFTLTISSLEPEDFAVYYCQQRSNWPPLTFGGGTKVEIK",
+          "scfv_aa": "QVQLVESGGGVVQPGRSLRLSCAASGFKFSGYGMHWVRQAPGKGLEWVAVIWYDGSKKYYVDSVKGRFTISRDNSKNTLYLQMNSLRAEDTAVYYCARQMGYWHFDLWGRGTLVTVSSGGGGSGGGGSGGGGSEIVLTQSPATLSLSPGERATLSCRASQSVSSYLAWYQQKPGQAPRLLIYDASNRATGIPARFSGSGSGTDFTLTISSLEPEDFAVYYCQQRSNWPPLTFGGGTKVEIK",
+          "source_note": "data/humanization_assay/384_antibody_germline_assignment.csv",
+          "cdrh3_kabat": "QMGYWHFDL",
+          "cdrh3_annotation_method": "anarcii_kabat"
+        }
+      ],
+      "vh_for_conversion": "QVQLVESGGGVVQPGRSLRLSCAASGFKFSGYGMHWVRQAPGKGLEWVAVIWYDGSKKYYVDSVKGRFTISRDNSKNTLYLQMNSLRAEDTAVYYCARQMGYWHFDLWGRGTLVTVSS",
+      "vh_source_entry_id": "foralumab_vh_vl",
+      "source_class_for_vh2vhh": "human_mab"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "shortlist_id": "dog_scaffold_shortlist_tier1_tier2_v1",
+  "species": "Canis_lupus_familiaris",
+  "built_at": "2026-02-22",
+  "updated_at": "2026-04-14",
+  "version": "1.1",
+  "changelog": "V1.1 (2026-04-14): Added IGHV1-30*01 (Cirevetmab 88.8%) and IGHV3-67*01 (Izenivetmab 82.7%) to Tier1; added IGHV3-72*01 (Ranevetmab 68.0%) and IGHV3-54*01 (Gilvetmab 69.7%) to Tier2; corrected Bedinvetmab/Lokivetmab label swap.",
+  "policy": {
+    "tier1_identity_threshold_vh": 80.0,
+    "tier1_requires_genuine_caninization": true,
+    "tier3_enabled": false,
+    "fallback_when_insufficient": "surface_reshaping_then_structure_gated_rescue_phase4_to_5"
+  },
+  "tier1_clinical_anchors": {
+    "vh_v_genes_imgt": [
+      "IGHV3-35*01",
+      "IGHV3-19*01",
+      "IGHV3-9*01",
+      "IGHV1-30*01",
+      "IGHV3-67*01"
+    ],
+    "vh_clinical_references": {
+      "IGHV3-35*01": {"antibody": "Lokivetmab", "target": "IL-31", "company": "Zoetis", "status": "Approved", "identity_pct": 87.8},
+      "IGHV3-19*01": {"antibody": "Bedinvetmab", "target": "NGF", "company": "Zoetis", "status": "Approved", "identity_pct": 91.8},
+      "IGHV3-9*01":  {"antibody": "Landogrozumab", "target": "ActRIIB", "company": "unknown", "status": "unknown", "identity_pct": null},
+      "IGHV1-30*01": {"antibody": "Cirevetmab", "target": "TGFbeta1", "company": "Zoetis", "status": "Caninised/unknown", "identity_pct": 88.8},
+      "IGHV3-67*01": {"antibody": "Izenivetmab", "target": "NGF", "company": "Zoetis", "status": "Caninised/unknown", "identity_pct": 82.7}
+    },
+    "vk_v_genes_imgt": [
+      "IGKV3-18*02",
+      "IGKV2-11*01"
+    ],
+    "vl_v_genes_imgt": [
+      "IGLV1-162*01"
+    ],
+    "source_note": "V1.0: Bedinvetmab/Lokivetmab/Landogrozumab anchors. V1.1: +Cirevetmab(IGHV1-30*01)/Izenivetmab(IGHV3-67*01) from pet_antibody_atlas systematic analysis."
+  },
+  "tier2_population_priors": {
+    "vh_high_frequency_tokens": [
+      "VH1-62",
+      "VH1-44"
+    ],
+    "vh_clinical_use": [
+      "IGHV3-72*01",
+      "IGHV3-54*01"
+    ],
+    "vh_clinical_references": {
+      "IGHV3-72*01": {"antibody": "Ranevetmab", "target": "NGF", "company": "Nexvet", "status": "Caninised/unknown", "identity_pct": 68.0, "atlas_count": 3},
+      "IGHV3-54*01": {"antibody": "Gilvetmab", "target": "PD-1", "company": "Merck", "status": "unknown", "identity_pct": 69.7, "atlas_count": 1}
+    },
+    "vk_high_frequency_tokens": [],
+    "vl_high_frequency_tokens": [],
+    "resolution_status": {
+      "vh_tokens_to_imgt_ids": {
+        "VH1-44": "IGHV3-23*01",
+        "VH1-62": "IGHV3-38*01"
+      },
+      "note": "Mapped VH1-44 to IGHV3-23*01 (functional homologue to human VH3-23) and VH1-62 to IGHV3-38*01 (functional surrogate for human VH3-21 homologue, as IGHV3-62 is P in reference). IGHV3-72*01 and IGHV3-54*01 added V1.1 based on clinical use evidence (identity 65-80%)."
+    }
+  }
+}

@@ -1,0 +1,186 @@
+kb_schema_version: "0.1.0"
+kb_versioning:
+  strategy: "semver"
+  required_fields_on_change:
+    - change_type
+    - change_summary
+    - owner
+    - reviewer
+    - date
+
+scopes:
+  allowed:
+    - vhh
+    - vhvl
+    - rabbit
+    - canine
+    - bsab
+    - car
+    - tcr
+    - mrna
+    - adc
+    - general
+
+confidence_levels:
+  allowed: [S, A, B, F]
+  enforcement:
+    decision_engine_accepts: [S, A]
+    report_conclusion_accepts: [S, A]
+    report_discussion_allows: [B]
+    discard: [F]
+
+artifact_types:
+  - parameters
+  - rules
+  - protocols
+  - casebook
+  - snippets
+  - schema
+
+common_fields:
+  # all YAML objects should support these
+  meta:
+    required:
+      - id
+      - title
+      - scope
+      - confidence
+      - owner
+      - reviewer
+      - created
+      - updated
+      - status
+    enums:
+      status: [active, deprecated, draft]
+  evidence:
+    required:
+      - rationale
+      - sources
+      - internal_validation
+  governance:
+    required:
+      - change_log
+
+schemas:
+  fields_dictionary:
+    type: object
+    required: [schema_version, fields]
+    fields:
+      schema_version: { type: string }
+      fields:
+        type: array
+        items:
+          type: object
+          required: [name, type, description, required, used_by]
+          properties:
+            name: { type: string }
+            type: { type: string }
+            description: { type: string }
+            required: { type: boolean }
+            used_by:
+              type: array
+              items: { type: string }
+            enum: { type: array }
+            example: {}
+
+  parameters_file:
+    type: object
+    required: [meta, parameters, evidence, governance]
+    properties:
+      meta: { type: object }
+      parameters:
+        type: array
+        items:
+          type: object
+          required:
+            - id
+            - name
+            - scope
+            - units
+            - recommended
+            - red_flag
+            - notes
+            - confidence
+          properties:
+            id: { type: string }
+            name: { type: string }
+            scope: { type: array, items: { type: string } }
+            units: { type: string }
+            recommended: {}
+            red_flag: {}
+            notes: { type: string }
+            confidence: { type: string }
+            tags: { type: array, items: { type: string } }
+            version_introduced: { type: string }
+
+  rules_file:
+    type: object
+    required: [meta, rules, evidence, governance]
+    properties:
+      rules:
+        type: array
+        items:
+          type: object
+          required:
+            - id
+            - scope
+            - trigger
+            - decision
+            - rationale
+            - alternatives
+            - confidence
+          properties:
+            id: { type: string }
+            scope: { type: array, items: { type: string } }
+            trigger: { type: object }     # machine-evaluable predicate tree
+            decision: { type: object }    # action(s) or output patch
+            rationale: { type: string }
+            alternatives:
+              type: array
+              items: { type: object }
+            confidence: { type: string }
+            deprecated: { type: boolean }
+            replaces: { type: string }
+
+  casebook_file:
+    type: object
+    required: [meta, case, evidence, governance]
+    properties:
+      case:
+        type: object
+        required:
+          - project_id
+          - antigen
+          - format
+          - input
+          - triggered_rules
+          - generated_variants
+          - experimental_results
+          - postmortem
+        properties:
+          project_id: { type: string }
+          antigen: { type: string }
+          format: { type: string }
+          input: { type: object }
+          triggered_rules: { type: array, items: { type: string } }
+          generated_variants: { type: array, items: { type: string } }
+          experimental_results: { type: object }
+          postmortem: { type: object }
+
+predicate_language:
+  # minimal DSL your pipeline can parse deterministically
+  operators: [all, any, not, eq, ne, gt, gte, lt, lte, in, nin, exists, regex, between]
+  examples:
+    - any:
+        - { exists: "segmentation.imgt.success" }
+        - { eq: ["qc.numbering_status", "ok"] }
+
+
+
+
+
+
+
+
+
+

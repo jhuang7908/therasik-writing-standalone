@@ -1,0 +1,42 @@
+[
+  {
+    "id": "ADC-PLAT-001",
+    "name": "Seagen (mc-vc-PABC-MMAE)",
+    "linker": "mc-val-cit-PABC",
+    "payload": "MMAE",
+    "conjugation": "Cysteine (Stochastic)",
+    "typical_dar": 4.0,
+    "advantage": "High plasma stability, well-characterized safety, bystander effect.",
+    "limitation": "Heterogeneity in DAR, potential for off-target toxicity if linker is cleaved by extracellular proteases."
+  },
+  {
+    "id": "ADC-PLAT-002",
+    "name": "Daiichi Sankyo (DXd)",
+    "linker": "GGFG (Tetrapeptide)",
+    "payload": "DXd",
+    "conjugation": "Cysteine (Partial reduction)",
+    "typical_dar": 8.0,
+    "advantage": "High DAR without aggregation, potent TOP1 inhibitor, strong bystander effect.",
+    "limitation": "Requires high internalization for optimal efficacy."
+  },
+  {
+    "id": "ADC-PLAT-003",
+    "name": "Immunomedics (CL2A-SN38)",
+    "linker": "CL2A",
+    "payload": "SN-38",
+    "conjugation": "Cysteine",
+    "typical_dar": 7.6,
+    "advantage": "Moderate potency payload allows high DAR; pH-sensitive release in tumor microenvironment.",
+    "limitation": "Relatively short half-life compared to other platforms."
+  },
+  {
+    "id": "ADC-PLAT-004",
+    "name": "ImmunoGen (Maytansinoid)",
+    "linker": "SMCC or SPDB",
+    "payload": "DM1 or DM4",
+    "conjugation": "Lysine or Cysteine",
+    "typical_dar": 3.5,
+    "advantage": "Potent tubulin inhibition, versatile linker options (cleavable vs non-cleavable).",
+    "limitation": "Lysine conjugation leads to high heterogeneity."
+  }
+]

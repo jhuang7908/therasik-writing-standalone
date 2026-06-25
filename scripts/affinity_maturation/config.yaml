@@ -1,0 +1,115 @@
+# VGRW_SR_R2 Virtual Affinity Maturation — Config v2
+# Structure-driven, no MPNN CDR redesign
+# v2 changes (2026-04-01):
+#   - complex_pdb → HADDOCK3 full200 cluster_1_model_2 
+#   - mutations →  full200 （ Ala scan +  E51/Y113F）
+#   - minimization_steps: 50 → 500（ VAM Standard Phase 4 ）
+#   -  thermompnn gate（，VAM Scenario C MANDATORY）
+#   - （D68E, T65V, Y64W, F112W）
+
+project:
+  name: "VGRW_SR_R2_HER2_AffinityMaturation_v2"
+  vhh_name: "VGRW_SR_R2"
+  vhh_chain: "A"
+  antigen_chain: "B"
+
+paths:
+  evoef2_exe: "../../tools/EvoEF2_src/EvoEF2.exe"
+  # v2:  HADDOCK3 full200 （i-RMSD=1.378 Å, DockQ=0.589）
+  # _clean:  HOH/SO4/NAG （EvoEF2 ）
+  complex_pdb: "../../projects/mumab4d5_VGRW_SR_R2/cluster_1_model_2_clean.pdb"
+  fasta: "../../projects/mumab4d5_VGRW_SR_R2/affinity_maturation/VGRW_SR_R2.fasta"
+  output_dir: "../../projects/mumab4d5_VGRW_SR_R2/affinity_maturation_v2"
+
+sequence:
+  wt: "QVQLVQSGAEVVKPGSSVKLSCKASGFNIKDTYIHWVKQRPEQGREWIGRIYPTNGYTRYDPKFQDRATITADTSTSTAYLEVSRLRSEDTAVYYCSRWGGDGFYAMDYWGQGASVTVSS"
+  length: 120
+
+# L0: Full interface exhaustive AA scan v2.3
+# ：（≥3 HER2 contacts） 19 AA 
+# ，， AI 
+# 20  AA - WT = 19 /；EvoEF2  1s/mutation， ~3min
+#  ≥ 3 （ 11 ，）：
+#   Y113(7) > R55(6)=R66(6)=Y64(6) > R50(5)=W52(5)=N62(5)=F112(5) > E51(4) > G49(3)=G111(3)
+# ：Y67(1)、K70(0-)
+_ALL_AA: &ALL_AA ["A","C","D","E","F","G","H","I","K","L","M","N","P","Q","R","S","T","V","W","Y"]
+
+mutations:
+  # 7 contacts
+  - { site: 113, wt: "Y", candidates: ["A","C","D","E","F","G","H","I","K","L","M","N","P","Q","R","S","T","V","W"] }
+  # 6 contacts
+  - { site: 55,  wt: "R", candidates: ["A","C","D","E","F","G","H","I","K","L","M","N","P","Q","S","T","V","W","Y"] }
+  - { site: 66,  wt: "R", candidates: ["A","C","D","E","F","G","H","I","K","L","M","N","P","Q","S","T","V","W","Y"] }
+  - { site: 64,  wt: "Y", candidates: ["A","C","D","E","F","G","H","I","K","L","M","N","P","Q","R","S","T","V","W"] }
+  # 5 contacts
+  - { site: 50,  wt: "R", candidates: ["A","C","D","E","F","G","H","I","K","L","M","N","P","Q","S","T","V","W","Y"] }
+  - { site: 52,  wt: "W", candidates: ["A","C","D","E","F","G","H","I","K","L","M","N","P","Q","R","S","T","V","Y"] }
+  - { site: 62,  wt: "N", candidates: ["A","C","D","E","F","G","H","I","K","L","M","P","Q","R","S","T","V","W","Y"] }
+  - { site: 112, wt: "F", candidates: ["A","C","D","E","G","H","I","K","L","M","N","P","Q","R","S","T","V","W","Y"] }
+  # 4 contacts
+  - { site: 51,  wt: "E", candidates: ["A","C","D","F","G","H","I","K","L","M","N","P","Q","R","S","T","V","W","Y"] }
+  # 3 contacts
+  - { site: 49,  wt: "G", candidates: ["A","C","D","E","F","H","I","K","L","M","N","P","Q","R","S","T","V","W","Y"] }
+  - { site: 111, wt: "G", candidates: ["A","C","D","E","F","H","I","K","L","M","N","P","Q","R","S","T","V","W","Y"] }
+  # 
+  - { site: 67,  wt: "Y", candidates: ["A","C","D","E","F","G","H","I","K","L","M","N","P","Q","R","S","T","V","W"] }
+  - { site: 70,  wt: "K", candidates: ["A","C","D","E","F","G","H","I","L","M","N","P","Q","R","S","T","V","W","Y"] }
+
+# Combination rules
+combo:
+  max_sites: 3
+  min_cb_distance: 8.0  # Angstrom
+
+# L1 gates (EvoEF2)
+gates_l1:
+  ddg_bind_threshold: 0.5    # kcal/mol; EvoEF2 MUE ~1.1, so <=+0.5 is within noise
+  ddg_fold_max: 1.0
+
+# L2a gates (ThermoMPNN — ，VAM Standard Scenario C MANDATORY)
+# ：VAM Standard §3.4 + Cursor Rule: ΔΔG_fold > +0.5 → 
+gates_thermompnn:
+  ddg_fold_threshold: 0.5    # kcal/mol； VHH 
+
+# L2b gates (AbLang — ，)
+gates_l2:
+  delta_logp_min: -0.3       # per-residue tolerance vs WT
+
+# CMC gates
+gates_cmc:
+  pi_shift_max: 0.5
+  sap_max: 0.8
+  new_deamid_cdr_fail: true
+
+# L3 (OpenMM MM/GBSA)
+# v2: minimization_steps 50 → 500（VAM Standard Phase 4 ）
+#  L1+L2a+CMC  15 
+openmm:
+  forcefield: "amber14/protein.ff14SB.xml"
+  implicit_solvent: "implicit/obc2.xml"
+  minimization_steps: 500
+  temperature_K: 300
+
+#  15 （ MM/GBSA）
+# ：F112(L/I/A/N), G49(A/S), E51(V/F), R50(K), N62(F/Y), Y64(F), Y113(F), Y67(F), K70(R)
+mutations_l3:
+  - { site: 112, wt: "F", candidates: ["L", "I", "A", "N"] }
+  - { site: 49,  wt: "G", candidates: ["A", "S"] }
+  - { site: 51,  wt: "E", candidates: ["V", "F"] }
+  - { site: 50,  wt: "R", candidates: ["K"] }
+  - { site: 62,  wt: "N", candidates: ["F", "Y"] }
+  - { site: 64,  wt: "Y", candidates: ["F"] }
+  - { site: 113, wt: "Y", candidates: ["F"] }
+  - { site: 67,  wt: "Y", candidates: ["F"] }
+  - { site: 70,  wt: "K", candidates: ["R"] }
+
+# MM/GBSA （EvoEF2 BuildMutant：， ; ）
+# G49  F112 Cα–Cβ ~20 Å，
+mutations_l3_doubles:
+  - name: "G49A+F112L"
+    mutations:
+      - { site: 49,  wt: "G", mut_aa: "A" }
+      - { site: 112, wt: "F", mut_aa: "L" }
+  - name: "G49S+F112L"
+    mutations:
+      - { site: 49,  wt: "G", mut_aa: "S" }
+      - { site: 112, wt: "F", mut_aa: "L" }

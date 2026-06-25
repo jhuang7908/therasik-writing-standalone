@@ -1,0 +1,37 @@
+{
+  "_comment": [
+    "Override ledger for the Site Integrity Pipeline.",
+    "Add entries here to suppress known false-positive findings.",
+    "",
+    "Each entry must have:",
+    "  check_id   : matches Finding.check_id (e.g. PMID_EXISTS, PMID_CONTEXT_RELEVANT)",
+    "  value      : the entity value (PMID, URL, sequence prefix, PDB ID, etc.)",
+    "  file_path  : relative file path, or '*' to suppress across all files",
+    "  reason     : mandatory human-readable justification",
+    "  reviewer   : who approved this override",
+    "  date       : ISO date of approval (YYYY-MM-DD)",
+    "",
+    "Example — NCI meta-PMID used site-wide:",
+    "  {",
+    "    \"check_id\": \"PMID_CONTEXT_RELEVANT\",",
+    "    \"value\": \"19723653\",",
+    "    \"file_path\": \"*\",",
+    "    \"reason\": \"NCI priority-antigen list paper; legitimately used across all TAA rows as shared meta-reference.\",",
+    "    \"reviewer\": \"curator@insynbio.com\",",
+    "    \"date\": \"2026-04-04\"",
+    "  }",
+    "",
+    "Matching rule: an override suppresses any finding where check_id AND value match,",
+    "AND (file_path == finding.file_path OR file_path == '*')."
+  ],
+  "overrides": [
+    {
+      "check_id": "PMID_CONTEXT_RELEVANT",
+      "value": "19723653",
+      "file_path": "*",
+      "reason": "NCI priority-antigen list PMID shared legitimately across all TAA/vaccine KB rows.",
+      "reviewer": "pipeline-bootstrap",
+      "date": "2026-04-04"
+    }
+  ]
+}

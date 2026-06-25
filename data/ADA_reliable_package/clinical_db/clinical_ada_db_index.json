@@ -1,0 +1,3410 @@
+{
+  "metadata": {
+    "schema_version": "1.0",
+    "generated_utc": "2026-03-31T14:25:25.833793+00:00",
+    "description": "Clinical therapeutic antibody ADA catalog: index + split data. Prefer reliable_merged_108 when present.",
+    "tier_rules_file": "scripts/ada_tier_utils.py",
+    "inputs": {
+      "reliable_108": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\data\\ADA_reliable_package\\from_openclaw_20260330\\reliable_merged\\reliable_ada_antibodies_database_20260330_231950.json",
+      "panel_151": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\data\\ADA_reliable_package\\sources\\151_antibody_evidence_database.json",
+      "ada_merged_multisource": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\data\\ADA_reliable_package\\ada_merged_multisource.json"
+    },
+    "counts": {
+      "total_indexed_inns": 170,
+      "evidence_tier": {
+        "A": 113,
+        "B": 46,
+        "C": 11
+      },
+      "ada_status": {
+        "incidence_reported": 169,
+        "qualitative_immunogenicity": 1
+      }
+    },
+    "usage": {
+      "index": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\data\\ADA_reliable_package\\clinical_db\\clinical_ada_db_index.json",
+      "data": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\data\\ADA_reliable_package\\clinical_db\\clinical_ada_db_data.json",
+      "lookup": "Load data[data_record_key] after resolving name -> slug via index.",
+      "expansion": "skip_automatic_ada_expansion=true for all rows: batch retrievers should exclude these INNs unless manually cleared."
+    }
+  },
+  "index": [
+    {
+      "record_id": "inn:abatacept",
+      "data_record_key": "abatacept",
+      "antibody_name": "Abatacept",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "4.8% (187/3877 patients)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Reumatología Clínica article (2012)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.reumatologiaclinica.org/en-abatacept-mechanism-action-concordance-with-articulo-S2173574312000081"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:abciximab",
+      "data_record_key": "abciximab",
+      "antibody_name": "Abciximab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "3.1%",
+      "has_numeric_ada": false,
+      "evidence_quality": "low",
+      "source_type": "FDA label + PubMed",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.drugs.com/sfx/abciximab-side-effects.html"
+      ],
+      "pmids_extracted": [
+        "15987447"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:adalimumab",
+      "data_record_key": "adalimumab",
+      "antibody_name": "Adalimumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_fda_label",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "30%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "FDA label",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/125057s423lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:aducanumab",
+      "data_record_key": "aducanumab",
+      "antibody_name": "Aducanumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "0.4%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/33361324/"
+      ],
+      "pmids_extracted": [
+        "33361324"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:alemtuzumab",
+      "data_record_key": "alemtuzumab",
+      "antibody_name": "Alemtuzumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmc",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "BAbs 85%, NAbs 78% within 24 months",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PMC article - Frontiers in Immunology (2020)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC7034358/"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:anakinra",
+      "data_record_key": "anakinra",
+      "antibody_name": "Anakinra",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "17.8% overall ADA, 3.7% neutralizing antibodies (up to 49% in some reports)",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium_high",
+      "source_type": "MedPageToday article (2021) - reporting on randomized trial",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.medpagetoday.com/rheumatology/generalrheumatology/91319"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:anifrolumab",
+      "data_record_key": "anifrolumab",
+      "antibody_name": "Anifrolumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmc",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "5.1% for anifrolumab 300 mg, 2.0% for anifrolumab 1,000 mg (vs 3% placebo)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PMC article (Anifrolumab, an Anti-Interferon-α Receptor Monoclonal Antibody, in Moderate-to-Severe Systemic Lupus Erythematosus)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC5299497/"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:astegolimab",
+      "data_record_key": "astegolimab",
+      "antibody_name": "Astegolimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "8.0%",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/41163220/"
+      ],
+      "pmids_extracted": [
+        "41163220"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:atezolizumab",
+      "data_record_key": "atezolizumab",
+      "antibody_name": "Atezolizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmc",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "30% average ADA (range 13-54%), ~15% NAb (range 4.3-27.5%)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PMC article - Clinical and Translational Science (2022)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC8742635/"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:atoltivimab",
+      "data_record_key": "atoltivimab",
+      "antibody_name": "Atoltivimab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "80%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "FDA prescribing information",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://api.fda.gov/drug/label.json"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:axatilimab",
+      "data_record_key": "axatilimab",
+      "antibody_name": "Axatilimab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "16.3%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "FDA prescribing information",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://api.fda.gov/drug/label.json"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:bamlanivimab",
+      "data_record_key": "bamlanivimab",
+      "antibody_name": "Bamlanivimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "2.1%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/33528553/"
+      ],
+      "pmids_extracted": [
+        "33528553"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:basiliximab",
+      "data_record_key": "basiliximab",
+      "antibody_name": "Basiliximab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "Anti-idiotype antibodies: 1.2% (4/339), HAMA: 1.4-11.8% depending on co-medication",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium_high",
+      "source_type": "RxList prescribing information (FDA-approved label)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.rxlist.com/simulect-drug.htm"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:belantamab",
+      "data_record_key": "belantamab",
+      "antibody_name": "Belantamab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "17%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/31711027/"
+      ],
+      "pmids_extracted": [
+        "31711027"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:belimumab",
+      "data_record_key": "belimumab",
+      "antibody_name": "Belimumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "4.8% (1 mg/kg dose), 0.7% (10 mg/kg dose, potentially underestimated)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "MedCentral drug monograph (2025)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.medcentral.com/drugs/monograph/155457-311017/belimumab-intravenous"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:benralizumab",
+      "data_record_key": "benralizumab",
+      "antibody_name": "Benralizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_fda_label",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "13% (treatment‑emergent ADA response)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "FDA prescribing information (FASENRA label)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2017/761070s000lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:bevacizumab",
+      "data_record_key": "bevacizumab",
+      "antibody_name": "Bevacizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_fda_label",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "0.6% (14/2233 patients)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "FDA prescribing information (Avastin label, 2020)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2020/125085s332lbl.pdf",
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2014/125085s301lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:bezlotoxumab",
+      "data_record_key": "bezlotoxumab",
+      "antibody_name": "Bezlotoxumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "qualitative_immunogenicity",
+      "ada_value_display": "No treatment-emergent anti-drug antibodies observed (very limited immunogenicity)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "FDA Briefing Document (Bezlotoxumab Injection)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.fda.gov/media/98708/download"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:bimagrumab",
+      "data_record_key": "bimagrumab",
+      "antibody_name": "Bimagrumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "4.0%",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/40580805/"
+      ],
+      "pmids_extracted": [
+        "40580805"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:bimekizumab",
+      "data_record_key": "bimekizumab",
+      "antibody_name": "Bimekizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmc",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "34% (11/32) in BKZ+PBO group, 47% (8/17) in BKZ group over 36-week trial",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PMC article (Bimekizumab for the treatment of moderate-to-severe plaque psoriasis: efficacy, safety, pharmacokinetics, pharmacodynamics and transcriptomics from a phase IIa, randomized, double-blind multicentre study)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9303624/"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:blinatumomab",
+      "data_record_key": "blinatumomab",
+      "antibody_name": "Blinatumomab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "<1% (neutralizing antibodies)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed review article (Clin Pharmacokinet. 2016)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/27209293/"
+      ],
+      "pmids_extracted": [
+        "27209293"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:brentuximab",
+      "data_record_key": "brentuximab",
+      "antibody_name": "Brentuximab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_fda_label",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "7% (persistently positive antibodies), 30% (transiently positive antibodies)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "RxList drug information (referencing FDA label data)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.rxlist.com/adcetris-drug.htm",
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2018/125388s099lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:brodalumab",
+      "data_record_key": "brodalumab",
+      "antibody_name": "Brodalumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmc",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "0-3.3% (review), 2.38% (pooled), 5.0-9.8% (binding antibodies)",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium-high",
+      "source_type": "PMC PubMed Central review article",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC12525274/"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:brolucizumab",
+      "data_record_key": "brolucizumab",
+      "antibody_name": "Brolucizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmc",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "Pre-existing ADA: 36–52% in treatment-naïve patients (HAWK/HARRIER trials)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PMC article (Brolucizumab-related retinal vasculitis: emerging disconnect between clinical trials and real world)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC8182886/"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:budigalimab",
+      "data_record_key": "budigalimab",
+      "antibody_name": "Budigalimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "1.80%",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/41054153/"
+      ],
+      "pmids_extracted": [
+        "41054153"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:burosumab",
+      "data_record_key": "burosumab",
+      "antibody_name": "Burosumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_fda_label",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "Adults: 15% (20/131) ADA positive; Children 5-12 years: 19% (10/52); Children 1-4 years: 0% (0/13)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "FDA label (CRYSVITA® burosumab-twza)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2020/761068s005lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:cadonilimab",
+      "data_record_key": "cadonilimab",
+      "antibody_name": "Cadonilimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "5.2%",
+      "has_numeric_ada": false,
+      "evidence_quality": "low",
+      "source_type": "PubMed",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC10012886/"
+      ],
+      "pmids_extracted": [
+        "34807181"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:camrelizumab",
+      "data_record_key": "camrelizumab",
+      "antibody_name": "Camrelizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmc",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "20.4% of patients had at least one ADA-positive sample (49 patients evaluated)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PMC article (Phase I study of camrelizumab in patients with advanced solid tumors)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9892498/"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:canakinumab",
+      "data_record_key": "canakinumab",
+      "antibody_name": "Canakinumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_fda_label",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "1.5% (CAPS patients), 3.1% (SJIA patients)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "FDA prescribing information (Ilaris label)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2016/BLA125319_858687lbl.pdf",
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2020/125319s100lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:caplacizumab",
+      "data_record_key": "caplacizumab",
+      "antibody_name": "Caplacizumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "3% ADA incidence in main trial (range: 2.8%-9% across studies)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "New England Journal of Medicine (Caplacizumab Treatment for Acquired Thrombotic Thrombocytopenic Purpura)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.nejm.org/doi/full/10.1056/NEJMoa1806311"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:cemiplimab",
+      "data_record_key": "cemiplimab",
+      "antibody_name": "Cemiplimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "1.9% (3 mg/kg q2w), 2.5% (350 mg q3w)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article (J Clin Pharmacol. 2024)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/37656820/"
+      ],
+      "pmids_extracted": [
+        "37656820"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:certolizumab",
+      "data_record_key": "certolizumab",
+      "antibody_name": "Certolizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "5.1-6.1%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PMC PubMed Central article",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC6883678/"
+      ],
+      "pmids_extracted": [
+        "31783773"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:cetuximab",
+      "data_record_key": "cetuximab",
+      "antibody_name": "Cetuximab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "5% (non-neutralizing antibodies)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Frontiers in Immunology review article (2022)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2022.885672/full"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:cilgavimab",
+      "data_record_key": "cilgavimab",
+      "antibody_name": "Cilgavimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "Cilgavimab: 4.1% ADA incidence (2/49 participants); AZD7442 combination: 6.1% TE-ADA positive (3/49 participants)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article (Safety, Tolerability, and Pharmacokinetics of the Long-Acting SARS-CoV-2-Neutralizing Monoclonal Antibody Combination AZD7442 in Healthy Chinese Adults)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/40799036/"
+      ],
+      "pmids_extracted": [
+        "40799036"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:clazakizumab",
+      "data_record_key": "clazakizumab",
+      "antibody_name": "Clazakizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "1.00%",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/38995690/"
+      ],
+      "pmids_extracted": [
+        "38995690"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:clesrovimab",
+      "data_record_key": "clesrovimab",
+      "antibody_name": "Clesrovimab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "22.6%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "FDA prescribing information",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://api.fda.gov/drug/label.json"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:concizumab",
+      "data_record_key": "concizumab",
+      "antibody_name": "Concizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/30367836/"
+      ],
+      "pmids_extracted": [
+        "30367836"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:crizanlizumab",
+      "data_record_key": "crizanlizumab",
+      "antibody_name": "Crizanlizumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "0% ADA in main trial (no detectable antibody response); 1.6% (1/61) in healthy subject study",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "New England Journal of Medicine (Crizanlizumab for the Prevention of Pain Crises in Sickle Cell Disease)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.nejm.org/doi/full/10.1056/NEJMoa1611770"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:crovalimab",
+      "data_record_key": "crovalimab",
+      "antibody_name": "Crovalimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/34276736/"
+      ],
+      "pmids_extracted": [
+        "34276736"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:daclizumab",
+      "data_record_key": "daclizumab",
+      "antibody_name": "Daclizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmc",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "≤12% (anti-daclizumab antibodies including neutralizing)",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "PMC article (The Formulary Monograph Service)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC5199226/"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:daratumumab",
+      "data_record_key": "daratumumab",
+      "antibody_name": "Daratumumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "0% (no ADA detected in two monotherapy trials)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "ScienceDirect review article (2022)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.sciencedirect.com/science/article/abs/pii/S0093775422000082"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:dazukibart",
+      "data_record_key": "dazukibart",
+      "antibody_name": "Dazukibart",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "20.0%",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/40401504/"
+      ],
+      "pmids_extracted": [
+        "40401504"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:denosumab",
+      "data_record_key": "denosumab",
+      "antibody_name": "Denosumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "<1% (exact percentage not specified but below 1% threshold)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Springer Phase 3 clinical trial (Osteoporosis International, 2025)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://link.springer.com/article/10.1007/s00198-025-07711-x"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:depemokimab",
+      "data_record_key": "depemokimab",
+      "antibody_name": "Depemokimab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "95%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "FDA prescribing information",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://api.fda.gov/drug/label.json"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:dinutuximab",
+      "data_record_key": "dinutuximab",
+      "antibody_name": "Dinutuximab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "Overall ADA incidence: 16.8-57.1% across studies; Neutralizing antibodies: 3.6-63.5% of ADA-positive patients",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "OncologyNewsCentral monograph",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.oncologynewscentral.com/drugs/monograph/168737-316005/dinutuximab-intravenous"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:domvanalimab",
+      "data_record_key": "domvanalimab",
+      "antibody_name": "Domvanalimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "17.2%",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/40592848/"
+      ],
+      "pmids_extracted": [
+        "40592848"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:donanemab",
+      "data_record_key": "donanemab",
+      "antibody_name": "Donanemab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/32401365/"
+      ],
+      "pmids_extracted": [
+        "32401365"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:dostarlimab",
+      "data_record_key": "dostarlimab",
+      "antibody_name": "Dostarlimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmc",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "2.5% treatment-emergent ADA incidence at recommended therapeutic dose",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PMC article (An Integrated Analysis of Dostarlimab Immunogenicity)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321970/"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:dupilumab",
+      "data_record_key": "dupilumab",
+      "antibody_name": "Dupilumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "7.61% ADA incidence in dupilumab studies; Neutralizing antibodies: 0.00% to 10.74%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Journal of Allergy and Clinical Immunology: In Practice (Incidence of Anti-Drug Antibodies to Monoclonal Antibodies in Asthma)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.jaci-inpractice.org/article/S2213-2198(23)00087-9/pdf",
+        "https://www.jaci-inpractice.org/article/S2213-2198(23"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:durvalumab",
+      "data_record_key": "durvalumab",
+      "antibody_name": "Durvalumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "0.8% (anti-drug antibodies), 0.8% (neutralizing antibodies)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Targeted Oncology review article (2023)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://link.springer.com/article/10.1007/s11523-023-01007-y"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:ebronucimab",
+      "data_record_key": "ebronucimab",
+      "antibody_name": "Ebronucimab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "12.5% ADA incidence (3/24 subjects) in healthy volunteer phase I study",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium-high",
+      "source_type": "Circulation abstract (The Safety, Pharmacokinetics, Pharmacodynamics and Immunogenicity of Ebronucimab in Healthy Volunteers: Result From a Phase I, Randomized, Double-Blind, Placebo-Controlled, Single Dose-Escalation Study)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.ahajournals.org/doi/10.1161/circ.146.suppl_1.9318"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:ecromeximab",
+      "data_record_key": "ecromeximab",
+      "antibody_name": "Ecromeximab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "1.80%",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/28489678/"
+      ],
+      "pmids_extracted": [
+        "28489678"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:eculizumab",
+      "data_record_key": "eculizumab",
+      "antibody_name": "Eculizumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "<2% detection rate (clinical trials)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Drugs.com professional monograph",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.drugs.com/monograph/eculizumab.html"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:efalizumab",
+      "data_record_key": "efalizumab",
+      "antibody_name": "Efalizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "approximately 5%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed review article (Expert Opin Drug Saf. 2006)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/16503742/"
+      ],
+      "pmids_extracted": [
+        "16503742"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:elezanumab",
+      "data_record_key": "elezanumab",
+      "antibody_name": "Elezanumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "2.0%",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/38191982/"
+      ],
+      "pmids_extracted": [
+        "38191982"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:elotuzumab",
+      "data_record_key": "elotuzumab",
+      "antibody_name": "Elotuzumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "15% (NEJM), 18.5% (Springer), ~15-40% depending on regimen",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "New England Journal of Medicine article (ELOQUENT-2 trial)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.nejm.org/doi/full/10.1056/NEJMoa1505654"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:emapalumab",
+      "data_record_key": "emapalumab",
+      "antibody_name": "Emapalumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/30352551/"
+      ],
+      "pmids_extracted": [
+        "30352551"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:emicizumab",
+      "data_record_key": "emicizumab",
+      "antibody_name": "Emicizumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "5.1% (34/668 patients)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Haematologica journal article",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://haematologica.org/article/view/haematol.2022.282099"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:enfortumab",
+      "data_record_key": "enfortumab",
+      "antibody_name": "Enfortumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_fda_label",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "1% transiently positive (4/365 patients), 0.3% persistently positive (1/365 patients)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "FDA prescribing information (PADCEV label)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/761137s000lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:enuzovimab",
+      "data_record_key": "enuzovimab",
+      "antibody_name": "Enuzovimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "1.50%",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/39793935/"
+      ],
+      "pmids_extracted": [
+        "39793935"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:eptinezumab",
+      "data_record_key": "eptinezumab",
+      "antibody_name": "Eptinezumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "5%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/31180181/"
+      ],
+      "pmids_extracted": [
+        "31180181"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:erenumab",
+      "data_record_key": "erenumab",
+      "antibody_name": "Erenumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "6.3% (70mg dose), 2.6% (140mg dose)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "EMA (European Medicines Agency) product information",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.ema.europa.eu/en/documents/product-information/aimovig-epar-product-information_en.pdf"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:etaracizumab",
+      "data_record_key": "etaracizumab",
+      "antibody_name": "Etaracizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "5.0%",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/17390341/"
+      ],
+      "pmids_extracted": [
+        "17390341"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:etesevimab",
+      "data_record_key": "etesevimab",
+      "antibody_name": "Etesevimab",
+      "evidence_tier": "C",
+      "tier_rationale": "tier_C_no_url_no_tier_A_anchor",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "1.7%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Claude response",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:etrolizumab",
+      "data_record_key": "etrolizumab",
+      "antibody_name": "Etrolizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "2%",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/40481373/"
+      ],
+      "pmids_extracted": [
+        "40481373"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:evinacumab",
+      "data_record_key": "evinacumab",
+      "antibody_name": "Evinacumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "2%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/33446410/"
+      ],
+      "pmids_extracted": [
+        "33446410"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:evolocumab",
+      "data_record_key": "evolocumab",
+      "antibody_name": "Evolocumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "0.1% (7/4846 subjects)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "ScienceDirect topic (citing FDA data)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.sciencedirect.com/topics/medicine-and-dentistry/evolocumab"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:exidavnemab",
+      "data_record_key": "exidavnemab",
+      "antibody_name": "Exidavnemab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "7.00%",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/39105497/"
+      ],
+      "pmids_extracted": [
+        "39105497"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:faricimab",
+      "data_record_key": "faricimab",
+      "antibody_name": "Faricimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "4.3%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/34416201/"
+      ],
+      "pmids_extracted": [
+        "34416201"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:favezelimab",
+      "data_record_key": "favezelimab",
+      "antibody_name": "Favezelimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "42.9%",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/40668662/"
+      ],
+      "pmids_extracted": [
+        "40668662"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:fremanezumab",
+      "data_record_key": "fremanezumab",
+      "antibody_name": "Fremanezumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "5.4%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/30153139/"
+      ],
+      "pmids_extracted": [
+        "30153139"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:frunevetmab",
+      "data_record_key": "frunevetmab",
+      "antibody_name": "Frunevetmab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "15.8%",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/34179175/"
+      ],
+      "pmids_extracted": [
+        "34179175"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:fulranumab",
+      "data_record_key": "fulranumab",
+      "antibody_name": "Fulranumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "6.0%",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/24590506/"
+      ],
+      "pmids_extracted": [
+        "24590506"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:galcanezumab",
+      "data_record_key": "galcanezumab",
+      "antibody_name": "Galcanezumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "4.8% (EMA), 4.8% (33/688 patients), 4.6% (phase 2b)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "EMA (European Medicines Agency) product information",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.ema.europa.eu/en/documents/product-information/emgality-epar-product-information_en.pdf"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:garadacimab",
+      "data_record_key": "garadacimab",
+      "antibody_name": "Garadacimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "<2%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/33446255/"
+      ],
+      "pmids_extracted": [
+        "33446255"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:gemtuzumab",
+      "data_record_key": "gemtuzumab",
+      "antibody_name": "Gemtuzumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmc",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "1.1% (2/182 patients), 5% (2/40 phase 1), 0% (0/142 phase 2)",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "PMC article (Immunogenicity of Antibody Drug Conjugates)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC4287284/"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:glofitamab",
+      "data_record_key": "glofitamab",
+      "antibody_name": "Glofitamab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "<1%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/31562122/"
+      ],
+      "pmids_extracted": [
+        "31562122"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:golimumab",
+      "data_record_key": "golimumab",
+      "antibody_name": "Golimumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "4.1-4.6%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PMC PubMed Central article",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC8115761/"
+      ],
+      "pmids_extracted": [
+        "23089571"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:guselkumab",
+      "data_record_key": "guselkumab",
+      "antibody_name": "Guselkumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "4.1-14.7% (systematic review), 7.94% (pooled), 2% (clinical trial)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed systematic review",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/35246887/"
+      ],
+      "pmids_extracted": [
+        "35246887"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:ibalizumab",
+      "data_record_key": "ibalizumab",
+      "antibody_name": "Ibalizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "<2%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/29854862/"
+      ],
+      "pmids_extracted": [
+        "29854862"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:ibritumomab",
+      "data_record_key": "ibritumomab",
+      "antibody_name": "Ibritumomab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmc",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "approximately 2% (HAMA in heavily pretreated patients)",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "PMC review article (90Yttrium ibritumomab tiuxetan in NHL)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC2721318/"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:inebilizumab",
+      "data_record_key": "inebilizumab",
+      "antibody_name": "Inebilizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/32251791/"
+      ],
+      "pmids_extracted": [
+        "32251791"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:infliximab",
+      "data_record_key": "infliximab",
+      "antibody_name": "Infliximab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_fda_label",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-40% (Crohn's), 8-17% (RA), 12-44% (AS), 7-18% (PsA)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "FDA label",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/103772s5412lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:isatuximab",
+      "data_record_key": "isatuximab",
+      "antibody_name": "Isatuximab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "1.9% (Springer), 2.3% (FDA), 4.2% (Nature)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Springer review article (Targeted Oncology)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://link.springer.com/article/10.1007/s11523-021-00827-0"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:itolizumab",
+      "data_record_key": "itolizumab",
+      "antibody_name": "Itolizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/26179019/"
+      ],
+      "pmids_extracted": [
+        "26179019"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:ixekizumab",
+      "data_record_key": "ixekizumab",
+      "antibody_name": "Ixekizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "11.5%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/27863164/"
+      ],
+      "pmids_extracted": [
+        "27863164"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:lanadelumab",
+      "data_record_key": "lanadelumab",
+      "antibody_name": "Lanadelumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "4%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/29131896/"
+      ],
+      "pmids_extracted": [
+        "29131896"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:lebrikizumab",
+      "data_record_key": "lebrikizumab",
+      "antibody_name": "Lebrikizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "5.2%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/27372567/"
+      ],
+      "pmids_extracted": [
+        "27372567"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:lecanemab",
+      "data_record_key": "lecanemab",
+      "antibody_name": "Lecanemab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/30715054/"
+      ],
+      "pmids_extracted": [
+        "30715054"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:leronlimab",
+      "data_record_key": "leronlimab",
+      "antibody_name": "Leronlimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/32203083/"
+      ],
+      "pmids_extracted": [
+        "32203083"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:levilimab",
+      "data_record_key": "levilimab",
+      "antibody_name": "Levilimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "<2%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/33388064/"
+      ],
+      "pmids_extracted": [
+        "33388064"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:lokivetmab",
+      "data_record_key": "lokivetmab",
+      "antibody_name": "Lokivetmab",
+      "evidence_tier": "C",
+      "tier_rationale": "tier_C_no_url_no_tier_A_anchor",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Claude response",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:loncastuximab",
+      "data_record_key": "loncastuximab",
+      "antibody_name": "Loncastuximab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10.3%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/31697826/"
+      ],
+      "pmids_extracted": [
+        "31697826"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:margetuximab",
+      "data_record_key": "margetuximab",
+      "antibody_name": "Margetuximab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "1.7%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "FDA label (MARGENZA) referenced via Drugs.com",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.drugs.com/sfx/margetuximab-side-effects.html"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:mepolizumab",
+      "data_record_key": "mepolizumab",
+      "antibody_name": "Mepolizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmc",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "2.91% (95% CI: 1.60-4.55)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PMC systematic review and meta-analysis (The Journal of Allergy and Clinical Immunology: In Practice)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC10601343/"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:mirikizumab",
+      "data_record_key": "mirikizumab",
+      "antibody_name": "Mirikizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "5.6%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/32387475/"
+      ],
+      "pmids_extracted": [
+        "32387475"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:miromavimab",
+      "data_record_key": "miromavimab",
+      "antibody_name": "Miromavimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "1.5%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/34855524/"
+      ],
+      "pmids_extracted": [
+        "34855524"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:mirvetuximab",
+      "data_record_key": "mirvetuximab",
+      "antibody_name": "Mirvetuximab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/29395716/"
+      ],
+      "pmids_extracted": [
+        "29395716"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:mogamulizumab",
+      "data_record_key": "mogamulizumab",
+      "antibody_name": "Mogamulizumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "3.9% (10/258 patients)",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "OncologyNewsCentral drug monograph",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.oncologynewscentral.com/drugs/monograph/175821-318034/mogamulizumab-kpkc-intravenous"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:mosunetuzumab",
+      "data_record_key": "mosunetuzumab",
+      "antibody_name": "Mosunetuzumab",
+      "evidence_tier": "C",
+      "tier_rationale": "tier_C_no_url_no_tier_A_anchor",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "<2%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Claude response",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:moxetumomab",
+      "data_record_key": "moxetumomab",
+      "antibody_name": "Moxetumomab",
+      "evidence_tier": "C",
+      "tier_rationale": "tier_C_no_url_no_tier_A_anchor",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Claude response",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:natalizumab",
+      "data_record_key": "natalizumab",
+      "antibody_name": "Natalizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "6% persistent antibodies",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article (Neurology journal)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/17761550/"
+      ],
+      "pmids_extracted": [
+        "17761550"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:naxitamab",
+      "data_record_key": "naxitamab",
+      "antibody_name": "Naxitamab",
+      "evidence_tier": "C",
+      "tier_rationale": "tier_C_no_url_no_tier_A_anchor",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Claude response",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:necitumumab",
+      "data_record_key": "necitumumab",
+      "antibody_name": "Necitumumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_fda_label",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "4.1% (33/814 patients)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "FDA prescribing information (PORTRAZZA label)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2015/125547s000lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:nemolizumab",
+      "data_record_key": "nemolizumab",
+      "antibody_name": "Nemolizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "5.6%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/30289238/"
+      ],
+      "pmids_extracted": [
+        "30289238"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:netakimab",
+      "data_record_key": "netakimab",
+      "antibody_name": "Netakimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/31566737/"
+      ],
+      "pmids_extracted": [
+        "31566737"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:nimotuzumab",
+      "data_record_key": "nimotuzumab",
+      "antibody_name": "Nimotuzumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/22576171/"
+      ],
+      "pmids_extracted": [
+        "22576171"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:nirsevimab",
+      "data_record_key": "nirsevimab",
+      "antibody_name": "Nirsevimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "<1%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/30089618/"
+      ],
+      "pmids_extracted": [
+        "30089618"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:nivolumab",
+      "data_record_key": "nivolumab",
+      "antibody_name": "Nivolumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "23.8-37.8% (combination therapy), 8.5% (monotherapy)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Clinical Cancer Research (AACR journal)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://aacrjournals.org/clincancerres/article/26/4/787/83087/Antidrug-Antibodies-Against-Immune-Checkpoint"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:obiltoxaximab",
+      "data_record_key": "obiltoxaximab",
+      "antibody_name": "Obiltoxaximab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "<2%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/27021312/"
+      ],
+      "pmids_extracted": [
+        "27021312"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:obinutuzumab",
+      "data_record_key": "obinutuzumab",
+      "antibody_name": "Obinutuzumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "approximately 13%",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "OncologyNewsCentral drug monograph",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.oncologynewscentral.com/drugs/monograph/165353-314013/obinutuzumab-intravenous"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:ocrelizumab",
+      "data_record_key": "ocrelizumab",
+      "antibody_name": "Ocrelizumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "approximately 1% (12/1311 patients)",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "MedCentral drug monograph",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.medcentral.com/drugs/monograph/173459-317024/ocrelizumab-intravenous"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:ofatumumab",
+      "data_record_key": "ofatumumab",
+      "antibody_name": "Ofatumumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "0.22% (2/914 patients)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article (The Development of Ofatumumab for MS)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/37450172/"
+      ],
+      "pmids_extracted": [
+        "37450172"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:olaratumab",
+      "data_record_key": "olaratumab",
+      "antibody_name": "Olaratumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_fda_label",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "3.5% (13/370 evaluable patients)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "FDA prescribing information (Lartruvo label)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2016/761038lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:olokizumab",
+      "data_record_key": "olokizumab",
+      "antibody_name": "Olokizumab",
+      "evidence_tier": "C",
+      "tier_rationale": "tier_C_no_url_no_tier_A_anchor",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Claude response",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:omalizumab",
+      "data_record_key": "omalizumab",
+      "antibody_name": "Omalizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmc",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "0.00% (systematic review), 0.06% (1/1723 patients)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PMC systematic review and meta-analysis (The Journal of Allergy and Clinical Immunology: In Practice)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC10601343/"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:ozoralizumab",
+      "data_record_key": "ozoralizumab",
+      "antibody_name": "Ozoralizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/34276766/"
+      ],
+      "pmids_extracted": [
+        "34276766"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:pabinafusp",
+      "data_record_key": "pabinafusp",
+      "antibody_name": "Pabinafusp",
+      "evidence_tier": "C",
+      "tier_rationale": "tier_C_no_url_no_tier_A_anchor",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "<2%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Claude response",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:palivizumab",
+      "data_record_key": "palivizumab",
+      "antibody_name": "Palivizumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "0.7% (Synagis group), 1.1% (placebo group)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "MedCentral drug monograph",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.medcentral.com/drugs/monograph/16441-398034/palivizumab-intramuscular"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:panitumumab",
+      "data_record_key": "panitumumab",
+      "antibody_name": "Panitumumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "1.8% binding antibodies (20/1124), 0.2% neutralizing antibodies (2/1124)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PMC article (Immunogenicity of panitumumab in combination chemotherapy clinical trials)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3231982/"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:pembrolizumab",
+      "data_record_key": "pembrolizumab",
+      "antibody_name": "Pembrolizumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "1.8% ADA incidence, 0.4% neutralizing antibodies",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Journal for ImmunoTherapy of Cancer systematic review",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://jitc.bmj.com/content/12/1/e008266"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:pemivibart",
+      "data_record_key": "pemivibart",
+      "antibody_name": "Pemivibart",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/30265425/"
+      ],
+      "pmids_extracted": [
+        "30265425"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:penpulimab",
+      "data_record_key": "penpulimab",
+      "antibody_name": "Penpulimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/33524450/"
+      ],
+      "pmids_extracted": [
+        "33524450"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:pertuzumab",
+      "data_record_key": "pertuzumab",
+      "antibody_name": "Pertuzumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "3% (13/389 patients in CLEOPATRA study)",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "OncologyNewsCentral drug monograph",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.oncologynewscentral.com/drugs/monograph/161165-313007/pertuzumab-intravenous"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:polatuzumab",
+      "data_record_key": "polatuzumab",
+      "antibody_name": "Polatuzumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "<1%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/31201130/"
+      ],
+      "pmids_extracted": [
+        "31201130"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:racotumomab",
+      "data_record_key": "racotumomab",
+      "antibody_name": "Racotumomab",
+      "evidence_tier": "C",
+      "tier_rationale": "tier_C_no_url_no_tier_A_anchor",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Claude response",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:ramucirumab",
+      "data_record_key": "ramucirumab",
+      "antibody_name": "Ramucirumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "3% (86/2890 patients)",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "OncologyNewsCentral drug monograph",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.oncologynewscentral.com/drugs/monograph/166215-315007/ramucirumab-intravenous"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:ranibizumab",
+      "data_record_key": "ranibizumab",
+      "antibody_name": "Ranibizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_fda_label",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "0-5% pre-treatment immunoreactivity",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "FDA prescribing information (Lucentis label)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2014/125156s105lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:ravulizumab",
+      "data_record_key": "ravulizumab",
+      "antibody_name": "Ravulizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "<2%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/30382392/"
+      ],
+      "pmids_extracted": [
+        "30382392"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:recaticimab",
+      "data_record_key": "recaticimab",
+      "antibody_name": "Recaticimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "<1%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/32767679/"
+      ],
+      "pmids_extracted": [
+        "32767679"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:regdanvimab",
+      "data_record_key": "regdanvimab",
+      "antibody_name": "Regdanvimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/34183044/"
+      ],
+      "pmids_extracted": [
+        "34183044"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:relatlimab",
+      "data_record_key": "relatlimab",
+      "antibody_name": "Relatlimab",
+      "evidence_tier": "C",
+      "tier_rationale": "tier_C_no_url_no_tier_A_anchor",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "<2%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Claude response",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:reslizumab",
+      "data_record_key": "reslizumab",
+      "antibody_name": "Reslizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmc",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "4.39% (95% CI: 2.88-6.20) in meta-analysis, 5.4% treatment-emergent ADA in FDA data",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PMC systematic review and meta-analysis (Incidence of Anti-Drug Antibodies to Monoclonal Antibodies in Asthma)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC10601343/"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:retifanlimab",
+      "data_record_key": "retifanlimab",
+      "antibody_name": "Retifanlimab",
+      "evidence_tier": "C",
+      "tier_rationale": "tier_C_no_url_no_tier_A_anchor",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Claude response",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:rilonacept",
+      "data_record_key": "rilonacept",
+      "antibody_name": "Rilonacept",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "43% of patients developed anti-rilonacept antibodies",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "ScienceDirect overview",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/rilonacept"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:risankizumab",
+      "data_record_key": "risankizumab",
+      "antibody_name": "Risankizumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "24% (263/1079 patients by Week 52), range 14.1-31% in systematic review",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Skyrizi prescribing information (AbbVie)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.rxabbvie.com/pdf/skyrizi_pi.pdf"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:rituximab",
+      "data_record_key": "rituximab",
+      "antibody_name": "Rituximab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "4-11%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Peer-reviewed journal (Rheumatology, Oxford Academic)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://academic.oup.com/rheumatology/article/62/7/2601/6825306"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:romosozumab",
+      "data_record_key": "romosozumab",
+      "antibody_name": "Romosozumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "17.6% binding antibodies, 2.9% neutralizing antibodies (by month 9)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "NCBI Bookshelf (StatPearls)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.ncbi.nlm.nih.gov/books/NBK585139/"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:rozanolixizumab",
+      "data_record_key": "rozanolixizumab",
+      "antibody_name": "Rozanolixizumab",
+      "evidence_tier": "C",
+      "tier_rationale": "tier_C_no_url_no_tier_A_anchor",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Claude response",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:sacituzumab",
+      "data_record_key": "sacituzumab",
+      "antibody_name": "Sacituzumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/33789009/"
+      ],
+      "pmids_extracted": [
+        "33789009"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:sarilumab",
+      "data_record_key": "sarilumab",
+      "antibody_name": "Sarilumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_fda_label",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "4.0% with 200 mg dose, 5.7% with 150 mg dose (FDA label data)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "FDA prescribing information (Kevzara label)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2018/761037s001lbl.pdf",
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/761037s013lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:satralizumab",
+      "data_record_key": "satralizumab",
+      "antibody_name": "Satralizumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "41% in combination therapy study, 71% in monotherapy study (EMA data)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "EMA (European Medicines Agency) product information",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.ema.europa.eu/en/documents/product-information/enspryng-epar-product-information_en.pdf"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:satumomab",
+      "data_record_key": "satumomab",
+      "antibody_name": "Satumomab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/8648089/"
+      ],
+      "pmids_extracted": [
+        "8648089"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:secukinumab",
+      "data_record_key": "secukinumab",
+      "antibody_name": "Secukinumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "<1% ADA incidence at week 52, 0.4% treatment-emergent ADAs over 3 years",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "ScienceDirect overview",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.sciencedirect.com/topics/pharmacology-toxicology-and-pharmaceutical-science/secukinumab"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:siltuximab",
+      "data_record_key": "siltuximab",
+      "antibody_name": "Siltuximab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_fda_label",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "0.2% overall incidence of positive anti-therapeutic antibodies",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "FDA clinical pharmacology review (BLA 125496)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2014/125496Orig1s000ClinPharmR.pdf",
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2014/125496s000lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:sintilimab",
+      "data_record_key": "sintilimab",
+      "antibody_name": "Sintilimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "<2%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/30621725/"
+      ],
+      "pmids_extracted": [
+        "30621725"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:spesolimab",
+      "data_record_key": "spesolimab",
+      "antibody_name": "Spesolimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/31806488/"
+      ],
+      "pmids_extracted": [
+        "31806488"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:sutimlimab",
+      "data_record_key": "sutimlimab",
+      "antibody_name": "Sutimlimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/33462941/"
+      ],
+      "pmids_extracted": [
+        "33462941"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:tafasitamab",
+      "data_record_key": "tafasitamab",
+      "antibody_name": "Tafasitamab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/32333849/"
+      ],
+      "pmids_extracted": [
+        "32333849"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:tafolecimab",
+      "data_record_key": "tafolecimab",
+      "antibody_name": "Tafolecimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/35326524/"
+      ],
+      "pmids_extracted": [
+        "35326524"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:tagitanlimab",
+      "data_record_key": "tagitanlimab",
+      "antibody_name": "Tagitanlimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "<1%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/33837950/"
+      ],
+      "pmids_extracted": [
+        "33837950"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:tarlatamab",
+      "data_record_key": "tarlatamab",
+      "antibody_name": "Tarlatamab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "11.7%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/35326846/"
+      ],
+      "pmids_extracted": [
+        "35326846"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:tebentafusp",
+      "data_record_key": "tebentafusp",
+      "antibody_name": "Tebentafusp",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/35106386/"
+      ],
+      "pmids_extracted": [
+        "35106386"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:teclistamab",
+      "data_record_key": "teclistamab",
+      "antibody_name": "Teclistamab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "<2%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/34402163/"
+      ],
+      "pmids_extracted": [
+        "34402163"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:teprotumumab",
+      "data_record_key": "teprotumumab",
+      "antibody_name": "Teprotumumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "2.3% ADA incidence (4 patients) in phase II/III trials, or 0% in specific placebo-controlled study",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "Drugs review article (Springer)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://link.springer.com/article/10.1007/s40265-022-01804-1"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:tezepelumab",
+      "data_record_key": "tezepelumab",
+      "antibody_name": "Tezepelumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "4.9% ADA positive in tezepelumab group (vs 8.3% placebo), 5% in FDA data (29/601 patients), 2.91% in systematic review",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "New England Journal of Medicine clinical trial",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.nejm.org/doi/full/10.1056/NEJMoa2034975"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:tildrakizumab",
+      "data_record_key": "tildrakizumab",
+      "antibody_name": "Tildrakizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmc",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "6.5% TE-POS with 100 mg, 8.2% with 200 mg; neutralizing antibodies 2.5% (100 mg) and 3.2% (200 mg)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PMC immunogenicity assessment study",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC6972989/"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:timigutuzumab",
+      "data_record_key": "timigutuzumab",
+      "antibody_name": "Timigutuzumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/34540688/"
+      ],
+      "pmids_extracted": [
+        "34540688"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:tisotumab",
+      "data_record_key": "tisotumab",
+      "antibody_name": "Tisotumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "5.7% ADA incidence in recurrent/metastatic cervical cancer patients",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "Pfizer Medical - TIVDAK Clinical Pharmacology",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.pfizermedical.com/tivdak/clinical-pharmacology"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:tixagevimab",
+      "data_record_key": "tixagevimab",
+      "antibody_name": "Tixagevimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "4.1% for tixagevimab component (2 participants), 6.1% for AZD7442 combination (3 participants)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article (Safety, Tolerability, and Pharmacokinetics of the Long-Acting SARS-CoV-2-Neutralizing Monoclonal Antibody Combination AZD7442 (Tixagevimab/Cilgavimab) in Healthy Chinese Adults)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/40799036/"
+      ],
+      "pmids_extracted": [
+        "40799036"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:tocilizumab",
+      "data_record_key": "tocilizumab",
+      "antibody_name": "Tocilizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_fda_label",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "2% positive anti-tocilizumab antibodies (46 patients), 1% neutralizing antibodies (30 patients)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "FDA prescribing information (Actemra label)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2013/125276s092lbl.pdf",
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2017/125276s114lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:toripalimab",
+      "data_record_key": "toripalimab",
+      "antibody_name": "Toripalimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmc",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "Animal: 10% ADA in cynomolgus monkeys; Human: 33.3% (0.3 mg/kg), 42.9% (1 mg/kg), 16.7% (3 mg/kg) ADA incidence",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PMC article (Toripalimab: the First Domestic Anti-Tumor PD-1 Antibody in China)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC8789657/"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:tralokinumab",
+      "data_record_key": "tralokinumab",
+      "antibody_name": "Tralokinumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "0.5‑1.2% ADA incidence across dosing regimens (asthma trials), 1.4% ADA in atopic dermatitis trials, 0.1% neutralizing antibodies",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article (Evaluation of Antibody Properties and Clinically Relevant Immunogenicity, Anaphylaxis, and Hypersensitivity Reactions in Two Phase III Trials of Tralokinumab in Severe, Uncontrolled Asthma)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/30649752/"
+      ],
+      "pmids_extracted": [
+        "30649752"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:trastuzumab",
+      "data_record_key": "trastuzumab",
+      "antibody_name": "Trastuzumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmc",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "<8% ADA incidence (range consistent with other anticancer biologics)",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium",
+      "source_type": "PMC review (Antidrug Antibody Formation in Oncology: Clinical Relevance and Challenges)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC5061540/"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:tremelimumab",
+      "data_record_key": "tremelimumab",
+      "antibody_name": "Tremelimumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "1.8‑16.7% ADA incidence range; specific studies: 11% (HIMALAYA), 14% (POSEIDON), 16.1% monotherapy, 7.3‑7.4% combination therapy",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "OncLive article (Anti-drug Antibodies Do Not Affect Durvalumab Alone, With Tremelimumab in Unresectable HCC)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://www.onclive.com/view/anti-drug-antibodies-do-not-affect-durvalumab-alone-with-tremelimumab-in-unresectable-hcc"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:ustekinumab",
+      "data_record_key": "ustekinumab",
+      "antibody_name": "Ustekinumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmc",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "2.3% incidence (27/1154 patients) in IM-UNITI trial through week 44; 4.6% (23/505) in ulcerative colitis trial; 6-12.4% in psoriasis/PsA; 2.9-4.6% in IBD",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PMC article (Development of Antibodies to Ustekinumab Is Associated with Loss of Response in Patients with Inflammatory Bowel Disease)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC10219534/"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:vedolizumab",
+      "data_record_key": "vedolizumab",
+      "antibody_name": "Vedolizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "2.4% ADA with continuous treatment (1513 patients), 22.1% ADA after treatment interruption and re‑treatment (240 patients)",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article (PMID: 33908636) - GEMINI long-term safety study",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/33908636/"
+      ],
+      "pmids_extracted": [
+        "33908636"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:vilobelimab",
+      "data_record_key": "vilobelimab",
+      "antibody_name": "Vilobelimab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/33619099/"
+      ],
+      "pmids_extracted": [
+        "33619099"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:vunakizumab",
+      "data_record_key": "vunakizumab",
+      "antibody_name": "Vunakizumab",
+      "evidence_tier": "A",
+      "tier_rationale": "tier_A_pmid",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "10-15%",
+      "has_numeric_ada": true,
+      "evidence_quality": "high",
+      "source_type": "PubMed article",
+      "canonical_provenance": "panel_151_extended",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/31138300/"
+      ],
+      "pmids_extracted": [
+        "31138300"
+      ],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    },
+    {
+      "record_id": "inn:zenocutuzumab",
+      "data_record_key": "zenocutuzumab",
+      "antibody_name": "Zenocutuzumab",
+      "evidence_tier": "B",
+      "tier_rationale": "tier_B_url_only",
+      "ada_status": "incidence_reported",
+      "ada_value_display": "5% antidrug antibody incidence",
+      "has_numeric_ada": true,
+      "evidence_quality": "medium_high",
+      "source_type": "OncoDaily article (New Paper Alert: Efficacy of Zenocutuzumab in NRG1 Fusion–Positive Cancer)",
+      "canonical_provenance": "reliable_merged_108",
+      "citation_urls": [
+        "https://oncodaily.com/oncolibrary/zenocutuzumab-nrj-new-paper-alert"
+      ],
+      "pmids_extracted": [],
+      "skip_automatic_ada_expansion": true,
+      "skip_rationale": "catalogued_in_clinical_ada_db"
+    }
+  ]
+}

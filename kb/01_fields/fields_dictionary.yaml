@@ -1,0 +1,231 @@
+schema_version: "0.1.0"
+
+meta:
+  id: "fields_dictionary_v0.1.0"
+  title: "Fields Dictionary - Core Data Schema"
+  scope: [general]
+  confidence: "S"
+  owner: "system"
+  reviewer: "pending"
+  created: "2025-12-14"
+  updated: "2025-12-14"
+  status: "active"
+
+fields:
+  - name: project_id
+    type: string
+    description: Unique project identifier for traceability (folder name or UUID).
+    required: true
+    used_by: [casebook, reports, pipeline]
+    example: "EGFR_7D12_VHH"
+
+  - name: molecule.format
+    type: string
+    description: Molecule format taxonomy.
+    required: true
+    used_by: [pipeline, reports, casebook]
+    enum: [VHH, VHVL, scFv, Fab, IgG, BsAb, CAR, TCR, mRNA, ADC]
+    example: "VHH"
+
+  - name: input.sequence.aa
+    type: string
+    description: Raw amino-acid sequence as provided by user (may include tags/fusions).
+    required: true
+    used_by: [pipeline]
+    example: "EVQLV..."
+
+  - name: qc.sequence.has_noncanonical_aa
+    type: boolean
+    description: True if contains non-20 canonical amino acids.
+    required: true
+    used_by: [rules, dashboard]
+    example: false
+
+  - name: qc.numbering_status
+    type: string
+    description: Numbering outcome status.
+    required: true
+    used_by: [rules, reports, dashboard]
+    enum: [ok, fail, partial, truncated]
+    example: "ok"
+
+  - name: numbering.imgt.map
+    type: object
+    description: IMGT position->(aa or gap) mapping plus alignment metadata.
+    required: true
+    used_by: [pipeline, reports]
+    example: { "1": "E", "2": "V", "37": "-", "111": "Y" }
+
+  - name: numbering.kabat.map
+    type: object
+    description: Kabat position->(aa or gap) mapping plus alignment metadata.
+    required: false
+    used_by: [pipeline, reports]
+    example: { "1": "E", "2": "V", "37": "Y" }
+
+  - name: numbering.dual_map_qc
+    type: object
+    description: Cross-map consistency checks (e.g., Kabat 37 maps to IMGT gap).
+    required: true
+    used_by: [rules, reports]
+    example: { "kabat37_is_gap_in_imgt": true, "conflicts": 1 }
+
+  - name: segmentation.cdr_definition
+    type: string
+    description: Which CDR definition is used for report and downstream rules.
+    required: true
+    used_by: [rules, reports]
+    enum: [imgt, kabat, chothia, union]
+    example: "union"
+
+  - name: segmentation.regions
+    type: object
+    description: Region slices and sequences (FR1-4, CDR1-3).
+    required: true
+    used_by: [dashboard, reports, cmc, immuno, humanization]
+    example:
+      FR1: "EVQLV..."
+      CDR1: "AASG..."
+      FR2: "WVRQ..."
+      CDR2: "ISGS..."
+      FR3: "YYAD..."
+      CDR3: "CAA..."
+      FR4: "WGQG..."
+
+  - name: scaffold.selected_id
+    type: string
+    description: Selected germline/scaffold ID.
+    required: true
+    used_by: [rules, reports]
+    example: "H1_VH3_23_consensus"
+
+  - name: scaffold.candidates
+    type: array
+    description: Top-N scaffold candidates with scores and reasons.
+    required: true
+    used_by: [reports, pipeline]
+    example:
+      - id: "H1_VH3_23_consensus"
+        score: 0.82
+        reasons: ["CDR length compatible", "VH3 Protein A preference", "FR stability prior"]
+      - id: "H2_VH4_34_consensus"
+        score: 0.77
+        reasons: ["lower hydrophobic patch risk", "fallback for aggregation"]
+
+  - name: humanness.t20
+    type: number
+    description: T20 humanness-like score (define scale in parameters).
+    required: true
+    used_by: [dashboard, rules]
+    example: 0.74
+
+  - name: humanness.fr_identity
+    type: object
+    description: FR identity metrics vs chosen scaffold.
+    required: true
+    used_by: [dashboard, rules, reports]
+    example: { "FR1": 0.79, "FR2": 0.65, "FR3": 0.82, "FR4": 0.90 }
+
+  - name: vhh.hallmark.score
+    type: number
+    description: VHH hallmark score (0-1 or 0-100, defined in parameters).
+    required: true
+    used_by: [dashboard, rules, reports]
+    example: 0.67
+
+  - name: interface.flags
+    type: object
+    description: Interface smoothing flags (charge reversals, bulky clashes, etc.).
+    required: true
+    used_by: [rules, dashboard, reports]
+    example: { "charge_reversal_count": 2, "bulky_clash_count": 1 }
+
+  - name: immuno.metrics
+    type: object
+    description: Immunogenicity summary metrics (rank/IC50/coverage).
+    required: true
+    used_by: [dashboard, rules, reports]
+    example:
+      method: "iedb_mhcii"
+      allele_set_id: "HLA_DRB1_top8_v1"
+      strong_epitope_count: 3
+      min_rank_percentile: 0.4
+      strong_ic50_count: 2
+      allele_coverage: 6
+
+  - name: immuno.epitopes
+    type: array
+    description: Epitope calls with localization and anchors.
+    required: true
+    used_by: [rules, reports, mutation_planner]
+    example:
+      - peptide: "KLGLEWVSAISG"
+        start: 23
+        end: 34
+        allele: "HLA-DRB1*04:01"
+        rank_percentile: 0.7
+        ic50_nM: 30
+        region: "FR2"
+        anchor_positions: [1, 4, 6, 9]
+
+  - name: cmc.liabilities
+    type: array
+    description: Sequence liabilities and repair suggestions.
+    required: true
+    used_by: [dashboard, rules, reports]
+    example:
+      - type: "deamidation"
+        motif: "NG"
+        position: "IMGT:55"
+        region: "FR2"
+        risk: "high"
+        suggestion: "N->Q (if not interface/anchor); else local alternatives"
+
+  - name: variants
+    type: array
+    description: Proposed variants with mutation lists and rationales.
+    required: true
+    used_by: [reports, synthesis_list, casebook]
+    example:
+      - id: "variant_balanced"
+        mutations: ["IMGT55 N->Q", "IMGT83 M->L"]
+        expected_tradeoffs: ["possible minor affinity shift"]
+        verification_min_set: ["SEC-HPLC", "DSF", "SPR/OCTET"]
+
+  - name: report.trace
+    type: object
+    description: Traceability: rule IDs, parameter IDs, tool versions.
+    required: true
+    used_by: [reports, audit]
+    example:
+      rules_fired: ["RULE_QC_001", "RULE_IMMUNO_010"]
+      params_used: ["IMM_RANK_STRONG", "CMC_DEAMIDATION_NG"]
+      tool_versions: { "anarci": "1.b", "pipeline": "0.9.2" }
+
+evidence:
+  rationale: "Core fields extracted from pipeline execution and report generation requirements. These fields represent the canonical data model used across all components."
+  sources:
+    - "Pipeline execution logs"
+    - "Report template analysis"
+    - "Dashboard requirements"
+  internal_validation:
+    - "Fields validated against actual pipeline outputs"
+    - "Schema compliance verified"
+
+governance:
+  change_log:
+    - date: "2025-12-14"
+      change_type: "initial"
+      change_summary: "Initial fields dictionary creation with core pipeline and report fields"
+      owner: "system"
+      reviewer: "pending"
+
+
+
+
+
+
+
+
+
+

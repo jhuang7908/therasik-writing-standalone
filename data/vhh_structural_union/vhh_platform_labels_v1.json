@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "frozen_intent": "Sparse explicit labels only; absence of an id here does NOT mean ‘camelid only’ — see defaults.",
+    "defaults": {
+      "clinical_bucket_40_unlisted": "Not labeled as transgenic-mouse nanobody in this file; discovery lineages vary (camelid immunization / engineered / etc.).",
+      "database_b_29": "SAbDab-nano derived humanized/engineered camelid VHH structures — not mouse nanobody platform."
+    },
+    "verified_in_suite": {
+      "nanobody_transgenic_mouse_in_vhh69_union": [
+        {
+          "display_id": "Porustobart",
+          "canonical_slug": "porustobart",
+          "tag": "transgenic_mouse_nanobody",
+          "evidence": "Aligned with data/reference/VHH68_reference_stats_v1.json platform_policy (Porustobart excluded from camelid n=68 calibration).",
+          "cohorts_present": ["vhh_structural_union_69", "vhh68_special_cmc_results", "clinical_vhh_immunbuilder_bucket"]
+        }
+      ],
+      "note_other_mouse_claims": "No second VHH id in the 69-row union is tagged mouse nanobody in frozen suite metadata. Add rows here only with owner-approved provenance."
+    }
+  },
+  "platform_tag_by_canonical_slug": {
+    "porustobart": "transgenic_mouse_nanobody",
+    "lofacimig": "humanized_camelid_tandem_vh_fc"
+  },
+  "sequence_policy_by_canonical_slug": {
+    "lofacimig": {
+      "has_sequence_in_validated_clinical_39": false,
+      "has_authoritative_full_chain_sequence": true,
+      "has_row_in_master_table_40": true,
+      "full_chain_sequence_hash_sha1_12": "ccf9a30366d8",
+      "full_chain_sequence_source": "data/sequence_provenance/lofacimig/lofacimig_ncats_gsrs_full_chain_v1.json",
+      "reason": "Tandem VH-VH-G1 homodimer (493 aa per chain per NCATS/GSRS); authoritative full chain collected, but no single-domain VHH row is admitted to validated_clinical_39 or VHH42."
+    }
+  }
+}

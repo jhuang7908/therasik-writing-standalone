@@ -1,0 +1,56 @@
+{
+  "metadata": {
+    "schema_version": "2.0",
+    "generated_utc": "2026-03-31T15:14:27.291050+00:00",
+    "description": "Final re-verified ADA database. Every entry has been subjected to automated source verification (PubMed abstract, PMC full-text, DailyMed SPL XML). verification_status field shows result for each entry.",
+    "verification_methodology": {
+      "phase1": "Fetched PMID abstract via NCBI efetch OR URL page text; checked if claimed ADA % appears in text",
+      "phase2_pdf": "DailyMed SPL XML API used to extract immunogenicity section from FDA labels that were binary PDFs",
+      "phase2_wrongpmid": "PubMed esearch + DailyMed used to find correct sources for entries with wrong PMIDs"
+    },
+    "counts": {
+      "total_included": 116,
+      "total_excluded": 3,
+      "verified": 62,
+      "unverified": 54,
+      "by_verification_status": {
+        "unverified_pct_not_in_abstract_fulltext_needed": 31,
+        "unverified_source_403_inaccessible": 23,
+        "verified_dailymed_spl_pmid_corrected": 3,
+        "verified_fda_label_dailymed_spl": 7,
+        "verified_partial_primary_value_confirmed": 8,
+        "verified_pmid_corrected_match": 1,
+        "verified_qualitative_no_pct_to_match": 1,
+        "verified_text_match": 42
+      },
+      "by_tier": {
+        "A": 74,
+        "B": 42
+      }
+    },
+    "exclusions_this_run": {
+      "wrong_pmid_no_alternative": [
+        "Abciximab",
+        "Belantamab",
+        "Cadonilimab"
+      ]
+    }
+  },
+  "excluded": [
+    {
+      "antibody_name": "Abciximab",
+      "reason": "excluded_wrong_pmid_no_alternative",
+      "detail": "PMID 15987447 is a COX-2 paper; DailyMed not found; no ADA source verified"
+    },
+    {
+      "antibody_name": "Belantamab",
+      "reason": "excluded_wrong_pmid_no_alternative",
+      "detail": "PMID 31711027 is a carbon materials paper; DailyMed not found for belantamab"
+    },
+    {
+      "antibody_name": "Cadonilimab",
+      "reason": "excluded_wrong_pmid_no_alternative",
+      "detail": "PMID 34807181 is a metal-mirror paper; Chinese NMPA drug with no FDA/DailyMed entry"
+    }
+  ]
+}

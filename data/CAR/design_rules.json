@@ -1,0 +1,257 @@
+{
+  "_metadata": {
+    "description": "CAR construct design rules: assembly grammar, element compatibility, and constraints",
+    "version": "1.0",
+    "generated": "2025-04-01"
+  },
+
+  "assembly_grammar": {
+    "_note": "Defines valid element ordering for each CAR architecture. 'required' = must be filled; 'optional' = can be omitted.",
+
+    "standard_2G": {
+      "slots": ["signal_peptide", "binder", "hinge", "transmembrane", "costimulatory", "signaling"],
+      "required": ["signal_peptide", "binder", "hinge", "transmembrane", "signaling"],
+      "optional": ["costimulatory"],
+      "max_costim": 1,
+      "description": "Standard 2nd generation CAR"
+    },
+    "standard_3G": {
+      "slots": ["signal_peptide", "binder", "hinge", "transmembrane", "costim_1", "costim_2", "signaling"],
+      "required": ["signal_peptide", "binder", "hinge", "transmembrane", "costim_1", "costim_2", "signaling"],
+      "optional": [],
+      "max_costim": 2,
+      "description": "3rd generation CAR with dual costimulation"
+    },
+    "tandem_bispecific": {
+      "slots": ["signal_peptide", "binder_1", "linker_inter", "binder_2", "hinge", "transmembrane", "costimulatory", "signaling"],
+      "required": ["signal_peptide", "binder_1", "linker_inter", "binder_2", "hinge", "transmembrane", "signaling"],
+      "optional": ["costimulatory"],
+      "description": "Tandem bispecific CAR (e.g., CD19/CD22)"
+    },
+    "armored_4G": {
+      "slots": ["signal_peptide", "binder", "hinge", "transmembrane", "costimulatory", "signaling", "2a_peptide", "armor_payload"],
+      "required": ["signal_peptide", "binder", "hinge", "transmembrane", "signaling", "2a_peptide", "armor_payload"],
+      "optional": ["costimulatory"],
+      "description": "Armored/TRUCKs 4th gen: CAR + secreted/anchored payload"
+    },
+    "5th_gen": {
+      "slots": ["signal_peptide", "binder", "hinge", "transmembrane", "costimulatory", "signaling", "stat_signal"],
+      "required": ["signal_peptide", "binder", "hinge", "transmembrane", "signaling", "stat_signal"],
+      "optional": ["costimulatory"],
+      "description": "5th generation: adds JAK-STAT cytokine receptor signaling"
+    },
+    "car_nk": {
+      "slots": ["signal_peptide", "binder", "hinge", "transmembrane", "nk_costim", "signaling", "armor"],
+      "required": ["signal_peptide", "binder", "transmembrane", "signaling"],
+      "optional": ["hinge", "nk_costim", "armor"],
+      "description": "CAR-NK with NK-native signaling"
+    },
+    "car_macrophage": {
+      "slots": ["signal_peptide", "binder", "hinge", "transmembrane", "signaling"],
+      "required": ["signal_peptide", "binder", "transmembrane", "signaling"],
+      "optional": ["hinge"],
+      "promoter_required": "myeloid_specific",
+      "description": "CAR-Macrophage with phagocytic signaling"
+    },
+    "car_treg": {
+      "slots": ["signal_peptide", "binder", "hinge", "transmembrane", "costimulatory", "signaling", "2a_peptide", "treg_payload"],
+      "required": ["signal_peptide", "binder", "hinge", "transmembrane", "signaling", "treg_payload"],
+      "optional": ["costimulatory", "2a_peptide"],
+      "description": "CAR-Treg for tolerance induction"
+    },
+    "logic_AND": {
+      "slots": ["signal_peptide_1", "synnotch_binder", "synnotch_core", "synnotch_tf", "signal_peptide_2", "binder_2", "hinge", "transmembrane", "costimulatory", "signaling"],
+      "required": ["synnotch_binder", "synnotch_core", "synnotch_tf", "binder_2", "transmembrane", "signaling"],
+      "optional": ["signal_peptide_1", "signal_peptide_2", "hinge", "costimulatory"],
+      "description": "AND-gate: SynNotch receptor senses antigen 1, drives CAR for antigen 2"
+    },
+    "logic_NOT": {
+      "slots": ["signal_peptide", "binder", "hinge", "transmembrane", "costimulatory", "signaling", "icar"],
+      "required": ["signal_peptide", "binder", "hinge", "transmembrane", "signaling", "icar"],
+      "optional": ["costimulatory"],
+      "description": "NOT-gate: activating CAR + inhibitory iCAR for normal tissue protection"
+    },
+    "allogeneic": {
+      "slots": ["signal_peptide", "binder", "hinge", "transmembrane", "costimulatory", "signaling"],
+      "required": ["signal_peptide", "binder", "hinge", "transmembrane", "signaling"],
+      "optional": ["costimulatory"],
+      "ko_required": ["TRAC_CRISPR_Target"],
+      "ko_recommended": ["B2M_CRISPR_Target", "CIITA_KO_guide"],
+      "transgene_recommended": ["HLA_E_NK_Evasion", "CD47_DontEatMe"],
+      "description": "Allogeneic off-the-shelf: standard CAR + KO endogenous TCR/MHC"
+    },
+    "in_vivo_mRNA": {
+      "slots": ["targeting_ligand", "signal_peptide", "binder", "hinge", "transmembrane", "costimulatory", "signaling"],
+      "required": ["targeting_ligand", "signal_peptide", "binder", "transmembrane", "signaling"],
+      "optional": ["hinge", "costimulatory"],
+      "delivery": "LNP_mRNA",
+      "description": "In-vivo CAR: LNP-delivered mRNA CAR, no ex vivo manufacturing"
+    },
+    "caar": {
+      "slots": ["signal_peptide", "autoantigen_ecd", "hinge", "transmembrane", "costimulatory", "signaling"],
+      "required": ["signal_peptide", "autoantigen_ecd", "hinge", "transmembrane", "signaling"],
+      "optional": ["costimulatory"],
+      "description": "CAAR: chimeric autoantibody receptor displaying autoantigen ECD as binder"
+    }
+  },
+
+  "compatibility": {
+    "_note": "Element-level compatibility rules. Each entry: preferred_with (synergistic), compatible_with (neutral), incompatible_with (conflicts).",
+
+    "CD28_TM": {
+      "preferred_with": ["CD28_cyto", "CD28_Medium"],
+      "compatible_with": ["4-1BB_cyto", "CD3z_cyto", "OX40_cyto", "ICOS_cyto"],
+      "incompatible_with": ["DAP12_signaling"],
+      "reason": "CD28 TM pairs naturally with CD28 costim; DAP12 is NK-specific"
+    },
+    "CD8a_TM": {
+      "preferred_with": ["4-1BB_cyto", "CD8a_Short"],
+      "compatible_with": ["CD28_cyto", "CD3z_cyto", "OX40_cyto", "ICOS_cyto", "CD27_cyto"],
+      "incompatible_with": [],
+      "reason": "CD8a TM is the most versatile; slightly preferred with 4-1BB for persistence"
+    },
+    "NKG2D_TM": {
+      "preferred_with": ["DAP12_signaling", "DAP10_Full", "2B4_cyto"],
+      "compatible_with": ["CD3z_cyto"],
+      "incompatible_with": ["CD28_cyto"],
+      "reason": "NKG2D TM is NK-native; pairs with NK signaling adaptors"
+    },
+    "4-1BB_cyto": {
+      "preferred_with": ["CD8a_TM", "CD8a_Short"],
+      "compatible_with": ["CD28_TM", "CD3z_cyto", "CD3z_ITAM_2"],
+      "incompatible_with": [],
+      "reason": "4-1BB promotes persistence/memory; standard for long-term durability"
+    },
+    "CD28_cyto": {
+      "preferred_with": ["CD28_TM", "CD28_Medium"],
+      "compatible_with": ["CD8a_TM", "CD3z_cyto"],
+      "incompatible_with": [],
+      "reason": "CD28 drives rapid activation; higher peak but shorter persistence"
+    },
+    "DAP12_signaling": {
+      "preferred_with": ["NKG2D_TM", "NKG2D_Full_CAR_NK", "2B4_cyto"],
+      "compatible_with": ["NKp46_ECD_binder", "NKp30_ECD"],
+      "incompatible_with": ["CD28_TM", "CD28_cyto", "4-1BB_cyto"],
+      "reason": "DAP12 is NK-native ITAM; not functional in T cell CAR context"
+    },
+    "FcgRI_TM_cyto_CARM": {
+      "preferred_with": ["CD68_Promoter_CARM"],
+      "compatible_with": ["CD3z_cyto"],
+      "incompatible_with": ["4-1BB_cyto", "CD28_cyto", "DAP12_signaling"],
+      "reason": "FcγRI is macrophage-native; must use myeloid promoter, incompatible with T/NK costim"
+    },
+    "iCasp9": {
+      "preferred_with": ["P2A", "T2A"],
+      "compatible_with": ["tEGFR", "RQR8"],
+      "incompatible_with": [],
+      "reason": "iCasp9 is co-expressed via 2A peptide; compatible with other safety switches"
+    },
+    "CD8a_Short": {
+      "preferred_with": ["CD8a_TM"],
+      "compatible_with": ["CD28_TM"],
+      "incompatible_with": [],
+      "reason": "Short hinge for membrane-proximal epitopes (most scFv targets)"
+    },
+    "IgG4_SPLE_Long": {
+      "preferred_with": ["CD28_TM"],
+      "compatible_with": ["CD8a_TM"],
+      "incompatible_with": [],
+      "reason": "Long IgG4 spacer for membrane-distal epitopes or small targets"
+    },
+    "c_Jun_OE": {
+      "preferred_with": ["4-1BB_cyto", "BATF_OE"],
+      "compatible_with": ["CD28_cyto"],
+      "incompatible_with": [],
+      "reason": "c-Jun OE synergizes with 4-1BB for anti-exhaustion; BATF OE is additive"
+    },
+    "CCR2b": {
+      "preferred_with": ["CXCR3"],
+      "compatible_with": ["P2A", "T2A"],
+      "incompatible_with": [],
+      "reason": "Dual chemokine receptor expression for broad solid tumor homing"
+    },
+    "HLA_E_NK_Evasion": {
+      "preferred_with": ["B2M_CRISPR_Target", "CD47_DontEatMe"],
+      "compatible_with": ["TRAC_CRISPR_Target", "CIITA_KO_guide"],
+      "incompatible_with": [],
+      "reason": "Full stealth allo-CAR: HLA-E (NK evasion) + CD47 (macrophage evasion) + B2M KO"
+    },
+    "FoxP3_TF": {
+      "preferred_with": ["Helios_OE", "TNFR2_cyto"],
+      "compatible_with": ["4-1BB_cyto"],
+      "incompatible_with": ["CD28_cyto", "c_Jun_OE", "Secreted_IL12"],
+      "reason": "FoxP3 defines Treg identity; CD28 costim/IL-12 would destabilize Treg phenotype"
+    },
+    "SynNotch_NRR": {
+      "preferred_with": ["Gal4_VP64_TF", "Notch1_TM_domain"],
+      "compatible_with": [],
+      "incompatible_with": ["iCAR_PSMA"],
+      "reason": "SynNotch is the AND-gate input; incompatible with NOT-gate in same construct"
+    }
+  },
+
+  "constraints": {
+    "_note": "Hard constraints that must be satisfied for any valid CAR construct.",
+
+    "max_total_length_aa": 2000,
+    "min_total_length_aa": 300,
+    "max_binder_count": 2,
+    "max_costim_count": 2,
+    "max_safety_switches": 2,
+
+    "cell_type_restrictions": {
+      "T": {
+        "forbidden_signaling": ["DAP12_signaling", "FcgRI_TM_cyto_CARM"],
+        "forbidden_promoter": ["CD68_Promoter_CARM"]
+      },
+      "NK": {
+        "forbidden_costim": [],
+        "preferred_signaling": ["DAP12_signaling", "CD3z_cyto"],
+        "preferred_tm": ["NKG2D_TM"]
+      },
+      "macrophage": {
+        "required_promoter": ["CD68_Promoter_CARM"],
+        "preferred_signaling": ["FcgRI_TM_cyto_CARM", "CD3z_cyto"],
+        "forbidden_costim": ["4-1BB_cyto", "CD28_cyto"]
+      },
+      "regulatory_T": {
+        "required_payload": ["FoxP3_TF"],
+        "forbidden_payload": ["Secreted_IL12", "IL18_Armor", "c_Jun_OE"],
+        "reason": "Treg must maintain suppressive phenotype; pro-inflammatory payloads destabilize"
+      },
+      "iNKT": {
+        "required_element": ["iNKT_TCR_Va24Vb11"]
+      }
+    },
+
+    "indication_safety_rules": {
+      "on_target_off_tumor_risk": {
+        "targets": ["CD44v6_scFv", "Cetuximab_scFv", "HER3_scFv", "FOLR1_scFv"],
+        "require_safety_switch": true,
+        "reason": "Target expressed on normal tissue at low levels; safety switch mandatory"
+      },
+      "crs_high_risk": {
+        "targets": ["FMC63_scFv", "CD22_scFv", "CD123_scFv"],
+        "generation": ["2nd"],
+        "warn": "High tumor burden indications: consider CD28 for rapid kinetics or iCasp9 for CRS management"
+      }
+    }
+  },
+
+  "slot_allowed_categories": {
+    "_note": "Maps each slot name to allowed element categories from CART_LIBRARY_V3.",
+    "signal_peptide":  ["Signal Peptide"],
+    "binder":          ["Antigen Binder"],
+    "hinge":           ["Hinge & Spacer"],
+    "transmembrane":   ["Transmembrane Domain"],
+    "costimulatory":   ["Costimulatory Domain"],
+    "signaling":       ["Primary Signaling Domain"],
+    "armor_payload":   ["Armored Payload"],
+    "2a_peptide":      ["Linker & Peptide"],
+    "linker_inter":    ["Linker & Peptide"],
+    "safety":          ["Safety Switch"],
+    "promoter":        ["Regulatory Element"],
+    "engineering":     ["Engineering Module"],
+    "logic":           ["Logic Gate & Switch"]
+  }
+}

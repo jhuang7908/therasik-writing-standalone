@@ -1,0 +1,56 @@
+{
+  "schema_version": "0.1",
+  "doc_type": "xiaohongshu",
+  "locale": "zh-CN",
+  "template_id": "xhs_vibrant_01",
+  "meta": {
+    "generated_at": "2026-06-05T20:05:00Z",
+    "llm_model": "deepseek-chat",
+    "request_summary": "小红书种草：AI 帮你三分钟做出商业 PPT",
+    "credit_estimate": 60,
+    "status": "draft"
+  },
+  "brand": {
+    "primary_color": "#FF2E63",
+    "secondary_color": "#FFD460",
+    "font_family": "阿里巴巴普惠体",
+    "logo_asset_id": null
+  },
+  "blocks": [
+    {
+      "block_id": "c1",
+      "layout": "cover",
+      "text": {
+        "title": "3分钟做出\n老板都夸的PPT",
+        "subtitle": "打工人必备AI神器",
+        "tag": "干货"
+      },
+      "visual": {
+        "intent": "明亮活泼的渐变背景，年轻、高点击率封面风",
+        "prompt_en": "bright vibrant gradient background, youthful, high CTR social cover, pink and yellow, no text",
+        "role": "background",
+        "aspect_ratio": "3:4",
+        "preferred_tier": "standard",
+        "negative": "text, watermark",
+        "resolved": null
+      }
+    },
+    {
+      "block_id": "c2",
+      "layout": "card",
+      "text": {
+        "title": "为什么强烈推荐",
+        "body": "选模板→输需求→AI生成→直接下载可编辑文件，中文不乱码。"
+      },
+      "bullets": ["海量模板", "中文优化", "可编辑导出"],
+      "visual": {
+        "intent": "简洁插画，手机展示PPT",
+        "prompt_en": "minimal flat illustration of a phone showing slides, pink accent, clean",
+        "role": "illustration",
+        "aspect_ratio": "1:1",
+        "preferred_tier": "stock",
+        "resolved": null
+      }
+    }
+  ]
+}

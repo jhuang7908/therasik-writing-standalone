@@ -1,0 +1,335 @@
+meta:
+  id: "RULES_IMMUNO_DEIMMU_V1"
+  title: "Immunogenicity De-immunization Rules (locate epitope → FR/CDR policy → minimal mutation → alternatives/refusals)"
+  scope: [vhh, vhvl, rabbit, canine, bsab, adc, general]
+  confidence: "A"
+  owner: "immunology"
+  reviewer: "antibody_engineering"
+  created: "2025-12-14"
+  updated: "2025-12-14"
+  status: "active"
+
+rules:
+
+  # ------------------------------------------------------------
+  # 0) Precondition: immuno metrics exist
+  # ------------------------------------------------------------
+  - id: "RULE_IMMUNO_000_REQUIRE_IMMUNO_METRICS"
+    scope: [general]
+    confidence: "S"
+    trigger:
+      any:
+        - { not: { exists: "immuno.metrics" } }
+        - { eq: ["immuno.metrics.method", "none"] }
+    decision:
+      set:
+        immuno.deimmunization.status: "not_applicable"
+        immuno.deimmunization.block: true
+      report:
+        severity: "medium"
+        headline: "Immunogenicity de-immunization skipped: immunogenicity metrics not available."
+        required_pipeline_behavior:
+          - "Compute immuno.metrics and immuno.epitopes before proposing de-immunization mutations."
+      trace:
+        params_used:
+          - "IMM_METHOD_DEFAULT"
+          - "IMM_ALLELE_SET_DEFAULT"
+    rationale: "De-immunization must be driven by explicit epitope calls; otherwise mutation plans are speculative and non-auditable."
+    alternatives:
+      - option: "Proceed with policy-only cautionary notes"
+        when: "user requests a qualitative review without running prediction"
+        decision:
+          set:
+            immuno.deimmunization.block: true
+          report:
+            severity: "medium"
+            note: "Provide qualitative risk discussion only; no mutation list."
+        rationale: "Maintains integrity while giving some value."
+        confidence: "B"
+    deprecated: false
+
+  # ------------------------------------------------------------
+  # 1) Determine if strong epitopes exceed threshold → must act
+  # ------------------------------------------------------------
+  - id: "RULE_IMMUNO_010_STRONG_EPITOPE_TRIGGER"
+    scope: [general]
+    confidence: "S"
+    trigger:
+      any:
+        - { gt: ["immuno.metrics.strong_epitope_count", 0] }
+        - { lt: ["immuno.metrics.min_rank_percentile", 2.0] }
+        - { gt: ["immuno.metrics.strong_ic50_count", 0] }
+    decision:
+      set:
+        immuno.deimmunization.status: "required"
+        immuno.deimmunization.priority: "high"
+      report:
+        severity: "high"
+        headline: "Strong MHC-II epitope signals detected; de-immunization recommended."
+        must_include_in_report:
+          - "strong_epitope_count"
+          - "min_rank_percentile"
+          - "allele_coverage"
+      trace:
+        params_used:
+          - "IMM_RANK_STRONG"
+          - "IMM_IC50_STRONG"
+          - "IMM_REGION_POLICY"
+    rationale: "Strong predicted epitopes (rank/IC50) represent actionable immunogenicity risk; must propose minimal, auditable mutations."
+    alternatives:
+      - option: "Monitor only"
+        when: "therapeutic context tolerates higher ADA risk (explicitly stated)"
+        decision:
+          set:
+            immuno.deimmunization.status: "optional"
+            immuno.deimmunization.priority: "medium"
+          report:
+            severity: "medium"
+            note: "De-immunization optional given context; still provide a ranked mutation shortlist."
+        rationale: "Keeps engineering options without forcing changes."
+        confidence: "B"
+    deprecated: false
+
+  # ------------------------------------------------------------
+  # 2) Epitope localization: FR vs CDR
+  # ------------------------------------------------------------
+  - id: "RULE_IMMUNO_020_LOCATE_EPITOPE_REGION"
+    scope: [general]
+    confidence: "S"
+    trigger:
+      all:
+        - { exists: "immuno.epitopes" }
+        - { gt: ["immuno.metrics.strong_epitope_count", 0] }
+    decision:
+      action:
+        - "annotate_epitopes_with_regions_and_interface_adjacency"
+      set:
+        immuno.deimmunization.localization_done: true
+      report:
+        severity: "info"
+        headline: "Localized epitopes to FR/CDR and interface-adjacent zones."
+        must_include_in_report:
+          - "epitope_table_with_region"
+          - "interface_adjacency_flag"
+      trace:
+        params_used:
+          - "IMM_REGION_POLICY"
+    rationale: "Mutation policy differs by region; localization is required for minimal and safe edits."
+    alternatives:
+      - option: "Fallback to approximate localization"
+        when: "segmentation incomplete but numbering ok"
+        decision:
+          action:
+            - "approximate_region_by_imgt_boundaries"
+          set:
+            immuno.deimmunization.localization_done: true
+          report:
+            severity: "medium"
+            note: "Used approximate boundaries due to segmentation gaps; verify manually."
+        rationale: "Keeps flow while flagging uncertainty."
+        confidence: "A"
+    deprecated: false
+
+  # ------------------------------------------------------------
+  # 3) FR epitopes: must fix if strong
+  # ------------------------------------------------------------
+  - id: "RULE_IMMUNO_030_FR_STRONG_EPITOPE_MUST_FIX"
+    scope: [general]
+    confidence: "S"
+    trigger:
+      any:
+        - all:
+            - { exists: "immuno.epitopes" }
+            - { eq: ["immuno.deimmunization.localization_done", true] }
+            - { gt: ["immuno.epitopes_strong_in_FR.count", 0] }
+    decision:
+      action:
+        - "select_minimal_anchor_disrupting_mutations_in_fr"
+      set:
+        immuno.deimmunization.fr_fix_status: "proposed"
+      report:
+        severity: "high"
+        headline: "Strong epitopes located in FR: propose minimal de-immunization mutations (must-fix)."
+        must_include_in_report:
+          - "for_each_epitope: anchor_positions"
+          - "mutation_candidates_ranked"
+          - "notes_on_vernier_or_hallmark_overlap"
+        output_contract:
+          emit_variant_patch:
+            variant_tag: "deimmunization_FR"
+            max_mutations_per_epitope: 1
+      trace:
+        params_used:
+          - "IMM_REGION_POLICY"
+          - "IMM_RANK_STRONG"
+          - "IMM_IC50_STRONG"
+    rationale: "FR edits generally carry lower affinity risk than CDR edits; strong FR epitopes should be removed with minimal substitutions."
+    alternatives:
+      - option: "Refuse mutation if overlaps critical hallmark/vernier/interface"
+        when: "epitope anchor overlaps protected positions"
+        decision:
+          set:
+            immuno.deimmunization.fr_fix_status: "refused_for_protected_site"
+          report:
+            severity: "high"
+            refusal_reason:
+              - "Anchor overlaps protected hallmark/vernier/interface position; mutation likely to destabilize or affect binding."
+            next_best_actions:
+              - "Consider alternative scaffold/framework swap to remove epitope context."
+              - "Consider epitope redistribution via neighboring non-anchor substitutions (2nd order)."
+        rationale: "Avoids trading immunogenicity for loss of function/developability."
+        confidence: "A"
+    deprecated: false
+
+  # ------------------------------------------------------------
+  # 4) CDR epitopes: minimize anchor mutation, warn affinity risk
+  # ------------------------------------------------------------
+  - id: "RULE_IMMUNO_040_CDR_STRONG_EPITOPE_MINIMAL_MUTATE_AND_WARN"
+    scope: [general]
+    confidence: "S"
+    trigger:
+      any:
+        - all:
+            - { exists: "immuno.epitopes" }
+            - { eq: ["immuno.deimmunization.localization_done", true] }
+            - { gt: ["immuno.epitopes_strong_in_CDR.count", 0] }
+    decision:
+      action:
+        - "rank_cdr_epitopes_by_allele_coverage_and_strength"
+        - "propose_minimal_non_anchor_mutations_first"
+        - "propose_anchor_mutation_with_affinity_risk_flag"
+      set:
+        immuno.deimmunization.cdr_fix_status: "proposed_with_risk"
+      report:
+        severity: "high"
+        headline: "Strong epitopes located in CDR: propose minimal edits with explicit affinity-risk labeling."
+        must_include_in_report:
+          - "mutation_plan_split: non_anchor_first_then_anchor_if_needed"
+          - "affinity_risk_flag_per_mutation"
+          - "recommended_min_validation: SPR/OCTET + functional assay"
+        output_contract:
+          emit_variant_patch:
+            variant_tag: "deimmunization_CDR"
+            max_mutations_per_epitope: 1
+      trace:
+        params_used:
+          - "IMM_REGION_POLICY"
+          - "IMM_RANK_STRONG"
+          - "IMM_IC50_STRONG"
+    rationale: "CDR edits can directly impact paratope geometry; changes must be minimal, prioritized away from anchors, and accompanied by binding-risk disclosure."
+    alternatives:
+      - option: "Refuse if CDR3 core paratope predicted"
+        when: "epitope overlaps high-confidence paratope/core positions"
+        decision:
+          set:
+            immuno.deimmunization.cdr_fix_status: "refused_for_binding_core"
+          report:
+            severity: "high"
+            refusal_reason:
+              - "Epitope overlaps likely binding core; mutation risks unacceptable affinity loss."
+            next_best_actions:
+              - "Use alternative humanization gradient (min/mid/max) focusing on FR only."
+              - "Consider affinity recovery campaign after de-immunization (display/structure-guided)."
+        rationale: "Protects activity; provides an explicit alternative path."
+        confidence: "A"
+    deprecated: false
+
+  # ------------------------------------------------------------
+  # 5) Generate variant bundles with audit fields
+  # ------------------------------------------------------------
+  - id: "RULE_IMMUNO_050_BUILD_DEIMMU_VARIANTS_AND_TRACE"
+    scope: [general]
+    confidence: "A"
+    trigger:
+      all:
+        - { eq: ["immuno.deimmunization.status", "required"] }
+        - any:
+            - { eq: ["immuno.deimmunization.fr_fix_status", "proposed"] }
+            - { eq: ["immuno.deimmunization.cdr_fix_status", "proposed_with_risk"] }
+    decision:
+      action:
+        - "assemble_variants_from_epitope_mutations"
+        - "attach_rule_trace_and_param_ids"
+      set:
+        immuno.deimmunization.variants_built: true
+      report:
+        severity: "info"
+        headline: "Generated de-immunization variants with rule/parameter traceability."
+        must_include_in_report:
+          - "variant_table: id, mutation_list, epitope_targeted, risk_flags"
+          - "report.trace.rules_fired"
+          - "report.trace.params_used"
+      trace:
+        params_used:
+          - "IMM_BURDEN_DEFINITION"
+          - "IMM_REGION_POLICY"
+    rationale: "Deliverables must be actionable: mutation list + targeted epitope + risks + minimal validation set, with full traceability."
+    alternatives:
+      - option: "Emit shortlist only"
+        when: "customer wants fewer constructs"
+        decision:
+          action:
+            - "keep_top_k_variants_by_burden_reduction"
+          set:
+            immuno.deimmunization.variants_built: true
+          report:
+            severity: "info"
+            note: "Emitted Top-K variants; remaining candidates retained in developer report."
+        rationale: "Matches synthesis budget while preserving full internal record."
+        confidence: "B"
+    deprecated: false
+
+  # ------------------------------------------------------------
+  # 6) Mandatory report language: do not overclaim; propose PBMC assay
+  # ------------------------------------------------------------
+  - id: "RULE_IMMUNO_090_REPORT_GUARDRAILS_AND_MIN_EXPERIMENTS"
+    scope: [general]
+    confidence: "S"
+    trigger:
+      any:
+        - { eq: ["immuno.deimmunization.status", "required"] }
+        - { eq: ["immuno.deimmunization.status", "optional"] }
+    decision:
+      set:
+        report.immuno_section.must_include:
+          - "prediction_is_in_silico_statement"
+          - "recommended_invitro_validation: PBMC_assay"
+          - "false_negative_caveat"
+      report:
+        severity: "info"
+        headline: "Add required guardrails and minimal experimental validation recommendations."
+        recommended_min_validation:
+          - "In vitro PBMC assay (immunogenicity risk screening)"
+          - "Binding assay (SPR/OCTET) for any CDR edits"
+          - "SEC-HPLC/DSF if mutations overlap CMC liabilities"
+      trace:
+        params_used: []
+    rationale: "Prevents overclaiming and anchors the report in wet-lab reality; ensures every mutation plan comes with the smallest credible validation set."
+    alternatives:
+      - option: "Escalate to in vivo only when explicitly requested"
+        when: "customer requests animal confirmation"
+        decision:
+          report:
+            note: "In vivo models are context-dependent; recommend starting with PBMC before animal studies."
+        rationale: "Keeps default workflow efficient and consistent."
+        confidence: "A"
+    deprecated: false
+
+evidence:
+  rationale: "Convert epitope calls into minimal, auditable mutation plans with region-aware policies and explicit alternatives/refusals."
+  sources:
+    - type: "internal"
+      ref: "Your stated policy: PBMC in vitro is the practical immunogenicity validation baseline; PBMC/CD34 mice for efficacy not immunogenicity testing."
+    - type: "public"
+      ref: "Industry practice: de-immunization prioritizes minimal substitutions and avoids CDR anchor edits unless necessary."
+  internal_validation:
+    status: "in_progress"
+    notes: "Tune mutation ranking and refusal gates using casebook outcomes (SEC/DSF/SPR and PBMC readouts)."
+
+governance:
+  change_log:
+    - change_type: "create"
+      change_summary: "Initial de-immunization chain: strong-epitope trigger → localization → FR must-fix vs CDR risk-managed → variant assembly → report guardrails."
+      owner: "immunology"
+      reviewer: "antibody_engineering"
+      date: "2025-12-14"

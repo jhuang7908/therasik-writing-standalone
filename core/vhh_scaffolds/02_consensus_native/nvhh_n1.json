@@ -1,0 +1,74 @@
+{
+  "scaffold_id": "NVHH-N1",
+  "version": "1.0.0",
+  "layer": "consensus_native",
+  "description": "Native-like camelid VHH consensus framework derived from NbFedF9 (4W6Y_B) and BCD090-M2 (6EZW_A). Designed as a realistic, slightly smoothed VHH FR template for first-pass CDR grafting.",
+  "species_group": "Camelidae",
+  "germline_like": {
+    "imgt_family": "IGHV1-like",
+    "imgt_allele": null,
+    "is_exact_imgt_germline": false
+  },
+  "source_templates": [
+    {
+      "ref_id": "PDB_4W6Y_B",
+      "weight_in_consensus": 0.5
+    },
+    {
+      "ref_id": "PDB_6EZW_A",
+      "weight_in_consensus": 0.5
+    }
+  ],
+  "provenance_checks": {
+    "has_true_native_template": true,
+    "all_templates_in_01_true_native": true,
+    "imgt_numbering_available": false,
+    "needs_anarci_numbering": true,
+    "manually_reviewed": false
+  },
+  "framework_sequences": {
+    "FR1": "QVQLVESGGGLVQPGGSLRLSCAAS",
+    "FR2": "WFRQAPGKEREFVSA",
+    "FR3": "RFTISRDNAKNTVYLQMNSLKPEDTAVYYC",
+    "FR4": "WGQGTQVTVSS"
+  },
+  "full_template_with_placeholders": "QVQLVESGGGLVQPGGSLRLSCAAS[CDR1]WFRQAPGKEREFVSA[CDR2]RFTISRDNAKNTVYLQMNSLKPEDTAVYYC[CDR3]WGQGTQVTVSS",
+  "cdr_constraints": {
+    "cdr1_length_allowed": [6, 7, 8],
+    "cdr2_length_allowed": [8, 9, 10],
+    "cdr3_length_allowed": [10, 11, 12, 13, 14, 15, 16, 17, 18],
+    "canonical_classes": {
+      "cdr1": ["H1-1", "H1-2"],
+      "cdr2": ["H2-1", "H2-2"]
+    }
+  },
+  "engineering_changes_vs_templates": {
+    "relative_to_4W6Y_B": {
+      "sequence_v_region_used": "sequence_v_region_trimmed",
+      "mutations_applied": [
+        "Q1->Q/E mixed consensus simplified to Q in FR1",
+        "ESGGGSVQAGGS->ESGGGLVQPGGS smoothing of positions 5-12",
+        "Removal of unusual gly/ser clusters in FR1/FR3 to avoid rare motifs",
+        "Removal of C-terminal His-tag"
+      ]
+    },
+    "relative_to_6EZW_A": {
+      "sequence_v_region_used": "sequence_v_region_trimmed",
+      "mutations_applied": [
+        "Leading 'GQ' trimmed to consensus 'QVQ'",
+        "CAFSGRTF->CAASGFTF style simplification in FR1",
+        "Some FR3 polar residues reverted to more common VHH consensus"
+      ]
+    }
+  },
+  "intended_use": {
+    "typical_workflow": [
+      "Step 1: run ANARCI on original VHH to get IMGT CDRs.",
+      "Step 2: graft original CDRs into NVHH-N1 FR1–FR4.",
+      "Step 3: (CMC/) NVHH-H1 。"
+    ],
+    "recommended_stage": "Discovery / early optimization",
+    "notes": "For most， NVHH-N1  ' + ' ，。"
+  }
+}
+

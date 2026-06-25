@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InSynBio Console — Login</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { height: 100%; }
+body {
+  min-height: 100%;
+  background: radial-gradient(circle at top right, rgba(33,199,217,.10), transparent 30%), #090d16;
+  color: #e5edf7; font: 13px/1.55 "Inter", system-ui, sans-serif;
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 40px 16px 40px;
+}
+.gate-panel {
+  width: min(380px, 100%);
+  background: #0f1726; border: 1px solid #253246; border-radius: 12px;
+  padding: 28px 24px; box-shadow: 0 20px 60px rgba(0,0,0,.6);
+  align-self: flex-start;
+}
+.gate-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+.gate-mark {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 1px solid #21c7d9; color: #21c7d9;
+  display: flex; align-items: center; justify-content: center;
+  font: 700 13px "JetBrains Mono", monospace; flex-shrink: 0;
+}
+.gate-title { color: #21c7d9; font-weight: 700; font-size: 15px; }
+.gate-sub { color: #8ea0b8; font-size: 11px; margin-top: 2px; }
+label { display: block; font-size: 10px; color: #8ea0b8; margin-bottom: 4px; text-transform: uppercase; letter-spacing: .08em; }
+input {
+  width: 100%; padding: 9px 11px; border-radius: 7px;
+  border: 1px solid #253246; background: #0d1520; color: #e5edf7;
+  font: 13px "JetBrains Mono", monospace; margin-bottom: 12px;
+  outline: none; transition: border .2s;
+}
+input:focus { border-color: #21c7d9; }
+.gate-btn {
+  width: 100%; padding: 10px; border-radius: 7px; border: none;
+  background: #21c7d9; color: #090d16; font: 600 13px system-ui;
+  cursor: pointer; transition: background .2s;
+}
+.gate-btn:hover { background: #0ea5b7; }
+.gate-err { font-size: 11px; color: #f85149; margin-top: 8px; min-height: 1.2em; text-align: center; }
+.gate-ok  { font-size: 11px; color: #3fb950; margin-top: 8px; min-height: 1.2em; text-align: center; }
+.gate-note { font-size: 10px; color: #8ea0b8; margin-top: 14px; text-align: center; line-height: 1.5; }
+.gate-links { margin-top: 12px; text-align: center; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.gate-link { color: #21c7d9; text-decoration: none; font-size: 11px; }
+.check-row { display: flex; gap: 8px; align-items: flex-start; color: #8ea0b8; font-size: 11px; margin: 4px 0 12px; }
+.check-row input { width: auto; margin: 2px 0 0; }
+</style>
+</head>
+<body>
+<form class="gate-panel" id="gate-form" onsubmit="return doLogin(event)">
+  <div class="gate-logo">
+    <div class="gate-mark">IS</div>
+    <div>
+      <div class="gate-title">InSynBio Console</div>
+      <div class="gate-sub" id="gate-sub-text">Authorized Evaluation Access Only</div>
+    </div>
+  </div>
+  <div id="login-fields">
+    <label for="user">Username</label>
+    <input id="user" name="user" type="text" autocomplete="username" placeholder="e.g. zhanglab" autofocus />
+    <label for="pass">Password</label>
+    <div style="position:relative; margin-bottom:8px">
+      <input id="pass" name="pass" type="password" autocomplete="current-password" placeholder="••••••••••" style="padding-right:38px; margin-bottom:0" />
+      <button type="button" onclick="togglePassVis()" tabindex="-1"
+        style="position:absolute;right:9px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#8ea0b8;font-size:15px;line-height:1;padding:2px"
+        title="Show / hide password" id="pass-vis-btn">👁</button>
+    </div>
+    <label class="check-row" style="margin-top:0"><input id="login-remember" type="checkbox" checked /> Remember me for 7 days</label>
+  </div>
+  <div id="register-fields" style="display:none">
+    <label for="reg-email">Email Address</label>
+    <input id="reg-email" type="email" placeholder="email@example.com" />
+    <label for="reg-user">Username</label>
+    <input id="reg-user" type="text" placeholder="3-32 chars" />
+    <label for="reg-password">Password (8-64 chars)</label>
+    <div style="position:relative">
+      <input id="reg-password" type="password" placeholder="letters, numbers, @#$%^&+=!?._-" style="padding-right:38px" />
+      <button type="button" onclick="toggleAnyPassVis('reg-password', 'reg-pass-vis-btn')" tabindex="-1"
+        style="position:absolute;right:9px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#8ea0b8;font-size:15px;line-height:1;padding:2px"
+        title="Show / hide password" id="reg-pass-vis-btn">👁</button>
+    </div>
+    <label for="reg-confirm">Confirm Password</label>
+    <div style="position:relative">
+      <input id="reg-confirm" type="password" placeholder="repeat password" style="padding-right:38px" />
+      <button type="button" onclick="toggleAnyPassVis('reg-confirm', 'reg-confirm-vis-btn')" tabindex="-1"
+        style="position:absolute;right:9px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#8ea0b8;font-size:15px;line-height:1;padding:2px"
+        title="Show / hide password" id="reg-confirm-vis-btn">👁</button>
+    </div>
+    <label for="reg-coupon">Coupon Code (Optional)</label>
+    <input id="reg-coupon" type="text" placeholder="e.g. PROMO2026" />
+    <label class="check-row"><input id="reg-terms" type="checkbox" /> <span>I agree to the <a class="gate-link" href="/terms" target="_blank" rel="noopener">Terms of Service</a> and <a class="gate-link" href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</span></label>
+    <label class="check-row"><input id="reg-marketing" type="checkbox" /> Send me InSynBio product updates (optional, unsubscribe anytime).</label>
+    <label class="check-row"><input id="reg-news" type="checkbox" /> I accept news services from InSynBio affiliated companies and partners.</label>
+  </div>
+  <div id="verify-fields" style="display:none">
+    <p style="font-size:11px; color:#8ea0b8; margin-bottom:10px">Please enter the 6-digit code sent to your email.</p>
+    <label for="verify-code">Verification Code</label>
+    <input id="verify-code" type="text" placeholder="6-digit code" />
+  </div>
+  <div id="forgot-user-fields" style="display:none">
+    <p style="font-size:11px; color:#8ea0b8; margin-bottom:10px">Enter your registered email and the username will be sent if an account exists.</p>
+    <label for="forgot-email">Email Address</label>
+    <input id="forgot-email" type="email" placeholder="email@example.com" />
+  </div>
+  <div id="forgot-password-fields" style="display:none">
+    <p style="font-size:11px; color:#8ea0b8; margin-bottom:10px">Enter your username or email. A reset code will be sent to the registered email.</p>
+    <label for="reset-id">Username or Email</label>
+    <input id="reset-id" type="text" placeholder="username or email@example.com" />
+  </div>
+  <div id="reset-password-fields" style="display:none">
+    <label for="reset-code">Reset Code</label>
+    <input id="reset-code" type="text" placeholder="6-digit code" />
+    <label for="reset-password">New Password</label>
+    <div style="position:relative">
+      <input id="reset-password" type="password" placeholder="letters, numbers, @#$%^&+=!?._-" style="padding-right:38px" />
+      <button type="button" onclick="toggleAnyPassVis('reset-password', 'reset-pass-vis-btn')" tabindex="-1"
+        style="position:absolute;right:9px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#8ea0b8;font-size:15px;line-height:1;padding:2px"
+        title="Show / hide password" id="reset-pass-vis-btn">👁</button>
+    </div>
+    <label for="reset-confirm">Confirm New Password</label>
+    <div style="position:relative">
+      <input id="reset-confirm" type="password" placeholder="repeat password" style="padding-right:38px" />
+      <button type="button" onclick="toggleAnyPassVis('reset-confirm', 'reset-confirm-vis-btn')" tabindex="-1"
+        style="position:absolute;right:9px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#8ea0b8;font-size:15px;line-height:1;padding:2px"
+        title="Show / hide password" id="reset-confirm-vis-btn">👁</button>
+    </div>
+  </div>
+
+  <button type="submit" id="submit-btn" class="gate-btn">Access Console</button>
+  <div id="reg-link-container" class="gate-links">
+    <a href="javascript:void(0)" id="switch-mode-link" class="gate-link" onclick="toggleMode()">Register New Account</a>
+    <a href="javascript:void(0)" id="forgot-user-link" class="gate-link" style="display:none" onclick="showForgotUsername()">Forgot username?</a>
+    <a href="javascript:void(0)" id="forgot-pass-link" class="gate-link" style="display:none" onclick="showForgotPassword()">Forgot password?</a>
+  </div>
+  <div id="err" class="gate-err"></div>
+  <div class="gate-note">
+    Authorized algorithm evaluation only.<br>
+    Unauthorized access is prohibited.
+  </div>
+</form>
+<script>
+var LS_AUTH = "insynbio_gate_auth";
+var LS_ROLE = "insynbio_gate_role";
+var mode = "login"; // login, register, verify, forgotUser, forgotPassword, resetPassword
+
+function togglePassVis() {
+  var inp = document.getElementById("pass");
+  var btn = document.getElementById("pass-vis-btn");
+  if (!inp) return;
+  if (inp.type === "password") { inp.type = "text"; btn.textContent = "🙈"; }
+  else { inp.type = "password"; btn.textContent = "👁"; }
+}
+
+function toggleAnyPassVis(inputId, btnId) {
+  var inp = document.getElementById(inputId);
+  var btn = document.getElementById(btnId);
+  if (!inp) return;
+  if (inp.type === "password") { inp.type = "text"; btn.textContent = "🙈"; }
+  else { inp.type = "password"; btn.textContent = "👁"; }
+}
+
+function hideAllModes() {
+  ["login-fields", "register-fields", "verify-fields", "forgot-user-fields", "forgot-password-fields", "reset-password-fields"].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = "none";
+  });
+}
+
+function setRecoveryLinksVisible(visible) {
+  document.getElementById("forgot-user-link").style.display = visible ? "inline" : "none";
+  document.getElementById("forgot-pass-link").style.display = visible ? "inline" : "none";
+}
+
+function setMode(next) {
+  mode = next;
+  document.getElementById("err").textContent = "";
+  hideAllModes();
+  setRecoveryLinksVisible(false);
+  if (next === "login") {
+    document.getElementById("login-fields").style.display = "block";
+    document.getElementById("gate-sub-text").textContent = "Authorized Evaluation Access Only";
+    document.getElementById("submit-btn").textContent = "Access Console";
+    document.getElementById("switch-mode-link").textContent = "Register New Account";
+  } else if (next === "register") {
+    document.getElementById("register-fields").style.display = "block";
+    document.getElementById("gate-sub-text").textContent = "Create your trial account";
+    document.getElementById("submit-btn").textContent = "Send Verification Code";
+    document.getElementById("switch-mode-link").textContent = "Back to Login";
+  } else if (next === "verify") {
+    document.getElementById("verify-fields").style.display = "block";
+    document.getElementById("submit-btn").textContent = "Verify & Complete";
+    document.getElementById("switch-mode-link").textContent = "Back to Login";
+  } else if (next === "forgotUser") {
+    document.getElementById("forgot-user-fields").style.display = "block";
+    document.getElementById("gate-sub-text").textContent = "Recover username";
+    document.getElementById("submit-btn").textContent = "Send Username";
+    document.getElementById("switch-mode-link").textContent = "Back to Login";
+  } else if (next === "forgotPassword") {
+    document.getElementById("forgot-password-fields").style.display = "block";
+    document.getElementById("gate-sub-text").textContent = "Reset password";
+    document.getElementById("submit-btn").textContent = "Send Reset Code";
+    document.getElementById("switch-mode-link").textContent = "Back to Login";
+  } else if (next === "resetPassword") {
+    document.getElementById("reset-password-fields").style.display = "block";
+    document.getElementById("gate-sub-text").textContent = "Set new password";
+    document.getElementById("submit-btn").textContent = "Update Password";
+    document.getElementById("switch-mode-link").textContent = "Back to Login";
+  }
+}
+
+function toggleMode() {
+  setMode(mode === "login" ? "register" : "login");
+}
+
+function showForgotUsername() { setMode("forgotUser"); }
+function showForgotPassword() { setMode("forgotPassword"); }
+
+function parseJsonResponse(r) {
+  return r.json().then(function(d) { return {ok: r.ok, data: d}; });
+}
+
+function doLogin(ev) {
+  if (ev) ev.preventDefault();
+  var err = document.getElementById("err");
+  err.className = "gate-err"; err.textContent = "";
+
+  if (mode === "login") {
+    var u = (document.getElementById("user").value || "").trim().toLowerCase();
+    var p = document.getElementById("pass").value || "";
+    if (!u || !p) { err.textContent = "Please enter both username and password."; return false; }
+
+    fetch("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username: u, password: p })
+    }).then(parseJsonResponse)
+      .then(function(res) {
+        if (res.ok) {
+          var remember = document.getElementById("login-remember").checked;
+          var storage = remember ? localStorage : sessionStorage;
+          // Clear both first just in case
+          sessionStorage.removeItem(LS_AUTH); sessionStorage.removeItem(LS_ROLE); sessionStorage.removeItem("insynbio_access_token");
+          localStorage.removeItem(LS_AUTH); localStorage.removeItem(LS_ROLE); localStorage.removeItem("insynbio_access_token");
+          
+          storage.setItem(LS_AUTH, u);
+          storage.setItem(LS_ROLE, res.data.role || "user");
+          storage.setItem("insynbio_access_token", res.data.access_token);
+          
+          err.className = "gate-ok"; err.textContent = "Authenticated. Loading console...";
+          setTimeout(function() { window.location.href = "/"; }, 400);
+        } else {
+          err.textContent = res.data.detail || "Invalid credentials.";
+          setRecoveryLinksVisible(true);
+        }
+      }).catch(function(e) { err.textContent = "Server error: " + e; setRecoveryLinksVisible(true); });
+
+  } else if (mode === "register") {
+    var e = document.getElementById("reg-email").value.trim();
+    var u = document.getElementById("reg-user").value.trim();
+    var p = document.getElementById("reg-password").value.trim();
+    var cp = document.getElementById("reg-confirm").value.trim();
+    var coupon = (document.getElementById("reg-coupon") ? document.getElementById("reg-coupon").value.trim() : "");
+    var terms = document.getElementById("reg-terms").checked;
+    var marketing = document.getElementById("reg-marketing").checked;
+    var newsEl = document.getElementById("reg-news");
+    var news = newsEl ? newsEl.checked : false;
+    if (!e || !u || !p || !cp) { err.textContent = "Please fill all fields."; return false; }
+    if (p !== cp) { err.textContent = "Passwords do not match."; return false; }
+    if (!terms) { err.textContent = "Please accept the Terms and Privacy Policy."; return false; }
+
+    fetch("/api/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: e,
+        username: u,
+        password: p,
+        confirm_password: cp,
+        coupon_code: coupon,
+        accept_terms: terms,
+        marketing_opt_in: marketing,
+        news_opt_in: news
+      })
+    }).then(parseJsonResponse)
+      .then(function(res) {
+        if (res.ok) {
+          setMode("verify");
+          err.className = "gate-ok"; err.textContent = "Code sent! Check your email.";
+        } else {
+          err.textContent = res.data.detail || "Registration failed.";
+        }
+      }).catch(function(e) { err.textContent = "Server error: " + e; });
+
+  } else if (mode === "verify") {
+    var u = document.getElementById("reg-user").value.trim();
+    var c = document.getElementById("verify-code").value.trim();
+    if (!c) { err.textContent = "Please enter the code."; return false; }
+
+    fetch("/api/auth/verify-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username: u, code: c })
+    }).then(parseJsonResponse)
+      .then(function(res) {
+        if (res.ok) {
+          err.className = "gate-ok"; err.textContent = "Verified! You can now login.";
+          setTimeout(function() { setMode("login"); }, 1500);
+        } else {
+          err.textContent = res.data.detail || "Verification failed.";
+        }
+      }).catch(function(e) { err.textContent = "Server error: " + e; });
+  } else if (mode === "forgotUser") {
+    var fe = document.getElementById("forgot-email").value.trim();
+    if (!fe) { err.textContent = "Please enter your email."; return false; }
+    fetch("/api/auth/forgot-username", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: fe })
+    }).then(parseJsonResponse)
+      .then(function(res) {
+        err.className = "gate-ok";
+        err.textContent = res.data.message || "If the email is registered, account details were sent.";
+      }).catch(function(e) { err.textContent = "Server error: " + e; });
+  } else if (mode === "forgotPassword") {
+    var rid = document.getElementById("reset-id").value.trim();
+    if (!rid) { err.textContent = "Please enter username or email."; return false; }
+    fetch("/api/auth/forgot-password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username_or_email: rid })
+    }).then(parseJsonResponse)
+      .then(function(res) {
+        if (res.ok) {
+          setMode("resetPassword");
+          err.className = "gate-ok";
+          err.textContent = res.data.message || "If the account exists, a reset code was sent.";
+        } else {
+          err.textContent = res.data.detail || "Reset request failed.";
+        }
+      }).catch(function(e) { err.textContent = "Server error: " + e; });
+  } else if (mode === "resetPassword") {
+    var rid2 = document.getElementById("reset-id").value.trim();
+    var code = document.getElementById("reset-code").value.trim();
+    var np = document.getElementById("reset-password").value.trim();
+    var ncp = document.getElementById("reset-confirm").value.trim();
+    if (!rid2 || !code || !np || !ncp) { err.textContent = "Please fill all reset fields."; return false; }
+    fetch("/api/auth/reset-password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username_or_email: rid2, code: code, password: np, confirm_password: ncp })
+    }).then(parseJsonResponse)
+      .then(function(res) {
+        if (res.ok) {
+          err.className = "gate-ok";
+          err.textContent = "Password updated. You can now log in.";
+          setTimeout(function() { setMode("login"); }, 1500);
+        } else {
+          err.textContent = res.data.detail || "Password reset failed.";
+        }
+      }).catch(function(e) { err.textContent = "Server error: " + e; });
+  }
+  return false;
+}
+
+if (sessionStorage.getItem(LS_AUTH) || localStorage.getItem(LS_AUTH)) {
+  window.location.replace("/");
+}
+</script>
+</body>
+</html>

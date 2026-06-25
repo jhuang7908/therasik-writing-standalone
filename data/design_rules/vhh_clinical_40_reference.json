@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "description": "40 clinical VHH (nanobody) dataset – external reference. Data lives in OpenClaw workspace.",
+    "count": 40,
+    "source_path": "C:\\Users\\NextVivo\\.openclaw\\workspace\\vhh_clinical_data",
+    "updated": "2026-02",
+    "use_within_suite": "Use FASTA/JSON from source_path for VHH design, ESMFold, or slice_3 VHH reference."
+  },
+  "files": {
+    "fasta": "vhh_sequences_v2.fasta",
+    "json_complete": "vhh_clinical_antibodies_complete_v2.json",
+    "summary_xlsx": "vhh_clinical_antibodies_summary.xlsx",
+    "report": "vhh_expansion_report.md"
+  },
+  "format": {
+    "fasta_header": ">Name|Target|Phase|Year",
+    "sequence": "Single VHH chain (~115–125 aa), no linker"
+  },
+  "notes": [
+    "Includes CAR-T VHH (BCMA, CD20, HER2, PD-L1, CD33), approved (cilta-cel, LCAR-B38M), Phase 2/3 (Sonelokimab, ALX-0171, Nb V565), diagnostics (68-GaNOTA-HER2).",
+    "To run ESMFold on these 40: use scripts/run_esmfold_batch_from_fasta.py with --fasta <source_path>\\vhh_sequences_v2.fasta .",
+    "Clinical info (Target, Phase) is NOT in this folder; use paper Table1_Clinical_Landscape.csv for 19 VHH clinical fields."
+  ]
+}

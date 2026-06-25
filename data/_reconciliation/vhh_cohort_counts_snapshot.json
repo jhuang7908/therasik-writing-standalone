@@ -1,0 +1,51 @@
+{
+  "generated_at_utc": "2026-05-08T12:29:24.389397+00:00",
+  "suite_root": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite",
+  "errors": [],
+  "terminology": {
+    "clinical_sequence_cohort_39": "39 therapeutic/clinical-style single-domain VHH sequences in vhh_39_sequences_clinical_validated.json — SSOT for ‘validated clinical’ counts.",
+    "master_table_rows_40": "40 rows in vhh_39_clinical_atlas/master_table.csv — includes Lofacimig without a production single-chain sequence row (metadata-only).",
+    "vhh42_per_sequence_cmc_42": "42 rows in vhh42_cmc_metrics.csv = 39 clinical_sequence_cohort names + 3 SAbDab-published humanized camelid chains (supplement PDB ids).",
+    "vhh68_union_69": "69 rows in vhh68_special_cmc_results.json — 40 clinical_vhh_immunbuilder + 29 database_b_humanized_camelid_nanobuilder. Porustobart is inside the 40-clinical bucket in JSON (no separate platform field).",
+    "structural_union_index": "vhh_structural_union_index.json _meta must match vhh68 row totals (clinical_n + database_b_n = total_n)."
+  },
+  "sources": {
+    "vhh68_special_cmc_results": "data\\vhh_structural_union\\vhh68_special_cmc_results.json",
+    "vhh_structural_union_index": "data\\vhh_structural_union\\vhh_structural_union_index.json",
+    "vhh42_cmc_metrics": "data\\vhh_clinical_39_union\\vhh42_cmc_metrics.csv",
+    "vhh42_sabdab_supplement": "data\\vhh_clinical_39_union\\vhh42_sabdab_supplement.json",
+    "clinical_atlas_master_table": "data\\vhh_39_clinical_atlas\\master_table.csv",
+    "clinical_validated_sequences": "data\\vhh_clinical_39_union\\vhh_39_sequences_clinical_validated.json"
+  },
+  "counts": {
+    "vhh68_total": 69,
+    "vhh68_by_source_set": {
+      "clinical_vhh_immunbuilder": 40,
+      "database_b_humanized_camelid_nanobuilder": 29
+    },
+    "vhh68_clinical_bucket": 40,
+    "vhh68_database_b_bucket": 29,
+    "porustobart_in_clinical_bucket_json": true,
+    "structural_union_meta": {
+      "clinical_n": 40,
+      "database_b_n": 29,
+      "total_n": 69
+    },
+    "master_table_row_count": 40,
+    "master_table_distinct_name_count": 40,
+    "clinical_validated_sequence_count": 39,
+    "clinical_validated_distinct_name_count": 39,
+    "vhh42_cmc_metrics_rows": 42,
+    "vhh42_clinical_side_rows": 39,
+    "vhh42_supplement_rows": 3,
+    "vhh42_supplement_ids_fixed": [
+      "1yzz_A",
+      "3eak_A",
+      "6rnk_B"
+    ]
+  },
+  "identity_notes": {
+    "lofacimig": "Present as a master_table row; absent from clinical_validated JSON and vhh42_cmc_metrics — see data/_reconciliation/LOFACIMIG_STATUS.md.",
+    "three_sabdab_in_database_b": "1yzz_A, 3eak_A, 6rnk_B are both VHH42 supplement rows and members of Database-B / structural union (no extra identities beyond 69-union math)."
+  }
+}

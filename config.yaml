@@ -1,0 +1,147 @@
+# VHH Analysis System Configuration
+# ，：VHH_<SECTION>_<KEY> (，)
+# ：VHH_PATHS_DATA_ROOT, VHH_PARAMETERS_CLUSTERING_THRESHOLD
+
+# （PaaS）
+project:
+  name: "default"
+  enabled: true
+  data_root: "./projects/{PROJECT_NAME}/data"
+  output_root: "./projects/{PROJECT_NAME}/outputs"
+  audit_log_dir: "./projects/{PROJECT_NAME}/audit_logs"
+
+paths:
+  # （， VHH_PATHS_PROJECT_ROOT ）
+  project_root: ""  # 
+  
+  # 
+  data_root: "data/germlines"
+  
+  # 
+  output_root: "output"
+  
+  # VHH
+  alpaca_dir: "{data_root}/vicugna_pacos_ig_aa"
+  alpaca_fasta: "{alpaca_dir}/IGHV_aa.fasta"
+  alpaca_label: "{alpaca_dir}/alpaca_ighv_vhh_label.tsv"
+  alpaca_numbered: "{alpaca_dir}/vhh_numbered/vhh_numbered_and_split.json"
+  alpaca_scaffolds: "{alpaca_dir}/vhh_scaffolds/vhh_scaffolds.json"
+  
+  # VH3
+  human_dir: "{data_root}/human_ig_aa"
+  human_fasta: "{human_dir}/IGHV_aa.fasta"
+  human_numbered: "{human_dir}/vh_numbered/human_vh_numbered_and_split.json"
+  human_scaffolds: "{human_dir}/vh_scaffolds/human_vh3_scaffolds.json"
+  human_templates: "{human_dir}/vh_scaffolds/human_vh3_vhh_safe_templates.json"
+  alignment_file: "{human_dir}/vh_scaffolds/human_vs_alpaca_scaffold_alignment.json"
+  
+  # Fc
+  fc_aa_dir: "{data_root}/fc_aa"
+  
+  # IMGT
+  imgt_dir: "{data_root}/IMGT_V-/IMGT_V-QUEST_reference_directory"
+  
+  # 
+  benchmark_dir: "{data_root}/benchmark"
+  benchmark_gold_standard: "{benchmark_dir}/gold_standard.json"
+
+parameters:
+  # 
+  clustering_threshold: 0.90
+  
+  # Canonical Proxy （ scaffold ranking）
+  canonical_proxy:
+    enabled: true
+    agg_mode: "min"      # "min" | "mean"
+    weight: 0.10         # 10% 
+    floor_if_missing: 0.0
+  
+  # Variant Ranking 
+  variant_ranking:
+    canonical_proxy:
+      enabled: true
+      agg_mode: "min"
+      weight: 0.10
+  
+  # 
+  max_mutations: 5
+  
+  # （A/B/C/all）
+  default_panel: "A"
+  
+  # top_k
+  default_top_k: 3
+  
+  # CDR
+  hard_min_cdr_score: 0.3
+  soft_min_cdr_score: 0.5
+  
+  # Scoring
+  scoring:
+    active_profile: "default"
+    profiles:
+      default:
+        framework_identity: 0.6  # FR：FR
+        cdr_compatibility: 0.15  # CDR，
+        developability: 0.25
+      developability_strict:
+        framework_identity: 0.4
+        cdr_compatibility: 0.2
+        developability: 0.4
+      minimized_immunogenicity:
+        framework_identity: 0.3
+        cdr_compatibility: 0.2
+        developability: 0.25
+        fr_immunogenicity: 0.25
+  
+  # ：scoring_weights（，FR）
+  scoring_weights:
+    framework_identity: 0.6  # FR
+    cdr_compatibility: 0.15  # CDR
+    developability: 0.25
+  
+  # Fallback
+  fallback_penalty_template: 0.8
+  fallback_penalty_numbering: 0.9
+  
+  # CDR3
+  extreme_cdr3_length: 20
+  extreme_cdr3_cys_count: 3
+
+anarcii:
+  # ANARCII
+  mode: "accuracy"  # accuracy / speed
+  cpu: true
+  batch_size: 32
+  ncpu: -1  # -1CPU
+  verbose: false
+
+developability:
+  # Developability
+  grade_a_threshold: 0.8
+  grade_b_threshold: 0.6
+  
+  # liabilities
+  high_risk_liability_count: 2
+
+immunogenicity:
+  # FR
+  fr_hotspot_low: 2
+  fr_hotspot_medium: 5
+  fr_hotspot_high: 10
+
+reporting:
+  # 
+  default_format: "markdown"  # markdown / html / json
+  output_dir: "{output_root}/reports"
+  
+  # HTML
+  html_template: ""
+
+api:
+  # HTTP API
+  host: "0.0.0.0"
+  port: 8000
+  debug: false
+  cors_enabled: true
+

@@ -1,0 +1,442 @@
+{
+  "metadata": {
+    "name": "InSynBio Fc Variants Atlas",
+    "version": "1.0",
+    "last_updated": "2026-04-07",
+    "description": "Comprehensive reference of clinical and engineered Fc variants for half-life, effector, and bispecific engineering.",
+    "numbering_system": "EU (Edelman)",
+    "total_variants": 25
+  },
+  "variants": [
+    {
+      "id": "FC_LS",
+      "name": "LS (M428L/N434S)",
+      "mutations": ["M428L", "N434S"],
+      "category": "Half-life Extension",
+      "tier": "T1",
+      "mechanism": "Increases FcRn affinity at pH 6.0 ~10-fold by optimizing packing at the CH2-CH3 interface, enhancing IgG recycling without increasing pH 7.4 binding.",
+      "receptors": {
+        "FcRn_pH6": "11-fold increase",
+        "FcRn_pH7.4": "No significant change",
+        "FcgammaRs": "Unaffected"
+      },
+      "clinical_status": "Approved",
+      "clinical_examples": ["Ravulizumab (Ultomiris)", "Crizanlizumab (Adakveo)", "Evusheld (Tixagevimab/Cilgavimab)"],
+      "pmids": ["16614067", "20173738"],
+      "ip_status": {
+        "holder": "AstraZeneca (MedImmune)",
+        "status": "Expired/Expiring",
+        "expiry": "US expired 2024; continuation claims may persist",
+        "design_around": "N434H (Public Domain), T307Q/N434A (Momenta)"
+      },
+      "design_rationale": "LS is the clinical gold standard for half-life extension due to its high efficacy (2-3x half-life extension) and low immunogenicity profile."
+    },
+    {
+      "id": "FC_YTE",
+      "name": "YTE (M252Y/S254T/T256E)",
+      "mutations": ["M252Y", "S254T", "T256E"],
+      "category": "Half-life Extension",
+      "tier": "T1",
+      "mechanism": "Triple mutation at the CH2-CH3 interface. Dramatically increases FcRn affinity at pH 6.0 (~10-fold) but can slightly increase binding at pH 7.4.",
+      "receptors": {
+        "FcRn_pH6": "10-fold increase",
+        "FcRn_pH7.4": "Slight increase",
+        "FcgammaRs": "Reduced ADCC reported in some contexts"
+      },
+      "clinical_status": "Approved/Clinical",
+      "clinical_examples": ["Beyfortus (Nirsevimab)", "Motavizumab (YTE variant)"],
+      "pmids": ["12165561", "23896478"],
+      "ip_status": {
+        "holder": "AstraZeneca (MedImmune)",
+        "status": "Expired",
+        "expiry": "2021-2023",
+        "design_around": "Core patents expired; YTE can be used for new designs."
+      },
+      "design_rationale": "Provides greater half-life gain than LS in some primates, but triple mutation increases risk of sequence-based immunogenicity."
+    },
+    {
+      "id": "FC_LALA",
+      "name": "LALA (L234A/L235A)",
+      "mutations": ["L234A", "L235A"],
+      "category": "Effector Silencing",
+      "tier": "T1",
+      "mechanism": "Disrupts the lower hinge region contacts with FcgammaRs (I, IIa, IIIa) and C1q. Reduces ADCC and CDC.",
+      "receptors": {
+        "FcgammaRI": "Abolished",
+        "FcgammaRIIIa": "Significantly reduced",
+        "C1q": "Reduced"
+      },
+      "clinical_status": "Approved",
+      "clinical_examples": ["Atezolizumab (Tecentriq)", "Durvalumab (Imfinzi)"],
+      "pmids": ["11602730", "3260844"],
+      "ip_status": {
+        "holder": "Public Domain",
+        "status": "Public",
+        "expiry": "N/A",
+        "design_around": "None required."
+      },
+      "design_rationale": "Standard silencing variant when minimal effector function is desired. Freely usable."
+    },
+    {
+      "id": "FC_LALAPG",
+      "name": "LALA-PG (L234A/L235A/P329G)",
+      "mutations": ["L234A", "L235A", "P329G"],
+      "category": "Effector Silencing",
+      "tier": "T1",
+      "mechanism": "Combines LALA with P329G to completely abolish the 'proline sandwich' with FcgammaRs, eliminating residual effector function.",
+      "receptors": {
+        "FcgammaRs": "Fully abolished",
+        "C1q": "Fully abolished"
+      },
+      "clinical_status": "Clinical",
+      "clinical_examples": ["Faricimab (Vabysmo)", "Many Roche/Genentech bispecifics"],
+      "pmids": ["26976769", "28003361"],
+      "ip_status": {
+        "holder": "Roche (Genentech)",
+        "status": "Active",
+        "expiry": "2029 (US)",
+        "design_around": "LALA (slightly less silent but public), N297A (public)"
+      },
+      "design_rationale": "The most effective silencing variant currently in clinical use. P329G is the key differentiator."
+    },
+    {
+      "id": "FC_GASDALIE",
+      "name": "GASDALIE (G236A/S239D/A330L/I332E)",
+      "mutations": ["G236A", "S239D", "A330L", "I332E"],
+      "category": "Effector Enhancement",
+      "tier": "T2",
+      "mechanism": "Introduces new electrostatic and hydrophobic contacts with FcgammaRIIIa, enhancing NK-cell mediated ADCC.",
+      "receptors": {
+        "FcgammaRIIIa": "1000-fold increase",
+        "FcgammaRIIa": "Enhanced",
+        "FcgammaRIIb": "Increased (potential liability)"
+      },
+      "clinical_status": "Clinical",
+      "clinical_examples": ["Xmab candidates", "Tafasitamab (uses SDIE subset)"],
+      "pmids": ["16537476", "17283120"],
+      "ip_status": {
+        "holder": "Xencor",
+        "status": "Active/Expiring",
+        "expiry": "~2027",
+        "design_around": "Afucosylation (Kyowa Kirin/Roche)"
+      },
+      "design_rationale": "Potent ADCC enhancement, but increased FcgammaRIIb binding can be a safety/efficacy trade-off."
+    },
+    {
+      "id": "FC_AFUCO",
+      "name": "Afucosylation (FUT8-KO)",
+      "mutations": ["N297 glycan fucose removal"],
+      "category": "Effector Enhancement",
+      "tier": "T1",
+      "mechanism": "Removal of core fucose eliminates a steric clash with Trp158 of FcgammaRIIIa, increasing affinity 50-100x.",
+      "receptors": {
+        "FcgammaRIIIa": "50-100 fold increase",
+        "FcgammaRIIb": "Minimal change"
+      },
+      "clinical_status": "Approved",
+      "clinical_examples": ["Obinutuzumab (Gazyva)", "Mogamulizumab (Poteligeo)", "Benralizumab (Fasenra)"],
+      "pmids": ["11916992", "16615187"],
+      "ip_status": {
+        "holder": "Kyowa Kirin / Roche",
+        "status": "Expiring",
+        "expiry": "Core patents expired ~2021-2022",
+        "design_around": "FUT8 knockout is now more accessible; use Kifunensine in culture as a process workaround."
+      },
+      "design_rationale": "Most clinically validated ADCC enhancement method. Cleanest receptor profile (selective for IIIa)."
+    },
+    {
+      "id": "FC_HEXA",
+      "name": "HexaBody (E430G)",
+      "mutations": ["E430G"],
+      "category": "CDC Enhancement",
+      "tier": "T1",
+      "mechanism": "Promotes Fc-Fc hexamerization on the cell surface upon target binding, creating a high-avidity platform for C1q recruitment.",
+      "receptors": {
+        "C1q": "100-10,000 fold avidity increase on surface",
+        "FcgammaRs": "Unaffected"
+      },
+      "clinical_status": "Clinical (Phase III)",
+      "clinical_examples": ["Mezagitamab (anti-CD38)", "GEN1029 (HexaBody-DR5)"],
+      "pmids": ["25473098", "27298261"],
+      "ip_status": {
+        "holder": "Genmab",
+        "status": "Active",
+        "expiry": "~2032+",
+        "design_around": "K326W/E333S (Direct C1q contact, weaker)"
+      },
+      "design_rationale": "Superior for targets requiring complement-mediated lysis (CDC). Surface-dependent safety mechanism."
+    },
+    {
+      "id": "FC_KIH",
+      "name": "Knobs-into-Holes (KiH)",
+      "mutations": ["T366W (Knob)", "T366S", "L368A", "Y407V (Hole)"],
+      "category": "Bispecific / Heterodimerization",
+      "tier": "T1",
+      "mechanism": "Steric complementarity in the CH3-CH3 interface drives heterodimerization of two different heavy chains.",
+      "receptors": {
+        "FcRn": "Unaffected",
+        "FcgammaRs": "Unaffected"
+      },
+      "clinical_status": "Approved",
+      "clinical_examples": ["Amivantamab", "Mosunetuzumab", "Teclistamab", "Glofitamab"],
+      "pmids": ["8875953", "9731797"],
+      "ip_status": {
+        "holder": "Genentech",
+        "status": "Expired",
+        "expiry": "2016",
+        "design_around": "None required; widely used."
+      },
+      "design_rationale": "The foundation of bispecific IgG design. Simple, effective, and now public domain."
+    },
+    {
+      "id": "FC_SELF",
+      "name": "SELF (S267E/L328F)",
+      "mutations": ["S267E", "L328F"],
+      "category": "FcgammaRIIb Selectivity",
+      "tier": "T2",
+      "mechanism": "Selectively enhances affinity for the inhibitory receptor FcgammaRIIb while reducing activating receptor binding.",
+      "receptors": {
+        "FcgammaRIIb": "400-fold increase",
+        "FcgammaRIIIa": "Reduced",
+        "FcgammaRIIa": "Reduced"
+      },
+      "clinical_status": "Clinical",
+      "clinical_examples": ["Obexelimab", "VNRX-5133"],
+      "pmids": ["21441456", "28003361"],
+      "ip_status": {
+        "holder": "Xencor",
+        "status": "Active",
+        "expiry": "~2028",
+        "design_around": "IgG2 backbone (natural IIb bias)"
+      },
+      "design_rationale": "Ideal for autoimmune applications where B-cell inhibition is the goal."
+    },
+    {
+      "id": "FC_N297Q",
+      "name": "N297Q (Aglycosylation)",
+      "mutations": ["N297Q"],
+      "category": "Effector Silencing",
+      "tier": "T2",
+      "mechanism": "Removes the conserved glycosylation site, causing CH2 domain collapse and total loss of FcgammaR binding.",
+      "receptors": {
+        "FcgammaRs": "Abolished",
+        "C1q": "Abolished"
+      },
+      "clinical_status": "Clinical",
+      "clinical_examples": ["Glembatumumab vedotin (ADC)", "Several investigative antibodies"],
+      "pmids": ["2471552"],
+      "ip_status": {
+        "holder": "Public Domain",
+        "status": "Public",
+        "expiry": "N/A",
+        "design_around": "N/A"
+      },
+      "design_rationale": "Cheaper manufacturing (can use E. coli), but Tm is reduced by ~6C. Good for ADCs."
+    },
+    {
+      "id": "FC_XTEND",
+      "name": "Xtend (T307Q/N434A)",
+      "mutations": ["T307Q", "N434A"],
+      "category": "Half-life Extension",
+      "tier": "T2",
+      "mechanism": "Engineered for enhanced pH 6.0 binding to FcRn. Alternative to LS.",
+      "receptors": {
+        "FcRn_pH6": "7-10 fold increase",
+        "FcRn_pH7.4": "Minimal"
+      },
+      "clinical_status": "Clinical",
+      "clinical_examples": ["M254 (Momenta/J&J)"],
+      "pmids": ["20173738"],
+      "ip_status": {
+        "holder": "Momenta (J&J)",
+        "status": "Active",
+        "expiry": "~2030",
+        "design_around": "LS (AstraZeneca, expiring)"
+      },
+      "design_rationale": "High-potency half-life extension with distinct IP from LS/YTE."
+    },
+    {
+      "id": "FC_LALAGN",
+      "name": "LALA-GN (L234A/L235A/N297G)",
+      "mutations": ["L234A", "L235A", "N297G"],
+      "category": "Effector Silencing",
+      "tier": "T3",
+      "mechanism": "Combines hinge silencing (LALA) with aglycosylation (N297G) for extreme effector silence.",
+      "clinical_status": "Preclinical",
+      "pmids": ["26976769"],
+      "design_rationale": "Used when even trace effector activity (e.g. against T cells) must be avoided."
+    },
+    {
+      "id": "FC_DAPA",
+      "name": "DAPA (D265A/P329A)",
+      "mutations": ["D265A", "P329A"],
+      "category": "Effector Silencing",
+      "tier": "T2",
+      "mechanism": "Disrupts the upper CH2 region binding to FcgammaRs. Alternative to LALA.",
+      "clinical_status": "Clinical",
+      "pmids": ["11096108"],
+      "ip_status": {
+        "holder": "AstraZeneca",
+        "status": "Expiring",
+        "expiry": "2024-2026"
+      },
+      "design_rationale": "Often used in MedImmune/AZ pipeline antibodies."
+    },
+    {
+      "id": "FC_SDIE",
+      "name": "SDIE (S239D/I332E)",
+      "mutations": ["S239D", "I332E"],
+      "category": "Effector Enhancement",
+      "tier": "T1",
+      "mechanism": "The core Xencor enhancement pair. Optimizes the electrostatic interface with FcgammaRIIIa.",
+      "clinical_status": "Approved",
+      "clinical_examples": ["Tafasitamab (Monjuvi)"],
+      "pmids": ["16537476"],
+      "ip_status": {
+        "holder": "Xencor",
+        "status": "Active",
+        "expiry": "~2027"
+      },
+      "design_rationale": "Proven clinical efficacy for enhancing ADCC in B-cell malignancies."
+    },
+    {
+      "id": "FC_D265A",
+      "name": "D265A",
+      "mutations": ["D265A"],
+      "category": "Effector Silencing",
+      "tier": "T1",
+      "mechanism": "Single point mutation that significantly reduces all FcgammaR binding. Found in many clinical candidates.",
+      "clinical_status": "Approved/Clinical",
+      "clinical_examples": ["Atezolizumab (uses N297Q, but D265A is similar)"],
+      "pmids": ["11096108"],
+      "design_rationale": "Simple, low-impact silencing."
+    },
+    {
+      "id": "FC_E345K",
+      "name": "E345K (Complement Enhancement)",
+      "mutations": ["E345K"],
+      "category": "CDC Enhancement",
+      "tier": "T2",
+      "mechanism": "CH3 mutation that promotes Fc-Fc interaction, similar to E430G but at a different site.",
+      "clinical_status": "Clinical",
+      "pmids": ["25473098"],
+      "ip_status": {
+        "holder": "Genmab",
+        "status": "Active"
+      },
+      "design_rationale": "Often paired with E430G for maximum CDC."
+    },
+    {
+      "id": "FC_V262E",
+      "name": "V262E/V264E",
+      "mutations": ["V262E", "V264E"],
+      "category": "FcgammaRIIb Selectivity",
+      "tier": "T3",
+      "mechanism": "Favors FcgammaRIIb over FcgammaRIIa/IIIa.",
+      "clinical_status": "Preclinical",
+      "pmids": ["23389682"],
+      "design_rationale": "Early selectivity variant, superseded by SELF."
+    },
+    {
+      "id": "FC_S228P",
+      "name": "S228P (IgG4 Hinge)",
+      "mutations": ["S228P"],
+      "category": "Subclass Engineering",
+      "tier": "T1",
+      "mechanism": "Stabilizes the IgG4 core hinge disulfide, preventing Fab arm exchange in vivo.",
+      "clinical_status": "Approved",
+      "clinical_examples": ["Pembrolizumab", "Nivolumab"],
+      "pmids": ["19749776"],
+      "design_rationale": "Mandatory for all clinical IgG4 antibodies."
+    },
+    {
+      "id": "FC_E430G_S440Y",
+      "name": "E430G/S440Y",
+      "mutations": ["E430G", "S440Y"],
+      "category": "CDC Enhancement",
+      "tier": "T3",
+      "mechanism": "S440Y adds additional stabilizing contacts to the hexamer ring.",
+      "clinical_status": "Preclinical",
+      "pmids": ["29538065"],
+      "design_rationale": "Next-gen HexaBody optimization."
+    },
+    {
+      "id": "FC_DD_KK",
+      "name": "DD/KK (Electrostatic Steering)",
+      "mutations": ["K409D", "K392D", "D399K", "E356K"],
+      "category": "Bispecific / Heterodimerization",
+      "tier": "T2",
+      "mechanism": "Complementary charge pairs in CH3 drive heterodimerization.",
+      "clinical_status": "Clinical",
+      "pmids": ["20159975"],
+      "ip_status": {
+        "holder": "Genmab / Amgen",
+        "status": "Active",
+        "expiry": "~2026-2030"
+      },
+      "design_rationale": "Avoids bulky Knob/Hole mutations; good thermal stability."
+    },
+    {
+      "id": "FC_SEED",
+      "name": "SEEDbody",
+      "mutations": ["IgA/IgG CH3 strand exchange"],
+      "category": "Bispecific / Heterodimerization",
+      "tier": "T2",
+      "mechanism": "Alternating strands of human IgG and IgA CH3 domains create asymmetrical interfaces that only heterodimerize.",
+      "clinical_status": "Clinical",
+      "pmids": ["20139433"],
+      "ip_status": {
+        "holder": "Merck KGaA",
+        "status": "Active"
+      },
+      "design_rationale": "Very high purity (>99%) and stability."
+    },
+    {
+      "id": "FC_S298A_E333A_K334A",
+      "name": "S298A/E333A/K334A (ALFA)",
+      "mutations": ["S298A", "E333A", "K334A"],
+      "category": "Effector Enhancement",
+      "tier": "T1",
+      "mechanism": "Triple mutation in CH2 that enhances FcgammaRIIIa binding. Early Genentech optimization.",
+      "clinical_status": "Approved",
+      "clinical_examples": ["Obinutuzumab (Gazyva - though afucosylation is more prominent)"],
+      "pmids": ["11238752"],
+      "design_rationale": "Historical standard for ADCC enhancement."
+    },
+    {
+      "id": "FC_H435R",
+      "name": "H435R (Staph A non-binding)",
+      "mutations": ["H435R"],
+      "category": "Purification / pH Engineering",
+      "tier": "T1",
+      "mechanism": "Abolishes binding to Protein A; used for purification of bispecifics or to modulate half-life in IgG3 contexts.",
+      "clinical_status": "Approved",
+      "clinical_examples": ["Emicizumab (Hemlibra)"],
+      "pmids": ["11532822"],
+      "design_rationale": "Critical for multi-step Protein A purification of heterodimeric bispecifics."
+    },
+    {
+      "id": "FC_RECYCLING",
+      "name": "Recycling Ab (pH-dependent Ag binding)",
+      "mutations": ["None in Fc specifically, but paired with LS/YTE"],
+      "category": "Half-life Extension",
+      "tier": "T1",
+      "mechanism": "Antigen-binding is pH-dependent (binds at 7.4, releases at 6.0). Paired with FcRn enhancement to allow one antibody to neutralize multiple antigens.",
+      "clinical_status": "Approved",
+      "clinical_examples": ["Satralizumab (Enspryng)"],
+      "pmids": ["20943719"],
+      "design_rationale": "The cutting edge of half-life engineering."
+    },
+    {
+      "id": "FC_L328W",
+      "name": "L328W (FcgammaRIIb Selective)",
+      "mutations": ["L328W"],
+      "category": "FcgammaRIIb Selectivity",
+      "tier": "T3",
+      "mechanism": "Increases affinity for IIb while maintaining or reducing IIIa.",
+      "clinical_status": "Preclinical",
+      "pmids": ["21441456"],
+      "design_rationale": "Part of the SELF optimization path."
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://insynbio.local/schemas/framework_entry.schema.json",
+  "title": "FrameworkEntry",
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "todo_or_string": {
+      "anyOf": [
+        { "type": "string", "minLength": 1 },
+        { "const": "TODO" }
+      ]
+    },
+    "todo_or_int": {
+      "anyOf": [
+        { "type": "integer" },
+        { "const": "TODO" }
+      ]
+    },
+    "todo_or_range2_int": {
+      "anyOf": [
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": { "type": "integer" }
+        },
+        { "const": "TODO" }
+      ]
+    },
+    "aa_seq_or_todo": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[ACDEFGHIKLMNPQRSTVWY]+$"
+        },
+        { "const": "TODO" }
+      ]
+    }
+  },
+  "required": [
+    "framework_id",
+    "chain",
+    "family",
+    "germline",
+    "fr_sequence_fr1_fr3",
+    "canonical",
+    "cdr3_policy",
+    "tags",
+    "use_cases",
+    "avoid_cases",
+    "evidence"
+  ],
+  "properties": {
+    "framework_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "chain": {
+      "type": "string",
+      "enum": ["VH", "VL"]
+    },
+    "family": {
+      "description": "Gene family label (e.g., IGHV1, IGKV1, IGLV1).",
+      "anyOf": [
+        { "type": "string", "minLength": 1 },
+        { "const": "TODO" }
+      ]
+    },
+    "germline": {
+      "description": "Germline allele identifier (e.g., IGHV1-2*01).",
+      "anyOf": [
+        { "type": "string", "minLength": 1 },
+        { "const": "TODO" }
+      ]
+    },
+    "fr_sequence_fr1_fr3": {
+      "description": "FR1–FR3 only (explicitly NOT including FR4).",
+      "$ref": "#/$defs/aa_seq_or_todo"
+    },
+    "canonical": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cdr1", "cdr2"],
+      "properties": {
+        "cdr1": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["length_mode", "length_range", "class"],
+          "properties": {
+            "length_mode": { "$ref": "#/$defs/todo_or_int" },
+            "length_range": { "$ref": "#/$defs/todo_or_range2_int" },
+            "class": { "$ref": "#/$defs/todo_or_string" }
+          }
+        },
+        "cdr2": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["length_mode", "length_range", "class"],
+          "properties": {
+            "length_mode": { "$ref": "#/$defs/todo_or_int" },
+            "length_range": { "$ref": "#/$defs/todo_or_range2_int" },
+            "class": { "$ref": "#/$defs/todo_or_string" }
+          }
+        }
+      }
+    },
+    "cdr3_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["preferred_max", "caution_range", "high_risk_min"],
+      "properties": {
+        "preferred_max": { "$ref": "#/$defs/todo_or_int" },
+        "caution_range": { "$ref": "#/$defs/todo_or_range2_int" },
+        "high_risk_min": { "$ref": "#/$defs/todo_or_int" }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "tier1",
+          "tier2",
+          "high_expression",
+          "high_solubility",
+          "long_cdr3_compatible",
+          "compact",
+          "pI_tuning",
+          "patent_avoidance"
+        ]
+      }
+    },
+    "use_cases": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "avoid_cases": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "note"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["internal", "clinical_enrichment", "engineering_experience"]
+          },
+          "note": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

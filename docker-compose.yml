@@ -1,0 +1,39 @@
+# AbEngineCore — local / single-server SaaS style (private deploy)
+#
+#   docker compose up -d --build
+#   → http://localhost:8000
+#
+# For production: put reverse proxy (Caddy/NGINX) in front with TLS and auth.
+
+services:
+  abenginecore:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ABENGINECORE_GIT_SHA: ${ABENGINECORE_GIT_SHA:-}
+    image: abenginecore:${TAG:-latest}
+    ports:
+      - "${PORT:-8000}:8000"
+    environment:
+      # Public labels (optional)
+      INSYNBIO_PUBLIC_SITE: ${INSYNBIO_PUBLIC_SITE:-}
+      INSYNBIO_PUBLIC_LOCALE: ${INSYNBIO_PUBLIC_LOCALE:-}
+      # Credits / trial (see api/auth_db.py)
+      INSYNBIO_TRIAL_CREDITS: ${INSYNBIO_TRIAL_CREDITS:-500}
+      INSYNBIO_OWNER_UNLIMITED: ${INSYNBIO_OWNER_UNLIMITED:-1}
+    volumes:
+      # Persist jobs + SQLite auth across restarts
+      - abenginecore_jobs:/app/.job_storage
+      - abenginecore_auth:/app/api/.data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health').read()"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  abenginecore_jobs:
+  abenginecore_auth:

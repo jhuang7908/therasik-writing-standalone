@@ -1,0 +1,296 @@
+# Content Studio — 画图引擎 SSOT（按 delivery_tier + visual_role 选用）
+# gpt-image-2 按 token 计费 → 降分辨率/quality + 混合渲染可显著省日配额
+
+version: "1.2"
+
+default_tier: pro
+default_strategy: hybrid
+default_visual_quality: medium
+
+# ── 客户画质三档（gpt-image-2 quality + 主/备引擎）────────────────
+# OpenAI 有额度时作为备份与提质通道；primary 仍走 hybrid 省成本
+image_quality_tiers:
+  low:
+    label: 低 · 草图 / 内部比稿
+    gpt_image_quality: low
+    gpt_image_size: "1024x1024"
+    kimi_guard: false
+    use_cases: [内部结构稿, 构图海选, 客户确认前草稿]
+    primary:
+      illustration: cogview-4
+      text_hero: gpt-image-2
+    openai_role: optional
+    notes: 最快最便宜；图内字可糊，正文靠 SSOT 叠字
+
+  medium:
+    label: 中 · 标准客户交付
+    gpt_image_quality: medium
+    gpt_image_size: "1024x1536"
+    kimi_guard: true
+    use_cases: [小红书, 微信公众号, PPT, 日常路演]
+    primary:
+      illustration: cogview-4
+      text_hero: gpt-image-2
+    openai_role: backup_and_standard
+    notes: 默认档；国产引擎失败或字层不达标时升 OpenAI medium
+
+  high:
+    label: 高 · 商业海报 / 出版物
+    gpt_image_quality: high
+    gpt_image_size: "1024x1536"
+    kimi_guard: true
+    use_cases: [商业海报, 白皮书, 产品目录, 印刷 PDF, 融资 Deck]
+    primary:
+      illustration: cogview-4
+      text_hero: gpt-image-2
+      full_page: gpt-image-2
+    openai_role: primary
+    notes: 封面/封底/海报全页可走 image-2 high；内页插画仍智谱+叠字
+
+openai_backup:
+  enabled: true
+  env_key: OPENAI_API_KEY
+  model: gpt-image-2
+  trigger:
+    - primary_renderer_error
+    - text_hero_legibility_fail
+    - customer_explicit_openai
+    - visual_quality_high
+  inherit_quality_from: image_quality_tiers
+  notes: 有额度时作备份；不替代内容链 Kimi 审查
+
+product_quality_map:
+  internal_draft: low
+  ppt: medium
+  xiaohongshu: medium
+  wechat: medium
+  whitepaper: high
+  product_catalog: high
+  commercial_poster: high
+  publication: high
+  ppt_voice: high
+
+tiers:
+  draft:
+    label: 草稿档（对齐 visual_quality=low）
+    visual_quality: low
+    kimi_guard: false
+    validate_required: false
+    strategy: hybrid
+    notes: 草图；智谱插画 + 可选 image-2 low
+
+  pro:
+    label: 正式档（对齐 visual_quality=medium）
+    visual_quality: medium
+    kimi_guard: true
+    validate_required: true
+    strategy: hybrid
+    gpt_image_quality: medium
+    gpt_image_size: "1024x1536"
+    notes: 小红书/公众号/PPT 默认
+
+  pro_hybrid:
+    label: 省钱档（等同 low，日配额紧时）
+    visual_quality: low
+    kimi_guard: true
+    validate_required: true
+    strategy: hybrid
+    gpt_image_quality: low
+    gpt_image_size: "1024x1024"
+    notes: pro_hybrid 已并入 visual_quality=low；保留别名兼容脚本
+
+  premium:
+    label: 印刷/海报级（对齐 visual_quality=high）
+    visual_quality: high
+    kimi_guard: true
+    validate_required: true
+    strategy: hybrid
+    gpt_image_quality: high
+    gpt_image_size: "1024x1536"
+    template_clone: true
+    ppt_voice: optional
+
+# 混合渲染：同一 SSOT 按块选引擎（推荐）
+hybrid_render:
+  principle: "有图无字 → 智谱；需要图内可读字 → gpt-image-2（降 resolution/quality 省 token）"
+  visual_roles:
+    illustration:
+      renderer: cogview-4
+      prompt_suffix: "禁止任何文字字母数字；仅插画/图标/分子示意图/留白；文字由后期叠字"
+      sizes: ["1024x1024", "1024x1536"]
+    text_hero:
+      renderer: gpt-image-2
+      prompt_suffix: "标题与关键数字必须清晰可读；副标题≤1行；正文用后期叠字"
+      default_quality: medium
+      sizes:
+        low_cost: "1024x1024"
+        portrait: "1024x1536"
+        landscape: "1536x1024"
+    full_page_premium:
+      renderer: gpt-image-2
+      default_quality: medium
+      sizes: ["1024x1536", "1536x1024"]
+      notes: 仅封面/封底/投资人关键页；其余页用 illustration
+
+  per_product_mix:
+    ppt_6p:
+      illustration: 4
+      text_hero: 2
+      example: "封面+结论=image-2；中间4页插画=智谱"
+    whitepaper_12p:
+      illustration: 9
+      text_hero: 3
+      example: "封面/执行摘要/结语=image-2；章节配图=智谱无字+SSOT叠字"
+    xiaohongshu_6cards:
+      illustration: 4
+      text_hero: 2
+      example: "钩子卡+CTA=image-2；氛围图=智谱"
+    product_catalog:
+      illustration: 0.7
+      text_hero: 0.3
+      notes: SKU 页以 SSOT 叠字为主，image-2 仅封面与章节隔页
+
+  token_savings:
+    gpt_image_2_quality_low_vs_high: "约省 40–60% output tokens（以官方 calculator 为准）"
+    size_1024_vs_1536: "竖版面积更小 → input+output tokens 更低"
+    hybrid_vs_full_image2: "12页白皮书约 9 张智谱 + 3 张 image-2，日配额压力降约 75%"
+
+backends:
+  gpt-image-2:
+    provider: openai
+    env_key: OPENAI_API_KEY
+    models:
+      medium: gpt-image-2
+      high: gpt-image-2
+      economy: gpt-image-1-mini
+    rate_limits:
+      tpm: 250000
+      rpm: 3000
+      images_per_minute: 20  # Applied defensively via pipeline sleep
+    billing: token_per_1M
+    token_prices_usd:
+      image_output: 30
+      image_input: 8
+      text_input: 5
+    quality_options: [low, medium, high]
+    supported_sizes: ["1024x1024", "1024x1536", "1536x1024"]
+    use_when: [text_hero, cover, cta, premium_full_page]
+
+  gpt-image-1-mini:
+    provider: openai
+    env_key: OPENAI_API_KEY
+    model: gpt-image-1-mini
+    rate_limits:
+      tpm: 250000
+      images_per_minute: 20
+    token_prices_usd:
+      image_output: 8
+    use_when: [internal_batch_no_text]
+    text_in_image: unreliable
+
+  cogview-4:
+    provider: zhipu
+    env_key: ZHIPU_API_KEY
+    model: cogview-4-250304
+    approx_cny_per_image: 0.06
+    use_when: [illustration, diagram, background, draft]
+    text_in_image: unreliable
+    recommended_for: 无字插画区
+
+  # 即梦 / 火山方舟 · 豆包 Seedream（静图；非 Seedance 视频）
+  seedream:
+    provider: volcengine_ark
+    env_key: DOUBAO_IMAGE_TOKEN        # Bearer token for /api/v3/images/generations
+    alt_env_keys: [DOUBAO_API_KEY, ARK_API_KEY]
+    api_base: https://ark.cn-beijing.volces.com/api/v3/images/generations
+    models:
+      lite:
+        id: doubao-seedream-5-0-lite
+        endpoint_id: null  # 以方舟控制台接入点 ID 为准
+        cny_per_image: 0.22
+      standard_45:
+        id: doubao-seedream-4.5
+        endpoint_id: doubao-seedream-4-5-251128
+        cny_per_image: 0.25
+      standard_40:
+        id: doubao-seedream-4.0
+        endpoint_id: null
+        cny_per_image: 0.20
+    billing: per_successful_image
+    group_billing: 组图每张成功出图各计一次
+    text_in_image: promising_unverified  # 官方主打海报小字；本项目待实测
+    sequential_image_generation:
+      disabled: 生成单图
+      auto: 生成组图
+    modes:
+      # sequential_image_generation = disabled → 单图
+      text_to_image:
+        switch: disabled
+        inputs: [prompt]
+        outputs: 1
+        content_studio_use: [illustration, text_hero_draft, cover_explore]
+      image_to_image:
+        switch: disabled
+        inputs: [1_ref_image, prompt]
+        outputs: 1
+        content_studio_use: [style_lock, template_variation]
+      multi_ref_to_image:
+        switch: disabled
+        inputs: [2-14_ref_images, prompt]
+        outputs: 1
+        max_total_images: 15
+        content_studio_use: [moodboard_merge, brand_asset_compose]
+      # sequential_image_generation = auto → 组图（内容关联的多张）
+      text_to_group:
+        switch: auto
+        inputs: [prompt]
+        outputs: up_to_15
+        content_studio_use: [xiaohongshu_6cards, ppt_style_explore, catalog_variants]
+      image_to_group:
+        switch: auto
+        inputs: [1_ref_image, prompt]
+        outputs: up_to_14
+        content_studio_use: [deck_series_from_cover, whitepaper_chapter_visuals]
+      multi_ref_to_group:
+        switch: auto
+        inputs: [2-14_ref_images, prompt]
+        outputs: "15 - ref_count"
+        max_total_images: 15
+        content_studio_use: [product_line_shots, multi_sku_catalog]
+    content_studio_routing:
+      xiaohongshu: text_to_group_auto
+      ppt_draft_explore: image_to_group_auto
+      whitepaper_illustration: cogview-4
+      whitepaper_cover_text: seedream-4.5_or_gpt-image-2
+      premium_fallback: gpt-image-2
+    cost_vs_cogview: "单张插画 Seedream(¥0.20–0.25) 约为智谱(¥0.06) 的 3–4 倍；仅在有图内中文需求时用"
+    pricing_ref: content_generation_tools/volcengine_ark_pricing.yaml
+    notes: |
+      组图适合社交多卡/风格海选；B2B 无字插画仍优先智谱省成本。
+      参考图+生成图总数 ≤15。5.0-lite ¥0.22/张；4.5 ¥0.25；4.0 ¥0.20。
+
+  # Google Gemini 3 Pro / Imagen 4 (Nano Banana Pro) — 顶级 3D 英文图文融合引擎
+  gemini-image:
+    provider: google
+    env_key: GEMINI_API_KEY
+    models:
+      standard: gemini-2.5-flash-image
+      premium: gemini-3-pro-image-preview
+    billing: per_successful_image  # 经严格审计，Google Imagen/Gemini 图像按单张计费而非 token
+    approx_price_usd:
+      fast: 0.02
+      standard: 0.04
+      ultra: 0.06
+    quality_options: [low, medium, high]
+    supported_sizes: ["1024x1024", "1024x1536", "1536x1024"]
+    text_in_image: english_excellent_chinese_stiff  # 英文效果极佳，但原生汉字排版边缘略显生硬
+    use_when: [text_hero_english, fallback_from_openai]
+    recommended_for: 3D 原生英文刻字、多层高分辨率配图、OpenAI 额度超限后的绝对安全降级通道
+
+product_defaults:
+  ppt: pro
+  ppt_voice: premium
+  xiaohongshu: pro
+  wechat: pro
+  whitepaper: premium
+  product_catalog: premium

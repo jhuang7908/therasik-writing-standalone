@@ -1,0 +1,76 @@
+{
+  "_meta": {
+    "schema_id": "crossspecies_adapter",
+    "schema_version": "V1.0",
+    "status": "LOCKED",
+    "governing_standard": "docs/CROSSSPECIES_ENGINE_STANDARD_V1.0.md",
+    "purpose": "Template every species adapter must conform to before the CrossSpecies Engine will run. Copy this file to config/crossspecies_adapters/<species_id>__<format>.json and fill in real values. Do NOT edit this template in-place for a real species.",
+    "promotion_note": "Promoted from V0.1 to V1.0 (LOCKED) by owner approval on 2026-05-07.",
+    "last_updated": "2026-05-07"
+  },
+
+  "species_id": "EXAMPLE_species_id_e_g_canis_lupus_familiaris",
+  "common_name": "Example species (replace)",
+  "format": "VHH | VH_VL | VNAR",
+  "numbering_scheme": "kabat",
+
+  "data_tier": "Tier-Hi | Tier-Mid | Tier-Lo",
+
+  "hallmarks_kabat": {
+    "_doc": "List of integer Kabat positions whose AA identity must never be changed by SR/DFR. Required (non-empty) for VHH and VNAR. For VH/VL set to [] and rely on the governing species standard's CDR-Union + verify_cdr_preservation gate.",
+    "positions": [37, 44, 45, 47]
+  },
+
+  "cys_topology": {
+    "_doc": "Canonical disulfide pairs that must be preserved. Engine refuses to mutate either residue of any pair listed here.",
+    "canonical_pairs": [[22, 92]],
+    "extra_protected_cys": []
+  },
+
+  "cdr_boundary_rules": {
+    "_doc": "Pointer to the boundary rules in the governing species standard. The engine does NOT redefine CDR boundaries.",
+    "scheme": "kabat | imgt | union_kabat_chothia",
+    "regions": {
+      "VH": {"H1": [26, 35], "H2": [50, 65], "H3": [95, 102]},
+      "VL": {"L1": [24, 34], "L2": [50, 56], "L3": [89, 97]}
+    },
+    "source_standard": "docs/<governing_standard_file>.md"
+  },
+
+  "reference_source": {
+    "_doc": "Where DFR-1.0 reads frequency data and where AG-1.0 reads clinical acceptors. Empty arrays / null disable the corresponding track.",
+    "germline_freq_path": "data/germlines/<species_dir>/_cache/<freq_table>.json",
+    "germline_freq_release_id": "e.g. dog_ighv_kabat_v1.0_2026-04-29",
+    "clinical_acceptors": [
+      {
+        "acceptor_id": "EXAMPLE_acceptor_e_g_IGHV3-35_01_Lokivetmab",
+        "scaffold_kind": "VH | VL | VHH",
+        "source_drug_or_id": "Lokivetmab (Approved)",
+        "tier": "Tier1 | Tier2"
+      }
+    ]
+  },
+
+  "track_priority": {
+    "_doc": "Ordered list of allowed engine tracks for this species/format. The first track in the list whose preconditions are met (e.g. acceptor list non-empty for AG-1.0) is the default; the rest are fallbacks.",
+    "order": ["AG-1.0", "DFR-1.0", "SR-1.0"],
+    "forbidden_tracks": []
+  },
+
+  "engine_tunables": {
+    "_doc": "Optional engine-level numerical knobs. Defaults match CROSSSPECIES_ENGINE_STANDARD_V0.1 §1 unless overridden.",
+    "surface_sasa_threshold_A2": 20.0,
+    "deep_buried_sasa_cutoff_A2": 5.0,
+    "cdr_proximity_threshold_A": 5.0
+  },
+
+  "qa_pointer": {
+    "_doc": "Engine layer does NOT invent new CMC/QA gates. It points at the species/format standard whose QA gates must be executed for any run.",
+    "governing_standard_path": "docs/<governing_standard_file>.md",
+    "mandatory_qa_modules": [
+      "core/evaluation/evaluator.py | AbEvaluator",
+      "core/cmc/vhh_cmc_engine.py | run_vhh_cmc_eval (VHH only)",
+      "core/cmc/regular_ab_developability.py (VH/VL IgG only)"
+    ]
+  }
+}

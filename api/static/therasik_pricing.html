@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>定价与方案 - Therasik Console</title>
+<style>
+  :root {
+    /* Default Dark Theme */
+    --bg: #090d16;
+    --panel: #0f1726;
+    --text: #f0f6fc;
+    --muted: #8ea0b8;
+    --accent: #21c7d9;
+    --accent-rgb: 33, 199, 217;
+    --line: #2a3a55;
+    --success: #3fb950;
+  }
+  
+  /* Beige Theme (Therasik Default) */
+  html.theme-beige, [data-theme='beige'] {
+    --bg: #fdfaf3;
+    --panel: #f7f2e8;
+    --text: #4a3f35;
+    --muted: #8c7e6d;
+    --accent: #b08d57;
+    --accent-rgb: 176, 141, 87;
+    --line: #e6dec9;
+    --success: #388e3c;
+  }
+  
+  /* Gruvbox Theme */
+  html.theme-gruvbox, [data-theme='gruvbox'] {
+    --bg: #282828;
+    --panel: #3c3836;
+    --text: #ebdbb2;
+    --muted: #a89984;
+    --accent: #fabd2f;
+    --accent-rgb: 250, 189, 47;
+    --line: #504945;
+    --success: #b8bb26;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font: 500 14px/1.6 "Inter", "Noto Sans SC", -apple-system, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    padding: 60px 20px;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  .container { max-width: 1280px; margin: 0 auto; }
+  header { text-align: center; margin-bottom: 50px; }
+  h1 { font-size: 32px; font-weight: 800; color: var(--accent); margin-bottom: 12px; }
+  p.subtitle { color: var(--muted); font-size: 16px; }
+
+  .pricing-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 12px;
+    margin-bottom: 40px;
+    align-items: stretch;
+  }
+  .card {
+    flex: 1;
+    min-width: 0; /* Allow shrinking */
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, border-color 0.2s, background 0.3s;
+    position: relative;
+  }
+  @media (max-width: 1000px) {
+    .pricing-grid { flex-wrap: wrap; }
+    .card { min-width: calc(33.33% - 12px); }
+  }
+  @media (max-width: 600px) {
+    .card { min-width: 100%; }
+  }
+  .card:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .card.featured { border: 2px solid var(--accent); box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.15); }
+  
+  /* Adjustments for light theme cards */
+  html.theme-beige .card, [data-theme='beige'] .card { background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+  html.theme-beige .card:hover, [data-theme='beige'] .card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+
+  .tier-name { font-size: 13px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .price { font-size: 28px; font-weight: 800; margin-bottom: 4px; }
+  .price span { font-size: 14px; font-weight: 500; color: var(--muted); }
+  .credits { font-size: 18px; font-weight: 700; color: var(--accent); margin-bottom: 16px; }
+  .features { list-style: none; flex: 1; margin-bottom: 24px; }
+  .features li { font-size: 12.5px; margin-bottom: 8px; color: var(--text); display: flex; align-items: flex-start; gap: 8px; opacity: 0.9; }
+  .features li::before { content: "✓"; color: var(--success); font-weight: 800; }
+  
+  .btn {
+    display: block; text-align: center; padding: 10px; border-radius: 6px;
+    text-decoration: none; font-weight: 700; font-size: 13px;
+    transition: opacity 0.2s, background 0.2s;
+  }
+  .btn.primary { background: var(--accent); color: var(--bg); }
+  .btn.outline { border: 1px solid var(--accent); color: var(--accent); }
+  .btn:hover { opacity: 0.9; }
+
+  /* Academic Discount Bar */
+  .academic-bar {
+    background: rgba(var(--accent-rgb), 0.1);
+    border: 1px dashed var(--accent);
+    border-radius: 8px;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    gap: 15px;
+  }
+  .academic-bar span { font-weight: 600; font-size: 14px; }
+  .academic-badge { background: var(--accent); color: var(--bg); padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 800; }
+
+  /* Payment Info */
+  .payment-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 40px;
+  }
+  @media (max-width: 768px) { .payment-info { grid-template-columns: 1fr; } }
+  
+  .pay-box {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .pay-box h3 { font-size: 18px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+  .pay-box p { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+  
+  .pay-box img {
+    background: #fff; border: 1px solid var(--line);
+  }
+  
+  .bank-details {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px; font-family: "JetBrains Mono", monospace; font-size: 12px; line-height: 1.8;
+  }
+  html.theme-beige .bank-details, [data-theme='beige'] .bank-details { background: #fcf9f0; }
+  .bank-details b { color: var(--accent); }
+
+  .invoice-note {
+    margin-top: 30px; padding: 20px; border-radius: 8px; background: rgba(210, 153, 34, 0.1); border: 1px solid #d29922;
+    font-size: 13px; color: #d29922;
+  }
+
+  footer { text-align: center; margin-top: 60px; color: var(--muted); font-size: 12px; }
+</style>
+<script>
+  // Theme Sync Logic
+  function syncTheme() {
+    const theme = localStorage.getItem('insynbio-console-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', theme);
+    // Also support class-based theme if needed
+    document.documentElement.className = theme === 'dark' ? '' : 'theme-' + theme;
+  }
+  // Initial sync
+  syncTheme();
+  // Listen for storage changes (if user changes theme in another tab)
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'insynbio-console-theme') syncTheme();
+  });
+</script>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>定价与方案 / Pricing</h1>
+    <p class="subtitle">选择适合您的抗体工程计算方案</p>
+  </header>
+
+  <div class="pricing-grid">
+    <!-- PAYG -->
+    <div class="card">
+      <div class="tier-name">按量付费 / PAYG</div>
+      <div class="price">¥1 <span>/ 50 credits</span></div>
+      <div class="credits">永久有效</div>
+      <ul class="features">
+        <li>全功能访问</li>
+        <li>永久不过期</li>
+        <li>适合单次任务</li>
+      </ul>
+      <a href="#payment" class="btn outline">立即购买</a>
+    </div>
+
+    <!-- Starter -->
+    <div class="card">
+      <div class="tier-name">科研月卡 / Starter</div>
+      <div class="price">¥500 <span>/ 月</span></div>
+      <div class="credits">35,000 Credits</div>
+      <ul class="features">
+        <li>约 3.5 次人源化运行</li>
+        <li>折合 <b>1元 = 70 credits</b> (7折)</li>
+        <li>月末清零</li>
+      </ul>
+      <a href="#payment" class="btn outline">立即订阅</a>
+    </div>
+
+    <!-- Standard -->
+    <div class="card">
+      <div class="tier-name">科研年卡 / Standard</div>
+      <div class="price">¥5,000 <span>/ 年</span></div>
+      <div class="credits">420,000 Credits</div>
+      <ul class="features">
+        <li>约 42 次人源化运行</li>
+        <li>折合 <b>1元 = 84 credits</b> (6折)</li>
+        <li>有效期 12 个月</li>
+      </ul>
+      <a href="#payment" class="btn outline">立即订阅</a>
+    </div>
+
+    <!-- Pro -->
+    <div class="card featured">
+      <div class="tier-name">科研专业版 / Pro</div>
+      <div class="price">¥30,000 <span>/ 年</span></div>
+      <div class="credits">3,000,000 Credits</div>
+      <ul class="features">
+        <li>约 300 次人源化运行</li>
+        <li>折合 <b>1元 = 100 credits</b> (5折)</li>
+        <li>优先计算队列</li>
+        <li>专属技术支持</li>
+      </ul>
+      <a href="#payment" class="btn primary">立即订阅</a>
+    </div>
+
+    <!-- Lab -->
+    <div class="card">
+      <div class="tier-name">实验室年包 / Lab</div>
+      <div class="price">¥50,000 <span>/ 年</span></div>
+      <div class="credits">6,000,000 Credits</div>
+      <ul class="features">
+        <li>折合 <b>1元 = 120 credits</b> (4折)</li>
+        <li>支持 5 个账号额度共享</li>
+        <li>统一费用消耗统计</li>
+        <li>适合高频科研课题组</li>
+      </ul>
+      <a href="#payment" class="btn outline">立即订阅</a>
+    </div>
+
+    <!-- Enterprise -->
+    <div class="card">
+      <div class="tier-name">企业版 / Enterprise</div>
+      <div class="price">¥300,000 <span>/ 年</span></div>
+      <div class="credits">定制化服务</div>
+      <ul class="features">
+        <li>包含线下实验对接服务</li>
+        <li>专属私有计算节点</li>
+        <li>SLA 商业级保障</li>
+        <li>适合药企 / CRO</li>
+      </ul>
+      <a href="#payment" class="btn outline">联系开通</a>
+    </div>
+  </div>
+
+  <div class="academic-bar">
+    <div>
+      <span class="academic-badge">学术优惠</span>
+      <span>使用高校/科研院所邮箱 (.edu.cn / .edu) 注册，包月/包年方案自动享受 <b>额外 20% 积分</b> 赠送。</span>
+    </div>
+  </div>
+
+  <div class="academic-bar" style="background: rgba(56, 142, 60, 0.1); border-color: var(--success);">
+    <div>
+      <span class="academic-badge" style="background: var(--success);">下游实验优惠</span>
+      <span>通过平台设计并对接合作 CRO 进行 <b>DNA 合成、抗体表达与纯化</b>，凭订单可获赠 <b>AI 设计积分 (Credits)</b>。赠送额度将根据实验报价与规模灵活调整。</span>
+    </div>
+  </div>
+
+  <div id="payment" class="payment-info">
+    <!-- WeChat / Personal -->
+    <div class="pay-box" style="grid-column: span 2;">
+      <h3>扫码支付与联系</h3>
+      <p>适用于所有方案。支付后请将截图发送至客服微信，我们将于 10 分钟内为您充值。超出套餐部分按 ¥1 = 50 积分计费。</p>
+      <div style="display: flex; gap: 40px; align-items: flex-start; justify-content: center; flex-wrap: wrap; padding: 20px 0;">
+        <div style="text-align: center;">
+          <div style="width:180px;height:180px;border:1px solid var(--line);border-radius:12px;margin-bottom:10px;background:#fff;box-shadow: 0 4px 12px rgba(0,0,0,0.05);display:flex;align-items:center;justify-content:center;">
+            <img src="/assets/therasik/pay_qr.png" style="max-width:100%; max-height:100%;" alt="微信收款码">
+          </div>
+          <span style="font-size: 13px; font-weight: 700; color: var(--text);">微信扫码支付</span>
+        </div>
+        <div style="text-align: center;">
+          <div style="width:180px;height:180px;border:1px solid var(--line);border-radius:12px;margin-bottom:10px;background:#fff;box-shadow: 0 4px 12px rgba(0,0,0,0.05);display:flex;align-items:center;justify-content:center;">
+            <img src="/assets/therasik/contact_qr.png" style="max-width:100%; max-height:100%;" alt="客服微信">
+          </div>
+          <span style="font-size: 13px; font-weight: 700; color: var(--text);">扫码添加客服</span>
+        </div>
+        <div style="min-width: 240px; padding-top: 20px;">
+          <p style="margin-bottom: 6px; font-weight: 700; color: var(--text); font-size: 16px;">客服微信 ID：</p>
+          <p style="font-family: monospace; font-size: 20px; color: var(--accent); font-weight: 800;">rockyhj</p>
+          <div style="margin-top: 20px; padding: 15px; background: rgba(var(--accent-rgb), 0.05); border: 1px solid var(--line); border-radius: 8px;">
+            <p style="font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 8px;">🏢 大额支付与发票：</p>
+            <p style="font-size: 12px; line-height: 1.6; color: var(--muted);">
+              单笔 <b>¥5,000 以上</b> 的大额转账，请联系客服获取对公账户信息，支持开具 <b>6% 增值税专用发票</b>。
+            </p>
+          </div>
+          <p style="margin-top: 15px; font-size: 11px; line-height: 1.6; color: var(--muted);">
+            * 支付后请发送 <b>用户名 + 支付截图</b><br>
+            * 超出套餐额度按 1:50 售价计费<br>
+            * 可开具个体户 1% 增值税普票
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="invoice-note">
+    <b>关于发票：</b><br>
+    Therasik 支持开具增值税普通发票（1%）及增值税专用发票（6%）。请在支付完成后联系客服提供开票信息。电子发票将于 3-5 个工作日内发送至您的注册邮箱。
+  </div>
+
+  <footer>
+    &copy; 2026 Therasik. All rights reserved. | <a href="/terms" style="color: var(--muted);">服务条款</a> | <a href="/privacy" style="color: var(--muted);">隐私政策</a>
+  </footer>
+</div>
+
+</body>
+</html>

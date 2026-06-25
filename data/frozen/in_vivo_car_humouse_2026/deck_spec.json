@@ -1,0 +1,128 @@
+{
+  "deck_name": "in-vivo-car-classic-2018",
+  "narrative": "single_story",
+  "main_article": {
+    "pmid": "30224381",
+    "pmcid": "PMC6192807",
+    "title": "In vivo generation of human CD19-CAR T cells results in B-cell depletion and signs of cytokine release syndrome",
+    "doi": "10.15252/emmm.201809158"
+  },
+  "slides": [
+    {
+      "slide_num": 1,
+      "title": "2018经典：体内CAR-T的第一次证明",
+      "subtitle": "EMBO Mol Med · Paul-Ehrlich-Institut · CD8-LV",
+      "key_points": [
+        "2018年9月：全球首次在人源化小鼠体内直接生成CD19-CAR-T",
+        "单次静脉注射CD8靶向慢病毒载体（CD8-LV）即可编程T细胞",
+        "德国Paul-Ehrlich-Institut Buchholz团队——in vivo CAR领域奠基性工作"
+      ],
+      "visual_description": "Hand-drawn whiteboard timeline. Left: 2018 milestone marker 'EMBO Mol Med'. Center: syringe → CD8+ T cell → CAR+ T cell → B cell depletion chain. Right: German PEI institute badge. Bold Chinese title. Graphite marker, pale blue accents, historical/classic aesthetic.",
+      "narration": "欢迎收看未来模式生物科技In-Vivo CAR系列第二篇。2018年，德国Paul-Ehrlich-Institut的Buchholz团队在EMBO Molecular Medicine发表里程碑研究：人类CD19-CAR-T细胞可以在体内直接生成，无需体外制造。这是in vivo CAR-T领域被后续所有研究引用的经典起点。",
+      "render_engine": "gpt-image-2"
+    },
+    {
+      "slide_num": 2,
+      "title": "CD8-LV：T细胞靶向递送的核心设计",
+      "subtitle": "Pfeiffer et al. 2018 · 慢病毒载体工程",
+      "key_points": [
+        "CD8-LV以人CD8α链为入受体——选择性转导CD8+ T细胞",
+        "避免转导B细胞、APC或肿瘤细胞——降低脱靶风险",
+        "单次静脉注射即可启动体内CAR表达程序"
+      ],
+      "visual_description": "Hand-drawn technical diagram. Lentiviral particle with CD8-targeting ligand binding to CD8+ T cell surface. Arrow showing mRNA/CAR gene entering T cell. Cross mark on B cell and tumor cell (no transduction). Whiteboard marker style, Chinese labels.",
+      "narration": "这项经典研究的核心创新是CD8靶向慢病毒载体CD8-LV。与传统VSV-G假型慢病毒不同，CD8-LV利用人CD8α链作为入受体，实现对人体CD8+ T细胞的选择性转导，避免基因进入B细胞或抗原呈递细胞，从设计层面降低了脱靶和免疫原性风险。",
+      "render_engine": "gpt-image-2"
+    },
+    {
+      "slide_num": 3,
+      "title": "人源化小鼠：B细胞清除与CRS首次报告",
+      "subtitle": "hu-CD34-NSG · 7/10动物有效 · 3/10出现CRS样毒性",
+      "key_points": [
+        "hu-CD34-NSG小鼠：单次CD8-LV注射→7/10动物出现CAR-T及B细胞清除",
+        "3/10动物血浆人细胞因子升高——首次在动物模型中观察到CRS样表现",
+        "脾白髓B细胞区完全消失——组织学证实CAR-T浸润"
+      ],
+      "visual_description": "Hand-drawn two-panel results. Left panel: bar chart 7/10 responders vs 3/10 CRS-like. Right panel: spleen histology sketch showing B-cell zone depletion and CAR-T infiltration. Human cytokine elevation icon. Whiteboard style.",
+      "chart_spec": {
+        "x_axis": {"label": "实验组", "values": ["CD8-LV CD19-CAR", "PBS对照"]},
+        "y_axis": {"label": "B细胞清除率", "min": 0, "max": 100, "unit": "%"},
+        "curves": ["7/10 hu-CD34-NSG小鼠：CAR-T生成 + B细胞清除", "3/10：人细胞因子升高（CRS样）"]
+      },
+      "narration": "在人源化CD34+ NSG小鼠中，单次CD8-LV注射后在10只动物中有7只观察到CAR-T细胞生成和CD19阳性B细胞清除。更重要的是，其中3只动物出现了血浆中人源细胞因子升高、CAR-T组织浸润和脾B细胞区完全消失——这是首次在动物模型中复现类似临床CRS的毒性表现，为后续安全性评估建立了范式。",
+      "render_engine": "gpt-image-2"
+    },
+    {
+      "slide_num": 4,
+      "title": "2019延伸：体内CAR-T清除Nalm-6肿瘤",
+      "subtitle": "Agarwal et al. · OncoImmunology 2019",
+      "key_points": [
+        "同一团队后续验证：单次CD8-LV注射完全清除Nalm-6白血病细胞",
+        "骨髓和脾脏中CD19+肿瘤细胞归零——对照组持续扩增",
+        "首次证明体内生成CAR-T具有实体抗肿瘤活性（不仅是B细胞清除）"
+      ],
+      "visual_description": "Hand-drawn before/after tumor study. huPBMC-NSG mice with Nalm-6 leukemia. Before: tumor cells in bone marrow/spleen (red). After CD8-LV: tumor cleared (green check). Control arm: tumor expansion. Whiteboard marker style.",
+      "narration": "2019年，同一Buchholz团队在人PBMC移植NSG小鼠Nalm-6白血病模型中进一步验证：单次CD8-LV注射足以完全清除骨髓和脾脏中的CD19阳性肿瘤细胞，而对照组肿瘤持续扩增。这是首次明确证明体内生成的CAR-T细胞具有抗肿瘤活性，不仅是B细胞清除。",
+      "render_engine": "gpt-image-2"
+    },
+    {
+      "slide_num": 5,
+      "title": "从经典到进阶：为什么需要SGM3人源化模型",
+      "subtitle": "Ho 2022 · Ishii NIH 2022 · 髓系与CRS",
+      "key_points": [
+        "2018经典用hu-CD34-NSG——已足够证明概念，但髓系重建有限",
+        "Ho 2022：huSGM3中巨噬细胞吞噬LV降低转导效率——更接近临床真实",
+        "Ishii 2022综述：NSG-SGM3是CRS预测的关键升级平台"
+      ],
+      "visual_description": "Hand-drawn evolution ladder. Bottom rung: '2018 hu-CD34-NSG (经典概念验证)'. Middle: '2022 huSGM3 (髓系+吞噬屏障)'. Top: 'CRS预测模型 (SGM3+CAR-T)'. No LNP or 2025 content. Whiteboard style.",
+      "narration": "2018经典研究使用的是hu-CD34-NSG模型，成功证明了体内CAR-T的概念。但随着领域深入，研究者发现普通NSG模型人髓系重建有限，无法预测巨噬细胞对载体的吞噬——Ho等2022年在huSGM3中的工作揭示了这一点。Ishii NIH团队2022年综述进一步指出，NSG-SGM3等具备人髓系的模型是CRS预测的必要升级。这正是今天in vivo CAR临床前验证的标准路径。",
+      "render_engine": "gpt-image-2"
+    },
+    {
+      "slide_num": 6,
+      "title": "参考文献 · NextVivo平台",
+      "subtitle": "In-Vivo CAR 系列 2/2",
+      "key_points": [
+        "经典主线：Pfeiffer 2018 EMBO Mol Med",
+        "NextVivo Hu-HSC / NSG-SGM3：承接经典到临床的验证平台"
+      ],
+      "visual_description": "Clean reference list slide, whiteboard style. Numbered citations. NextVivo logo area. Minimal professional layout.",
+      "narration": "感谢收看In-Vivo CAR系列第二篇。从2018年EMBO Mol Med的经典证明，到今日SGM3人源化平台的CRS预测，模型选择始终是in vivo CAR成功的关键。未来模式生物科技NextVivo Biotech提供Hu-HSC及NSG-SGM3平台，主要参考文献如下。",
+      "render_engine": "gpt-image-2"
+    }
+  ],
+  "references": [
+    {
+      "role": "main",
+      "pmid": "30224381",
+      "doi": "10.15252/emmm.201809158",
+      "title": "In vivo generation of human CD19-CAR T cells results in B-cell depletion and signs of cytokine release syndrome",
+      "journal": "EMBO Molecular Medicine",
+      "year": "2018"
+    },
+    {
+      "role": "related",
+      "pmid": "31741773",
+      "doi": "10.1080/2162402X.2019.1671761",
+      "title": "In vivo generated human CAR T cells eradicate tumor cells",
+      "journal": "OncoImmunology",
+      "year": "2019"
+    },
+    {
+      "role": "related",
+      "pmid": "35795778",
+      "doi": "10.1016/j.omtm.2022.06.004",
+      "title": "In vivo generation of CAR T cells in the presence of human myeloid cells",
+      "journal": "Mol Ther Methods Clin Dev",
+      "year": "2022"
+    },
+    {
+      "role": "related",
+      "pmid": "36156878",
+      "doi": "10.1016/j.omtm.2022.08.008",
+      "title": "Applying a clinical lens to animal models of CAR-T cell therapies",
+      "journal": "Mol Ther Methods Clin Dev",
+      "year": "2022"
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+meta:
+  id: "PARAM_FUNCTIONAL_SITES_V1"
+  title: "Functional Sites Parameters (VHH/VH/VL structural and binding sites)"
+  scope: [vhh, vh, vl]
+  confidence: "A"
+  owner: "antibody_engineering"
+  reviewer: "computational_structures"
+  created: "2025-01-15"
+  updated: "2025-01-15"
+  status: "active"
+
+functional_sites:
+  # Hallmark sites: VHH-specific structural features
+  - site_id: "HALLMARK_VHH_37_39"
+    role: "hallmark"
+    chain_type: "VHH"
+    light_chain_type: null
+    imgt_positions: [37, 38, 39]
+    anchor_scheme: "imgt"
+    chain_scope: [vh, vhh]
+    scope: [vhh]
+    notes: "VHH hallmark region: positions 37-39 are critical for VHH structure. Position 37 is typically F/Y in VHH, gap in VH/VL."
+  
+  - site_id: "HALLMARK_VHH_44_45"
+    role: "hallmark"
+    chain_type: "VHH"
+    light_chain_type: null
+    imgt_positions: [44, 45]
+    anchor_scheme: "imgt"
+    chain_scope: [vh, vhh]
+    scope: [vhh]
+    notes: "VHH hallmark: positions 44-45 contribute to VHH-specific loop conformation and stability."
+  
+  - site_id: "HALLMARK_VHH_49_50"
+    role: "hallmark"
+    chain_type: "VHH"
+    light_chain_type: null
+    imgt_positions: [49, 50]
+    anchor_scheme: "imgt"
+    chain_scope: [vh, vhh]
+    scope: [vhh]
+    notes: "VHH hallmark: positions 49-50 are part of the VHH-specific structural signature."
+
+  # Vernier sites: Critical for CDR conformation
+  - site_id: "VERNIER_29_30"
+    role: "vernier"
+    chain_type: "VHH"
+    light_chain_type: null
+    imgt_positions: [29, 30]
+    anchor_scheme: "imgt"
+    chain_scope: [vh, vhh]
+    scope: [vhh]
+    notes: "Vernier zone: positions 29-30 influence CDR1 conformation and paratope geometry."
+  
+  - site_id: "VERNIER_71_73"
+    role: "vernier"
+    chain_type: "VHH"
+    light_chain_type: null
+    imgt_positions: [71, 72, 73]
+    anchor_scheme: "imgt"
+    chain_scope: [vh, vhh]
+    scope: [vhh]
+    notes: "Vernier zone: positions 71-73 affect CDR2 loop structure and binding interface."
+  
+  - site_id: "VERNIER_78_80"
+    role: "vernier"
+    chain_type: "VHH"
+    light_chain_type: null
+    imgt_positions: [78, 79, 80]
+    anchor_scheme: "imgt"
+    chain_scope: [vh, vhh]
+    scope: [vhh]
+    notes: "Vernier zone: positions 78-80 are critical for CDR2/CDR3 junction conformation."
+  
+  - site_id: "VERNIER_94_96"
+    role: "vernier"
+    chain_type: "VHH"
+    light_chain_type: null
+    imgt_positions: [94, 95, 96]
+    anchor_scheme: "imgt"
+    chain_scope: [vh, vhh]
+    scope: [vhh]
+    notes: "Vernier zone: positions 94-96 influence CDR3 base and paratope core geometry."
+  
+  - site_id: "VERNIER_102_104"
+    role: "vernier"
+    chain_type: "VHH"
+    light_chain_type: null
+    imgt_positions: [102, 103, 104]
+    anchor_scheme: "imgt"
+    chain_scope: [vh, vhh]
+    scope: [vhh]
+    notes: "Vernier zone: positions 102-104 affect CDR3 tip conformation and binding specificity."
+
+  # FR/CDR boundary sites
+  - site_id: "BOUNDARY_CDR1_START"
+    role: "fr_cdr_boundary"
+    chain_type: "VHH"
+    light_chain_type: null
+    imgt_positions: [26, 27, 28]
+    anchor_scheme: "imgt"
+    chain_scope: [vh, vhh]
+    scope: [vhh]
+    notes: "FR1/CDR1 boundary: positions 26-28 mark the transition from FR1 to CDR1. Mutations here can affect CDR1 loop positioning."
+  
+  - site_id: "BOUNDARY_CDR2_END"
+    role: "fr_cdr_boundary"
+    chain_type: "VHH"
+    light_chain_type: null
+    imgt_positions: [55, 56, 57]
+    anchor_scheme: "imgt"
+    chain_scope: [vh, vhh]
+    scope: [vhh]
+    notes: "CDR2/FR3 boundary: positions 55-57 mark the transition from CDR2 to FR3. Critical for maintaining CDR2 loop structure."
+
+  # Anchor sites: For MHC-II epitope prediction
+  - site_id: "ANCHOR_P1"
+    role: "anchor"
+    chain_type: "VHH"
+    light_chain_type: null
+    imgt_positions: [1]
+    anchor_scheme: "imgt"
+    chain_scope: [vh, vhh]
+    scope: [vhh]
+    notes: "MHC-II anchor position P1: First position of peptide binding groove. Critical for epitope binding affinity."
+  
+  - site_id: "ANCHOR_P4_P6"
+    role: "anchor"
+    chain_type: "VHH"
+    light_chain_type: null
+    imgt_positions: [4, 6]
+    anchor_scheme: "imgt"
+    chain_scope: [vh, vhh]
+    scope: [vhh]
+    notes: "MHC-II anchor positions P4 and P6: Secondary anchor positions that contribute to epitope-MHC binding stability."
+
+  # VL Generic (Kappa/Lambda common) sites
+  # Note: These positions apply to both VL κ and VL λ chains
+  - site_id: "VL_GENERIC_VERNIER_29_30"
+    role: "vernier"
+    chain_type: "VL"
+    light_chain_type: null
+    imgt_positions: [29, 30]
+    anchor_scheme: "imgt"
+    chain_scope: [vl]
+    scope: [vl]
+    aliases: ["VL_LAMBDA_VERNIER_29_30"]  # Deprecated: backward compatibility
+    notes: "VL vernier zone (κ/λ common): positions 29-30 influence CDR1 conformation."
+  
+  - site_id: "VL_GENERIC_VERNIER_71_73"
+    role: "vernier"
+    chain_type: "VL"
+    light_chain_type: null
+    imgt_positions: [71, 72, 73]
+    anchor_scheme: "imgt"
+    chain_scope: [vl]
+    scope: [vl]
+    aliases: ["VL_LAMBDA_VERNIER_71_73"]  # Deprecated: backward compatibility
+    notes: "VL vernier zone (κ/λ common): positions 71-73 affect CDR2 loop structure."
+  
+  - site_id: "VL_GENERIC_VERNIER_94_96"
+    role: "vernier"
+    chain_type: "VL"
+    light_chain_type: null
+    imgt_positions: [94, 95, 96]
+    anchor_scheme: "imgt"
+    chain_scope: [vl]
+    scope: [vl]
+    aliases: ["VL_LAMBDA_VERNIER_94_96"]  # Deprecated: backward compatibility
+    notes: "VL vernier zone (κ/λ common): positions 94-96 influence CDR3 base."
+  
+  - site_id: "VL_GENERIC_BOUNDARY_CDR1_START"
+    role: "fr_cdr_boundary"
+    chain_type: "VL"
+    light_chain_type: null
+    imgt_positions: [26, 27, 28]
+    anchor_scheme: "imgt"
+    chain_scope: [vl]
+    scope: [vl]
+    aliases: ["VL_LAMBDA_BOUNDARY_CDR1_START"]  # Deprecated: backward compatibility
+    notes: "VL FR1/CDR1 boundary (κ/λ common): positions 26-28 mark transition from FR1 to CDR1."
+  
+  - site_id: "VL_GENERIC_BOUNDARY_CDR2_END"
+    role: "fr_cdr_boundary"
+    chain_type: "VL"
+    light_chain_type: null
+    imgt_positions: [55, 56, 57]
+    anchor_scheme: "imgt"
+    chain_scope: [vl]
+    scope: [vl]
+    aliases: ["VL_LAMBDA_BOUNDARY_CDR2_END"]  # Deprecated: backward compatibility
+    notes: "VL CDR2/FR3 boundary (κ/λ common): positions 55-57 mark transition from CDR2 to FR3."
+  
+  # VL-λ (Lambda light chain) specific sites (if any)
+  # Note: Currently all VL sites are generic (κ/λ common). 
+  # If lambda-specific sites are identified in the future, add them here with chain_scope: [vl_lambda]
+
+evidence:
+  rationale: "Functional sites are critical positions that affect antibody structure, binding, and immunogenicity. These sites must be protected during engineering. VL-λ sites are placeholder entries that need calibration with real λ sequences."
+  sources:
+    - type: "internal"
+      ref: "VHH structural analysis and hallmark identification"
+    - type: "public"
+      ref: "Vernier zone concept from antibody engineering literature (Foote & Winter, 1992)"
+    - type: "public"
+      ref: "MHC-II anchor positions from IEDB epitope prediction conventions"
+    - type: "public"
+      ref: "VL-λ structural features from antibody engineering literature"
+  internal_validation:
+    status: "in_progress"
+    notes: "VHH/VH sites validated against crystal structures and binding data. VL-λ sites are candidate positions and need calibration with real λ sequences."
+
+governance:
+  change_log:
+    - change_type: "create"
+      change_summary: "Initial functional sites definition for VHH scope with hallmark, vernier, boundary, and anchor sites"
+      owner: "antibody_engineering"
+      reviewer: "computational_structures"
+      date: "2025-01-15"
+    - change_type: "update"
+      change_summary: "Added chain_type and light_chain_type fields; added VL-λ placeholder sites (vernier and fr_cdr_boundary roles)"
+      owner: "antibody_engineering"
+      reviewer: "computational_structures"
+      date: "2025-01-15"
+
+
+
+
+
+
+
+
+
+

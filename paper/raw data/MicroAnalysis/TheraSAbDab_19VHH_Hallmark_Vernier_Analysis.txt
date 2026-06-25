@@ -1,0 +1,38 @@
+================================================================================
+MICRO-LEVEL ANALYSIS: HALLMARK & VERNIER RESIDUES by CDR3 LENGTH
+================================================================================
+Short CDR3 (<=10): N=3
+Long CDR3 (>10):  N=16
+
+## 1. FR2 Hallmark Residues (Solubility Core)
+Checking Pos 37, 44, 45, 47
+------------------------------------------------------------
+Group: Short CDR3 (N=3)
+  Pos 37: S:2(67%), Y:1(33%)
+  Pos 44: G:3(100%)
+  Pos 45: K:3(100%)
+  Pos 47: P:1(33%), R:1(33%), L:1(33%)
+
+Group: Long CDR3 (N=16)
+  Pos 37: G:9(56%), A:6(38%), S:1(6%)
+  Pos 44: G:16(100%)
+  Pos 45: K:16(100%)
+  Pos 47: R:14(88%), L:2(12%)
+
+## 2. FR3 Vernier Residues (Structural Support)
+Checking Pos 71 (Key H2-Fold Determinant)
+------------------------------------------------------------
+Group: Short CDR3 (N=3)
+  Pos 71: V:3(100%)
+
+Group: Long CDR3 (N=16)
+  Pos 71: V:14(88%), L:1(6%), E:1(6%)
+
+## 3. Hypothesis Verification
+------------------------------------------------------------
+Hypothesis A: Long CDR3 > 10aa retains Alpaca Hallmarks (E44/R45)?
+  Long Group Pos 44: {'G': 16}
+  Long Group Pos 45: {'K': 16}
+Hypothesis B: Short CDR3 <= 10aa mutates to Human Hallmarks (G44/L45)?
+  Short Group Pos 44: {'G': 3}
+  Short Group Pos 45: {'K': 3}

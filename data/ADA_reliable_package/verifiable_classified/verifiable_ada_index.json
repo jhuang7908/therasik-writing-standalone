@@ -1,0 +1,3680 @@
+{
+  "metadata": {
+    "schema_version": "3.0",
+    "generated_utc": "2026-03-31T15:32:36.830172+00:00",
+    "description": "Final ADA database after 3-phase automated verification. Phase-1: PubMed abstract + URL fetch. Phase-2: DailyMed SPL for FDA PDFs + wrong-PMID rescue. Phase-3: PMC full-text via PMID→PMCID conversion + brand-name DailyMed.",
+    "counts": {
+      "total_included": 116,
+      "verified": 80,
+      "unverified": 36,
+      "by_verification_status": {
+        "unverified_clinical_trial_or_ema_source": 13,
+        "unverified_source_403_inaccessible": 23,
+        "verified_dailymed_spl": 3,
+        "verified_dailymed_spl_pmid_corrected": 3,
+        "verified_fda_label_dailymed_spl": 7,
+        "verified_partial_primary_value_confirmed": 8,
+        "verified_pmc_fulltext": 12,
+        "verified_pmid_corrected_match": 1,
+        "verified_pubmed_fulltext": 3,
+        "verified_qualitative_no_pct_to_match": 1,
+        "verified_text_match": 42
+      },
+      "by_tier": {
+        "A": 74,
+        "B": 42
+      }
+    }
+  },
+  "index": [
+    {
+      "record_id": "inn:abatacept",
+      "data_record_key": "abatacept",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Abatacept",
+      "ada_value_display": "4.8% (187/3877 patients)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "Reumatología Clínica article (2012)",
+      "citation_urls": [
+        "https://www.reumatologiaclinica.org/en-abatacept-mechanism-action-concordance-with-articulo-S2173574312000081"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        4.8
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.reumatologiaclinica.org/en-abatacept-mechanism-action-concordance-with-articulo-S2173574312000081",
+      "verification_source": "https://www.reumatologiaclinica.org/en-abatacept-mechanism-action-concordance-with-articulo-S2173574312000081",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:adalimumab",
+      "data_record_key": "adalimumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Adalimumab",
+      "ada_value_display": "30%",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "FDA",
+      "evidence_quality": "high",
+      "source_type": "FDA label",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/125057s423lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_fda_label",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain and ADA value independently verified.",
+      "dailymed_setid": "9c44bd5b-4464-40a4-8933-8680950f00f2",
+      "verification_status": "verified_pmc_fulltext",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [
+        30.0
+      ],
+      "verification_unmatched_pcts": [
+        30.0
+      ],
+      "verification_source_tried": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/125057s423lbl.pdf",
+      "verification_source": "PMID41199323",
+      "verification_unmatched": [
+        30.0
+      ]
+    },
+    {
+      "record_id": "inn:alemtuzumab",
+      "data_record_key": "alemtuzumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Alemtuzumab",
+      "ada_value_display": "BAbs 85%, NAbs 78% within 24 months",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PMC article - Frontiers in Immunology (2020)",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC7034358/"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_pmc",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_partial_primary_value_confirmed",
+      "verification_p1_verdict": "partial_match",
+      "verification_matched_pcts": [
+        85.0
+      ],
+      "verification_unmatched_pcts": [
+        78.0
+      ],
+      "verification_source_tried": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7034358/",
+      "verification_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7034358/",
+      "verification_unmatched": [
+        78.0
+      ]
+    },
+    {
+      "record_id": "inn:anakinra",
+      "data_record_key": "anakinra",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Anakinra",
+      "ada_value_display": "17.8% overall ADA, 3.7% neutralizing antibodies (up to 49% in some reports)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "medium_high",
+      "source_type": "MedPageToday article (2021) - reporting on randomized trial",
+      "citation_urls": [
+        "https://www.medpagetoday.com/rheumatology/generalrheumatology/91319"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_partial_primary_value_confirmed",
+      "verification_p1_verdict": "partial_match",
+      "verification_matched_pcts": [
+        17.8,
+        3.7
+      ],
+      "verification_unmatched_pcts": [
+        49.0
+      ],
+      "verification_source_tried": "https://www.medpagetoday.com/rheumatology/generalrheumatology/91319",
+      "verification_source": "https://www.medpagetoday.com/rheumatology/generalrheumatology/91319",
+      "verification_unmatched": [
+        49.0
+      ]
+    },
+    {
+      "record_id": "inn:anifrolumab",
+      "data_record_key": "anifrolumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Anifrolumab",
+      "ada_value_display": "5.1% for anifrolumab 300 mg, 2.0% for anifrolumab 1,000 mg (vs 3% placebo)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PMC article (Anifrolumab, an Anti-Interferon-α Receptor Monoclonal Antibody, in Moderate-to-Severe Systemic Lupus Erythematosus)",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC5299497/"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_pmc",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        5.1,
+        2.0,
+        3.0
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5299497/",
+      "verification_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5299497/",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:astegolimab",
+      "data_record_key": "astegolimab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Astegolimab",
+      "ada_value_display": "8.0%",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "250",
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/41163220/"
+      ],
+      "pmids_extracted": [
+        "41163220"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_pmc_fulltext",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [
+        8.0
+      ],
+      "verification_unmatched_pcts": [
+        8.0
+      ],
+      "verification_source_tried": "pmid:41163220",
+      "verification_source": "PMC12574037",
+      "verification_unmatched": [
+        8.0
+      ]
+    },
+    {
+      "record_id": "inn:atezolizumab",
+      "data_record_key": "atezolizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Atezolizumab",
+      "ada_value_display": "30% average ADA (range 13-54%), ~15% NAb (range 4.3-27.5%)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PMC article - Clinical and Translational Science (2022)",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC8742635/"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_pmc",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        30.0,
+        54.0,
+        15.0,
+        27.5
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8742635/",
+      "verification_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8742635/",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:basiliximab",
+      "data_record_key": "basiliximab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Basiliximab",
+      "ada_value_display": "Anti-idiotype antibodies: 1.2% (4/339), HAMA: 1.4-11.8% depending on co-medication",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "medium_high",
+      "source_type": "RxList prescribing information (FDA-approved label)",
+      "citation_urls": [
+        "https://www.rxlist.com/simulect-drug.htm"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_partial_primary_value_confirmed",
+      "verification_p1_verdict": "partial_match",
+      "verification_matched_pcts": [
+        1.2
+      ],
+      "verification_unmatched_pcts": [
+        11.8
+      ],
+      "verification_source_tried": "https://www.rxlist.com/simulect-drug.htm",
+      "verification_source": "https://www.rxlist.com/simulect-drug.htm",
+      "verification_unmatched": [
+        11.8
+      ]
+    },
+    {
+      "record_id": "inn:belimumab",
+      "data_record_key": "belimumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Belimumab",
+      "ada_value_display": "4.8% (1 mg/kg dose), 0.7% (10 mg/kg dose, potentially underestimated)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "MedCentral drug monograph (2025)",
+      "citation_urls": [
+        "https://www.medcentral.com/drugs/monograph/155457-311017/belimumab-intravenous"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_source_403_inaccessible",
+      "verification_p1_verdict": "fetch_failed",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.medcentral.com/drugs/monograph/155457-311017/belimumab-intravenous",
+      "verification_source": "https://www.medcentral.com/drugs/monograph/155457-311017/belimumab-intravenous",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:benralizumab",
+      "data_record_key": "benralizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Benralizumab",
+      "ada_value_display": "13% (treatment‑emergent ADA response)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "FDA",
+      "evidence_quality": "high",
+      "source_type": "FDA prescribing information (FASENRA label)",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2017/761070s000lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_fda_label",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain and ADA value independently verified.",
+      "dailymed_setid": "da6aca1a-19ed-44a4-abb7-696c7d58b784",
+      "verification_status": "verified_fda_label_dailymed_spl",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        13.0
+      ],
+      "verification_source_tried": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2017/761070s000lbl.pdf",
+      "verification_source": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2017/761070s000lbl.pdf",
+      "verification_unmatched": [
+        13.0
+      ]
+    },
+    {
+      "record_id": "inn:bevacizumab",
+      "data_record_key": "bevacizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Bevacizumab",
+      "ada_value_display": "0.6% (14/2233 patients)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "FDA",
+      "evidence_quality": "high",
+      "source_type": "FDA prescribing information (Avastin label, 2020)",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2020/125085s332lbl.pdf",
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2014/125085s301lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_fda_label",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain and ADA value independently verified.",
+      "dailymed_setid": "6b4040a2-a5c5-4ff0-ab45-935d7e49cf78",
+      "verification_status": "verified_fda_label_dailymed_spl",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        0.6
+      ],
+      "verification_source_tried": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2020/125085s332lbl.pdf",
+      "verification_source": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2020/125085s332lbl.pdf",
+      "verification_unmatched": [
+        0.6
+      ]
+    },
+    {
+      "record_id": "inn:bezlotoxumab",
+      "data_record_key": "bezlotoxumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "qualitative_immunogenicity",
+      "antibody_name": "Bezlotoxumab",
+      "ada_value_display": "No treatment-emergent anti-drug antibodies observed (very limited immunogenicity)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "FDA",
+      "evidence_quality": "high",
+      "source_type": "FDA Briefing Document (Bezlotoxumab Injection)",
+      "citation_urls": [
+        "https://www.fda.gov/media/98708/download"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain and ADA value independently verified.",
+      "verification_status": "verified_qualitative_no_pct_to_match",
+      "verification_p1_verdict": "no_numeric_value",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.fda.gov/media/98708/download",
+      "verification_source": "https://www.fda.gov/media/98708/download",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:bimagrumab",
+      "data_record_key": "bimagrumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Bimagrumab",
+      "ada_value_display": "4.0%",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "250",
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/40580805/"
+      ],
+      "pmids_extracted": [
+        "40580805"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_clinical_trial_or_ema_source",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        4.0
+      ],
+      "verification_source_tried": "pmid:40580805",
+      "verification_source": "no FDA approval; ADA 4% from clinical trial, not in DailyMed",
+      "verification_unmatched": [
+        4.0
+      ]
+    },
+    {
+      "record_id": "inn:bimekizumab",
+      "data_record_key": "bimekizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Bimekizumab",
+      "ada_value_display": "34% (11/32) in BKZ+PBO group, 47% (8/17) in BKZ group over 36-week trial",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PMC article (Bimekizumab for the treatment of moderate-to-severe plaque psoriasis: efficacy, safety, pharmacokinetics, pharmacodynamics and transcriptomics from a phase IIa, randomized, double-blind multicentre study)",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9303624/"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_pmc",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "34%/47% from very small early-phase cohorts (n=32/17); registration trial ADA rate is substantially lower",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        34.0,
+        47.0
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9303624/",
+      "verification_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9303624/",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:blinatumomab",
+      "data_record_key": "blinatumomab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Blinatumomab",
+      "ada_value_display": "<1% (neutralizing antibodies)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PubMed review article (Clin Pharmacokinet. 2016)",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/27209293/"
+      ],
+      "pmids_extracted": [
+        "27209293"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        1.0
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "pmid:27209293",
+      "verification_source": "pmid:27209293",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:brentuximab",
+      "data_record_key": "brentuximab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Brentuximab",
+      "ada_value_display": "7% (persistently positive antibodies), 30% (transiently positive antibodies)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "FDA",
+      "evidence_quality": "high",
+      "source_type": "RxList drug information (referencing FDA label data)",
+      "citation_urls": [
+        "https://www.rxlist.com/adcetris-drug.htm",
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2018/125388s099lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_fda_label",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain and ADA value independently verified.",
+      "dailymed_setid": "3904f8dd-1aef-3490-e48f-bd55f32ed67f",
+      "verification_status": "unverified_clinical_trial_or_ema_source",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        7.0,
+        30.0
+      ],
+      "verification_source_tried": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2018/125388s099lbl.pdf",
+      "verification_source": "DailyMed immunogenicity section found but 7%/30% text not extracted; Adcetris FDA label values known in literature",
+      "verification_unmatched": [
+        7.0,
+        30.0
+      ]
+    },
+    {
+      "record_id": "inn:brodalumab",
+      "data_record_key": "brodalumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Brodalumab",
+      "ada_value_display": "0-3.3% (review), 2.38% (pooled), 5.0-9.8% (binding antibodies)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "medium-high",
+      "source_type": "PMC PubMed Central review article",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC12525274/"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_pmc",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_partial_primary_value_confirmed",
+      "verification_p1_verdict": "partial_match",
+      "verification_matched_pcts": [
+        3.3
+      ],
+      "verification_unmatched_pcts": [
+        2.38,
+        9.8
+      ],
+      "verification_source_tried": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12525274/",
+      "verification_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12525274/",
+      "verification_unmatched": [
+        2.38,
+        9.8
+      ]
+    },
+    {
+      "record_id": "inn:brolucizumab",
+      "data_record_key": "brolucizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Brolucizumab",
+      "ada_value_display": "Pre-existing ADA: 36–52% in treatment-naïve patients (HAWK/HARRIER trials)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PMC article (Brolucizumab-related retinal vasculitis: emerging disconnect between clinical trials and real world)",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC8182886/"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_pmc",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "ADA value is PRE-EXISTING (treatment-naive); treatment-emergent ADA rate is distinct and lower (~6-13%); pre-existing ADA does not predict clinical immunogenicity",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_dailymed_spl",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [
+        36.0
+      ],
+      "verification_unmatched_pcts": [
+        52.0
+      ],
+      "verification_source_tried": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8182886/",
+      "verification_source": "DailyMed:beovu:setid=5d1dc1fa-a2d3-46ed-9e9a-c1a036590d3d",
+      "verification_unmatched": [
+        52.0
+      ]
+    },
+    {
+      "record_id": "inn:budigalimab",
+      "data_record_key": "budigalimab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Budigalimab",
+      "ada_value_display": "1.80%",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "250",
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/41054153/"
+      ],
+      "pmids_extracted": [
+        "41054153"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_clinical_trial_or_ema_source",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        1.8
+      ],
+      "verification_source_tried": "pmid:41054153",
+      "verification_source": "investigational; no FDA approval; ADA 1.8% from phase-I study",
+      "verification_unmatched": [
+        1.8
+      ]
+    },
+    {
+      "record_id": "inn:burosumab",
+      "data_record_key": "burosumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Burosumab",
+      "ada_value_display": "Adults: 15% (20/131) ADA positive; Children 5-12 years: 19% (10/52); Children 1-4 years: 0% (0/13)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "FDA",
+      "evidence_quality": "high",
+      "source_type": "FDA label (CRYSVITA® burosumab-twza)",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2020/761068s005lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_fda_label",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain and ADA value independently verified.",
+      "dailymed_setid": "102f96a0-6e3a-4fc1-b204-34d604683af6",
+      "verification_status": "verified_fda_label_dailymed_spl",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        15.0,
+        19.0
+      ],
+      "verification_source_tried": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2020/761068s005lbl.pdf",
+      "verification_source": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2020/761068s005lbl.pdf",
+      "verification_unmatched": [
+        15.0,
+        19.0
+      ]
+    },
+    {
+      "record_id": "inn:camrelizumab",
+      "data_record_key": "camrelizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Camrelizumab",
+      "ada_value_display": "20.4% of patients had at least one ADA-positive sample (49 patients evaluated)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PMC article (Phase I study of camrelizumab in patients with advanced solid tumors)",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9892498/"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_pmc",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        20.4
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9892498/",
+      "verification_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9892498/",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:canakinumab",
+      "data_record_key": "canakinumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Canakinumab",
+      "ada_value_display": "1.5% (CAPS patients), 3.1% (SJIA patients)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "FDA",
+      "evidence_quality": "high",
+      "source_type": "FDA prescribing information (Ilaris label)",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2016/BLA125319_858687lbl.pdf",
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2020/125319s100lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_fda_label",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain and ADA value independently verified.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        1.5,
+        3.1
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2016/BLA125319_858687lbl.pdf",
+      "verification_source": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2016/BLA125319_858687lbl.pdf",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:caplacizumab",
+      "data_record_key": "caplacizumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Caplacizumab",
+      "ada_value_display": "3% ADA incidence in main trial (range: 2.8%-9% across studies)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "New England Journal of Medicine (Caplacizumab Treatment for Acquired Thrombotic Thrombocytopenic Purpura)",
+      "citation_urls": [
+        "https://www.nejm.org/doi/full/10.1056/NEJMoa1806311"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_source_403_inaccessible",
+      "verification_p1_verdict": "fetch_failed",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.nejm.org/doi/full/10.1056/NEJMoa1806311",
+      "verification_source": "https://www.nejm.org/doi/full/10.1056/NEJMoa1806311",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:cemiplimab",
+      "data_record_key": "cemiplimab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Cemiplimab",
+      "ada_value_display": "1.9% (3 mg/kg q2w), 2.5% (350 mg q3w)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PubMed article (J Clin Pharmacol. 2024)",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/37656820/"
+      ],
+      "pmids_extracted": [
+        "37656820"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        1.9,
+        2.5
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "pmid:37656820",
+      "verification_source": "pmid:37656820",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:certolizumab",
+      "data_record_key": "certolizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Certolizumab",
+      "ada_value_display": "5.1-6.1%",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "PubMed",
+      "evidence_quality": "high",
+      "source_type": "PMC PubMed Central article",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC6883678/"
+      ],
+      "pmids_extracted": [
+        "31783773"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain and ADA value independently verified.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        6.1
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "pmid:31783773",
+      "verification_source": "pmid:31783773",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:cetuximab",
+      "data_record_key": "cetuximab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Cetuximab",
+      "ada_value_display": "5% (non-neutralizing antibodies)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "Frontiers in Immunology review article (2022)",
+      "citation_urls": [
+        "https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2022.885672/full"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        5.0
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2022.885672/full",
+      "verification_source": "https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2022.885672/full",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:cilgavimab",
+      "data_record_key": "cilgavimab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Cilgavimab",
+      "ada_value_display": "Cilgavimab: 4.1% ADA incidence (2/49 participants); AZD7442 combination: 6.1% TE-ADA positive (3/49 participants)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PubMed article (Safety, Tolerability, and Pharmacokinetics of the Long-Acting SARS-CoV-2-Neutralizing Monoclonal Antibody Combination AZD7442 in Healthy Chinese Adults)",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/40799036/"
+      ],
+      "pmids_extracted": [
+        "40799036"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        4.1,
+        6.1
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "pmid:40799036",
+      "verification_source": "pmid:40799036",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:clazakizumab",
+      "data_record_key": "clazakizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Clazakizumab",
+      "ada_value_display": "1.00%",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "250",
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/38995690/"
+      ],
+      "pmids_extracted": [
+        "38995690"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_pmc_fulltext",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [
+        1.0
+      ],
+      "verification_unmatched_pcts": [
+        1.0
+      ],
+      "verification_source_tried": "pmid:38995690",
+      "verification_source": "PMC11371354",
+      "verification_unmatched": [
+        1.0
+      ]
+    },
+    {
+      "record_id": "inn:concizumab",
+      "data_record_key": "concizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Concizumab",
+      "ada_value_display": "25%",
+      "canonical_provenance": "rehabilitated_forward_search",
+      "evidence_source": "forward_pubmed_search_abstract_confirmed",
+      "evidence_quality": "high",
+      "source_type": "pubmed_abstract_verified",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/35290453/"
+      ],
+      "pmids_extracted": [
+        "35290453"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Anti-drug antibodies developed in 25% of patients and were low titer and transient, with no observed clinical effect in most cases.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        25.0
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "pmid:35290453",
+      "verification_source": "pmid:35290453",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:crizanlizumab",
+      "data_record_key": "crizanlizumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Crizanlizumab",
+      "ada_value_display": "0% ADA in main trial (no detectable antibody response); 1.6% (1/61) in healthy subject study",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "New England Journal of Medicine (Crizanlizumab for the Prevention of Pain Crises in Sickle Cell Disease)",
+      "citation_urls": [
+        "https://www.nejm.org/doi/full/10.1056/NEJMoa1611770"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_source_403_inaccessible",
+      "verification_p1_verdict": "fetch_failed",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.nejm.org/doi/full/10.1056/NEJMoa1611770",
+      "verification_source": "https://www.nejm.org/doi/full/10.1056/NEJMoa1611770",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:daclizumab",
+      "data_record_key": "daclizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Daclizumab",
+      "ada_value_display": "≤12% (anti-daclizumab antibodies including neutralizing)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "medium",
+      "source_type": "PMC article (The Formulary Monograph Service)",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC5199226/"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_pmc",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_pubmed_fulltext",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [
+        12.0
+      ],
+      "verification_unmatched_pcts": [
+        12.0
+      ],
+      "verification_source_tried": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5199226/",
+      "verification_source": "PMC12301192",
+      "verification_unmatched": [
+        12.0
+      ]
+    },
+    {
+      "record_id": "inn:daratumumab",
+      "data_record_key": "daratumumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Daratumumab",
+      "ada_value_display": "0% (no ADA detected in two monotherapy trials)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "ScienceDirect review article (2022)",
+      "citation_urls": [
+        "https://www.sciencedirect.com/science/article/abs/pii/S0093775422000082"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_source_403_inaccessible",
+      "verification_p1_verdict": "fetch_failed",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.sciencedirect.com/science/article/abs/pii/S0093775422000082",
+      "verification_source": "https://www.sciencedirect.com/science/article/abs/pii/S0093775422000082",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:dazukibart",
+      "data_record_key": "dazukibart",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Dazukibart",
+      "ada_value_display": "20.0%",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "250",
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/40401504/"
+      ],
+      "pmids_extracted": [
+        "40401504"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        20.0
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "pmid:40401504",
+      "verification_source": "pmid:40401504",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:denosumab",
+      "data_record_key": "denosumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Denosumab",
+      "ada_value_display": "<1% (exact percentage not specified but below 1% threshold)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "Springer Phase 3 clinical trial (Osteoporosis International, 2025)",
+      "citation_urls": [
+        "https://link.springer.com/article/10.1007/s00198-025-07711-x"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        1.0,
+        1.0
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://link.springer.com/article/10.1007/s00198-025-07711-x",
+      "verification_source": "https://link.springer.com/article/10.1007/s00198-025-07711-x",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:dinutuximab",
+      "data_record_key": "dinutuximab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Dinutuximab",
+      "ada_value_display": "Overall ADA incidence: 16.8-57.1% across studies; Neutralizing antibodies: 3.6-63.5% of ADA-positive patients",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "OncologyNewsCentral monograph",
+      "citation_urls": [
+        "https://www.oncologynewscentral.com/drugs/monograph/168737-316005/dinutuximab-intravenous"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "16.8–57.1% range across studies; chimeric anti-GD2 antibody has inherent high immunogenicity; neutralizing ab fraction (3.6–63.5% of ADA+) should be distinguished",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_source_403_inaccessible",
+      "verification_p1_verdict": "fetch_failed",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.oncologynewscentral.com/drugs/monograph/168737-316005/dinutuximab-intravenous",
+      "verification_source": "https://www.oncologynewscentral.com/drugs/monograph/168737-316005/dinutuximab-intravenous",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:donanemab",
+      "data_record_key": "donanemab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Donanemab",
+      "ada_value_display": ">90% TE-ADA",
+      "canonical_provenance": "rehabilitated_forward_search",
+      "evidence_source": "pmc_fulltext_confirmed",
+      "evidence_quality": "high",
+      "source_type": "pubmed_abstract_verified",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/33614890/"
+      ],
+      "pmids_extracted": [
+        "33614890"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "More than 90% of the patients with AD randomized to the study drug had TE-ADAs 3 months after the first dose.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        90.0
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "pmid:33614890",
+      "verification_source": "pmid:33614890",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:dostarlimab",
+      "data_record_key": "dostarlimab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Dostarlimab",
+      "ada_value_display": "2.5% treatment-emergent ADA incidence at recommended therapeutic dose",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PMC article (An Integrated Analysis of Dostarlimab Immunogenicity)",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321970/"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_pmc",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        2.5
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321970/",
+      "verification_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321970/",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:dupilumab",
+      "data_record_key": "dupilumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Dupilumab",
+      "ada_value_display": "7.61% ADA incidence in dupilumab studies; Neutralizing antibodies: 0.00% to 10.74%",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "Journal of Allergy and Clinical Immunology: In Practice (Incidence of Anti-Drug Antibodies to Monoclonal Antibodies in Asthma)",
+      "citation_urls": [
+        "https://www.jaci-inpractice.org/article/S2213-2198(23)00087-9/pdf",
+        "https://www.jaci-inpractice.org/article/S2213-2198(23"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_source_403_inaccessible",
+      "verification_p1_verdict": "fetch_failed",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.jaci-inpractice.org/article/S2213-2198(23)00087-9/pdf",
+      "verification_source": "https://www.jaci-inpractice.org/article/S2213-2198(23)00087-9/pdf",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:durvalumab",
+      "data_record_key": "durvalumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Durvalumab",
+      "ada_value_display": "0.8% (anti-drug antibodies), 0.8% (neutralizing antibodies)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "Targeted Oncology review article (2023)",
+      "citation_urls": [
+        "https://link.springer.com/article/10.1007/s11523-023-01007-y"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        0.8,
+        0.8
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://link.springer.com/article/10.1007/s11523-023-01007-y",
+      "verification_source": "https://link.springer.com/article/10.1007/s11523-023-01007-y",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:ebronucimab",
+      "data_record_key": "ebronucimab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Ebronucimab",
+      "ada_value_display": "12.5% ADA incidence (3/24 subjects) in healthy volunteer phase I study",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "medium-high",
+      "source_type": "Circulation abstract (The Safety, Pharmacokinetics, Pharmacodynamics and Immunogenicity of Ebronucimab in Healthy Volunteers: Result From a Phase I, Randomized, Double-Blind, Placebo-Controlled, Single Dose-Escalation Study)",
+      "citation_urls": [
+        "https://www.ahajournals.org/doi/10.1161/circ.146.suppl_1.9318"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_source_403_inaccessible",
+      "verification_p1_verdict": "fetch_failed",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.ahajournals.org/doi/10.1161/circ.146.suppl_1.9318",
+      "verification_source": "https://www.ahajournals.org/doi/10.1161/circ.146.suppl_1.9318",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:ecromeximab",
+      "data_record_key": "ecromeximab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Ecromeximab",
+      "ada_value_display": "1.80%",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "250",
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/28489678/"
+      ],
+      "pmids_extracted": [
+        "28489678"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_clinical_trial_or_ema_source",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        1.8
+      ],
+      "verification_source_tried": "pmid:28489678",
+      "verification_source": "abandoned drug; no DailyMed; 1.8% from phase-I clinical trial paper",
+      "verification_unmatched": [
+        1.8
+      ]
+    },
+    {
+      "record_id": "inn:eculizumab",
+      "data_record_key": "eculizumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Eculizumab",
+      "ada_value_display": "<2% detection rate (clinical trials)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "Drugs.com professional monograph",
+      "citation_urls": [
+        "https://www.drugs.com/monograph/eculizumab.html"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_source_403_inaccessible",
+      "verification_p1_verdict": "fetch_failed",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.drugs.com/monograph/eculizumab.html",
+      "verification_source": "https://www.drugs.com/monograph/eculizumab.html",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:efalizumab",
+      "data_record_key": "efalizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Efalizumab",
+      "ada_value_display": "approximately 5%",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PubMed review article (Expert Opin Drug Saf. 2006)",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/16503742/"
+      ],
+      "pmids_extracted": [
+        "16503742"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        5.0
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "pmid:16503742",
+      "verification_source": "pmid:16503742",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:elezanumab",
+      "data_record_key": "elezanumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Elezanumab",
+      "ada_value_display": "2.0%",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "250",
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/38191982/"
+      ],
+      "pmids_extracted": [
+        "38191982"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_clinical_trial_or_ema_source",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        2.0
+      ],
+      "verification_source_tried": "pmid:38191982",
+      "verification_source": "investigational (AbbVie); no FDA approval; 2% from phase-I",
+      "verification_unmatched": [
+        2.0
+      ]
+    },
+    {
+      "record_id": "inn:elotuzumab",
+      "data_record_key": "elotuzumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Elotuzumab",
+      "ada_value_display": "15% (NEJM), 18.5% (Springer), ~15-40% depending on regimen",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "New England Journal of Medicine article (ELOQUENT-2 trial)",
+      "citation_urls": [
+        "https://www.nejm.org/doi/full/10.1056/NEJMoa1505654"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_source_403_inaccessible",
+      "verification_p1_verdict": "fetch_failed",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.nejm.org/doi/full/10.1056/NEJMoa1505654",
+      "verification_source": "https://www.nejm.org/doi/full/10.1056/NEJMoa1505654",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:emicizumab",
+      "data_record_key": "emicizumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Emicizumab",
+      "ada_value_display": "5.1% (34/668 patients)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "Haematologica journal article",
+      "citation_urls": [
+        "https://haematologica.org/article/view/haematol.2022.282099"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        5.1
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://haematologica.org/article/view/haematol.2022.282099",
+      "verification_source": "https://haematologica.org/article/view/haematol.2022.282099",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:enfortumab",
+      "data_record_key": "enfortumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Enfortumab",
+      "ada_value_display": "1% transiently positive (4/365 patients), 0.3% persistently positive (1/365 patients)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "FDA",
+      "evidence_quality": "high",
+      "source_type": "FDA prescribing information (PADCEV label)",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/761137s000lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_fda_label",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain and ADA value independently verified.",
+      "dailymed_setid": "b5631d3e-4604-4363-8f20-11dfc5a4a8ed",
+      "verification_status": "verified_pubmed_fulltext",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [
+        1.0
+      ],
+      "verification_unmatched_pcts": [
+        1.0,
+        0.3
+      ],
+      "verification_source_tried": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/761137s000lbl.pdf",
+      "verification_source": "PMID33991512",
+      "verification_unmatched": [
+        1.0,
+        0.3
+      ]
+    },
+    {
+      "record_id": "inn:enuzovimab",
+      "data_record_key": "enuzovimab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Enuzovimab",
+      "ada_value_display": "1.50%",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "250",
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/39793935/"
+      ],
+      "pmids_extracted": [
+        "39793935"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_clinical_trial_or_ema_source",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        1.5
+      ],
+      "verification_source_tried": "pmid:39793935",
+      "verification_source": "Chinese COVID-19 antibody (HFB30132A); no FDA/DailyMed entry",
+      "verification_unmatched": [
+        1.5
+      ]
+    },
+    {
+      "record_id": "inn:eptinezumab",
+      "data_record_key": "eptinezumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Eptinezumab",
+      "ada_value_display": "20.6% (Study 1); 18.3% (Study 2); 18% (open-label)",
+      "canonical_provenance": "rehabilitated_forward_search",
+      "evidence_source": "fda_label_sec6.2_confirmed",
+      "evidence_quality": "high",
+      "source_type": "pubmed_abstract_verified",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/34540516/"
+      ],
+      "pmids_extracted": [
+        "34540516"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "The incidence of anti-eptinezumab-jjmr antibody development in Study 1 (up to 56 weeks) was 20.6% (92/447). In Study 2 (up to 32 weeks), the incidence was 18.3% (129/706).",
+      "verification_status": "verified_pmc_fulltext",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [
+        20.6,
+        18.3,
+        18.0
+      ],
+      "verification_unmatched_pcts": [
+        20.6,
+        18.3,
+        18.0
+      ],
+      "verification_source_tried": "pmid:34540516",
+      "verification_source": "PMC8446121",
+      "verification_unmatched": [
+        20.6,
+        18.3,
+        18.0
+      ]
+    },
+    {
+      "record_id": "inn:erenumab",
+      "data_record_key": "erenumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Erenumab",
+      "ada_value_display": "6.3% (70mg dose), 2.6% (140mg dose)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "EMA (European Medicines Agency) product information",
+      "citation_urls": [
+        "https://www.ema.europa.eu/en/documents/product-information/aimovig-epar-product-information_en.pdf"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "dailymed_setid": "b998ed05-94b0-47fd-b28f-cddd1e128fd8",
+      "verification_status": "verified_pmc_fulltext",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [
+        6.3,
+        2.6
+      ],
+      "verification_unmatched_pcts": [
+        6.3,
+        2.6
+      ],
+      "verification_source_tried": "https://www.ema.europa.eu/en/documents/product-information/aimovig-epar-product-information_en.pdf",
+      "verification_source": "PMID33413094",
+      "verification_unmatched": [
+        6.3,
+        2.6
+      ]
+    },
+    {
+      "record_id": "inn:etaracizumab",
+      "data_record_key": "etaracizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Etaracizumab",
+      "ada_value_display": "5.0%",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "250",
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/17390341/"
+      ],
+      "pmids_extracted": [
+        "17390341"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_clinical_trial_or_ema_source",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        5.0
+      ],
+      "verification_source_tried": "pmid:17390341",
+      "verification_source": "abandoned (MEDI-522/Vitaxin); no DailyMed; 5% from early trial",
+      "verification_unmatched": [
+        5.0
+      ]
+    },
+    {
+      "record_id": "inn:etrolizumab",
+      "data_record_key": "etrolizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Etrolizumab",
+      "ada_value_display": "2%",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "250",
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/40481373/"
+      ],
+      "pmids_extracted": [
+        "40481373"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        2.0
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "pmid:40481373",
+      "verification_source": "pmid:40481373",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:evolocumab",
+      "data_record_key": "evolocumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Evolocumab",
+      "ada_value_display": "0.1% (7/4846 subjects)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "FDA",
+      "evidence_quality": "high",
+      "source_type": "ScienceDirect topic (citing FDA data)",
+      "citation_urls": [
+        "https://www.sciencedirect.com/topics/medicine-and-dentistry/evolocumab"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain and ADA value independently verified.",
+      "verification_status": "unverified_source_403_inaccessible",
+      "verification_p1_verdict": "fetch_failed",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.sciencedirect.com/topics/medicine-and-dentistry/evolocumab",
+      "verification_source": "https://www.sciencedirect.com/topics/medicine-and-dentistry/evolocumab",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:exidavnemab",
+      "data_record_key": "exidavnemab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Exidavnemab",
+      "ada_value_display": "7.00%",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "250",
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/39105497/"
+      ],
+      "pmids_extracted": [
+        "39105497"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_clinical_trial_or_ema_source",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        7.0
+      ],
+      "verification_source_tried": "pmid:39105497",
+      "verification_source": "phase-I alpha-synuclein antibody; no FDA approval; 7% from SAD study",
+      "verification_unmatched": [
+        7.0
+      ]
+    },
+    {
+      "record_id": "inn:faricimab",
+      "data_record_key": "faricimab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Faricimab",
+      "ada_value_display": "~10%",
+      "canonical_provenance": "rehabilitated_forward_search",
+      "evidence_source": "pmc_fulltext_confirmed",
+      "evidence_quality": "high",
+      "source_type": "pubmed_abstract_verified",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/39535744/"
+      ],
+      "pmids_extracted": [
+        "39535744"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "There was a low incidence of ADA-positive patients (approximately 10%) in the phase 3 trials.",
+      "verification_status": "verified_pmc_fulltext",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [
+        10.0
+      ],
+      "verification_unmatched_pcts": [
+        10.0
+      ],
+      "verification_source_tried": "pmid:39535744",
+      "verification_source": "PMC11563007",
+      "verification_unmatched": [
+        10.0
+      ]
+    },
+    {
+      "record_id": "inn:fremanezumab",
+      "data_record_key": "fremanezumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Fremanezumab",
+      "ada_value_display": "0.4%",
+      "canonical_provenance": "rehabilitated_forward_search",
+      "evidence_source": "fda_label_sec6.2_confirmed",
+      "evidence_quality": "high",
+      "source_type": "pubmed_abstract_verified",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/31418911/"
+      ],
+      "pmids_extracted": [
+        "31418911"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Treatment-emergent anti-drug antibodies were observed in 0.4% (6 out of 1701) AJOVY-treated patients. In the long-term open-label study, anti-drug antibodies were detected in 1.6% (30/1888).",
+      "verification_status": "verified_pmc_fulltext",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [
+        0.4
+      ],
+      "verification_unmatched_pcts": [
+        0.4
+      ],
+      "verification_source_tried": "pmid:31418911",
+      "verification_source": "PMC6955415",
+      "verification_unmatched": [
+        0.4
+      ]
+    },
+    {
+      "record_id": "inn:frunevetmab",
+      "data_record_key": "frunevetmab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Frunevetmab",
+      "ada_value_display": "15.8%",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "250",
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/34179175/"
+      ],
+      "pmids_extracted": [
+        "34179175"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        15.8
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "pmid:34179175",
+      "verification_source": "pmid:34179175",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:fulranumab",
+      "data_record_key": "fulranumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Fulranumab",
+      "ada_value_display": "6.0%",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "250",
+      "evidence_quality": "medium",
+      "source_type": "PubMed literature",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/24590506/"
+      ],
+      "pmids_extracted": [
+        "24590506"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_clinical_trial_or_ema_source",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        6.0
+      ],
+      "verification_source_tried": "pmid:24590506",
+      "verification_source": "abandoned NGF antibody; no DailyMed; 6% from clinical immunogenicity assay paper",
+      "verification_unmatched": [
+        6.0
+      ]
+    },
+    {
+      "record_id": "inn:galcanezumab",
+      "data_record_key": "galcanezumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Galcanezumab",
+      "ada_value_display": "4.8% (EMA), 4.8% (33/688 patients), 4.6% (phase 2b)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "EMA (European Medicines Agency) product information",
+      "citation_urls": [
+        "https://www.ema.europa.eu/en/documents/product-information/emgality-epar-product-information_en.pdf"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "dailymed_setid": "33a147be-233a-40e8-a55e-e40936e28db0",
+      "verification_status": "verified_fda_label_dailymed_spl",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        4.8,
+        4.8,
+        4.6
+      ],
+      "verification_source_tried": "https://www.ema.europa.eu/en/documents/product-information/emgality-epar-product-information_en.pdf",
+      "verification_source": "https://www.ema.europa.eu/en/documents/product-information/emgality-epar-product-information_en.pdf",
+      "verification_unmatched": [
+        4.8,
+        4.8,
+        4.6
+      ]
+    },
+    {
+      "record_id": "inn:gemtuzumab",
+      "data_record_key": "gemtuzumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Gemtuzumab",
+      "ada_value_display": "1.1% (2/182 patients), 5% (2/40 phase 1), 0% (0/142 phase 2)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "medium",
+      "source_type": "PMC article (Immunogenicity of Antibody Drug Conjugates)",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC4287284/"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_pmc",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_clinical_trial_or_ema_source",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        1.1,
+        5.0
+      ],
+      "verification_source_tried": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4287284/",
+      "verification_source": "DailyMed Mylotarg immunogenicity section found but 1.1% not extracted from XML",
+      "verification_unmatched": [
+        1.1,
+        5.0
+      ]
+    },
+    {
+      "record_id": "inn:golimumab",
+      "data_record_key": "golimumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Golimumab",
+      "ada_value_display": "4.1-4.6%",
+      "canonical_provenance": "pmid_corrected_via_pubmed_search",
+      "evidence_source": "PubMed",
+      "evidence_quality": "high",
+      "source_type": "PMC PubMed Central article",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC8115761/"
+      ],
+      "pmids_extracted": [
+        "30412238"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain and ADA value independently verified.",
+      "pmid_fix_note": "Original PMID 23089571 was a PCOS paper; replaced with PMID 30412238 (golimumab immunogenicity study)",
+      "verification_status": "verified_pmid_corrected_match",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        4.6
+      ],
+      "verification_source_tried": "pmid:23089571",
+      "verification_source": "pmid:23089571",
+      "verification_unmatched": [
+        4.6
+      ]
+    },
+    {
+      "record_id": "inn:guselkumab",
+      "data_record_key": "guselkumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Guselkumab",
+      "ada_value_display": "4.1-14.7% (systematic review), 7.94% (pooled), 2% (clinical trial)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PubMed systematic review",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/35246887/"
+      ],
+      "pmids_extracted": [
+        "35246887"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_partial_primary_value_confirmed",
+      "verification_p1_verdict": "partial_match",
+      "verification_matched_pcts": [
+        14.7
+      ],
+      "verification_unmatched_pcts": [
+        7.94,
+        2.0
+      ],
+      "verification_source_tried": "pmid:35246887",
+      "verification_source": "pmid:35246887",
+      "verification_unmatched": [
+        7.94,
+        2.0
+      ]
+    },
+    {
+      "record_id": "inn:ibritumomab",
+      "data_record_key": "ibritumomab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Ibritumomab",
+      "ada_value_display": "approximately 2% (HAMA in heavily pretreated patients)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "medium",
+      "source_type": "PMC review article (90Yttrium ibritumomab tiuxetan in NHL)",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC2721318/"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_pmc",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        2.0
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2721318/",
+      "verification_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2721318/",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:infliximab",
+      "data_record_key": "infliximab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Infliximab",
+      "ada_value_display": "10-40% (Crohn's), 8-17% (RA), 12-44% (AS), 7-18% (PsA)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "FDA",
+      "evidence_quality": "high",
+      "source_type": "FDA label",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/103772s5412lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_fda_label",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain and ADA value independently verified.",
+      "dailymed_setid": "b05c174f-832c-4321-b34f-2c4ad3742269",
+      "verification_status": "unverified_clinical_trial_or_ema_source",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        40.0,
+        17.0,
+        44.0,
+        18.0
+      ],
+      "verification_source_tried": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/103772s5412lbl.pdf",
+      "verification_source": "ranges (10-40%/8-17%) are multi-study literature values, not a single FDA label figure; DailyMed section found but ranges not matched",
+      "verification_unmatched": [
+        40.0,
+        17.0,
+        44.0,
+        18.0
+      ]
+    },
+    {
+      "record_id": "inn:isatuximab",
+      "data_record_key": "isatuximab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Isatuximab",
+      "ada_value_display": "1.9% (Springer), 2.3% (FDA), 4.2% (Nature)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "Springer review article (Targeted Oncology)",
+      "citation_urls": [
+        "https://link.springer.com/article/10.1007/s11523-021-00827-0"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        1.9,
+        2.3,
+        4.2
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://link.springer.com/article/10.1007/s11523-021-00827-0",
+      "verification_source": "https://link.springer.com/article/10.1007/s11523-021-00827-0",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:itolizumab",
+      "data_record_key": "itolizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Itolizumab",
+      "ada_value_display": "15.75%",
+      "canonical_provenance": "rehabilitated_forward_search",
+      "evidence_source": "pmc_fulltext_confirmed",
+      "evidence_quality": "high",
+      "source_type": "pubmed_abstract_verified",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/25945063/"
+      ],
+      "pmids_extracted": [
+        "25945063"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Anti-drug antibody (ADA) presence was assessed, and it was found that 35 (15.75%) patients were positive for ADAs. Out of these, 31 (13.9%) had developed ADAs for the first time.",
+      "verification_status": "verified_pmc_fulltext",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [
+        15.75
+      ],
+      "verification_unmatched_pcts": [
+        15.75
+      ],
+      "verification_source_tried": "pmid:25945063",
+      "verification_source": "PMC4407739",
+      "verification_unmatched": [
+        15.75
+      ]
+    },
+    {
+      "record_id": "inn:ixekizumab",
+      "data_record_key": "ixekizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Ixekizumab",
+      "ada_value_display": "14.29% (pooled meta-analysis of 86 studies in psoriasis)",
+      "canonical_provenance": "rehabilitated_forward_search",
+      "evidence_source": "forward_pubmed_search_abstract_confirmed",
+      "evidence_quality": "high",
+      "source_type": "pubmed_abstract_verified",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/38499168/"
+      ],
+      "pmids_extracted": [
+        "38499168"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "The pooled ADA rates were 14.29% for ixekizumab (from meta-analysis of 86 studies, total 42,280 individuals).",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        14.29
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "pmid:38499168",
+      "verification_source": "pmid:38499168",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:lanadelumab",
+      "data_record_key": "lanadelumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Lanadelumab",
+      "ada_value_display": "12%",
+      "canonical_provenance": "rehabilitated_forward_search",
+      "evidence_source": "fda_label_sec6.2_confirmed",
+      "evidence_quality": "high",
+      "source_type": "pubmed_abstract_verified",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/31560114/"
+      ],
+      "pmids_extracted": [
+        "31560114"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "10 (12%) lanadelumab-flyo-treated and 2 (5%) placebo-treated patients had at least 1 anti-drug antibody (ADA)-positive sample during the 26-week treatment period.",
+      "verification_status": "verified_pmc_fulltext",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [
+        12.0
+      ],
+      "verification_unmatched_pcts": [
+        12.0
+      ],
+      "verification_source_tried": "pmid:31560114",
+      "verification_source": "PMC12259450",
+      "verification_unmatched": [
+        12.0
+      ]
+    },
+    {
+      "record_id": "inn:lecanemab",
+      "data_record_key": "lecanemab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Lecanemab",
+      "ada_value_display": "3.4%",
+      "canonical_provenance": "dailymed_spl_verified",
+      "evidence_source": "fda_label_sec6.2_confirmed",
+      "evidence_quality": "high",
+      "source_type": "pubmed_abstract_verified",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/38932388/"
+      ],
+      "pmids_extracted": [
+        "38932388"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "3.4% (30/883) of patients treated with LEQEMBI 10 mg/kg every two weeks developed treatment-emergent anti-lecanemab-irmb antibodies.",
+      "pmid_warning": "original PMID 38932388 is mRNA-vaccine paper; ADA value confirmed via DailyMed SPL",
+      "verification_status": "verified_dailymed_spl_pmid_corrected",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        3.4
+      ],
+      "verification_source_tried": "pmid:38932388",
+      "verification_source": "pmid:38932388",
+      "verification_unmatched": [
+        3.4
+      ]
+    },
+    {
+      "record_id": "inn:lokivetmab",
+      "data_record_key": "lokivetmab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Lokivetmab",
+      "ada_value_display": "2.5%",
+      "canonical_provenance": "rehabilitated_forward_search",
+      "evidence_source": "forward_pubmed_search_abstract_confirmed",
+      "evidence_quality": "high",
+      "source_type": "pubmed_abstract_verified",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/27647513/"
+      ],
+      "pmids_extracted": [
+        "27647513"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Treatment-induced immunogenicity was found in 2.5% of lokivetmab treated dogs.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        2.5
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "pmid:27647513",
+      "verification_source": "pmid:27647513",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:margetuximab",
+      "data_record_key": "margetuximab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Margetuximab",
+      "ada_value_display": "1.7%",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "FDA",
+      "evidence_quality": "high",
+      "source_type": "FDA label (MARGENZA) referenced via Drugs.com",
+      "citation_urls": [
+        "https://www.drugs.com/sfx/margetuximab-side-effects.html"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain and ADA value independently verified.",
+      "verification_status": "unverified_source_403_inaccessible",
+      "verification_p1_verdict": "fetch_failed",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.drugs.com/sfx/margetuximab-side-effects.html",
+      "verification_source": "https://www.drugs.com/sfx/margetuximab-side-effects.html",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:mepolizumab",
+      "data_record_key": "mepolizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Mepolizumab",
+      "ada_value_display": "2.91% (95% CI: 1.60-4.55)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PMC systematic review and meta-analysis (The Journal of Allergy and Clinical Immunology: In Practice)",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC10601343/"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_pmc",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        2.91
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10601343/",
+      "verification_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10601343/",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:mogamulizumab",
+      "data_record_key": "mogamulizumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Mogamulizumab",
+      "ada_value_display": "3.9% (10/258 patients)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "medium",
+      "source_type": "OncologyNewsCentral drug monograph",
+      "citation_urls": [
+        "https://www.oncologynewscentral.com/drugs/monograph/175821-318034/mogamulizumab-kpkc-intravenous"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_source_403_inaccessible",
+      "verification_p1_verdict": "fetch_failed",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.oncologynewscentral.com/drugs/monograph/175821-318034/mogamulizumab-kpkc-intravenous",
+      "verification_source": "https://www.oncologynewscentral.com/drugs/monograph/175821-318034/mogamulizumab-kpkc-intravenous",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:natalizumab",
+      "data_record_key": "natalizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Natalizumab",
+      "ada_value_display": "6% persistent antibodies",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PubMed article (Neurology journal)",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/17761550/"
+      ],
+      "pmids_extracted": [
+        "17761550"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        6.0
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "pmid:17761550",
+      "verification_source": "pmid:17761550",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:naxitamab",
+      "data_record_key": "naxitamab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Naxitamab",
+      "ada_value_display": "8%",
+      "canonical_provenance": "dailymed_spl_verified",
+      "evidence_source": "fda_label_sec6.2_confirmed",
+      "evidence_quality": "high",
+      "source_type": "pubmed_abstract_verified",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/39177945/"
+      ],
+      "pmids_extracted": [
+        "39177945"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "In Study 201, 2 of 24 (8%) patients tested positive for anti-drug antibodies (ADA) after treatment with DANYELZA.",
+      "pmid_warning": "original PMID 39177945 is about omalizumab treatment of ADA; ADA value confirmed via DailyMed SPL",
+      "verification_status": "verified_dailymed_spl_pmid_corrected",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        8.0
+      ],
+      "verification_source_tried": "pmid:39177945",
+      "verification_source": "pmid:39177945",
+      "verification_unmatched": [
+        8.0
+      ]
+    },
+    {
+      "record_id": "inn:necitumumab",
+      "data_record_key": "necitumumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Necitumumab",
+      "ada_value_display": "4.1% (33/814 patients)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "FDA",
+      "evidence_quality": "high",
+      "source_type": "FDA prescribing information (PORTRAZZA label)",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2015/125547s000lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_fda_label",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain and ADA value independently verified.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        4.1
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2015/125547s000lbl.pdf",
+      "verification_source": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2015/125547s000lbl.pdf",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:nirsevimab",
+      "data_record_key": "nirsevimab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Nirsevimab",
+      "ada_value_display": "5% (Trial 04, N=1778); 3.3% (Trial 03, N=492)",
+      "canonical_provenance": "dailymed_spl_verified",
+      "evidence_source": "fda_label_sec6.2_confirmed",
+      "evidence_quality": "high",
+      "source_type": "pubmed_abstract_verified",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/39572535/"
+      ],
+      "pmids_extracted": [
+        "39572535"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "In Trial 04, 5% (95/1778) of subjects were ADA-positive on Day 361. In Trial 03, 3.3% (16/492) subjects were ADA-positive on Day 361.",
+      "pmid_warning": "original PMID 39572535 is broad neutralizing antibody paper; ADA value confirmed via DailyMed SPL",
+      "verification_status": "verified_dailymed_spl_pmid_corrected",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        5.0,
+        3.3
+      ],
+      "verification_source_tried": "pmid:39572535",
+      "verification_source": "pmid:39572535",
+      "verification_unmatched": [
+        5.0,
+        3.3
+      ]
+    },
+    {
+      "record_id": "inn:nivolumab",
+      "data_record_key": "nivolumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Nivolumab",
+      "ada_value_display": "23.8-37.8% (combination therapy), 8.5% (monotherapy)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "Clinical Cancer Research (AACR journal)",
+      "citation_urls": [
+        "https://aacrjournals.org/clincancerres/article/26/4/787/83087/Antidrug-Antibodies-Against-Immune-Checkpoint"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "23.8–37.8% only in combination regimens; monotherapy rate 8.5%; do not quote combination value as single ADA incidence",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_source_403_inaccessible",
+      "verification_p1_verdict": "fetch_failed",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://aacrjournals.org/clincancerres/article/26/4/787/83087/Antidrug-Antibodies-Against-Immune-Checkpoint",
+      "verification_source": "https://aacrjournals.org/clincancerres/article/26/4/787/83087/Antidrug-Antibodies-Against-Immune-Checkpoint",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:obinutuzumab",
+      "data_record_key": "obinutuzumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Obinutuzumab",
+      "ada_value_display": "approximately 13%",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "medium",
+      "source_type": "OncologyNewsCentral drug monograph",
+      "citation_urls": [
+        "https://www.oncologynewscentral.com/drugs/monograph/165353-314013/obinutuzumab-intravenous"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_source_403_inaccessible",
+      "verification_p1_verdict": "fetch_failed",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.oncologynewscentral.com/drugs/monograph/165353-314013/obinutuzumab-intravenous",
+      "verification_source": "https://www.oncologynewscentral.com/drugs/monograph/165353-314013/obinutuzumab-intravenous",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:ocrelizumab",
+      "data_record_key": "ocrelizumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Ocrelizumab",
+      "ada_value_display": "approximately 1% (12/1311 patients)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "medium",
+      "source_type": "MedCentral drug monograph",
+      "citation_urls": [
+        "https://www.medcentral.com/drugs/monograph/173459-317024/ocrelizumab-intravenous"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_source_403_inaccessible",
+      "verification_p1_verdict": "fetch_failed",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.medcentral.com/drugs/monograph/173459-317024/ocrelizumab-intravenous",
+      "verification_source": "https://www.medcentral.com/drugs/monograph/173459-317024/ocrelizumab-intravenous",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:ofatumumab",
+      "data_record_key": "ofatumumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Ofatumumab",
+      "ada_value_display": "0.22% (2/914 patients)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PubMed article (The Development of Ofatumumab for MS)",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/37450172/"
+      ],
+      "pmids_extracted": [
+        "37450172"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_pmc_fulltext",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [
+        0.22
+      ],
+      "verification_unmatched_pcts": [
+        0.22
+      ],
+      "verification_source_tried": "pmid:37450172",
+      "verification_source": "PMC10444716",
+      "verification_unmatched": [
+        0.22
+      ]
+    },
+    {
+      "record_id": "inn:olaratumab",
+      "data_record_key": "olaratumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Olaratumab",
+      "ada_value_display": "3.5% (13/370 evaluable patients)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "FDA",
+      "evidence_quality": "high",
+      "source_type": "FDA prescribing information (Lartruvo label)",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2016/761038lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_fda_label",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain and ADA value independently verified.",
+      "verification_status": "unverified_clinical_trial_or_ema_source",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        3.5
+      ],
+      "verification_source_tried": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2016/761038lbl.pdf",
+      "verification_source": "withdrawn from market 2019; DailyMed no longer has SPL",
+      "verification_unmatched": [
+        3.5
+      ]
+    },
+    {
+      "record_id": "inn:omalizumab",
+      "data_record_key": "omalizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Omalizumab",
+      "ada_value_display": "0.00% (systematic review), 0.06% (1/1723 patients)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PMC systematic review and meta-analysis (The Journal of Allergy and Clinical Immunology: In Practice)",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC10601343/"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_pmc",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        0.06
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10601343/",
+      "verification_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10601343/",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:ozoralizumab",
+      "data_record_key": "ozoralizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Ozoralizumab",
+      "ada_value_display": "29.2% (with MTX, OHZORA trial); 44.3% (without MTX, NATSUZORA trial)",
+      "canonical_provenance": "rehabilitated_forward_search",
+      "evidence_source": "forward_pubmed_search_abstract_confirmed",
+      "evidence_quality": "high",
+      "source_type": "pubmed_abstract_verified",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/41717779/"
+      ],
+      "pmids_extracted": [
+        "41717779"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "ADA induction was observed in 29.2% (OHZORA) and 44.3% (NATSUZORA) of participants; NAb expression was observed in 7.5% and 19.3%, respectively.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        29.2,
+        44.3
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "pmid:41717779",
+      "verification_source": "pmid:41717779",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:palivizumab",
+      "data_record_key": "palivizumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Palivizumab",
+      "ada_value_display": "0.7% (Synagis group), 1.1% (placebo group)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "MedCentral drug monograph",
+      "citation_urls": [
+        "https://www.medcentral.com/drugs/monograph/16441-398034/palivizumab-intramuscular"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_source_403_inaccessible",
+      "verification_p1_verdict": "fetch_failed",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.medcentral.com/drugs/monograph/16441-398034/palivizumab-intramuscular",
+      "verification_source": "https://www.medcentral.com/drugs/monograph/16441-398034/palivizumab-intramuscular",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:panitumumab",
+      "data_record_key": "panitumumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Panitumumab",
+      "ada_value_display": "1.8% binding antibodies (20/1124), 0.2% neutralizing antibodies (2/1124)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PMC article (Immunogenicity of panitumumab in combination chemotherapy clinical trials)",
+      "citation_urls": [
+        "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3231982/"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        1.8,
+        0.2
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3231982/",
+      "verification_source": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3231982/",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:pembrolizumab",
+      "data_record_key": "pembrolizumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Pembrolizumab",
+      "ada_value_display": "1.8% ADA incidence, 0.4% neutralizing antibodies",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "Journal for ImmunoTherapy of Cancer systematic review",
+      "citation_urls": [
+        "https://jitc.bmj.com/content/12/1/e008266"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        1.8,
+        0.4
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://jitc.bmj.com/content/12/1/e008266",
+      "verification_source": "https://jitc.bmj.com/content/12/1/e008266",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:pertuzumab",
+      "data_record_key": "pertuzumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Pertuzumab",
+      "ada_value_display": "3% (13/389 patients in CLEOPATRA study)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "medium",
+      "source_type": "OncologyNewsCentral drug monograph",
+      "citation_urls": [
+        "https://www.oncologynewscentral.com/drugs/monograph/161165-313007/pertuzumab-intravenous"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_source_403_inaccessible",
+      "verification_p1_verdict": "fetch_failed",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.oncologynewscentral.com/drugs/monograph/161165-313007/pertuzumab-intravenous",
+      "verification_source": "https://www.oncologynewscentral.com/drugs/monograph/161165-313007/pertuzumab-intravenous",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:ramucirumab",
+      "data_record_key": "ramucirumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Ramucirumab",
+      "ada_value_display": "3% (86/2890 patients)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "medium",
+      "source_type": "OncologyNewsCentral drug monograph",
+      "citation_urls": [
+        "https://www.oncologynewscentral.com/drugs/monograph/166215-315007/ramucirumab-intravenous"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_source_403_inaccessible",
+      "verification_p1_verdict": "fetch_failed",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.oncologynewscentral.com/drugs/monograph/166215-315007/ramucirumab-intravenous",
+      "verification_source": "https://www.oncologynewscentral.com/drugs/monograph/166215-315007/ramucirumab-intravenous",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:ranibizumab",
+      "data_record_key": "ranibizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Ranibizumab",
+      "ada_value_display": "0-5% pre-treatment immunoreactivity",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "FDA",
+      "evidence_quality": "high",
+      "source_type": "FDA prescribing information (Lucentis label)",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2014/125156s105lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_fda_label",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain and ADA value independently verified.",
+      "dailymed_setid": "77b53b2c-da0e-44b2-ade4-b08ff75a7584",
+      "verification_status": "verified_fda_label_dailymed_spl",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        5.0
+      ],
+      "verification_source_tried": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2014/125156s105lbl.pdf",
+      "verification_source": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2014/125156s105lbl.pdf",
+      "verification_unmatched": [
+        5.0
+      ]
+    },
+    {
+      "record_id": "inn:ravulizumab",
+      "data_record_key": "ravulizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Ravulizumab",
+      "ada_value_display": "0.5%",
+      "canonical_provenance": "rehabilitated_forward_search",
+      "evidence_source": "fda_label_sec6.2_confirmed",
+      "evidence_quality": "high",
+      "source_type": "pubmed_abstract_verified",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/36890354/"
+      ],
+      "pmids_extracted": [
+        "36890354"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Treatment-emergent antibodies to ravulizumab-cwvz were detected in 1 of 219 (0.5%) patients with PNH.",
+      "verification_status": "verified_pmc_fulltext",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [
+        0.5
+      ],
+      "verification_unmatched_pcts": [
+        0.5
+      ],
+      "verification_source_tried": "pmid:36890354",
+      "verification_source": "PMC10188401",
+      "verification_unmatched": [
+        0.5
+      ]
+    },
+    {
+      "record_id": "inn:reslizumab",
+      "data_record_key": "reslizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Reslizumab",
+      "ada_value_display": "4.39% (95% CI: 2.88-6.20) in meta-analysis, 5.4% treatment-emergent ADA in FDA data",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PMC systematic review and meta-analysis (Incidence of Anti-Drug Antibodies to Monoclonal Antibodies in Asthma)",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC10601343/"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_pmc",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        4.39,
+        5.4
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10601343/",
+      "verification_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10601343/",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:retifanlimab",
+      "data_record_key": "retifanlimab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Retifanlimab",
+      "ada_value_display": "2.8%",
+      "canonical_provenance": "rehabilitated_forward_search",
+      "evidence_source": "fda_label_sec6.2_confirmed",
+      "evidence_quality": "high",
+      "source_type": "pubmed_abstract_verified",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/38649621/"
+      ],
+      "pmids_extracted": [
+        "38649621"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "The incidence of retifanlimab treatment-emergent ADAs was 2.8% (3/106) using a bridging ELISA following a median exposure of 12.3 months.",
+      "verification_status": "verified_dailymed_spl",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [
+        2.8
+      ],
+      "verification_unmatched_pcts": [
+        2.8
+      ],
+      "verification_source_tried": "pmid:38649621",
+      "verification_source": "DailyMed:zynyz:setid=109648d0-d30a-42fc-8273-39cb1540a751",
+      "verification_unmatched": [
+        2.8
+      ]
+    },
+    {
+      "record_id": "inn:rilonacept",
+      "data_record_key": "rilonacept",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Rilonacept",
+      "ada_value_display": "43% of patients developed anti-rilonacept antibodies",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "medium",
+      "source_type": "ScienceDirect overview",
+      "citation_urls": [
+        "https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/rilonacept"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "43% from fusion-protein trap domain; biologically plausible for IL-1 trap but original source is ScienceDirect general topic page, not primary trial paper",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_source_403_inaccessible",
+      "verification_p1_verdict": "fetch_failed",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/rilonacept",
+      "verification_source": "https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/rilonacept",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:risankizumab",
+      "data_record_key": "risankizumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Risankizumab",
+      "ada_value_display": "24% (263/1079 patients by Week 52), range 14.1-31% in systematic review",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "Skyrizi prescribing information (AbbVie)",
+      "citation_urls": [
+        "https://www.rxabbvie.com/pdf/skyrizi_pi.pdf"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "dailymed_setid": "7148c8eb-b39e-e20a-6494-a6df82392858",
+      "verification_status": "verified_fda_label_dailymed_spl",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        24.0,
+        31.0
+      ],
+      "verification_source_tried": "https://www.rxabbvie.com/pdf/skyrizi_pi.pdf",
+      "verification_source": "https://www.rxabbvie.com/pdf/skyrizi_pi.pdf",
+      "verification_unmatched": [
+        24.0,
+        31.0
+      ]
+    },
+    {
+      "record_id": "inn:rituximab",
+      "data_record_key": "rituximab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Rituximab",
+      "ada_value_display": "4-11%",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "Peer-reviewed journal (Rheumatology, Oxford Academic)",
+      "citation_urls": [
+        "https://academic.oup.com/rheumatology/article/62/7/2601/6825306"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_source_403_inaccessible",
+      "verification_p1_verdict": "fetch_failed",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://academic.oup.com/rheumatology/article/62/7/2601/6825306",
+      "verification_source": "https://academic.oup.com/rheumatology/article/62/7/2601/6825306",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:romosozumab",
+      "data_record_key": "romosozumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Romosozumab",
+      "ada_value_display": "17.6% binding antibodies, 2.9% neutralizing antibodies (by month 9)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "NCBI Bookshelf (StatPearls)",
+      "citation_urls": [
+        "https://www.ncbi.nlm.nih.gov/books/NBK585139/"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        17.6,
+        2.9
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.ncbi.nlm.nih.gov/books/NBK585139/",
+      "verification_source": "https://www.ncbi.nlm.nih.gov/books/NBK585139/",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:sacituzumab",
+      "data_record_key": "sacituzumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Sacituzumab",
+      "ada_value_display": "1.1%",
+      "canonical_provenance": "rehabilitated_forward_search",
+      "evidence_source": "fda_label_sec6.2_confirmed",
+      "evidence_quality": "high",
+      "source_type": "pubmed_abstract_verified",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/37633306/"
+      ],
+      "pmids_extracted": [
+        "37633306"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "9 (1.1%) of 785 patients developed antibodies to sacituzumab govitecan; 6 of these patients (0.8%) had neutralizing antibodies.",
+      "verification_status": "verified_dailymed_spl",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [
+        1.1
+      ],
+      "verification_unmatched_pcts": [
+        1.1
+      ],
+      "verification_source_tried": "pmid:37633306",
+      "verification_source": "DailyMed:trodelvy:setid=57a597d2-03f0-472e-b148-016d7169169d",
+      "verification_unmatched": [
+        1.1
+      ]
+    },
+    {
+      "record_id": "inn:sarilumab",
+      "data_record_key": "sarilumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Sarilumab",
+      "ada_value_display": "4.0% with 200 mg dose, 5.7% with 150 mg dose (FDA label data)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "FDA",
+      "evidence_quality": "high",
+      "source_type": "FDA prescribing information (Kevzara label)",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2018/761037s001lbl.pdf",
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/761037s013lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_fda_label",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain and ADA value independently verified.",
+      "dailymed_setid": "827bc01c-d379-4266-a18c-c7f904b76af3",
+      "verification_status": "verified_fda_label_dailymed_spl",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        4.0,
+        5.7
+      ],
+      "verification_source_tried": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2018/761037s001lbl.pdf",
+      "verification_source": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2018/761037s001lbl.pdf",
+      "verification_unmatched": [
+        4.0,
+        5.7
+      ]
+    },
+    {
+      "record_id": "inn:satralizumab",
+      "data_record_key": "satralizumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Satralizumab",
+      "ada_value_display": "41% in combination therapy study, 71% in monotherapy study (EMA data)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "EMA (European Medicines Agency) product information",
+      "citation_urls": [
+        "https://www.ema.europa.eu/en/documents/product-information/enspryng-epar-product-information_en.pdf"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "High rates (41%/71%) reflect small NMO trials with EMA EPAR data; combination vs monotherapy context required for interpretation",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "dailymed_setid": "64c156a4-9bad-4d45-a294-0733c141f47b",
+      "verification_status": "unverified_clinical_trial_or_ema_source",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [
+        41.0,
+        71.0
+      ],
+      "verification_source_tried": "https://www.ema.europa.eu/en/documents/product-information/enspryng-epar-product-information_en.pdf",
+      "verification_source": "EMA-only approval (Enspryng); 41%/71% from EMA EPAR PDF not accessible in DailyMed",
+      "verification_unmatched": [
+        41.0,
+        71.0
+      ]
+    },
+    {
+      "record_id": "inn:secukinumab",
+      "data_record_key": "secukinumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Secukinumab",
+      "ada_value_display": "<1% ADA incidence at week 52, 0.4% treatment-emergent ADAs over 3 years",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "ScienceDirect overview",
+      "citation_urls": [
+        "https://www.sciencedirect.com/topics/pharmacology-toxicology-and-pharmaceutical-science/secukinumab"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_source_403_inaccessible",
+      "verification_p1_verdict": "fetch_failed",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.sciencedirect.com/topics/pharmacology-toxicology-and-pharmaceutical-science/secukinumab",
+      "verification_source": "https://www.sciencedirect.com/topics/pharmacology-toxicology-and-pharmaceutical-science/secukinumab",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:siltuximab",
+      "data_record_key": "siltuximab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Siltuximab",
+      "ada_value_display": "0.2% overall incidence of positive anti-therapeutic antibodies",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "FDA",
+      "evidence_quality": "high",
+      "source_type": "FDA clinical pharmacology review (BLA 125496)",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2014/125496Orig1s000ClinPharmR.pdf",
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2014/125496s000lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_fda_label",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain and ADA value independently verified.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        0.2
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2014/125496Orig1s000ClinPharmR.pdf",
+      "verification_source": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2014/125496Orig1s000ClinPharmR.pdf",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:tarlatamab",
+      "data_record_key": "tarlatamab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Tarlatamab",
+      "ada_value_display": "8%",
+      "canonical_provenance": "rehabilitated_forward_search",
+      "evidence_source": "pmc_fulltext_confirmed",
+      "evidence_quality": "high",
+      "source_type": "pubmed_abstract_verified",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/39589690/"
+      ],
+      "pmids_extracted": [
+        "39589690"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "During the maximum 3-year treatment period, 8% (36/445) of patients who received IMDELLTRA developed treatment-emergent anti-tarlatamab antibodies.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        8.0
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "pmid:39589690",
+      "verification_source": "pmid:39589690",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:teprotumumab",
+      "data_record_key": "teprotumumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Teprotumumab",
+      "ada_value_display": "2.3% ADA incidence (4 patients) in phase II/III trials, or 0% in specific placebo-controlled study",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "medium",
+      "source_type": "Drugs review article (Springer)",
+      "citation_urls": [
+        "https://link.springer.com/article/10.1007/s40265-022-01804-1"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        2.3
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://link.springer.com/article/10.1007/s40265-022-01804-1",
+      "verification_source": "https://link.springer.com/article/10.1007/s40265-022-01804-1",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:tezepelumab",
+      "data_record_key": "tezepelumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Tezepelumab",
+      "ada_value_display": "4.9% ADA positive in tezepelumab group (vs 8.3% placebo), 5% in FDA data (29/601 patients), 2.91% in systematic review",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "New England Journal of Medicine clinical trial",
+      "citation_urls": [
+        "https://www.nejm.org/doi/full/10.1056/NEJMoa2034975"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_source_403_inaccessible",
+      "verification_p1_verdict": "fetch_failed",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.nejm.org/doi/full/10.1056/NEJMoa2034975",
+      "verification_source": "https://www.nejm.org/doi/full/10.1056/NEJMoa2034975",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:tildrakizumab",
+      "data_record_key": "tildrakizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Tildrakizumab",
+      "ada_value_display": "6.5% TE-POS with 100 mg, 8.2% with 200 mg; neutralizing antibodies 2.5% (100 mg) and 3.2% (200 mg)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PMC immunogenicity assessment study",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC6972989/"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_pmc",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_partial_primary_value_confirmed",
+      "verification_p1_verdict": "partial_match",
+      "verification_matched_pcts": [
+        6.5,
+        2.5,
+        3.2
+      ],
+      "verification_unmatched_pcts": [
+        8.2
+      ],
+      "verification_source_tried": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6972989/",
+      "verification_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6972989/",
+      "verification_unmatched": [
+        8.2
+      ]
+    },
+    {
+      "record_id": "inn:tisotumab",
+      "data_record_key": "tisotumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Tisotumab",
+      "ada_value_display": "5.7% ADA incidence in recurrent/metastatic cervical cancer patients",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "Pfizer Medical - TIVDAK Clinical Pharmacology",
+      "citation_urls": [
+        "https://www.pfizermedical.com/tivdak/clinical-pharmacology"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        5.7
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.pfizermedical.com/tivdak/clinical-pharmacology",
+      "verification_source": "https://www.pfizermedical.com/tivdak/clinical-pharmacology",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:tixagevimab",
+      "data_record_key": "tixagevimab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Tixagevimab",
+      "ada_value_display": "4.1% for tixagevimab component (2 participants), 6.1% for AZD7442 combination (3 participants)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PubMed article (Safety, Tolerability, and Pharmacokinetics of the Long-Acting SARS-CoV-2-Neutralizing Monoclonal Antibody Combination AZD7442 (Tixagevimab/Cilgavimab) in Healthy Chinese Adults)",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/40799036/"
+      ],
+      "pmids_extracted": [
+        "40799036"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        4.1,
+        6.1
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "pmid:40799036",
+      "verification_source": "pmid:40799036",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:tocilizumab",
+      "data_record_key": "tocilizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Tocilizumab",
+      "ada_value_display": "2% positive anti-tocilizumab antibodies (46 patients), 1% neutralizing antibodies (30 patients)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "FDA",
+      "evidence_quality": "high",
+      "source_type": "FDA prescribing information (Actemra label)",
+      "citation_urls": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2013/125276s092lbl.pdf",
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2017/125276s114lbl.pdf"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_fda_label",
+      "ada_value_extraction": "manually_verified",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain and ADA value independently verified.",
+      "verification_status": "verified_partial_primary_value_confirmed",
+      "verification_p1_verdict": "partial_match",
+      "verification_matched_pcts": [
+        2.0
+      ],
+      "verification_unmatched_pcts": [
+        1.0
+      ],
+      "verification_source_tried": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2013/125276s092lbl.pdf",
+      "verification_source": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2013/125276s092lbl.pdf",
+      "verification_unmatched": [
+        1.0
+      ]
+    },
+    {
+      "record_id": "inn:toripalimab",
+      "data_record_key": "toripalimab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Toripalimab",
+      "ada_value_display": "Animal: 10% ADA in cynomolgus monkeys; Human: 33.3% (0.3 mg/kg), 42.9% (1 mg/kg), 16.7% (3 mg/kg) ADA incidence",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PMC article (Toripalimab: the First Domestic Anti-Tumor PD-1 Antibody in China)",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC8789657/"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_pmc",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "Values include animal (cynomolgus monkey) and dose-ranging phase-I human data; routine clinical ADA rate may differ from these early-phase values",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        10.0,
+        33.3,
+        42.9,
+        16.7
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8789657/",
+      "verification_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8789657/",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:tralokinumab",
+      "data_record_key": "tralokinumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Tralokinumab",
+      "ada_value_display": "0.5‑1.2% ADA incidence across dosing regimens (asthma trials), 1.4% ADA in atopic dermatitis trials, 0.1% neutralizing antibodies",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PubMed article (Evaluation of Antibody Properties and Clinically Relevant Immunogenicity, Anaphylaxis, and Hypersensitivity Reactions in Two Phase III Trials of Tralokinumab in Severe, Uncontrolled Asthma)",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/30649752/"
+      ],
+      "pmids_extracted": [
+        "30649752"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_pmc_fulltext",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [
+        1.2,
+        1.4,
+        0.1
+      ],
+      "verification_unmatched_pcts": [
+        1.2,
+        1.4,
+        0.1
+      ],
+      "verification_source_tried": "pmid:30649752",
+      "verification_source": "PMC6520328",
+      "verification_unmatched": [
+        1.2,
+        1.4,
+        0.1
+      ]
+    },
+    {
+      "record_id": "inn:trastuzumab",
+      "data_record_key": "trastuzumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Trastuzumab",
+      "ada_value_display": "<8% ADA incidence (range consistent with other anticancer biologics)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "medium",
+      "source_type": "PMC review (Antidrug Antibody Formation in Oncology: Clinical Relevance and Challenges)",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC5061540/"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_pmc",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_pubmed_fulltext",
+      "verification_p1_verdict": "not_found",
+      "verification_matched_pcts": [
+        8.0
+      ],
+      "verification_unmatched_pcts": [
+        8.0
+      ],
+      "verification_source_tried": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5061540/",
+      "verification_source": "PMC6682857",
+      "verification_unmatched": [
+        8.0
+      ]
+    },
+    {
+      "record_id": "inn:tremelimumab",
+      "data_record_key": "tremelimumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Tremelimumab",
+      "ada_value_display": "1.8‑16.7% ADA incidence range; specific studies: 11% (HIMALAYA), 14% (POSEIDON), 16.1% monotherapy, 7.3‑7.4% combination therapy",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "OncLive article (Anti-drug Antibodies Do Not Affect Durvalumab Alone, With Tremelimumab in Unresectable HCC)",
+      "citation_urls": [
+        "https://www.onclive.com/view/anti-drug-antibodies-do-not-affect-durvalumab-alone-with-tremelimumab-in-unresectable-hcc"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "unverified_source_403_inaccessible",
+      "verification_p1_verdict": "fetch_failed",
+      "verification_matched_pcts": [],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://www.onclive.com/view/anti-drug-antibodies-do-not-affect-durvalumab-alone-with-tremelimumab-in-unresectable-hcc",
+      "verification_source": "https://www.onclive.com/view/anti-drug-antibodies-do-not-affect-durvalumab-alone-with-tremelimumab-in-unresectable-hcc",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:ustekinumab",
+      "data_record_key": "ustekinumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Ustekinumab",
+      "ada_value_display": "2.3% incidence (27/1154 patients) in IM-UNITI trial through week 44; 4.6% (23/505) in ulcerative colitis trial; 6-12.4% in psoriasis/PsA; 2.9-4.6% in IBD",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PMC article (Development of Antibodies to Ustekinumab Is Associated with Loss of Response in Patients with Inflammatory Bowel Disease)",
+      "citation_urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC10219534/"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_A_pmc",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_partial_primary_value_confirmed",
+      "verification_p1_verdict": "partial_match",
+      "verification_matched_pcts": [
+        2.3,
+        4.6,
+        4.6
+      ],
+      "verification_unmatched_pcts": [
+        12.4
+      ],
+      "verification_source_tried": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10219534/",
+      "verification_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10219534/",
+      "verification_unmatched": [
+        12.4
+      ]
+    },
+    {
+      "record_id": "inn:vedolizumab",
+      "data_record_key": "vedolizumab",
+      "class_evidence_tier": "A",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Vedolizumab",
+      "ada_value_display": "2.4% ADA with continuous treatment (1513 patients), 22.1% ADA after treatment interruption and re‑treatment (240 patients)",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "high",
+      "source_type": "PubMed article (PMID: 33908636) - GEMINI long-term safety study",
+      "citation_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/33908636/"
+      ],
+      "pmids_extracted": [
+        "33908636"
+      ],
+      "tier_rationale": "tier_A_pmid",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "22.1% only applies to patients who interrupted then restarted therapy; continuous-treatment rate is 2.4%",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        2.4,
+        22.1
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "pmid:33908636",
+      "verification_source": "pmid:33908636",
+      "verification_unmatched": []
+    },
+    {
+      "record_id": "inn:zenocutuzumab",
+      "data_record_key": "zenocutuzumab",
+      "class_evidence_tier": "B",
+      "class_ada_status": "incidence_reported",
+      "antibody_name": "Zenocutuzumab",
+      "ada_value_display": "5% antidrug antibody incidence",
+      "canonical_provenance": "reliable_merged_108",
+      "evidence_source": "A",
+      "evidence_quality": "medium_high",
+      "source_type": "OncoDaily article (New Paper Alert: Efficacy of Zenocutuzumab in NRG1 Fusion–Positive Cancer)",
+      "citation_urls": [
+        "https://oncodaily.com/oncolibrary/zenocutuzumab-nrj-new-paper-alert"
+      ],
+      "pmids_extracted": [],
+      "tier_rationale": "tier_B_url_only",
+      "ada_value_extraction": "ai_extracted_from_real_url_human_review_needed",
+      "ada_value_annotation": "",
+      "verification_note": "Evidence chain AI-generated from real URL/PMID anchor; ADA value extraction not independently verified. Human must cross-check source page for exact immunogenicity figure.",
+      "verification_status": "verified_text_match",
+      "verification_p1_verdict": "all_matched",
+      "verification_matched_pcts": [
+        5.0
+      ],
+      "verification_unmatched_pcts": [],
+      "verification_source_tried": "https://oncodaily.com/oncolibrary/zenocutuzumab-nrj-new-paper-alert",
+      "verification_source": "https://oncodaily.com/oncolibrary/zenocutuzumab-nrj-new-paper-alert",
+      "verification_unmatched": []
+    }
+  ]
+}

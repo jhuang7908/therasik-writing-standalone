@@ -1,0 +1,107 @@
+
+Loaded 246 records with numeric ADA (master + cluster merged)
+
+======================================================================
+LAYER 1 —  Spearman  (vs ada_log10)
+======================================================================
+Factor                              | label                          | n     | rho     | p          | sig
+---------------------------------------------------------------------------------------------------------
+  hpr_combined_score                  | HPR                     |   221 | -0.2874 | 1.40e-05   | ***
+  low_hpr_hla_clusters_fr_surface     | Low-HPR HLA-II  (FR/)      |   221 | 0.2032  | 2.40e-03   | **
+  hydro_patch_max9                    |  (SASA)                   |   123 | -0.2047 | 2.32e-02   | *
+  surf_n_patches                      |                         |   120 | 0.0948  | 3.03e-01   | 
+  instability_index                   |  (ProtParam)              |   150 | -0.0454 | 5.81e-01   | 
+  pI                                  |                             |   150 | -0.0206 | 8.02e-01   | 
+  GRAVY                               | GRAVY                   |   150 | -0.0995 | 2.26e-01   | 
+
+  [Bias Check] hydro_patch_max9 coverage:
+    Has 3D patch data (n=123): ADA median = 5.0%
+    No  3D patch data (n=123): ADA median = 5.0%  ← bias if significantly lower
+    Source class split (with vs without 3D patch):
+      Fully_human    : covered=51, uncovered=34
+      Humanized      : covered=69, uncovered=68
+      Chimeric       : covered=0, uncovered=9
+      Murine         : covered=0, uncovered=10
+      VHH            : covered=3, uncovered=0
+
+======================================================================
+LAYER 2 —  Spearman  (Low-HPR cluster vs ADA)
+======================================================================
+Source class distribution: {'Humanized': np.int64(137), 'Fully_human': np.int64(85), 'Murine': np.int64(10), 'Chimeric': np.int64(9), 'VHH': np.int64(3), 'Other': np.int64(1), 'Bispecific': np.int64(1)}
+
+  Bispecific                     | n=    1 | rho=— | p=— 
+  Chimeric                       | n=    9 | rho=0.0260 | p=9.47e-01 
+  Fully_human                    | n=   84 | rho=0.1900 | p=8.35e-02 
+  Humanized                      | n=  119 | rho=0.0618 | p=5.04e-01 
+  Murine                         | n=    5 | rho=— | p=— 
+  Other                          | n=    0 | rho=— | p=— 
+  VHH                            | n=    3 | rho=— | p=— 
+
+  [HPR vs ADA by source class]
+  HPR | Bispecific                     | n=    1 | rho=— | p=— 
+  HPR | Chimeric                       | n=    9 | rho=0.0333 | p=9.32e-01 
+  HPR | Fully_human                    | n=   84 | rho=-0.1480 | p=1.79e-01 
+  HPR | Humanized                      | n=  119 | rho=-0.0983 | p=2.88e-01 
+  HPR | Murine                         | n=    5 | rho=— | p=— 
+  HPR | Other                          | n=    0 | rho=— | p=— 
+  HPR | VHH                            | n=    3 | rho=— | p=— 
+
+======================================================================
+LAYER 3 —  ( HPR + source_class_code)
+======================================================================
+  : partial_rho  HPR ,  ADA 
+
+Factor                              | n     | partial_rho | p          | sig
+----------------------------------------------------------------------------
+  low_hpr_hla_clusters_fr_surface     |   221 | 0.0238      | 7.24e-01   | 
+  hydro_patch_max9                    |   123 | -0.1512     | 9.50e-02   | 
+  surf_n_patches                      |   120 | 0.0651      | 4.80e-01   | 
+  instability_index                   |   150 | 0.0491      | 5.51e-01   | 
+  pI                                  |   150 | 0.0195      | 8.13e-01   | 
+  GRAVY                               |   150 | -0.0653     | 4.27e-01   | 
+
+======================================================================
+LAYER 4A — RandomForest 
+======================================================================
+  RF training set: 120 records (complete cases for all features)
+
+  Feature Importances (descending):
+    hpr_combined_score                 : 0.2221  ██████████████████████
+    GRAVY                              : 0.2135  █████████████████████
+    pI                                 : 0.1779  █████████████████
+    instability_index                  : 0.1576  ███████████████
+    low_hpr_hla_clusters_fr_surface    : 0.0871  ████████
+    hydro_patch_max9                   : 0.0729  ███████
+    surf_n_patches                     : 0.0689  ██████
+
+======================================================================
+LAYER 4B —  (Low-HPR Cluster × Hydro Patch vs ADA)
+======================================================================
+
+  Median split: cluster_med=2.0, hydro_patch_med=0.7
+  Quadrant                  | n     | ADA median %    | ADA mean %  
+  -----------------------------------------------------------------
+  HiClust_HiHydro           |    29 |            6.00 |        14.28
+  HiClust_LoHydro           |    35 |            6.00 |        13.69
+  LoClust_HiHydro           |    34 |            2.15 |         3.56
+  LoClust_LoHydro           |    25 |            5.30 |         8.57
+
+  Kruskal-Wallis across quadrants: H=11.14, p=1.0988e-02 *
+
+======================================================================
+SUMMARY —  ADA 
+======================================================================
+
+Rank | Factor                              | Univ ρ  | Partial ρ  | RF Imp 
+--------------------------------------------------------------------------------
+   1 | hpr_combined_score                  | -0.2874*** | —             | 0.2221
+   2 | GRAVY                               | -0.0995    | -0.0653       | 0.2135
+   3 | pI                                  | -0.0206    | 0.0195        | 0.1779
+   4 | instability_index                   | -0.0454    | 0.0491        | 0.1576
+   5 | low_hpr_hla_clusters_fr_surface     | 0.2032 **  | 0.0238        | 0.0871
+   6 | hydro_patch_max9                    | -0.2047*   | -0.1512       | 0.0729
+   7 | surf_n_patches                      | 0.0948     | 0.0651        | 0.0689
+
+  Results saved → D:\InSynBio-AI-Research\Antibody_Engineer_Suite\data\immunogenicity_knowledge_base\reports\ada_multifactor_analysis\ada_multifactor_summary.json
+  Ranking table → D:\InSynBio-AI-Research\Antibody_Engineer_Suite\data\immunogenicity_knowledge_base\reports\ada_multifactor_analysis\ada_multifactor_ranking.csv
+

@@ -1,0 +1,47 @@
+AbEngineCore — Germline resource integration (IMGT-derived)
+===========================================================
+
+Directory contract (under data/germlines/)
+------------------------------------------
+  IMGT_V-QUEST_reference_directory/   nucleotide V/D/J (species/IG/*.fasta)
+  aa_translated/IG/<Species>/         amino acid V/D/J (*_aa.fasta)
+  fc_nt/<Species>/                    nucleotide IGHC, IGKC, IGLC (from GENE-DB)
+  aa_translated/Fc/<Species>/         amino acid constant domains (*_aa.fasta)
+
+Regenerate / download
+---------------------
+  python scripts/imgt_ig_fc_nt_to_aa.py --ig-only
+  python scripts/download_imgt_fc_nt.py
+  python scripts/imgt_ig_fc_nt_to_aa.py --fc-only
+
+Python API (AbEngineCore)
+-------------------------
+  from core.resources import aa_ig_fasta, parse_imgt_aa_fasta, aa_fc_fasta
+  p = aa_ig_fasta("Homo_sapiens", "IGHV")
+  alleles = parse_imgt_aa_fasta(p)   # dict allele -> AA
+
+AbEvaluator germline module
+----------------------------
+  Constructor:
+    germline_species="Homo_sapiens" | "Mus_musculus" | "Canis_lupus_familiaris" | ...
+    fc_probe_seq="..."   optional: match against IGHC+IGKC+IGLC AA for that species
+
+  VH: human_VH3_germlines.json only when species==Homo_sapiens and file exists;
+      else IMGT aa_translated/IG/<species>/IGHV_aa.fasta.
+
+  VL: IMGT aa_translated/IG/<species>/IGKV_aa.fasta + IGLV_aa.fasta (best of κ vs λ).
+
+  Fc_libraries: record counts for aa_translated/Fc/<species>/IGHC|IGKC|IGLC_aa.fasta.
+  Fc_probe: optional identity vs concatenated Fc AA libraries.
+
+  Results include nested VH / VL blocks with top_match_identity for executive_summary.
+
+V4.4 pipeline (scripts/run_vhvl_v44_pipeline.py)
+-----------------------------------------------
+  Still expects human_ig_aa/IGHV_aa.json + Kabat caches for framework selection.
+  IMGT aa_translated is complementary: same biological source, different file shape.
+  Optional future step: JSON builder from *_aa.fasta for V4.4 consumption.
+
+Citation
+--------
+  IMGT: https://www.imgt.org/IMGTcitation/

@@ -1,0 +1,23 @@
+{
+  "metadata": {
+    "source": "42 VHH (39 clinical + 3 SAbDab humanized)",
+    "metric": "FR3 packing similarity scores",
+    "date": "2026-04-18"
+  },
+  "distribution": {
+    "p5": 0.5050860959279123,
+    "p25": 0.5290141592332697,
+    "p50": 0.5493980090474275,
+    "p75": 0.5669720319233289,
+    "p95": 0.5721592379924505,
+    "mean": 0.5464800801154815,
+    "stdev": 0.021439885343875337,
+    "min": 0.4992805482845591,
+    "max": 0.5745841053345453
+  },
+  "qa_gates": {
+    "warn_if_below_p25": "FR3 packing may be suboptimal",
+    "fail_if_below_p5": "FR3 packing critically low",
+    "note": "These are empirical gates based on 42 clinical VHH; use in Phase 5 QC"
+  }
+}

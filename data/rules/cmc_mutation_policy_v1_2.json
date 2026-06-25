@@ -1,0 +1,69 @@
+{
+  "_meta": {
+    "version": "1.2.0",
+    "policy_id": "CMC_MUTATION_POLICY_V1.2",
+    "source": "InSynBio AbEngineCore CMC Mutation Policy",
+    "reference_population": "AbRef-458 clinical/engineered antibody cohort + CDR physicochemical thresholds",
+    "effective_date": "2026-05-04",
+    "client_reporting": "Show professional recommendations only; do not expose raw structural thresholds or internal scoring trees."
+  },
+  "position_selection": {
+    "automated_scope": "FR-only",
+    "advisory_only_scope": "CDR",
+    "hard_protected": [
+      "CDR residues",
+      "Vernier / CDR-support residues",
+      "residues within 5 A of CDR loops when structure is available",
+      "residues within 5 A of the VH/VL interface when structure is available",
+      "buried hydrophobic core residues",
+      "canonical disulfide cysteines and conserved scaffold anchors"
+    ],
+    "preferred_candidates": [
+      "surface-exposed framework hydrophobic patches",
+      "surface-exposed framework charged sites needed for pI or patch balancing",
+      "framework instability motifs outside protected structural neighborhoods"
+    ]
+  },
+  "surface_class_rules": {
+    "exposed_hydrophobic_patch": {
+      "priority": "primary",
+      "intent": "Reduce aggregation, hydrophobic patch, HIC/SAP-like burden",
+      "substitution_style": "conservative hydrophobic-to-polar or less oxidation-sensitive substitution",
+      "examples": ["L/I/V -> S/T", "F -> Y/S", "M -> L/T"],
+      "immunogenicity_note": "Generally favorable or neutral; still avoid creating rare sequence contexts."
+    },
+    "exposed_charged_hydrophilic_surface": {
+      "priority": "secondary",
+      "intent": "Tune pI, net charge, PPC/PNC only when metric gates require action",
+      "substitution_style": "germline-compatible neutralization or conservative same-class replacement",
+      "examples": ["K/R -> Q/N", "D -> N", "E -> Q"],
+      "immunogenicity_note": "Requires immunogenicity review when multiple charged/polar changes are introduced."
+    },
+    "buried_hydrophobic_core": {
+      "priority": "protected",
+      "intent": "Preserve antibody scaffold, folding, and VH/VL packing",
+      "substitution_style": "no automated substitution",
+      "examples": [],
+      "immunogenicity_note": "Developability gain does not justify scaffold destabilization risk."
+    }
+  },
+  "cdr_policy": {
+    "decision": "advisory_only",
+    "rationale": "Clinical antibodies can retain CDR liabilities because these residues may be antigen-binding hotspots.",
+    "allowed_report_language": "CDR finding is advisory; modifications require structure and functional validation.",
+    "forbidden_report_language": "Do not provide automatic CDR substitution lists in CMC reports."
+  },
+  "reporting_contract": {
+    "must_show": [
+      "FR-only scope",
+      "surface class",
+      "candidate/protected selection basis",
+      "CDR advisory language when applicable"
+    ],
+    "must_hide": [
+      "raw internal scoring trees",
+      "threshold derivation details",
+      "unvalidated CDR replacement suggestions"
+    ]
+  }
+}

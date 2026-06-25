@@ -1,0 +1,105 @@
+{
+  "version": "2026-05-31-assistant-internal-v1",
+  "audience": "assistant_runtime_only",
+  "not_for_public_pages": true,
+  "purpose": "Internal AI knowledge layer for Smart-ADC, Smart-CAR-T, Smart-CMC, and AbEngineCore case logic. Injected into assistant system prompt only — not rendered on marketing or pricing web pages.",
+  "display_policy": [
+    "Do not tell users to open internal wiki paths, case-study HTML URLs, or repo file paths.",
+    "Answer with conclusion, risk category, workflow routing, and validation route — same as public KB shape.",
+    "Website case-study pages (if they exist) are out of scope for the assistant to cite as navigation targets."
+  ],
+  "nih_ncbi_data_access": {
+    "summary_en": "Three tiers: (1) frozen InSynBio atlases in-console; (2) optional live local PDB BLAST in Detail mode; (3) literature IDs in frozen ADA/clinical packs — not live PubMed in chat unless owner enables E-utilities.",
+    "summary_zh": "三层：(1) Console 冻结图谱库；(2) Detail 模式可选本地 PDB BLAST；(3) 冻结 ADA/临床包中的文献 ID — 聊天默认不实时调 PubMed。",
+    "tiers": [
+      {
+        "id": "clinical_atlas_frozen",
+        "when_to_use": "Approved-antibody lookup, target competitors, ADA incidence benchmarks, lightweight CMC reference.",
+        "how": "User runs Clinical / Target / ADA / CMC Reference Atlas in console (500 credits per paid export). Data from curated TheraSAbDab + InSynBio atlas JSON — not a live NIH API call.",
+        "assistant_behavior": "Route users to the atlas module for factual incidence/format lookup; do not invent ADA percentages."
+      },
+      {
+        "id": "ncbi_pdb_blast_live",
+        "when_to_use": "User asks whether a provided Fv/VHH sequence resembles known PDB structures; Detail (Think) mode with sequence in message or attached report summary.",
+        "how": "Server runs blastp via api/ncbi_blast_utils.py against local pdb_seqres (api/.data/ncbi_blast/pdb_seqres). Requires BLAST+ installed on API host.",
+        "assistant_behavior": "If ncbi_structural_evidence is present in report_context, summarize top PDB hits (identity, e-value) without claiming clinical approval."
+      },
+      {
+        "id": "pubmed_literature_frozen",
+        "when_to_use": "ADA evidence chains, label-backed incidence in internal ADA curation.",
+        "how": "Frozen JSON under data/ADA_reliable_package and immunogenicity KB — not fetched live in assistant chat.",
+        "assistant_behavior": "Say evidence is from curated clinical/label sources; recommend atlas or formal CMC/humanization run for the user's molecule."
+      }
+    ],
+    "not_available_in_chat": [
+      "Live PubMed E-utilities search (esearch/efetch) unless separately integrated",
+      "Live ClinicalTrials.gov API unless separately integrated",
+      "UniProt live lookup unless separately integrated"
+    ]
+  },
+  "smart_platform_case_logic": [
+    {
+      "topic": "Smart-CMC",
+      "key_points_en": [
+        "Single billable CMC service: 10k snapshot or 25k with Smart-CMC (one debit).",
+        "FR-only optimization suggestions; CDR changes require offline redesign.",
+        "Interpret aggregation, charge patches, liabilities, glycosylation, free Cys as a set."
+      ],
+      "key_points_zh": [
+        "CMC 单一服务：10k 快照或 25k 含 Smart-CMC。",
+        "框架区优化建议；CDR 改造需线下流程。",
+        "聚集、电荷、liability、糖基化、游离 Cys 综合解读。"
+      ]
+    },
+    {
+      "topic": "Smart-ADC",
+      "key_points_en": [
+        "Decision layers: target antigen density/internalization, linker cleavability, payload class, DAR, therapeutic index.",
+        "Assess naked antibody developability before conjugation heterogeneity.",
+        "No standalone ADC assembler service in console — strategic Q&A and expert/offline projects."
+      ],
+      "key_points_zh": [
+        "决策层：靶点密度/内吞、连接子、载荷、DAR、治疗窗。",
+        "偶联前先评估裸抗可开发性。",
+        "Console 无独立 ADC 组装计费服务 — 策略问答与线下项目。"
+      ]
+    },
+    {
+      "topic": "Smart-CAR-T",
+      "key_points_en": [
+        "Map target biology, indication, chassis, antigen density, safety to construct direction.",
+        "Layers: binder, hinge, TM, signaling, safety switch, delivery, manufacturing.",
+        "Formal assembly via car-t-assembler and cart-exvivo-* / cart-invivo-* console workflows (10k credits per scenario)."
+      ],
+      "key_points_zh": [
+        "靶点、适应症、细胞底盘、抗原密度、安全性映射到构型。",
+        "结合域、铰链、跨膜、信号、安全开关、递送、生产。",
+        "正式组装走 Console CAR-T 模块（每场景 10k）。"
+      ]
+    },
+    {
+      "topic": "Case muMAb4D5 (humanization)",
+      "key_points_en": [
+        "Benchmark: 100% CDR retention mandatory; framework back-mutations only when structurally justified.",
+        "Illustrates why Quick Preview ≠ Standard Delivery sequence identity."
+      ],
+      "internal_only": true
+    },
+    {
+      "topic": "Case PD-L1 (epitope)",
+      "key_points_en": [
+        "Blocking vs non-blocking must be structurally resolved; overlap with PD-1 site drives classification.",
+        "Routes to AF2-multimer offline when complex structure is required."
+      ],
+      "internal_only": true
+    },
+    {
+      "topic": "Case bispecific VHH / tandem",
+      "key_points_en": [
+        "Per-arm VHH CMC plus fusion pI and linker recommendation; bispecific VHH CMC 10k credits.",
+        "Pairing and format risks explained conceptually; formal assembly 12k."
+      ],
+      "internal_only": true
+    }
+  ]
+}

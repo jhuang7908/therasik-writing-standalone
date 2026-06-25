@@ -1,0 +1,133 @@
+{
+  "deck_name": "in-vivo-car-tech-2026",
+  "narrative": "single_story",
+  "main_article": {
+    "pmid": "40536974",
+    "pmcid": "N/A",
+    "title": "In vivo CAR T cell generation to treat cancer and autoimmune disease",
+    "doi": "10.1126/science.ads8473"
+  },
+  "slides": [
+    {
+      "slide_num": 1,
+      "title": "不需要细胞工厂——体内编程时代来了",
+      "subtitle": "Science 2025 · tLNP × CAR-T × 免疫重置",
+      "key_points": [
+        "传统ex vivo CAR-T：30万美元、6周等待、细胞工厂瓶颈",
+        "新策略：CD8靶向LNP直接在患者体内生成CAR-T",
+        "食蟹猴B细胞清除 + 免疫系统重置"
+      ],
+      "visual_description": "Hand-drawn whiteboard style. Left side: complex hospital factory with long queues, dollar signs, 6-week calendar — crossed out. Right side: simple syringe injecting glowing nanoparticle into bloodstream, T cell receiving CAR receptor. Bold Chinese title. Airy whitespace, graphite marker lines, pale blue #BFD7F1 and sage green #CFE2D1 accents.",
+      "narration": "传统CAR-T细胞疗法改变了血液肿瘤治疗，但复杂的体外制造、长达6周的等待以及高昂成本，让大多数患者望而却步。2025年6月，Science发表重磅研究，提出一条全新路径：直接在患者体内编程T细胞。",
+      "render_engine": "gpt-image-2"
+    },
+    {
+      "slide_num": 2,
+      "title": "tLNP的三大工程突破",
+      "subtitle": "CD8靶向 · LNP纳米颗粒递送 · mRNA瞬时表达",
+      "key_points": [
+        "CD8抗体修饰LNP表面——精准靶向循环CD8+ T细胞",
+        "可电离脂质降低肝脏非特异摄取，提升安全性",
+        "mRNA编码CAR，表达为瞬时——CRS风险低于病毒载体"
+      ],
+      "visual_description": "Hand-drawn whiteboard technical diagram. Center: LNP cross-section with layers labeled: ionizable lipid shell, mRNA cargo, CD8 antibody targeting ligands on surface. Arrow showing LNP binding to CD8+ T cell receptor, mRNA entering nucleus, T cell expressing CAR on surface. Small inset comparison: viral vector vs LNP risk profile bar chart. Whiteboard marker style, Chinese annotations.",
+      "chart_spec": {
+        "x_axis": {"label": "递送方式", "values": ["AAV病毒载体", "慢病毒载体", "tLNP-mRNA"]},
+        "y_axis": {"label": "整合风险 / CRS风险", "min": 0, "max": 3, "unit": "级"},
+        "curves": ["AAV: 整合风险高", "慢病毒: 随机整合中风险", "tLNP: 瞬时表达，无整合风险"]
+      },
+      "narration": "这项研究的核心是靶向脂质纳米颗粒——tLNP。通过在LNP表面连接CD8抗体，实现对循环CD8+ T细胞的精准识别与递送。可电离脂质成分减少了肝脏非靶向摄取，而mRNA的瞬时表达机制，从根本上降低了基因整合带来的安全隐患。",
+      "render_engine": "gpt-image-2"
+    },
+    {
+      "slide_num": 3,
+      "title": "关键数据：肿瘤控制 + 免疫重置",
+      "subtitle": "人源化小鼠 · 食蟹猴 · 系统性B细胞清除",
+      "key_points": [
+        "人源化小鼠：tLNP注射后CAR-T扩增，肿瘤显著消退",
+        "食蟹猴：外周血及组织B细胞深度清除（anti-CD19 CAR）",
+        "B细胞重建后以初始型B细胞为主——提示免疫系统重置"
+      ],
+      "visual_description": "Hand-drawn two-panel scientific result illustration. Left panel: humanized mouse with tumor, before/after tLNP treatment tumor size comparison bar chart with values. Right panel: cynomolgus monkey blood cell flow chart showing B cell depletion curve over time, then recovery with naive B cells highlighted in green. Chinese axis labels. Clean whiteboard marker aesthetic.",
+      "chart_spec": {
+        "x_axis": {"label": "时间（天）", "min": 0, "max": 42, "unit": "days"},
+        "y_axis": {"label": "外周血B细胞比例", "min": 0, "max": 100, "unit": "%"},
+        "curves": [
+          "食蟹猴B细胞：tLNP注射后深度清除，随后初始型B细胞主导重建",
+          "对照组：B细胞水平保持稳定"
+        ]
+      },
+      "narration": "在人源化小鼠模型中，单次tLNP注射后可观察到CAR-T细胞扩增及肿瘤消退。更重要的是食蟹猴实验：anti-CD19 tLNP实现了外周血及组织中的深度B细胞清除，随后重建的B细胞以初始型为主，提示发生了真正意义上的免疫系统重置，这对自身免疫病治疗意义深远。",
+      "render_engine": "gpt-image-2"
+    },
+    {
+      "slide_num": 4,
+      "title": "两大适应症：肿瘤 vs 自身免疫病",
+      "subtitle": "B细胞恶性肿瘤 · SLE · RA（当前Phase 1）",
+      "key_points": [
+        "肿瘤：anti-CD19 CAR控制B细胞淋巴瘤，不需要预处理化疗",
+        "自免疫：瞬时B细胞清除实现免疫重置，靶向SLE/RA（Phase 1）",
+        "Capstan CPTX2309：2025年4月全球首个in vivo CAR I期（澳大利亚，RA/SLE）；同年8月AbbVie以$2.1B完成收购"
+      ],
+      "visual_description": "Hand-drawn split diagram. Top half: tumor cell being attacked by CAR-T cell, labeled 'B细胞淋巴瘤'. Bottom half: autoimmune spiral (self-antibody attacking healthy tissue) being interrupted by tLNP treatment and 'immune reset' arrow. Center: CPTX2309 Phase 1 milestone marker with calendar icon (April 2025). Coral red #E8705A for autoimmune warning, sage green for reset recovery. Whiteboard style.",
+      "narration": "in vivo CAR-T的独特优势在于它开拓了两个截然不同的适应症方向。在肿瘤领域，anti-CD19 CAR无需淋巴耗竭预处理即可控制B细胞肿瘤。在自身免疫病领域，mRNA的瞬时表达特性使其能安全地实现免疫重置，而非永久性B细胞耗竭。2025年4月，Capstan公司的CPTX2309在澳大利亚启动了全球首个in vivo CAR-T I期临床试验，NCT06917742，当前入组RA和SLE患者。同年8月，AbbVie以21亿美元完成对Capstan的收购，标志着in vivo CAR-T正式进入大型药企布局阶段。",
+      "render_engine": "gpt-image-2"
+    },
+    {
+      "slide_num": 5,
+      "title": "核心挑战与下一步",
+      "subtitle": "人源化小鼠：验证平台的关键作用",
+      "key_points": [
+        "髓系细胞吞噬LNP：需要抗吞噬修饰才能保证T细胞递送效率",
+        "CRS准确建模：必须用SGM3等有人髓系的模型（PMC9478925）",
+        "NextVivo Hu-HSC平台：为in vivo CAR IND申请提供安全性数据包"
+      ],
+      "visual_description": "Hand-drawn whiteboard. Three challenge icons on left: macrophage eating LNP particle (labeled '吞噬问题'), cytokine storm icon (labeled 'CRS预测'), mouse silhouette with human immune system (labeled '模型选择'). Right side: solution path arrows leading to 'NSG-SGM3 + IVIS' for biodistribution, 'NextVivo platform' badge. Graphite lines, pale blue accents.",
+      "narration": "尽管前景令人振奋，in vivo CAR-T仍面临几个关键挑战。首先，人体内的髓系细胞——单核细胞和巨噬细胞——会非特异性吞噬LNP颗粒，降低T细胞递送效率。其次，CRS等安全性评估必须在有人髓系细胞的动物模型中才能准确预测。这正是高质量人源化小鼠平台的不可或缺之处。",
+      "render_engine": "gpt-image-2"
+    },
+    {
+      "slide_num": 6,
+      "title": "参考文献",
+      "subtitle": "延伸阅读",
+      "key_points": [],
+      "visual_description": "Clean reference list slide, whiteboard style, minimal, Chinese headers",
+      "narration": "感谢收看本期内容。主要参考文献如下，欢迎扫码关注未来模式生物科技了解更多。",
+      "render_engine": "gpt-image-2"
+    }
+  ],
+  "references": [
+    {
+      "role": "main",
+      "pmid": "40536974",
+      "doi": "10.1126/science.ads8473",
+      "title": "In vivo CAR T cell generation to treat cancer and autoimmune disease",
+      "journal": "Science",
+      "year": "2025"
+    },
+    {
+      "role": "related",
+      "pmid": "N/A",
+      "doi": "10.1038/s41392-026-02633-4",
+      "title": "The in vivo revolution in CAR-T therapy medicinal products: challenges and regulatory prospects",
+      "journal": "Signal Transduct Target Ther",
+      "year": "2026"
+    },
+    {
+      "role": "related",
+      "pmid": "PMC9249670",
+      "doi": "N/A",
+      "title": "In vivo generation of CAR T cells in the presence of human myeloid cells",
+      "journal": "PMC",
+      "year": "2022"
+    },
+    {
+      "role": "related",
+      "pmid": "PMC9478925",
+      "doi": "N/A",
+      "title": "Applying a clinical lens to animal models of CAR-T cell therapies",
+      "journal": "PMC",
+      "year": "2022"
+    }
+  ]
+}

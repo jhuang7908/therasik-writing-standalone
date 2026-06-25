@@ -1,0 +1,353 @@
+{
+  "metadata": {
+    "source": "vhh_clinical_39_union [39 PDB structures]",
+    "method": "Tier classification based on contact frequency and burial metrics",
+    "date": "2026-04-18",
+    "imgt_fr3_range": [
+      66,
+      104
+    ]
+  },
+  "design_principle": "VHH FR3 framework is single domain; tiers analogous to VH/VL Vernier (T1/T2/T3)",
+  "tier_definitions": {
+    "T1": {
+      "positions": [
+        67,
+        78,
+        80,
+        104
+      ],
+      "weight": 3.0,
+      "rationale": "Highly conserved core packing positions"
+    },
+    "T2": {
+      "positions": [
+        66,
+        68,
+        71,
+        75,
+        76,
+        79,
+        81,
+        82,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        94,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103
+      ],
+      "weight": 2.0,
+      "rationale": "Moderate conservation, variable packing"
+    },
+    "T3": {
+      "positions": [
+        69,
+        70,
+        72,
+        74,
+        77,
+        83,
+        84,
+        92,
+        93,
+        95,
+        96,
+        97
+      ],
+      "weight": 1.0,
+      "rationale": "Plastic positions, high variability"
+    }
+  },
+  "position_reference": [
+    {
+      "position": 66,
+      "tier": "T2",
+      "contact_freq": 1.0,
+      "buried_mean": 0.5437959572683726,
+      "pack_atom_total_mean": 58.48717948717949
+    },
+    {
+      "position": 67,
+      "tier": "T1",
+      "contact_freq": 0.8461538461538461,
+      "buried_mean": 0.7771458577448733,
+      "pack_atom_total_mean": 74.53846153846153
+    },
+    {
+      "position": 68,
+      "tier": "T2",
+      "contact_freq": 0.02564102564102564,
+      "buried_mean": 0.8036104893857209,
+      "pack_atom_total_mean": 61.69230769230769
+    },
+    {
+      "position": 69,
+      "tier": "T3",
+      "contact_freq": 0.0,
+      "buried_mean": 0.10580427128839623,
+      "pack_atom_total_mean": 32.717948717948715
+    },
+    {
+      "position": 70,
+      "tier": "T3",
+      "contact_freq": 0.0,
+      "buried_mean": 0.49250513772062604,
+      "pack_atom_total_mean": 45.92307692307692
+    },
+    {
+      "position": 71,
+      "tier": "T2",
+      "contact_freq": 0.0,
+      "buried_mean": 0.9951939011182691,
+      "pack_atom_total_mean": 74.82051282051282
+    },
+    {
+      "position": 72,
+      "tier": "T3",
+      "contact_freq": 0.0,
+      "buried_mean": 0.3574140512688503,
+      "pack_atom_total_mean": 49.82051282051282
+    },
+    {
+      "position": 74,
+      "tier": "T3",
+      "contact_freq": 0.0,
+      "buried_mean": 0.011483830951607127,
+      "pack_atom_total_mean": 28.53846153846154
+    },
+    {
+      "position": 75,
+      "tier": "T2",
+      "contact_freq": 0.0,
+      "buried_mean": 0.8864190516457205,
+      "pack_atom_total_mean": 85.12820512820512
+    },
+    {
+      "position": 76,
+      "tier": "T2",
+      "contact_freq": 0.0,
+      "buried_mean": 0.9693304899796283,
+      "pack_atom_total_mean": 89.74358974358974
+    },
+    {
+      "position": 77,
+      "tier": "T3",
+      "contact_freq": 0.0,
+      "buried_mean": 0.48206584498161775,
+      "pack_atom_total_mean": 51.717948717948715
+    },
+    {
+      "position": 78,
+      "tier": "T1",
+      "contact_freq": 0.9487179487179487,
+      "buried_mean": 0.9675739144426009,
+      "pack_atom_total_mean": 86.05128205128206
+    },
+    {
+      "position": 79,
+      "tier": "T2",
+      "contact_freq": 0.6410256410256411,
+      "buried_mean": 0.623907075881359,
+      "pack_atom_total_mean": 53.53846153846154
+    },
+    {
+      "position": 80,
+      "tier": "T1",
+      "contact_freq": 1.0,
+      "buried_mean": 0.839994589966845,
+      "pack_atom_total_mean": 94.66666666666667
+    },
+    {
+      "position": 81,
+      "tier": "T2",
+      "contact_freq": 0.10256410256410256,
+      "buried_mean": 0.6865837265988147,
+      "pack_atom_total_mean": 60.87179487179487
+    },
+    {
+      "position": 82,
+      "tier": "T2",
+      "contact_freq": 0.717948717948718,
+      "buried_mean": 0.500076677221351,
+      "pack_atom_total_mean": 55.69230769230769
+    },
+    {
+      "position": 83,
+      "tier": "T3",
+      "contact_freq": 0.0,
+      "buried_mean": 0.09496455677434741,
+      "pack_atom_total_mean": 30.692307692307693
+    },
+    {
+      "position": 84,
+      "tier": "T3",
+      "contact_freq": 0.0,
+      "buried_mean": 0.3012015123929647,
+      "pack_atom_total_mean": 40.15384615384615
+    },
+    {
+      "position": 85,
+      "tier": "T2",
+      "contact_freq": 0.8717948717948718,
+      "buried_mean": 0.6515551019453361,
+      "pack_atom_total_mean": 64.97435897435898
+    },
+    {
+      "position": 86,
+      "tier": "T2",
+      "contact_freq": 0.5384615384615384,
+      "buried_mean": 0.8816645632345412,
+      "pack_atom_total_mean": 74.61538461538461
+    },
+    {
+      "position": 87,
+      "tier": "T2",
+      "contact_freq": 0.7435897435897436,
+      "buried_mean": 0.9907768370181714,
+      "pack_atom_total_mean": 92.48717948717949
+    },
+    {
+      "position": 88,
+      "tier": "T2",
+      "contact_freq": 0.0,
+      "buried_mean": 0.8251385144139521,
+      "pack_atom_total_mean": 84.05128205128206
+    },
+    {
+      "position": 89,
+      "tier": "T2",
+      "contact_freq": 0.0,
+      "buried_mean": 0.9987853827290332,
+      "pack_atom_total_mean": 98.48717948717949
+    },
+    {
+      "position": 90,
+      "tier": "T2",
+      "contact_freq": 0.0,
+      "buried_mean": 0.702225943984043,
+      "pack_atom_total_mean": 71.3076923076923
+    },
+    {
+      "position": 91,
+      "tier": "T2",
+      "contact_freq": 0.0,
+      "buried_mean": 0.998489870553339,
+      "pack_atom_total_mean": 86.43589743589743
+    },
+    {
+      "position": 92,
+      "tier": "T3",
+      "contact_freq": 0.0,
+      "buried_mean": 0.6087403394813018,
+      "pack_atom_total_mean": 62.82051282051282
+    },
+    {
+      "position": 93,
+      "tier": "T3",
+      "contact_freq": 0.0,
+      "buried_mean": 0.495196066572161,
+      "pack_atom_total_mean": 52.743589743589745
+    },
+    {
+      "position": 94,
+      "tier": "T2",
+      "contact_freq": 0.0,
+      "buried_mean": 0.9873740780184631,
+      "pack_atom_total_mean": 84.41025641025641
+    },
+    {
+      "position": 95,
+      "tier": "T3",
+      "contact_freq": 0.0,
+      "buried_mean": 0.5237696104480046,
+      "pack_atom_total_mean": 61.12820512820513
+    },
+    {
+      "position": 96,
+      "tier": "T3",
+      "contact_freq": 0.0,
+      "buried_mean": 0.42944131913258066,
+      "pack_atom_total_mean": 46.12820512820513
+    },
+    {
+      "position": 97,
+      "tier": "T3",
+      "contact_freq": 0.0,
+      "buried_mean": 0.2923798486193701,
+      "pack_atom_total_mean": 43.12820512820513
+    },
+    {
+      "position": 98,
+      "tier": "T2",
+      "contact_freq": 0.0,
+      "buried_mean": 0.9902234672794878,
+      "pack_atom_total_mean": 83.02564102564102
+    },
+    {
+      "position": 99,
+      "tier": "T2",
+      "contact_freq": 0.0,
+      "buried_mean": 0.7624164477397996,
+      "pack_atom_total_mean": 64.94871794871794
+    },
+    {
+      "position": 100,
+      "tier": "T2",
+      "contact_freq": 0.0,
+      "buried_mean": 0.9893954305179303,
+      "pack_atom_total_mean": 69.92307692307692
+    },
+    {
+      "position": 101,
+      "tier": "T2",
+      "contact_freq": 0.0,
+      "buried_mean": 0.7262739912243371,
+      "pack_atom_total_mean": 70.7948717948718
+    },
+    {
+      "position": 102,
+      "tier": "T2",
+      "contact_freq": 0.0,
+      "buried_mean": 0.9998244904890757,
+      "pack_atom_total_mean": 108.1025641025641
+    },
+    {
+      "position": 103,
+      "tier": "T2",
+      "contact_freq": 0.20512820512820512,
+      "buried_mean": 0.82856931190793,
+      "pack_atom_total_mean": 92.2051282051282
+    },
+    {
+      "position": 104,
+      "tier": "T1",
+      "contact_freq": 1.0,
+      "buried_mean": 0.9981422128760707,
+      "pack_atom_total_mean": 88.87179487179488
+    }
+  ],
+  "scoring_function": {
+    "description": "FR3 packing similarity score",
+    "method": "Sum(position_match_score \u00d7 tier_weight) / max_score",
+    "match_scoring": {
+      "exact_match": "2.0 \u00d7 tier_weight",
+      "conservative_aa": "0.5 \u00d7 tier_weight",
+      "no_match": "0.0"
+    },
+    "tier_weights": {
+      "T1": 3.0,
+      "T2": 2.0,
+      "T3": 1.0
+    }
+  },
+  "usage_example": "When ranking VHH templates in Phase 2 humanization, prefer templates with higher FR3 packing similarity scores (p75+)"
+}

@@ -1,0 +1,40 @@
+{
+  "dataset_id": "DATASET-0001",
+  "dataset_name": "example_immunogenicity_benchmark",
+  "task_type": "classification",
+  "prediction_target": "ada_risk",
+  "schema_version": "1.0",
+  "record_sources": [
+    {
+      "path": "data/immunogenicity_knowledge_base/master/ada_master_136_curated.csv",
+      "source_label": "literature"
+    },
+    {
+      "path": "projects/example_project/report.json",
+      "source_label": "computed"
+    }
+  ],
+  "canonical_join_keys": [
+    "entity_id",
+    "sequence_id",
+    "assay_id"
+  ],
+  "split_policy": {
+    "strategy": "scaffold_holdout",
+    "group_key": "entity_family",
+    "notes": "Do not split near-identical therapeutics across train and test."
+  },
+  "quality_filters": {
+    "allow_computed_labels": false,
+    "require_assay_metadata": true,
+    "require_reviewed_records": true
+  },
+  "owners": {
+    "curation_owner": "",
+    "model_owner": ""
+  },
+  "versioning": {
+    "dataset_version": "v1",
+    "created_on": "2026-04-11"
+  }
+}

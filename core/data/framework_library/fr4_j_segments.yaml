@@ -1,0 +1,139 @@
+# ============================================================
+# FR4 / J-segment compatibility parts (NOT part of framework)
+# Framework definition in this project:
+# - VH/VL framework = FR1–FR3 only
+# - CDR3 excluded by definition
+# - FR4 here is a compatibility/assembly element (J-derived)
+# ============================================================
+
+version: 1
+definition:
+  framework_scope: "FR1–FR3 only (exclude CDR3 and FR4)"
+  fr4_role: "compatibility part for VH/VL assembly and flexibility; not a design target"
+  segmentation_tool: "ANARCII (IMGT/Kabat numbering)"
+  change_policy: "Only allow rule-based switching (no free mutation)"
+
+entries:
+
+  # ----------------------------
+  # Heavy chain FR4 (JH-derived)
+  # ----------------------------
+  - id: hJH4
+    chain: VH
+    type: FR4_J
+    sequence: WGQGTLVTVSS
+    rule: default
+    condition: null
+    notes: "Default VH FR4/J part; highest compatibility for typical H3 lengths."
+
+  - id: hJH6
+    chain: VH
+    type: FR4_J
+    sequence: WGQGTTVTVSS
+    rule: conditional
+    condition:
+      any:
+        - field: cdr_h3_length
+          op: ">"
+          value: 18
+        - field: long_cdr3_flag
+          op: "=="
+          value: true
+    notes: "Use when H3 is long; provides additional tolerance in the CDR3-FR4 junction region."
+
+  # ----------------------------
+  # Light chain FR4 (JK/JL-derived)
+  # ----------------------------
+  - id: hJK1
+    chain: VL
+    subtype: kappa
+    type: FR4_J
+    sequence: FGQGTKVEIK
+    rule: default
+    condition: null
+    notes: "Default kappa FR4/J part; standard clinical choice."
+
+  - id: hJK2
+    chain: VL
+    subtype: kappa
+    type: FR4_J
+    sequence: FGQGTKLEIK
+    rule: conditional
+    condition:
+      any:
+        - field: pI_tuning_needed
+          op: "=="
+          value: true
+        - field: jk_micro_charge_tuning
+          op: "=="
+          value: true
+    notes: "Kappa FR4/J micro-tuning option (V->L). Use only under explicit charge/pI tuning rule."
+
+  - id: hJL2_3
+    chain: VL
+    subtype: lambda
+    type: FR4_J
+    sequence: FGGGTKLTVL
+    rule: default
+    condition:
+      any:
+        - field: light_chain_is_lambda
+          op: "=="
+          value: true
+        - field: vl_framework_chain
+          op: "=="
+          value: lambda
+    notes: "Default lambda FR4/J part; applied when selecting lambda VL frameworks."
+
+
+# ------------------------------------------------------------
+# Selection rules (minimal, machine-readable)
+# These rules output FR4 parts AFTER VH/VL framework selection.
+# ------------------------------------------------------------
+selection_rules:
+
+  - id: fr4_default
+    applies_to: [VH, VL]
+    if:
+      all: []
+    then:
+      VH: hJH4
+      VL_kappa: hJK1
+      VL_lambda: hJL2_3
+    reason: "Use default FR4/J parts unless specific conditions trigger switching."
+
+  - id: fr4_long_h3_switch
+    applies_to: [VH]
+    if:
+      any:
+        - field: cdr_h3_length
+          op: ">"
+          value: 18
+        - field: long_cdr3_flag
+          op: "=="
+          value: true
+    then:
+      VH: hJH6
+    reason: "Long CDR-H3 benefits from JH6 choice for junction tolerance."
+
+  - id: fr4_kappa_charge_microtune
+    applies_to: [VL]
+    if:
+      any:
+        - field: pI_tuning_needed
+          op: "=="
+          value: true
+        - field: jk_micro_charge_tuning
+          op: "=="
+          value: true
+    then:
+      VL_kappa: hJK2
+    reason: "Allow minimal FR4/J change for micro charge tuning; do not mutate FR itself."
+
+audit:
+  must_not_be_used_as_framework: true
+  allowed_operations:
+    - "select_from_entries_by_rule"
+  forbidden_operations:
+    - "mutate_fr4_sequence"
+    - "treat_fr4_as_framework"

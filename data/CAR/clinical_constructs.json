@@ -1,0 +1,878 @@
+{
+  "_metadata": {
+    "description": "Real CAR-T/NK/M clinical products decomposed into CART_LIBRARY_V3 element IDs",
+    "version": "1.0",
+    "generated": "2025-04-01",
+    "total_constructs": 52,
+    "sources": "FDA labels, EMA EPAR, ClinicalTrials.gov, published construct papers"
+  },
+
+  "constructs": {
+
+    "Kymriah_CTL019": {
+      "product": "Tisagenlecleucel", "developer": "Novartis/UPenn",
+      "approval": "FDA 2017-08", "indication": "r/r B-ALL, DLBCL",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "FMC63_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "2nd", "vector": "lentiviral", "cell_type": "autologous_T",
+      "promoter": "EF1a_Promoter",
+      "outcomes": {"CR_rate": "81%", "EFS_12mo": "50%", "CRS_grade3plus": "47%"},
+      "nct": ["NCT02435849", "NCT02228096"],
+      "references": ["Maude et al. NEJM 2018; PMID:29385370"]
+    },
+
+    "Yescarta_KTE_C19": {
+      "product": "Axicabtagene ciloleucel", "developer": "Kite/Gilead",
+      "approval": "FDA 2017-10", "indication": "r/r DLBCL, PMBCL, FL",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "GM-CSF_SP"},
+        {"slot": "binder",          "id": "FMC63_scFv"},
+        {"slot": "hinge",           "id": "CD28_Medium"},
+        {"slot": "transmembrane",   "id": "CD28_TM"},
+        {"slot": "costimulatory",   "id": "CD28_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "2nd", "vector": "retroviral_gamma", "cell_type": "autologous_T",
+      "promoter": "MSCV_LTR",
+      "outcomes": {"ORR": "83%", "CR_rate": "58%", "CRS_grade3plus": "13%"},
+      "nct": ["NCT02348216"],
+      "references": ["Neelapu et al. NEJM 2017; PMID:29226797"]
+    },
+
+    "Tecartus_KTE_X19": {
+      "product": "Brexucabtagene autoleucel", "developer": "Kite/Gilead",
+      "approval": "FDA 2020-07", "indication": "r/r MCL",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "GM-CSF_SP"},
+        {"slot": "binder",          "id": "FMC63_scFv"},
+        {"slot": "hinge",           "id": "CD28_Medium"},
+        {"slot": "transmembrane",   "id": "CD28_TM"},
+        {"slot": "costimulatory",   "id": "CD28_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "2nd", "vector": "retroviral_gamma", "cell_type": "autologous_T",
+      "promoter": "MSCV_LTR",
+      "outcomes": {"ORR": "93%", "CR_rate": "67%"},
+      "nct": ["NCT02601313"],
+      "references": ["Wang et al. NEJM 2020; PMID:32187390"]
+    },
+
+    "Breyanzi_liso_cel": {
+      "product": "Lisocabtagene maraleucel", "developer": "BMS/Juno",
+      "approval": "FDA 2021-02", "indication": "r/r LBCL",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "IgKappa_SP"},
+        {"slot": "binder",          "id": "FMC63_scFv"},
+        {"slot": "hinge",           "id": "IgG4_SPLE_Long"},
+        {"slot": "transmembrane",   "id": "CD28_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "2nd", "vector": "lentiviral", "cell_type": "autologous_T",
+      "promoter": "EF1a_Promoter",
+      "note": "CD4/CD8 defined composition (1:1 ratio)",
+      "outcomes": {"ORR": "73%", "CR_rate": "53%", "CRS_grade3plus": "2%"},
+      "nct": ["NCT02631044"],
+      "references": ["Abramson et al. Lancet 2020; PMID:32888407"]
+    },
+
+    "Abecma_idecabtagene": {
+      "product": "Idecabtagene vicleucel (ide-cel)", "developer": "BMS/bluebird",
+      "approval": "FDA 2021-03", "indication": "r/r multiple myeloma",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "IgKappa_SP"},
+        {"slot": "binder",          "id": "BCMA_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "2nd", "vector": "lentiviral", "cell_type": "autologous_T",
+      "promoter": "EF1a_Promoter",
+      "outcomes": {"ORR": "73%", "CR_stringent": "33%"},
+      "nct": ["NCT03361748"],
+      "references": ["Munshi et al. NEJM 2021; PMID:33626253"]
+    },
+
+    "Carvykti_ciltacabtagene": {
+      "product": "Ciltacabtagene autoleucel (cilta-cel)", "developer": "J&J/Legend",
+      "approval": "FDA 2022-02", "indication": "r/r multiple myeloma",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "IgKappa_SP"},
+        {"slot": "binder",          "id": "JNJ68284528_VHH"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "2nd", "vector": "lentiviral", "cell_type": "autologous_T",
+      "promoter": "EF1a_Promoter",
+      "note": "Biepitopic VHH binder (two VHH domains in tandem targeting different BCMA epitopes)",
+      "outcomes": {"ORR": "98%", "CR_stringent": "83%"},
+      "nct": ["NCT03548207"],
+      "references": ["Berdeja et al. Lancet 2021; PMID:34175021"]
+    },
+
+    "CD19_CD22_TanCAR_Shah": {
+      "product": "CD19/CD22 Tandem CAR-T", "developer": "NCI/Stanford",
+      "approval": "Phase I/II", "indication": "r/r B-ALL (CD19-loss prevention)",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder_1",        "id": "FMC63_scFv"},
+        {"slot": "linker_inter",    "id": "G4S3"},
+        {"slot": "binder_2",        "id": "CD22_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "2nd_tandem", "vector": "lentiviral", "cell_type": "autologous_T",
+      "outcomes": {"CR_rate": "88%", "CD19_loss_relapse": "8%"},
+      "nct": ["NCT03233854"],
+      "references": ["Shah et al. Nat Med 2021; PMID:34385707"]
+    },
+
+    "MSLN_CAR_cJun_Penn": {
+      "product": "Mesothelin CAR-T + c-Jun OE", "developer": "UPenn",
+      "approval": "Phase I", "indication": "mesothelioma, ovarian cancer",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "SS1_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"},
+        {"slot": "anti_exhaustion", "id": "c_Jun_OE"}
+      ],
+      "generation": "armored", "vector": "lentiviral", "cell_type": "autologous_T",
+      "nct": ["NCT04502446"],
+      "references": ["Lynn et al. Science 2019; PMID:31624173"]
+    },
+
+    "GD2_CAR_CCR2b": {
+      "product": "GD2 CAR-T + CCR2b homing", "developer": "Baylor",
+      "approval": "Phase I", "indication": "neuroblastoma, mesothelioma",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "IgKappa_SP"},
+        {"slot": "binder",          "id": "14G2a_hu_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"},
+        {"slot": "homing",          "id": "CCR2b"}
+      ],
+      "generation": "armored", "vector": "retroviral_gamma", "cell_type": "autologous_T",
+      "nct": ["NCT01952015"],
+      "references": ["Craddock et al. JCI 2010; PMID:20679730"]
+    },
+
+    "HER2_CAR_IL15_Armor": {
+      "product": "HER2 CAR-T + mbIL15", "developer": "Baylor/St Jude",
+      "approval": "Phase I", "indication": "HER2+ solid tumors",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "IgKappa_SP"},
+        {"slot": "binder",          "id": "Trastuzumab_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "CD28_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"},
+        {"slot": "armor",           "id": "Membrane_IL15"},
+        {"slot": "safety",          "id": "iCasp9"}
+      ],
+      "generation": "armored", "vector": "retroviral_gamma", "cell_type": "autologous_T",
+      "nct": ["NCT00902044"],
+      "references": ["Ahmed et al. JCO 2015; PMID:26304895"]
+    },
+
+    "PSMA_CAR_TGFbDN": {
+      "product": "PSMA CAR-T + TGFβRII-DN", "developer": "UPenn",
+      "approval": "Phase I", "indication": "castration-resistant prostate cancer",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "PSMA_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"},
+        {"slot": "armor",           "id": "TGFbRII_DN"}
+      ],
+      "generation": "armored", "vector": "lentiviral", "cell_type": "autologous_T",
+      "nct": ["NCT03089671"],
+      "references": ["Narayan et al. Nat Biotechnol 2022; PMID:35236996"]
+    },
+
+    "EGFRvIII_CAR_BiTE": {
+      "product": "EGFRvIII CAR-T + BiTE secretion", "developer": "UPenn",
+      "approval": "Phase I", "indication": "glioblastoma multiforme",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "Cetuximab_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"},
+        {"slot": "armor",           "id": "BiTE_CD19xCD3"}
+      ],
+      "generation": "armored", "vector": "lentiviral", "cell_type": "autologous_T",
+      "nct": ["NCT02209376"],
+      "references": ["Choi et al. Nat Med 2019; PMID:31011207"]
+    },
+
+    "IL13Ra2_CAR_GBM": {
+      "product": "IL-13Rα2 CAR-T (intracranial)", "developer": "COH",
+      "approval": "Phase I", "indication": "glioblastoma multiforme",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "GM-CSF_SP"},
+        {"slot": "binder",          "id": "IL13_Mutein_GBM"},
+        {"slot": "hinge",           "id": "IgG4_SPLE_Long"},
+        {"slot": "transmembrane",   "id": "CD4_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "2nd", "vector": "lentiviral", "cell_type": "autologous_T",
+      "nct": ["NCT02208362"],
+      "references": ["Brown et al. NEJM 2016; PMID:28036191"]
+    },
+
+    "CD38_CAR_MM": {
+      "product": "CD38 CAR-T", "developer": "Multiple groups",
+      "approval": "Phase I/II", "indication": "r/r multiple myeloma",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "IgKappa_SP"},
+        {"slot": "binder",          "id": "Daratumumab_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "2nd", "vector": "lentiviral", "cell_type": "autologous_T",
+      "nct": ["NCT03464916"],
+      "references": ["Drent et al. Mol Ther 2017; PMID:28636846"]
+    },
+
+    "CD123_CAR_AML": {
+      "product": "CD123 CAR-T", "developer": "COH/Mustang Bio",
+      "approval": "Phase I", "indication": "r/r AML, BPDCN",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "CD123_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD28_TM"},
+        {"slot": "costimulatory",   "id": "CD28_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "2nd", "vector": "lentiviral", "cell_type": "autologous_T",
+      "nct": ["NCT02159495"],
+      "references": ["Budde et al. Blood 2017; PMID:28432068"]
+    },
+
+    "FLT3_CAR_AML": {
+      "product": "FLT3 CAR-T", "developer": "Multiple groups",
+      "approval": "Phase I", "indication": "r/r AML",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "FLT3_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "2nd", "vector": "lentiviral", "cell_type": "autologous_T",
+      "nct": ["NCT03904836"]
+    },
+
+    "ROR1_CAR_CLL": {
+      "product": "ROR1 CAR-T (cirmtuzumab-based)", "developer": "FHCRC",
+      "approval": "Phase I/II", "indication": "CLL, MCL, TNBC",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "IgKappa_SP"},
+        {"slot": "binder",          "id": "ROR1_scFv"},
+        {"slot": "hinge",           "id": "IgG4_SPLE_Long"},
+        {"slot": "transmembrane",   "id": "CD28_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "2nd", "vector": "lentiviral", "cell_type": "autologous_T",
+      "nct": ["NCT02706392"],
+      "references": ["Hudecek et al. Clin Cancer Res 2013; PMID:23613316"]
+    },
+
+    "GPC3_CAR_HCC": {
+      "product": "GPC3 CAR-T", "developer": "Multiple Chinese centers",
+      "approval": "Phase I/II", "indication": "hepatocellular carcinoma",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "GPC3_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "2nd", "vector": "lentiviral", "cell_type": "autologous_T",
+      "nct": ["NCT02395250", "NCT03884751"],
+      "references": ["Gao et al. Nat Med 2019; PMID:30820032"]
+    },
+
+    "CLDN182_CAR_Gastric": {
+      "product": "CLDN18.2 CAR-T", "developer": "Multiple groups",
+      "approval": "Phase I/II", "indication": "gastric/pancreatic adenocarcinoma",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "CLDN18_2_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "2nd", "vector": "lentiviral", "cell_type": "autologous_T",
+      "nct": ["NCT03874897", "NCT04977453"],
+      "references": ["Qi et al. J Hematol Oncol 2022; PMID:35413902"]
+    },
+
+    "EpCAM_CAR_CRC": {
+      "product": "EpCAM CAR-T", "developer": "Multiple groups",
+      "approval": "Phase I", "indication": "colorectal, gastric, pancreatic",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "IgKappa_SP"},
+        {"slot": "binder",          "id": "EpCAM_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "2nd", "vector": "lentiviral", "cell_type": "autologous_T",
+      "nct": ["NCT03013712"]
+    },
+
+    "DLL3_CAR_SCLC": {
+      "product": "DLL3 CAR-T", "developer": "Multiple groups",
+      "approval": "Phase I", "indication": "small cell lung cancer",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "DLL3_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "2nd", "vector": "lentiviral", "cell_type": "autologous_T",
+      "nct": ["NCT03392064"]
+    },
+
+    "FOLR1_CAR_Ovarian": {
+      "product": "FOLR1 CAR-T", "developer": "UPenn",
+      "approval": "Phase I", "indication": "ovarian cancer",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "IgKappa_SP"},
+        {"slot": "binder",          "id": "FOLR1_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "2nd", "vector": "lentiviral", "cell_type": "autologous_T",
+      "nct": ["NCT01722149", "NCT03585764"]
+    },
+
+    "CD70_CAR_AML_iPSC_NK": {
+      "product": "CD70 iPSC-CAR-NK", "developer": "Fate Therapeutics",
+      "approval": "Phase I", "indication": "AML, renal cell carcinoma",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "CD70_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "NKG2D_TM"},
+        {"slot": "costimulatory",   "id": "2B4_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"},
+        {"slot": "armor",           "id": "mbIL15_Armor"},
+        {"slot": "programming",     "id": "BCL11B_T_lineage"}
+      ],
+      "generation": "iPSC_NK", "vector": "lentiviral", "cell_type": "iPSC_NK",
+      "nct": ["NCT04614636"],
+      "references": ["Wang et al. Nat Med 2021; PMID:34385707"]
+    },
+
+    "NKG2D_CAR_CYAD01": {
+      "product": "CYAD-01 (NKG2D CAR-T)", "developer": "Celyad",
+      "approval": "Phase I/II", "indication": "AML, MDS, solid tumors",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "NKG2D_Full_CAR_NK"},
+        {"slot": "transmembrane",   "id": "NKG2D_TM"},
+        {"slot": "signaling",       "id": "DAP12_signaling"}
+      ],
+      "generation": "NKG2D_CAR", "vector": "retroviral_gamma", "cell_type": "autologous_T",
+      "note": "NKG2D ECD as binder, native DAP12 signaling, no costim domain",
+      "nct": ["NCT04907331", "NCT03310008"],
+      "references": ["Baumeister et al. Clin Cancer Res 2019; PMID:30674538"]
+    },
+
+    "FT596_iPSC_NK": {
+      "product": "FT596 (iPSC-derived CAR-NK)", "developer": "Fate Therapeutics",
+      "approval": "Phase I", "indication": "r/r B-cell lymphoma, CLL",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "FMC63_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "NKG2D_TM"},
+        {"slot": "costimulatory",   "id": "2B4_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"},
+        {"slot": "armor",           "id": "mbIL15_Armor"},
+        {"slot": "allo_nk_evasion", "id": "CD16a_TM_cyto"}
+      ],
+      "generation": "iPSC_NK", "vector": "lentiviral", "cell_type": "iPSC_NK",
+      "nct": ["NCT04245722"],
+      "references": ["Goodridge et al. Nat Med 2020; PMID:32778815"]
+    },
+
+    "UCB_CD19_CARNK_MD_Anderson": {
+      "product": "Cord blood CD19 CAR-NK + IL-15", "developer": "MD Anderson",
+      "approval": "Phase I/II", "indication": "r/r NHL, CLL",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "IgKappa_SP"},
+        {"slot": "binder",          "id": "FMC63_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD28_TM"},
+        {"slot": "costimulatory",   "id": "CD28_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"},
+        {"slot": "armor",           "id": "Membrane_IL15"},
+        {"slot": "safety",          "id": "iCasp9"}
+      ],
+      "generation": "armored_NK", "vector": "retroviral_gamma", "cell_type": "cord_blood_NK",
+      "outcomes": {"ORR": "73%", "CR_rate": "64%"},
+      "nct": ["NCT03056339"],
+      "references": ["Liu et al. NEJM 2020; PMID:32023374"]
+    },
+
+    "CARM_HER2_Carisma": {
+      "product": "CT-0508 (HER2 CAR-Macrophage)", "developer": "Carisma Therapeutics",
+      "approval": "Phase I", "indication": "HER2+ solid tumors",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "Trastuzumab_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "CAR_M", "vector": "adenoviral_Ad5f35", "cell_type": "macrophage",
+      "promoter": "CD68_Promoter_CARM",
+      "note": "CD3z works as phagocytic signal in macrophage context",
+      "nct": ["NCT04660929"],
+      "references": ["Klichinsky et al. Nat Biotechnol 2020; PMID:32601408"]
+    },
+
+    "ALLO501_AlloCAR_T": {
+      "product": "ALLO-501 (allogeneic CD19 CAR-T)", "developer": "Allogene",
+      "approval": "Phase I", "indication": "r/r LBCL, FL",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "FMC63_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"},
+        {"slot": "allo_ko_1",       "id": "TRAC_CRISPR_Target"},
+        {"slot": "allo_ko_2",       "id": "CD52_CRISPR_Target"}
+      ],
+      "generation": "allo_2G", "vector": "lentiviral", "cell_type": "allogeneic_T",
+      "nct": ["NCT04150497"],
+      "references": ["Neelapu et al. ASH 2020 abstract"]
+    },
+
+    "UCART19_Cellectis": {
+      "product": "UCART19 (allogeneic CD19 CAR-T)", "developer": "Cellectis/Servier",
+      "approval": "Phase I", "indication": "r/r B-ALL",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "FMC63_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"},
+        {"slot": "allo_ko_1",       "id": "TRAC_CRISPR_Target"},
+        {"slot": "allo_ko_2",       "id": "B2M_CRISPR_Target"},
+        {"slot": "safety",          "id": "RQR8"}
+      ],
+      "generation": "allo_2G", "vector": "lentiviral", "cell_type": "allogeneic_T",
+      "nct": ["NCT02808442"],
+      "references": ["Benjamin et al. Nat Med 2020; PMID:32451459"]
+    },
+
+    "BCMA_CAR_SLE_Erlangen": {
+      "product": "BCMA CAR-T for SLE", "developer": "FAU Erlangen",
+      "approval": "Phase I/II", "indication": "refractory SLE",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "IgKappa_SP"},
+        {"slot": "binder",          "id": "BCMA_scFv_AutoImmune"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "2nd", "vector": "lentiviral", "cell_type": "autologous_T",
+      "note": "Same CAR backbone as MM BCMA; repurposed for autoimmune plasma cell depletion",
+      "outcomes": {"drug_free_remission": "100% (3/3)"},
+      "nct": ["NCT05765006"],
+      "references": ["Mackensen et al. Nat Med 2022; PMID:36109635"]
+    },
+
+    "Dsg3_CAAR_Pemphigus": {
+      "product": "Dsg3-CAAR-T (chimeric autoantibody receptor)", "developer": "UPenn",
+      "approval": "Phase I", "indication": "pemphigus vulgaris",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "Dsg3_ECD_CAAR"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "CAAR", "vector": "lentiviral", "cell_type": "autologous_T",
+      "note": "CAAR: displays autoantigen ECD as binder → kills autoreactive B cells",
+      "nct": ["NCT04422912"],
+      "references": ["Ellebrecht et al. Science 2016; PMID:27516593"]
+    },
+
+    "MuSK_CAAR_MG": {
+      "product": "MuSK-CAAR-T", "developer": "UPenn",
+      "approval": "Phase I", "indication": "MuSK+ myasthenia gravis",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "MuSK_ECD_CAAR"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "CAAR", "vector": "lentiviral", "cell_type": "autologous_T",
+      "nct": ["NCT05451212"]
+    },
+
+    "CAR_Treg_HLA_A2_Sangamo": {
+      "product": "HLA-A2-specific CAR-Treg", "developer": "Sangamo/Sanofi",
+      "approval": "Phase I/II", "indication": "kidney transplant rejection",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "OKT3_hu_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"},
+        {"slot": "treg_stability",  "id": "FoxP3_TF"}
+      ],
+      "generation": "CAR_Treg", "vector": "lentiviral", "cell_type": "regulatory_T",
+      "note": "OKT3-based scFv targeting donor HLA-A2 to suppress transplant rejection",
+      "nct": ["NCT04817774"],
+      "references": ["MacDonald et al. Nat Med 2019; PMID:30778241"]
+    },
+
+    "SynNotch_AND_Gate_UCSF": {
+      "product": "SynNotch AND-gate CAR (ROR1 + EpCAM)", "developer": "UCSF",
+      "approval": "Preclinical", "indication": "solid tumors (antigen heterogeneity)",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "synnotch_binder", "id": "ROR1_scFv"},
+        {"slot": "synnotch_core",   "id": "SynNotch_NRR"},
+        {"slot": "synnotch_tf",     "id": "Gal4_VP64_TF"},
+        {"slot": "binder_2",        "id": "EpCAM_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "logic_AND", "vector": "lentiviral", "cell_type": "autologous_T",
+      "note": "SynNotch senses antigen 1 (ROR1) → triggers CAR expression for antigen 2 (EpCAM)",
+      "references": ["Roybal et al. Cell 2016; PMID:27693354"]
+    },
+
+    "iCAR_NOT_Gate": {
+      "product": "Inhibitory CAR NOT-gate (CD19 CAR + PSMA iCAR)", "developer": "Multiple",
+      "approval": "Preclinical", "indication": "normal tissue protection",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "FMC63_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"},
+        {"slot": "iCAR",            "id": "iCAR_PSMA"}
+      ],
+      "generation": "logic_NOT", "vector": "lentiviral", "cell_type": "autologous_T",
+      "note": "iCAR with PD-1 cytoplasmic tail delivers inhibitory signal on PSMA+ normal cells",
+      "references": ["Fedorov et al. Sci Transl Med 2013; PMID:24369344"]
+    },
+
+    "IL12_Armored_MSLN": {
+      "product": "Mesothelin CAR-T + secreted IL-12", "developer": "MSKCC",
+      "approval": "Phase I", "indication": "mesothelioma, ovarian cancer",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "SS1_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"},
+        {"slot": "armor",           "id": "Secreted_IL12"},
+        {"slot": "promoter_armor",  "id": "NFAT_RE_Promoter"}
+      ],
+      "generation": "armored_TRUCKs", "vector": "retroviral_gamma", "cell_type": "autologous_T",
+      "note": "NFAT-driven IL-12 secretion only upon CAR activation (conditionally armed)",
+      "nct": ["NCT02498912"],
+      "references": ["Adachi et al. Nat Biotechnol 2018; PMID:30102296"]
+    },
+
+    "IL18_GD2_Armored": {
+      "product": "GD2 CAR-T + IL-18 armor", "developer": "UPenn/St Jude",
+      "approval": "Phase I", "indication": "neuroblastoma, osteosarcoma",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "IgKappa_SP"},
+        {"slot": "binder",          "id": "14G2a_hu_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"},
+        {"slot": "armor",           "id": "IL18_Armor"}
+      ],
+      "generation": "armored", "vector": "lentiviral", "cell_type": "autologous_T",
+      "nct": ["NCT03941340"],
+      "references": ["Hu et al. Nature 2023; PMID:37587344"]
+    },
+
+    "PD1_CD28_CSR_Solid": {
+      "product": "PD-1/CD28 chimeric switch receptor + CAR", "developer": "Multiple",
+      "approval": "Phase I", "indication": "PD-L1+ solid tumors",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "SS1_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"},
+        {"slot": "switch_receptor", "id": "PD1_CD28_CSR"}
+      ],
+      "generation": "switch_receptor", "vector": "lentiviral", "cell_type": "autologous_T",
+      "note": "PD-1 ECD fused to CD28 cyto: converts PD-L1 inhibition into costimulation",
+      "references": ["Liu et al. Cancer Res 2016; PMID:27197179"]
+    },
+
+    "GD2_CAR_iNKT_Baylor": {
+      "product": "GD2 CAR-iNKT", "developer": "Baylor",
+      "approval": "Phase I", "indication": "neuroblastoma",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "IgKappa_SP"},
+        {"slot": "binder",          "id": "14G2a_hu_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"},
+        {"slot": "nkt_tcr",         "id": "iNKT_TCR_Va24Vb11"}
+      ],
+      "generation": "CAR_NKT", "vector": "retroviral_gamma", "cell_type": "iNKT",
+      "note": "CAR expressed in iNKT cells; maintains CD1d-restricted killing alongside CAR activity",
+      "nct": ["NCT03294954"],
+      "references": ["Heczey et al. Mol Ther 2014; PMID:24240169"]
+    },
+
+    "SB_CD19_CAR_Nonviral": {
+      "product": "Sleeping Beauty CD19 CAR-T (non-viral)", "developer": "MDACC",
+      "approval": "Phase I", "indication": "r/r B-ALL",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "FMC63_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD28_TM"},
+        {"slot": "costimulatory",   "id": "CD28_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"},
+        {"slot": "integrase",       "id": "SleepingBeauty_SB100X"}
+      ],
+      "generation": "nonviral_2G", "vector": "SB_transposon", "cell_type": "autologous_T",
+      "nct": ["NCT01497184", "NCT01362452"],
+      "references": ["Kebriaei et al. JCI 2016; PMID:26785116"]
+    },
+
+    "InVivo_CAR_CD5_LNP_Rurik": {
+      "product": "In-vivo CD5-targeted mRNA-CAR", "developer": "UPenn",
+      "approval": "Preclinical", "indication": "cardiac fibrosis (proof-of-concept)",
+      "elements": [
+        {"slot": "targeting_ligand", "id": "CD5_scFv_InVivo_Targeting"},
+        {"slot": "signal_peptide",   "id": "CD8a_SP"},
+        {"slot": "binder",           "id": "FMC63_scFv"},
+        {"slot": "hinge",            "id": "CD8a_Short"},
+        {"slot": "transmembrane",    "id": "CD8a_TM"},
+        {"slot": "costimulatory",    "id": "4-1BB_cyto"},
+        {"slot": "signaling",        "id": "CD3z_cyto"}
+      ],
+      "generation": "in_vivo_mRNA", "vector": "LNP_mRNA", "cell_type": "in_vivo_T_reprogramming",
+      "note": "No ex vivo manufacturing; CD5-targeted LNP delivers CAR mRNA directly in vivo",
+      "references": ["Rurik et al. Science 2022; PMID:34990280"]
+    },
+
+    "5thGen_IL2Rb_CD19": {
+      "product": "5th Generation CD19 CAR-T (IL-2Rβ STAT5)", "developer": "Multiple",
+      "approval": "Phase I", "indication": "r/r B-cell NHL",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "FMC63_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD28_TM"},
+        {"slot": "costimulatory",   "id": "CD28_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"},
+        {"slot": "5th_gen_signal",  "id": "IL2Rb_cyto_5thGen"}
+      ],
+      "generation": "5th_gen", "vector": "lentiviral", "cell_type": "autologous_T",
+      "note": "IL-2Rβ cytoplasmic tail provides JAK1/STAT5 signaling as third signal",
+      "references": ["Kagoya et al. Nat Med 2018; PMID:30275567"]
+    },
+
+    "GD2_CAR_OX40_CD28": {
+      "product": "GD2 CAR-T (3rd gen, dual costim)", "developer": "Baylor",
+      "approval": "Phase I", "indication": "neuroblastoma, melanoma",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "IgKappa_SP"},
+        {"slot": "binder",          "id": "GD2_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD28_TM"},
+        {"slot": "costim_1",        "id": "CD28_cyto"},
+        {"slot": "costim_2",        "id": "OX40_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "3rd", "vector": "retroviral_gamma", "cell_type": "autologous_T",
+      "nct": ["NCT00085930"],
+      "references": ["Pule et al. Nat Med 2008; PMID:18849747"]
+    },
+
+    "CD19_CAR_iCasp9_Safety": {
+      "product": "CD19 CAR-T + iCasp9 safety switch", "developer": "Baylor",
+      "approval": "Phase I", "indication": "r/r B-cell malignancies",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "FMC63_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD28_TM"},
+        {"slot": "costimulatory",   "id": "CD28_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"},
+        {"slot": "safety",          "id": "iCasp9"}
+      ],
+      "generation": "2nd_safety", "vector": "retroviral_gamma", "cell_type": "autologous_T",
+      "nct": ["NCT03016377"],
+      "references": ["Di Stasi et al. NEJM 2011; PMID:22013103"]
+    },
+
+    "CD44v6_CAR_iCasp9_AML": {
+      "product": "CD44v6 CAR-T + iCasp9", "developer": "San Raffaele",
+      "approval": "Phase I/II", "indication": "AML, multiple myeloma",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "IgKappa_SP"},
+        {"slot": "binder",          "id": "CD44v6_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD28_TM"},
+        {"slot": "costimulatory",   "id": "CD28_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"},
+        {"slot": "safety",          "id": "iCasp9"}
+      ],
+      "generation": "2nd_safety", "vector": "retroviral_gamma", "cell_type": "autologous_T",
+      "nct": ["NCT03468153"],
+      "references": ["Casucci et al. Blood 2013; PMID:24030382"]
+    },
+
+    "GPRC5D_VHH_CAR_MM": {
+      "product": "GPRC5D VHH CAR-T", "developer": "Multiple groups",
+      "approval": "Phase I/II", "indication": "r/r multiple myeloma",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "IgKappa_SP"},
+        {"slot": "binder",          "id": "GPRC5D_VHH"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "2nd", "vector": "lentiviral", "cell_type": "autologous_T",
+      "nct": ["NCT04555551"],
+      "references": ["Mailankody et al. NEJM 2023; PMID:36427070"]
+    },
+
+    "CEA_CAR_CRC": {
+      "product": "CEA CAR-T", "developer": "Multiple",
+      "approval": "Phase I", "indication": "colorectal cancer, pancreatic cancer",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "CEA_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD28_TM"},
+        {"slot": "costimulatory",   "id": "CD28_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "2nd", "vector": "retroviral_gamma", "cell_type": "autologous_T",
+      "nct": ["NCT02349724"]
+    },
+
+    "PSCA_CAR_Pancreatic": {
+      "product": "PSCA CAR-T", "developer": "COH",
+      "approval": "Phase I", "indication": "pancreatic cancer, prostate cancer",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "PSCA_scFv"},
+        {"slot": "hinge",           "id": "IgG4_SPLE_Long"},
+        {"slot": "transmembrane",   "id": "CD28_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "2nd", "vector": "lentiviral", "cell_type": "autologous_T",
+      "nct": ["NCT02744287"]
+    },
+
+    "TROP2_CAR_Solid": {
+      "product": "TROP2 CAR-T", "developer": "Multiple",
+      "approval": "Phase I", "indication": "TNBC, NSCLC, urothelial",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "TROP2_scFv"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "4-1BB_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "2nd", "vector": "lentiviral", "cell_type": "autologous_T"
+    },
+
+    "APRIL_BCMA_TACI_CAR": {
+      "product": "APRIL-based BCMA/TACI dual-targeting CAR", "developer": "UCL",
+      "approval": "Phase I", "indication": "multiple myeloma",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "IgKappa_SP"},
+        {"slot": "binder",          "id": "APRIL_Ligand_Binder"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD8a_TM"},
+        {"slot": "costimulatory",   "id": "OX40_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "2nd_ligand", "vector": "lentiviral", "cell_type": "autologous_T",
+      "note": "APRIL ligand ECD binds both BCMA and TACI on myeloma cells",
+      "nct": ["NCT03287804"],
+      "references": ["Popat et al. Blood 2019; PMID:31048313"]
+    },
+
+    "UniCAR_Modular": {
+      "product": "UniCAR system (modular adapter-based)", "developer": "TU Dresden",
+      "approval": "Phase I", "indication": "AML (proof-of-concept)",
+      "elements": [
+        {"slot": "signal_peptide",  "id": "CD8a_SP"},
+        {"slot": "binder",          "id": "UniCAR_E5B9_Tag"},
+        {"slot": "hinge",           "id": "CD8a_Short"},
+        {"slot": "transmembrane",   "id": "CD28_TM"},
+        {"slot": "costimulatory",   "id": "CD28_cyto"},
+        {"slot": "signaling",       "id": "CD3z_cyto"}
+      ],
+      "generation": "universal_adapter", "vector": "lentiviral", "cell_type": "autologous_T",
+      "note": "CAR recognizes E5B9 tag; separate adapter molecules direct targeting to any antigen",
+      "nct": ["NCT04633148"],
+      "references": ["Loff et al. Mol Ther 2020; PMID:32730970"]
+    }
+  }
+}

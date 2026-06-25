@@ -1,0 +1,132 @@
+meta:
+  id: "PARAM_CMC_LIABILITIES_V1"
+  title: "CMC Liabilities Parameters (PTM / Motifs / Risk)"
+  scope: [vhh, vhvl, rabbit, canine, bsab, adc, general]
+  confidence: "A"
+  owner: "cmc"
+  reviewer: "antibody_engineering"
+  created: "2025-12-14"
+  updated: "2025-12-14"
+  status: "active"
+
+parameters:
+  - id: "CMC_LIAB_MOTIF_LIBRARY"
+    name: "Liability motif library (rule-trigger layer)"
+    scope: [general]
+    units: "motif-set"
+    recommended:
+      motifs:
+        deamidation:
+          - { motif: "NG", risk: "high" }
+          - { motif: "NS", risk: "medium" }
+          - { motif: "NN", risk: "medium" }
+        isomerization:
+          - { motif: "DG", risk: "high" }
+          - { motif: "DS", risk: "high" }
+          - { motif: "DD", risk: "medium" }
+        oxidation:
+          - { motif: "M", risk: "medium" }
+          - { motif: "W", risk: "medium" }
+        glycosylation:
+          - { motif: "NXS", risk: "high", note: "X!=P" }
+          - { motif: "NXT", risk: "high", note: "X!=P" }
+        cleavage:
+          - { motif: "DP", risk: "medium" }
+          - { motif: "Asp-Pro", risk: "medium" }
+    red_flag:
+      motifs_missing_any_of: ["deamidation", "isomerization", "glycosylation"]
+    notes: "Motifs are triggers; actual risk must also consider region (FR/CDR), solvent exposure proxy, and interface flags."
+    confidence: "A"
+    tags: ["PTM", "motif"]
+
+  - id: "CMC_REGION_SEVERITY"
+    name: "Risk severity by region"
+    scope: [general]
+    units: "mapping"
+    recommended:
+      region_multiplier:
+        FR: 1.0
+        CDR: 0.7
+        FR_interface_adjacent: 1.3
+        CDR_anchor_adjacent: 1.5
+    red_flag:
+      region_multiplier:
+        CDR: 1.2
+    notes: "CDR liabilities are not always fixed; anchor-adjacent or interface-adjacent liabilities must be elevated."
+    confidence: "B"
+    tags: ["risk_model"]
+
+  - id: "CMC_REPAIR_PRIORITIES"
+    name: "Repair priorities and amino-acid substitution hints"
+    scope: [general]
+    units: "policy"
+    recommended:
+      deamidation_NG:
+        priority: "high"
+        suggestions:
+          - "N->Q (if not essential / not glycosylation context)"
+          - "G->A (if preserves flexibility and not in tight turn)"
+      isomerization_DG_DS:
+        priority: "high"
+        suggestions:
+          - "D->E (if charge tolerated)"
+          - "G/S->A (if structurally permissible)"
+      oxidation_M:
+        priority: "medium"
+        suggestions:
+          - "M->L (common conservative swap)"
+          - "M->I/V (case-dependent)"
+      glycosylation_NXS_T:
+        priority: "high"
+        suggestions:
+          - "N->Q (preferred if safe)"
+          - "S/T->A (if N must be retained)"
+    red_flag:
+      any_policy: "mutate_without_interface_check"
+    notes: "Every repair suggestion must run interface_smoothing gate and annotate expected tradeoff."
+    confidence: "A"
+    tags: ["repair", "mutations"]
+
+  - id: "CMC_PI_HINTS"
+    name: "pI advisory bands (reporting only, not hard gate)"
+    scope: [general]
+    units: "pI"
+    recommended:
+      advisory:
+        low: { lt: 7.0, note: "may increase nonspecific binding risk (context-dependent)" }
+        mid: { between: [7.0, 9.0], note: "often acceptable band" }
+        high: { gt: 9.0, note: "may increase viscosity / polyspecificity risk" }
+    red_flag:
+      hard_gate: false
+    notes: "pI is advisory unless you have internal validated cutoffs in casebook."
+    confidence: "B"
+    tags: ["pI", "developability"]
+
+evidence:
+  rationale: "Provide deterministic PTM motif detection + repair hinting used by both decision rules and report mutation tables."
+  sources:
+    - type: "internal"
+      ref: "Your v2_variant_builder PTM categories and repair logic"
+    - type: "public"
+      ref: "Common developability/PTM liabilities used in antibody engineering practice"
+  internal_validation:
+    status: "partial"
+    notes: "Upgrade confidence to S after linking motif->repair->experimental SEC/DSF outcomes in casebook."
+
+governance:
+  change_log:
+    - change_type: "create"
+      change_summary: "Initial PTM motif library, region severity multipliers, and repair suggestion policies."
+      owner: "cmc"
+      reviewer: "antibody_engineering"
+      date: "2025-12-14"
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "source_index": "data/vhh_structural_union/vhh_structural_union_index.json",
+    "subset": "database_b_humanized_camelid_nanobuilder",
+    "purpose": "Three independently humanized camelid VHH chains (published structures) to complement 39 clinical-sequence rows for VHH42 per-sequence tables (39 + 3 = 42).",
+    "selected_ids": ["1yzz_A", "3eak_A", "6rnk_B"],
+    "note": "Not clinical therapeutics; used only for population statistics and germline/CMC row parity with frozen VHH42_reference_stats_v1.json aggregate n=42."
+  },
+  "entries": [
+    {
+      "id": "1yzz_A",
+      "pdb": "1yzz",
+      "chain": "A",
+      "sequence": "DVQLVESGGGSVQAGGSLRLSCAVSGSTYSPCTTGWVRQAPGKGLEWVSSISSPGTIYYQDSVKGRFTISRDNAKNTVYLQMNSLQREDTGMYYCQIQCGSIREYWGQGTQVTVS",
+      "pdb_model": "data/vhh_database_b_union/immunebuilder_models/1yzz_A/rank0_unrefined.pdb"
+    },
+    {
+      "id": "3eak_A",
+      "pdb": "3eak",
+      "chain": "A",
+      "sequence": "QVQLVESGGGLVQPGGSLRLSCAASGGSEYSYSTFSLGWFRQAPGQGLEAVAAIASMGGLTYYADSVKGRFTISRDNSKNTLYLQMNSLRAEDTAVYYCAAVRGYFMRLPSSHNFRYWGQGTLVTVS",
+      "pdb_model": "data/vhh_database_b_union/immunebuilder_models/3eak_A/rank0_unrefined.pdb"
+    },
+    {
+      "id": "6rnk_B",
+      "pdb": "6rnk",
+      "chain": "B",
+      "sequence": "EVQLVESGGGLVQPGGSLRLSCEASGYTLANYAIGWFRQAPGKEREGVSCISSGGSTVYSESVKDRFTISRDNAKKIVYLQMNSLQPEDTAVYYCAADPFGERLCIDPNTFAGYLETWGQGTQVTVSSL",
+      "pdb_model": "data/vhh_database_b_union/immunebuilder_models/6rnk_B/rank0_unrefined.pdb"
+    }
+  ]
+}

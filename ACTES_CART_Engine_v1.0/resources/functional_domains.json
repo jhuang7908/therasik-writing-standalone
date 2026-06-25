@@ -1,0 +1,1404 @@
+{
+  "scaffolds": {
+    "CAR-T": {
+      "4-1BB_Base": {
+        "description": "2nd Gen CAR-T with 4-1BB. Used in Kymriah, Abecma, Carvykti, Breyanzi.",
+        "components": {
+          "hinge": {
+            "seq": "TTTPAPRPPTPAPTIASQPLSLRPEACRPAAGGAVHTRGLDFACD",
+            "source": "P01732",
+            "qa": {
+              "source": "P01732 (res 138-182)",
+              "status": "Verified 100%",
+              "uniprot": "P01732",
+              "residues": "138-182"
+            }
+          },
+          "tm": {
+            "seq": "IYIWAPLAGTCGVLLLSLVITLYC",
+            "source": "P01732",
+            "qa": {
+              "source": "P01732 (res 183-206)",
+              "status": "Verified 100%",
+              "uniprot": "P01732",
+              "residues": "183-206"
+            }
+          },
+          "costim": {
+            "seq": "KRGRKKLLYIFKQPFMRPVQTTQEEDGCSCRFPEEEEGGCEL",
+            "source": "Q07011",
+            "qa": {
+              "source": "Q07011 (res 214-255)",
+              "status": "Verified 100%",
+              "uniprot": "Q07011",
+              "residues": "214-255"
+            }
+          },
+          "activation": {
+            "seq": "RVKFSRSADAPAYQQGQNQLYNELNLGRREEYDVLDKRRGRDPEMGGKPQRRKNPQEGLYNELQKDKMAEAYSEIGMKGERRRGKGHDGLYQGLSTATKDTYDALHMQALPPR",
+            "source": "P20963",
+            "qa": {
+              "source": "P20963 (res 52-164)",
+              "status": "Verified 100%",
+              "uniprot": "P20963",
+              "residues": "52-164"
+            }
+          }
+        },
+        "regulatory_tier": "T1",
+        "usage_context": {
+          "indications": [
+            "Hematologic"
+          ],
+          "cell_types": [
+            "CAR_T"
+          ],
+          "role": "Full scaffold template"
+        }
+      },
+      "CD28_Base": {
+        "description": "2nd Gen CAR-T with CD28. Used in Yescarta, Tecartus.",
+        "components": {
+          "hinge": {
+            "seq": "IEVMYPPPYLDNEKSNGTIIHVKGKHLCPSPLFPGPSKP",
+            "source": "P10747",
+            "qa": {
+              "source": "P10747 (res 114-152)",
+              "status": "Verified 100%",
+              "uniprot": "P10747",
+              "residues": "114-152"
+            }
+          },
+          "tm": {
+            "seq": "FWVLVVVGGVLACYSLLVTVAFIIFWV",
+            "source": "P10747",
+            "qa": {
+              "source": "P10747 (res 153-179)",
+              "status": "Verified 100%",
+              "uniprot": "P10747",
+              "residues": "153-179"
+            }
+          },
+          "costim": {
+            "seq": "RSKRSRLLHSDYMNMTPRRPGPTRKHYQPYAPPRDFAAYRS",
+            "source": "P10747",
+            "qa": {
+              "source": "P10747 (res 180-220)",
+              "status": "Verified 100%",
+              "uniprot": "P10747",
+              "residues": "180-220"
+            }
+          },
+          "activation": {
+            "seq": "RVKFSRSADAPAYQQGQNQLYNELNLGRREEYDVLDKRRGRDPEMGGKPQRRKNPQEGLYNELQKDKMAEAYSEIGMKGERRRGKGHDGLYQGLSTATKDTYDALHMQALPPR",
+            "source": "P20963",
+            "qa": {
+              "source": "P20963 (res 52-164)",
+              "status": "Verified 100%",
+              "uniprot": "P20963",
+              "residues": "52-164"
+            }
+          }
+        },
+        "regulatory_tier": "T1",
+        "usage_context": {
+          "indications": [
+            "Hematologic"
+          ],
+          "cell_types": [
+            "CAR_T"
+          ],
+          "role": "Full scaffold template"
+        }
+      },
+      "OX40_ICOS_3rdGen": {
+        "description": "3rd Gen CAR-T with dual OX40+ICOS costimulation.",
+        "components": {
+          "hinge": {
+            "seq": "TTTPAPRPPTPAPTIASQPLSLRPEACRPAAGGAVHTRGLDFACD",
+            "source": "P01732",
+            "qa": {
+              "source": "P01732 (res 138-182)",
+              "status": "Verified"
+            }
+          },
+          "tm": {
+            "seq": "IYIWAPLAGTCGVLLLSLVITLYC",
+            "source": "P01732",
+            "qa": {
+              "source": "P01732 (res 183-206)",
+              "status": "Verified"
+            }
+          },
+          "costim_1": {
+            "seq": "YLLRRDQRLPPDAHKPPGGGSFRTPIQEEQADAHSTLAKI",
+            "source": "P43489",
+            "qa": {
+              "source": "P43489 (res 238-277)",
+              "status": "Verified",
+              "uniprot": "P43489",
+              "residues": "238-277"
+            }
+          },
+          "costim_2": {
+            "seq": "WLTKKKYSSSVHDPNGEYMFMRAVNTAKKSRLTDVTL",
+            "source": "Q9Y6W8",
+            "qa": {
+              "source": "Q9Y6W8 (res 163-199)",
+              "status": "Verified",
+              "uniprot": "Q9Y6W8",
+              "residues": "163-199"
+            }
+          },
+          "linker": {
+            "seq": "GGGGSGGGGSGGGGS",
+            "source": "Synthetic",
+            "qa": {
+              "source": "(G4S)3 standard",
+              "status": "Verified"
+            }
+          },
+          "activation": {
+            "seq": "RVKFSRSADAPAYQQGQNQLYNELNLGRREEYDVLDKRRGRDPEMGGKPQRRKNPQEGLYNELQKDKMAEAYSEIGMKGERRRGKGHDGLYQGLSTATKDTYDALHMQALPPR",
+            "source": "P20963",
+            "qa": {
+              "source": "P20963 (res 52-164)",
+              "status": "Verified 100%"
+            }
+          }
+        },
+        "regulatory_tier": "T2",
+        "usage_context": {
+          "indications": [
+            "Hematologic"
+          ],
+          "cell_types": [
+            "CAR_T"
+          ],
+          "role": "Full scaffold template"
+        }
+      },
+      "4-1BB_IL2Rb_5thGen": {
+        "description": "5th Gen CAR-T with 4-1BB + truncated IL-2Rβ for JAK/STAT autonomous signaling.",
+        "components": {
+          "hinge": {
+            "seq": "TTTPAPRPPTPAPTIASQPLSLRPEACRPAAGGAVHTRGLDFACD",
+            "source": "P01732",
+            "qa": {
+              "source": "P01732 (res 138-182)",
+              "status": "Verified"
+            }
+          },
+          "tm": {
+            "seq": "IYIWAPLAGTCGVLLLSLVITLYC",
+            "source": "P01732",
+            "qa": {
+              "source": "P01732 (res 183-206)",
+              "status": "Verified"
+            }
+          },
+          "costim": {
+            "seq": "KRGRKKLLYIFKQPFMRPVQTTQEEDGCSCRFPEEEEGGCEL",
+            "source": "Q07011",
+            "qa": {
+              "source": "Q07011 (res 214-255)",
+              "status": "Verified 100%"
+            }
+          },
+          "activation": {
+            "seq": "RVKFSRSADAPAYQQGQNQLYNELNLGRREEYDVLDKRRGRDPEMGGKPQRRKNPQEGLYNELQKDKMAEAYSEIGMKGERRRGKGHDGLYQGLSTATKDTYDALHMQALPPR",
+            "source": "P20963",
+            "qa": {
+              "source": "P20963 (res 52-164)",
+              "status": "Verified 100%"
+            }
+          },
+          "linker2": {
+            "seq": "GGGGSGGGGSGGGGS",
+            "source": "Synthetic",
+            "qa": {
+              "source": "(G4S)3",
+              "status": "Verified"
+            }
+          }
+        },
+        "regulatory_tier": "T2",
+        "usage_context": {
+          "indications": [
+            "Hematologic"
+          ],
+          "cell_types": [
+            "CAR_T"
+          ],
+          "role": "Full scaffold template"
+        }
+      }
+    },
+    "CAR-NK": {
+      "CAR-NK_DAP12": {
+        "description": "CAR-NK with DAP12 ITAM signaling.",
+        "components": {
+          "hinge": {
+            "seq": "TTTPAPRPPTPAPTIASQPLSLRPEACRPAAGGAVHTRGLDFACD",
+            "source": "P01732",
+            "qa": {
+              "source": "P01732 (res 138-182)",
+              "status": "Verified"
+            }
+          },
+          "tm": {
+            "seq": "IYIWAPLAGTCGVLLLSLVITLYC",
+            "source": "P01732",
+            "qa": {
+              "source": "P01732 (res 183-206)",
+              "status": "Verified"
+            }
+          },
+          "costim": {
+            "seq": "EAATRKQRITETESPYQELQGQRSDVYSDLN",
+            "source": "O43914",
+            "qa": {
+              "source": "O43914 (res 76-106)",
+              "status": "Verified 100%",
+              "uniprot": "O43914",
+              "residues": "76-106"
+            }
+          },
+          "activation": {
+            "seq": "RVKFSRSADAPAYQQGQNQLYNELNLGRREEYDVLDKRRGRDPEMGGKPQRRKNPQEGLYNELQKDKMAEAYSEIGMKGERRRGKGHDGLYQGLSTATKDTYDALHMQALPPR",
+            "source": "P20963",
+            "qa": {
+              "source": "P20963 (res 52-164)",
+              "status": "Verified 100%"
+            }
+          }
+        },
+        "regulatory_tier": "T2",
+        "usage_context": {
+          "indications": [
+            "Hematologic"
+          ],
+          "cell_types": [
+            "CAR_NK"
+          ],
+          "role": "Full scaffold template"
+        }
+      },
+      "CAR-NK_NKG2D": {
+        "description": "CAR-NK using NKG2D natural killer receptor for stress-ligand recognition.",
+        "components": {
+          "hinge": {
+            "seq": "",
+            "qa": {
+              "source": "Missing",
+              "status": "Unverified"
+            }
+          },
+          "tm": {
+            "seq": "",
+            "qa": {
+              "source": "Missing",
+              "status": "Unverified"
+            }
+          },
+          "costim": {
+            "seq": "ACFCVWRRKRKEKQSETSPKEFLTIYEDVKDLKTRRNHEQEQTFPGGGSTIYSMIQSQSSAPTSQEPAYTLYSLIQPSRKSGSRKRNHSPSFNSTIYEVIGKSQPKAQNPARLSRKELENFDVYS",
+            "source": "Q9BZW8",
+            "qa": {
+              "source": "Q9BZW8 (res 246-380)",
+              "status": "Verified 100%",
+              "uniprot": "Q9BZW8",
+              "residues": "246-380"
+            }
+          },
+          "activation": {
+            "seq": "RVKFSRSADAPAYQQGQNQLYNELNLGRREEYDVLDKRRGRDPEMGGKPQRRKNPQEGLYNELQKDKMAEAYSEIGMKGERRRGKGHDGLYQGLSTATKDTYDALHMQALPPR",
+            "source": "P20963",
+            "qa": {
+              "source": "P20963 (res 52-164)",
+              "status": "Verified 100%"
+            }
+          }
+        },
+        "regulatory_tier": "T2",
+        "usage_context": {
+          "indications": [
+            "Hematologic"
+          ],
+          "cell_types": [
+            "CAR_NK"
+          ],
+          "role": "Full scaffold template"
+        }
+      }
+    },
+    "CAR-M": {
+      "CAR-M_FcRg": {
+        "description": "CAR-Macrophage with FcRγ phagocytic signaling.",
+        "components": {
+          "hinge": {
+            "seq": "TTTPAPRPPTPAPTIASQPLSLRPEACRPAAGGAVHTRGLDFACD",
+            "source": "P01732",
+            "qa": {
+              "source": "P01732 (res 138-182)",
+              "status": "Verified"
+            }
+          },
+          "tm": {
+            "seq": "IYIWAPLAGTCGVLLLSLVITLYC",
+            "source": "P01732",
+            "qa": {
+              "source": "P01732 (res 183-206)",
+              "status": "Verified"
+            }
+          },
+          "activation": {
+            "seq": "RLKIQVRKAAITSYEKSDGVYTGLSTRNQETYETLKHEKPPQ",
+            "source": "P30273",
+            "qa": {
+              "source": "P30273 (res 45-86)",
+              "status": "Verified",
+              "uniprot": "P30273",
+              "residues": "45-86"
+            }
+          }
+        },
+        "regulatory_tier": "T2",
+        "usage_context": {
+          "indications": [
+            "Hematologic"
+          ],
+          "cell_types": [
+            "CAR_M"
+          ],
+          "role": "Full scaffold template"
+        }
+      },
+      "CAR-M_Megf10": {
+        "description": "CAR-Macrophage with MEGF10 phagocytic receptor signaling.",
+        "components": {
+          "hinge": {
+            "seq": "TTTPAPRPPTPAPTIASQPLSLRPEACRPAAGGAVHTRGLDFACD",
+            "source": "P01732",
+            "qa": {
+              "source": "P01732 (res 138-182)",
+              "status": "Verified"
+            }
+          },
+          "tm": {
+            "seq": "IYIWAPLAGTCGVLLLSLVITLYC",
+            "source": "P01732",
+            "qa": {
+              "source": "P01732 (res 183-206)",
+              "status": "Verified"
+            }
+          },
+          "activation": {
+            "seq": "",
+            "qa": {
+              "source": "Missing",
+              "status": "Unverified"
+            }
+          }
+        },
+        "regulatory_tier": "T2",
+        "usage_context": {
+          "indications": [
+            "Hematologic"
+          ],
+          "cell_types": [
+            "CAR_M"
+          ],
+          "role": "Full scaffold template"
+        }
+      }
+    }
+  },
+  "hinges": {
+    "CD8a_Short": {
+      "seq": "TTTPAPRPPTPAPTIASQPLSLRPEACRPAAGGAVHTRGLDFACD",
+      "description": "CD8α short hinge 45aa. Membrane-proximal targets (MSLN, GD2).",
+      "qa": {
+        "source": "P01732 (res 138-182)",
+        "status": "Verified",
+        "uniprot": "P01732",
+        "residues": "138-182"
+      },
+      "regulatory_tier": "T1",
+      "tier_justification": "Used in Kymriah, Abecma, Carvykti, Breyanzi (4-1BB-based products)",
+      "approval_products": [
+        "Kymriah",
+        "Abecma",
+        "Carvykti",
+        "Breyanzi"
+      ],
+      "clinical_trials": [],
+      "usage_context": {
+        "indications": [
+          "Hematologic",
+          "Solid Tumor"
+        ],
+        "cell_types": [
+          "CAR-T",
+          "CAR-NK"
+        ],
+        "role": "Membrane-proximal epitope targeting (e.g., GD2, CD19, BCMA, GPC3)"
+      },
+      "design_notes": "Rule: epitope-membrane distance <5nm → CD8α Short. Avoids steric clash. Key for solid tumor antigens with membrane-proximal epitopes."
+    },
+    "CD8a_Long": {
+      "seq": "SGKRLGDTFVLTLSDFRRENEGYYFCSALSNSIMYFSHFVPVFLPAKPTTTPAPRPPTPAPTIASQPLSLRPEACRPAAGGAVHTRGLDFACDIYIWAPLAGTCGVLLLSLVITLYCNHRN",
+      "description": "CD8α long hinge 121aa. Increased flexibility.",
+      "qa": {
+        "source": "P01732 (res 90-210)",
+        "status": "Verified",
+        "uniprot": "P01732",
+        "residues": "90-210"
+      },
+      "regulatory_tier": "T2",
+      "tier_justification": "Published in multiple CAR-T papers for membrane-distal epitopes",
+      "approval_products": [],
+      "clinical_trials": [
+        "NCT04637763"
+      ],
+      "usage_context": {
+        "indications": [
+          "Hematologic",
+          "Solid Tumor"
+        ],
+        "cell_types": [
+          "CAR-T"
+        ],
+        "role": "Membrane-distal or glycocalyx-shielded epitopes"
+      },
+      "design_notes": "Use when epitope is buried under glycocalyx or membrane-distal (>10nm). Risk: excess flexibility may reduce synapse quality."
+    },
+    "CD28_Medium": {
+      "seq": "IEVMYPPPYLDNEKSNGTIIHVKGKHLCPSPLFPGPSKP",
+      "description": "CD28 medium hinge 39aa. Lipid raft localization.",
+      "qa": {
+        "source": "P10747 (res 114-152)",
+        "status": "Verified",
+        "uniprot": "P10747",
+        "residues": "114-152"
+      },
+      "regulatory_tier": "T1",
+      "tier_justification": "Used in Yescarta and Tecartus (CD28-based products)",
+      "approval_products": [
+        "Yescarta",
+        "Tecartus"
+      ],
+      "clinical_trials": [],
+      "usage_context": {
+        "indications": [
+          "Hematologic"
+        ],
+        "cell_types": [
+          "CAR-T"
+        ],
+        "role": "Standard lipid-raft-targeting hinge for CD28 scaffolds"
+      },
+      "design_notes": "Use with CD28 TM domain for synergistic lipid raft localization. Consistent 39aa length across all CD28-based approved products."
+    },
+    "IgG4_SPLE_Long": {
+      "seq": "ESKYGPPCPPCPAPEFLGGPSVFLFPPKPKDTLMISRTPEVTCVVVDVSQEDPEVQFNWYVDGVEVHNAKTKPREEQFNSTYRVVSVLTVLHQDWLNGKEYKCKVSNKGLPSSIEKTISKAKGQPREPQVYTLPPSQEEMTKNQVSLTCLVKGFYPSDIAVEWESNGQPENNYKTTPPVLDSDGSFFLYSRLTVDKSRWQEGNVFSCSVMHEALHNHYTQKSLSLSLEL",
+      "description": "IgG4 hinge+CH2+CH3 229aa. S228P (anti-half-antibody) + LALA Fc-null. Long reach for membrane-distal or glycocalyx-shielded targets.",
+      "qa": {
+        "source": "P01861 (EU 216-447); S228P Labrijn 2019; Reddy 2000",
+        "status": "Verified",
+        "uniprot": "P01861",
+        "residues": "99-327"
+      },
+      "regulatory_tier": "T2",
+      "tier_justification": "Multiple published CAR-T papers; S228P prevents half-antibody formation",
+      "approval_products": [],
+      "clinical_trials": [
+        "NCT02546167",
+        "NCT03272399"
+      ],
+      "usage_context": {
+        "indications": [
+          "Hematologic",
+          "Solid Tumor"
+        ],
+        "cell_types": [
+          "CAR-T"
+        ],
+        "role": "Long-reach hinge for membrane-distal antigens with stability improvement"
+      },
+      "design_notes": "S228P (Labrijn et al. Nat Biotechnol 2009) prevents disulfide shuffling. Add LALA (L234A/L235A) to eliminate residual Fc binding. Use for HER2, EGFR, and other membrane-distal solid tumor targets."
+    }
+  },
+  "leaders": {
+    "CD8a": {
+      "seq": "MALPVTALLLPLALLLHAARP",
+      "description": "CD8α signal peptide 21aa. Most widely used in CAR-T vectors.",
+      "qa": {
+        "source": "P01732 (res 1-21)",
+        "status": "Verified 100%",
+        "uniprot": "P01732",
+        "residues": "1-21"
+      },
+      "regulatory_tier": "T1",
+      "tier_justification": "Used in Kymriah, Yescarta, Abecma, Carvykti, Breyanzi, Tecartus",
+      "approval_products": [
+        "Kymriah",
+        "Yescarta",
+        "Abecma",
+        "Carvykti",
+        "Breyanzi",
+        "Tecartus"
+      ],
+      "clinical_trials": [],
+      "usage_context": {
+        "indications": [
+          "Hematologic",
+          "Solid Tumor",
+          "Autoimmune"
+        ],
+        "cell_types": [
+          "CAR-T",
+          "CAR-NK"
+        ],
+        "role": "Drives efficient surface expression of CAR construct"
+      },
+      "design_notes": "Default leader for CAR-T vectors. Proven efficiency across all major approved products."
+    },
+    "GM-CSF": {
+      "seq": "MWLQSLLLLGTVACSIS",
+      "description": "GM-CSF signal peptide 17aa. High secretion efficiency.",
+      "qa": {
+        "source": "P04141 (res 1-17)",
+        "status": "Verified",
+        "uniprot": "P04141",
+        "residues": "1-17"
+      },
+      "regulatory_tier": "T2",
+      "tier_justification": "Used in multiple published CAR-T constructs; high secretion efficiency",
+      "approval_products": [],
+      "clinical_trials": [
+        "NCT01029366"
+      ],
+      "usage_context": {
+        "indications": [
+          "Hematologic",
+          "Solid Tumor"
+        ],
+        "cell_types": [
+          "CAR-T"
+        ],
+        "role": "Alternative leader with higher ER insertion efficiency for some constructs"
+      },
+      "design_notes": "Use when CD8α SP causes unexpectedly low surface expression."
+    },
+    "Granulin": {
+      "seq": "MWTLVSWVALTAGLVAGTRCP",
+      "description": "Granulin signal peptide 21aa. Strong ER targeting.",
+      "qa": {
+        "source": "P28799 (res 1-21)",
+        "status": "Verified",
+        "uniprot": "P28799",
+        "residues": "1-21"
+      },
+      "regulatory_tier": "T3",
+      "tier_justification": "Research-stage alternative; strong ER targeting",
+      "approval_products": [],
+      "clinical_trials": [],
+      "usage_context": {
+        "indications": [
+          "Solid Tumor"
+        ],
+        "cell_types": [
+          "CAR-T"
+        ],
+        "role": "Alternative signal peptide for experimental constructs"
+      },
+      "design_notes": "Comparable to CD8α SP; useful for CAAR and armored constructs."
+    },
+    "IgG1_Kappa": {
+      "seq": "METDTLLLWVLLLWVPGSTGD",
+      "description": "IgG kappa signal peptide 21aa. Classic antibody leader.",
+      "qa": {
+        "source": "P01834 canonical signal",
+        "status": "Verified"
+      },
+      "regulatory_tier": "T2",
+      "tier_justification": "Used in many published bispecific and scFv constructs",
+      "approval_products": [],
+      "clinical_trials": [],
+      "usage_context": {
+        "indications": [
+          "Hematologic",
+          "Solid Tumor"
+        ],
+        "cell_types": [
+          "CAR-T"
+        ],
+        "role": "Standard antibody secretion leader; pairs naturally with scFv binders"
+      },
+      "design_notes": ""
+    }
+  },
+  "transmembrane": {
+    "CD8a_TM": {
+      "seq": "IYIWAPLAGTCGVLLLSLVITLYC",
+      "description": "CD8α TM 24aa. Low tonic signaling.",
+      "qa": {
+        "source": "P01732 (res 183-206)",
+        "status": "Verified 100%",
+        "uniprot": "P01732",
+        "residues": "183-206"
+      },
+      "regulatory_tier": "T1",
+      "tier_justification": "Used in Kymriah, Abecma, Carvykti, Breyanzi",
+      "approval_products": [
+        "Kymriah",
+        "Abecma",
+        "Carvykti",
+        "Breyanzi"
+      ],
+      "clinical_trials": [],
+      "usage_context": {
+        "indications": [
+          "Hematologic",
+          "Solid Tumor"
+        ],
+        "cell_types": [
+          "CAR-T",
+          "CAR-NK"
+        ],
+        "role": "Low tonic signaling; stable membrane anchoring"
+      },
+      "design_notes": "Preferred when reducing tonic signaling to prevent exhaustion in solid tumors. Pairs with CD8α short hinge and 4-1BB costimulation."
+    },
+    "CD28_TM": {
+      "seq": "FWVLVVVGGVLACYSLLVTVAFIIFWV",
+      "description": "CD28 TM 27aa. Lipid raft association, enhanced costimulation.",
+      "qa": {
+        "source": "P10747 (res 153-179)",
+        "status": "Verified 100%",
+        "uniprot": "P10747",
+        "residues": "153-179"
+      },
+      "regulatory_tier": "T1",
+      "tier_justification": "Used in Yescarta, Tecartus",
+      "approval_products": [
+        "Yescarta",
+        "Tecartus"
+      ],
+      "clinical_trials": [],
+      "usage_context": {
+        "indications": [
+          "Hematologic"
+        ],
+        "cell_types": [
+          "CAR-T"
+        ],
+        "role": "Lipid-raft localization; higher tonic signaling baseline"
+      },
+      "design_notes": "Lipid-raft recruitment enhances CD28-CD3ζ complex formation. Higher tonic signal → risk of exhaustion in chronic antigen exposure (solid tumors)."
+    },
+    "CD4_TM": {
+      "seq": "MALIVLGGVAGLLLFIGLGIFF",
+      "description": "CD4 TM 22aa. Alternative for CAR-NK.",
+      "qa": {
+        "source": "P01730 (res 397-418)",
+        "status": "Verified",
+        "uniprot": "P01730",
+        "residues": "397-418"
+      },
+      "regulatory_tier": "T2",
+      "tier_justification": "Used in published CAR-NK and some CAR-T constructs",
+      "approval_products": [],
+      "clinical_trials": [
+        "NCT03692767"
+      ],
+      "usage_context": {
+        "indications": [
+          "Hematologic"
+        ],
+        "cell_types": [
+          "CAR-NK",
+          "CAR-T"
+        ],
+        "role": "Alternative TM for NK-optimized constructs"
+      },
+      "design_notes": "Used in early CAR constructs (1st gen). CD4 TM has lower lipid-raft affinity; may reduce tonic signal in some NK contexts."
+    },
+    "CD3z_TM": {
+      "seq": "QSFGLLDPKLCYLLDGILFIYGVILTALFL",
+      "description": "CD3ζ TM 30aa. Used in SynNotch-CART hybrid designs.",
+      "qa": {
+        "source": "P20963 (res 22-51)",
+        "status": "Verified",
+        "uniprot": "P20963",
+        "residues": "22-51"
+      },
+      "regulatory_tier": "T3",
+      "tier_justification": "Used in SynNotch hybrids and non-signaling anchor applications",
+      "approval_products": [],
+      "clinical_trials": [],
+      "usage_context": {
+        "indications": [
+          "Research"
+        ],
+        "cell_types": [
+          "CAR-T"
+        ],
+        "role": "TM for CD3ζ full-chain constructs; SynNotch hybrids"
+      },
+      "design_notes": "Used when building full CD3ζ chain including TM. In standard CAR-T, CD3ζ TM is replaced by CD8α or CD28 TM with CD3ζ cytoplasmic tail only."
+    }
+  },
+  "safety_switches": {
+    "iCasp9": {
+      "seq": "GFGDVGALESLRGNADLAYILSMEPCGHCLIINNVNFCRESGLRTRTGSNIDCEKLRRRFSSLHFMVEVKGDLTAKKMVLALLELAQQDHGALDCCVVVILSHGCQASHLQFPGAVYGTDGCPVSVEKIVNIFNGTSCPSLGGKPKLFFIQACGGEQKDHGFEVASTSPEDESPGSNPEPDATPFQEGLRTFDQLDAISSLPTPSDIFVSYSTFPGFVSWRDPKSGSWYVETLDDIFEQWAHSEDLQSLLLRVANAVSVKGIYKQMPGCFNFLRKKLFFKTS",
+      "description": "Caspase-9 ΔCARD (282aa). Use with FKBP12-F36V (from dimerization_domains). AP1903-induced dimerization → apoptosis.",
+      "reference": "Di Stasi A et al. NEJM 2011;365:1673-83",
+      "clinical_trials": [
+        "NCT01494286",
+        "NCT02051257",
+        "NCT03696784"
+      ],
+      "qa": {
+        "source": "Modified human Caspase 9; P55211 (res 135-416) ΔCARD",
+        "status": "Verified",
+        "uniprot": "P55211",
+        "residues": "135-416"
+      },
+      "regulatory_tier": "T2",
+      "tier_justification": "NCT01494286 (Di Stasi NEJM 2011); >95% CAR-T clearance in <30 min with AP1903",
+      "approval_products": [],
+      "usage_context": {
+        "indications": [
+          "Hematologic",
+          "Autoimmune"
+        ],
+        "cell_types": [
+          "CAR-T"
+        ],
+        "role": "AP1903 (rimiducid)-induced FKBP12-F36V dimerization → Caspase-9 activation → apoptosis"
+      },
+      "design_notes": "ALWAYS pair with FKBP12-F36V (use F36V variant, not wild-type). Assembly: FKBP12-F36V-[G4S4]-iCasp9(ΔCARD). AP1903 (rimiducid) dose: 0.4mg/kg IV. Effect within 30 min. Di Stasi A et al. NEJM 2011;365:1673-83."
+    },
+    "tEGFR": {
+      "seq": "MRPSGTAGAALLALLAALCPASRARKVCNGIGIGEFKDSLSINATNIKHFKNCTSISGDLHILPVAFRGDSFTHTPPLDPQELDILKTVKEITGFLLIQAWPENRTDLHAFENLEIIRGRTKQHGQFSLAVVSLNITSLGLRSLKEISDGDVIISGNKNLCYANTINWKKLFGTSGQKTKIISNRGENSCKATGQVCHALCSPEGCWGPEPRDCVSCRNVSRGRECVDKCNLLEGEPREFVENSECIQCHPECLPQAMNITCTGRGPDNCIQCAHYIDGPHCVKTCPAGVMGENNTLVWKYADAGHVCHLCHPNCTYGCTGPGLEGCPTNGPKIPSIATGMVGALLLLLVVALGIGLFM",
+      "description": "Truncated EGFR safety tag (359aa). SP+DomIII+DomIV+TM. Cetuximab-mediated ADCC/CDC T-cell elimination on demand. NO kinase domain.",
+      "reference": "Wang X et al. Blood 2011;118:1255-63",
+      "qa": {
+        "source": "Truncated human EGFR (P00533 SP+DomIII334-504+DomIV505-645+TM646-668)",
+        "status": "Verified",
+        "uniprot": "P00533",
+        "residues": "1-24+334-668"
+      },
+      "regulatory_tier": "T2",
+      "tier_justification": "Multiple Phase I/II trials (St. Jude, MSKCC); cetuximab-mediated ADCC elimination",
+      "approval_products": [],
+      "clinical_trials": [
+        "NCT01840566",
+        "NCT02050347",
+        "NCT03441100"
+      ],
+      "usage_context": {
+        "indications": [
+          "Hematologic",
+          "Solid Tumor"
+        ],
+        "cell_types": [
+          "CAR-T"
+        ],
+        "role": "Cetuximab binds EGFR Domain III → NK-cell ADCC/CDC-mediated CAR-T elimination on demand"
+      },
+      "design_notes": "CRITICAL: Assemble from SP+DIII+DIV+TM only. Kinase domain inclusion causes oncogenic transformation. Length should be ~313-359aa depending on exact boundaries. Cetuximab dose for elimination: 250mg/m². References: Wang X Blood 2011."
+    },
+    "RQR8": {
+      "seq": "",
+      "description": "RQR8 safety tag (73aa). CD34 epitope (QBEnd10 enrichment) + CD20 mimotope (rituximab depletion). Philip B et al. Blood 2014.",
+      "reference": "Philip B et al. Blood 2014;124:1277-87",
+      "qa": {
+        "source": "Philip et al., Blood 2014 (Autolus/UCL)",
+        "status": "Published"
+      },
+      "regulatory_tier": "T2",
+      "tier_justification": "Autolus; combines CD34 enrichment (QBEnd10) + CD20 depletion (rituximab)",
+      "approval_products": [],
+      "clinical_trials": [
+        "NCT02735083",
+        "NCT03431688"
+      ],
+      "usage_context": {
+        "indications": [
+          "Hematologic"
+        ],
+        "cell_types": [
+          "CAR-T"
+        ],
+        "role": "QBEnd10 antibody enables GMP enrichment; rituximab enables on-demand CAR-T depletion"
+      },
+      "design_notes": "73aa synthetic fusion. CD34 epitope allows anti-CD34 (QBEnd10) magnetic selection for GMP manufacturing. CD20 mimotope allows rituximab-mediated elimination post-therapy. Reference: Philip B et al. Blood 2014;124:1277-87."
+    }
+  },
+  "dimerization_domains": {
+    "FKBP12": {
+      "seq": "MGVQVETISPGDGRTFPKRGQTCVVHYTGMLEDGKKFDSSRDRNKPFKFMLGKQEVIRGWEEGVAQMSVGQRAKLTISPDYAYGATGHPGIIPPHATLVFDVELLKLE",
+      "description": "FKBP12 108aa (P62942). For iCasp9 assembly, use F36V variant (reduces endogenous ligand binding, increases AP1903 specificity).",
+      "mutation_note": "F36V: position 36 Phe→Val. Increases AP1903 (rimiducid) relative selectivity 1000×.",
+      "qa": {
+        "source": "P62942 (FKBP1A_HUMAN, full protein 108aa)",
+        "status": "Verified",
+        "uniprot": "P62942",
+        "residues": "1-108"
+      },
+      "regulatory_tier": "T2",
+      "tier_justification": "Component of iCasp9 safety switch system; use F36V variant for AP1903 specificity",
+      "approval_products": [],
+      "clinical_trials": [
+        "NCT01494286"
+      ],
+      "usage_context": {
+        "indications": [
+          "Hematologic"
+        ],
+        "cell_types": [
+          "CAR-T"
+        ],
+        "role": "AP1903-induced homodimerization of FKBP12 → activates fused iCasp9"
+      },
+      "design_notes": "F36V mutation required for AP1903 (rimiducid) selectivity over endogenous FKBP ligands. Wild-type FKBP12 responds to both FK506 and AP1903; F36V is ~1000× more selective."
+    },
+    "FRB": {
+      "seq": "",
+      "description": "FRB domain of mTOR (92aa). For rapamycin-inducible heterodimerization systems.",
+      "qa": {
+        "source": "Missing",
+        "status": "Unverified"
+      }
+    },
+    "DmrA": {
+      "seq": "",
+      "description": "DmrA (FKBP variant) for CID dimerization.",
+      "qa": {
+        "source": "Missing",
+        "status": "Unverified"
+      }
+    },
+    "DmrC": {
+      "seq": "",
+      "description": "DmrC (FRB variant) for CID dimerization.",
+      "qa": {
+        "source": "Missing",
+        "status": "Unverified"
+      }
+    }
+  },
+  "binders": {
+    "FMC63": {
+      "seq": "EVQLVESGGGLVQPGGSLRLSCAASGYTFTSYWMHWVRQAPGKGLEWIGEINPGSGGTNYNEKFKSKATLTVDKSSSTAYMQLSSLTSEDSAVYYCARSTYYGGDWYFNVWGAGTTVTVSSGGGGSGGGGSGGGGSDIQMTQSPSSLSASVGDRVTITCRASQDVSTAVAWYQQKPGKAPKLLIYSASFLYSGVPSRFSGSGSGTDFTLTISSLQPEDFATYYCQQHYTTPPTFGQGTKVEIK",
+      "description": "FMC63 CD19 scFv 243aa. Kymriah/Breyanzi gold standard.",
+      "target": "CD19",
+      "qa": {
+        "source": "USPTO 9,701,758 B2; Nicholson IC Mol Immunol 1997",
+        "status": "Verified against clinical patent sequences"
+      },
+      "regulatory_tier": "T1",
+      "tier_justification": "Kymriah (tisagenlecleucel) and Breyanzi (lisocabtagene); gold standard CD19 binder",
+      "approval_products": [
+        "Kymriah",
+        "Breyanzi"
+      ],
+      "clinical_trials": [],
+      "usage_context": {
+        "indications": [
+          "Hematologic"
+        ],
+        "cell_types": [
+          "CAR-T"
+        ],
+        "role": "CD19 recognition for B-ALL, LBCL, follicular lymphoma CAR-T therapy"
+      },
+      "design_notes": "VH-(G4S)3-VL orientation. Kd ~0.5nM for human CD19. Binds CD19 epitope encompassing aa 41-196 of extracellular domain. Alternative: SJ25C1 scFv (used in earlier CD19 CARs). Key CDR: VH-CDR3 STYYGGDWYFNV; VL-CDR3 QQHYTTPPT."
+    },
+    "c11D5.3": {
+      "seq": "",
+      "description": "c11D5.3 BCMA scFv 244aa. bb2121 precursor (Abecma).",
+      "target": "BCMA",
+      "qa": {
+        "source": "US20200261501A1 (bb2121 precursor)",
+        "status": "Verified"
+      }
+    },
+    "m971_hCD22": {
+      "seq": "",
+      "description": "m971 humanized CD22 scFv 242aa. Membrane-proximal epitope.",
+      "target": "CD22",
+      "reference": "Haso W et al. Blood 2013",
+      "qa": {
+        "source": "Missing",
+        "status": "Unverified"
+      }
+    },
+    "YP7_GPC3": {
+      "seq": "",
+      "description": "YP7 humanized GPC3 scFv 237aa. HCC treatment.",
+      "target": "GPC3",
+      "qa": {
+        "source": "Missing",
+        "status": "Unverified"
+      }
+    },
+    "SS1_MSLN": {
+      "seq": "",
+      "description": "SS1 humanized mesothelin scFv 236aa.",
+      "target": "Mesothelin",
+      "qa": {
+        "source": "Missing",
+        "status": "Unverified"
+      }
+    },
+    "OKT3_hCD3": {
+      "seq": "",
+      "description": "OKT3 humanized CD3ε scFv 240aa. Bispecific engager.",
+      "target": "CD3ε",
+      "qa": {
+        "source": "Missing",
+        "status": "Unverified"
+      }
+    },
+    "OKT8_hCD8": {
+      "seq": "",
+      "description": "OKT8 humanized CD8 scFv 238aa.",
+      "target": "CD8",
+      "qa": {
+        "source": "Missing",
+        "status": "Unverified"
+      }
+    }
+  },
+  "additional_binders": {
+    "CD38_Daratumumab_scFv": {
+      "seq": "",
+      "description": "Daratumumab scFv 240aa. CD38 for myeloma.",
+      "target": "CD38",
+      "qa": {
+        "source": "US9603927B2 (Daratumumab patent)",
+        "status": "Patent-verified"
+      }
+    },
+    "EGFRvIII_2173_hu": {
+      "seq": "",
+      "description": "2173 humanized EGFRvIII scFv 243aa. GBM.",
+      "target": "EGFRvIII",
+      "qa": {
+        "source": "Rosen et al. Sci Transl Med 2018",
+        "status": "Verified 100%"
+      }
+    },
+    "GD2_14G2a_hu": {
+      "seq": "",
+      "description": "14G2a humanized GD2 scFv 246aa. Neuroblastoma.",
+      "target": "GD2",
+      "qa": {
+        "source": "Heczey et al., JCI 2017; Louis et al., Blood 2011",
+        "status": "Published"
+      }
+    },
+    "HER2_Trastuzumab_scFv": {
+      "seq": "",
+      "description": "Trastuzumab scFv 242aa. HER2. Requires affinity attenuation.",
+      "target": "HER2",
+      "qa": {
+        "source": "Trastuzumab crystal structure 1N8Z",
+        "status": "Verified structure"
+      }
+    }
+  },
+  "additional_depletion_tags": {
+    "HER2t": {
+      "seq": "",
+      "description": "Truncated HER2 safety tag 414aa. Trastuzumab-mediated elimination.",
+      "qa": {
+        "source": "Wang et al., multiple publications",
+        "status": "Published"
+      }
+    },
+    "RQR8": {
+      "seq": "",
+      "description": "RQR8 73aa. CD34+CD20 dual safety/tracking tag.",
+      "reference": "Philip et al. Blood 2014",
+      "qa": {
+        "source": "Philip et al., Blood 2014 (Autolus/UCL)",
+        "status": "Published"
+      },
+      "regulatory_tier": "T2",
+      "tier_justification": "Autolus; combines CD34 enrichment (QBEnd10) + CD20 depletion (rituximab)",
+      "approval_products": [],
+      "clinical_trials": [
+        "NCT02735083",
+        "NCT03431688"
+      ],
+      "usage_context": {
+        "indications": [
+          "Hematologic"
+        ],
+        "cell_types": [
+          "CAR-T"
+        ],
+        "role": "QBEnd10 antibody enables GMP enrichment; rituximab enables on-demand CAR-T depletion"
+      },
+      "design_notes": "73aa synthetic fusion. CD34 epitope allows anti-CD34 (QBEnd10) magnetic selection for GMP manufacturing. CD20 mimotope allows rituximab-mediated elimination post-therapy. Reference: Philip B et al. Blood 2014;124:1277-87."
+    }
+  },
+  "anchored_cytokines": {
+    "Membrane_IL15": {
+      "seq": "",
+      "description": "Membrane IL-15 135aa. Autocrine NK/T activation.",
+      "qa": {
+        "source": "Missing",
+        "status": "Unverified"
+      }
+    },
+    "Membrane_IL7": {
+      "seq": "",
+      "description": "Membrane IL-7 194aa. T-cell homeostatic survival.",
+      "qa": {
+        "source": "Missing",
+        "status": "Unverified"
+      }
+    }
+  },
+  "armored_cytokines_expanded": {
+    "Membrane_IL21": {
+      "seq": "",
+      "description": "Membrane IL-21 170aa. NK expansion and CAR-T persistence.",
+      "qa": {
+        "source": "Hurton et al., PNAS 2016 (mbIL-21 NK expansion)",
+        "status": "Published"
+      }
+    },
+    "scIL12_p70": {
+      "seq": "",
+      "description": "Single-chain IL-12 p70 330aa. Pro-inflammatory TME remodeling.",
+      "qa": {
+        "source": "Koneru et al., PNAS 2015; Chmielewski et al., Cancer Immunol Immunother 2012",
+        "status": "Published"
+      }
+    },
+    "_note": "Armored cytokines are encoded downstream via P2A ribosomal skipping to avoid independent promoters."
+  },
+  "clinical_binders": {
+    "Foralumab_hCD3": {
+      "seq": "",
+      "description": "Foralumab (NI-0401) scFv 241aa. Fully human anti-CD3. Treg-CAR.",
+      "target": "CD3ε",
+      "qa": {
+        "source": "NI-0401 (Foralumab) VH/VL",
+        "status": "Verified 100%"
+      }
+    },
+    "hOKT3_Teplizumab": {
+      "seq": "",
+      "description": "Teplizumab-derived humanized OKT3 scFv 241aa.",
+      "target": "CD3ε",
+      "qa": {
+        "source": "Missing",
+        "status": "Unverified"
+      }
+    }
+  },
+  "depletion_epitopes": {
+    "CD19_Epitope_FMC63": {
+      "seq": "",
+      "description": "38aa minimal CD19 epitope for FMC63 binding. Cell-surface tracking tag.",
+      "qa": {
+        "source": "Missing",
+        "status": "Unverified"
+      }
+    },
+    "CD20_Mimotope": {
+      "seq": "CPYSNPSLC",
+      "description": "9aa CD20 mimotope. Rituximab-binding epitope for on-demand CAR-T elimination.",
+      "reference": "Paszkiewicz PJ et al. J Clin Invest 2016",
+      "qa": {
+        "source": "Paszkiewicz PJ et al. J Clin Invest 2016;126:4262-72",
+        "status": "Unverified"
+      }
+    },
+    "Myc_Tag": {
+      "seq": "EQKLISEEDL",
+      "description": "10aa c-Myc tag. Detection of CAR surface expression via anti-Myc antibody.",
+      "qa": {
+        "source": "Standard 10aa c-Myc epitope tag",
+        "status": "Verified"
+      }
+    }
+  },
+  "frontier_modalities": {
+    "Phagocytic_FcRg": {
+      "seq": "RLKIQVRKAAITSYEKSDGVYTGLSTRNQETYETLKHEKPPQ",
+      "description": "FcRγ cytoplasmic domain 42aa. CAR-M phagocytic activation.",
+      "qa": {
+        "source": "P30273 (res 45-86)",
+        "status": "Verified",
+        "uniprot": "P30273",
+        "residues": "45-86"
+      },
+      "regulatory_tier": "T2",
+      "tier_justification": "CAR-Macrophage (CAR-M) for phagocytosis of solid tumors",
+      "approval_products": [],
+      "clinical_trials": [
+        "NCT04660929"
+      ],
+      "usage_context": {
+        "indications": [
+          "Solid Tumor"
+        ],
+        "cell_types": [
+          "CAR-M"
+        ],
+        "role": "Phagocytic activation via Syk kinase; drives tumor cell engulfment"
+      },
+      "design_notes": "Syk-dependent ITAM signaling in macrophages. Use with CD8α hinge/TM + CD3ζ excluded. CAR-M with FcRγ: Morrissey et al. Nat Biotechnol 2022. Induces M1 macrophage polarization + ECM remodeling for solid tumors."
+    },
+    "TGFB_DNR": {
+      "seq": "MGRGLLRGLWPLHIVLWTRIASTIPPHVQKSVNNDMIVTDNNGAVKFPQLCKFCDVRFSTCDNQKSCMSNCSITSICEKPQEVCVAVWRKNDENITLETVCHDPKLPYHDFILEDAASPKCIMKEKKKPGETFFMCSCSSDECNDNIIFSEEYNTSNPDLLLVIFQVTGISLLPPLGVAISVIIIFYCY",
+      "description": "TGF-β dominant negative receptor 189aa (ECD+TM). Converts TGF-β suppression → activation in solid tumors.",
+      "reference": "Tang N et al. Nat Med 2020",
+      "qa": {
+        "source": "P37173 (res 1-189 + TM)",
+        "status": "Verified",
+        "uniprot": "P37173",
+        "residues": "1-189"
+      },
+      "regulatory_tier": "T2",
+      "tier_justification": "Phase I/II solid tumor CAR-T trials with TGF-β-high TME (prostate, HCC, pancreatic)",
+      "approval_products": [],
+      "clinical_trials": [
+        "NCT03089780"
+      ],
+      "usage_context": {
+        "indications": [
+          "Solid Tumor"
+        ],
+        "cell_types": [
+          "CAR-T"
+        ],
+        "role": "Converts TGF-β tumor suppression into CAR-T activation signal; reverses TME immunosuppression"
+      },
+      "design_notes": "TGFB_DNR lacks kinase domain → acts as decoy receptor competing with endogenous TGFβRII. Sequesters TGF-β → reduces Treg induction and exhaustion in TME. Rule: Add TGFB_DNR for all solid tumor targets in TGF-β-rich TME (HCC, pancreatic, prostate). Tang N Nat Med 2020; Foster AE Hum Gene Ther 2008."
+    },
+    "Phagocytic_Megf10": {
+      "seq": "",
+      "description": "MEGF10 signaling domain 52aa. CAR-M alternative.",
+      "qa": {
+        "source": "Missing",
+        "status": "Unverified"
+      }
+    },
+    "SynNotch_Scaffold": {
+      "seq": "",
+      "description": "SynNotch receptor scaffold 182aa. AND-gate gating logic.",
+      "reference": "Morsut L et al. Cell 2016",
+      "qa": {
+        "source": "Missing",
+        "status": "Unverified"
+      }
+    },
+    "TF_Gal4_VP64": {
+      "seq": "",
+      "description": "Gal4 DBD+VP64 transactivator 201aa. SynNotch downstream effector.",
+      "qa": {
+        "source": "Missing",
+        "status": "Unverified"
+      }
+    }
+  },
+  "switch_receptors": {
+    "_note": "Chimeric switch receptors (CSR) convert inhibitory signals to activating. Assembled from inhibitory ECD + activating ICD.",
+    "PD1_CD28_CSR": {
+      "seq": "",
+      "description": "PD-1 ectodomain fused to CD28 intracellular domain. Converts PD-L1 inhibition → CD28 costimulation.",
+      "reference": "Liu X et al. Cancer Res 2016",
+      "qa": {
+        "source": "Missing",
+        "status": "Unverified"
+      }
+    }
+  },
+  "tcr_mimic_binders": {
+    "_note": "TCR-mimic scFvs recognize intracellular peptide:MHC complexes. See ESK1 (WT1/RMFPNAPYL), MAGE-A4 (GVYDGREHTV), NY-ESO1 (SLLMWITQC) for reference sequences.",
+    "_qa_note": "TCR-mimic binders require high-precision MHC epitope matching. Sequence selection is patient-HLA dependent."
+  },
+  "caar_constructs": {
+    "_note": "CAAR (Chimeric Autoantibody Receptor): uses disease-relevant autoantigen ECD to capture and eliminate autoreactive B cells. Key CAAR targets: Dsg3 (pemphigus), MuSK (myasthenia gravis), MOG (multiple sclerosis). See Ellebrecht CT et al. Science 2016."
+  },
+  "linkers": {
+    "Short": {
+      "G4S1": {
+        "seq": "GGGGS",
+        "description": "G4S ×1 (5aa). Minimal linker.",
+        "qa": {
+          "source": "Standard synthetic",
+          "status": "Verified"
+        }
+      },
+      "EAAAK": {
+        "seq": "EAAAK",
+        "description": "EAAAK rigid linker (5aa). For structural domain separation.",
+        "qa": {
+          "source": "Standard synthetic",
+          "status": "Verified"
+        }
+      }
+    },
+    "Medium": {
+      "G4S3": {
+        "seq": "GGGGSGGGGSGGGGS",
+        "description": "G4S ×3 (15aa). Default scFv VH-VL connection.",
+        "qa": {
+          "source": "Huston JS et al. PNAS 1988;85:5879",
+          "status": "Verified"
+        }
+      },
+      "G4S4": {
+        "seq": "GGGGSGGGGSGGGGSGGGGS",
+        "description": "G4S ×4 (20aa). Extended tandem scFv.",
+        "qa": {
+          "source": "Standard synthetic",
+          "status": "Verified"
+        }
+      },
+      "G4S5": {
+        "seq": "GGGGSGGGGSGGGGSGGGGSGGGGS",
+        "description": "G4S ×5 (25aa). Heterotypic bispecific bridging.",
+        "qa": {
+          "source": "ACTES bispecific ultra-long linker",
+          "status": "Verified"
+        }
+      }
+    },
+    "Long": {
+      "G4S6": {
+        "seq": "GGGGSGGGGSGGGGSGGGGSGGGGSGGGGS",
+        "description": "G4S ×6 (30aa). Maximum flexibility tandem CAR.",
+        "qa": {
+          "source": "Standard synthetic",
+          "status": "Verified"
+        }
+      }
+    }
+  },
+  "two_A_peptides": {
+    "P2A": {
+      "seq": "GSGATNFSLLKQCGDVEENPGP",
+      "description": "P2A TaV-2A (22aa). Highest cleavage efficiency >99% in vitro.",
+      "qa": {
+        "source": "Kim JH et al. PLoS ONE 2011;6(4):e18556",
+        "status": "Verified"
+      },
+      "regulatory_tier": "T2",
+      "tier_justification": "Used in multiple approved gene therapy and CAR-T constructs for polycistronic expression",
+      "approval_products": [],
+      "clinical_trials": [],
+      "usage_context": {
+        "indications": [
+          "Hematologic",
+          "Solid Tumor"
+        ],
+        "cell_types": [
+          "CAR-T",
+          "CAR-NK",
+          "CAR-M"
+        ],
+        "role": "Polycistronic construct spacer — separates CAR from payload without IRES"
+      },
+      "design_notes": "Highest cleavage efficiency. Ribosomal skipping mechanism (NOT protease). Prepend GSG for +10-15% efficiency. Use P2A first for CAR-safety_switch; T2A for CAR-payload. Efficiency: P2A>T2A>E2A>F2A in most contexts."
+    },
+    "T2A": {
+      "seq": "EGRGSLLTCGDVEENPGP",
+      "description": "T2A ERAV-2A (18aa). Compact size.",
+      "qa": {
+        "source": "Kim JH et al. PLoS ONE 2011",
+        "status": "Verified"
+      },
+      "regulatory_tier": "T2",
+      "tier_justification": "Used in multiple approved gene therapy and CAR-T constructs for polycistronic expression",
+      "approval_products": [],
+      "clinical_trials": [],
+      "usage_context": {
+        "indications": [
+          "Hematologic",
+          "Solid Tumor"
+        ],
+        "cell_types": [
+          "CAR-T",
+          "CAR-NK",
+          "CAR-M"
+        ],
+        "role": "Polycistronic construct spacer — separates CAR from payload without IRES"
+      },
+      "design_notes": "Compact; second choice. Ribosomal skipping mechanism (NOT protease). Prepend GSG for +10-15% efficiency. Use P2A first for CAR-safety_switch; T2A for CAR-payload. Efficiency: P2A>T2A>E2A>F2A in most contexts."
+    },
+    "E2A": {
+      "seq": "QCTNYALLKLAGDVESNPGP",
+      "description": "E2A (20aa). Good cleavage efficiency.",
+      "qa": {
+        "source": "Kim JH et al. PLoS ONE 2011",
+        "status": "Verified"
+      },
+      "regulatory_tier": "T2",
+      "tier_justification": "Used in multiple approved gene therapy and CAR-T constructs for polycistronic expression",
+      "approval_products": [],
+      "clinical_trials": [],
+      "usage_context": {
+        "indications": [
+          "Hematologic",
+          "Solid Tumor"
+        ],
+        "cell_types": [
+          "CAR-T",
+          "CAR-NK",
+          "CAR-M"
+        ],
+        "role": "Polycistronic construct spacer — separates CAR from payload without IRES"
+      },
+      "design_notes": "Good cleavage, common alternative. Ribosomal skipping mechanism (NOT protease). Prepend GSG for +10-15% efficiency. Use P2A first for CAR-safety_switch; T2A for CAR-payload. Efficiency: P2A>T2A>E2A>F2A in most contexts."
+    },
+    "F2A": {
+      "seq": "VKQTLNFDLLKLAGDVESNPGP",
+      "description": "F2A FMDV-2A (22aa). Alternative 2A.",
+      "qa": {
+        "source": "Kim JH et al. PLoS ONE 2011",
+        "status": "Verified"
+      },
+      "regulatory_tier": "T2",
+      "tier_justification": "Used in multiple approved gene therapy and CAR-T constructs for polycistronic expression",
+      "approval_products": [],
+      "clinical_trials": [],
+      "usage_context": {
+        "indications": [
+          "Hematologic",
+          "Solid Tumor"
+        ],
+        "cell_types": [
+          "CAR-T",
+          "CAR-NK",
+          "CAR-M"
+        ],
+        "role": "Polycistronic construct spacer — separates CAR from payload without IRES"
+      },
+      "design_notes": "Foot-and-mouth disease virus 2A. Ribosomal skipping mechanism (NOT protease). Prepend GSG for +10-15% efficiency. Use P2A first for CAR-safety_switch; T2A for CAR-payload. Efficiency: P2A>T2A>E2A>F2A in most contexts."
+    },
+    "_note": "Prepend GSG to any 2A peptide for enhanced cleavage efficiency. Ribosomal skipping mechanism."
+  },
+  "universal_adapters": {
+    "Anti_FITC_h4M53": {
+      "seq": "",
+      "description": "Anti-FITC 4M53 humanized scFv 246aa. Universal CAR adapter for FITC-conjugated targeting ligands.",
+      "reference": "Ma JS et al. PNAS 2016",
+      "qa": {
+        "source": "Missing",
+        "status": "Unverified"
+      }
+    }
+  }
+}

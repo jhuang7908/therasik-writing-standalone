@@ -1,0 +1,1028 @@
+{
+  "species": "alpaca",
+  "freq_threshold": 0.1,
+  "original_seq": "QVKLEESGGGSVQTGGSLRLTCAASGRTSRSYGMGWFRQAPGKEREFVSGISWRGDSTGYADSVKGRFTISRDNAKNTVDLQMNSLKPEDTAIYYCAAAAGSAWYGTLYEYDYWGQGTQVTVSS",
+  "humanized_seq": "QVQLVESGGGLVQPGGSLRLSCAASGRTSRSYGMGWFRQAPGKGREFVSGISWRGDSTGYADSVKGRFTISRDNTLYLQMNSLNSLRAEDTAVYYCARAAGSAWYGTLYEYDYWGQGTLVTVSS",
+  "n_positions_numbered": 124,
+  "n_substituted": 20,
+  "n_cdr_locked": 38,
+  "n_struct_protected": 3,
+  "n_extra_protected": 0,
+  "mutations": [
+    "K3Q",
+    "E5V",
+    "S11L",
+    "T14P",
+    "T21S",
+    "E44G",
+    "A74T",
+    "K75L",
+    "N76Y",
+    "T77L",
+    "V78Q",
+    "D79M",
+    "L80N",
+    "Q81S",
+    "M82L",
+    "K83R",
+    "P84A",
+    "I89V",
+    "A94R",
+    "Q108L"
+  ],
+  "per_position": [
+    {
+      "martin_key": "1",
+      "original_aa": "Q",
+      "humanized_aa": "Q",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.242 >= threshold 0.1",
+      "human_freq": 0.24233937397034597
+    },
+    {
+      "martin_key": "2",
+      "original_aa": "V",
+      "humanized_aa": "V",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.961 >= threshold 0.1",
+      "human_freq": 0.9609555189456342
+    },
+    {
+      "martin_key": "3",
+      "original_aa": "K",
+      "humanized_aa": "Q",
+      "action": "SUBSTITUTE",
+      "reason": "FREQ_LOW: freq=0.007 < threshold 0.1; top human aa=Q (freq=0.952)",
+      "human_freq": 0.0069192751235584845
+    },
+    {
+      "martin_key": "4",
+      "original_aa": "L",
+      "humanized_aa": "L",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.982 >= threshold 0.1",
+      "human_freq": 0.9820428336079078
+    },
+    {
+      "martin_key": "5",
+      "original_aa": "E",
+      "humanized_aa": "V",
+      "action": "SUBSTITUTE",
+      "reason": "FREQ_LOW: freq=0.011 < threshold 0.1; top human aa=V (freq=0.757)",
+      "human_freq": 0.010543657331136738
+    },
+    {
+      "martin_key": "6",
+      "original_aa": "E",
+      "humanized_aa": "E",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.932 >= threshold 0.1",
+      "human_freq": 0.9324546952224053
+    },
+    {
+      "martin_key": "7",
+      "original_aa": "S",
+      "humanized_aa": "S",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.986 >= threshold 0.1",
+      "human_freq": 0.985502471169687
+    },
+    {
+      "martin_key": "8",
+      "original_aa": "G",
+      "humanized_aa": "G",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.996 >= threshold 0.1",
+      "human_freq": 0.9955518945634267
+    },
+    {
+      "martin_key": "9",
+      "original_aa": "G",
+      "humanized_aa": "G",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.998 >= threshold 0.1",
+      "human_freq": 0.9975288303130149
+    },
+    {
+      "martin_key": "10",
+      "original_aa": "G",
+      "humanized_aa": "G",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.933 >= threshold 0.1",
+      "human_freq": 0.9332784184514004
+    },
+    {
+      "martin_key": "11",
+      "original_aa": "S",
+      "humanized_aa": "L",
+      "action": "SUBSTITUTE",
+      "reason": "FREQ_LOW: freq=0.006 < threshold 0.1; top human aa=L (freq=0.705)",
+      "human_freq": 0.006425041186161449
+    },
+    {
+      "martin_key": "12",
+      "original_aa": "V",
+      "humanized_aa": "V",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.945 >= threshold 0.1",
+      "human_freq": 0.9448105436573312
+    },
+    {
+      "martin_key": "13",
+      "original_aa": "Q",
+      "humanized_aa": "Q",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.865 >= threshold 0.1",
+      "human_freq": 0.8649093904448105
+    },
+    {
+      "martin_key": "14",
+      "original_aa": "T",
+      "humanized_aa": "P",
+      "action": "SUBSTITUTE",
+      "reason": "FREQ_LOW: freq=0.002 < threshold 0.1; top human aa=P (freq=0.982)",
+      "human_freq": 0.002471169686985173
+    },
+    {
+      "martin_key": "15",
+      "original_aa": "G",
+      "humanized_aa": "G",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.997 >= threshold 0.1",
+      "human_freq": 0.9967051070840197
+    },
+    {
+      "martin_key": "16",
+      "original_aa": "G",
+      "humanized_aa": "G",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.699 >= threshold 0.1",
+      "human_freq": 0.6986820428336079
+    },
+    {
+      "martin_key": "17",
+      "original_aa": "S",
+      "humanized_aa": "S",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.992 >= threshold 0.1",
+      "human_freq": 0.9922570016474465
+    },
+    {
+      "martin_key": "18",
+      "original_aa": "L",
+      "humanized_aa": "L",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.993 >= threshold 0.1",
+      "human_freq": 0.9930807248764415
+    },
+    {
+      "martin_key": "19",
+      "original_aa": "R",
+      "humanized_aa": "R",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.968 >= threshold 0.1",
+      "human_freq": 0.9682042833607908
+    },
+    {
+      "martin_key": "20",
+      "original_aa": "L",
+      "humanized_aa": "L",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.986 >= threshold 0.1",
+      "human_freq": 0.986490939044481
+    },
+    {
+      "martin_key": "21",
+      "original_aa": "T",
+      "humanized_aa": "S",
+      "action": "SUBSTITUTE",
+      "reason": "FREQ_LOW: freq=0.001 < threshold 0.1; top human aa=S (freq=0.991)",
+      "human_freq": 0.0009884678747940692
+    },
+    {
+      "martin_key": "22",
+      "original_aa": "C",
+      "humanized_aa": "C",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.998 >= threshold 0.1",
+      "human_freq": 0.9983525535420099
+    },
+    {
+      "martin_key": "23",
+      "original_aa": "A",
+      "humanized_aa": "A",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.868 >= threshold 0.1",
+      "human_freq": 0.8677100494233937
+    },
+    {
+      "martin_key": "24",
+      "original_aa": "A",
+      "humanized_aa": "A",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.936 >= threshold 0.1",
+      "human_freq": 0.9359143327841846
+    },
+    {
+      "martin_key": "25",
+      "original_aa": "S",
+      "humanized_aa": "S",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.990 >= threshold 0.1",
+      "human_freq": 0.9899505766062603
+    },
+    {
+      "martin_key": "26",
+      "original_aa": "G",
+      "humanized_aa": "G",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.9686985172981878
+    },
+    {
+      "martin_key": "27",
+      "original_aa": "R",
+      "humanized_aa": "R",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": null
+    },
+    {
+      "martin_key": "28",
+      "original_aa": "T",
+      "humanized_aa": "T",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.8377265238879736
+    },
+    {
+      "martin_key": "29",
+      "original_aa": "S",
+      "humanized_aa": "S",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.003953871499176277
+    },
+    {
+      "martin_key": "30",
+      "original_aa": "R",
+      "humanized_aa": "R",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.04085667215815486
+    },
+    {
+      "martin_key": "31",
+      "original_aa": "S",
+      "humanized_aa": "S",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.48220757825370675
+    },
+    {
+      "martin_key": "32",
+      "original_aa": "Y",
+      "humanized_aa": "Y",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.7815485996705107
+    },
+    {
+      "martin_key": "33",
+      "original_aa": "G",
+      "humanized_aa": "G",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.18649093904448105
+    },
+    {
+      "martin_key": "34",
+      "original_aa": "M",
+      "humanized_aa": "M",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.9367380560131796
+    },
+    {
+      "martin_key": "35",
+      "original_aa": "G",
+      "humanized_aa": "G",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.01186161449752883
+    },
+    {
+      "martin_key": "36",
+      "original_aa": "W",
+      "humanized_aa": "W",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.9993410214168039
+    },
+    {
+      "martin_key": "37",
+      "original_aa": "F",
+      "humanized_aa": "F",
+      "action": "KEEP",
+      "reason": "STRUCT_PROTECT: FR2 hallmark (paper Fig 3-4; cation-π/π-π scaffold)",
+      "human_freq": 0.007248764415156508
+    },
+    {
+      "martin_key": "38",
+      "original_aa": "R",
+      "humanized_aa": "R",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.998 >= threshold 0.1",
+      "human_freq": 0.9983525535420099
+    },
+    {
+      "martin_key": "39",
+      "original_aa": "Q",
+      "humanized_aa": "Q",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.992 >= threshold 0.1",
+      "human_freq": 0.9917627677100495
+    },
+    {
+      "martin_key": "40",
+      "original_aa": "A",
+      "humanized_aa": "A",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.935 >= threshold 0.1",
+      "human_freq": 0.9349258649093904
+    },
+    {
+      "martin_key": "41",
+      "original_aa": "P",
+      "humanized_aa": "P",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.988 >= threshold 0.1",
+      "human_freq": 0.9884678747940692
+    },
+    {
+      "martin_key": "42",
+      "original_aa": "G",
+      "humanized_aa": "G",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.986 >= threshold 0.1",
+      "human_freq": 0.986161449752883
+    },
+    {
+      "martin_key": "43",
+      "original_aa": "K",
+      "humanized_aa": "K",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.960 >= threshold 0.1",
+      "human_freq": 0.9601317957166392
+    },
+    {
+      "martin_key": "44",
+      "original_aa": "E",
+      "humanized_aa": "G",
+      "action": "SUBSTITUTE",
+      "reason": "FREQ_LOW: freq=0.000 < threshold 0.1; top human aa=G (freq=0.990)",
+      "human_freq": 0.0004942339373970346
+    },
+    {
+      "martin_key": "45",
+      "original_aa": "R",
+      "humanized_aa": "R",
+      "action": "KEEP",
+      "reason": "STRUCT_PROTECT: FR2 hallmark (paper Fig 3-4; cation-π/π-π scaffold)",
+      "human_freq": 0.0006589785831960461
+    },
+    {
+      "martin_key": "46",
+      "original_aa": "E",
+      "humanized_aa": "E",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.931 >= threshold 0.1",
+      "human_freq": 0.9308072487644151
+    },
+    {
+      "martin_key": "47",
+      "original_aa": "F",
+      "humanized_aa": "F",
+      "action": "KEEP",
+      "reason": "STRUCT_PROTECT: FR2 hallmark (paper Fig 3-4; cation-π/π-π scaffold)",
+      "human_freq": 0.001812191103789127
+    },
+    {
+      "martin_key": "48",
+      "original_aa": "V",
+      "humanized_aa": "V",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.947 >= threshold 0.1",
+      "human_freq": 0.9471169686985172
+    },
+    {
+      "martin_key": "49",
+      "original_aa": "S",
+      "humanized_aa": "S",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.585 >= threshold 0.1",
+      "human_freq": 0.5845140032948929
+    },
+    {
+      "martin_key": "50",
+      "original_aa": "G",
+      "humanized_aa": "G",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.10922570016474464
+    },
+    {
+      "martin_key": "51",
+      "original_aa": "I",
+      "humanized_aa": "I",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.9116968698517298
+    },
+    {
+      "martin_key": "52",
+      "original_aa": "S",
+      "humanized_aa": "S",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.5550247116968698
+    },
+    {
+      "martin_key": "52A",
+      "original_aa": "W",
+      "humanized_aa": "W",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.06985172981878089
+    },
+    {
+      "martin_key": "53",
+      "original_aa": "R",
+      "humanized_aa": "R",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.019604612850082373
+    },
+    {
+      "martin_key": "54",
+      "original_aa": "G",
+      "humanized_aa": "G",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.8123558484349259
+    },
+    {
+      "martin_key": "55",
+      "original_aa": "D",
+      "humanized_aa": "D",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.05551894563426689
+    },
+    {
+      "martin_key": "56",
+      "original_aa": "S",
+      "humanized_aa": "S",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.2825370675453048
+    },
+    {
+      "martin_key": "57",
+      "original_aa": "T",
+      "humanized_aa": "T",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.45914332784184514
+    },
+    {
+      "martin_key": "58",
+      "original_aa": "G",
+      "humanized_aa": "G",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.04645799011532125
+    },
+    {
+      "martin_key": "59",
+      "original_aa": "Y",
+      "humanized_aa": "Y",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.9626029654036243
+    },
+    {
+      "martin_key": "60",
+      "original_aa": "A",
+      "humanized_aa": "A",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.822 >= threshold 0.1",
+      "human_freq": 0.8215815485996705
+    },
+    {
+      "martin_key": "61",
+      "original_aa": "D",
+      "humanized_aa": "D",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.914 >= threshold 0.1",
+      "human_freq": 0.914497528830313
+    },
+    {
+      "martin_key": "62",
+      "original_aa": "S",
+      "humanized_aa": "S",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.956 >= threshold 0.1",
+      "human_freq": 0.955683690280066
+    },
+    {
+      "martin_key": "63",
+      "original_aa": "V",
+      "humanized_aa": "V",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.973 >= threshold 0.1",
+      "human_freq": 0.9733113673805601
+    },
+    {
+      "martin_key": "64",
+      "original_aa": "K",
+      "humanized_aa": "K",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.919 >= threshold 0.1",
+      "human_freq": 0.9189456342668864
+    },
+    {
+      "martin_key": "65",
+      "original_aa": "G",
+      "humanized_aa": "G",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.992 >= threshold 0.1",
+      "human_freq": 0.9917627677100495
+    },
+    {
+      "martin_key": "66",
+      "original_aa": "R",
+      "humanized_aa": "R",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.995 >= threshold 0.1",
+      "human_freq": 0.9950576606260296
+    },
+    {
+      "martin_key": "67",
+      "original_aa": "F",
+      "humanized_aa": "F",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.985 >= threshold 0.1",
+      "human_freq": 0.984843492586491
+    },
+    {
+      "martin_key": "68",
+      "original_aa": "T",
+      "humanized_aa": "T",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.952 >= threshold 0.1",
+      "human_freq": 0.9515650741350906
+    },
+    {
+      "martin_key": "69",
+      "original_aa": "I",
+      "humanized_aa": "I",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.936 >= threshold 0.1",
+      "human_freq": 0.9360790774299835
+    },
+    {
+      "martin_key": "70",
+      "original_aa": "S",
+      "humanized_aa": "S",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.990 >= threshold 0.1",
+      "human_freq": 0.9897858319604613
+    },
+    {
+      "martin_key": "71",
+      "original_aa": "R",
+      "humanized_aa": "R",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.988 >= threshold 0.1",
+      "human_freq": 0.9876441515650741
+    },
+    {
+      "martin_key": "72",
+      "original_aa": "D",
+      "humanized_aa": "D",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.985 >= threshold 0.1",
+      "human_freq": 0.985172981878089
+    },
+    {
+      "martin_key": "73",
+      "original_aa": "N",
+      "humanized_aa": "N",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.914 >= threshold 0.1",
+      "human_freq": 0.914497528830313
+    },
+    {
+      "martin_key": "74",
+      "original_aa": "A",
+      "humanized_aa": "T",
+      "action": "SUBSTITUTE",
+      "reason": "FREQ_LOW: freq=0.005 < threshold 0.1; top human aa=T (freq=0.665)",
+      "human_freq": 0.0047775947281713345
+    },
+    {
+      "martin_key": "75",
+      "original_aa": "K",
+      "humanized_aa": "L",
+      "action": "SUBSTITUTE",
+      "reason": "FREQ_LOW: freq=0.000 < threshold 0.1; top human aa=L (freq=0.893)",
+      "human_freq": 0.00016474464579901152
+    },
+    {
+      "martin_key": "76",
+      "original_aa": "N",
+      "humanized_aa": "Y",
+      "action": "SUBSTITUTE",
+      "reason": "FREQ_LOW: freq=0.005 < threshold 0.1; top human aa=Y (freq=0.858)",
+      "human_freq": 0.0047775947281713345
+    },
+    {
+      "martin_key": "77",
+      "original_aa": "T",
+      "humanized_aa": "L",
+      "action": "SUBSTITUTE",
+      "reason": "FREQ_LOW: freq=0.000 < threshold 0.1; top human aa=L (freq=0.989)",
+      "human_freq": 0.00016474464579901152
+    },
+    {
+      "martin_key": "78",
+      "original_aa": "V",
+      "humanized_aa": "Q",
+      "action": "SUBSTITUTE",
+      "reason": "FREQ_LOW: freq=0.000 < threshold 0.1; top human aa=Q (freq=0.951)",
+      "human_freq": 0.00032948929159802305
+    },
+    {
+      "martin_key": "79",
+      "original_aa": "D",
+      "humanized_aa": "M",
+      "action": "SUBSTITUTE",
+      "reason": "FREQ_LOW: freq=0.002 < threshold 0.1; top human aa=M (freq=0.964)",
+      "human_freq": 0.0016474464579901153
+    },
+    {
+      "martin_key": "80",
+      "original_aa": "L",
+      "humanized_aa": "N",
+      "action": "SUBSTITUTE",
+      "reason": "FREQ_LOW: freq=0.000 < threshold 0.1; top human aa=N (freq=0.889)",
+      "human_freq": 0.00016474464579901152
+    },
+    {
+      "martin_key": "81",
+      "original_aa": "Q",
+      "humanized_aa": "S",
+      "action": "SUBSTITUTE",
+      "reason": "FREQ_LOW: freq=0.000 < threshold 0.1; top human aa=S (freq=0.929)",
+      "human_freq": 0.00016474464579901152
+    },
+    {
+      "martin_key": "82",
+      "original_aa": "M",
+      "humanized_aa": "L",
+      "action": "SUBSTITUTE",
+      "reason": "FREQ_LOW: freq=0.000 < threshold 0.1; top human aa=L (freq=0.993)",
+      "human_freq": 0.0004942339373970346
+    },
+    {
+      "martin_key": "82A",
+      "original_aa": "N",
+      "humanized_aa": "N",
+      "action": "KEEP",
+      "reason": "MISSING_PROFILE: position not in human VH profile",
+      "human_freq": null
+    },
+    {
+      "martin_key": "82B",
+      "original_aa": "S",
+      "humanized_aa": "S",
+      "action": "KEEP",
+      "reason": "MISSING_PROFILE: position not in human VH profile",
+      "human_freq": null
+    },
+    {
+      "martin_key": "82C",
+      "original_aa": "L",
+      "humanized_aa": "L",
+      "action": "KEEP",
+      "reason": "MISSING_PROFILE: position not in human VH profile",
+      "human_freq": null
+    },
+    {
+      "martin_key": "83",
+      "original_aa": "K",
+      "humanized_aa": "R",
+      "action": "SUBSTITUTE",
+      "reason": "FREQ_LOW: freq=0.047 < threshold 0.1; top human aa=R (freq=0.916)",
+      "human_freq": 0.04744645799011532
+    },
+    {
+      "martin_key": "84",
+      "original_aa": "P",
+      "humanized_aa": "A",
+      "action": "SUBSTITUTE",
+      "reason": "FREQ_LOW: freq=0.063 < threshold 0.1; top human aa=A (freq=0.729)",
+      "human_freq": 0.06326194398682043
+    },
+    {
+      "martin_key": "85",
+      "original_aa": "E",
+      "humanized_aa": "E",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.919 >= threshold 0.1",
+      "human_freq": 0.9189456342668864
+    },
+    {
+      "martin_key": "86",
+      "original_aa": "D",
+      "humanized_aa": "D",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.997 >= threshold 0.1",
+      "human_freq": 0.9971993410214168
+    },
+    {
+      "martin_key": "87",
+      "original_aa": "T",
+      "humanized_aa": "T",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.973 >= threshold 0.1",
+      "human_freq": 0.9734761120263592
+    },
+    {
+      "martin_key": "88",
+      "original_aa": "A",
+      "humanized_aa": "A",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.981 >= threshold 0.1",
+      "human_freq": 0.9813838550247117
+    },
+    {
+      "martin_key": "89",
+      "original_aa": "I",
+      "humanized_aa": "V",
+      "action": "SUBSTITUTE",
+      "reason": "FREQ_LOW: freq=0.055 < threshold 0.1; top human aa=V (freq=0.798)",
+      "human_freq": 0.05485996705107084
+    },
+    {
+      "martin_key": "90",
+      "original_aa": "Y",
+      "humanized_aa": "Y",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.990 >= threshold 0.1",
+      "human_freq": 0.9899505766062603
+    },
+    {
+      "martin_key": "91",
+      "original_aa": "Y",
+      "humanized_aa": "Y",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.943 >= threshold 0.1",
+      "human_freq": 0.942504118616145
+    },
+    {
+      "martin_key": "92",
+      "original_aa": "C",
+      "humanized_aa": "C",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=1.000 >= threshold 0.1",
+      "human_freq": 0.999505766062603
+    },
+    {
+      "martin_key": "93",
+      "original_aa": "A",
+      "humanized_aa": "A",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.864 >= threshold 0.1",
+      "human_freq": 0.8640856672158155
+    },
+    {
+      "martin_key": "94",
+      "original_aa": "A",
+      "humanized_aa": "R",
+      "action": "SUBSTITUTE",
+      "reason": "FREQ_LOW: freq=0.007 < threshold 0.1; top human aa=R (freq=0.484)",
+      "human_freq": 0.007084019769357496
+    },
+    {
+      "martin_key": "95",
+      "original_aa": "A",
+      "humanized_aa": "A",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.06342668863261944
+    },
+    {
+      "martin_key": "96",
+      "original_aa": "A",
+      "humanized_aa": "A",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.04942339373970346
+    },
+    {
+      "martin_key": "97",
+      "original_aa": "G",
+      "humanized_aa": "G",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.1658978583196046
+    },
+    {
+      "martin_key": "98",
+      "original_aa": "S",
+      "humanized_aa": "S",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.11779242174629324
+    },
+    {
+      "martin_key": "99",
+      "original_aa": "A",
+      "humanized_aa": "A",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.05930807248764415
+    },
+    {
+      "martin_key": "100",
+      "original_aa": "W",
+      "humanized_aa": "W",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.04118616144975288
+    },
+    {
+      "martin_key": "100A",
+      "original_aa": "Y",
+      "humanized_aa": "Y",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.10461285008237232
+    },
+    {
+      "martin_key": "100B",
+      "original_aa": "G",
+      "humanized_aa": "G",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.12009884678747941
+    },
+    {
+      "martin_key": "100C",
+      "original_aa": "T",
+      "humanized_aa": "T",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.0342668863261944
+    },
+    {
+      "martin_key": "100D",
+      "original_aa": "L",
+      "humanized_aa": "L",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.042833607907743
+    },
+    {
+      "martin_key": "100E",
+      "original_aa": "Y",
+      "humanized_aa": "Y",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.10576606260296541
+    },
+    {
+      "martin_key": "100F",
+      "original_aa": "E",
+      "humanized_aa": "E",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.006589785831960461
+    },
+    {
+      "martin_key": "100G",
+      "original_aa": "Y",
+      "humanized_aa": "Y",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.07874794069192752
+    },
+    {
+      "martin_key": "101",
+      "original_aa": "D",
+      "humanized_aa": "D",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.8327841845140033
+    },
+    {
+      "martin_key": "102",
+      "original_aa": "Y",
+      "humanized_aa": "Y",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.4357495881383855
+    },
+    {
+      "martin_key": "103",
+      "original_aa": "W",
+      "humanized_aa": "W",
+      "action": "KEEP",
+      "reason": "CDR (AbM definition)",
+      "human_freq": 0.9907742998352553
+    },
+    {
+      "martin_key": "104",
+      "original_aa": "G",
+      "humanized_aa": "G",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.996 >= threshold 0.1",
+      "human_freq": 0.9960461285008237
+    },
+    {
+      "martin_key": "105",
+      "original_aa": "Q",
+      "humanized_aa": "Q",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.905 >= threshold 0.1",
+      "human_freq": 0.9052718286655683
+    },
+    {
+      "martin_key": "106",
+      "original_aa": "G",
+      "humanized_aa": "G",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.998 >= threshold 0.1",
+      "human_freq": 0.9978583196046128
+    },
+    {
+      "martin_key": "107",
+      "original_aa": "T",
+      "humanized_aa": "T",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.956 >= threshold 0.1",
+      "human_freq": 0.9558484349258649
+    },
+    {
+      "martin_key": "108",
+      "original_aa": "Q",
+      "humanized_aa": "L",
+      "action": "SUBSTITUTE",
+      "reason": "FREQ_LOW: freq=0.011 < threshold 0.1; top human aa=L (freq=0.635)",
+      "human_freq": 0.01070840197693575
+    },
+    {
+      "martin_key": "109",
+      "original_aa": "V",
+      "humanized_aa": "V",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.956 >= threshold 0.1",
+      "human_freq": 0.9555189456342669
+    },
+    {
+      "martin_key": "110",
+      "original_aa": "T",
+      "humanized_aa": "T",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.930 >= threshold 0.1",
+      "human_freq": 0.9304777594728171
+    },
+    {
+      "martin_key": "111",
+      "original_aa": "V",
+      "humanized_aa": "V",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.940 >= threshold 0.1",
+      "human_freq": 0.9398682042833608
+    },
+    {
+      "martin_key": "112",
+      "original_aa": "S",
+      "humanized_aa": "S",
+      "action": "KEEP",
+      "reason": "FREQ_OK: freq=0.927 >= threshold 0.1",
+      "human_freq": 0.9270181219110379
+    },
+    {
+      "martin_key": "113",
+      "original_aa": "S",
+      "humanized_aa": "S",
+      "action": "KEEP",
+      "reason": "MISSING_PROFILE: position not in human VH profile",
+      "human_freq": null
+    }
+  ],
+  "algorithm_note": "Sequence-only mode (no Modeller / no protinter). Structural protection uses paper-derived FR2 hallmark rules (Martin 37/45/47) instead of per-atom interaction analysis. This is conservative: real Llamanade may protect additional residues found to be structurally interacting via protinter."
+}

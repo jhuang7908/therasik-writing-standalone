@@ -1,0 +1,223 @@
+{
+  "_schema_version": "2.0",
+  "_description": "De Novo CDR Design pipeline settings — controls which stages run and their parameters. Derived from VGRW-SR-R2 HER2 VHH case analysis (April 2026). See DE_NOVO_CDR_DESIGN_STANDARD.md §4 for full rationale.",
+
+  "mpnn": {
+    "_comment": "ProteinMPNN sampling. Higher temperatures increase diversity at the cost of structure confidence.",
+    "temperatures": [0.3, 0.5, 0.8, 1.0],
+    "num_seq_per_target": 150,
+    "seed": 42,
+    "batch_size": 1,
+    "immediate_dedup": true,
+    "_note_temperatures": "Removed T=0.2 (too conservative, produces 82% redundancy). Added T=0.8 and T=1.0 for high-entropy diversity.",
+    "_note_samples": "Reduced from 200 to 150 per temperature. More unique diversity per sample due to higher T.",
+
+    "bias_AA_ptm_avoidance": {
+      "_comment": "Global amino-acid bias to reduce PTM-prone outputs. Applied via --bias_AA_per_residue JSON. Negative = penalize. Keys are 1-letter AA codes.",
+      "_reference": "See helpers/mpnn_bias.py for per-position bias JSON generation.",
+      "_enabled": true,
+      "tip_positions_penalty": {
+        "D": -1.5,
+        "N": -1.0
+      },
+      "_rationale": "In the VGRW-SR-R2 case, 397/400 sequences had Y57->D/N + P58->A creating DA/NA PTM motifs. Penalizing D and N at tip positions prevents this systematic failure mode."
+    }
+  },
+
+  "stages": {
+    "t00_dedup_ptm": {
+      "_comment": "T0.0: Immediate dedup + PTM/chemical liability check. Always first. Runs in <1s. No model required.",
+      "enabled": true,
+      "checks": ["exact_dedup", "ptm_motifs", "canonical_cys", "length"],
+      "ptm_checks": {
+        "deamidation_NG_in_CDR": "FAIL",
+        "deamidation_NA_NS_NT_in_CDR": "WARN",
+        "isomerization_DG_DS_DA_DT_in_CDR": "FAIL",
+        "new_N_glycosylation": "FAIL",
+        "new_unpaired_Cys": "FAIL",
+        "new_Met_in_CDR_tip": "WARN"
+      },
+      "estimated_time_s": 1,
+      "expected_kill_rate": 0.70,
+      "_lesson": "In VGRW-SR-R2: 73% of sequences failed PTM check. Running this FIRST would have saved all downstream compute on bad sequences."
+    },
+
+    "t0_oasis": {
+      "_comment": "T0: OASis 9-mer human coverage. Sequence must remain 'human-like'. CDR identity filter prevents trivial variants.",
+      "enabled": true,
+      "oasis_coverage_min_fraction_of_wt": 0.80,
+      "cdr_identity_max": 0.70,
+      "_note": "cdr_identity_max: sequences with >70% CDR identity to WT are considered insufficiently diverse for patent escape.",
+      "estimated_time_s": 30,
+      "expected_kill_rate": 0.30
+    },
+
+    "t1_ablang": {
+      "_comment": "T1: AbLang pseudo-log-likelihood naturalness filter.",
+      "enabled": "conditional",
+      "enable_condition": {
+        "type": "design_scope",
+        "run_when": ["multi_cdr", "cdr3_included", "framework_changed"],
+        "skip_when": ["single_cdr_non_cdr3"]
+      },
+      "score_threshold_multiplier_of_wt": 1.5,
+      "estimated_time_s": 600,
+      "expected_kill_rate_if_enabled": 0.0,
+      "_lesson": "In VGRW-SR-R2 CDR2-only design: T1 passed 118/118 (100%). Score range was only -0.41 to -0.32. Zero filtering power for single-CDR CDR2-only designs. Waste: ~10 min.",
+      "_when_useful": "Multi-CDR or CDR3 designs where naturalness can genuinely degrade."
+    },
+
+    "t05_cluster": {
+      "_comment": "T0.5: Hamming clustering to reduce redundancy among survivors.",
+      "enabled": true,
+      "method": "hamming_cdr",
+      "cdr_identity_threshold": 0.65,
+      "hamming_dist": 2,
+      "min_survivors": 15,
+      "max_survivors": 50,
+      "estimated_time_s": 5,
+      "_note": "hamming_dist=2 avoids over-clustering near-identical sequences from same MPNN run."
+    },
+
+    "t2_immunebuilder": {
+      "_comment": "T2: ImmuneBuilder structural QC. Expensive (~3 min/seq). Only run when structural disruption is plausible.",
+      "enabled": "conditional",
+      "enable_condition": {
+        "type": "design_scope",
+        "run_when": [
+          "multi_cdr",
+          "cdr3_included",
+          "n_designable_positions_gt_10",
+          "framework_changed",
+          "high_temperature_sampling"
+        ],
+        "skip_when": [
+          "single_cdr_non_cdr3_le10_positions"
+        ]
+      },
+      "thresholds": {
+        "global_rmsd_max_angstrom": 2.5,
+        "cdr_rmsd_max_angstrom": 3.0
+      },
+      "timeout_s": 300,
+      "estimated_time_s": 180,
+      "_lesson": "In VGRW-SR-R2 CDR2-only (5-7 mutations, framework fixed): 27/27 pass, max RMSD only 1.36 Å (54% of limit). Waste: ~81 min. Rule: skip when single non-CDR3 CDR with ≤10 mutable positions.",
+      "_rmsd_prediction": "When MPNN naturally fixes ≥60% of CDR positions and framework is locked, global RMSD will always be <1.5 Å."
+    },
+
+    "t3_complex": {
+      "_comment": "T3: Complex-level binding geometry and specificity check.",
+      "enabled": true,
+      "tools": {
+        "primary": "rigid_superposition",
+        "_note": "Use rigid superposition of predicted monomer back onto reference complex for epitope clash/overlap check. No full docking needed.",
+        "full_docking": "HADDOCK3",
+        "full_docking_condition": "phase4_routing_required"
+      },
+      "thresholds": {
+        "epitope_overlap_min": 0.70,
+        "interface_clash_max_atoms": 5
+      },
+      "binding_energy": {
+        "tool": "MM_GBSA",
+        "deprecated": ["PRODIGY"],
+        "_lesson": "PRODIGY is insufficiently accurate for ranking purposes. MM/GBSA (500 steps OpenMM) is used in the 15-parameter final evaluation.",
+        "steps": 500,
+        "comparison_mode": "delta_vs_wt"
+      },
+      "estimated_time_s": 60
+    }
+  },
+
+  "decision_logic": {
+    "_comment": "Logic to determine need_structure_prediction() and gate skip conditions.",
+    "need_structure_prediction_rules": [
+      {
+        "condition": "framework_changed == true",
+        "decision": true,
+        "reason": "Framework changes can propagate to fold"
+      },
+      {
+        "condition": "CDR3 in redesign_cdrs",
+        "decision": true,
+        "reason": "CDR3 is conformationally variable; MPNN cannot fully constrain loop geometry"
+      },
+      {
+        "condition": "len(redesign_cdrs) >= 2",
+        "decision": true,
+        "reason": "Multi-CDR interactions may cause cooperative misfolding"
+      },
+      {
+        "condition": "len(designable_pdb_residues) > 10",
+        "decision": true,
+        "reason": "Extensive mutations (>10 positions) can destabilize packing"
+      },
+      {
+        "condition": "max(sampling_temperatures) >= 1.0",
+        "decision": true,
+        "reason": "High-entropy sampling may produce structurally unusual sequences"
+      },
+      {
+        "condition": "default",
+        "decision": false,
+        "reason": "Single non-CDR3 CDR, ≤10 positions, framework fixed → RMSD always <1.5 Å"
+      }
+    ],
+    "need_ablang_rules": [
+      {
+        "condition": "CDR3 in redesign_cdrs OR len(redesign_cdrs) >= 2 OR framework_changed",
+        "decision": true
+      },
+      {
+        "condition": "default",
+        "decision": false,
+        "reason": "Single CDR2 redesign: score variance too narrow for useful discrimination"
+      }
+    ]
+  },
+
+  "ranking": {
+    "_comment": "Multi-objective scoring weights. Source: denovo_ranking_weights.json (project-level). Pipeline-level defaults here.",
+    "weights": {
+      "S_seq":    0.22,
+      "S_struct": 0.22,
+      "S_nat":    0.18,
+      "S_oasis":  0.10,
+      "S_cmc":    0.18,
+      "S_ag":     0.10
+    },
+    "top_k": 5,
+    "top_k_min": 3
+  },
+
+  "final_evaluation": {
+    "_comment": "15-parameter evaluation via AffinityEnergyToolkit. Always run on top_k candidates + WT.",
+    "enabled": true,
+    "tools": ["EvoEF2", "MM_GBSA", "ThermoMPNN", "AntiFold", "ESM_IF1"],
+    "mm_gbsa_steps": 500,
+    "compare_to_wt": true
+  },
+
+  "gate_order": [
+    "t00_dedup_ptm",
+    "t0_oasis",
+    "t1_ablang",
+    "t05_cluster",
+    "t2_immunebuilder",
+    "t3_complex"
+  ],
+
+  "_project_lessons": {
+    "source_project": "denovo_HER2_VGRW_SR_R2",
+    "date": "2026-04-03",
+    "key_findings": [
+      "T0.0 PTM gate: 73% kill rate in <1s. Should always be first.",
+      "T1 AbLang: 0% kill rate for single CDR2 design. Skip unless multi-CDR.",
+      "T2 ImmuneBuilder: 0% kill rate for CDR2-only, 5-7 mutations. Skip for this scope. Saves ~81 min.",
+      "T3 PRODIGY: replaced by MM/GBSA for accuracy.",
+      "MPNN T=0.2-0.5 produces 82% redundancy. Use T=0.3-1.0 for better diversity.",
+      "Root positions: MPNN naturally fixes structural anchors. No need to hardcode in mask.",
+      "PTM at positions 51+52 (Y57->D/N, P58->A) caused 397/400 sequences to fail QC. bias_AA penalty prevents this."
+    ]
+  }
+}

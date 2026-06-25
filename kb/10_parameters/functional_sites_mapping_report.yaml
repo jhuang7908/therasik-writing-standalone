@@ -1,0 +1,131 @@
+# Functional Sites Mapping Status Report
+# Generated from: kb/10_parameters/functional_sites.yaml
+
+dual_map_status:
+  total_sites: 12
+  sites_with_exact_match: 12
+  sites_with_mismatch: 0
+  match_percentage: 100.0
+  total_imgt_positions: 30
+  total_kabat_positions: 30
+  overlapping_positions: 30
+  imgt_only_positions: 0
+  kabat_only_positions: 0
+  conflict_count: 0
+  status: "CONSISTENT"
+
+hallmark_mapping_stats:
+  total_sites: 3
+  exact_matches: 3
+  mismatches: 0
+  match_percentage: 100.0
+  total_imgt_positions: 7
+  total_kabat_positions: 7
+  overlapping_positions: 7
+  sites:
+    - site_id: "HALLMARK_VHH_37_39"
+      imgt_positions: [37, 38, 39]
+      kabat_positions: [37, 38, 39]
+      mapping_status: "exact_match"
+    - site_id: "HALLMARK_VHH_44_45"
+      imgt_positions: [44, 45]
+      kabat_positions: [44, 45]
+      mapping_status: "exact_match"
+    - site_id: "HALLMARK_VHH_49_50"
+      imgt_positions: [49, 50]
+      kabat_positions: [49, 50]
+      mapping_status: "exact_match"
+
+vernier_mapping_stats:
+  total_sites: 5
+  exact_matches: 5
+  mismatches: 0
+  match_percentage: 100.0
+  total_imgt_positions: 14
+  total_kabat_positions: 14
+  overlapping_positions: 14
+  sites:
+    - site_id: "VERNIER_29_30"
+      imgt_positions: [29, 30]
+      kabat_positions: [29, 30]
+      mapping_status: "exact_match"
+    - site_id: "VERNIER_71_73"
+      imgt_positions: [71, 72, 73]
+      kabat_positions: [71, 72, 73]
+      mapping_status: "exact_match"
+    - site_id: "VERNIER_78_80"
+      imgt_positions: [78, 79, 80]
+      kabat_positions: [78, 79, 80]
+      mapping_status: "exact_match"
+    - site_id: "VERNIER_94_96"
+      imgt_positions: [94, 95, 96]
+      kabat_positions: [94, 95, 96]
+      mapping_status: "exact_match"
+    - site_id: "VERNIER_102_104"
+      imgt_positions: [102, 103, 104]
+      kabat_positions: [102, 103, 104]
+      mapping_status: "exact_match"
+
+conflict_examples:
+  # Current status: No conflicts detected
+  # Below is a TYPICAL conflict example that may occur in real VHH sequences
+  
+  - type: "kabat_to_imgt_gap"
+    description: "Typical VHH conflict: Kabat position 37 exists but IMGT 37 is a gap"
+    example_site:
+      site_id: "HALLMARK_VHH_37_CONFLICT_EXAMPLE"
+      role: "hallmark"
+      imgt_positions: []  # Gap in IMGT
+      kabat_positions: [37]  # Exists in Kabat
+      scope: [vhh]
+      notes: "EXAMPLE: In some VHH structures, Kabat 37 maps to IMGT gap. This creates a numbering conflict."
+    impact:
+      - "Rules using IMGT:37 will not find the position"
+      - "Rules using Kabat:37 will find it"
+      - "Mutation plans must specify numbering scheme"
+      - "Reports must document the conflict"
+    resolution:
+      - "Use IMGT as primary (per numbering.imgt.map requirement)"
+      - "Map Kabat positions to IMGT when needed"
+      - "Flag in numbering.dual_map_qc.conflicts"
+      - "Document in report"
+
+  - type: "position_mismatch"
+    description: "Position sets don't match between IMGT and Kabat"
+    example_site:
+      site_id: "VERNIER_MISMATCH_EXAMPLE"
+      role: "vernier"
+      imgt_positions: [29, 30, 31]
+      kabat_positions: [29, 30]  # Missing position 31
+      scope: [vhh]
+      notes: "EXAMPLE: IMGT has additional position not in Kabat numbering"
+    impact:
+      - "Site spans different number of positions in each scheme"
+      - "Mutation targeting must account for scheme differences"
+    resolution:
+      - "Use IMGT positions as primary"
+      - "Map Kabat positions when legacy rules require it"
+      - "Document mismatch in site notes"
+
+summary:
+  current_status: "CONSISTENT"
+  all_sites_match: true
+  conflict_count: 0
+  recommendation: "All functional sites have perfect IMGT/Kabat alignment. No action needed."
+  
+  # For real-world sequences, expect conflicts at:
+  typical_conflict_positions:
+    - position: 37
+      pattern: "kabat_to_imgt_gap"
+      frequency: "common_in_vhh"
+      note: "Kabat 37 often exists in VHH but is gap in IMGT"
+
+
+
+
+
+
+
+
+
+

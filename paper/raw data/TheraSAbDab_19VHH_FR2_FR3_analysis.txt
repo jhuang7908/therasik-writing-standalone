@@ -1,0 +1,166 @@
+================================================================================
+FR2 and FR3 Sequence Analysis: Strategy Differentiation
+================================================================================
+
+Question: Do FR2/FR3 sequences reveal true differences between BM/SR/Native?
+
+## 1. FR2 Sequence Conservation (17aa, contains VHH hallmarks)
+
+Overall FR2 pairwise identity:
+  Median: 64.7%, Range: 47.1% - 100.0%
+
+FR2 identity by strategy comparison:
+  BM     vs BM    :  64.7%
+  BM     vs SR    :  64.7%
+  BM     vs Native:  64.7%
+  SR     vs BM    :  64.7%
+  SR     vs SR    :  76.5%
+  SR     vs Native:  76.5%
+  Native vs BM    :  64.7%
+  Native vs SR    :  76.5%
+  Native vs Native:  76.5%
+
+FR2 consensus sequences by strategy:
+  BM     (n= 8): MSWFRQAPGKGREWVSA
+  SR     (n= 7): MGWFRQAPGKERELVAA
+  Native (n= 4): KGWFRQAPGKEREFVAA
+
+FR2 individual sequences:
+  BM:
+    Brivekimig2         : MSWVRQAPGKGPEWVSS
+    Enristomig          : ISWYRQAPGKQREWVST
+    Gefurulimab         : AAWFRQAPGKEREFVSA
+    Gocatamig2          : LAWYRQAPGKKRELVAG
+    Letolizumab         : MGWARQAPGKGLEWVSG
+    Ozekibart           : MGWFRQAPGKEREFVSA
+    Porustobart         : MSWVRQAPGKGLEWVSV
+    Tarperprumig        : AAWFRQAPGKEREFVSA
+  SR:
+    Caplacizumab        : MGWFRQAPGKGRELVAA
+    Envafolimab         : MAWFRQAPGKERERVAK
+    Erfonrilimab        : MAWFRQAPGKERERVAK
+    Ozoralizumab        : MYWVRQAPGKGLEWVSE
+    Rimteravimab        : MGWFRQAPGKEREFVAT
+    Sonelokimab2        : MGWLRQAPGKEREFVAA
+    Vobarilizumab       : MAWYRQAPGKGRELVAG
+  Native:
+    Brivekimig1         : KGWFRQAPGKEREFVAA
+    Isecarosmab         : MGWFRQAPGKEREFVAG
+    Podentamig1         : YGWYRQAPGKQRELVAA
+    Sonelokimab1        : VGWFRQAPGKEREFIGA
+
+## 2. VHH Hallmark Positions (IMGT 37, 44, 45, 47)
+
+Hallmark residue distribution by strategy:
+  IMGT 37 (Human: E, Q, Camelid: F, Y):
+    BM: Y:3, F:1, K:1, L:1, E:1, N:1
+    SR: N:2, R:2, Y:2, D:1
+    Native: Y:3, S:1
+  IMGT 44 (Human: G, Camelid: E):
+    BM: Q:8
+    SR: Q:7
+    Native: Q:4
+  IMGT 45 (Human: L, Camelid: C, R):
+    BM: A:8
+    SR: A:7
+    Native: A:4
+  IMGT 47 (Human: W, Camelid: G, F):
+    BM: G:8
+    SR: G:7
+    Native: G:4
+
+Hallmark classification (human-like vs camelid-like):
+  Brivekimig1          (Native): 0H/2C = camelid-like
+  Brivekimig2          (BM    ): 0H/2C = camelid-like
+  Caplacizumab         (SR    ): 0H/1C = camelid-like
+  Enristomig           (BM    ): 0H/1C = camelid-like
+  Envafolimab          (SR    ): 0H/1C = camelid-like
+  Erfonrilimab         (SR    ): 0H/1C = camelid-like
+  Gefurulimab          (BM    ): 0H/2C = camelid-like
+  Gocatamig2           (BM    ): 0H/1C = camelid-like
+  Isecarosmab          (Native): 0H/2C = camelid-like
+  Letolizumab          (BM    ): 1H/1C = hybrid
+  Ozekibart            (BM    ): 0H/2C = camelid-like
+  Ozoralizumab         (SR    ): 0H/2C = camelid-like
+  Podentamig1          (Native): 0H/1C = camelid-like
+  Porustobart          (BM    ): 0H/1C = camelid-like
+  Rimteravimab         (SR    ): 0H/2C = camelid-like
+  Sonelokimab1         (Native): 0H/2C = camelid-like
+  Sonelokimab2         (SR    ): 0H/1C = camelid-like
+  Tarperprumig         (BM    ): 0H/2C = camelid-like
+  Vobarilizumab        (SR    ): 0H/1C = camelid-like
+
+## 3. FR3 Sequence Conservation (38-39aa, longest FR region)
+
+Overall FR3 pairwise identity:
+  Median: 86.8%, Range: 76.3% - 100.0%
+
+FR3 identity by strategy comparison:
+  BM     vs BM    :  89.5%
+  BM     vs SR    :  86.8%
+  BM     vs Native:  84.2%
+  SR     vs BM    :  86.8%
+  SR     vs SR    :  89.5%
+  SR     vs Native:  86.8%
+  Native vs BM    :  84.2%
+  Native vs SR    :  86.8%
+  Native vs Native:  86.8%
+
+FR3 consensus sequences by strategy:
+  BM     (n= 8): TYADSVKGRFTISRDNAKNTLYLQMNSLRAEDTAVYYC
+  SR     (n= 7): YYADSVKGRFTISRDNAKNTVYLQMNSLRPEDTAVYYC
+  Native (n= 4): YYADSVKGRFTISRDNSKNTVYLQMNSLRPEDTALYYC
+
+FR3 variable positions (conservation <100%) by strategy:
+  BM (9 variable positions):
+    Pos  1: T (38%) | T:3, Y:2, L:1, N:1, V:1
+    Pos  3: A (88%) | A:7, M:1
+    Pos  4: D (75%) | D:6, E:2
+    Pos 17: A (62%) | A:5, S:3
+    Pos 20: T (62%) | T:5, S:3
+    ... and 4 more
+  SR (9 variable positions):
+    Pos  1: Y (71%) | Y:5, K:1, S:1
+    Pos  2: Y (71%) | Y:5, L:2
+    Pos  3: A (57%) | A:4, P:2, T:1
+    Pos  7: K (86%) | K:6, E:1
+    Pos 17: A (57%) | A:4, S:3
+    ... and 4 more
+  Native (8 variable positions):
+    Pos  1: Y (50%) | Y:2, S:1, L:1
+    Pos  3: A (75%) | A:3, V:1
+    Pos  4: D (75%) | D:3, V:1
+    Pos  6: V (50%) | V:2, L:1, E:1
+    Pos 17: S (75%) | S:3, A:1
+    ... and 3 more
+
+## 4. Key Findings: Do FR2/FR3 Differentiate Strategies?
+
+1. FR2 conservation:
+   - Within BM: 64.7%
+   - Within SR: 76.5%
+   - BM vs SR: 64.7%
+   → BM and SR have SIMILAR FR2 sequences (inter-strategy identity ≈ intra-strategy)
+
+2. FR3 conservation:
+   - Within BM: 89.5%
+   - Within SR: 89.5%
+   - BM vs SR: 86.8%
+   → BM and SR have SIMILAR FR3 sequences
+
+3. VHH hallmark humanization (avg human residues / 4 positions):
+   - BM: 0.1 / 4
+   - SR: 0.0 / 4
+   - Native: 0.0 / 4
+   → All strategies have SIMILAR hallmark profiles (no systematic humanization)
+
+## 5. FINAL VERDICT
+
+🎯 CONCLUSION: STRATEGIES SHOW FR SEQUENCE DIFFERENTIATION
+
+Key differences:
+  - FR2 BM vs SR: 0.0% difference
+  - FR3 BM vs SR: 2.6% difference
+  → True humanization strategies are detectable in framework regions
+
+================================================================================
