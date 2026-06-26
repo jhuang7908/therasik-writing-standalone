@@ -683,7 +683,8 @@ def make_heatmap(data: dict, output: str, **kwargs) -> str:
     fig_w = max(4, n_cols * 0.6 + 2.0)
 
     if cluster and _SNS:
-        g = sns.clustermap(matrix, row_labels=row_labels, col_labels=col_labels,
+        # seaborn.clustermap uses xticklabels/yticklabels (not row_labels/col_labels)
+        g = sns.clustermap(matrix, xticklabels=col_labels, yticklabels=row_labels,
                            cmap=cmap, vmin=vmin, vmax=vmax,
                            annot=annot, fmt=".2f", figsize=(fig_w, fig_h))
         fig = g.fig
@@ -969,31 +970,63 @@ def make_volcano(data: dict, output: str, **kwargs) -> str:
     fig, ax = plt.subplots(figsize=(6 * sv.get("figsize_scale",1.0), 5.5 * sv.get("figsize_scale",1.0)))
     ax.scatter(fc_arr, p_arr, c=colors, alpha=0.6, s=18, edgecolors="none", zorder=2)
 
+    # Axis limits with padding so edge labels and corner counts have headroom
+    if len(fc_arr):
+        fc_pad = (fc_arr.max() - fc_arr.min()) * 0.12 or 0.5
+        p_top  = p_arr.max() if len(p_arr) else 1.0
+        ax.set_xlim(fc_arr.min() - fc_pad, fc_arr.max() + fc_pad)
+        ax.set_ylim(0, p_top * 1.18)   # reserve top ~15% for count labels
+
     # Threshold lines
     ax.axhline(p_thresh, color=GRAY_MED, linewidth=0.7, linestyle="--")
     ax.axvline( fc_thresh, color=GRAY_MED, linewidth=0.7, linestyle="--")
     ax.axvline(-fc_thresh, color=GRAY_MED, linewidth=0.7, linestyle="--")
 
-    # Labels for top genes
-    score = np.abs(fc_arr) * p_arr
+    # Labels for top genes — collision-aware placement
+    score   = np.abs(fc_arr) * p_arr
     top_idx = np.argsort(score)[::-1][:label_top]
+    x_lo, x_hi = ax.get_xlim()
+    y_lo, y_hi = ax.get_ylim()
+    x_off = (x_hi - x_lo) * 0.012
+
+    label_texts = []
     for idx in top_idx:
         g = genes[idx]
-        if g.get("label"):
-            ax.text(fc_arr[idx] + 0.05, p_arr[idx], g["label"],
-                    fontsize=6.5, va="center", color="#333333")
+        if not g.get("label"):
+            continue
+        gx, gy = fc_arr[idx], p_arr[idx]
+        # Point to the inside: right-side points label leftward, left-side rightward
+        if gx >= 0:
+            ha, dx = "right", -x_off
+        else:
+            ha, dx = "left", x_off
+        # Keep labels out of the top band reserved for count text
+        gy_clamped = min(gy, y_hi * 0.95)
+        label_texts.append(
+            ax.text(gx + dx, gy_clamped, g["label"], fontsize=6.5,
+                    va="center", ha=ha, color="#333333", zorder=4)
+        )
 
-    # Count labels
+    # Optional: use adjustText for non-overlapping labels if installed
+    try:
+        from adjustText import adjust_text
+        if label_texts:
+            adjust_text(label_texts, ax=ax,
+                        arrowprops=dict(arrowstyle="-", color=GRAY_LIGHT, lw=0.4))
+    except Exception:
+        pass  # graceful fallback to static collision-aware placement
+
+    # Count labels (reserved top band; ha pulls them clear of plotted points)
     n_up   = sum(1 for fc, p in zip(fc_arr, p_arr) if p >= p_thresh and fc >= fc_thresh)
     n_down = sum(1 for fc, p in zip(fc_arr, p_arr) if p >= p_thresh and fc <= -fc_thresh)
-    ax.text(0.97, 0.97, f"Up: {n_up}", transform=ax.transAxes,
-            fontsize=8, ha="right", va="top", color="#D6604D")
-    ax.text(0.03, 0.97, f"Down: {n_down}", transform=ax.transAxes,
-            fontsize=8, ha="left", va="top", color="#2166AC")
+    ax.text(0.99, 1.02, f"Up: {n_up}", transform=ax.transAxes,
+            fontsize=8, ha="right", va="bottom", color="#D6604D", fontweight="bold")
+    ax.text(0.01, 1.02, f"Down: {n_down}", transform=ax.transAxes,
+            fontsize=8, ha="left", va="bottom", color="#2166AC", fontweight="bold")
 
     ax.set_xlabel("log₂ Fold Change", fontsize=sv.get("label_size",10))
     ax.set_ylabel("−log₁₀(adjusted p-value)", fontsize=sv.get("label_size",10))
-    ax.set_title(title, fontsize=sv.get("title_size",11), fontweight="bold")
+    ax.set_title(title, fontsize=sv.get("title_size",11), fontweight="bold", pad=18)
     _apply_journal_style(ax, sv)
 
     return _save(fig, output, style=sv)

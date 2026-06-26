@@ -3,20 +3,26 @@ multi_expert_review.py
 ======================
 TheraSIK Multi-Expert Manuscript Review Simulation
 
-Three independent reviewer roles applied to a manuscript:
+Six independent reviewer roles:
 
-  Statistician  — statistical methods, sample sizes, p-values, effect sizes,
-                  multiple comparison corrections, reproducibility
-  Domain Expert — claims vs evidence, novelty framing, logic flow, hedging,
-                  overclaiming, limitation disclosure
-  Editor        — journal fit, section structure, word/figure/reference counts,
-                  mandatory declarations, title and abstract quality
+  Statistician          — statistical methods, sample sizes, p-values, effect sizes,
+                          multiple comparison corrections, reproducibility
+  Domain Expert         — claims vs evidence, novelty framing, logic flow, hedging,
+                          overclaiming, limitation disclosure
+  Editor                — journal fit, section structure, word/figure/reference counts,
+                          mandatory declarations, title and abstract quality
+  AI Diagnostician      — AI phrase markers, self-talk, unanchored claims,
+                          sentence rhythm; Gemini-backed with rule fallback
+  Citation Auditor      — citation density, hallucination-risk gaps, topical vs
+                          evidential citations; Gemini-backed with rule fallback
+  Reproducibility       — methods completeness, software + version, cell line
+                          provenance, data deposition; Gemini-backed with rule fallback
 
 Design principles:
-  • Rule-based heuristic — deterministic, no LLM API calls required
+  • Original three roles: rule-based heuristic, deterministic, no LLM required
+  • New three roles: Gemini-1.5-flash backed (free tier) with automatic rule fallback
   • Source-bounded — only flags what is present (or absent) in the manuscript
   • No editorial decision claims — never says "will be rejected/accepted"
-  • Red lines enforced — no invented experiments, no fabricated data suggestions
   • Severity tiers: CRITICAL (must fix) / MAJOR (strongly recommended) / MINOR
 
 Output: {project_dir}/03_QA/multi_expert_review_QA.md
@@ -24,8 +30,8 @@ Output: {project_dir}/03_QA/multi_expert_review_QA.md
 Usage (CLI):
   python scripts/multi_expert_review.py <project_dir>
   python scripts/multi_expert_review.py <project_dir> --reviewer statistician
-  python scripts/multi_expert_review.py <project_dir> --reviewer domain
-  python scripts/multi_expert_review.py <project_dir> --reviewer editor
+  python scripts/multi_expert_review.py <project_dir> --reviewer ai_diagnostician
+  python scripts/multi_expert_review.py <project_dir> --use-llm
 
 Programmatic:
   from multi_expert_review import run_full_review, run_statistician, run_domain_expert, run_editor
@@ -35,12 +41,15 @@ from __future__ import annotations
 
 import argparse
 import json
+import logging
 import os
 import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
+
+logger = logging.getLogger(__name__)
 
 SKILL_DIR   = Path(os.environ.get("THERASIK_DIR", Path(__file__).resolve().parents[1]))
 JOURNAL_DIR = SKILL_DIR / "assets" / "journal_requirements"
@@ -821,26 +830,1005 @@ def run_editor(text: str, config: dict = {}, journal_data: dict | None = None) -
 
 
 # ══════════════════════════════════════════════════════════════════════════════
+# REVIEWER 4 — AI DIAGNOSTICIAN
+# Detects AI-generated prose signatures at sentence, paragraph, and structure
+# level.  Rule-based; no LLM call required.
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── AI phrase markers — English (150+ entries, 8 categories) ─────────────────
+_AI_PHRASES_EN: list[str] = [
+    # 1. Sycophantic / meta openers
+    "it is worth noting", "it is worth mentioning", "it is important to note",
+    "it is important to mention", "it should be noted", "it should be mentioned",
+    "it is crucial to note", "it is essential to note", "it is interesting to note",
+    "importantly,", "notably,", "interestingly,", "remarkably,", "significantly,",
+    "crucially,", "critically,",
+    # 2. Empty value claims
+    "plays a crucial role", "plays a pivotal role", "plays an important role",
+    "plays a vital role", "plays a key role", "plays a central role",
+    "plays a significant role", "plays a fundamental role",
+    "is of paramount importance", "is of utmost importance", "is of great importance",
+    "is of critical importance", "is critically important", "is vitally important",
+    "highlights the importance", "underscores the importance", "emphasizes the importance",
+    "demonstrates the importance", "illustrates the importance",
+    "sheds light on", "paves the way", "paves the way for",
+    "holds great promise", "holds significant promise", "shows great promise",
+    "represents a significant advance", "represents a major advance",
+    "represents an important step", "represents a crucial step",
+    "offers valuable insights", "provides valuable insights",
+    "provides a comprehensive understanding", "offers a comprehensive overview",
+    "provides an in-depth analysis", "offers an in-depth understanding",
+    "a growing body of evidence", "a growing body of literature",
+    "a substantial body of evidence", "a wealth of evidence",
+    "has the potential to", "has the potential for",
+    "opens up new avenues", "opens new possibilities",
+    "is a promising approach", "represents a promising strategy",
+    # 3. Hollow transitions / connectors
+    "in summary,", "in conclusion,", "to summarize,", "to conclude,",
+    "taken together,", "collectively,", "overall,", "in light of",
+    "in this context,", "with this in mind,", "against this backdrop,",
+    "building on this,", "building upon this,", "in line with this,",
+    "consistent with this,", "in accordance with this,",
+    # 4. Filler adjectives / overused intensifiers
+    "pivotal", "paramount", "intricate", "multifaceted", "nuanced",
+    "leverages", "underscores", "groundbreaking", "transformative",
+    "revolutionary", "unprecedented", "game-changing", "game-changer",
+    "paradigm shift", "paradigm-shifting", "state-of-the-art",
+    "cutting-edge", "innovative", "novel approach", "robust framework",
+    "holistic approach", "seamless integration", "dynamic landscape",
+    "rapidly evolving", "ever-evolving", "rapidly advancing",
+    "synergistic", "synergistic effect", "synergistic relationship",
+    "comprehensive framework", "comprehensive approach",
+    # 5. Self-referential / paper describing itself
+    "in this review", "in this study we aim", "this paper aims",
+    "this review aims", "the purpose of this review", "the aim of this study",
+    "this work aims to provide", "this article aims to",
+    "this paper seeks to", "this study seeks to", "this work seeks to",
+    "we aim to provide", "we aim to discuss", "we aim to explore",
+    "this manuscript provides", "the present study aims",
+    "herein, we", "herein we report", "herein we present",
+    # 6. Delve / explore cluster
+    "delve into", "delves into", "delved into",
+    "tapestry", "landscape of", "ecosystem of",
+    "in-depth exploration", "thorough exploration",
+    "comprehensive exploration",
+    # 7. Vague generalisations (hallucination risk)
+    "has been extensively studied", "has been widely studied",
+    "has been well documented", "is well documented",
+    "numerous studies have", "many studies have", "several studies have",
+    "previous research has shown", "prior research has demonstrated",
+    "it is generally accepted", "it is widely accepted",
+    "it is commonly believed", "it is widely believed",
+    "it has long been known", "it is well known that",
+    "evidence suggests that", "evidence indicates that",
+    "research suggests that", "the literature suggests",
+    # 8. Padding / filler sentence starters
+    "first and foremost,", "last but not least,",
+    "needless to say,", "it goes without saying",
+    "as mentioned above", "as mentioned earlier", "as previously mentioned",
+    "as discussed above", "as noted above", "as stated above",
+    "in today's world", "in today's rapidly", "in the modern era",
+    "in recent years,", "in recent decades,", "in the past decade,",
+]
+
+# ── AI phrase markers — Chinese (50+ entries) ────────────────────────────────
+_AI_PHRASES_ZH: list[str] = [
+    # 元叙述（纸描述自己）
+    "本文旨在", "本研究旨在", "本综述旨在", "本文将",
+    "本研究将", "本文从", "本文通过", "本研究通过",
+    # 空泛价值声明
+    "具有重要意义", "具有重要价值", "具有重要作用",
+    "发挥重要作用", "发挥关键作用", "发挥至关重要的作用",
+    "不可或缺", "至关重要", "举足轻重",
+    "具有广阔的应用前景", "具有良好的应用前景",
+    "为……奠定基础", "为……提供新思路", "为……提供理论依据",
+    # 无锚定断言
+    "研究表明", "大量研究表明", "众多研究表明",
+    "已有研究证实", "研究已证明", "已被广泛证明",
+    "已知", "众所周知", "广为人知",
+    # 空洞过渡
+    "值得注意的是", "值得关注的是", "值得指出的是",
+    "值得强调的是", "需要指出的是", "需要强调的是",
+    "与此同时", "此外，", "另外，", "同时，",
+    "综上所述", "总体而言", "总的来说", "总结而言",
+    "在此基础上", "在此背景下", "在此背景下，",
+    # 填充形容词
+    "深入探讨", "系统分析", "全面探讨", "系统综述",
+    "深入分析", "全面分析", "全面了解", "全面认识",
+    "前所未有", "革命性", "突破性", "创新性",
+]
+
+# Combined flat list for fast in-text search
+_AI_PHRASES: list[str] = _AI_PHRASES_EN + _AI_PHRASES_ZH
+
+# ── Transition-word sentence openers ─────────────────────────────────────────
+_AI_OPENER_RE = re.compile(
+    r"^(?:furthermore|moreover|additionally|in addition|"
+    r"however|nevertheless|nonetheless|on the other hand|"
+    r"therefore|thus|hence|consequently|"
+    r"indeed|certainly|clearly|obviously|undoubtedly|"
+    r"notably|importantly|interestingly|remarkably|"
+    r"specifically|particularly|generally|typically|"
+    r"essentially|fundamentally|ultimately|initially|"
+    r"subsequently|finally|lastly)[,\s]",
+    re.IGNORECASE,
+)
+
+# ── Patterns that suggest fabricated / unsourced claims ───────────────────────
+_UNANCHORED_CLAIM_RE = [
+    r"studies\s+have\s+shown\s+that(?!\s*\[|\s*\()",
+    r"(?:it|this)\s+has\s+been\s+(?:well[\s-])?established\s+that(?!\s*\[|\s*\()",
+    r"(?:it\s+is\s+|is\s+)(?:widely|generally|broadly)\s+(?:accepted|recognized|known)\s+that(?!\s*\[|\s*\()",
+    r"research\s+(?:consistently\s+)?(?:shows?|demonstrates?|suggests?)\s+that(?!\s*\[|\s*\()",
+    r"(?:many|numerous|several|previous|prior)\s+studies\s+(?:have|has)\s+(?:shown|demonstrated|reported|found)\s+that(?!\s*\[|\s*\()",
+    r"(?:it\s+is\s+|is\s+)(?:well[\s-])?known\s+that(?!\s*\[|\s*\()",
+    r"evidence\s+(?:suggests?|indicates?|shows?)\s+that(?!\s*\[|\s*\()",
+    r"(?:it\s+has\s+been|has\s+been)\s+(?:well[\s-])?documented\s+that(?!\s*\[|\s*\()",
+]
+
+# ── Empty evaluative adjectives ───────────────────────────────────────────────
+_EMPTY_EVAL_RE = [
+    r"\b(?:excellent|outstanding|remarkable|extraordinary|exceptional|superior|"
+    r"impressive|powerful|strong|robust|remarkable|unprecedented)\s+"
+    r"(?:performance|efficacy|results?|activity|effect|outcome|improvement|reduction)",
+]
+
+# ── Self-talk / first-person AI self-description ──────────────────────────────
+_SELF_TALK_RE = re.compile(
+    r"\b(?:as an ai|as a language model|i am an ai|i cannot|i don'?t have|"
+    r"i was trained|my training data|my knowledge cutoff|"
+    r"作为ai|作为语言模型|我是ai|我是人工智能|我的知识截止|我无法|"
+    r"i must clarify|i should note that i am|as an artificial intelligence)\b",
+    re.IGNORECASE,
+)
+
+# ── Passive voice density ─────────────────────────────────────────────────────
+# Matches "was/were/is/are/been + past participle" constructions
+_PASSIVE_RE = re.compile(
+    r"\b(?:was|were|is|are|been|be|being)\s+"
+    r"(?:\w+ly\s+)?(?:\w+ed|found|shown|observed|reported|demonstrated|"
+    r"performed|conducted|measured|analyzed|evaluated|assessed|used|"
+    r"treated|compared|examined|investigated|determined|identified|"
+    r"calculated|estimated|obtained|detected|confirmed|validated)\b",
+    re.IGNORECASE,
+)
+
+# ── Paragraph opener monotony ─────────────────────────────────────────────────
+# Openers that AI overuses at the start of paragraphs
+_PARA_OPENER_RE = re.compile(
+    r"^(?:the\s+\w+|this\s+\w+|these\s+\w+|in\s+this|in\s+the|"
+    r"to\s+(?:the|our|this)|as\s+a|as\s+an|it\s+is|there\s+is|there\s+are)\b",
+    re.IGNORECASE,
+)
+
+
+def run_ai_diagnostician(text: str, config: dict = {}, use_llm: bool = False) -> dict:
+    """
+    AI Diagnostician: detects AI-generated prose signatures across 6 dimensions.
+
+    When use_llm=True, delegates to Gemini-1.5-flash for deeper semantic analysis.
+    Falls back to rule-based implementation automatically if Gemini is unavailable
+    or returns an unparseable response.
+
+    1. AI phrase markers (canonical LLM vocabulary)
+    2. Transition-word opener density (AI over-relies on sentence connectors)
+    3. Self-talk / meta-description (AI describing itself)
+    4. Unanchored factual claims (assertions without citation)
+    5. Empty evaluative language (subjective praise without data)
+    6. Sentence-length rhythm (AI prose is suspiciously uniform)
+    """
+    if use_llm:
+        try:
+            import llm_backend as _llm
+            result = _llm.call_expert("ai_diagnostician", text)
+            result["_mode"] = "gemini"
+            return result
+        except Exception as exc:
+            logger.warning("AI Diagnostician LLM failed (%s) — falling back to rules.", exc)
+
+    import statistics as _stats
+
+    findings: list[dict] = []
+    score = 10
+
+    body = re.sub(r"```[\s\S]*?```", "", text)
+    body_lines = [ln for ln in body.splitlines() if not ln.startswith("#")]
+    body_clean = " ".join(body_lines)
+    sentences = _sentences(body_clean)
+    n = max(1, len(sentences))
+
+    # ── 1. AI phrase markers ──────────────────────────────────────────────────
+    hits: list[str] = []
+    low = body_clean.lower()
+    for phrase in _AI_PHRASES:
+        phrase_plain = phrase.replace("(ly)", "").replace("(", "").replace(")", "")
+        if phrase_plain in low:
+            ctx = _quote(body_clean, re.escape(phrase_plain), 60)
+            hits.append(f'"{phrase_plain}" — {ctx}')
+    if hits:
+        sev = CRITICAL if len(hits) >= 8 else (MAJOR if len(hits) >= 4 else MINOR)
+        score -= min(4, len(hits) // 2)
+        findings.append(finding(
+            "AI phrase markers", sev,
+            f"{len(hits)} canonical AI phrase(s) detected across manuscript",
+            "\n".join(hits[:5]),
+            "Replace each flagged phrase with precise, evidence-backed language. "
+            "E.g. 'plays a crucial role' → cite the mechanism and quantify it; "
+            "'it is worth noting' → delete the opener, state the fact directly; "
+            "'delves into' → 'examines' or 'analyses'. "
+            "Target: 0 phrase markers before submission.",
+        ))
+
+    # ── 2. Transition-opener density ─────────────────────────────────────────
+    opener_count = sum(
+        1 for s in sentences if _AI_OPENER_RE.match(s.strip()))
+    opener_rate = opener_count / n
+    if opener_rate > 0.18:
+        sev = MAJOR if opener_rate > 0.28 else MINOR
+        score -= 1
+        findings.append(finding(
+            "Transition-opener density", sev,
+            f"{opener_count}/{n} sentences ({opener_rate:.0%}) open with a "
+            "formulaic transition word (AI signature)",
+            "",
+            "Vary sentence structure. Not every paragraph needs a connector. "
+            "Start sentences with the subject or a specific finding instead.",
+        ))
+
+    # ── 3. Self-talk / meta-description ──────────────────────────────────────
+    self_talk_hits = _SELF_TALK_RE.findall(text)
+    meta_hits = [s for s in sentences if re.search(
+        r"in\s+this\s+(?:review|paper|study|article|work)\s+(?:we\s+)?(?:aim|seek|provide|discuss|"
+        r"present|demonstrate|explore|overview|examine|highlight)",
+        s, re.IGNORECASE)]
+    total_self = len(self_talk_hits) + len(meta_hits)
+    if self_talk_hits:
+        score -= 3
+        findings.append(finding(
+            "AI self-talk", CRITICAL,
+            f"AI self-identification language detected ({len(self_talk_hits)} instance(s))",
+            str(self_talk_hits[:3]),
+            "Remove all phrases where the AI describes itself as an AI or a language model. "
+            "This text must not appear in any manuscript or client-facing document.",
+        ))
+    if len(meta_hits) > 4:
+        score -= 1
+        findings.append(finding(
+            "Meta-description", MAJOR,
+            f"{len(meta_hits)} sentences describe the paper's own purpose/structure (AI meta-narration)",
+            meta_hits[0][:120] if meta_hits else "",
+            "Keep one clear aim-of-study sentence in the Introduction. "
+            "Delete repetitions in Abstract, Discussion, and Conclusion that re-announce the paper.",
+        ))
+
+    # ── 4. Unanchored factual claims ─────────────────────────────────────────
+    unanchored: list[str] = []
+    for pat in _UNANCHORED_CLAIM_RE:
+        for m in re.finditer(pat, text, re.IGNORECASE):
+            start = max(0, m.start() - 30)
+            snippet = text[start: m.end() + 80].replace("\n", " ")
+            unanchored.append(snippet[:140])
+    if unanchored:
+        sev = CRITICAL if len(unanchored) >= 3 else MAJOR
+        score -= min(3, len(unanchored))
+        findings.append(finding(
+            "Unanchored claims", sev,
+            f"{len(unanchored)} assertion(s) of established fact with no citation "
+            "(hallucination risk zone)",
+            unanchored[0] if unanchored else "",
+            "Every 'studies have shown that…', 'it is well established that…', and "
+            "'research demonstrates that…' must be immediately followed by [citation]. "
+            "If no citation exists, reframe as a hypothesis or remove the claim.",
+        ))
+
+    # ── 5. Empty evaluative language ─────────────────────────────────────────
+    empty_evals: list[str] = []
+    for pat in _EMPTY_EVAL_RE:
+        for m in re.finditer(pat, text, re.IGNORECASE):
+            start = max(0, m.start() - 20)
+            empty_evals.append(text[start: m.end() + 60].replace("\n", " ")[:100])
+    if empty_evals:
+        findings.append(finding(
+            "Empty evaluative language", MINOR,
+            f"{len(empty_evals)} evaluative phrase(s) with no numeric/mechanistic support",
+            empty_evals[0] if empty_evals else "",
+            "Replace 'excellent/outstanding/remarkable [performance]' with specific metrics "
+            "(e.g. 'achieved 94% sensitivity (95% CI 88–97%) vs 71% for the comparator').",
+        ))
+        score -= 1
+
+    # ── 6. Sentence-length rhythm ─────────────────────────────────────────────
+    wc = [len(s.split()) for s in sentences if len(s.split()) >= 4]
+    if len(wc) >= 15:
+        stdev = _stats.stdev(wc)
+        mean  = _stats.mean(wc)
+        if stdev < 6 and mean > 18:
+            score -= 1
+            findings.append(finding(
+                "Sentence rhythm", MINOR,
+                f"Sentence length suspiciously uniform (mean {mean:.0f} words, "
+                f"σ={stdev:.1f}) — AI prose signature",
+                "",
+                "Mix short punchy sentences with longer analytical ones. "
+                "AI prose tends to a steady 20–28 word cadence throughout.",
+            ))
+
+    # ── 7. Passive voice density ──────────────────────────────────────────────
+    passive_hits = _PASSIVE_RE.findall(body_clean)
+    passive_rate = len(passive_hits) / n
+    if passive_rate > 0.30 and n >= 20:
+        sev = MAJOR if passive_rate > 0.45 else MINOR
+        score -= 1
+        findings.append(finding(
+            "Passive voice density", sev,
+            f"Passive voice rate {passive_rate:.0%} ({len(passive_hits)}/{n} sentences) "
+            f"— AI writing overuses passive constructions",
+            "",
+            "Aim for < 25% passive voice. Rewrite passive results sentences in active "
+            "voice: 'We observed X' instead of 'X was observed'. "
+            "Passive is acceptable in Methods; avoid it in Results/Discussion.",
+        ))
+
+    # ── 8. Paragraph opener monotony ─────────────────────────────────────────
+    paragraphs_raw = [p.strip() for p in body_clean.split("\n\n")
+                      if p.strip() and len(p.split()) > 20]
+    if len(paragraphs_raw) >= 5:
+        opener_matches = sum(
+            1 for p in paragraphs_raw if _PARA_OPENER_RE.match(p))
+        para_opener_rate = opener_matches / len(paragraphs_raw)
+        if para_opener_rate > 0.55:
+            findings.append(finding(
+                "Paragraph opener monotony", MINOR,
+                f"{opener_matches}/{len(paragraphs_raw)} paragraphs ({para_opener_rate:.0%}) "
+                "open with a generic pattern ('The…', 'This…', 'In this…') — AI signature",
+                "",
+                "Vary paragraph openers: start with a key finding, a specific observation, "
+                "a counterpoint, or a named entity. Generic openers flatten academic prose.",
+            ))
+
+    # ── 9. Chinese AI markers ─────────────────────────────────────────────────
+    zh_hits = [ph for ph in _AI_PHRASES_ZH if ph in text]
+    if zh_hits:
+        sev = MAJOR if len(zh_hits) >= 5 else MINOR
+        score -= min(2, len(zh_hits) // 3)
+        findings.append(finding(
+            "Chinese AI phrase markers", sev,
+            f"{len(zh_hits)} Chinese AI writing pattern(s) detected",
+            "；".join(zh_hits[:5]),
+            "Replace generic Chinese AI phrases with precise, evidence-backed expressions. "
+            "E.g. '具有重要意义' → 具体说明重要性的机制和数据；'值得注意的是' → 直接陈述事实。",
+        ))
+
+    score = max(0, min(10, score))
+    critical = [f for f in findings if f["severity"] == CRITICAL]
+    status   = CRITICAL if critical else (MAJOR if score < 7 else "PASS")
+
+    return {
+        "reviewer":          "AI Diagnostician",
+        "score":             score,
+        "status":            status,
+        "findings":          findings,
+        "ai_phrase_count":   len(hits),
+        "unanchored_count":  len(unanchored),
+        "opener_rate":       round(opener_rate, 3),
+        "passive_rate":      round(passive_rate, 3),
+        "zh_phrase_count":   len(zh_hits),
+        "summary": (
+            f"Score {score}/10. "
+            f"{len(hits)} AI phrase(s) (EN), {len(zh_hits)} AI phrase(s) (ZH), "
+            f"{len(unanchored)} unanchored claim(s), "
+            f"{len(self_talk_hits)} self-talk hit(s), "
+            f"passive {passive_rate:.0%}. "
+            f"{len(critical)} critical."
+        ),
+    }
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# REVIEWER 5 — CITATION AUDITOR
+# Checks whether citations are used with evidential intent (not just topical),
+# detects orphan/dangling patterns, and flags hallucination-risk citation gaps.
+# Pure text analysis — no network call.
+# ══════════════════════════════════════════════════════════════════════════════
+
+# Sentences that cite with weak/hedged claim language (TOPICAL risk)
+_TOPICAL_CITE_RE = re.compile(
+    r"(?:related to|associated with|in the context of|regarding|concerning|"
+    r"as reported by|as described by|according to|reviewed in|summarized in|"
+    r"for (?:a )?review,?\s*see)\s*\[?\d",
+    re.IGNORECASE,
+)
+
+# Sentences making strong claims without any citation
+_STRONG_UNCITED_RE = re.compile(
+    r"(?:significantly|markedly|substantially|dramatically|"
+    r"completely|fully|absolutely|definitively)\s+"
+    r"(?:increased?|decreased?|reduced?|improved?|inhibited?|"
+    r"enhanced?|suppressed?|eliminated?|blocked?|prevented?)"
+    r"(?!\s*\[|\s*\(\d)",
+    re.IGNORECASE,
+)
+
+
+def run_citation_auditor(text: str, config: dict = {}, use_llm: bool = False) -> dict:
+    """
+    Citation Auditor: semantic-level citation hygiene check.
+
+    When use_llm=True, delegates to Gemini-1.5-flash for deeper semantic analysis.
+    Falls back to rule-based implementation automatically on any failure.
+
+    1. Citation density — citations per 100 words (too sparse = hallucination risk)
+    2. Claim-citation gap — strong quantitative claims with no citation
+    3. Topical citation pattern — cited for topic not evidence
+    4. Citation clustering — >4 consecutive paragraphs with no citation
+    5. Abstract citation check — abstracts should be self-contained (few/no refs)
+    6. Methods citation — novel methods must be cited
+    """
+    if use_llm:
+        try:
+            import llm_backend as _llm
+            result = _llm.call_expert("citation_auditor", text)
+            result["_mode"] = "gemini"
+            return result
+        except Exception as exc:
+            logger.warning("Citation Auditor LLM failed (%s) — falling back to rules.", exc)
+
+    findings: list[dict] = []
+    score = 10
+
+    # Strip code/figure captions
+    clean = re.sub(r"```[\s\S]*?```", "", text)
+
+    # Count in-text citations [n] or (Author Year)
+    bracket_cites = re.findall(r"\[\d+(?:,\s*\d+)*\]", clean)
+    author_cites  = re.findall(r"\([A-Z][a-z]+(?:\s+et\s+al\.?)?,?\s*\d{4}\)", clean)
+    total_cites   = len(bracket_cites) + len(author_cites)
+    word_count    = max(1, len(re.findall(r"\b\w+\b", clean)))
+    cite_density  = total_cites / word_count * 100  # per 100 words
+
+    # ── 1. Citation density ───────────────────────────────────────────────────
+    if cite_density < 0.5 and word_count > 800:
+        sev = CRITICAL if cite_density < 0.2 else MAJOR
+        score -= 2
+        findings.append(finding(
+            "Citation density", sev,
+            f"Only {total_cites} citation(s) in {word_count:,} words "
+            f"({cite_density:.2f}/100 words) — hallucination risk",
+            "",
+            "A typical research article cites 0.8–2.0 refs per 100 words. "
+            "Review every factual claim and ensure it is supported by a citation. "
+            "Missing citations are a primary vector for AI-hallucinated 'facts'.",
+        ))
+    elif cite_density > 4.0:
+        findings.append(finding(
+            "Citation density", MINOR,
+            f"Very high citation density ({cite_density:.1f}/100 words) — "
+            "may indicate citation padding",
+            "",
+            "Ensure each citation is genuinely evidential. Remove topical/decorative citations.",
+        ))
+
+    # ── 2. Strong quantitative claims without citations ───────────────────────
+    uncited_strong = []
+    for m in _STRONG_UNCITED_RE.finditer(clean):
+        start = max(0, m.start() - 40)
+        uncited_strong.append(clean[start: m.end() + 80].replace("\n", " ")[:130])
+    if uncited_strong:
+        sev = CRITICAL if len(uncited_strong) >= 3 else MAJOR
+        score -= min(3, len(uncited_strong))
+        findings.append(finding(
+            "Uncited strong claims", sev,
+            f"{len(uncited_strong)} quantitative/absolute claim(s) with no immediately "
+            "following citation (hallucination risk zone)",
+            uncited_strong[0] if uncited_strong else "",
+            "Every claim of a measured effect (significantly increased, markedly reduced, …) "
+            "must be followed immediately by [n] or (Author Year). "
+            "If no citation exists, remove the quantifier or soften to 'may'.",
+        ))
+
+    # ── 3. Topical citation patterns ─────────────────────────────────────────
+    topical_hits = _TOPICAL_CITE_RE.findall(clean)
+    if len(topical_hits) > 3:
+        findings.append(finding(
+            "Topical citation pattern", MINOR,
+            f"{len(topical_hits)} citation(s) use topic-linking language "
+            "('related to [n]', 'as reviewed in [n]') — may be TOPICAL not EVIDENTIAL",
+            topical_hits[0] if topical_hits else "",
+            "Prefer evidential framing: 'Smith et al. demonstrated X [n]' over "
+            "'X has been studied [n]'. Topical citations do not support quantitative claims.",
+        ))
+
+    # ── 4. Citation-free paragraph clusters ──────────────────────────────────
+    paragraphs = [p.strip() for p in re.split(r"\n{2,}", clean)
+                  if p.strip() and not p.strip().startswith("#")
+                  and len(p.split()) > 40]
+    has_cite = [bool(re.search(r"\[\d|\([A-Z][a-z].*\d{4}\)", p)) for p in paragraphs]
+    max_gap = 0
+    cur_gap = 0
+    for c in has_cite:
+        cur_gap = 0 if c else cur_gap + 1
+        max_gap = max(max_gap, cur_gap)
+    if max_gap >= 4:
+        score -= 1
+        findings.append(finding(
+            "Citation-free paragraphs", MAJOR,
+            f"Up to {max_gap} consecutive paragraphs without any citation",
+            "",
+            "Long stretches of text without citations suggest either original synthesis "
+            "(acceptable in Discussion — label as author interpretation) or AI-generated "
+            "fill (flag for manual review and citation search).",
+        ))
+
+    # ── 5. Abstract citation policy ──────────────────────────────────────────
+    abstract = _section_text(text, "Abstract")
+    if abstract:
+        abs_cites = len(re.findall(r"\[\d+\]|\([A-Z][a-z]+.*?\d{4}\)", abstract))
+        if abs_cites > 5:
+            findings.append(finding(
+                "Abstract citations", MINOR,
+                f"Abstract contains {abs_cites} citation(s) — most journals prefer "
+                "abstracts to be self-contained",
+                "",
+                "Check journal policy on abstract citations. Nature, NEJM, Cell, and most "
+                "clinical journals require citation-free abstracts.",
+            ))
+
+    # ── 6. Methods section citation check ────────────────────────────────────
+    methods = _section_text(text, "Methods") or _section_text(text, "Materials and Methods")
+    if methods:
+        novel_method = bool(re.search(
+            r"(?:novel|new|modified|adapted|custom|in-house|developed)\s+"
+            r"(?:method|assay|protocol|algorithm|pipeline|approach|tool)",
+            methods, re.IGNORECASE,
+        ))
+        methods_cites = len(re.findall(r"\[\d+\]|\([A-Z][a-z]+.*?\d{4}\)", methods))
+        method_words  = len(methods.split())
+        method_density = methods_cites / max(1, method_words) * 100
+        if novel_method and methods_cites == 0:
+            score -= 1
+            findings.append(finding(
+                "Methods citation", MAJOR,
+                "Novel/modified method described in Methods section has no citations",
+                "",
+                "Cite the original method protocol and any adaptations. "
+                "Un-cited novel methods cannot be reproduced.",
+            ))
+        elif method_density < 0.3 and method_words > 300:
+            findings.append(finding(
+                "Methods citation density", MINOR,
+                f"Methods section has low citation density ({method_density:.2f}/100 words, "
+                f"{methods_cites} citation(s) in {method_words} words)",
+                "",
+                "Standard statistical tests, assay kits, and established protocols "
+                "should all be cited to their authoritative source.",
+            ))
+
+    # ── 7. DOI / PMID extraction + format validation ──────────────────────────
+    try:
+        import citation_verifier as _cv
+        extracted_dois  = _cv.extract_dois(clean)
+        extracted_pmids = _cv.extract_pmids(clean)
+        bad_format = [d for d in extracted_dois if not _cv.DOI_FORMAT.match(d)]
+        if bad_format:
+            score -= 1
+            findings.append(finding(
+                "DOI format", MAJOR,
+                f"{len(bad_format)} DOI(s) with invalid format (not matching 10.xxxx/suffix)",
+                "; ".join(bad_format[:4]),
+                "Correct malformed DOIs. Valid DOI format: 10.XXXX/suffix. "
+                "Malformed DOIs are a hallucination signal.",
+            ))
+        _cv_available = True
+        _n_dois  = len(extracted_dois)
+        _n_pmids = len(extracted_pmids)
+    except ImportError:
+        _cv_available = False
+        _n_dois = _n_pmids = 0
+        bad_format = []
+
+    # ── 8. Live verification: S2 → CrossRef → PubMed (optional, use_llm flag) ─
+    verified_count = not_found_count = 0
+    if _cv_available and use_llm:
+        try:
+            vr = _cv.verify_all(clean, max_dois=20, max_pmids=8)
+            verified_count  = vr["dois"]["verified"] + vr["pmids"]["verified"]
+            not_found_count = (len(vr["dois"]["not_found"])
+                               + len(vr["pmids"]["not_found"])
+                               + len(vr["dois"]["invalid"]))
+            sev_map = {"CRITICAL": CRITICAL, "MAJOR": MAJOR,
+                       "MINOR": MINOR, "INFO": INFO}
+            for f in vr["findings"]:
+                findings.append({
+                    "category":       f.get("category", "Citation verification"),
+                    "severity":       sev_map.get(f.get("severity", "INFO"), INFO),
+                    "issue":          f.get("issue", ""),
+                    "evidence":       f.get("evidence", ""),
+                    "recommendation": f.get("recommendation", ""),
+                })
+                if f.get("severity") in ("CRITICAL", "MAJOR"):
+                    score -= 1
+        except Exception as exc:
+            logger.warning("Citation verification (S2/CrossRef/PubMed) failed: %s", exc)
+    elif _cv_available and (_n_dois + _n_pmids) > 0:
+        findings.append(finding(
+            "Citation verification", INFO,
+            f"{_n_dois} DOI(s) + {_n_pmids} PMID(s) found — "
+            "run with use_llm=True to verify via S2 / CrossRef / PubMed",
+            "", "",
+        ))
+
+    score = max(0, min(10, score))
+    critical = [f for f in findings if f["severity"] == CRITICAL]
+    status   = CRITICAL if critical else (MAJOR if score < 7 else "PASS")
+
+    verify_note = (f", {verified_count} verified / {not_found_count} not_found"
+                   if (verified_count or not_found_count) else "")
+    return {
+        "reviewer":        "Citation Auditor",
+        "score":           score,
+        "status":          status,
+        "findings":        findings,
+        "total_citations": total_cites,
+        "cite_density":    round(cite_density, 3),
+        "uncited_strong":  len(uncited_strong),
+        "dois_found":      _n_dois,
+        "pmids_found":     _n_pmids,
+        "dois_verified":   verified_count,
+        "dois_not_found":  not_found_count,
+        "summary": (
+            f"Score {score}/10. "
+            f"{total_cites} citation(s), density {cite_density:.2f}/100 words. "
+            f"{len(uncited_strong)} uncited strong claim(s). "
+            f"{_n_dois} DOI(s) + {_n_pmids} PMID(s) extracted"
+            f"{verify_note}. {len(critical)} critical."
+        ),
+    }
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# REVIEWER 6 — REPRODUCIBILITY REVIEWER
+# Checks whether experiments, analyses, and data are described with enough
+# detail for an independent lab to reproduce them.
+# ══════════════════════════════════════════════════════════════════════════════
+
+_REPRODUCIBILITY_REQUIRED = [
+    # (label, regex_to_find_claim, regex_to_find_detail)
+    ("Sample size / n", r"\bn\s*=\s*\d|n\s*=\s*\d", None),   # presence check only
+    ("Statistical software", r"\bstatistic|\banalys",
+     r"\bR\b|\bspss\b|\bprism\b|\bsas\b|\bstata\b|\bpython\b|\bscipy\b|\bmatlab\b"),
+    ("Software version", r"\bR\b|\bspss\b|\bprism\b|\bpython\b",
+     r"v(?:ersion)?\s*\d|\d+\.\d+"),
+    ("Cell line source / authentication", r"\bcell\s+line|\bHEK|\bCHO|\bJurkat|\bRaji\b",
+     r"ATCC|DSMZ|mycoplasma|STR|authentcat"),
+    ("Antibody clone / catalog", r"\bantibod(?:y|ies)|\bmAb\b|\bIgG\b",
+     r"clone\s+\w+|catalog\s*(?:no\.?|number|#)|Cat\.?\s*(?:no\.?|#)"),
+]
+
+
+def run_reproducibility_reviewer(text: str, config: dict = {}, use_llm: bool = False) -> dict:
+    """
+    Reproducibility Reviewer: checks methods for independent replication.
+
+    When use_llm=True, delegates to Gemini-1.5-flash for deeper semantic analysis.
+    Falls back to rule-based implementation automatically on any failure.
+
+    1. Materials & Methods section completeness
+    2. Sample size / statistical power reported
+    3. Software + version specified
+    4. Cell line / reagent provenance
+    5. Data / code availability statement
+    6. Randomisation & blinding (for in vivo / clinical)
+    7. Raw data deposition (repository link)
+    """
+    if use_llm:
+        try:
+            import llm_backend as _llm
+            result = _llm.call_expert("reproducibility", text)
+            result["_mode"] = "gemini"
+            return result
+        except Exception as exc:
+            logger.warning("Reproducibility Reviewer LLM failed (%s) — falling back to rules.", exc)
+
+    findings: list[dict] = []
+    score = 10
+
+    methods = (_section_text(text, "Methods")
+               or _section_text(text, "Materials and Methods")
+               or _section_text(text, "Material and Methods"))
+
+    # ── 1. Methods section existence ─────────────────────────────────────────
+    if not methods or len(methods.split()) < 100:
+        score -= 3
+        findings.append(finding(
+            "Methods section", CRITICAL,
+            "Methods section absent or too short (<100 words)",
+            "",
+            "A complete Methods section is required for reproducibility. "
+            "Include detailed protocols for each experiment.",
+        ))
+        # Cannot perform further methods checks without section
+        methods = text  # fall back to full text for remaining checks
+
+    # ── 2. Sample size ────────────────────────────────────────────────────────
+    n_match = re.search(r"\bn\s*=\s*(\d+)", text, re.IGNORECASE)
+    if not n_match:
+        score -= 1
+        findings.append(finding(
+            "Sample size", MAJOR,
+            "No explicit sample size (n=) found in manuscript",
+            "",
+            "State the sample size (n) for every experimental group. "
+            "If this is a computational study, state the dataset size.",
+        ))
+
+    # ── 3. Statistical software + version ────────────────────────────────────
+    stat_software = bool(re.search(
+        r"\bR\s+(?:version\s+)?\d|\bSPSS\s+(?:v|version\s+)?\d|\bPrism\s+(?:v|version\s+)?\d|"
+        r"Python\s+\d|\bGraphPad\b|\bSAS\s+\d|\bSTATA\s+\d|\bSciPy\b|\bscikit-learn\b",
+        methods, re.IGNORECASE,
+    ))
+    if not stat_software and re.search(
+        r"\bstatistic|\banalys|\btest\b|\banova|\bregression", methods, re.IGNORECASE
+    ):
+        score -= 1
+        findings.append(finding(
+            "Statistical software", MAJOR,
+            "Statistical analysis mentioned but software/version not specified",
+            "",
+            "State the exact software and version used for all statistical analyses, "
+            "e.g. 'R version 4.3.1 (R Core Team, 2023)' or 'GraphPad Prism 10 (GraphPad, San Diego)'.",
+        ))
+
+    # ── 4. Cell line / reagent provenance ────────────────────────────────────
+    has_cell = bool(re.search(
+        r"\bcell\s+line|\bHEK\b|\bCHO\b|\bJurkat\b|\bRaji\b|\bHeLa\b|\bvero\b",
+        text, re.IGNORECASE,
+    ))
+    if has_cell:
+        has_source = bool(re.search(r"ATCC|DSMZ|ECACC|JCRB", methods, re.IGNORECASE))
+        has_auth   = bool(re.search(r"mycoplasma|STR\s+profile|authent", methods, re.IGNORECASE))
+        if not has_source:
+            score -= 1
+            findings.append(finding(
+                "Cell line provenance", MAJOR,
+                "Cell line(s) used but source repository (ATCC / DSMZ) not cited",
+                "",
+                "State the source (ATCC, DSMZ, JCRB) and catalog/accession number "
+                "for each cell line. Editors and reviewers increasingly require this.",
+            ))
+        if not has_auth:
+            findings.append(finding(
+                "Cell authentication", MINOR,
+                "Cell line authentication (mycoplasma / STR profiling) not mentioned",
+                "",
+                "State whether cells were tested for mycoplasma and/or authenticated "
+                "by STR profiling. This is standard in Nature, Cell, and most high-impact journals.",
+            ))
+
+    # ── 5. Antibody specification ─────────────────────────────────────────────
+    has_ab = bool(re.search(r"\bantibod(?:y|ies)\b|\bmAb\b", text, re.IGNORECASE))
+    if has_ab:
+        has_clone   = bool(re.search(r"\bclone\b|\bCat\.?\s*(?:no\.?|#)", methods, re.IGNORECASE))
+        has_catalog = bool(re.search(r"\d{4,}-\d{3,}|catalog\s+(?:no|number|#)", methods, re.IGNORECASE))
+        if not (has_clone or has_catalog):
+            findings.append(finding(
+                "Antibody specification", MAJOR,
+                "Antibody/mAb used but clone name or catalog number not provided",
+                "",
+                "List antibody vendor, clone name, and catalog number for every antibody used. "
+                "Example: 'anti-CD3 (clone OKT3; BioLegend cat. 317302)'.",
+            ))
+
+    # ── 6. Randomisation and blinding (in vivo / clinical) ───────────────────
+    in_vivo = bool(re.search(
+        r"\banimals?\b|\bmice\b|\brats?\b|\bmurine\b|\bin\s+vivo\b|\bclinical\s+trial\b",
+        text, re.IGNORECASE,
+    ))
+    if in_vivo:
+        has_random = bool(re.search(r"randomis|randomiz|randomly\s+assigned", methods, re.IGNORECASE))
+        has_blind  = bool(re.search(r"\bblind(?:ed|ing)?\b|\bmasked?\b", methods, re.IGNORECASE))
+        if not has_random:
+            score -= 1
+            findings.append(finding(
+                "Randomisation", MAJOR,
+                "In vivo / clinical study does not describe randomisation procedure",
+                "",
+                "State explicitly how subjects/animals were randomised to groups. "
+                "Required by ARRIVE 2.0, CONSORT, and most journal policies.",
+            ))
+        if not has_blind:
+            findings.append(finding(
+                "Blinding", MINOR,
+                "In vivo / clinical study does not mention blinding",
+                "",
+                "State whether outcome assessors were blinded to group allocation. "
+                "If blinding was not possible, explain why.",
+            ))
+
+    # ── 7. Data / code availability ───────────────────────────────────────────
+    data_avail = bool(re.search(
+        r"data\s+availability|data\s+(?:are\s+)?(?:available|deposited|accessible)|"
+        r"raw\s+data|source\s+data|supplementary\s+data|repository|zenodo|figshare|"
+        r"github\.com|dryad|arrayexpress|geo\b|sra\b|sequence.*deposited",
+        text, re.IGNORECASE,
+    ))
+    if not data_avail:
+        score -= 1
+        findings.append(finding(
+            "Data availability", MAJOR,
+            "No data availability statement or repository link detected",
+            "",
+            "Add a 'Data Availability' section. Deposit raw data in a public repository "
+            "(Zenodo, Figshare, GEO, SRA, GitHub) and provide the accession/DOI. "
+            "This is mandatory for Nature, Cell, Science, PLOS, and most BMC journals.",
+        ))
+    else:
+        # Check for actual accession numbers
+        has_accession = bool(re.search(
+            r"GSE\d{4,}|PRJNA\d{4,}|E-MTAB-\d{4,}|zenodo\.org/\d|10\.\d{4,}/zenodo|"
+            r"figshare\.com/\d|github\.com/\S+/\S+",
+            text, re.IGNORECASE,
+        ))
+        if not has_accession:
+            findings.append(finding(
+                "Repository accession", MINOR,
+                "Data availability mentioned but no repository accession number found",
+                "",
+                "Replace placeholder text ('data will be available upon request') with "
+                "a real accession number or DOI. Reviewers increasingly reject "
+                "'available upon request' statements.",
+            ))
+
+    score = max(0, min(10, score))
+    critical = [f for f in findings if f["severity"] == CRITICAL]
+    status   = CRITICAL if critical else (MAJOR if score < 7 else "PASS")
+
+    return {
+        "reviewer": "Reproducibility Reviewer",
+        "score":    score,
+        "status":   status,
+        "findings": findings,
+        "summary": (
+            f"Score {score}/10. "
+            f"{len(critical)} critical, "
+            f"{len([f for f in findings if f['severity']==MAJOR])} major, "
+            f"{len([f for f in findings if f['severity']==MINOR])} minor."
+        ),
+    }
+
+
+# ══════════════════════════════════════════════════════════════════════════════
 # ORCHESTRATOR
 # ══════════════════════════════════════════════════════════════════════════════
+
+def run_grammar_expert(
+    text: str,
+    config: dict = {},
+    min_confidence: str = "MEDIUM",
+) -> dict:
+    """
+    Grammar Expert (role 7): LanguageTool-based grammar & punctuation check.
+
+    AI judgment layer: 4-stage filter (category whitelist → rule-ID blacklist →
+    technical term skip → context-aware confidence scoring) drastically reduces
+    false positives for biomedical prose.
+
+    Output philosophy:
+      Every finding is a SUGGESTION, not a hard error. Each suggestion carries
+      a confidence level (HIGH / MEDIUM) and a judgment_note. The AI agent or
+      author has full discretion over whether to adopt each suggestion.
+
+    LanguageTool availability:
+      Uses the free public API (api.languagetool.org). If the API is unreachable
+      (network restrictions, rate limiting), returns an INFO-level notice with
+      no findings rather than raising an error.
+    """
+    try:
+        import language_tool as _lt
+    except ImportError:
+        return {
+            "reviewer": "Grammar Expert",
+            "score": None,
+            "status": INFO,
+            "findings": [finding(
+                "Dependency", INFO,
+                "language_tool.py not found in scripts directory",
+                "",
+                "Ensure language_tool.py is present alongside multi_expert_review.py",
+            )],
+            "_mode": "unavailable",
+        }
+
+    # Connectivity check (fast, < 5s)
+    if not _lt.is_available(timeout=5):
+        return {
+            "reviewer": "Grammar Expert",
+            "score": None,
+            "status": INFO,
+            "findings": [finding(
+                "LanguageTool connectivity", INFO,
+                "LanguageTool public API unreachable in current environment",
+                "api.languagetool.org — no response within 5s",
+                "Grammar check skipped. Run in an environment with internet access "
+                "or set LT_URL to a self-hosted LanguageTool instance.",
+            )],
+            "_mode": "offline",
+        }
+
+    try:
+        report = _lt.check_manuscript(text, min_confidence=min_confidence)
+    except RuntimeError as exc:
+        return {
+            "reviewer": "Grammar Expert",
+            "score": None,
+            "status": INFO,
+            "findings": [finding(
+                "LanguageTool error", INFO,
+                str(exc), "", "Check internet access and retry.",
+            )],
+            "_mode": "error",
+        }
+
+    high   = report["high_count"]
+    medium = report["medium_count"]
+    total  = report["total_reported"]
+    raw    = report["total_raw"]
+
+    # Score: start at 10, deduct for HIGH (−1 each, max −5) + MEDIUM (−0.5 each, max −2)
+    score = round(max(0, 10 - min(high, 5) - min(medium * 0.5, 2)), 1)
+    status = CRITICAL if high >= 8 else MAJOR if high >= 3 else MINOR if total > 0 else "PASS"
+
+    # Prepend noise-reduction summary finding
+    findings = report["findings"]  # already in multi_expert_review format
+
+    return {
+        "reviewer":      "Grammar Expert",
+        "score":         score,
+        "status":        status,
+        "findings":      findings,
+        "suggestions":   report["suggestions"],   # full detail for MCP consumers
+        "raw_count":     raw,
+        "filtered_count": report["total_filtered"],
+        "reported_count": total,
+        "tech_terms_identified": report["tech_terms_found"],
+        "_mode": "languagetool",
+    }
+
 
 def run_full_review(
     project_dir: str | Path,
     reviewers: list[str] | None = None,
+    use_llm: bool = False,
+    grammar_confidence: str = "MEDIUM",
 ) -> dict:
     """
     Run multi-expert review on a manuscript project.
 
+    Reviewer roster (7 roles):
+      statistician          — statistical methods, effect sizes, corrections
+      domain                — overclaiming, causal language, logic flow
+      editor                — journal fit, word counts, declarations
+      ai_diagnostician      — AI phrase markers, self-talk, unanchored claims
+      citation_auditor      — citation density, hallucination gaps, topical cites
+      reproducibility       — methods completeness, data deposition, reagent provenance
+      grammar               — LanguageTool grammar/punctuation (4-layer filter + AI judgment)
+
     Args:
-        project_dir: Path to manuscript project directory.
-        reviewers:   Subset of ['statistician', 'domain', 'editor']. Default: all three.
+        project_dir:        Path to manuscript project directory.
+        reviewers:          Subset of the 7 roles. Default: all seven.
+        use_llm:            If True, ai_diagnostician, citation_auditor, and
+                            reproducibility call Gemini-2.5-flash with rule fallback.
+        grammar_confidence: Minimum confidence threshold for Grammar Expert
+                            suggestions ("HIGH" | "MEDIUM" | "LOW"). Default "MEDIUM".
 
     Returns:
         Full review result dict with per-reviewer findings and priority action list.
     """
     proj = Path(project_dir).resolve()
     if reviewers is None:
-        reviewers = ["statistician", "domain", "editor"]
+        reviewers = ["statistician", "domain", "editor",
+                     "ai_diagnostician", "citation_auditor", "reproducibility",
+                     "grammar"]
 
     # Load config
     config: dict = {}
@@ -870,6 +1858,15 @@ def run_full_review(
         results["domain"] = run_domain_expert(text, config)
     if "editor" in reviewers:
         results["editor"] = run_editor(text, config, journal_data)
+    if "ai_diagnostician" in reviewers:
+        results["ai_diagnostician"] = run_ai_diagnostician(text, config, use_llm=use_llm)
+    if "citation_auditor" in reviewers:
+        results["citation_auditor"] = run_citation_auditor(text, config, use_llm=use_llm)
+    if "reproducibility" in reviewers:
+        results["reproducibility"] = run_reproducibility_reviewer(text, config, use_llm=use_llm)
+    if "grammar" in reviewers:
+        results["grammar"] = run_grammar_expert(text, config,
+                                                min_confidence=grammar_confidence)
 
     # Build unified priority action list
     all_findings: list[dict] = []
@@ -1005,14 +2002,33 @@ def main():
     parser = argparse.ArgumentParser(description="TheraSIK Multi-Expert Manuscript Review")
     parser.add_argument("project_dir", help="Path to manuscript project directory")
     parser.add_argument(
-        "--reviewer", choices=["statistician", "domain", "editor"],
-        help="Run only one reviewer (default: all three)"
+        "--reviewer",
+        choices=["statistician", "domain", "editor",
+                 "ai_diagnostician", "citation_auditor", "reproducibility",
+                 "grammar"],
+        help="Run only one reviewer (default: all seven)"
+    )
+    parser.add_argument(
+        "--grammar-confidence",
+        choices=["HIGH", "MEDIUM", "LOW"],
+        default="MEDIUM",
+        help="Minimum confidence for Grammar Expert suggestions (default: MEDIUM)",
     )
     parser.add_argument("--json", action="store_true", help="Output raw JSON")
+    parser.add_argument(
+        "--use-llm", action="store_true",
+        help="Enable Gemini-1.5-flash for ai_diagnostician, citation_auditor, reproducibility "
+             "(requires GEMINI_API_KEY; falls back to rules automatically)"
+    )
     args = parser.parse_args()
 
     reviewers = [args.reviewer] if args.reviewer else None
-    result    = run_full_review(args.project_dir, reviewers=reviewers)
+    result    = run_full_review(
+        args.project_dir,
+        reviewers=reviewers,
+        use_llm=getattr(args, "use_llm", False),
+        grammar_confidence=getattr(args, "grammar_confidence", "MEDIUM"),
+    )
 
     if "error" in result:
         print(f"ERROR: {result['error']}", file=sys.stderr)
@@ -1029,7 +2045,8 @@ def main():
     print()
 
     for role, r in result.get("reviewers", {}).items():
-        print(f"  {r['reviewer']:<20} score={r['score']}/10  {r['status']}")
+        mode_tag = f" [gemini]" if r.get("_mode") == "gemini" else " [rules]"
+        print(f"  {r['reviewer']:<22} score={r['score']}/10  {r['status']}{mode_tag}")
         for f in r.get("findings", []):
             if f["severity"] != INFO:
                 icon = sev_icon.get(f["severity"], "·")

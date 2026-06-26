@@ -4,6 +4,9 @@
 # MCP protocol (required)
 mcp>=1.0.0
 
+# .env license keys (required for local dev / SSE)
+python-dotenv>=1.0.0
+
 # PDF full-text extraction (optional but recommended)
 pdfplumber>=0.10.0
 
@@ -12,3 +15,17 @@ numpy>=1.24.0
 
 # HTTP requests are handled via stdlib urllib -- no extra dep needed
 # SQLite is bundled with Python (no install needed)
+
+# CSL citation rendering (format_citations engine)
+citeproc-py>=0.9.0
+
+# Optional: guideline scraper text fallback (journal_db + local scraper)
+beautifulsoup4>=4.12.0
+requests>=2.28.0
+
+# Gemini-backed expert reviewers (AI Diagnostician, Citation Auditor, Reproducibility)
+# Free tier: 15 RPM / 1M tokens per day — no payment required for self-use
+# Falls back to rule-based mode automatically if not installed or GEMINI_API_KEY absent
+# Requires GEMINI_API_KEY env var (get free key at https://aistudio.google.com/)
+google-genai>=1.0.0                # current SDK (preferred)
+# google-generativeai>=0.8.0      # legacy SDK (auto-fallback if google-genai absent)

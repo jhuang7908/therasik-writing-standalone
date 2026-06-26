@@ -10,3 +10,13 @@ __pycache__/
 *.pyc
 customer_data/
 private_projects/
+
+# ── Proprietary IP — DO NOT commit to GitHub ──────────────────────────────────
+# Journal requirements database (10,452 files — InSynBio confidential)
+assets/journal_requirements/*.json
+assets/journal_requirements/scraped/
+# Local literature SQLite (user-specific)
+assets/literature_db/*.db
+assets/literature_db/*.db-journal
+# CSL style cache (auto-downloaded)
+assets/csl_styles/

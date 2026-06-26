@@ -1,3 +1,4 @@
+<!-- version: qa_rules_2026-06-26b | last_updated: 2026-06-26 | changed: Evidence and Reference QA (+4 rules); Citation Abstract Verification (completed + extended); Manuscript QA AI markers (expanded); Multi-Expert Reviewer QA (new section); Citation Insertion Pre-Commit Checklist (new section); Reference Renumbering Integrity (new rule) -->
 # QA Gates
 
 ## AI Usage Boundary (Traffic Light)
@@ -34,6 +35,10 @@ Block release when:
 - a claim is not supported by its citation
 - references are relevant only topically but not evidentially
 - citation order or insertion does not match journal requirements
+- reference list contains entries with no corresponding in-text citation (floating/uncited references); count must be zero before submission
+- reference list contains non-reference content such as editor notes, word counts, or revision markers
+- BIB/RIS source file diverges from the DOCX reference list after any manual edits (re-export or manually sync before final render)
+- a citation is inserted at a sentence that does not match the paper's subject matter (topically misplaced citation)
 
 For each major claim, the QA report must include a claim-evidence entry:
 
@@ -53,6 +58,36 @@ Block release when:
 - no explicit thesis, negative recommendation, or stop-rule exists in sparse-evidence reviews
 - retargeted manuscript only changes journal format without conceptual repositioning
 - author voice is absent where an expert Perspective/Review requires judgment
+
+### AI Writing Style Detection
+
+AI-generated prose has recognizable fingerprints. Flag and block release when three or more of the following are detected in any 500-word window:
+
+**Structural markers:**
+- bullet lists embedded in prose where continuous argument is expected
+- numbered sub-arguments inside a paragraph (1. ... 2. ... 3. ...)
+- section-opening "topic sentence + three supporting bullets" pattern
+- self-referential commentary ("In this section, we discuss...", "As described above...")
+- Markdown syntax in DOCX body (**, ##, ^, ---, \*, -)
+
+**Lexical markers:**
+- overused transitions: "furthermore", "moreover", "notably", "importantly", "it is worth noting", "it is crucial", "it is important to emphasize"
+- AI intensifiers: "delves into", "underscores", "highlights the importance of", "paves the way for"
+- uniform hedging: every claim ends with "suggesting that" or "indicating that" with no variation
+- absence of field-specific jargon where domain experts would naturally use it
+
+**Epistemic markers:**
+- claims stated without competing interpretation or acknowledged limitation
+- no negative results or null hypotheses discussed where data warrant them
+- absence of first-person expert judgment in Perspective/Opinion articles
+- every sentence in a paragraph has equal grammatical weight (no topic-sentence hierarchy)
+
+**Sentence rhythm markers (machine-checkable via insynbio_polishing.py):**
+- mean sentence length between 18–24 words with SD < 6 (uniform rhythm)
+- fewer than 10% of sentences are fewer than 10 words or more than 35 words
+- passive voice rate > 60% in Methods; > 40% in Results or Discussion
+
+Run `python scripts/insynbio_polishing.py` on each section. Block release if AI marker count exceeds threshold (default: 3 markers per 500-word window). Record per-section output in the QA report.
 
 Recommended section writing order (revise in this sequence to keep argument coherent):
 Results → Introduction → Title → Discussion → Methods → Abstract
@@ -89,26 +124,60 @@ When a reviewer simulation is run as part of pre-submission QA, block delivery w
 - assessment claims editorial certainty ("this belongs in Nature") without a source-bounded basis
 - technical failings are omitted when provided evidence does not establish the authors' case
 
-## Format and Render QA
+## Citation Abstract Verification in Network-Constrained Environments
+
+When the sandbox cannot reach PubMed, CrossRef, or Semantic Scholar (network blocked or rate-limited):
+
+- Do NOT mark citation status as FAIL solely because abstracts cannot be fetched. Use status `CANNOT_VERIFY_IN_SANDBOX` instead.
+- Do NOT skip the citation step. Record which DOIs were attempted, which succeeded, and which are blocked.
+- DO mark the overall Citation Verifier gate as `HUMAN_PENDING` (not PASS) and flag it as a required author action before submission.
+
+**Author local verification instructions:**
+
+For each DOI with status `CANNOT_VERIFY_IN_SANDBOX`:
+
+1. Run locally: `python scripts/literature_db.py add-doi <DOI>` (fetches abstract from PubMed/CrossRef)
+2. After all DOIs imported: `python scripts/citation_verifier.py --project <project_dir>`
+3. Review citations with overlap score < 0.15 manually — these are high-risk for relevance errors.
+4. Resolve any FAIL items before submission.
+
+**Sandbox workaround (partial):**
+
+If Semantic Scholar is accessible (not rate-limited), use:
+`GET https://api.semanticscholar.org/graph/v1/paper/DOI:{doi}?fields=abstract,title`
+
+Batch size ≤ 5 requests at a time to avoid rate limiting. Record partial results.
+
+## Multi-Expert Reviewer QA
 
 Block release when:
 
-- DOCX lacks required line numbers, spacing, alignment, tables, or figure insertion
-- PDF cannot be rendered
-- any page is blank or corrupt
-- figures are clipped, tiny, blurry, or misplaced
-- tables clip or lack readable padding
-- front matter required by journal is missing
+- any expert reviewer (domain, editor, statistician, or biostatistician) returns one or more MAJOR or CRITICAL findings that have not been addressed or explicitly acknowledged as limitations
+- the statistician reviewer returns a score below 7/10 without documented author response to each flagged item
+- reviewer simulation output is not included in the QA bundle
 
-## Human Gates
+When all reviewer findings are resolved or formally acknowledged in the manuscript, mark the gate PASS with a per-reviewer resolution summary.
 
-These are not machine failures but still block final submission:
+## Citation Insertion Pre-Commit Checklist
 
-- author names and affiliations
-- corresponding author details
-- funding
-- conflict of interest
-- author contributions / CRediT
-- ethics statements when applicable
-- external domain expert sign-off when scientific risk is high
-- author confirmation of workflow execution audit
+When inserting a reference into the manuscript body (especially when citing previously floating/uncited references), apply this checklist before saving:
+
+1. **Sentence-level match**: Does the cited paper's primary finding or conclusion directly support the specific claim in the sentence? (Topic-level match is insufficient — the paper must be evidential for the sentence.)
+2. **Subject match**: Is the paper about the same biological entity, therapeutic modality, or experimental system as the sentence? (e.g., do not cite an EpCAM BiTE paper at a sentence about NKG2D-targeting; do not cite a CAR-macrophage paper at a sentence about expression profiles.)
+3. **No double-citation**: Is this ref already cited at another sentence that makes the identical claim?
+4. **Relevance tier**: Mark each inserted citation as one of:
+   - `EVIDENTIAL` — paper directly proves or measures the claim
+   - `TOPICAL` — paper is thematically related but does not directly prove the claim
+   - `REVIEW` — paper is a review citing primary literature; secondary evidence only
+   Block release if any citation is rated `TOPICAL` or `REVIEW` for a quantitative or mechanistic claim.
+5. **No orphan**: After insertion, verify the ref appears in the reference list and all list entries are numbered sequentially.
+
+## Reference Renumbering Integrity
+
+When references are added to or deleted from the reference list mid-workflow:
+
+- Block release when any in-text citation number does not correspond to the correct reference list entry.
+- After any deletion or insertion, run a full renumbering check: compare every `(N)` in body text against position N in the reference list.
+- If more than three references are renumbered in a single edit, render a new PDF and spot-check 5 randomly selected citation groups.
+- Record the renumbering event in `version_ledger.jsonl` with `change_type: fix` and list all affected citation numbers.
+- Synchronize BIB/RIS after every renumbering event.

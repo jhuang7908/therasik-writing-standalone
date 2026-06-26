@@ -186,6 +186,44 @@ def _extract_ref_style(text: str) -> str:
     return ""
 
 
+# Presence-only declaration flags (search term -> normalized declaration name).
+# Mirrors scrape_guidelines_local.py so the cloud scraper produces the same
+# richer fields (data availability / ethics / COI / funding / contributions ...).
+_DECLARATION_TERMS: dict[str, list[str]] = {
+    "data_availability":   ["data availability", "availability of data", "data sharing"],
+    "ethics_statement":    ["ethics approval", "ethical approval", "ethics committee",
+                            "institutional review board", "irb approval"],
+    "competing_interests": ["competing interests", "conflict of interest",
+                            "conflicts of interest", "declaration of interest"],
+    "funding_statement":   ["funding statement", "funding source", "role of the funding"],
+    "author_contributions":["author contributions", "authorship contributions",
+                            "credit taxonomy", "credit author"],
+    "orcid":               ["orcid"],
+}
+_OTHER_FLAG_TERMS: dict[str, list[str]] = {
+    "structured_abstract": ["structured abstract"],
+    "graphical_abstract":  ["graphical abstract"],
+    "double_blind_review": ["double-blind", "double blind", "anonymi"],
+    "preprint_policy":     ["preprint", "biorxiv", "medrxiv", "arxiv"],
+}
+
+
+def _extract_declarations(text: str) -> dict:
+    """Detect required declaration statements + a few policy flags from text."""
+    low = text.lower()
+    required = [name for name, terms in _DECLARATION_TERMS.items()
+               if any(t in low for t in terms)]
+    flags = {name: any(t in low for t in terms)
+             for name, terms in _OTHER_FLAG_TERMS.items()}
+    out: dict = {}
+    if required:
+        out["required_declarations"] = required
+    for k, v in flags.items():
+        if v:
+            out[k] = True
+    return out
+
+
 def _extract_sections(text: str) -> list[str]:
     common = ["Abstract", "Introduction", "Methods", "Materials and Methods",
               "Results", "Discussion", "Conclusion", "Acknowledgements",
@@ -207,6 +245,7 @@ def _parse_text_to_spec(text: str) -> dict:
     dpi        = _extract_figure_dpi(text)
     ref_style  = _extract_ref_style(text)
     sections   = _extract_sections(text)
+    declarations = _extract_declarations(text)
 
     article_spec: dict = {}
     if word_limit:
@@ -225,6 +264,7 @@ def _parse_text_to_spec(text: str) -> dict:
         "reference_style": ref_style,
         "figure_format":   [f"TIFF ({dpi} dpi min)"] if dpi else [],
         "figure_dpi":      dpi,
+        "submission_guidelines": declarations,
     }
 
 
@@ -450,12 +490,20 @@ async def parse_generic(page: Page, url: str) -> dict:
 
 # ── URL finders ────────────────────────────────────────────────────────────────
 
+def _normalize_issn(data: dict) -> str:
+    """Return a hyphen-stripped ISSN string; schema 2.0 stores issn as a list."""
+    issn = data.get("issn", "")
+    if isinstance(issn, list):
+        issn = issn[0] if issn else ""
+    return str(issn).replace("-", "")
+
+
 def _guess_guidelines_url(data: dict) -> Optional[str]:
     """
     Guess the Instructions for Authors URL from journal metadata.
     Returns None if we can't construct a good candidate.
     """
-    issn      = data.get("issn", "").replace("-", "")
+    issn      = _normalize_issn(data)
     publisher = data.get("publisher", "").lower()
     name      = data.get("display_name", "").lower()
     sub_url   = data.get("submission_url", "")
@@ -534,24 +582,33 @@ async def scrape_one(
 ) -> dict:
     """Scrape guidelines for one journal. Returns result dict."""
     data      = json.loads(json_path.read_text(encoding="utf-8"))
-    title     = data.get("display_name", json_path.stem)
+    title     = data.get("display_name") or data.get("title") or json_path.stem
     publisher = data.get("publisher", "")
 
     result = {"file": json_path.name, "title": title, "status": "skipped",
                "parser": "", "fields_found": 0}
 
-    # Skip if already has article_types with word limits
-    art_types = data.get("article_types", {})
-    has_data  = any(
-        v.get("max_words_main_text") or v.get("max_words_abstract")
-        for v in art_types.values()
-    ) if art_types else False
+    # Skip if already has article_types with word limits (dict or list schema).
+    art_types = data.get("article_types") or {}
+    has_data = False
+    if isinstance(art_types, dict):
+        has_data = any(
+            isinstance(v, dict) and (
+                v.get("max_words_main_text") or v.get("max_words_abstract"))
+            for v in art_types.values()
+        )
+    elif isinstance(art_types, list) and art_types:
+        has_data = False  # cloud list form — no structured limits yet
     if has_data:
         result["status"] = "already_complete"
         return result
 
-    # Get guidelines URL
-    guidelines_url = data.get("source_url") or _guess_guidelines_url(data)
+    # Prefer cloud-pulled URL, then legacy source_url, then heuristic guess.
+    guidelines_url = (
+        data.get("guidelines_url")
+        or data.get("source_url")
+        or _guess_guidelines_url(data)
+    )
     if not guidelines_url:
         result["status"] = "no_url"
         return result
@@ -593,6 +650,7 @@ async def scrape_one(
         fields += 1
     if scraped.get("figure_format"):
         fields += 1
+    fields += len(scraped.get("submission_guidelines", {}))
 
     if fields == 0:
         result["status"] = "no_data_extracted"
@@ -603,16 +661,28 @@ async def scrape_one(
     result["fields_found"] = fields
 
     if not dry_run:
-        # Merge scraped data into existing JSON
+        # Merge scraped data into existing JSON (non-destructive: never
+        # overwrite existing non-empty curated values).
         for key in ["article_types", "reference_style", "figure_format",
                     "figure_dpi", "data_availability", "source_url",
                     "highlights", "graphical_abstract", "reporting_summary",
-                    "open_access_option"]:
+                    "open_access_option", "submission_guidelines"]:
             if scraped.get(key):
-                # Don't overwrite existing non-empty values
                 existing = data.get(key)
                 if not existing or existing == {} or existing == []:
                     data[key] = scraped[key]
+
+        # Provenance + verification status (matches scrape_guidelines_local.py).
+        from datetime import datetime, timezone
+        data.setdefault("_provenance", {})
+        data["_provenance"]["guidelines"] = {
+            "source_url": scraped.get("source_url", guidelines_url),
+            "scraped_at": datetime.now(timezone.utc).strftime(
+                "%Y-%m-%dT%H:%M:%SZ"),
+            "method": "playwright",
+            "parser": scraped.get("parser_used", ""),
+            "verification_status": "scraped_unverified",
+        }
 
         json_path.write_text(
             json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8"
@@ -630,7 +700,8 @@ async def run_scraper(
     dry_run: bool = False,
     verbose: bool = True,
 ) -> dict:
-    files = [f for f in sorted(journal_dir.glob("*.json")) if f.name != "_index.json"]
+    files = [f for f in sorted(journal_dir.glob("*.json"))
+             if not f.name.startswith("_")]
 
     # Filter by publisher if requested
     if publisher_filter:

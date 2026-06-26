@@ -216,8 +216,14 @@ def extract_guidelines(page, url: str) -> dict:
 
     try:
         page.goto(url, timeout=NAV_TIMEOUT, wait_until="domcontentloaded")
-        # Wait for main content
-        page.wait_for_timeout(1500)
+        page.wait_for_timeout(2500)
+        # JS-heavy publishers (Frontiers): wait for content or network settle.
+        if "frontiersin.org" in url:
+            try:
+                page.wait_for_load_state("networkidle", timeout=8000)
+            except Exception:
+                pass
+            page.wait_for_timeout(1500)
     except (PWTimeout, Exception):
         return result
 
@@ -225,7 +231,11 @@ def extract_guidelines(page, url: str) -> dict:
     try:
         text = page.inner_text("body")
     except Exception:
-        return result
+        text = ""
+
+    # Fallback: Playwright often sees <200 chars on Frontiers SPAs.
+    if len(text) < 400:
+        text = _fetch_text_requests(url) or text
 
     # Article types
     found_types = set()
@@ -258,7 +268,76 @@ def extract_guidelines(page, url: str) -> dict:
     elif re.search(r"cover\s+letter", text, re.I):
         result["cover_letter_required"] = "optional"
 
+    decl = _extract_declarations(text)
+    if decl:
+        result["submission_guidelines"] = decl
+
     return result
+
+
+def _fetch_text_requests(url: str) -> str:
+    """Lightweight fallback when Playwright sees an empty SPA shell."""
+    try:
+        req = urllib.request.Request(
+            url, headers={"User-Agent": CROSSREF_UA, "Accept-Language": "en"})
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            raw = resp.read().decode("utf-8", errors="ignore")
+    except Exception:
+        return ""
+    try:
+        from bs4 import BeautifulSoup
+        soup = BeautifulSoup(raw, "html.parser")
+        for tag in soup(["script", "style", "noscript"]):
+            tag.decompose()
+        return re.sub(r"\s+", " ", soup.get_text(" ")).strip()
+    except Exception:
+        return re.sub(r"<[^>]+>", " ", raw)
+
+
+_DECL_TERMS: dict[str, list[str]] = {
+    "data_availability":   ["data availability", "availability of data", "data sharing"],
+    "ethics_statement":    ["ethics approval", "ethical approval", "ethics committee", "irb"],
+    "competing_interests": ["competing interests", "conflict of interest", "conflicts of interest"],
+    "funding_statement":   ["funding statement", "funding source", "role of the funding"],
+    "author_contributions":["author contributions", "credit taxonomy", "credit author"],
+    "orcid":               ["orcid"],
+}
+_FLAG_TERMS: dict[str, list[str]] = {
+    "structured_abstract": ["structured abstract"],
+    "graphical_abstract":  ["graphical abstract"],
+    "double_blind_review": ["double-blind", "double blind"],
+    "preprint_policy":     ["preprint", "biorxiv", "medrxiv"],
+}
+
+
+def _extract_declarations(text: str) -> dict:
+    low = text.lower()
+    required = [n for n, terms in _DECL_TERMS.items() if any(t in low for t in terms)]
+    out: dict = {}
+    if required:
+        out["required_declarations"] = required
+    for name, terms in _FLAG_TERMS.items():
+        if any(t in low for t in terms):
+            out[name] = True
+    ref_styles = []
+    for pat, sid in [(r"\bvancouver\b", "vancouver"), (r"\bharvard\b", "harvard"),
+                     (r"\bapa\b", "apa"), (r"\bama\b", "ama")]:
+        if re.search(pat, low) and sid not in ref_styles:
+            ref_styles.append(sid)
+    if ref_styles:
+        out["reference_style_detected"] = ref_styles
+    return out
+
+
+def _apply_provenance(rec: dict, guidelines_url: str, method: str = "playwright") -> None:
+    rec.setdefault("_provenance", {})
+    rec["_provenance"]["guidelines"] = {
+        "source_url": guidelines_url,
+        "scraped_at": _now(),
+        "method": method,
+        "parser": "journal_db",
+        "verification_status": "scraped_unverified",
+    }
 
 
 def _now() -> str:
@@ -385,7 +464,23 @@ def main():
             print(f"  ↳ {guidelines_url[:80]}", flush=True)
             try:
                 extracted = extract_guidelines(page, guidelines_url)
-                rec.update(extracted)
+                # Non-destructive merge: fill empty fields only.
+                for key, val in extracted.items():
+                    if key == "submission_guidelines":
+                        existing = rec.get(key) or {}
+                        if isinstance(existing, dict) and isinstance(val, dict):
+                            merged = dict(existing)
+                            for dk, dv in val.items():
+                                if dk not in merged or not merged[dk]:
+                                    merged[dk] = dv
+                            if merged:
+                                rec[key] = merged
+                        elif not existing:
+                            rec[key] = val
+                    elif val is not None and val != "" and val != [] and val != {}:
+                        if not rec.get(key):
+                            rec[key] = val
+                _apply_provenance(rec, guidelines_url)
                 save_journal_record(slug, rec)
                 n_types = len(extracted.get("article_types", []))
                 print(f"  ✓ {n_types} article types | "

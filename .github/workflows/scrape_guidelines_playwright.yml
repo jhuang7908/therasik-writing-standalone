@@ -1,55 +1,78 @@
 name: Scrape Journal Guidelines (Playwright)
 
 on:
+  schedule:
+    # Every Sunday 03:00 UTC — incremental (journals missing article_types)
+    - cron: "0 3 * * 0"
+
   workflow_dispatch:
     inputs:
-      limit:
-        description: 'Max journals to process (0 = all with empty guidelines)'
-        required: false
-        default: '200'
       publisher:
-        description: 'Filter by publisher (e.g. "Elsevier", "Wiley", "" = all)'
+        description: "Publisher filter (e.g. Elsevier, Wiley, Frontiers). Blank = all."
         required: false
-        default: ''
-      delay:
-        description: 'Seconds between requests (be polite to servers)'
+        default: ""
+      system:
+        description: "Submission system filter (e.g. Frontiers, Editorial Manager)."
         required: false
-        default: '2.5'
+        default: ""
+      limit:
+        description: "Max journals in Job 1 (default 200)"
+        required: false
+        default: "200"
+      full_rescrape:
+        description: "Re-scrape journals that already have article_types? (true/false)"
+        required: false
+        default: "false"
+      skip_platforms:
+        description: "Skip Job 2 platform docs scrape? (true/false)"
+        required: false
+        default: "false"
 
-  # Run once a week on Sunday night — fills in gaps as new journals are added
-  schedule:
-    - cron: '0 3 * * 0'
+permissions:
+  contents: write
+
+env:
+  PUBLISHER:   ${{ github.event.inputs.publisher   || '' }}
+  SYSTEM:      ${{ github.event.inputs.system       || '' }}
+  LIMIT:       ${{ github.event.inputs.limit        || '200' }}
+  FULL:        ${{ github.event.inputs.full_rescrape|| 'false' }}
+  SKIP_PLAT:   ${{ github.event.inputs.skip_platforms || 'false' }}
 
 jobs:
-  # ── Job 1: Journal-specific guidelines (Playwright) ───────────────────────
-  scrape-journals:
-    name: Scrape journal guidelines
+  scrape_journals:
+    name: "Job 1 · Journal Guidelines (limit=${{ github.event.inputs.limit || 200 }})"
     runs-on: ubuntu-latest
-    timeout-minutes: 360
+    timeout-minutes: 90
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+          persist-credentials: true
 
-      - name: Set up Python
+      - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
-          pip install playwright
-          playwright install chromium
-          playwright install-deps chromium
+          pip install playwright beautifulsoup4 requests --quiet
+          playwright install chromium --with-deps
 
-      - name: Scrape journal submission guidelines
+      - name: Build scrape command
+        id: cmd
         run: |
-          python scripts/scrape_guidelines_playwright.py \
-            --limit  "${{ github.event.inputs.limit  || '200' }}" \
-            --publisher "${{ github.event.inputs.publisher || '' }}" \
-            --delay  "${{ github.event.inputs.delay  || '2.5' }}"
+          CMD="python scripts/journal_db/scrape_journal_guidelines.py --limit $LIMIT"
+          [ -n "$PUBLISHER" ] && CMD="$CMD --publisher \"$PUBLISHER\""
+          [ -n "$SYSTEM"    ] && CMD="$CMD --system \"$SYSTEM\""
+          [ "$FULL" = "true" ] && CMD="$CMD --full"
+          echo "cmd=$CMD" >> $GITHUB_OUTPUT
+          echo "Running: $CMD"
+
+      - name: Scrape journal guidelines
+        run: eval "${{ steps.cmd.outputs.cmd }}"
         env:
           PYTHONUNBUFFERED: "1"
 
@@ -59,31 +82,30 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add assets/journal_requirements/
           git diff --cached --quiet || \
-            git commit -m "chore: scrape journal submission guidelines (Playwright) [skip ci]"
+            git commit -m "data(guidelines): scrape article_types [pub=${PUBLISHER:-all}] $(date -u +%Y-%m-%d)"
           git push
 
-  # ── Job 2: Platform-level submission guides ───────────────────────────────
-  scrape-platforms:
+  scrape_platforms:
     name: Scrape submission platform guides
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    if: ${{ github.event.inputs.skip_platforms != 'true' && env.SKIP_PLAT != 'true' }}
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: true
 
-      - name: Set up Python
+      - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Install dependencies
         run: |
-          pip install playwright
-          playwright install chromium
-          playwright install-deps chromium
+          pip install playwright beautifulsoup4 requests --quiet
+          playwright install chromium --with-deps
 
       - name: Scrape submission platform guides
         run: python scripts/scrape_platform_guides.py
@@ -94,7 +116,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add assets/submission_system_guides/
+          git add assets/submission_system_guides/ assets/journal_requirements/_platform_docs.json 2>/dev/null || true
           git diff --cached --quiet || \
-            git commit -m "chore: update submission platform guides [skip ci]"
+            git commit -m "data(guidelines): refresh platform docs $(date -u +%Y-%m-%d)"
           git push
