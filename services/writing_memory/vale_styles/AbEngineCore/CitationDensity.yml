@@ -1,0 +1,8 @@
+extends: occurrence
+message: "Three or more consecutive sentences with no citation — add a reference."
+level: suggestion
+max: 1
+scope: paragraph
+# Matches a paragraph that has no citation signals at all
+# (neither author-year nor numbered bracket nor CITE placeholder)
+token: '^(?!.*(\([A-Z][a-z].*?\d{4}\)|\[\d+\]|\[CITE:))[\s\S]{300,}'

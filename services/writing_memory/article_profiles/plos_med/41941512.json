@@ -1,0 +1,245 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "41955175",
+    "pmcid": "PMC13065015",
+    "doi": "10.1371/journal.pmed.1004659.r008",
+    "journal": "PLOS Medicine",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "data_first",
+    "dominant_frame": "epidemiology_population",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "question-method-result-interpretation",
+    "claim_chain": [
+      "Very high prenatal PFAS exposure was associated with higher incidence of asthma and asthma (3+) compared to background levels",
+      "No apparent effect of very high PFAS exposure on early-childhood wheeze was found",
+      "No associations were observed for intermediate and high PFAS exposure groups after covariate adjustment",
+      "The association is biologically plausible based on experimental evidence showing PFAS effects on lung development",
+      "Previous epidemiological studies have shown mixed results with most identifying null or weakly negative associations",
+      "The study differs by including participants with very high AFFF-associated PFAS exposure",
+      "Associations detected only at very high exposure may indicate a threshold effect not observable in background-exposed populations"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "associated",
+      "found",
+      "identified",
+      "observed",
+      "estimated",
+      "demonstrated",
+      "suggest",
+      "indicate",
+      "examined",
+      "adjusted",
+      "addressed",
+      "included"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State main finding with specific effect estimates and confidence intervals",
+      "Provide biological plausibility with mechanistic evidence from experimental studies",
+      "Compare findings to previous epidemiological literature and explain discrepancies",
+      "Describe unique features of the current study design and exposure assessment",
+      "Acknowledge limitations with specific examples and their potential impact",
+      "Balance limitations with methodological strengths",
+      "Conclude with implications and need for replication"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Exposure assessment validity and potential for misclassification",
+      "Ability to distinguish prenatal from postnatal exposure effects",
+      "Confounding control and unmeasured confounders",
+      "Outcome ascertainment accuracy and specificity",
+      "Generalizability beyond very high exposure settings",
+      "Consistency with previous epidemiological literature"
+    ],
+    "likely_attacks": [
+      "Address-based categorical exposure assessment introduces non-differential misclassification",
+      "Cannot attribute associations solely to prenatal exposure given continued postnatal exposure",
+      "Unmeasured confounding from parental smoking status after delivery and parental childhood asthma history",
+      "Wheeze outcome lacks specificity due to inclusion of acute lower respiratory infections",
+      "Findings only at very high exposure limit generalizability to typical population exposures",
+      "Mixed results in previous literature raise questions about consistency"
+    ],
+    "inference_basis": "The paper explicitly lists multiple limitations including: address-based categorical exposure assessment causing non-differential exposure error, inability to distinguish prenatal from postnatal exposure, unmeasured confounding from parental smoking after delivery and parental childhood asthma history, outcome ascertainment challenges for wheeze due to overlap with viral infections, and the fact that associations were only detected at very high exposure levels. The paper also defends against these by noting advantages of the exposure assessment approach, the use of registry-based outcomes with high validity, large sample size, and detailed covariate adjustment."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "very high prenatal PFAS exposure was associated with higher incidence of asthma and asthma (3+) when compared to background levels",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "we found no apparent effect of very high PFAS exposure on early-childhood wheeze",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "We also could not reject the null hypothesis when examining associations between intermediate and high PFAS exposure",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "An association between high prenatal PFAS exposure and increased incidence of asthma is biologically possible",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "may indicate a threshold effect that was not observable in background-exposed populations",
+        "category": "causal"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "In this large registry-based cohort",
+      "category": "opening"
+    },
+    {
+      "phrase": "very high prenatal PFAS exposure was associated with higher incidence of asthma",
+      "category": "claim"
+    },
+    {
+      "phrase": "we found no apparent effect",
+      "category": "claim"
+    },
+    {
+      "phrase": "We also could not reject the null hypothesis",
+      "category": "hedge"
+    },
+    {
+      "phrase": "is biologically possible",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Despite this experimental evidence, results from epidemiological studies are mixed",
+      "category": "transition"
+    },
+    {
+      "phrase": "Our study differs from previous epidemiological investigations by",
+      "category": "transition"
+    },
+    {
+      "phrase": "Our study has several limitations",
+      "category": "limitation"
+    },
+    {
+      "phrase": "we cannot rule out other sources of unmeasured confounding",
+      "category": "limitation"
+    },
+    {
+      "phrase": "This may have made it more difficult to detect any true",
+      "category": "limitation"
+    },
+    {
+      "phrase": "A final study limitation is",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Despite these limitations",
+      "category": "transition"
+    },
+    {
+      "phrase": "This study has several additional strengths",
+      "category": "transition"
+    },
+    {
+      "phrase": "may indicate a threshold effect",
+      "category": "implication"
+    },
+    {
+      "phrase": "suggest an important public health impact",
+      "category": "implication"
+    },
+    {
+      "phrase": "Although these results should be replicated",
+      "category": "hedge"
+    },
+    {
+      "phrase": "adjusted for individual-level confounders",
+      "category": "other"
+    },
+    {
+      "phrase": "using Cox proportional hazards models",
+      "category": "other"
+    },
+    {
+      "phrase": "estimated using the Kaplan–Meier method",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Cumulative incidence by outcome",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "in the matched subcohort",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "far exceeded those reported in",
+      "category": "claim"
+    },
+    {
+      "phrase": "several hundred times higher than in other epidemiological birth cohorts",
+      "category": "claim"
+    },
+    {
+      "phrase": "further research is needed to clarify",
+      "category": "implication"
+    },
+    {
+      "phrase": "Given the likelihood of continued postnatal exposure",
+      "category": "limitation"
+    },
+    {
+      "phrase": "we cannot attribute the observed associations solely to prenatal exposure",
+      "category": "limitation"
+    },
+    {
+      "phrase": "The large population-based cohort",
+      "category": "other"
+    },
+    {
+      "phrase": "included detailed longitudinal information",
+      "category": "other"
+    },
+    {
+      "phrase": "Unlike many previous studies that relied on parental-reported outcomes",
+      "category": "transition"
+    },
+    {
+      "phrase": "our study used clinically relevant outcomes ascertained from detailed medical and drug dispensation records",
+      "category": "claim"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers were included. The profile is based entirely on the provided discussion, abstract, and figure legends sections."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:05:12.411797+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\plos_med\\41941512.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

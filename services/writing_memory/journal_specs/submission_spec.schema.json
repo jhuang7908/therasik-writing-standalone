@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://insynbio.com/schemas/writing_memory/submission_spec.v0_1.schema.json",
+  "title": "JournalSubmissionSpec",
+  "description": "Curated, human-verified submission requirements for a single journal. Fields are never LLM-generated. Each value carries a source URL and a verification_status so the API layer can refuse to show 'unverified' fields to clients.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "journal",
+    "spec_version",
+    "sourced_from",
+    "captured_at",
+    "article_types",
+    "structure",
+    "abstract",
+    "main_text",
+    "figures_tables",
+    "declarations",
+    "data_and_code",
+    "reference_style_id"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "0.1.0" },
+
+    "journal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "display"],
+      "properties": {
+        "key":     { "type": "string", "enum": ["generic","pnas","elife","plos_med"] },
+        "display": { "type": "string" }
+      }
+    },
+
+    "spec_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+
+    "sourced_from": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["url", "label"],
+        "properties": {
+          "url":   { "type": "string", "format": "uri" },
+          "label": { "type": "string" },
+          "captured_at": { "type": ["string", "null"], "format": "date-time" }
+        }
+      }
+    },
+
+    "captured_at": { "type": ["string", "null"], "format": "date-time" },
+
+    "article_types": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/Field" }
+    },
+
+    "structure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required_sections", "optional_sections"],
+      "properties": {
+        "required_sections": { "$ref": "#/$defs/Field" },
+        "optional_sections": { "$ref": "#/$defs/Field" },
+        "significance_statement": { "$ref": "#/$defs/Field" }
+      }
+    },
+
+    "abstract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["word_limit", "structured"],
+      "properties": {
+        "word_limit":  { "$ref": "#/$defs/Field" },
+        "structured":  { "$ref": "#/$defs/Field" },
+        "subsections": { "$ref": "#/$defs/Field" }
+      }
+    },
+
+    "main_text": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "word_limit":          { "$ref": "#/$defs/Field" },
+        "figure_count_limit":  { "$ref": "#/$defs/Field" },
+        "table_count_limit":   { "$ref": "#/$defs/Field" },
+        "supplementary_policy": { "$ref": "#/$defs/Field" }
+      }
+    },
+
+    "figures_tables": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "figure_resolution": { "$ref": "#/$defs/Field" },
+        "color_policy":      { "$ref": "#/$defs/Field" },
+        "legend_word_limit": { "$ref": "#/$defs/Field" },
+        "accepted_formats":  { "$ref": "#/$defs/Field" }
+      }
+    },
+
+    "declarations": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "competing_interests":   { "$ref": "#/$defs/Field" },
+        "funding_statement":     { "$ref": "#/$defs/Field" },
+        "author_contributions":  { "$ref": "#/$defs/Field" },
+        "ethics_statement":      { "$ref": "#/$defs/Field" },
+        "consent_statement":     { "$ref": "#/$defs/Field" },
+        "reporting_checklist":   { "$ref": "#/$defs/Field" }
+      }
+    },
+
+    "data_and_code": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "data_availability":  { "$ref": "#/$defs/Field" },
+        "code_availability":  { "$ref": "#/$defs/Field" },
+        "preferred_repositories": { "$ref": "#/$defs/Field" },
+        "accession_required": { "$ref": "#/$defs/Field" }
+      }
+    },
+
+    "reference_style_id": {
+      "description": "FK-like reference to reference_format/<id>.json in this repo.",
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 64
+    },
+
+    "notes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Field" }
+    }
+  },
+
+  "$defs": {
+    "Field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "verification_status", "source_url"],
+      "properties": {
+        "value":               {
+          "description": "Concrete value (string, number, array, object) or null while unverified.",
+          "type": ["string", "number", "integer", "boolean", "array", "object", "null"]
+        },
+        "verification_status": { "enum": ["verified", "unverified", "out_of_date"] },
+        "source_url":          { "type": ["string", "null"], "format": "uri" },
+        "verified_by":         { "type": ["string", "null"] },
+        "verified_at":         { "type": ["string", "null"], "format": "date-time" },
+        "notes":               { "type": ["string", "null"], "maxLength": 600 }
+      }
+    }
+  }
+}

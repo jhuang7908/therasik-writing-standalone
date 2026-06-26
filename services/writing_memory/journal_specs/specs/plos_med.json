@@ -1,0 +1,188 @@
+{
+  "schema_version": "0.1.0",
+  "journal": { "key": "plos_med", "display": "PLOS Medicine" },
+  "spec_version": "0.1.1",
+  "sourced_from": [
+    { "url": "https://journals.plos.org/plosmedicine/s/submission-guidelines", "label": "PLOS Medicine Submission Guidelines", "captured_at": "2026-05-26T12:00:00Z" },
+    { "url": "https://journals.plos.org/plosmedicine/s/manuscript-organization", "label": "PLOS Medicine Manuscript Organization", "captured_at": "2026-05-26T12:00:00Z" },
+    { "url": "https://journals.plos.org/plosmedicine/s/references", "label": "PLOS Medicine References", "captured_at": "2026-05-26T12:00:00Z" },
+    { "url": "https://journals.plos.org/plosmedicine/s/reporting-guidelines", "label": "PLOS Medicine Reporting Guidelines", "captured_at": "2026-05-26T12:00:00Z" }
+  ],
+  "captured_at": "2026-05-26T12:00:00Z",
+
+  "article_types": [
+    {
+      "value": ["Research Article", "Guidelines and Guidance", "Health in Action", "Essay", "Policy Forum", "Perspective"],
+      "verification_status": "verified",
+      "source_url": "https://journals.plos.org/plosmedicine/s/submission-guidelines",
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z",
+      "notes": "Confirm current list on each curation pass."
+    }
+  ],
+
+  "structure": {
+    "required_sections": {
+      "value": ["title", "abstract", "introduction", "methods", "results", "discussion", "references"],
+      "verification_status": "verified",
+      "source_url": "https://journals.plos.org/plosmedicine/s/manuscript-organization",
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z",
+      "notes": "Research articles use IMRaD; Strengths and Limitations may be required — verify on organization page."
+    },
+    "optional_sections": {
+      "value": ["acknowledgments", "supporting_information"],
+      "verification_status": "verified",
+      "source_url": "https://journals.plos.org/plosmedicine/s/manuscript-organization",
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z"
+    },
+    "significance_statement": {
+      "value": false,
+      "verification_status": "verified",
+      "source_url": "https://journals.plos.org/plosmedicine/s/submission-guidelines",
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z"
+    }
+  },
+
+  "abstract": {
+    "word_limit": {
+      "value": { "preferred": 300, "max": 500 },
+      "verification_status": "verified",
+      "source_url": "https://journals.plos.org/plosmedicine/s/submission-guidelines",
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z",
+      "notes": "PLOS Medicine prefers ≤300 words; maximum 500 words."
+    },
+    "structured": {
+      "value": true,
+      "verification_status": "verified",
+      "source_url": "https://journals.plos.org/plosmedicine/s/submission-guidelines",
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z",
+      "notes": "Sections: Background; Methods and Findings; Conclusions."
+    },
+    "subsections": {
+      "value": ["Background", "Methods and Findings", "Conclusions"],
+      "verification_status": "verified",
+      "source_url": "https://journals.plos.org/plosmedicine/s/submission-guidelines",
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z"
+    }
+  },
+
+  "main_text": {
+    "word_limit": {
+      "value": null,
+      "verification_status": "verified",
+      "source_url": "https://journals.plos.org/plosmedicine/s/submission-guidelines",
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z",
+      "notes": "No manuscript word-count restriction per official guidelines (any length)."
+    },
+    "figure_count_limit": {
+      "value": null,
+      "verification_status": "verified",
+      "source_url": "https://journals.plos.org/plosmedicine/s/submission-guidelines",
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z",
+      "notes": "No restriction on number of figures."
+    },
+    "table_count_limit": {
+      "value": null,
+      "verification_status": "unverified",
+      "source_url": null
+    },
+    "supplementary_policy": {
+      "value": "Supporting information encouraged; not copyedited; publish as submitted.",
+      "verification_status": "verified",
+      "source_url": "https://journals.plos.org/plosmedicine/s/submission-guidelines",
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z"
+    }
+  },
+
+  "figures_tables": {
+    "figure_resolution": {
+      "value": "≥300 dpi for supporting information",
+      "verification_status": "verified",
+      "source_url": "https://journals.plos.org/plosmedicine/s/submission-guidelines",
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z"
+    },
+    "color_policy": { "value": null, "verification_status": "unverified", "source_url": null },
+    "legend_word_limit": { "value": null, "verification_status": "unverified", "source_url": null },
+    "accepted_formats": {
+      "value": ["doc", "docx", "rtf"],
+      "verification_status": "verified",
+      "source_url": "https://journals.plos.org/plosmedicine/s/submission-guidelines",
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z",
+      "notes": "Main manuscript file formats."
+    }
+  },
+
+  "declarations": {
+    "competing_interests": {
+      "value": "Required in submission form",
+      "verification_status": "verified",
+      "source_url": "https://journals.plos.org/plosmedicine/s/editorial-and-publishing-policies",
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z"
+    },
+    "funding_statement": {
+      "value": "Required (Financial Disclosure)",
+      "verification_status": "verified",
+      "source_url": "https://journals.plos.org/plosmedicine/s/submission-guidelines",
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z"
+    },
+    "author_contributions": {
+      "value": "CRediT taxonomy",
+      "verification_status": "unverified",
+      "source_url": "https://journals.plos.org/plosmedicine/s/submission-guidelines",
+      "notes": "Confirm current CRediT implementation wording."
+    },
+    "ethics_statement": { "value": null, "verification_status": "unverified", "source_url": null },
+    "consent_statement": { "value": null, "verification_status": "unverified", "source_url": null },
+    "reporting_checklist": {
+      "value": "Study-type reporting guidelines (CONSORT, STROBE, PRISMA, etc.) as applicable",
+      "verification_status": "verified",
+      "source_url": "https://journals.plos.org/plosmedicine/s/reporting-guidelines",
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z"
+    }
+  },
+
+  "data_and_code": {
+    "data_availability": {
+      "value": "Data Availability Statement required",
+      "verification_status": "verified",
+      "source_url": "https://journals.plos.org/plosmedicine/s/editorial-and-publishing-policies",
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z"
+    },
+    "code_availability": {
+      "value": "Author-generated code should be shared when central to findings",
+      "verification_status": "verified",
+      "source_url": "https://journals.plos.org/plosmedicine/s/materials-and-software-sharing",
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z"
+    },
+    "preferred_repositories": { "value": null, "verification_status": "unverified", "source_url": null },
+    "accession_required": { "value": null, "verification_status": "unverified", "source_url": null }
+  },
+
+  "reference_style_id": "plos_vancouver",
+
+  "notes": [
+    {
+      "value": "In-text citations use numbered brackets [1], [1,2], [1-3] in ascending order of appearance.",
+      "verification_status": "verified",
+      "source_url": "https://journals.plos.org/plosmedicine/s/references",
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z"
+    }
+  ]
+}

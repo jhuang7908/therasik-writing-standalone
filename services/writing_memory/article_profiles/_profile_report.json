@@ -1,0 +1,170 @@
+{
+  "generated_at": "2026-05-25T13:40:41.544945+00:00",
+  "model": "claude-sonnet-4-5",
+  "total": 11,
+  "ok": 2,
+  "warn": 5,
+  "fail": 4,
+  "schema_violations": 4,
+  "phrase_mismatches": 13,
+  "details": [
+    {
+      "pmid": "42118681",
+      "journal_key": "elife",
+      "status": "warn",
+      "schema_valid": true,
+      "phrase_violations": [
+        {
+          "field": "phrase_evidence",
+          "phrase": "While soluble gp120 has been used to investigate certain HIV-1 effects on cells, employing saturating concentrations of the glycoprotein might lead to non-specific effects",
+          "issue": "not found in paper text"
+        },
+        {
+          "field": "claim_strength_profile.examples.quoted_phrase",
+          "phrase": "Our data reveal that both recombinant X4-gp120 and virus-like particles expressing physiological levels of X4 Env proteins promote CXCR4 clustering",
+          "issue": "not found in paper text"
+        },
+        {
+          "field": "claim_strength_profile.examples.quoted_phrase",
+          "phrase": "These findings establish a link between CXCR4 clustering and HIV-1 infection",
+          "issue": "not found in paper text"
+        }
+      ],
+      "error": null
+    },
+    {
+      "pmid": "42126963",
+      "journal_key": "elife",
+      "status": "ok",
+      "schema_valid": true,
+      "phrase_violations": [],
+      "error": null
+    },
+    {
+      "pmid": "42149106",
+      "journal_key": "elife",
+      "status": "fail",
+      "schema_valid": false,
+      "phrase_violations": [],
+      "error": "Claude returned empty response after 3 attempts (last stop_reason=refusal)"
+    },
+    {
+      "pmid": "42154515",
+      "journal_key": "elife",
+      "status": "fail",
+      "schema_valid": false,
+      "phrase_violations": [],
+      "error": "Claude returned empty response after 3 attempts (last stop_reason=refusal)"
+    },
+    {
+      "pmid": "41802176",
+      "journal_key": "plos_med",
+      "status": "warn",
+      "schema_valid": true,
+      "phrase_violations": [
+        {
+          "field": "phrase_evidence",
+          "phrase": "LLM-generated scores demonstrated strong Spearman's rho correlations with expert assessments across key clinical criteria",
+          "issue": "not found in paper text"
+        }
+      ],
+      "error": null
+    },
+    {
+      "pmid": "41931475",
+      "journal_key": "plos_med",
+      "status": "warn",
+      "schema_valid": true,
+      "phrase_violations": [
+        {
+          "field": "phrase_evidence",
+          "phrase": "representing US$135 billion in averted costs",
+          "issue": "not found in paper text"
+        }
+      ],
+      "error": null
+    },
+    {
+      "pmid": "42090259",
+      "journal_key": "pnas",
+      "status": "warn",
+      "schema_valid": true,
+      "phrase_violations": [
+        {
+          "field": "phrase_evidence",
+          "phrase": "From the host's perspective, B. cinerea therefore represents a genetically heterogeneous population rather than a uniform threat",
+          "issue": "not found in paper text"
+        }
+      ],
+      "error": null
+    },
+    {
+      "pmid": "42101997",
+      "journal_key": "pnas",
+      "status": "fail",
+      "schema_valid": false,
+      "phrase_violations": [],
+      "error": "Claude returned empty response after 3 attempts (last stop_reason=refusal)"
+    },
+    {
+      "pmid": "42101998",
+      "journal_key": "pnas",
+      "status": "warn",
+      "schema_valid": true,
+      "phrase_violations": [
+        {
+          "field": "phrase_evidence",
+          "phrase": "The population may decline gradually, as the species' range contracts from the margins, or fragment abruptly across the whole range",
+          "issue": "not found in paper text"
+        },
+        {
+          "field": "phrase_evidence",
+          "phrase": "While the theory is consistent with a more abundant center of a species' range, it is not required because the dynamics operates over local scales",
+          "issue": "not found in paper text"
+        },
+        {
+          "field": "phrase_evidence",
+          "phrase": "To date, no comprehensive predictive theory has incorporated the effects of gene flow across variable environments on local polygenic adaptation and species' range dynamics under temporal change",
+          "issue": "not found in paper text"
+        },
+        {
+          "field": "phrase_evidence",
+          "phrase": "Species' range (defined by the width of the occupied habitat) and niche (defined by the realized trait space) expand when sufficient variance is maintained by the gene flow across the environ",
+          "issue": "not found in paper text"
+        },
+        {
+          "field": "phrase_evidence",
+          "phrase": "Species' range fragments under rapid temporal change and small neighborhood size",
+          "issue": "not found in paper text"
+        },
+        {
+          "field": "phrase_evidence",
+          "phrase": "The theory provides general predictions for species' range and niche dynamics beyond standard ecological niche models, highlighting the fundamental impact of eco-evolutionary interactions",
+          "issue": "not found in paper text"
+        },
+        {
+          "field": "claim_strength_profile.examples.quoted_phrase",
+          "phrase": "this theory provides quantitative predictions concerning species' range limits, adaptation, and resilience",
+          "issue": "not found in paper text"
+        }
+      ],
+      "error": null
+    },
+    {
+      "pmid": "42118829",
+      "journal_key": "pnas",
+      "status": "fail",
+      "schema_valid": false,
+      "phrase_violations": [],
+      "error": "Claude returned empty response after 3 attempts (last stop_reason=refusal)"
+    },
+    {
+      "pmid": "42118835",
+      "journal_key": "pnas",
+      "status": "ok",
+      "schema_valid": true,
+      "phrase_violations": [],
+      "error": null
+    }
+  ]
+}

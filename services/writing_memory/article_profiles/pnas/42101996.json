@@ -1,0 +1,240 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42101996",
+    "pmcid": "PMC13167779",
+    "doi": "10.1073/pnas.2528758123",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "direct_problem_statement",
+    "dominant_frame": "method_innovation",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "problem-gap-solution-implication",
+    "claim_chain": [
+      "Current models of electron scattering do not account for chemical bonding effects",
+      "We propose a Bayesian approach to estimate atomic scattering factors from cryo-EM maps",
+      "Empirical scattering factors show improved agreement with cryo-EM data",
+      "The method decreases variance of unmodeled signal by up to a factor of three",
+      "Improved scattering factors may enable more accurate determination of atomic displacement parameters",
+      "Further improvements require higher-resolution structures with less radiation damage"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "show",
+      "suggest",
+      "may",
+      "could",
+      "infer",
+      "reflect",
+      "improve",
+      "indicate",
+      "allow",
+      "require",
+      "demonstrate",
+      "propose"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State the method or finding",
+      "Explain the technical basis or rationale",
+      "Present quantitative evidence or validation",
+      "Discuss limitations or caveats",
+      "Suggest implications or future applications"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Accuracy of scattering factors near s=0",
+      "Quality and resolution of experimental data",
+      "Proper treatment of hydrogen atom coordinates",
+      "Separation of charge effects from radiation damage effects",
+      "Validation against independent experimental measurements"
+    ],
+    "likely_attacks": [
+      "Hydrogen atom coordinates not individually refined but extrapolated",
+      "Scattering factors near s=0 currently limited in accuracy",
+      "Trend in low-frequency scattering may still be influenced by charges and radiation damage",
+      "No modeling of solvent contribution to the electrostatic potential",
+      "Assumption that atoms are spherical is problematic for hydrogen"
+    ],
+    "inference_basis": "The discussion explicitly acknowledges multiple limitations: hydrogen coordinates have not been individually refined but extrapolated from nonhydrogen positions; accuracy of scattering factors near s=0 is currently limited; the trend in low-frequency scattering may still be influenced by negative charges on oxygens, positive charges on nitrogens, and radiation damage; no attempt has been made to model the solvent contribution to the ESP; the assumption that atoms are spherical is problematic for hydrogen. The authors also state there is a need for higher-resolution structures with much less radiation damage and suggest a larger experimental dataset possibly ten times larger than typical."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "Scattering factors determined by the inference algorithm show improved agreement with cryo-EM data and measured magnetic susceptibility values",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "may find application in calculation of the MIP",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "Using scattering factors that take into account bonding effects may lead to more accurate determination of ADPs",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "The latter observation suggests that scattering factors derived from high-resolution cryo-EM reconstructions may find application",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "decreasing the variance of unmodeled signal in the data by up to a factor of three",
+        "category": "claim"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "This article describes the development and application of a method for the inference of atomic scattering factors from cryo-EM maps",
+      "category": "opening"
+    },
+    {
+      "phrase": "The inverse problem, that is inference of scattering factors from an ESP distribution reconstructed by cryo-EM SPA, can then be solved within the probabilistic framework of GP regression",
+      "category": "claim"
+    },
+    {
+      "phrase": "It should be noted that the algorithm does not depend on a particular atom typing scheme",
+      "category": "claim"
+    },
+    {
+      "phrase": "Scattering factors determined by the inference algorithm show improved agreement with cryo-EM data and measured magnetic susceptibility values",
+      "category": "claim"
+    },
+    {
+      "phrase": "The latter observation suggests that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "may find application in",
+      "category": "hedge"
+    },
+    {
+      "phrase": "However, the accuracy of scattering factors near s=0 is currently limited due to reasons already discussed",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Using scattering factors that take into account bonding effects may lead to more accurate determination of ADPs",
+      "category": "implication"
+    },
+    {
+      "phrase": "unlocking further information about atomic motion and disorder in biological macromolecules",
+      "category": "implication"
+    },
+    {
+      "phrase": "A more accurate scattering model would increase the correlation between the precomputed ESP and the observations, improving detectability",
+      "category": "implication"
+    },
+    {
+      "phrase": "Although there are substantial improvements in the agreement between the cryo-EM 3D maps and the models",
+      "category": "transition"
+    },
+    {
+      "phrase": "there are features in the individual atom plots indicating scope for further improvement",
+      "category": "limitation"
+    },
+    {
+      "phrase": "These are mainly due to the limitations of the experimental data",
+      "category": "limitation"
+    },
+    {
+      "phrase": "There are at least three potential improvements",
+      "category": "transition"
+    },
+    {
+      "phrase": "the hydrogen atom coordinates have not been individually refined to fit into the densities, but have been extrapolated from the nonhydrogen positions",
+      "category": "limitation"
+    },
+    {
+      "phrase": "higher-resolution maps would be desirable in order to",
+      "category": "limitation"
+    },
+    {
+      "phrase": "As a result the hydrogen scattering factors may be underestimated",
+      "category": "limitation"
+    },
+    {
+      "phrase": "There is therefore a need for a higher-resolution structure with much less radiation damage",
+      "category": "limitation"
+    },
+    {
+      "phrase": "A larger experimental set of cryo-EM images (possibly ten times larger than a typical dataset) would allow",
+      "category": "implication"
+    },
+    {
+      "phrase": "the accuracy of scattering factors derived from publicly available cryo-EM datasets could be improved by careful rebuilding of the corresponding atomic models",
+      "category": "implication"
+    },
+    {
+      "phrase": "In approximate terms",
+      "category": "hedge"
+    },
+    {
+      "phrase": "The charge of an atom in a molecule is not a physical observable",
+      "category": "claim"
+    },
+    {
+      "phrase": "However, the task is not trivial",
+      "category": "hedge"
+    },
+    {
+      "phrase": "A possible avenue for",
+      "category": "hedge"
+    },
+    {
+      "phrase": "The present work shows that",
+      "category": "claim"
+    },
+    {
+      "phrase": "although undoubtedly both charge and damage are involved",
+      "category": "hedge"
+    },
+    {
+      "phrase": "without careful modeling of radiation-induced reactions it is unclear how exactly the two phenomena interact",
+      "category": "limitation"
+    },
+    {
+      "phrase": "some features of the macromolecular ESP have not been addressed in this work",
+      "category": "limitation"
+    },
+    {
+      "phrase": "no attempt has been made to model the solvent contribution to the ESP",
+      "category": "limitation"
+    },
+    {
+      "phrase": "the assumption that atoms are spherical is problematic in the case of hydrogen",
+      "category": "limitation"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, invented numbers, or author names were included. The profile is based solely on the provided discussion, abstract, and figure legend content."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:14:35.369574+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\pnas\\42101996.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

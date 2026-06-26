@@ -1,0 +1,173 @@
+{
+  "generated_at": "2026-06-04T04:15:17.875367+00:00",
+  "base": "https://write.insynbio.com",
+  "project_id": "demo_m4_lit_pat",
+  "username": "demo_ops",
+  "ui_url": "https://write.insynbio.com/intelligence",
+  "instructions_zh": "顶栏 Project ID 设为 demo_m4_lit_pat，打开 Literature Database / Patent Database 查看实例。",
+  "literature": {
+    "saved_openalex": 9,
+    "items": [
+      {
+        "id": 19,
+        "title": "Trastuzumab (herceptin), a humanized anti-Her2 receptor monoclonal antibody, inh",
+        "doi": null,
+        "inserted": false,
+        "query": "trastuzumab HER2 antibody humanization"
+      },
+      {
+        "id": 20,
+        "title": "Evaluation of Monoclonal Humanized Anti-HER2 Antibody, Trastuzumab, in Patients ",
+        "doi": "10.1200/jco.2003.10.104",
+        "inserted": false,
+        "query": "trastuzumab HER2 antibody humanization"
+      },
+      {
+        "id": 21,
+        "title": "Trastuzumab-Induced Hepatotoxicity: A Case Report",
+        "doi": "10.1159/000346844",
+        "inserted": false,
+        "query": "trastuzumab HER2 antibody humanization"
+      },
+      {
+        "id": 22,
+        "title": "Bispecific T-Cell Engager (BiTE) Antibody Construct Blinatumomab for the Treatme",
+        "doi": "10.1200/jco.2014.59.1586",
+        "inserted": false,
+        "query": "bispecific antibody T cell engager"
+      },
+      {
+        "id": 23,
+        "title": "Phase 2 study of the bispecific T-cell engager (BiTE) antibody blinatumomab in r",
+        "doi": "10.1182/blood-2015-06-651380",
+        "inserted": false,
+        "query": "bispecific antibody T cell engager"
+      },
+      {
+        "id": 24,
+        "title": "Therapeutic bispecific T-cell engager antibody targeting the intracellular oncop",
+        "doi": "10.1038/nbt.3349",
+        "inserted": false,
+        "query": "bispecific antibody T cell engager"
+      },
+      {
+        "id": 25,
+        "title": "Nanobodies from camelid mice and llamas neutralize SARS-CoV-2 variants",
+        "doi": "10.1038/s41586-021-03676-z",
+        "inserted": false,
+        "query": "nanobody VHH alpaca"
+      },
+      {
+        "id": 26,
+        "title": "Nanobody-Based Enzyme Immunoassay for Aflatoxin in Agro-Products with High Toler",
+        "doi": "10.1021/ac502390c",
+        "inserted": false,
+        "query": "nanobody VHH alpaca"
+      },
+      {
+        "id": 27,
+        "title": "Neutralization of SARS‐CoV‐2 by highly potent, hyperthermostable, and mutation‐t",
+        "doi": "10.15252/embj.2021107985",
+        "inserted": false,
+        "query": "nanobody VHH alpaca"
+      }
+    ],
+    "ris_import": true,
+    "errors": []
+  },
+  "patents": {
+    "saved_patents": 4,
+    "items": [
+      {
+        "id": 38,
+        "title": "ANTI-HER2 ANTIBODY-DRUG CONJUGATES AND USES THEREOF",
+        "patent_id": "19416780",
+        "inserted": false,
+        "query": "fallback:HER2 antibody"
+      },
+      {
+        "id": 39,
+        "title": "Subcutaneous anti-HER2 Antibody Formulations and Uses Thereof",
+        "patent_id": "19328820",
+        "inserted": true,
+        "query": "fallback:HER2 antibody"
+      },
+      {
+        "id": 40,
+        "title": "Methods of Treating Cancer Using Anti-HER2 Antibody-Drug Conjugates and HER2 Kin",
+        "patent_id": "19163450",
+        "inserted": true,
+        "query": "fallback:HER2 antibody"
+      },
+      {
+        "id": 41,
+        "title": "USE OF ANTI-HER2 ANTIBODY IN PREPARATION OF DRUG FOR TREATING CANCER",
+        "patent_id": "19160936",
+        "inserted": true,
+        "query": "fallback:HER2 antibody"
+      }
+    ],
+    "errors": []
+  },
+  "write_sync": {
+    "ok": true,
+    "result": {
+      "ok": true,
+      "to_write": {
+        "direction": "to_write",
+        "project_id": "demo_m4_lit_pat",
+        "pushed": 1,
+        "updated": 18,
+        "skipped_non_literature": 4,
+        "total_intel_literature": 19
+      },
+      "from_write": {
+        "direction": "from_write",
+        "project_id": "demo_m4_lit_pat",
+        "saved": 0,
+        "updated": 11,
+        "skipped_other_project": 0,
+        "write_entries_seen": 11
+      }
+    },
+    "error": ""
+  },
+  "counts": {
+    "openalex": {
+      "ok": true,
+      "count": 17,
+      "total": 17,
+      "error": null
+    },
+    "manual": {
+      "ok": true,
+      "count": 2,
+      "total": 2,
+      "error": null
+    },
+    "patent": {
+      "ok": true,
+      "count": 4,
+      "total": 4,
+      "error": null
+    },
+    "sequence": {
+      "ok": true,
+      "count": 0,
+      "total": 0,
+      "error": null
+    },
+    "all": {
+      "ok": true,
+      "count": 23,
+      "total": 23,
+      "error": null
+    }
+  },
+  "summary": {
+    "literature_rows": 19,
+    "patent_rows": 4,
+    "all_rows": 23,
+    "seed_errors": 0
+  }
+}

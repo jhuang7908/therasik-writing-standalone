@@ -1,0 +1,72 @@
+{
+  "schema_version": "0.1.0",
+  "journal": { "key": "nature", "display": "Nature" },
+  "spec_version": "0.1.0",
+  "sourced_from": [
+    {
+      "url": "https://www.nature.com/nature/for-authors/formatting-guide",
+      "label": "Nature Formatting Guide",
+      "captured_at": null
+    },
+    {
+      "url": "https://www.nature.com/nature/for-authors/initial-submission",
+      "label": "Nature Initial Submission",
+      "captured_at": null
+    }
+  ],
+  "captured_at": null,
+
+  "article_types": [
+    { "value": "Article", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature/for-authors/formatting-guide" },
+    { "value": "Letter / Brief Communication", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature/for-authors/formatting-guide" },
+    { "value": "Review / Perspective", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature/for-authors/formatting-guide" }
+  ],
+
+  "structure": {
+    "required_sections": { "value": ["abstract","introduction","results","discussion","methods","references"], "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature/for-authors/formatting-guide" },
+    "optional_sections": { "value": ["acknowledgements","author_contributions","competing_interests","data_availability","code_availability","extended_data"], "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature/for-authors/formatting-guide" },
+    "significance_statement": { "value": "Not required; Nature uses a 200-word editorial summary written by editors.", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature/for-authors/formatting-guide" }
+  },
+
+  "abstract": {
+    "word_limit": { "value": 200, "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature/for-authors/formatting-guide", "notes": "Unstructured paragraph; no headings." },
+    "structured": { "value": false, "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature/for-authors/formatting-guide" }
+  },
+
+  "main_text": {
+    "word_limit": { "value": 5000, "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature/for-authors/formatting-guide", "notes": "~5000 words Article main text (excluding methods, references, legends)." },
+    "figure_count_limit": { "value": 6, "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature/for-authors/formatting-guide", "notes": "Typically ≤6 main figures + Extended Data figures." },
+    "table_count_limit": { "value": 3, "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature/for-authors/formatting-guide" },
+    "supplementary_policy": { "value": "Extended Data + Supplementary Information allowed (see editorial policy).", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature/for-authors/formatting-guide" }
+  },
+
+  "figures_tables": {
+    "figure_resolution": { "value": "≥300 dpi at final size for halftone; ≥600 dpi for line art.", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature/for-authors/final-submission" },
+    "color_policy": { "value": "RGB for online; colour figures free of charge.", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature/for-authors/final-submission" },
+    "legend_word_limit": { "value": 350, "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature/for-authors/formatting-guide" },
+    "accepted_formats": { "value": ["TIFF","EPS","PDF","PNG (final ≥300 dpi)"], "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature/for-authors/final-submission" }
+  },
+
+  "declarations": {
+    "competing_interests": { "value": "Mandatory — explicit Competing interests statement.", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature-portfolio/editorial-policies/competing-interests" },
+    "funding_statement": { "value": "Mandatory — list funders and grant IDs.", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature/for-authors/formatting-guide" },
+    "author_contributions": { "value": "Mandatory — Nature uses CRediT taxonomy.", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature-portfolio/editorial-policies/authorship" },
+    "ethics_statement": { "value": "Required for human/animal studies — IRB/IACUC approval numbers.", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature-portfolio/editorial-policies/research-data" },
+    "consent_statement": { "value": "Required for studies involving human subjects.", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature-portfolio/editorial-policies/research-data" },
+    "reporting_checklist": { "value": "Nature Reporting Summary mandatory for life-science Articles.", "verification_status": "published_guideline", "source_url": "https://www.nature.com/documents/nr-reporting-summary.pdf" }
+  },
+
+  "data_and_code": {
+    "data_availability": { "value": "Mandatory Data Availability Statement.", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature-portfolio/editorial-policies/reporting-standards" },
+    "code_availability": { "value": "Mandatory if novel code is reported; deposit to GitHub/Zenodo with DOI.", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature-portfolio/editorial-policies/reporting-standards" },
+    "preferred_repositories": { "value": ["GEO","SRA","PDB","UniProt","Figshare","Zenodo"], "verification_status": "published_guideline", "source_url": "https://www.nature.com/sdata/policies/repositories" },
+    "accession_required": { "value": true, "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature-portfolio/editorial-policies/reporting-standards" }
+  },
+
+  "reference_style_id": "nature_superscript",
+  "reference_limit": { "value": 50, "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature/for-authors/formatting-guide", "notes": "Nature Articles target ≤50 main-text references." },
+
+  "notes": [
+    { "value": "Initial submission can be in any reasonable format; revision requires Nature formatting compliance.", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature/for-authors/initial-submission" }
+  ]
+}

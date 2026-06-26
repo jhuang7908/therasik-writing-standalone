@@ -1,0 +1,240 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42133737",
+    "pmcid": "PMC13186370",
+    "doi": "10.1371/journal.pmed.1004877.r006",
+    "journal": "PLOS Medicine",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "data_first",
+    "dominant_frame": "translational_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "context-finding-mechanism-implication",
+    "claim_chain": [
+      "RTS,S vaccine provides modest efficacy but mechanisms are unclear",
+      "We evaluated antibody fine specificity to short CSP epitopes",
+      "High IgG to NANP2 and J1 epitopes correlated with protection from malaria",
+      "These responses were associated with higher Fc-mediated functional activities",
+      "Children with low responses had malaria rates similar to control group",
+      "Findings reveal new correlates of protection and inform next-generation vaccines"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "evaluated",
+      "found",
+      "indicate",
+      "associated",
+      "correlated",
+      "demonstrated",
+      "observed",
+      "revealed",
+      "suggests",
+      "may",
+      "could"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State main finding with specific epitopes and outcomes",
+      "Provide supporting quantitative evidence with statistical measures",
+      "Compare to control or alternative measures",
+      "Discuss mechanistic interpretation or functional relevance",
+      "Acknowledge limitations or context from prior studies"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Validation of correlates of protection in additional cohorts beyond single phase IIb trial",
+      "Mechanistic explanation for age-dependent differences in vaccine response",
+      "Understanding basis for vaccine hypo-responders with poor responses",
+      "Comparison with standard NANP15 assay and implications for field use",
+      "Generalizability to R21 vaccine and other CSP-based vaccines"
+    ],
+    "likely_attacks": [
+      "Post hoc analysis rather than pre-specified endpoint",
+      "Single cohort evaluation limits generalizability of correlates",
+      "Age groups not directly comparable to other trials",
+      "Unclear why subset of children generate different antibody specificities",
+      "Limited mechanistic data on how NANP2 and J1 antibodies mediate protection",
+      "Confounding by prior malaria exposure not fully addressed"
+    ],
+    "inference_basis": "The paper explicitly states 'We have evaluated NANP2 and J1 as immunological correlates of protection in one phase IIb cohort, additional studies in other RTS,S and R21 cohorts will be important to further confirm our findings.' It acknowledges that 'understanding the basis for these poor responses is an important objective for future research' regarding hypo-responders. The discussion notes 'The basis for this age effect is unclear, but it could relate to cumulative malaria exposure prior to vaccination, other infections, nutritional parameters or other environmental factors.' The paper also states this is a 'post hoc quantification and analysis' and compares age groups that 'are not directly comparable.' These passages indicate the authors anticipate concerns about validation, mechanistic understanding, and generalizability."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "A major finding was that high IgG responses to these epitopes were associated with a significantly reduced risk of clinical malaria",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "may mediate protection by inhibiting the proteolytic cleavage of CSP",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "The protective association was strongest among children with high responses to both epitopes",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "is likely because assays using a long NANP-repeat sequence do not discriminate children with different antibody specificities",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "These findings reveal promising new correlates of protection for RTS,S and new insights to inform the development of next-generation malaria vaccines",
+        "category": "generalization"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "We evaluated the fine specificity of vaccine-induced IgG to short epitopes",
+      "category": "opening"
+    },
+    {
+      "phrase": "A major finding was that",
+      "category": "claim"
+    },
+    {
+      "phrase": "were associated with a significantly reduced risk of clinical malaria",
+      "category": "claim"
+    },
+    {
+      "phrase": "It was notable that",
+      "category": "transition"
+    },
+    {
+      "phrase": "Together, these findings indicate that",
+      "category": "claim"
+    },
+    {
+      "phrase": "In contrast",
+      "category": "transition"
+    },
+    {
+      "phrase": "was not associated with protection in the same analysis",
+      "category": "claim"
+    },
+    {
+      "phrase": "is likely because",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Our data further revealed that",
+      "category": "transition"
+    },
+    {
+      "phrase": "suggesting it may be a valuable correlate of protection",
+      "category": "hedge"
+    },
+    {
+      "phrase": "may enhance",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Our findings suggest that future studies could further investigate",
+      "category": "implication"
+    },
+    {
+      "phrase": "A further significant finding was",
+      "category": "claim"
+    },
+    {
+      "phrase": "understanding the basis for these poor responses is an important objective for future research",
+      "category": "limitation"
+    },
+    {
+      "phrase": "The basis for this age effect is unclear, but it could relate to",
+      "category": "hedge"
+    },
+    {
+      "phrase": "additional studies in other RTS,S and R21 cohorts will be important to further confirm our findings",
+      "category": "limitation"
+    },
+    {
+      "phrase": "These findings reveal promising new correlates of protection",
+      "category": "claim"
+    },
+    {
+      "phrase": "new insights to inform the development of next-generation malaria vaccines",
+      "category": "implication"
+    },
+    {
+      "phrase": "Notably, children with high IgG responses to NANP2 and J1 had a significantly reduced risk of clinical malaria",
+      "category": "claim"
+    },
+    {
+      "phrase": "compared to children with low responses",
+      "category": "claim"
+    },
+    {
+      "phrase": "Serum samples were collected from children who received RTS,S",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Pooled sera from RTS,S vaccinated children",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Full-length Plasmodium falciparum circumsporozoite protein",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Mechanisms of immunity and correlates of protection for the RTS,S vaccine are not well defined",
+      "category": "opening"
+    },
+    {
+      "phrase": "hindering progress towards generating highly effective CSP-based vaccines",
+      "category": "opening"
+    },
+    {
+      "phrase": "We investigated epitope specificity and cross-reactivity of vaccine-induced antibodies",
+      "category": "opening"
+    },
+    {
+      "phrase": "Through post hoc quantification and analysis",
+      "category": "transition"
+    },
+    {
+      "phrase": "we found that a subset of children generated IgG with specificity for",
+      "category": "claim"
+    },
+    {
+      "phrase": "The important finding from our study was that",
+      "category": "claim"
+    },
+    {
+      "phrase": "This activity has been demonstrated with",
+      "category": "transition"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers were included. The profile is based entirely on the provided abstract, discussion, and figure legends sections."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:10:23.947933+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\plos_med\\42139279.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

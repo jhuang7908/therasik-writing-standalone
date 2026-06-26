@@ -611,13 +611,16 @@ def get_paper(identifier: str, db_path: str | None = None) -> dict:
         db_path: Override default database path.
 
     Returns:
-        Full paper record dict, or 'error' if not found.
+        Full paper record dict, or error if not found.
     """
     if litdb is None:
         return {"error": "literature_db not available"}
+    _lic = _validate_license()
+    if not _lic.get("valid"):
+        return {"error": "License validation failed", "detail": _lic}
     try:
         conn = _get_db(db_path)
-        paper = litdb.get_paper_by_id(conn, identifier)
+        paper = litdb.get_paper(conn, identifier)
         if paper is None:
             return {"error": f"Paper not found: {identifier}"}
         return paper
@@ -626,161 +629,164 @@ def get_paper(identifier: str, db_path: str | None = None) -> dict:
 
 
 @mcp.tool()
-def import_pdf_full_text(
-    pdf_path: str,
-    doi: str | None = None,
-    paper_id: str | None = None,
-    db_path: str | None = None,
-) -> dict:
+def import_pdf_full_text(pdf_path: str, paper_id: str, db_path: str | None = None) -> dict:
     """
     Extract full text from a PDF and store it in the literature database.
 
-    The paper must already exist in the database (add it first via add_paper_by_doi
-    or add_paper_by_pmid). Provide either doi or paper_id to link the PDF.
-
-    Requires pdfplumber: pip install pdfplumber
+    Attaches the extracted text to an existing paper record so it becomes
+    searchable via search_literature.
 
     Args:
         pdf_path: Absolute path to the PDF file.
-        doi: DOI of the paper (to link PDF to existing record).
-        paper_id: paper_id of the paper (alternative to doi).
-        db_path: Override default database path.
+        paper_id: Existing paper_id to attach text to.
+        db_path:  Override default database path.
 
     Returns:
-        dict with 'paper_id' and 'success', or 'error'.
+        dict with success (bool), word_count, or error.
     """
     if litdb is None:
         return {"error": "literature_db not available"}
+    _lic = _validate_license()
+    if not _lic.get("valid"):
+        return {"error": "License validation failed", "detail": _lic}
     try:
-        conn = _get_db(db_path)
-        pid = litdb.import_full_text_pdf(conn, Path(pdf_path),
-                                          paper_id=paper_id, doi=doi)
-        return {"paper_id": pid, "success": True}
-    except Exception as exc:
-        return {"error": str(exc), "success": False}
-
-
-@mcp.tool()
-def export_references_csv(
-    paper_ids: list[str],
-    output_path: str,
-    db_path: str | None = None,
-) -> dict:
-    """
-    Export selected papers from the literature database to references.csv format.
-
-    The output file is compatible with run_reference_claim_qa.py.
-    Copy it to {project}/00_project_database/references.csv.
-
-    Args:
-        paper_ids: List of paper_id, DOI, or PMID strings to export.
-        output_path: Where to write the CSV file.
-        db_path: Override default database path.
-
-    Returns:
-        dict with 'exported_count', 'output_path', or 'error'.
-    """
-    if litdb is None:
-        return {"error": "literature_db not available"}
-    try:
-        conn = _get_db(db_path)
-        n = litdb.export_to_references_csv(conn, paper_ids, Path(output_path))
-        return {"exported_count": n, "output_path": output_path}
+        conn   = _get_db(db_path)
+        result = litdb.import_pdf(conn, pdf_path, paper_id)
+        litdb._rebuild_tfidf(conn)
+        return result
     except Exception as exc:
         return {"error": str(exc)}
 
 
-# ── Journal requirements tools ────────────────────────────────────────────────
+@mcp.tool()
+def export_references_csv(
+    query: str | None = None,
+    paper_ids: list[str] | None = None,
+    output_path: str | None = None,
+    db_path: str | None = None,
+) -> dict:
+    """
+    Export paper references to a CSV file for use in manuscript preparation.
 
-def _load_journal_index() -> dict:
-    if not JOURNAL_INDEX.exists():
-        return {}
-    return json.loads(JOURNAL_INDEX.read_text(encoding="utf-8"))
+    Args:
+        query:       Optional search query to filter papers.
+        paper_ids:   Optional explicit list of paper_ids to export.
+        output_path: Path to write CSV.
+        db_path:     Override default database path.
 
-
-def _load_journal_file(key: str) -> dict | None:
-    path = JOURNAL_DIR / f"{key}.json"
-    if not path.exists():
-        return None
-    return json.loads(path.read_text(encoding="utf-8"))
+    Returns:
+        dict with output_path, count, or error.
+    """
+    if litdb is None:
+        return {"error": "literature_db not available"}
+    _lic = _validate_license()
+    if not _lic.get("valid"):
+        return {"error": "License validation failed", "detail": _lic}
+    try:
+        conn   = _get_db(db_path)
+        result = litdb.export_csv(conn, query=query, paper_ids=paper_ids, output_path=output_path)
+        return result
+    except Exception as exc:
+        return {"error": str(exc)}
 
 
 @mcp.tool()
 def get_journal_requirements(journal_name: str) -> dict:
     """
-    Look up submission requirements and formatting rules for a journal.
+    Look up submission requirements for a target journal.
 
-    Returns word limits, abstract limits, figure/table limits, reference style,
-    required sections, data availability policy, preprint policy, and submission URL.
+    Returns word limits, abstract limits, section requirements, reference limits,
+    figure limits, submission system, and open access options from the local
+    journal database (5,000+ journals).
 
     Args:
-        journal_name: Journal name (case-insensitive). Partial matches supported.
-                      Examples: 'nature', 'nejm', 'cell', 'plos one', 'lancet',
-                                'nature medicine', 'jbc', 'science', 'immunity',
-                                'frontiers pharmacology'
+        journal_name: Full or partial journal name.
 
     Returns:
-        Full journal requirements dict, or list of close matches if ambiguous.
+        Full journal requirements dict, or suggestions if not found exactly.
     """
-    # Try cloud API first (5,600+ journals), fall back to local (10 journals)
-    cloud = _journal_from_cloud(journal_name)
-    if cloud and "error" not in cloud and "matches" not in cloud:
-        _consume("journal_lookup")
-        return cloud
+    _lic = _validate_license()
+    if not _lic.get("valid"):
+        return {"error": "License validation failed", "detail": _lic}
 
-    # Local fallback
-    index = _load_journal_index()
-    query = journal_name.lower().strip()
+    import json as _json
+    journal_dir = SKILL_DIR / "assets" / "journal_requirements"
+    index_path  = journal_dir / "_index.json"
 
-    if query in index:
-        data = _load_journal_file(query)
-        return data or {"error": f"Data file missing for '{query}'"}
+    if index_path.exists():
+        index = _json.loads(index_path.read_text(encoding="utf-8"))
+        name_lower = journal_name.lower()
+        for entry in index:
+            if entry.get("name", "").lower() == name_lower:
+                jpath = journal_dir / entry["file"]
+                if jpath.exists():
+                    return _json.loads(jpath.read_text(encoding="utf-8"))
+        matches = [e for e in index if name_lower in e.get("name", "").lower()][:5]
+        if matches:
+            return {
+                "error": f"Journal not found exactly: {journal_name}",
+                "suggestions": [m["name"] for m in matches],
+            }
 
-    matches = []
-    for key, info in index.items():
-        display = info.get("display_name", "").lower()
-        if query in key or query in display:
-            matches.append(key)
-
-    if len(matches) == 1:
-        data = _load_journal_file(matches[0])
-        return data or {"error": f"Data file missing for '{matches[0]}'"}
-
-    if matches:
-        return {
-            "message": f"Multiple matches for '{journal_name}'. Narrow your query.",
-            "matches": {k: index[k].get("display_name") for k in matches},
-        }
-
-    # Return cloud partial matches if available
-    if cloud and "matches" in cloud:
-        return cloud
-
-    return {
-        "error": f"Journal '{journal_name}' not found.",
-        "available": list(index.keys()),
-    }
+    data = _journal_from_cloud(journal_name)
+    if data:
+        return data
+    return {"error": f"Journal not found: {journal_name}. Try list_journals to browse."}
 
 
 @mcp.tool()
-def list_journals() -> dict:
+def list_journals(
+    publisher: str | None = None,
+    submission_system: str | None = None,
+    limit: int = 50,
+) -> dict:
     """
-    List all journals available in the local journal requirements database.
+    List journals in the local database, optionally filtered by publisher or
+    submission system.
+
+    Args:
+        publisher:         Filter by publisher name (partial, case-insensitive).
+        submission_system: Filter by system (e.g. ScholarOne, Editorial Manager).
+        limit:             Max results (default 50, max 200).
 
     Returns:
-        dict with 'journals' list (each entry has key, display_name, issn, publisher).
+        dict with count and journals list.
     """
-    index = _load_journal_index()
-    journals = [
-        {
-            "key": k,
-            "display_name": v.get("display_name", k),
-            "issn": v.get("issn", ""),
-            "publisher": v.get("publisher", ""),
-        }
-        for k, v in index.items()
-    ]
-    return {"journals": journals, "count": len(journals)}
+    _lic = _validate_license()
+    if not _lic.get("valid"):
+        return {"error": "License validation failed", "detail": _lic}
+
+    import json as _json
+    journal_dir = SKILL_DIR / "assets" / "journal_requirements"
+    index_path  = journal_dir / "_index.json"
+    if not index_path.exists():
+        return {"error": "Journal index not found. Run build_journal_db.py first."}
+
+    index   = _json.loads(index_path.read_text(encoding="utf-8"))
+    results = index
+
+    if publisher:
+        pub_lower = publisher.lower()
+        results = [e for e in results if pub_lower in e.get("publisher", "").lower()]
+    if submission_system:
+        sys_lower = submission_system.lower()
+        results = [e for e in results if sys_lower in e.get("submission_system", "").lower()]
+
+    limit = min(int(limit), 200)
+    paged = results[:limit]
+    return {
+        "count":    len(results),
+        "showing":  len(paged),
+        "journals": [
+            {
+                "name":              e.get("name"),
+                "publisher":         e.get("publisher"),
+                "submission_system": e.get("submission_system"),
+                "impact_factor":     e.get("impact_factor"),
+            }
+            for e in paged
+        ],
+    }
 
 
 # ── Submission preparation tools ──────────────────────────────────────────────
@@ -790,6 +796,11 @@ try:
 except ImportError:
     subprep = None  # type: ignore
 
+try:
+    import multi_expert_review as mer
+except ImportError:
+    mer = None  # type: ignore
+
 
 @mcp.tool()
 def check_submission_compliance(
@@ -797,28 +808,25 @@ def check_submission_compliance(
     article_type: str | None = None,
 ) -> dict:
     """
-    Check manuscript compliance against the target journal's requirements.
+    Check manuscript compliance against the target journal requirements.
 
     Verifies word count, abstract length, required sections, reference count,
     figure count, data availability statement, and TheraSIK QA gate status.
 
-    The target journal is read from project_config.json (target_journal field).
-
     Args:
-        project_dir: Path to the manuscript project directory.
-        article_type: Override article type (e.g. 'Article', 'Letter', 'Review').
-                      Defaults to the value in project_config.json.
+        project_dir:  Path to the manuscript project directory.
+        article_type: Override article type (Article, Letter, Review, etc.).
 
     Returns:
-        dict with 'status' (PASS/FAIL/WARN), 'checks' list, 'submission_url',
-        'submission_system', and 'word_count'.
+        dict with status (PASS/FAIL/WARN), checks list, submission_system, word_count.
     """
     if subprep is None:
         return {"error": "submission_prep module not available"}
+    _lic = _validate_license()
+    if not _lic.get("valid"):
+        return {"error": "License validation failed", "detail": _lic}
     try:
-        result = subprep.check_compliance(project_dir, article_type)
-        _consume("submission_check")
-        return result
+        return subprep.check_compliance(project_dir, article_type=article_type)
     except Exception as exc:
         return {"error": str(exc)}
 
@@ -827,68 +835,31 @@ def check_submission_compliance(
 def prepare_submission_package(
     project_dir: str,
     article_type: str | None = None,
-    corresponding_author: str = "",
+    corresponding_author: str | None = None,
 ) -> dict:
     """
-    Build a complete submission package for the target journal.
-
-    Actions performed:
-      1. Compliance check (word counts, sections, figures, references, QA gates)
-      2. Cover letter template → 04_submission/cover_letter.md
-      3. Submission checklist → 04_submission/submission_checklist.md
-      4. Copy DOCX + PDF + figures + QA reports → 04_submission/
-      5. Write submission_manifest.json with all metadata
-
-    Review all [bracketed placeholders] in the cover letter before submitting.
+    Assemble a complete submission package: DOCX/PDF, cover letter, checklist,
+    manifest. Runs compliance check and flags blocking issues.
 
     Args:
-        project_dir: Path to the manuscript project directory.
-        article_type: Override article type (e.g. 'Article', 'Letter', 'Review').
-        corresponding_author: Name and email of corresponding author for cover letter,
-                              e.g. "Dr. Jane Smith <j.smith@univ.edu>".
+        project_dir:          Path to manuscript project directory.
+        article_type:         Override article type.
+        corresponding_author: Name and email, e.g. "Jane Doe <j@uni.edu>".
 
     Returns:
-        dict with 'status', 'submission_dir', 'cover_letter', 'checklist',
-        'submission_url', 'submission_system', and 'checks' list.
+        dict with status, output_dir, files, compliance_status, blocking_issues.
     """
     if subprep is None:
         return {"error": "submission_prep module not available"}
+    _lic = _validate_license()
+    if not _lic.get("valid"):
+        return {"error": "License validation failed", "detail": _lic}
     try:
-        result = subprep.prepare_submission(project_dir, article_type, corresponding_author)
-        _consume("submission_prep", units=2)
-        return result
-    except Exception as exc:
-        return {"error": str(exc)}
-
-
-@mcp.tool()
-def get_submission_system_guide(system_name: str) -> dict:
-    """
-    Return the built-in submission checklist and file requirements for a
-    major manuscript submission system.
-
-    Provides: checklist of required steps, file upload order, accepted figure
-    formats, and system-specific notes — even when journal-specific word limits
-    are unknown.
-
-    Available systems:
-      ScholarOne, Editorial Manager, eJournalPress, Frontiers, Snapp,
-      Bench>Press, EVISE, ScienceSubmit, PeerJ, F1000Research
-
-    Args:
-        system_name: Submission system name (case-insensitive, partial match OK).
-                     Examples: 'ScholarOne', 'Editorial Manager', 'Frontiers',
-                               'EM', 'Snapp', 'EJP', 'BenchPress'
-
-    Returns:
-        dict with 'checklist', 'file_order', 'figure_format', 'max_file_size_mb',
-        'notes', and 'aka' (alternative names).
-    """
-    if subprep is None:
-        return {"error": "submission_prep module not available"}
-    try:
-        result = subprep.get_system_guide(system_name)
-        return result
+        return subprep.prepare_submission(
+            project_dir,
+            article_type=article_type,
+            corresponding_author=corresponding_author,
+        )
     except Exception as exc:
         return {"error": str(exc)}
 
@@ -896,68 +867,275 @@ def get_submission_system_guide(system_name: str) -> dict:
 @mcp.tool()
 def generate_cover_letter(
     project_dir: str,
-    corresponding_author: str = "",
+    corresponding_author: str | None = None,
 ) -> dict:
     """
-    Generate a journal-specific cover letter template.
+    Generate a journal cover letter for a manuscript.
 
-    Fills in journal name, date, title (from manuscript), and article type.
-    Review and complete all [bracketed placeholders] before submitting.
-
-    Writes to: {project_dir}/04_submission/cover_letter.md
+    Reads project_config.json for journal name, title, and author list.
+    Writes to 04_submission/cover_letter.md.
 
     Args:
-        project_dir: Path to the manuscript project directory.
-        corresponding_author: Name and contact details for the cover letter signature.
+        project_dir:          Path to manuscript project directory.
+        corresponding_author: Name and affiliation override.
 
     Returns:
-        dict with 'cover_letter_path' and 'text' (full markdown content).
+        dict with output_path and preview (first 300 chars).
     """
     if subprep is None:
         return {"error": "submission_prep module not available"}
+    _lic = _validate_license()
+    if not _lic.get("valid"):
+        return {"error": "License validation failed", "detail": _lic}
     try:
-        text = subprep.generate_cover_letter(project_dir, corresponding_author)
-        cover_path = str(Path(project_dir) / "04_submission" / "cover_letter.md")
-        _consume("cover_letter")
-        return {"cover_letter_path": cover_path, "text": text}
+        return subprep.generate_cover_letter(project_dir, corresponding_author=corresponding_author)
     except Exception as exc:
         return {"error": str(exc)}
 
 
-# ── System tool ───────────────────────────────────────────────────────────────
+@mcp.tool()
+def get_submission_system_guide(system_name: str) -> dict:
+    """
+    Return step-by-step submission instructions for a specific platform.
+
+    Covers: ScholarOne, Editorial Manager, eJournalPress, Frontiers, Snapp,
+    Bench>Press, EVISE, ScienceSubmit, PeerJ, F1000Research.
+
+    Args:
+        system_name: Platform name (case-insensitive partial match).
+
+    Returns:
+        Full platform guide with checklist, file order, figure format, notes.
+    """
+    if subprep is None:
+        return {"error": "submission_prep module not available"}
+    _lic = _validate_license()
+    if not _lic.get("valid"):
+        return {"error": "License validation failed", "detail": _lic}
+    try:
+        return subprep.get_system_guide(system_name)
+    except Exception as exc:
+        return {"error": str(exc)}
+
+
+@mcp.tool()
+def run_multi_expert_review(
+    project_dir: str,
+    reviewers: list[str] | None = None,
+) -> dict:
+    """
+    Run multi-expert manuscript review from three independent reviewer roles.
+
+    Rule-based heuristics (no LLM API calls):
+      - Statistician: statistical tests, p-values, effect sizes, corrections,
+                      sample size/power analysis, reproducibility
+      - Domain Expert: overclaiming, causal language, hypothesis framing,
+                       limitations, alternative explanations, novelty
+      - Editor:        word count, sections, references, figures, declarations
+                       (COI, Data Availability, Ethics, Funding)
+
+    Source-bounded — findings reference only manuscript content.
+    No accept/reject predictions.
+
+    Output: {project_dir}/03_QA/multi_expert_review_QA.md
+
+    Args:
+        project_dir: Path to manuscript project directory.
+        reviewers:   Subset to run, e.g. ["statistician", "editor"].
+                     Default: all three.
+
+    Returns:
+        dict with overall_status, overall_score (0-10), per-reviewer findings,
+        priority_actions (CRITICAL > MAJOR > MINOR), and report_path.
+    """
+    if mer is None:
+        return {"error": "multi_expert_review module not available"}
+    _lic = _validate_license()
+    if not _lic.get("valid"):
+        return {"error": "License validation failed", "detail": _lic}
+    try:
+        result = mer.run_full_review(project_dir, reviewers=reviewers)
+        result["report_path"] = str(
+            Path(project_dir) / "03_QA" / "multi_expert_review_QA.md"
+        )
+        return result
+    except Exception as exc:
+        return {"error": str(exc)}
+
 
 @mcp.tool()
 def validate_skill_installation(skill_dir: str | None = None) -> dict:
     """
-    Validate that the TheraSIK academic writing suite is correctly installed.
-
-    Checks SKILL.md, required reference files, QA scripts, orchestration scripts,
-    project template, and skill_version_manifest.json.
+    Validate that the TheraSIK skill is correctly installed.
 
     Args:
-        skill_dir: Path to the skill directory. Defaults to the server's own directory.
+        skill_dir: Override skill root path (default: auto-detected).
 
     Returns:
-        dict with 'valid' (bool), 'status' (PASS/FAIL), and any 'errors'.
+        dict with valid (bool), status (PASS/FAIL), and errors list.
     """
-    target = str(skill_dir or SKILL_DIR)
-    result = _run_py(
-        "../scripts/validate_basic_skill.py",
-        [target],
-        cwd=SKILL_DIR,
-    )
-    # validate_basic_skill.py is at scripts/validate_basic_skill.py
-    # use direct path
-    cmd = [sys.executable, str(SCRIPTS_DIR / "validate_basic_skill.py"), target]
     import subprocess as sp
-    r = sp.run(cmd, capture_output=True, text=True, cwd=str(SKILL_DIR))
+    target = str(skill_dir or SKILL_DIR)
+    cmd    = [sys.executable, str(SCRIPTS_DIR / "validate_basic_skill.py"), target]
+    r      = sp.run(cmd, capture_output=True, text=True, cwd=str(SKILL_DIR))
     errors = [ln for ln in r.stdout.splitlines() if ln.startswith("FAIL:")]
     return {
-        "valid": r.returncode == 0,
+        "valid":  r.returncode == 0,
         "status": "PASS" if r.returncode == 0 else "FAIL",
         "errors": errors,
         "stdout": r.stdout.strip(),
     }
+
+
+# ── Manuscript planning + search + stat figures ───────────────────────────────
+
+try:
+    import manuscript_planner as msplan
+except ImportError:
+    msplan = None  # type: ignore
+
+try:
+    import similar_search as simsearch
+except ImportError:
+    simsearch = None  # type: ignore
+
+try:
+    import stat_plots as statplots
+except ImportError:
+    statplots = None  # type: ignore
+
+
+@mcp.tool()
+def plan_manuscript(
+    project_dir: str,
+    topic: str = "",
+    aim: str = "",
+    article_type: str = "",
+    journal_name: str = "",
+    design: str = "",
+    keywords: list[str] | None = None,
+) -> dict:
+    """
+    Generate a structured manuscript writing plan.
+
+    Produces section scaffold, word budgets calibrated to journal limits,
+    science-first writing order, figure/table slot plan, and key message
+    templates for each section.
+
+    Writes to {project_dir}/00_planning/manuscript_plan.md
+                           and section_outline.md
+
+    Args:
+        project_dir:  Path to manuscript project directory.
+        topic:        Research topic or title idea.
+        aim:          Primary aim or hypothesis statement.
+        article_type: original | review | brief | methods | meta | case
+                      (auto-detected from topic if omitted).
+        journal_name: Target journal — used to calibrate word budgets.
+        design:       Study design (e.g. RCT, retrospective cohort, in vitro).
+        keywords:     List of 5–8 keywords.
+
+    Returns:
+        Plan dict with sections, word_budget, writing_order, figures, tables.
+    """
+    if msplan is None:
+        return {"error": "manuscript_planner module not available"}
+    _lic = _validate_license()
+    if not _lic.get("valid"):
+        return {"error": "License validation failed", "detail": _lic}
+    try:
+        return msplan.plan_manuscript(
+            project_dir,
+            topic=topic, aim=aim, article_type=article_type,
+            journal_name=journal_name, design=design, keywords=keywords,
+        )
+    except Exception as exc:
+        return {"error": str(exc)}
+
+
+@mcp.tool()
+def find_similar_papers(
+    query: str,
+    db_path: str | None = None,
+    top_k: int = 10,
+    year_from: int | None = None,
+    year_to: int | None = None,
+    journal_filter: str | None = None,
+) -> dict:
+    """
+    Find papers in the local literature database similar to a query text.
+
+    Uses TF-IDF cosine similarity (60%) + BM25 (40%) ranking.
+    Works offline — no API calls required.
+
+    Args:
+        query:         Query text: abstract, paragraph, keyword list, or topic.
+        db_path:       Override database path.
+        top_k:         Number of results (default 10, max 50).
+        year_from:     Filter papers published from this year.
+        year_to:       Filter papers published up to this year.
+        journal_filter: Case-insensitive substring filter on journal name.
+
+    Returns:
+        dict with count and papers list (each with similarity_score, match_terms).
+    """
+    if simsearch is None:
+        return {"error": "similar_search module not available"}
+    _lic = _validate_license()
+    if not _lic.get("valid"):
+        return {"error": "License validation failed", "detail": _lic}
+    try:
+        results = simsearch.find_similar_papers(
+            query, db_path=db_path, top_k=min(int(top_k), 50),
+            year_from=year_from, year_to=year_to, journal_filter=journal_filter,
+        )
+        return {"count": len(results), "papers": results}
+    except FileNotFoundError as exc:
+        return {"error": str(exc)}
+    except Exception as exc:
+        return {"error": str(exc)}
+
+
+@mcp.tool()
+def generate_stat_figure(
+    plot_type: str,
+    data: dict,
+    output_path: str,
+) -> dict:
+    """
+    Generate a publication-quality statistical figure.
+
+    Supported types:
+      forest   — Forest plot (OR/HR/RR with CI, pooled diamond, I²)
+      km       — Kaplan-Meier survival curves (with at-risk table)
+      roc      — ROC/AUC curves (single or multiple classifiers)
+      heatmap  — Correlation or expression heatmap
+      bar      — Grouped bar chart with error bars
+      box      — Box + strip plot (individual data points)
+      scatter  — Scatter plot with optional regression line
+      volcano  — Volcano plot (log2FC vs -log10p)
+
+    Output format is inferred from output_path extension (.png/.svg/.pdf).
+    PNG output is at 300 DPI (journal-ready).
+
+    Args:
+        plot_type:   Plot type string (see above).
+        data:        Data specification dict. Structure varies by type;
+                     see stat_plots.py docstrings for each format.
+        output_path: Absolute path for the output figure file.
+
+    Returns:
+        dict with output_path (str) and success (bool), or error.
+    """
+    if statplots is None:
+        return {"error": "stat_plots module not available. Install matplotlib: pip install matplotlib"}
+    _lic = _validate_license()
+    if not _lic.get("valid"):
+        return {"error": "License validation failed", "detail": _lic}
+    try:
+        return statplots.generate_figure(plot_type, data, output_path)
+    except Exception as exc:
+        return {"error": str(exc)}
 
 
 # ── Entry point ───────────────────────────────────────────────────────────────

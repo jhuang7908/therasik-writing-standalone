@@ -1,0 +1,239 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42118844",
+    "pmcid": "PMC13187733",
+    "doi": "10.1073/pnas.2521055123",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "direct_problem_statement",
+    "dominant_frame": "method_innovation",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "problem-gap-solution-implication",
+    "claim_chain": [
+      "Normative models depend on generalizability across diverse populations",
+      "Overrepresentation of white individuals raises concerns about inclusiveness",
+      "Race-neutral models trained on multiethnic samples can generalize across diverse populations",
+      "CentileBrain models achieved consistent accuracy across ethnoracial groups",
+      "Race-neutral approach offers pragmatic and scientifically robust strategy",
+      "Findings support continued development of inclusive modeling platforms"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "provides",
+      "achieved",
+      "demonstrated",
+      "suggest",
+      "support",
+      "underscore",
+      "affirm",
+      "represents",
+      "may offer",
+      "merit consideration"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "Opening claim about study contribution",
+      "Contextualization of the problem or gap",
+      "Description of methodological approach or rationale",
+      "Presentation of key findings",
+      "Discussion of implications or limitations",
+      "Forward-looking statement about future directions"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Representation and diversity in training datasets",
+      "Methodological rigor in handling race and ancestry",
+      "Generalizability across populations",
+      "Comparison with population-specific models",
+      "Handling of social and environmental determinants"
+    ],
+    "likely_attacks": [
+      "Training sample still skewed toward white individuals",
+      "Some ethnoracial subgroups remain unrepresented",
+      "Comparative analysis limited to single platform",
+      "Lack of longitudinal data",
+      "Absence of contextual variables as covariates"
+    ],
+    "inference_basis": "The paper explicitly acknowledges several limitations: the training sample was skewed toward individuals identifying as white, some ethnoracial subgroups remain unrepresented due to data unavailability, and the comparative analysis was limited to a single platform. The authors also defend their decision not to include contextual variables such as childhood adversity or socioeconomic status as covariates, and explain why they avoided analyses predicting ethnoracial groups from brain morphometry. These self-defenses suggest anticipated reviewer concerns about sample composition, representativeness, scope of validation, and the handling of social determinants."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "This study provides empirical support for the generalizability of race-neutral, sex-specific normative models",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "Our findings suggest that this race-neutral approach may offer a pragmatic and scientifically robust strategy",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "The low RMAE values observed across all morphometric domains and groups further affirm the broad applicability",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "Several limitations merit consideration",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "These findings help address a critical gap in the normative modeling literature",
+        "category": "claim"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "This study provides empirical support for the generalizability",
+      "category": "opening"
+    },
+    {
+      "phrase": "These findings help address a critical gap",
+      "category": "claim"
+    },
+    {
+      "phrase": "The longstanding overrepresentation of white individuals in neuroimaging research has raised fundamental concerns",
+      "category": "opening"
+    },
+    {
+      "phrase": "Our findings suggest that this race-neutral approach may offer a pragmatic and scientifically robust strategy",
+      "category": "claim"
+    },
+    {
+      "phrase": "Several limitations merit consideration",
+      "category": "limitation"
+    },
+    {
+      "phrase": "The original model development sample for CentileBrain, though globally diverse, was still skewed toward individuals identifying as white",
+      "category": "limitation"
+    },
+    {
+      "phrase": "These limitations highlight the need for sustained global investment",
+      "category": "implication"
+    },
+    {
+      "phrase": "In this context, the present work represents a methodologically rigorous demonstration",
+      "category": "claim"
+    },
+    {
+      "phrase": "While important efforts are now underway",
+      "category": "transition"
+    },
+    {
+      "phrase": "their impact remains constrained by uneven data availability",
+      "category": "hedge"
+    },
+    {
+      "phrase": "The low RMAE values observed across all morphometric domains and groups further affirm the broad applicability",
+      "category": "claim"
+    },
+    {
+      "phrase": "To this point, we intentionally avoided analyses aiming to predict ethnoracial groups from brain morphometry data",
+      "category": "other"
+    },
+    {
+      "phrase": "We also chose not to include contextual variables",
+      "category": "other"
+    },
+    {
+      "phrase": "This decision is consistent with broader concerns in clinical medicine",
+      "category": "transition"
+    },
+    {
+      "phrase": "To facilitate fair cross-group comparisons",
+      "category": "transition"
+    },
+    {
+      "phrase": "When comparing the Chinese Brain Charts model with the CentileBrain model",
+      "category": "transition"
+    },
+    {
+      "phrase": "Several factors may explain this finding",
+      "category": "hedge"
+    },
+    {
+      "phrase": "In conclusion, the current study advances the field",
+      "category": "claim"
+    },
+    {
+      "phrase": "These findings support the continued development and application of inclusive, publicly available modeling platforms",
+      "category": "implication"
+    },
+    {
+      "phrase": "Future work should focus on expanding these models to underrepresented populations",
+      "category": "implication"
+    },
+    {
+      "phrase": "demonstrated consistently high accuracy",
+      "category": "claim"
+    },
+    {
+      "phrase": "with relative mean absolute error values below 10% for subcortical volume and surface area and below 5% for cortical thickness",
+      "category": "claim"
+    },
+    {
+      "phrase": "Model performance was highly concordant across self-identified and ancestry-defined groups",
+      "category": "claim"
+    },
+    {
+      "phrase": "the pretrained CentileBrain models demonstrated consistently high accuracy",
+      "category": "claim"
+    },
+    {
+      "phrase": "provide empirical support for the generalizability of race-neutral normative models",
+      "category": "claim"
+    },
+    {
+      "phrase": "underscore their potential utility for individualized neuroimaging assessment",
+      "category": "implication"
+    },
+    {
+      "phrase": "Scatterplot of the MAE values obtained from the self-reported ethnoracial groups",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Distributions of the MAE values across the 14 subcortical volumes and cortical thickness and surface",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Spider plot of the RMAE values obtained from the self-reported ethnoracial groups",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Normative deviation scores (Z-scores) in each ethnoracial group",
+      "category": "figure_legend"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers were included. The profile is based entirely on the provided abstract, discussion, and figure legends."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:17:48.190214+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\pnas\\42118844.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

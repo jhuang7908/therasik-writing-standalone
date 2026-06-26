@@ -1,0 +1,233 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42090262",
+    "pmcid": "PMC13167725",
+    "doi": "10.1073/pnas.2537314123",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "mechanism_gap",
+    "dominant_frame": "translational_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "problem-gap-solution-implication",
+    "claim_chain": [
+      "Affective signals influence motor control through parallel cortico-subcortical circuits",
+      "Anatomical evidence suggests PUTv-centered open-loop circuit may operate alongside canonical sensorimotor circuit",
+      "Whether these circuits are functionally independent and differentially recruited by incentive conditions remains unknown",
+      "Connectomic data reveal PUTv maintains balanced connectivity with affective and motor networks",
+      "Task fMRI shows jackpot and robber incentives produce distinct behavioral and neural signatures",
+      "High reward downregulates CLC while maintaining OLC engagement",
+      "High loss avoidance eliminates both circuits and recruits stopping-related regions",
+      "Findings support versatile architecture that flexibly engages distinct circuits depending on incentive phenomenology"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "reveal",
+      "suggest",
+      "support",
+      "demonstrate",
+      "indicate",
+      "position",
+      "maintain",
+      "engage",
+      "drive",
+      "favor",
+      "align"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State finding or observation from data",
+      "Connect to anatomical or functional evidence from literature",
+      "Interpret mechanistic implications",
+      "Acknowledge alternative interpretations or limitations",
+      "Link to broader theoretical framework or next steps"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Direct demonstration of functional pathways in primates",
+      "Characterization of CLC and OLC configurations involving CMA and basal ganglia in primates",
+      "Mechanistic validation of proposed multilevel control architecture",
+      "Causal evidence linking PUTv-CMA pathway to movement initiation",
+      "Replication of incentive-specific engagement patterns"
+    ],
+    "likely_attacks": [
+      "Functional connectivity does not establish causal pathways",
+      "Partialling approach may not fully isolate independent PUTv contributions",
+      "Task design confounds incentive valence with magnitude",
+      "Speed-accuracy trade-off interpretation requires more trials or conditions",
+      "Proposed model awaits direct demonstration and primate validation"
+    ],
+    "inference_basis": "The paper explicitly states 'Direct demonstration of this functional pathway awaits further investigation' and 'CLC and OLC configurations involving CMA and basal ganglia remain to be characterized in primates.' The discussion acknowledges that connectivity data 'suggest' rather than prove functional independence, and that interpretations are 'parsimonious' or 'plausible' rather than definitive. The paper also notes that the speed-accuracy trade-off occurs 'at least in early trials,' suggesting awareness of temporal limitations. These hedges and caveats indicate the authors anticipate reviewers will want causal validation, primate data, and more comprehensive task designs."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "suggesting functional independence from the traditional motor circuit",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "These data reveal that PUTv maintains balanced connectivity with both affective and motor networks",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "positioning CMA as a candidate node through which PUTv may influence motor circuits",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "high positive incentive downweights deliberative sensorimotor basal ganglia circuits",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "these findings support a versatile architecture for movement initiation that flexibly engages distinct cortico-subcortical circuits",
+        "category": "generalization"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "Affective signals influence motor control, potentially by way of the brain maintaining multiple parallel cortico-subcortical circuits differentially engaged by motivational context",
+      "category": "opening"
+    },
+    {
+      "phrase": "whether these circuits exist as functionally independent in humans and, critically, whether they are differentially recruited under varying incentive conditions remains unknown",
+      "category": "opening"
+    },
+    {
+      "phrase": "We therefore conducted two complementary neuroimaging experiments",
+      "category": "transition"
+    },
+    {
+      "phrase": "These data reveal that PUTv maintains balanced connectivity with both affective and motor networks",
+      "category": "claim"
+    },
+    {
+      "phrase": "suggesting functional independence from the traditional motor circuit",
+      "category": "hedge"
+    },
+    {
+      "phrase": "consistent with NHP tracer evidence",
+      "category": "claim"
+    },
+    {
+      "phrase": "positioning CMA as a candidate node through which PUTv may influence motor circuits",
+      "category": "hedge"
+    },
+    {
+      "phrase": "This finding is noteworthy because",
+      "category": "transition"
+    },
+    {
+      "phrase": "Direct demonstration of this functional pathway awaits further investigation",
+      "category": "limitation"
+    },
+    {
+      "phrase": "We next report behavioral and task-derived BOLD data to examine",
+      "category": "transition"
+    },
+    {
+      "phrase": "we revealed a clear asymmetry in incentive effects",
+      "category": "claim"
+    },
+    {
+      "phrase": "consistent with participants optimizing for speed at the cost of accuracy",
+      "category": "claim"
+    },
+    {
+      "phrase": "produced a striking dissociation consistent with our selective downregulation hypothesis",
+      "category": "claim"
+    },
+    {
+      "phrase": "This pattern suggests that high positive incentive downweights deliberative sensorimotor basal ganglia circuits",
+      "category": "hedge"
+    },
+    {
+      "phrase": "one parsimonious interpretation is that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "affective signaling from PUTv (and possibly NAc) through CMA may gain relative modulatory prominence",
+      "category": "hedge"
+    },
+    {
+      "phrase": "By contrast",
+      "category": "transition"
+    },
+    {
+      "phrase": "revealed a pattern consistent with our competitive shift hypothesis",
+      "category": "claim"
+    },
+    {
+      "phrase": "indicating disengagement of these circuits",
+      "category": "claim"
+    },
+    {
+      "phrase": "suggesting recruitment of hesitation or stopping processes that compete with movement initiation",
+      "category": "hedge"
+    },
+    {
+      "phrase": "consistent with broader evidence from human learning and decision-making",
+      "category": "claim"
+    },
+    {
+      "phrase": "The differential engagement patterns across incentive conditions are consistent with a multilevel control architecture",
+      "category": "claim"
+    },
+    {
+      "phrase": "these findings support a versatile architecture for movement initiation that flexibly engages distinct cortico-subcortical circuits depending on incentive phenomenology",
+      "category": "implication"
+    },
+    {
+      "phrase": "offer a candidate mechanism through which affective salience and valence modulate voluntary movement",
+      "category": "implication"
+    },
+    {
+      "phrase": "Canonical CLC and putative OLC, with site of disruption in PD",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Three hypothesized patterns of circuit engagement by incentive salience: additive, competitive, and selective downregulation",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Left PUTv connectivity after controlling for shared variance with",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Proposed multilevel model whereby phenomenology (i.e., the subjective construal of incentive as opportunity vs. threat) determines which neural architecture dominates movement initiation",
+      "category": "figure_legend"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers were included. The profile accurately reflects the paper's cautious-but-assertive tone, mechanism-gap opening, and balanced claim strength with appropriate hedging."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:12:50.514215+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\pnas\\42090262.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

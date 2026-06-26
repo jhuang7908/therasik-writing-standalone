@@ -1,0 +1,237 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42113993",
+    "pmcid": "PMC13170127",
+    "doi": "10.1073/pnas.2524677123",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "clinical_unmet_need",
+    "dominant_frame": "translational_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "problem-gap-solution-implication",
+    "claim_chain": [
+      "Effective therapies for synovitis and OA require understanding the complex joint environment",
+      "Patient explants reveal significant changes in synovial subintima after injury but lack early time points",
+      "We developed human cell-based models to investigate early endothelial-fibroblast crosstalk",
+      "Synovial fibroblasts reduce disease-like vascular phenotype in the presence of acute inflammation",
+      "Data suggests synovial fibroblasts have functional capacity to support vascular function",
+      "An effective therapeutic for synovitis may target synovial fibroblasts"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "reveals",
+      "suggests",
+      "indicates",
+      "uncover",
+      "develop",
+      "investigate",
+      "observe",
+      "reduce",
+      "support",
+      "promote",
+      "enable",
+      "elucidate"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State the need or gap in knowledge",
+      "Describe what was done to address the gap",
+      "Present key findings with supporting details",
+      "Interpret findings in broader context",
+      "Acknowledge limitations or caveats",
+      "State implications for future work or therapy"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Model complexity and physiological relevance",
+      "Validation against in vivo systems",
+      "Generalizability beyond IL-1β stimulation",
+      "Inclusion of additional cell populations like macrophages",
+      "Mechanistic depth of fibroblast-endothelial crosstalk"
+    ],
+    "likely_attacks": [
+      "Model oversimplifies the complex joint environment by using single cytokine",
+      "Lacks active fluid flow which may affect results",
+      "Missing key cell populations like tissue-resident synovial macrophages",
+      "Results may be limited to IL-1β-mediated inflammation",
+      "In vitro studies of synovial fibroblasts alone may miss functional capacity"
+    ],
+    "inference_basis": "The discussion explicitly states limitations including: 'Every MPS has limitations in that it can never fully recapitulate all aspects of the in vivo environment'; 'We reduce this multifaceted environment to a single cytokine, IL-1β. Therefore, our results may be limited to IL-1β-mediated inflammation'; 'tissue-resident synovial macrophages...are not a focus of our study'; 'Another area for further study would be the integration of active fluid flow'; 'the majority of in vitro studies investigating synovial fibroblasts in the absence of endothelial cells may miss the functional capacity of these cells'. These self-identified limitations directly inform what reviewers would likely scrutinize."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "Our data suggests that synovial fibroblasts, or a sub-population thereof, have the functional capacity to support vascular function",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "the presence of synovial fibroblasts reduces a disease-like vascular phenotype within the model",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "This suggests that the majority of in vitro studies investigating synovial fibroblasts in the absence of endothelial cells may miss the functional capacity of these cells",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "our results may be limited to IL-1β-mediated inflammation",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "synovial fibroblasts may be powerful targets for therapeutic delivery post-injury",
+        "category": "hedge"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "The development of effective therapies for both synovitis and OA requires an increased understanding of the complex joint environment",
+      "category": "opening"
+    },
+    {
+      "phrase": "Limited by the lack of specific time points prior to injury",
+      "category": "limitation"
+    },
+    {
+      "phrase": "we sought to develop human cell-based models to investigate",
+      "category": "transition"
+    },
+    {
+      "phrase": "provides a never-before-seen lens into the response",
+      "category": "claim"
+    },
+    {
+      "phrase": "a surprising influence of synovial fibroblasts on endothelial cell traction",
+      "category": "claim"
+    },
+    {
+      "phrase": "Our data suggests that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "this work offers a novel role for these cells",
+      "category": "claim"
+    },
+    {
+      "phrase": "Interestingly, when co-culturing",
+      "category": "transition"
+    },
+    {
+      "phrase": "Given our results, an effective therapeutic for synovitis may target",
+      "category": "implication"
+    },
+    {
+      "phrase": "it is unknown how the vessels within the synovium become disrupted",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Potentially, the synovial fibroblasts",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Every MPS has limitations in that it can never fully recapitulate all aspects of the in vivo environment",
+      "category": "limitation"
+    },
+    {
+      "phrase": "care must be taken to intentionally build complexity into a MPS",
+      "category": "other"
+    },
+    {
+      "phrase": "There are further complexities that could be added to our system",
+      "category": "limitation"
+    },
+    {
+      "phrase": "It is possible that the addition of",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Another area for further study would be",
+      "category": "limitation"
+    },
+    {
+      "phrase": "our results may be limited to",
+      "category": "hedge"
+    },
+    {
+      "phrase": "the modularity of MPS platform is really an advantage, not a limitation",
+      "category": "claim"
+    },
+    {
+      "phrase": "The primary objective of this report is to elucidate",
+      "category": "opening"
+    },
+    {
+      "phrase": "we uncover a new role of synovial fibroblasts",
+      "category": "claim"
+    },
+    {
+      "phrase": "Most excitingly, our data suggest that",
+      "category": "implication"
+    },
+    {
+      "phrase": "may be powerful targets for therapeutic delivery",
+      "category": "implication"
+    },
+    {
+      "phrase": "no disease-modifying therapy has successfully translated to human patients",
+      "category": "opening"
+    },
+    {
+      "phrase": "there is a strong motivation to develop humanized in vitro platforms",
+      "category": "opening"
+    },
+    {
+      "phrase": "Our data indicate that synovial fibroblasts, rather than initiating disease, attempt to support and maintain vascular function",
+      "category": "claim"
+    },
+    {
+      "phrase": "Such knowledge may provide new targets for OA therapeutics",
+      "category": "implication"
+    },
+    {
+      "phrase": "Schematic of synovium stained with hematoxylin and eosin, denoting blood vessels",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "3D rendering of bi-layered polydimethylsiloxane (PDMS) microfluidic device",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Secreted protein expression, normalized to the Endo group",
+      "category": "figure_legend"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, invented numbers, or author names were included. The profile is based entirely on the provided abstract, discussion, and figure legends."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:16:00.997078+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\pnas\\42113993.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

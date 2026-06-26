@@ -1,0 +1,14 @@
+extends: substitution
+message: "Prefer '%s' over AI-default verb."
+level: warning
+ignorecase: true
+swap:
+  'highlighted( that)?': "showed / revealed / demonstrated"
+  'underscored': "confirmed / demonstrated"
+  'showcased': "showed / presented"
+  'unveiled( that)?': "revealed / reported"
+  'emphasized( that)?': "showed / noted"
+  'illuminated': "clarified / revealed"
+  'shed light on': "clarified / explained"
+  'offered insights? (into|on)': "revealed / showed"
+  'provided evidence for': "demonstrated / confirmed"

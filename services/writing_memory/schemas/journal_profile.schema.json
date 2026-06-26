@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://insynbio.com/schemas/writing_memory/journal_profile.v0_1.schema.json",
+  "title": "JournalProfile",
+  "description": "Aggregated writing-style profile for a single journal, built from N ArticleProfile records. Every leaf carries evidence_paper_count and verification_status so the UI can show provenance.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "journal",
+    "profile_version",
+    "source_paper_count",
+    "source_paper_ids",
+    "rhetoric_profile",
+    "logic_profile",
+    "sentence_style_profile",
+    "paragraph_structure_profile",
+    "claim_strength_profile",
+    "reviewer_attack_patterns",
+    "phrase_bank",
+    "generated_at"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "0.1.0" },
+
+    "journal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "display"],
+      "properties": {
+        "key": { "type": "string", "enum": ["pnas", "elife", "plos_med", "plos_one"] },
+        "display": { "type": "string" },
+        "issn": { "type": ["string", "null"] }
+      }
+    },
+
+    "profile_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+
+    "source_paper_count": { "type": "integer", "minimum": 1 },
+    "source_paper_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "pattern": "^[0-9]+$" },
+      "description": "PMIDs of the articles whose ArticleProfile rows fed this aggregation."
+    },
+
+    "rhetoric_profile":              { "$ref": "#/$defs/EvidencedField" },
+    "logic_profile":                 { "$ref": "#/$defs/EvidencedField" },
+    "sentence_style_profile":        { "$ref": "#/$defs/EvidencedField" },
+    "paragraph_structure_profile":   { "$ref": "#/$defs/EvidencedField" },
+    "claim_strength_profile":        { "$ref": "#/$defs/EvidencedField" },
+
+    "reviewer_attack_patterns": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["pattern", "frequency", "evidence_paper_ids", "verification_status"],
+        "properties": {
+          "pattern": { "type": "string", "minLength": 6, "maxLength": 200 },
+          "suggested_fix": { "type": ["string", "null"], "maxLength": 400 },
+          "frequency": { "type": "integer", "minimum": 1 },
+          "evidence_paper_ids": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "pattern": "^[0-9]+$" }
+          },
+          "verification_status": { "const": "inferred" }
+        }
+      }
+    },
+
+    "phrase_bank": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["phrase", "category", "frequency", "evidence_paper_ids", "verification_status"],
+        "properties": {
+          "phrase": { "type": "string", "minLength": 3, "maxLength": 200 },
+          "category": {
+            "enum": [
+              "opening",
+              "transition",
+              "hedge",
+              "claim",
+              "causal",
+              "generalization",
+              "limitation",
+              "implication",
+              "figure_legend",
+              "other"
+            ]
+          },
+          "frequency": { "type": "integer", "minimum": 1 },
+          "evidence_paper_ids": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "pattern": "^[0-9]+$" }
+          },
+          "verification_status": { "enum": ["verified", "inferred"] }
+        }
+      }
+    },
+
+    "generated_at": { "type": "string", "format": "date-time" }
+  },
+
+  "$defs": {
+    "EvidencedField": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "evidence_paper_count", "verification_status"],
+      "properties": {
+        "value": {
+          "description": "Free-form structured value; concrete shape is defined by the article-profile schema for the same field name.",
+          "type": ["object", "array", "string"]
+        },
+        "evidence_paper_count": { "type": "integer", "minimum": 1 },
+        "verification_status": { "enum": ["verified", "inferred", "unverified"] },
+        "notes": { "type": ["string", "null"], "maxLength": 600 }
+      }
+    }
+  }
+}

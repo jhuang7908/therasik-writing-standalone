@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="deployment-id" content="20260225-01">
+  <meta name="description" content="Therasik antibody assessment and developability service — sequence analysis, humanization, immunogenicity prediction, structure evaluation, and affinity maturation.">
+  <meta name="keywords" content="antibody developability, VHH humanization, immunogenicity, CDR analysis, antibody engineering, Therasik">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.therasik.com/Therasik_Antibody_Developability_Assessment_Page.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.therasik.com/Therasik_Antibody_Developability_Assessment_Page.html">
+  <meta property="og:title" content="Antibody Development & Assessment | Therasik — AI for Life Sciences">
+  <meta property="og:description" content="Therasik antibody assessment and developability service — sequence analysis, humanization, immunogenicity prediction, structure evaluation, and affinity maturation.">
+  <meta property="og:image" content="https://www.therasik.com/images/hero-bg.svg">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://www.therasik.com/Therasik_Antibody_Developability_Assessment_Page.html">
+  <meta property="twitter:title" content="Antibody Development & Assessment | Therasik — AI for Life Sciences">
+  <meta property="twitter:description" content="Therasik antibody assessment and developability service — sequence analysis, humanization, immunogenicity prediction, structure evaluation, and affinity maturation.">
+  <meta property="twitter:image" content="https://www.therasik.com/images/hero-bg.svg">
+  <title>Antibody Developability Assessment | InSynBio — AI for Life Sciences</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root { --primary: #0d9488; --primary-dark: #0f766e; --text: #111827; --text-muted: #4b5563; --border: #e5e7eb; --bg: #ffffff; --bg-alt: #f9fafb; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 16px; line-height: 1.6; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    
+    /* Header */
+    .top-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 32px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); flex-wrap: wrap; gap: 12px; position: sticky; top: 0; z-index: 1000; }
+    .top-header .brand { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700; font-size: 26px; letter-spacing: -0.03em; display: flex; align-items: center; }
+    .top-header .brand a { text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px; }
+    .top-header .brand .syn { color: var(--primary); font-style: italic; }
+    .top-header .slogan { font-size: 14px; color: var(--text-muted); margin-left: 0; padding-left: 14px; border-left: 1px solid var(--border); font-family: 'Inter', sans-serif; white-space: nowrap; font-weight: 600; letter-spacing: 0.02em; }
+    
+    /* Nav */
+    .top-header-nav { display: flex; align-items: center; gap: 6px; flex: 1; justify-content: center; }
+    .top-header-nav a { padding: 8px 16px; font-size: 17px; color: var(--text-muted); text-decoration: none; border-radius: 20px; transition: all 0.2s ease; font-weight: 600; }
+    .top-header-nav a:hover { color: var(--primary); background: rgba(13,148,136,0.06); }
+    .top-header-nav a.active { background: var(--primary); color: #fff; box-shadow: 0 2px 8px rgba(13,148,136,0.25); }
+    .top-header-nav a.active:hover { background: var(--primary-dark); }
+    
+    /* Nav Dropdown */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a::after { content: ' ▾'; font-size: 10px; opacity: 0.6; margin-left: 4px; }
+    .nav-dropdown .dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px); min-width: 220px; padding: 8px; background: #fff; border: 1px solid rgba(0,0,0,0.06); border-radius: 12px; box-shadow: 0 10px 40px -10px rgba(0,0,0,0.12); opacity: 0; visibility: hidden; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); z-index: 100; margin-top: 8px; }
+    .nav-dropdown:hover .dropdown-menu, .nav-dropdown:focus-within .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+    .nav-dropdown .dropdown-menu a { display: block; padding: 12px 16px; color: var(--text); text-decoration: none; line-height: 1.4; border-radius: 8px; text-align: left; }
+    .nav-dropdown .dropdown-menu a:hover { background: var(--bg-alt); }
+    .nav-dropdown .dropdown-menu a .menu-title { display: block; font-weight: 600; font-size: 14px; color: var(--text); margin-bottom: 2px; }
+    .nav-dropdown .dropdown-menu a:hover .menu-title { color: var(--primary); }
+    .nav-dropdown .dropdown-menu a .menu-desc { display: block; font-size: 12px; color: var(--text-muted); font-weight: 400; line-height: 1.4; }
+
+    /* Page Layout */
+    .page-wrap { display: flex; min-height: calc(100vh - 73px); max-width: 1400px; margin: 0 auto; }
+    .sidebar { width: 280px; flex-shrink: 0; background: var(--bg); border-right: 1px solid rgba(0,0,0,0.05); padding: 40px 20px; position: sticky; top: 73px; height: calc(100vh - 73px); overflow-y: auto; }
+    .sidebar h3 { font-size: 12px; font-weight: 700; color: var(--text-muted); margin: 0 16px 16px; text-transform: uppercase; letter-spacing: 1.5px; }
+    .sidebar nav a { display: flex; align-items: center; padding: 12px 16px; color: var(--text-muted); text-decoration: none; font-size: 15px; transition: all 0.2s; border-radius: 8px; margin-bottom: 4px; font-weight: 500; }
+    .sidebar nav a:hover { background: rgba(13,148,136,0.06); color: var(--primary); }
+    .sidebar nav a.active { background: rgba(13,148,136,0.1); color: var(--primary-dark); font-weight: 600; }
+    .nav-icon { width: 18px; height: 18px; margin-right: 12px; opacity: 0.8; flex-shrink: 0; }
+    
+    .main { flex: 1; padding: 60px 60px 100px; max-width: 960px; margin: 0 auto; }
+    .main h1 { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 700; color: #111827; margin: 0 0 16px; letter-spacing: -0.03em; line-height: 1.1; }
+    .main .subtitle { font-size: 20px; color: #4b5563; margin-bottom: 8px; line-height: 1.6; }
+    .main h2 { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 600; color: #111827; margin: 56px 0 24px; padding-top: 32px; border-top: 1px solid rgba(0,0,0,0.05); letter-spacing: -0.01em; }
+    .main h2:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+    .h2-icon { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; margin-right: 12px; border-radius: 10px; background: rgba(13,148,136,0.1); color: var(--primary); vertical-align: middle; }
+    .main p, .main ul, .main li { margin: 0 0 20px; color: #374151; font-size: 17px; line-height: 1.7; }
+    .main ul { padding-left: 24px; }
+    .main li { margin-bottom: 10px; }
+    .main .input-note { font-size: 14px; color: #6b7280; margin-top: 8px; font-style: italic; }
+    
+    /* Form */
+    .form-section { background: #fff; border-radius: 16px; padding: 40px; margin-top: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.06); }
+    .form-row { display: flex; gap: 24px; margin-bottom: 24px; flex-wrap: wrap; }
+    .form-group { flex: 1; min-width: 180px; }
+    .form-group.full { flex: 1 1 100%; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: #111827; font-size: 14px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 16px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 15px; font-family: inherit; transition: border-color 0.2s, box-shadow 0.2s; }
+    .form-group textarea { min-height: 120px; resize: vertical; }
+    .form-group textarea.seq { font-family: 'Consolas', 'Monaco', monospace; font-size: 13px; min-height: 100px; background: #f9fafb; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(13,148,136,0.15); }
+    .form-group .hint { font-size: 13px; color: #6b7280; margin-top: 6px; }
+    .form-group .hint a { color: var(--primary); font-weight: 500; }
+    .btn { padding: 14px 32px; background: #0f766e; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(15,118,110,0.30); }
+    .btn:hover { background: #065f46; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(15,118,110,0.40); }
+    .check-group { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+
+    /* FAQ */
+    .faq-list { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+    .faq-item { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg); }
+    .faq-item summary { list-style: none; padding: 16px 20px; font-size: 15px; font-weight: 600; color: #111827; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary:hover { background: var(--bg-alt); }
+    .faq-item summary::after { content: "+"; font-size: 18px; font-weight: 400; color: var(--primary); flex-shrink: 0; transition: transform 0.2s; }
+    .faq-item[open] summary { background: rgba(13,148,136,0.04); border-bottom: 1px solid var(--border); }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-body { padding: 14px 20px 18px; font-size: 15px; color: #4b5563; line-height: 1.7; }
+    .faq-body p { margin: 0 0 8px; }
+    .check-item { display: flex; align-items: center; gap: 10px; }
+    .check-item input { width: 18px; height: 18px; accent-color: var(--primary); }
+    .check-item label { margin: 0; font-weight: 400; cursor: pointer; color: #374151; font-size: 15px; }
+    
+    .breadcrumb { font-size: 14px; color: #6b7280; margin-bottom: 32px; font-weight: 500; }
+    .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--primary); }
+    .breadcrumb span { color: #d1d5db; margin: 0 8px; }
+    
+    .table-wrap { overflow-x: auto; margin: 32px 0; border-radius: 12px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+    .main table { min-width: 100%; background: #fff; border-collapse: collapse; }
+    .main table th, .main table td { padding: 18px 24px; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 15px; color: #374151; text-align: left; }
+    .main table th { background: #f8fafc; font-weight: 600; color: #111827; text-transform: uppercase; font-size: 12px; letter-spacing: 0.05em; }
+    .main table tr:last-child td { border-bottom: none; }
+    .main table tr:hover td { background-color: #fcfcfc; }
+    .main table .status-link { display: inline-block; font-size: 12px; font-weight: 700; color: var(--primary); background: rgba(13,148,136,0.1); padding: 4px 12px; border-radius: 20px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.02em; }
+    .main table .status-link:hover { background: rgba(13,148,136,0.15); color: var(--primary-dark); }
+    
+    .disclaimer { font-size: 14px; color: #92400e; font-style: italic; margin-top: 16px; padding: 16px 20px; background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 8px 8px 0; }
+    
+    .mission-block { background: linear-gradient(135deg, #f0fdfa 0%, #fff 100%); border: 1px solid rgba(13,148,136,0.1); border-radius: 16px; padding: 32px; margin-bottom: 40px; box-shadow: 0 4px 20px rgba(13,148,136,0.05); position: relative; overflow: hidden; }
+    .mission-block::before { content: ''; position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(circle, rgba(13,148,136,0.1) 0%, transparent 70%); border-radius: 50%; transform: translate(30%, -30%); pointer-events: none; }
+    .mission-block p { margin: 0; font-size: 17px; line-height: 1.7; color: #111827; position: relative; z-index: 1; }
+    .mission-block p + p { margin-top: 16px; }
+    
+    .site-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid rgba(0,0,0,0.05); font-size: 14px; color: #9ca3af; text-align: center; }
+    .site-footer a { color: #6b7280; text-decoration: none; transition: color 0.2s; }
+    .site-footer a:hover { color: var(--primary); }
+
+    @media (max-width: 900px) {
+      .top-header { flex-wrap: wrap; padding: 12px 16px; gap: 10px; }
+      .top-header .brand { flex: 1 1 auto; min-width: 0; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+      .top-header .slogan { display: inline-block !important; font-size: 12px; padding-left: 10px; border-left: 1px solid var(--border); white-space: nowrap; }
+      .top-header .header-right { order: 2; margin-left: auto; }
+      .top-header-nav { order: 3; width: 100%; flex: 1 1 100%; justify-content: flex-start; flex-wrap: wrap; gap: 6px; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; border-top: 1px solid var(--border); padding-top: 10px; margin-top: 2px; }
+      .top-header-nav a { flex-shrink: 0; font-size: 13px; padding: 6px 10px; }
+      .page-wrap { flex-direction: column; min-height: auto; }
+      .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid #e0e0e0; padding: 16px; top: 0; }
+      .sidebar nav { display: flex; flex-wrap: wrap; gap: 8px; }
+      .sidebar nav a { display: inline-flex; padding: 8px 12px; border-radius: 6px; border-left: none; }
+      .main { padding: 32px 24px 64px; }
+      .mission-block { padding: 24px; margin-bottom: 32px; }
+    }
+
+    /* Mobile: stacked card table + tighter form */
+    @media (max-width: 600px) {
+      .main { padding: 24px 16px 56px; }
+      .form-section { padding: 24px 16px; }
+      .form-row { flex-direction: column; gap: 16px; }
+      .humanization-table thead { display: none; }
+      .humanization-table tbody tr {
+        display: block;
+        margin-bottom: 16px;
+        border: 1px solid rgba(0,0,0,0.08);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      }
+      .humanization-table td {
+        display: block;
+        padding: 10px 16px;
+        font-size: 14px;
+        line-height: 1.6;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+      }
+      .humanization-table td::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--primary);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 3px;
+      }
+      .humanization-table td:last-child { border-bottom: none; }
+    }
+
+    /* Typography: justify long paragraphs on desktop only */
+    @media (min-width: 960px) {
+      .main p, .mission-block p { text-align: justify; text-justify: inter-word; hyphens: auto; }
+    }
+      body { padding-top: 72px; }
+    </style>
+</head>
+<body data-lang="en" id="insynbio-body">
+      
+  
+  <header class="top-header">
+    <div class="brand">
+      <a href="index.html">
+        <svg width="34" height="28" viewBox="0 0 32 30" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+          <path d="M16 2L2 10V22L16 28L30 22V10L16 2Z" fill="#0d9488" fill-opacity="0.1" stroke="#0d9488" stroke-width="2.5" />
+          <path d="M7 14L16 19L25 14" stroke="#0d9488" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M16 19V28" stroke="#0d9488" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M7 14L7 6C7 6 10 2 16 2C22 2 25 6 25 6L25 14" stroke="#0d9488" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="7" cy="6" r="2" fill="#0f766e" />
+          <circle cx="25" cy="6" r="2" fill="#0f766e" />
+          <circle cx="16" cy="18" r="2" fill="white" stroke="#0d9488" stroke-width="1.5" />
+        </svg>
+        <span><span style="color:#111827">InSyn</span><span style="color:var(--primary); font-style:italic">Bio</span></span>
+      </a>
+      <span class="slogan">AI Driven Drug R&D</span>
+    </div>
+    <nav class="top-header-nav">
+      <a href="index.html">Home</a>
+      <a href="index.html#about">About</a>
+      <div class="nav-dropdown" tabindex="0">
+        <a href="index.html#services">Services</a>
+        <div class="dropdown-menu">
+          <a href="InSynBio_Antibody_Page.html">
+            <span class="menu-title">Antibody Assessment</span>
+            <span class="menu-desc">Structure-based Developability</span>
+          </a>
+          <a href="InSynBio_CART_Page.html">
+            <span class="menu-title">Smart CAR-T Design</span>
+            <span class="menu-desc">ACTES End-to-End</span>
+          </a>
+          <a href="InSynBio_Bispecific_Page.html">
+            <span class="menu-title">Bispecific Antibody</span>
+            <span class="menu-desc">Nano-Convert™ Platform</span>
+          </a>
+        </div>
+      </div>
+      <a href="index.html#case-studies">Showcase</a>
+      <a href="index.html#workflow">Workflow</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+
+  <div class="page-wrap">
+    <aside class="sidebar">
+      <h3>Antibody Assessment</h3>
+      
+      <nav>
+        <a href="#platform" class="nav-link active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Platform</a>
+        <a href="#sequence" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M4 8h16M4 16h16"/></svg>Sequence</a>
+        <a href="#developability" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg>Developability</a>
+        <a href="#immunogenicity" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Immunogenicity</a>
+        <a href="#structure" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>Structure</a>
+        <a href="#affinity-maturation" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>Affinity Maturation</a>
+        <a href="#humanization" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Humanization</a>
+        <a href="#full-report" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>Full Report</a>
+        <a href="#submit" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Submit Inquiry</a>
+        <a href="#faq" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>FAQ</a>
+        <a href="#contact" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Contact</a>
+      </nav>
+    </aside>
+    <main class="main">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a><span>/</span><a href="index.html#services">&larr; All Services</a><span>/</span><span>Antibody</span>
+      </div>
+
+      <h1>Antibody Developability Assessment</h1>
+      <p class="subtitle">Expert-reviewed computational antibody analysis, evaluation, and gene-engineering humanization for drug discovery and development.</p>
+
+      <div class="mission-block">
+        <p><strong>Expert-reviewed in silico pipeline from sequence to report.</strong> We provide numbering and CDR annotation, germline retrieval, developability and immunogenicity prediction, structure modeling and interface analysis, structure-driven humanization, and affinity maturation.</p>
+        <p>All deliverables are expert-reviewed and typically delivered within 3–5 business days. <a href="index.html#about">Learn more →</a></p>
+      </div>
+      
+      <p class="disclaimer">Disclaimer: Therasik in silico analyses are for reference only and do not replace final wet-lab validation. Experimental confirmation is required.</p>
+
+      <h2 id="platform"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>Platform</h2>
+      <p>The Antibody Developability Assessment platform provides computational analysis, evaluation, gene-engineering humanization, and structure-driven affinity maturation for antibody drug discovery and development. We primarily work from sequences—submit VH/VL or VHH sequences online; we can model structures in-house when needed. Our experts deliver structured reports covering numbering, germline retrieval, developability, immunogenicity, structure assessment, interface analysis, humanization design, and affinity maturation.</p>
+      
+      <p>All services are expert-reviewed and delivered offline—typically within 3–5 business days upon project confirmation. Our pipeline is based on 1,133 clinical antibody sequences and uses transparent metrics. Humanization employs structure-driven back-mutations and prioritizes germlines from clinical antibodies. Structure assessment is included for all humanization deliverables.</p>
+
+      <h2 id="sequence"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M4 8h16M4 16h16"/></svg></span>Sequence</h2>
+      <p><strong>Sequence Analysis</strong></p>
+      
+      <ul>
+        <li><strong>Numbering and CDR annotation</strong> — IMGT/Kabat schemes, FR/CDR delineation</li>
+        <li><strong>Germline retrieval</strong> — Nearest germline and identity (%) against 1,133 clinical antibody sequences</li>
+        <li><strong>VH/VL pairing</strong> — Co-occurrence frequency in clinical antibodies</li>
+      </ul>
+      
+      <p class="input-note">Input: VH/VL sequences</p>
+
+      <h2 id="developability"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg></span>Developability</h2>
+      <p><strong>Developability and CMC</strong></p>
+      
+      <ul>
+        <li><strong>Physicochemical</strong> — pI, GRAVY, instability index, net charge</li>
+        <li><strong>SAP</strong> — 9-mer hydrophobic and 7-mer charge aggregation propensity</li>
+        <li><strong>CDR chemical risk</strong> — Deamidation (NG/NS), oxidation (M/W), glycosylation (NxS/T), free Cys</li>
+        <li><strong>TAP</strong> — Total CDR length, PSH, PPC, PNC, SFvCSP (Therasik in-house implementation with reference thresholds). <em>Requires PDB and CDR sequences.</em></li>
+        <li><strong>CMC design</strong> — pI adjustment, FR-only mutation suggestions</li>
+      </ul>
+      
+      <p class="input-note">Input: VH/VL sequences. For TAP: PDB and CDR sequences are required.</p>
+
+      <h2 id="immunogenicity"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>Immunogenicity</h2>
+      <p><strong>Immunogenicity Assessment</strong></p>
+      
+      <ul>
+        <li><strong>MHC-II 27 alleles</strong> — IEDB prediction, FR surface risk assessment</li>
+        <li><strong>Risk clustering</strong> — Agglomerative clustering of high-risk positions</li>
+        <li><strong>Surface immunogenicity</strong> — Parker hydrophilicity; SASA-based analysis (optional when PDB is provided)</li>
+        <li><strong>Germline tolerance</strong> — IGHV/IGKV/IGLV frequency-weighted filter</li>
+      </ul>
+      
+      <p class="input-note">Input: VH/VL sequences (PDB optional)</p>
+
+      <h2 id="structure"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span>Structure</h2>
+      <p><strong>Structure and Interface</strong></p>
+      
+      <ul>
+        <li><strong>Whole antibody (Fab) assessment</strong> — 13-parameter evaluation: VH-VL angle, interface contacts, Vernier SASA, CDR conformation, pLDDT</li>
+        <li><strong>VHH assessment</strong> — Single-domain structure metrics, CDR conformation, pLDDT</li>
+        <li><strong>Antigen-antibody complex assessment</strong> — Antibody-antigen interface: BSA, paratope/epitope residues, H-bonds, salt bridges, hydrophobic contacts</li>
+        <li><strong>Multi-antibody comparison</strong> — Epitope overlap, competition analysis, BSA/SC comparison (on request)</li>
+      </ul>
+      
+      <p class="input-note">Input: PDB (Fab, VHH, or antigen-antibody complex). Antigen chain ID required for interface analysis.</p>
+
+      <h2 id="affinity-maturation"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>Affinity Maturation</h2>
+      <p><strong>Structure-Driven Affinity Maturation</strong></p>
+      
+      <p>Based on existing complex structures. No de novo structure generation required. Structure assessment included for all deliverables.</p>
+      
+      <ul>
+        <li><strong>Antigen-antibody affinity maturation</strong> — CDR redesign on Ab-Ag complex backbone for improved binding</li>
+        <li><strong>Ligand-receptor affinity maturation</strong> — Paratope optimization on ligand-receptor complex for enhanced affinity</li>
+        <li><strong>VHH affinity maturation</strong> — CDR optimization on VHH-antigen complex for single-domain antibodies</li>
+      </ul>
+      
+      <p class="input-note">Input: PDB of existing complex (Ab-Ag, ligand-receptor, or VHH-antigen). Design region (e.g., CDR-H3) specified per project.</p>
+
+      <h2 id="humanization"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Humanization</h2>
+      <p><strong>Gene-Engineering Humanization Services</strong></p>
+      
+      <p>All humanization deliverables include structure assessment. Our VH/VL pipeline employs structure-driven back-mutations and prioritizes germlines derived from 1,133 clinical antibody sequences.</p>
+      
+      <div class="table-wrap humanization-table-wrap">
+      <table class="humanization-table" style="width:100%; border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Input</th>
+            <th>Technology</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Service"><strong>VH/VL Humanization</strong></td>
+            <td data-label="Input">Mouse VH and VL</td>
+            <td data-label="Technology">AbEngineCore V4.4 pipeline. Structure-driven back-mutations with prioritization of germlines from 1,133 clinical antibody sequences. CDR grafting with surface reshaping fallback. Structure assessment included.</td>
+          </tr>
+          <tr>
+            <td data-label="Service"><strong>VHH Humanization</strong></td>
+            <td data-label="Input">Camelid or llama VHH</td>
+            <td data-label="Technology">Integrated approach combining surface reshaping and framework grafting. Preserves CDRs and structural hallmarks. Structure assessment included.</td>
+          </tr>
+          <tr>
+            <td data-label="Service"><strong>VH to VHH Conversion</strong></td>
+            <td data-label="Input">Conventional VH (from mAb)</td>
+            <td data-label="Technology">CDR grafting onto human VHH scaffold with structure-guided optimization. Expert design service. Structure assessment included.</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="mission-block" style="margin-top: 32px; background: linear-gradient(135deg, #fffbeb 0%, #fff 100%); border-color: rgba(245,158,11,0.2);">
+        <p style="color: #92400e; font-weight: 700; text-transform: uppercase; font-size: 13px; letter-spacing: 1px; margin-bottom: 8px;">Featured Case Study</p>
+        <p><strong>Murine mAb 4D5 Humanization</strong><br>
+        Successfully humanized the murine Trastuzumab precursor (mumab4d5) using paired IGHV1-46 and IGKV4-1 frameworks.</p>
+        <ul style="margin-bottom: 12px;">
+          <li><strong>Structure Preservation:</strong> Maintained CDR canonical conformations with an RMSD &lt; 0.5&#197;.</li>
+          <li><strong>Affinity Retention:</strong> Strict Vernier zone conservation applied to key structural framework residues.</li>
+          <li><strong>Immunogenicity:</strong> Zero high-risk immunogenicity patches identified in the final V3 design.</li>
+        </ul>
+        <a href="case_mumab4d5_humanization_showcase_en.html" class="status-link" style="background:#f59e0b; color:#fff; text-decoration:none; padding:6px 16px; border-radius:6px; display:inline-block; font-weight:600; font-size:14px; letter-spacing:0.02em;">Explore Humanization Showcase &rarr;</a>
+      </div>
+
+      <h2 id="full-report"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>Full Report</h2>
+      <p><strong>Full Evaluation Report</strong></p>
+      
+      <p>Comprehensive integrated report covering sequence, germline, developability, immunogenicity, structure, and interface analysis. Delivered in Markdown or PDF format, with optional JSON. Typically completed within 3–5 business days upon project confirmation.</p>
+      
+      <p class="input-note">Input: VH/VL sequences (PDB optional)</p>
+
+      <h2 id="submit"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>Submit Inquiry</h2>
+      <p>Complete the form below with your sequences and requirements. We will review your submission and provide a quote within 1–2 business days.</p>
+
+      <div class="form-section">
+        <!-- Form submits to Formspree -->
+        <form id="inquiry-form" action="https://formspree.io/f/mnjblezr" method="POST">
+          <input type="hidden" name="_subject" value="Therasik Inquiry">
+          <input type="hidden" name="_next" value="https://therasik.com/thanks.html">
+          <h3 style="margin-top: 0; margin-bottom: 20px;">Service Type</h3>
+          <div class="form-group full">
+            <div class="check-group">
+              <div class="check-item"><input type="checkbox" name="service_type" id="st1" value="assessment"><label for="st1">Assessment (Sequence, Developability, Immunogenicity, Structure)</label></div>
+              <div class="check-item"><input type="checkbox" name="service_type" id="st2" value="humanization"><label for="st2">Humanization</label></div>
+            </div>
+          </div>
+          <div class="form-group full">
+            <label>Humanization service (if applicable)</label>
+            <div class="check-group">
+              <div class="check-item"><input type="checkbox" name="humanization" id="h1" value="vhvl"><label for="h1">VH/VL Humanization</label></div>
+              <div class="check-item"><input type="checkbox" name="humanization" id="h2" value="vhh"><label for="h2">VHH Humanization</label></div>
+              <div class="check-item"><input type="checkbox" name="humanization" id="h3" value="vh2vhh"><label for="h3">VH to VHH Conversion</label></div>
+            </div>
+          </div>
+          <div class="form-group full">
+            <label>Affinity maturation (if applicable)</label>
+            <div class="check-group">
+              <div class="check-item"><input type="checkbox" name="affinity" id="a1" value="ab_ag"><label for="a1">Antigen-antibody</label></div>
+              <div class="check-item"><input type="checkbox" name="affinity" id="a2" value="ligand_receptor"><label for="a2">Ligand-receptor</label></div>
+              <div class="check-item"><input type="checkbox" name="affinity" id="a3" value="vhh"><label for="a3">VHH affinity maturation</label></div>
+            </div>
+          </div>
+          <div class="form-group full">
+            <label>Assessment services (if applicable)</label>
+            <div class="check-group">
+              <div class="check-item"><input type="checkbox" name="services" id="s1" value="sequence"><label for="s1">Sequence</label></div>
+              <div class="check-item"><input type="checkbox" name="services" id="s2" value="developability"><label for="s2">Developability</label></div>
+              <div class="check-item"><input type="checkbox" name="services" id="s3" value="immunogenicity"><label for="s3">Immunogenicity</label></div>
+              <div class="check-item"><input type="checkbox" name="services" id="s4" value="structure"><label for="s4">Structure</label></div>
+              <div class="check-item"><input type="checkbox" name="services" id="s5" value="full"><label for="s5">Full Report</label></div>
+              <div class="check-item"><input type="checkbox" name="services" id="s_other" value="other"><label for="s_other">Other / Custom Request</label></div>
+            </div>
+          </div>
+          <h3 style="margin-top: 24px; margin-bottom: 20px;">Sequence Input</h3>
+          <div class="form-group full">
+            <label for="vh">VH sequence (amino acid, single letter)</label>
+            <textarea id="vh" name="vh" class="seq" placeholder="EVQLVESGGGLVQPGGSLRLSCAAS..."></textarea>
+            Paste the heavy chain variable region sequence (single-letter amino acid code)
+            
+          </div>
+          <div class="form-group full">
+            <label for="vl">VL sequence (amino acid, single letter)</label>
+            <textarea id="vl" name="vl" class="seq" placeholder="EIVLTQSPATLSLSPGERATLSC..."></textarea>
+            Paste the light chain variable region sequence (kappa or lambda). Leave blank for VHH or VH-to-VHH conversion.
+            
+          </div>
+          <div class="form-group full">
+            <label>PDB file (optional)</label>
+            <p class="hint" style="margin: 0 0 8px;">We primarily work from sequences and can model structures in-house. If you have a PDB file for structure or interface analysis, please email it to <a href="mailto:contact@therasik.com">contact@therasik.com</a> and mention your inquiry in the subject or body.</p>
+            
+          </div>
+          <div class="form-group full">
+            <label for="message">Additional notes or requirements</label>
+            <textarea id="message" name="message" placeholder="e.g., antigen chain ID, CDR scheme preference"></textarea>
+          </div>
+          <h3 style="margin-top: 0; margin-bottom: 20px;">Contact Information</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name *</label>
+              <input type="text" id="fname" name="fname" required>
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name *</label>
+              <input type="text" id="lname" name="lname" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="org">Organization *</label>
+              <input type="text" id="org" name="org" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone">
+            </div>
+          </div>
+          <div class="form-group full" style="margin-top: 16px;">
+            <div class="check-group">
+              <div class="check-item">
+                <input type="checkbox" name="newsletter" id="newsletter" value="yes">
+                <label for="newsletter">
+                  Subscribe to our newsletter for updates
+                  
+                </label>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 24px;">
+            <button type="submit" class="btn">Submit Inquiry</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- FAQ -->
+      <h2 id="faq"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>What deliverables do I receive?</summary>
+          <div class="faq-body"><p>You receive a full written report covering Kabat/IMGT numbering annotation, sequence risk flagging, developability metrics (pI, hydrophobicity, charge), immunogenicity risk assessment, structural model (if PDB is provided), and a priority recommendation table. All raw data tables are included.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How long does an assessment take?</summary>
+          <div class="faq-body"><p>A standard antibody developability assessment is typically delivered within 1–2 weeks. If affinity maturation design or humanization optimization is included, turnaround extends to 2–3 weeks depending on the scope.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Can you assess VHH / nanobody sequences?</summary>
+          <div class="faq-body"><p>Yes. Our platform handles VH, VL, VHH, and bispecific fragment formats. VHH assessments include framework hallmark analysis, CDR3 loop solvent exposure, and VHH-specific humanization scoring.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Do you need a 3D structure, or is sequence enough?</summary>
+          <div class="faq-body"><p>Sequence alone is sufficient for full developability profiling. Providing a PDB structure (experimental or homology model) enables additional surface-exposure and SASA-based immunogenicity analysis, but it is optional.</p></div>
+        </details>
+      </div>
+
+      <!-- Contact -->
+      <h2 id="contact"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>Contact</h2>
+      <p>For inquiries, please submit the form above or email us directly:</p>
+      
+      <p style="margin: 16px 0;"><a href="mailto:contact@therasik.com" style="font-size: 18px; font-weight: 600; color: var(--primary);">contact@therasik.com</a></p>
+      <p  style="color: var(--text-muted); font-size: 14px;">We typically respond within 1–2 business days.</p>
+
+    </main>
+  </div>
+  
+  
+  <footer class="site-footer">
+    <p>© 2026 Therasik · <a href="https://therasik.com">therasik.com</a> · <a href="mailto:contact@therasik.com">contact@therasik.com</a></p>
+  </footer>
+
+
+  <script>
+    function setTopNavActive() {
+      var hash = window.location.hash || '';
+      document.querySelectorAll('.top-header-nav a[href^="#"]').forEach(function(a) {
+        a.classList.toggle('active', a.getAttribute('href') === hash);
+      });
+    }
+    setTopNavActive();
+    window.addEventListener('hashchange', setTopNavActive);
+    document.querySelectorAll('.nav-link').forEach(a => {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        const id = this.getAttribute('href').slice(1);
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+    const sections = ['services','platform','sequence','developability','immunogenicity','structure','affinity-maturation','humanization','full-report','submit','faq','contact'];
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        document.querySelectorAll('.nav-link').forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+        });
+      });
+    }, { rootMargin: '-20% 0px -60% 0px' });
+    sections.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
+    
+    // Form submits to Formspree. 
+    // Handle AJAX submission to allow local testing redirection
+    const form = document.getElementById('inquiry-form');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        const originalText = btn.innerText;
+        btn.disabled = true;
+        btn.innerText = 'Submitting...';
+
+        const formData = new FormData(form);
+        fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        }).then(response => {
+          if (response.ok) {
+            // Success - redirect to thanks page
+            window.location.href = 'thanks.html';
+          } else {
+            response.json().then(data => {
+              if (Object.hasOwn(data, 'errors')) {
+                alert(data["errors"].map(error => error["message"]).join(", "));
+              } else {
+                alert("Oops! There was a problem submitting your form");
+              }
+            });
+            btn.disabled = false;
+            btn.innerText = originalText;
+          }
+        }).catch(error => {
+          alert("Oops! There was a problem submitting your form");
+          btn.disabled = false;
+          btn.innerText = originalText;
+        });
+      });
+    }
+  </script>
+</body>
+</html>

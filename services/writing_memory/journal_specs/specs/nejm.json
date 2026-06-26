@@ -1,0 +1,66 @@
+{
+  "schema_version": "0.1.0",
+  "journal": { "key": "nejm", "display": "New England Journal of Medicine" },
+  "spec_version": "0.1.0",
+  "sourced_from": [
+    { "url": "https://www.nejm.org/author-center", "label": "NEJM Author Center", "captured_at": null },
+    { "url": "https://www.nejm.org/author-center/manuscript-submission", "label": "NEJM Manuscript Submission Guide", "captured_at": null }
+  ],
+  "captured_at": null,
+
+  "article_types": [
+    { "value": "Original Article", "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center" },
+    { "value": "Brief Report", "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center" },
+    { "value": "Review Article", "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center" },
+    { "value": "Clinical Practice", "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center" },
+    { "value": "Correspondence", "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center" }
+  ],
+
+  "structure": {
+    "required_sections": { "value": ["abstract","introduction","methods","results","discussion","references"], "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center" },
+    "optional_sections": { "value": ["acknowledgments","author_contributions","competing_interests","supplementary_appendix","data_sharing_statement"], "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center" },
+    "structured_abstract": { "value": "Mandatory structured abstract: Background, Methods, Results, Conclusions.", "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center" }
+  },
+
+  "abstract": {
+    "word_limit": { "value": 250, "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center" },
+    "structured": { "value": true, "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center", "notes": "Sections: Background / Methods / Results / Conclusions." }
+  },
+
+  "main_text": {
+    "word_limit": { "value": 2700, "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center", "notes": "Original Article main text ≤2700 words (excluding abstract, refs, tables, figure legends)." },
+    "figure_count_limit": { "value": 5, "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center" },
+    "table_count_limit": { "value": 5, "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center" },
+    "supplementary_policy": { "value": "Supplementary Appendix (Methods, additional figures, full statistical analysis plan, full protocol) is mandatory for trials.", "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center" }
+  },
+
+  "figures_tables": {
+    "figure_resolution": { "value": "≥300 dpi at print size.", "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center" },
+    "color_policy": { "value": "Colour figures accepted; ensure colour-blind safe palette.", "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center" },
+    "legend_word_limit": { "value": null, "verification_status": "unverified", "source_url": null, "notes": "Concise; no firm limit." },
+    "accepted_formats": { "value": ["TIFF","EPS","PDF (vector)","JPEG (high-res)"], "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center" }
+  },
+
+  "declarations": {
+    "competing_interests": { "value": "Mandatory ICMJE Disclosure Form for every author.", "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center" },
+    "funding_statement": { "value": "Mandatory — list funders and roles.", "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center" },
+    "author_contributions": { "value": "Mandatory — authorship follows ICMJE criteria.", "verification_status": "published_guideline", "source_url": "https://www.icmje.org/recommendations/" },
+    "ethics_statement": { "value": "IRB approval ID + informed consent mandatory; clinical trial registration ID (NCT, ChiCTR, ISRCTN) required for trials.", "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center" },
+    "consent_statement": { "value": "Mandatory for all human-subject studies.", "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center" },
+    "reporting_checklist": { "value": "CONSORT (RCTs), STROBE (observational), PRISMA (systematic reviews), STARD (diagnostic).", "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center" }
+  },
+
+  "data_and_code": {
+    "data_availability": { "value": "Mandatory Data Sharing Statement (ICMJE compliant).", "verification_status": "published_guideline", "source_url": "https://www.icmje.org/recommendations/browse/publishing-and-editorial-issues/clinical-trial-registration.html" },
+    "code_availability": { "value": "Recommended where applicable.", "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center" },
+    "preferred_repositories": { "value": ["ClinicalTrials.gov","Vivli","DRYAD","Zenodo"], "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center" },
+    "accession_required": { "value": true, "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center" }
+  },
+
+  "reference_style_id": "nejm_numbered_vancouver",
+  "reference_limit": { "value": 40, "verification_status": "published_guideline", "source_url": "https://www.nejm.org/author-center", "notes": "Original Article ≤40; Review ≤120." },
+
+  "notes": [
+    { "value": "Clinical trial pre-registration (ICMJE) is required before patient enrolment for prospective trials.", "verification_status": "published_guideline", "source_url": "https://www.icmje.org/recommendations/browse/publishing-and-editorial-issues/clinical-trial-registration.html" }
+  ]
+}

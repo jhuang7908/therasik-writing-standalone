@@ -1,0 +1,70 @@
+version: "1.4.0"
+name: insynbio-figure
+extends: nature-figure
+status: stable
+
+always_load:
+  - ../../_shared/core/principles.md
+  # nature-figure Stable core (blocking gate + stance)
+  - static/core/contract.md
+  - static/core/stance.md
+  # InSynBio overlays (domain-specific)
+  - static/core/figure-contract.md
+  - static/core/python-matplotlib-ssot.md
+  - static/core/publication-standards.md
+
+axes:
+  backend:
+    detect: |
+      BLOCKING GATE — ask "Python or R?" if not already chosen.
+      Once selected the backend is exclusive for all drawing, preview, export, QA.
+    values:
+      python: static/fragments/backend/python.md
+      r: static/fragments/backend/r.md
+    multi: false
+
+recipes:
+  review_b_graphical_tables:
+    script: paper/Submission_Package/ScholarOne_Upload/Review_B_DeNovo/deck_ppt/render_graphical_tables.py
+    palette: paper/Submission_Package/ScholarOne_Upload/Review_B_DeNovo/deck_ppt/deck_style.py
+  grouped_bar:
+    file: static/stats-recipes/grouped-bar.md
+  # chart-atlas v1.3.0 — closes nature-figure gap
+  forest:
+    file: static/stats-recipes/forest-plot.md
+    cli: core/figure/templates/forest_plot.py
+    invoke: "python scripts/insynbio_figure.py stats --recipe forest --csv <data.csv> --out <out.svg>"
+  volcano:
+    file: static/stats-recipes/volcano-plot.md
+    cli: core/figure/templates/volcano_plot.py
+    invoke: "python scripts/insynbio_figure.py stats --recipe volcano --csv <data.csv> --out <out.svg>"
+  heatmap:
+    file: static/stats-recipes/zscore-heatmap.md
+    cli: core/figure/templates/zscore_heatmap.py
+    invoke: "python scripts/insynbio_figure.py stats --recipe heatmap --csv <data.csv> --out <out.svg>"
+  stats_annotator:
+    file: static/stats-recipes/stats-annotation.md
+    cli: core/figure/templates/stats_annotator.py
+    invoke: "python scripts/insynbio_figure.py stats --recipe stats-demo --out figures/demo.svg"
+    api: "from core.figure.templates.stats_annotator import add_stat_brackets, add_n_labels, add_ci_bars"
+  # chart-atlas v1.4.0 — KM + legend
+  km:
+    file: static/stats-recipes/km-plot.md
+    cli: core/figure/templates/km_plot.py
+    invoke: "python scripts/insynbio_figure.py stats --recipe km --csv <data.csv> --out <out.svg>"
+    modes: ["survival (KM estimator + Greenwood CI + log-rank)", "trend (step-curve + CI band)"]
+  legend:
+    file: static/stats-recipes/figure-legend.md
+    cli: core/figure/templates/figure_legend.py
+    invoke: "python scripts/insynbio_figure.py stats --recipe legend -- generate --legend-spec <spec.json> --out <legend.md>"
+    templates: ["nature", "cell", "plos", "generic"]
+    anti_hallucination: "All n, p, CI must be explicitly provided in spec — never inferred"
+  # GDM science-skills adopted (v1.2.0+)
+  afdb_plddt:
+    file: static/recipes/afdb-plddt.md
+    cli: core/figure/afdb_plddt.py
+    vendor_mirror: vendor/adopted/science-skills/afdb/SKILL_mirror.md
+
+toolchain:
+  cli: scripts/insynbio_figure.py
+  bundle_dpi_rule: services/writing_memory/submission_bundle/auditor.py

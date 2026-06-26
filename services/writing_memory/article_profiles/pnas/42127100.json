@@ -1,0 +1,240 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42127100",
+    "pmcid": "PMC13187706",
+    "doi": "10.1073/pnas.2525899123",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "mechanism_gap",
+    "dominant_frame": "molecular_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "problem-gap-solution-implication",
+    "claim_chain": [
+      "Manganese oxides are abundant redox-active minerals with poorly understood reactivity due to structural and oxidation state variations",
+      "We quantified reduction kinetics of three geochemically relevant manganese oxides using extracellular electron shuttles",
+      "Gibbs free energy described kinetics of individual oxides well, but Pourbaix free-energy difference offered distinct advantages",
+      "Coupled kinetic-mass transport modeling showed electron-transfer rate constants varied among oxides while mass-transfer coefficients were similar",
+      "Classical nucleation theory indicated that balance between surface and bulk energies controls dissolution barrier",
+      "Findings demonstrate how reaction thermodynamics and phase differences jointly control manganese oxide reduction kinetics",
+      "Results support a generalizable predictive framework for reactivity of redox-active minerals across diverse environmental conditions"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "quantified",
+      "showed",
+      "demonstrated",
+      "exhibited",
+      "revealed",
+      "indicated",
+      "suggest",
+      "support",
+      "illustrates",
+      "correlate"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State the experimental objective or question",
+      "Describe the mineral phases or experimental conditions",
+      "Present quantitative results with reference to figures",
+      "Interpret results in terms of mechanism or thermodynamic framework",
+      "Compare across conditions or mineral types",
+      "Connect findings to broader implications or theoretical framework"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Validation of thermodynamic calculations and standard reduction potentials",
+      "Justification of model assumptions for multielectron systems",
+      "Generalizability of findings beyond the three mineral phases studied",
+      "Mechanistic clarity on electron transfer pathways and dissolution mechanisms",
+      "Statistical rigor and reproducibility of kinetic measurements"
+    ],
+    "likely_attacks": [
+      "Limited number of mineral phases may not support broad generalizability claims",
+      "Uncertainty in reaction pathways for multielectron systems introduces bias in thermodynamic estimates",
+      "Peak in rates around pH 8.5 attributed to electrostatic attraction needs more direct evidence",
+      "Classical nucleation theory application may oversimplify complex dissolution processes",
+      "Duplicate measurements may be insufficient for robust statistical conclusions"
+    ],
+    "inference_basis": "The paper explicitly acknowledges that determination of ΔrGx0′ relies on predefined redox reactions which may introduce biased thermodynamic estimates in multielectron systems where the full set of possible redox pathways is not known. The authors address this by employing Pourbaix potential as an alternative. The paper also notes that the structural transition from manganese oxide to Mn2+ remains less resolved due to the multitude of possible pathways for mineral dissolution. The peak at pH 8.5 is described as likely caused by electrostatic attraction, indicating some uncertainty. Error bars represent SEM from duplicate measurements, suggesting limited replication. The abstract claims a generalizable predictive framework based on three mineral phases."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "These results suggest that this least exergonic step acts as a common thermodynamic bottleneck",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "Our findings not only demonstrate how reaction thermodynamics and phase differences jointly control manganese oxide reduction kinetics",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "This peak was likely caused by electrostatic attraction between the EES and the manganese oxide surface",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "the Pourbaix free-energy difference (ΔΨ) offered a distinct advantage by predicting reactivity without requiring detailed knowledge on reaction pathways",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "support a generalizable predictive framework for the reactivity of redox-active minerals across diverse environmental conditions",
+        "category": "generalization"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "Manganese (oxyhydr)oxides are abundant redox-active minerals that influence diverse biogeochemical processes",
+      "category": "opening"
+    },
+    {
+      "phrase": "yet their redox reactivity remains poorly understood due to variations in mineral structure and manganese oxidation state",
+      "category": "opening"
+    },
+    {
+      "phrase": "To evaluate the effect of mineral properties on the kinetics of manganese oxide reduction",
+      "category": "opening"
+    },
+    {
+      "phrase": "we selected three manganese oxides that differ in manganese oxidation state and crystal structure",
+      "category": "opening"
+    },
+    {
+      "phrase": "These phases represent the most ubiquitous manganese oxides in soils and sediments",
+      "category": "claim"
+    },
+    {
+      "phrase": "Surface area–normalized manganese reduction rates (rSA) were determined by monitoring changes in the concentration of the reduced EES species",
+      "category": "other"
+    },
+    {
+      "phrase": "shows that rSA for both hausmannite and manganite increased as pH decreased",
+      "category": "claim"
+    },
+    {
+      "phrase": "whereas acid birnessite exhibited a consistently high rSA",
+      "category": "claim"
+    },
+    {
+      "phrase": "Differences in the pH dependence of rSA between manganese oxides can be attributed to variations in electron–proton coupling",
+      "category": "claim"
+    },
+    {
+      "phrase": "This peak was likely caused by electrostatic attraction between the EES and the manganese oxide surface",
+      "category": "hedge"
+    },
+    {
+      "phrase": "as confirmed by surface speciation modeling",
+      "category": "claim"
+    },
+    {
+      "phrase": "while pH influenced rSA, EES identity also modulates reduction kinetics",
+      "category": "claim"
+    },
+    {
+      "phrase": "To capture the combined influence of pH and EES identity on manganese oxide reduction kinetics",
+      "category": "transition"
+    },
+    {
+      "phrase": "we calculated the Gibbs free energy",
+      "category": "other"
+    },
+    {
+      "phrase": "In alignment with the behavior of iron oxides",
+      "category": "transition"
+    },
+    {
+      "phrase": "the kinetic data correlate most effectively with ΔrGx0′",
+      "category": "claim"
+    },
+    {
+      "phrase": "These results suggest that this least exergonic step acts as a common thermodynamic bottleneck",
+      "category": "hedge"
+    },
+    {
+      "phrase": "rSA generally increased as ΔrGx0′ became more negative",
+      "category": "claim"
+    },
+    {
+      "phrase": "the structural transition from manganese oxide to Mn2+ remains less resolved",
+      "category": "limitation"
+    },
+    {
+      "phrase": "This is due to the multitude of possible pathways for mineral dissolution",
+      "category": "limitation"
+    },
+    {
+      "phrase": "which are inherently more complex than the one-electron reduction characteristic of iron oxides",
+      "category": "limitation"
+    },
+    {
+      "phrase": "To address this limitation, we employed the Pourbaix potential",
+      "category": "transition"
+    },
+    {
+      "phrase": "which quantifies the absolute free-energy metric of each oxide under given pH and redox conditions",
+      "category": "other"
+    },
+    {
+      "phrase": "allowing for direct comparison across oxides without requiring reaction-specific assumptions",
+      "category": "claim"
+    },
+    {
+      "phrase": "Our findings not only demonstrate how reaction thermodynamics and phase differences jointly control manganese oxide reduction kinetics",
+      "category": "implication"
+    },
+    {
+      "phrase": "but also support a generalizable predictive framework for the reactivity of redox-active minerals",
+      "category": "implication"
+    },
+    {
+      "phrase": "Crystal structures of hausmannite, manganite, and acid birnessite",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Hydrogen atoms are omitted for clarity",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Error bars represent the SEM from duplicate measurements",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Rates were determined for the first 10% of the total reaction",
+      "category": "other"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. Numeric values, chemical formulas, and technical terms are directly quoted. No external references, author names, or invented data appear in the output. The profile accurately reflects the paper's mechanistic focus, thermodynamic framework, and balanced claim strength with appropriate hedging."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:18:14.712283+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\pnas\\42127100.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

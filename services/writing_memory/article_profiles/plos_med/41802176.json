@@ -1,0 +1,236 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "41818305",
+    "pmcid": "PMC12981509",
+    "doi": "10.1371/journal.pmed.1004798",
+    "journal": "PLOS Medicine",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "method_innovation",
+    "dominant_frame": "method_innovation",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "problem-gap-solution-implication",
+    "claim_chain": [
+      "There is no systematic process for quantifying unmet medical need across diseases",
+      "This approach mitigates previous challenges in defining what to research, including incomplete data representation, ontological mapping difficulties, and variability in defining standard-of-care treatments",
+      "Utilizing the knowledge corpus of LLMs, these challenges have been circumvented, and an accessible, scalable, and maintainable assessment tool has been made",
+      "The implementation of a standardized, systematic method for generating unmet medical need scores offers benefits for the development of treatments for rare diseases",
+      "This systematic approach facilitates consistent assessments across various diseases and populations, improving the comparability of findings and supporting evidence-based decision-making",
+      "The reproducibility of this methodology allows for the integration of new data as it becomes available, maintaining the relevance and accuracy of assessments"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "enables",
+      "facilitates",
+      "mitigates",
+      "demonstrates",
+      "supports",
+      "ensures",
+      "allows",
+      "reflects",
+      "incorporates",
+      "circumvented",
+      "maintained"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "Opening statement of the method's contribution or innovation",
+      "Explanation of how the approach addresses previous challenges or limitations",
+      "Description of benefits and applications of the methodology",
+      "Acknowledgment of limitations with specific examples",
+      "Discussion of mitigation strategies for identified limitations",
+      "Consideration of future improvements or alternative approaches"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Validation of LLM outputs against expert assessments and existing databases",
+      "Transparency and interpretability of the scoring methodology",
+      "Generalizability across different disease types and prevalence levels",
+      "Mitigation of biases inherent in literature-based approaches",
+      "Reproducibility and cost-effectiveness of the method"
+    ],
+    "likely_attacks": [
+      "Small development and evaluation set size (40 diseases total)",
+      "Risk of LLM hallucinations, particularly for rare diseases with limited data",
+      "Flattening of scores makes it difficult to isolate impact of specific errors or poorly founded outputs",
+      "Epistemic circularity from LLMs being pretrained on biomedical text that encodes existing health priorities",
+      "Geographic and socioeconomic biases reflected in literature-based approach",
+      "Lack of comprehensive benchmarking across different LLM models"
+    ],
+    "inference_basis": "The paper explicitly states 'The main limitation of this study is the combined size of the development and evaluation set being 40 diseases.' It discusses hallucination risks: 'Whilst LLMs have an increased risk of hallucination when there is limited data for a specific disease' and 'because the LLM outputs are flattened into a single integer to create a score, the underlying reasoning for each step remains challenging to interpret.' The authors acknowledge 'The use of LLMs has the potential to introduce epistemic circularity' and 'a literature-based approach inevitably reflects the geographic and socioeconomic biases of current research.' They note 'comprehensive benchmarking across models remains future work.'"
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "This approach mitigates previous challenges in defining what to research",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "these challenges have been circumvented, and an accessible, scalable, and maintainable assessment tool has been made",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "we have found through both evaluation and use of this database by our Medical Team that the combination of iterative prompt development and multiple criteria scoring of any one disease means that pragmatically, the scores are useful",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "confidence in such outputs should be treated with caution",
+        "category": "limitation"
+      },
+      {
+        "quoted_phrase": "The main limitation of this study is the combined size of the development and evaluation set being 40 diseases",
+        "category": "limitation"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "This is a systematic methodology leveraging LLMs to quantify unmet medical needs across diverse and heterogeneous diseases",
+      "category": "opening"
+    },
+    {
+      "phrase": "This approach mitigates previous challenges in defining what to research, including incomplete data representation, ontological mapping difficulties, and variability in defining standard-of-care treatments",
+      "category": "claim"
+    },
+    {
+      "phrase": "Utilizing the knowledge corpus of LLMs, these challenges have been circumvented",
+      "category": "claim"
+    },
+    {
+      "phrase": "an accessible, scalable, and maintainable assessment tool has been made",
+      "category": "claim"
+    },
+    {
+      "phrase": "The implementation of a standardized, systematic method for generating unmet medical need scores offers benefits for the development of treatments for rare diseases",
+      "category": "claim"
+    },
+    {
+      "phrase": "This systematic approach facilitates consistent assessments across various diseases and populations, improving the comparability of findings and supporting evidence-based decision-making",
+      "category": "implication"
+    },
+    {
+      "phrase": "The reproducibility of this methodology allows for the integration of new data as it becomes available, maintaining the relevance and accuracy of assessments",
+      "category": "implication"
+    },
+    {
+      "phrase": "This adaptability is particularly crucial in the context of rare diseases, where emerging information can substantially influence the understanding of disease burden and treatment efficacy",
+      "category": "implication"
+    },
+    {
+      "phrase": "Our approach has several limitations",
+      "category": "transition"
+    },
+    {
+      "phrase": "We aimed for a framework that is mutually exclusive and collectively exhaustive to define unmet medical need but despite this, some overlap persists",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Whilst LLMs have an increased risk of hallucination when there is limited data for a specific disease",
+      "category": "limitation"
+    },
+    {
+      "phrase": "we have found through both evaluation and use of this database by our Medical Team that the combination of iterative prompt development and multiple criteria scoring of any one disease means that pragmatically, the scores are useful",
+      "category": "hedge"
+    },
+    {
+      "phrase": "confidence in such outputs should be treated with caution",
+      "category": "hedge"
+    },
+    {
+      "phrase": "because the LLM outputs are flattened into a single integer to create a score, the underlying reasoning for each step remains challenging to interpret",
+      "category": "limitation"
+    },
+    {
+      "phrase": "This flattening makes it difficult to isolate the impact of specific hallucinations or poorly founded outputs",
+      "category": "limitation"
+    },
+    {
+      "phrase": "The impact of potential LLMs hallucinations were mitigated by utilizing a composite score from 11 different prompts which reduces the relative impact of any potentially incorrect individual score",
+      "category": "claim"
+    },
+    {
+      "phrase": "The use of LLMs has the potential to introduce epistemic circularity",
+      "category": "limitation"
+    },
+    {
+      "phrase": "An advantage of this method is the ability to reweight individual dimensions of unmet medical need, which partially mitigates the influence of preexisting health priorities",
+      "category": "claim"
+    },
+    {
+      "phrase": "While our methodology aims for objectivity, a literature-based approach inevitably reflects the geographic and socioeconomic biases of current research",
+      "category": "limitation"
+    },
+    {
+      "phrase": "We use objective criteria and reweighting to minimize this impact",
+      "category": "claim"
+    },
+    {
+      "phrase": "we found that the choice of model did not meaningfully influence performance for our use case during testing, though comprehensive benchmarking across models remains future work",
+      "category": "hedge"
+    },
+    {
+      "phrase": "The main limitation of this study is the combined size of the development and evaluation set being 40 diseases",
+      "category": "limitation"
+    },
+    {
+      "phrase": "This accessible, scalable methodology enables funders and researchers, across governments, universities, healthcare organizations, and disease groups to tailor prioritization efforts according to unmet medical need",
+      "category": "implication"
+    },
+    {
+      "phrase": "This method creates a pragmatic and transparent tool to streamline research prioritization",
+      "category": "implication"
+    },
+    {
+      "phrase": "Inter-expert agreement was strong, indicating reliability of the scoring framework with 95% of ratings within a 1-point difference",
+      "category": "claim"
+    },
+    {
+      "phrase": "LLM-generated scores demonstrated strong Spearman's rho correlations with expert assessments across key clinical criteria",
+      "category": "claim"
+    },
+    {
+      "phrase": "All data were generated in ~1 hour with no missing data, at a total cost of $120 USD of compute",
+      "category": "claim"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, invented numbers beyond those in the text, or fabricated author names were included. The profile is based entirely on the provided abstract and discussion sections."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_phrase_violations": [
+    {
+      "field": "phrase_evidence",
+      "phrase": "LLM-generated scores demonstrated strong Spearman's rho correlations with expert assessments across key clinical criteria",
+      "issue": "not found in paper text"
+    }
+  ],
+  "_meta": {
+    "generated_at": "2026-05-25T13:44:23.595071+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\plos_med\\41802176.json",
+    "phrase_check_violations": 1,
+    "schema_valid": true
+  }
+}

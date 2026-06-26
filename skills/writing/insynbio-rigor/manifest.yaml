@@ -1,0 +1,23 @@
+version: "1.0.0"
+name: insynbio-rigor
+
+always_load:
+  - ../../_shared/core/principles.md
+  - static/rigor-layers.md
+  - static/model-evaluators.md
+
+toolchain:
+  manuscript_gate: scripts/insynbio_rigor.py
+  content_gate: scripts/openai_content_rigor.py
+  ssot_guard: scripts/content_ssot_guard.py
+  reliability: scripts/validate_report_reliability.py
+  submission_audit: scripts/build_submission_bundle.py
+  reader_qc: scripts/insynbio_paper_reader.py
+
+dimensions:
+  - format
+  - authenticity
+  - scientific_rigor
+  - ai_tone
+  - evidence_tagging
+  - submission_physical

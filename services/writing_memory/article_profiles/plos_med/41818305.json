@@ -1,0 +1,238 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "41818642",
+    "pmcid": "PMC12994585",
+    "doi": "10.1371/journal.pmed.1004923.r009",
+    "journal": "PLOS Medicine",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "direct_problem_statement",
+    "dominant_frame": "epidemiology_population",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "problem-gap-solution-implication",
+    "claim_chain": [
+      "Power outages are increasing in frequency and duration with climate change",
+      "Prior studies from New York State show associations between outages and hospitalizations but nationwide data were limited",
+      "We developed a national dataset and found power outages were associated with increased CVD and respiratory hospitalizations",
+      "Larger outages had stronger associations with hospitalization rates",
+      "The lagged effects differ between CVD and respiratory hospitalizations",
+      "Improving electricity reliability could support community health and protect older adults"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "found",
+      "estimated",
+      "observed",
+      "tested",
+      "hypothesized",
+      "assessed",
+      "controlled",
+      "applied",
+      "leveraged",
+      "identified"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State main finding with quantitative result",
+      "Compare to prior literature and contextualize",
+      "Discuss potential mechanisms or explanations",
+      "Acknowledge limitations or alternative explanations",
+      "State implications for policy or future research"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Exposure measurement accuracy and spatial resolution",
+      "Control for confounding by extreme weather events",
+      "Individual-level versus county-level exposure assessment",
+      "Competing risk of mortality versus hospitalization",
+      "Generalizability beyond Medicare Fee-For-Service population"
+    ],
+    "likely_attacks": [
+      "County-level exposure may introduce misclassification bias",
+      "Cannot directly assess co-exposure to extreme weather",
+      "DME use quartiles based on full Medicare population but study uses Fee-For-Service only",
+      "No individual-level DME use data to test mortality as competing risk",
+      "Protective effect at 4-5 days may be artifact of spline model"
+    ],
+    "inference_basis": "The paper explicitly states limitations including: county-level power outage exposure with no finer resolution data available nationally; inability to directly assess co-exposure to extreme weather; DME quartiles based on full Medicare population while study uses Fee-For-Service beneficiaries; lack of individual-level DME data; uncertainty about whether protective effect at 4-5 days is harvesting effect or model artifact; and exposure misclassification concerns for smaller outages."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "we found that power outages were associated with increased acute emergency CVD and respiratory hospitalizations",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "Power outages may increase the risk of CVD and respiratory hospitalizations",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "may be a harvesting effect or an artifact resulting from the use of a natural spline-based model",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "making it unclear whether any true protective effect exists",
+        "category": "limitation"
+      },
+      {
+        "quoted_phrase": "Power outages may lead to CVD and respiratory hospitalizations in older adults due to increased heat exposure, cold exposure, stress, and loss of electricity",
+        "category": "causal"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "In this 2018 case-crossover study of over 23 million Fee-For-Service Medicare beneficiaries aged 65+",
+      "category": "opening"
+    },
+    {
+      "phrase": "we found that power outages were associated with increased acute emergency CVD and respiratory hospitalizations",
+      "category": "claim"
+    },
+    {
+      "phrase": "This association was strongest for CVD hospitalizations the day following the power outage",
+      "category": "claim"
+    },
+    {
+      "phrase": "while for respiratory hospitalizations, the same-day association was strongest",
+      "category": "claim"
+    },
+    {
+      "phrase": "As expected, larger outages affecting ≥3% or ≥5% versus ≥1% of county customers had stronger associations",
+      "category": "claim"
+    },
+    {
+      "phrase": "With outage frequency and duration increasing due to climate change",
+      "category": "generalization"
+    },
+    {
+      "phrase": "these outages may pose a growing threat to the cardiovascular and respiratory health of older adults",
+      "category": "implication"
+    },
+    {
+      "phrase": "Several New York State-based studies have reported associations between power outage exposure and increased CVD and respiratory acute care visits",
+      "category": "transition"
+    },
+    {
+      "phrase": "We observed a protective effect on hospitalizations 4–5 days after a power outage, which may be a harvesting effect or an artifact",
+      "category": "hedge"
+    },
+    {
+      "phrase": "making it unclear whether any true protective effect exists",
+      "category": "limitation"
+    },
+    {
+      "phrase": "We hypothesized that power outages may lead to CVD and respiratory hospitalizations in older adults due to increased heat exposure, cold exposure, stress, and loss of electricity",
+      "category": "causal"
+    },
+    {
+      "phrase": "The lagged effects of CVD and respiratory hospitalizations due to power outage likely differ",
+      "category": "hedge"
+    },
+    {
+      "phrase": "many power outages are caused by climate-related severe weather like heat waves, winter storms, hurricanes, wildfires, and floods",
+      "category": "generalization"
+    },
+    {
+      "phrase": "which likely amplifies health risks",
+      "category": "hedge"
+    },
+    {
+      "phrase": "While we did not directly assess co-exposure to extreme weather in this study",
+      "category": "limitation"
+    },
+    {
+      "phrase": "we controlled for temperature, wind, and precipitation as time-varying confounders",
+      "category": "claim"
+    },
+    {
+      "phrase": "Enabled by new national datasets of power outage exposure",
+      "category": "transition"
+    },
+    {
+      "phrase": "further research could better describe the lagged effects",
+      "category": "implication"
+    },
+    {
+      "phrase": "The reason may be 2-fold",
+      "category": "transition"
+    },
+    {
+      "phrase": "We expect less exposure misclassification when ≥5% of county customers are without power compared to ≥1% of customers",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Any resulting bias, therefore, would be towards the null",
+      "category": "claim"
+    },
+    {
+      "phrase": "the duration of power outage that impacts health remains unknown",
+      "category": "limitation"
+    },
+    {
+      "phrase": "We did not find evidence for a threshold",
+      "category": "claim"
+    },
+    {
+      "phrase": "We found that even one-hour outages were associated with increased cardiovascular and respiratory hospitalizations",
+      "category": "claim"
+    },
+    {
+      "phrase": "suggesting that even short outages can have substantial population health impacts",
+      "category": "implication"
+    },
+    {
+      "phrase": "Contrary to our hypotheses, we did not observe effect modification by age, sex, or Medicaid eligibility",
+      "category": "claim"
+    },
+    {
+      "phrase": "We hypothesized the opposite",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Several factors may explain these unexpected findings",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Our study had several limitations",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Improving electricity reliability could support community health and protect older adults",
+      "category": "implication"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, invented numbers, or author names were included. The profile accurately reflects the paper's epidemiological focus, moderate hedging, and balanced claim strength with explicit limitations discussion."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:34:32.459168+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\plos_med\\41818305.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

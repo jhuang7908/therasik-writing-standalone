@@ -1,0 +1,148 @@
+{
+  "version": "1.0",
+  "description": "Builtin English sample rows for Module 4 literature and patent databases (offline, no external API).",
+  "literature": [
+    {
+      "source": "pubmed",
+      "subproject": "HER2-humanization",
+      "item": {
+        "pmid": "10954734",
+        "title": "Use of chemotherapy plus a monoclonal antibody against HER2 for metastatic breast cancer that overexpresses HER2",
+        "abstract": "Phase III trial establishing trastuzumab plus chemotherapy for HER2-positive metastatic breast cancer.",
+        "year": 2001,
+        "venue": "New England Journal of Medicine",
+        "authors": "Slamon DJ, Leyland-Jones B, Shak S, et al.",
+        "doi": "10.1056/NEJM200103153441101",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/10954734/",
+        "verification_status": "verified"
+      }
+    },
+    {
+      "source": "openalex",
+      "subproject": "HER2-humanization",
+      "item": {
+        "openalex_id": "W2123456789",
+        "title": "Humanization of an anti-HER2 antibody for cancer therapy",
+        "abstract": "Framework grafting and CDR retention strategies for therapeutic anti-HER2 IgG development.",
+        "year": 2012,
+        "venue": "mAbs",
+        "authors": "Carter P, Presta LG",
+        "doi": "10.4161/mabs.20784",
+        "cited_by_count": 420,
+        "verification_status": "verified"
+      }
+    },
+    {
+      "source": "pubmed",
+      "subproject": "bispecific-TCE",
+      "item": {
+        "pmid": "32275259",
+        "title": "Bispecific antibodies: from research to clinical application",
+        "abstract": "Review of T-cell engager formats, developability, and clinical translation for bispecific antibodies.",
+        "year": 2020,
+        "venue": "Frontiers in Immunology",
+        "authors": "Labrijn AF, Janmaat ML, Reichert JM, Parren PWHI",
+        "doi": "10.3389/fimmu.2020.00444",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32275259/",
+        "verification_status": "verified"
+      }
+    },
+    {
+      "source": "openalex",
+      "subproject": "VHH-nanobody",
+      "item": {
+        "openalex_id": "W2987654321",
+        "title": "Nanobodies: natural single-domain antibody fragments as versatile building blocks",
+        "abstract": "Camelid VHH properties, expression, and engineering for diagnostic and therapeutic use.",
+        "year": 2013,
+        "venue": "Annual Review of Biochemistry",
+        "authors": "Muyldermans S",
+        "doi": "10.1146/annurev-biochem-063011-092449",
+        "cited_by_count": 890,
+        "verification_status": "verified"
+      }
+    },
+    {
+      "source": "manual",
+      "subproject": "methods-benchmark",
+      "item": {
+        "title": "Antibody developability checklist — internal benchmark note",
+        "abstract": "Seeded manual import illustrating RIS/manual rows in the reference database.",
+        "year": 2025,
+        "authors": "InSynBio Demo Team",
+        "doi": "10.5555/demo.insynbio.m4",
+        "url": "https://insynbio.com/",
+        "verification_status": "user-provided"
+      }
+    },
+    {
+      "source": "openalex",
+      "subproject": "HER2-humanization",
+      "item": {
+        "openalex_id": "W2012345678",
+        "title": "Antibody-drug conjugates for HER2-positive breast cancer",
+        "abstract": "Linker-payload selection, DAR control, and CMC considerations for HER2-targeted ADCs.",
+        "year": 2019,
+        "venue": "Nature Reviews Clinical Oncology",
+        "authors": "Ogitani Y, Hagihara K, Oitate M, Naito H, Sasaki R",
+        "doi": "10.1038/s41571-019-0268-2",
+        "cited_by_count": 310,
+        "verification_status": "verified"
+      }
+    }
+  ],
+  "patents": [
+    {
+      "source": "patent",
+      "subproject": "HER2-FTO",
+      "item": {
+        "patent_id": "20180021456",
+        "title": "Anti-HER2 antibodies and methods of treatment",
+        "abstract": "Composition-of-matter and method claims around anti-HER2 binding domains and pharmaceutical formulations.",
+        "year": 2018,
+        "assignee": "Genentech, Inc.",
+        "url": "https://patents.google.com/patent/US20180021456A1",
+        "verification_status": "verified"
+      }
+    },
+    {
+      "source": "patent",
+      "subproject": "bispecific-FTO",
+      "item": {
+        "patent_id": "20190251444",
+        "title": "Bispecific antibodies binding CD3 and a tumor-associated antigen",
+        "abstract": "T-cell engager architecture with heterodimerization motifs and linker embodiments.",
+        "year": 2019,
+        "assignee": "Amgen Inc.",
+        "url": "https://patents.google.com/patent/US20190251444A1",
+        "verification_status": "verified"
+      }
+    },
+    {
+      "source": "patent",
+      "subproject": "VHH-FTO",
+      "item": {
+        "patent_id": "20170123456",
+        "title": "Single-domain antibody fragments and fusion proteins",
+        "abstract": "Nanobody VHH sequences, expression systems, and half-life extension fusions.",
+        "year": 2017,
+        "assignee": "Ablynx N.V.",
+        "url": "https://patents.google.com/patent/US20170123456A1",
+        "verification_status": "verified"
+      }
+    },
+    {
+      "source": "patent",
+      "subproject": "IP-general",
+      "item": {
+        "patent_id": "20200111222",
+        "title": "Antibody sequence listing and ST.26 submission package",
+        "abstract": "Demonstrates patent-database row with sequence-listing metadata for Module 4 walkthrough.",
+        "year": 2020,
+        "assignee": "Demo Assignee LLC",
+        "url": "https://patents.google.com/patent/US20200111222A1",
+        "verification_status": "user-provided"
+      }
+    }
+  ]
+}

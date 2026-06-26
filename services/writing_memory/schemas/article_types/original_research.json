@@ -1,0 +1,79 @@
+{
+  "id": "original_research",
+  "display": "Original research (full IMRAD)",
+  "legacy_alias": "research",
+  "sections_required": ["abstract", "introduction", "methods", "results", "discussion"],
+  "word_targets_default": {
+    "abstract": 280,
+    "introduction": 550,
+    "methods": 1300,
+    "results": 3000,
+    "discussion": 1900
+  },
+  "introduction": {
+    "paragraph_count": 5,
+    "flow": [
+      "field_importance: innate/adaptive context without disease laundry list",
+      "clinical_translation_gap: why mouse-only work fails for human pathways",
+      "existing_models: humanized mice and myeloid limitation",
+      "this_system_rationale: transgenes / model generation logic",
+      "study_aim: one sentence aim + what was tested"
+    ],
+    "forbidden_openers": ["In recent years", "With the advent of", "It is well known that"],
+    "citation_density": "one ref per major claim; never stack 3 refs in first sentence"
+  },
+  "abstract": {
+    "logic": "problem → approach → key quantitative findings → mechanistic conclusion",
+    "mechanism_required": true,
+    "mechanism_template": "State what the data imply beyond platform utility (e.g. pathway X occurs independently of Y).",
+    "no_citation_in_background": true
+  },
+  "results": {
+    "subsection_pattern": "one major figure per subsection H2",
+    "per_finding": [
+      "state comparison groups with n",
+      "report treatment AND control values",
+      "fold-change or absolute with significance",
+      "anchor every number: (Fig. X, panel Y)"
+    ],
+    "forbidden_closers": ["These findings demonstrate", "Taken together", "Collectively"]
+  },
+  "discussion": {
+    "open_with": "most_important_finding_first",
+    "open_template": "Lead with the single strongest novel finding in one sentence before context.",
+    "include_limitations_paragraph": true,
+    "compare_to_prior_models_by_name": true
+  },
+  "quality_rules": {
+    "_note": "These override the default Q-rules in draft_section.system.md for this article type.",
+    "paragraph_words_max": 120,
+    "voice": {
+      "abstract": "active",
+      "introduction": "active",
+      "results": "active_dominant",
+      "methods": "passive_dominant",
+      "discussion": "active"
+    },
+    "sentence_length_mean_max": 28,
+    "citation_density": {
+      "introduction": "one_per_claim_paragraph",
+      "discussion": "one_per_claim_paragraph",
+      "results": "figure_anchor_only",
+      "methods": "protocol_reference_only"
+    },
+    "preferred_verbs": ["showed","revealed","demonstrated","detected","observed","confirmed","found","measured","identified","quantified"],
+    "forbidden_verbs": ["highlighted","underscored","showcased","unveiled","shed light on","paved the way"],
+    "triplet_parallel_max_per_section": 1
+  },
+  "exemplar_patterns": {
+    "abstract_bmrc": {
+      "note": "Pattern only — do not copy wording from any specific paper.",
+      "Background": "2 sentences: disease/gap + why in vivo human innate immunity is needed.",
+      "Methods": "1-2 sentences: model + challenge design only.",
+      "Results": "3-4 sentences: engraftment + pathway readouts + pharmacology with numbers.",
+      "Conclusion": "1-2 sentences: platform competence + one mechanistic insight."
+    },
+    "results_sentence": "IP LPS increased serum hTNF to ~50 ng/mL (25-fold vs PBS, p<0.001; Fig. 2A).",
+    "discussion_opener": "The central finding is that human myeloid cells in this model mount separable NF-κB and inflammasome responses amenable to selective pharmacology."
+  }
+}

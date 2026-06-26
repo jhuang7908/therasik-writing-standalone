@@ -1,0 +1,448 @@
+{
+  "v3b_vh": "EVQLVESGGDLVKPGGSLRLSCVASGFSLIGYDLNWVRQAPGKGLQWVAIIWGDGTTDYNSAVKSRVTISKDSAKNTFYLQLQSLRAEETAVYYCARGGYWYATSYYFDYWGQGTSVTVSS",
+  "v3b_vl": "EIVLTQSPASLSLSQEEKVTITCRASQSISNNLNWYQQKPGQAPKLLIYYTSRFHSGVPSRFSGSGSGTDFSFTISSLEPEDVAVYYCQQEHTLPYTFGQGTKVELK",
+  "cmc_results": {
+    "project_name": "V3b",
+    "results": {
+      "developability": {
+        "status": "PASS",
+        "pI_fab_estimate": 6.18,
+        "GRAVY": -0.284,
+        "instability_index": 43.4,
+        "net_charge_pH7": -1.0,
+        "hydro_patch_max9": 0.778,
+        "charge_patch_max7": 3.0,
+        "clinical_population": "humanized_458",
+        "clinical_score": 61.0,
+        "clinical_percentile_ranks": {
+          "pI": {
+            "value": 6.18,
+            "band": "p5\u2013p25",
+            "gate": "PASS",
+            "ref_p5": 5.197,
+            "ref_p25": 6.85,
+            "ref_p50": 8.3,
+            "ref_p75": 8.74,
+            "ref_p95": 9.09,
+            "population": "humanized_458",
+            "n_ref": 458
+          },
+          "GRAVY": {
+            "value": -0.284,
+            "band": "p25\u2013p75",
+            "gate": "PASS",
+            "ref_p5": -0.475,
+            "ref_p25": -0.397,
+            "ref_p50": -0.339,
+            "ref_p75": -0.28,
+            "ref_p95": -0.192,
+            "population": "humanized_458",
+            "n_ref": 458
+          },
+          "instability_index": {
+            "value": 43.4,
+            "band": "p75\u2013p95",
+            "gate": "PASS",
+            "ref_p5": 27.67,
+            "ref_p25": 33.225,
+            "ref_p50": 37.8,
+            "ref_p75": 41.6,
+            "ref_p95": 47.1,
+            "population": "humanized_458",
+            "n_ref": 458
+          },
+          "net_charge_pH7": {
+            "value": -1.0,
+            "band": "p5\u2013p25",
+            "gate": "PASS",
+            "ref_p5": -3.405,
+            "ref_p25": -0.1,
+            "ref_p50": 1.9,
+            "ref_p75": 3.8,
+            "ref_p95": 5.9,
+            "population": "humanized_458",
+            "n_ref": 458
+          },
+          "hydro_patch_max9": {
+            "value": 0.778,
+            "band": "p75\u2013p95",
+            "gate": "PASS",
+            "ref_p5": 0.556,
+            "ref_p25": 0.556,
+            "ref_p50": 0.556,
+            "ref_p75": 0.667,
+            "ref_p95": 0.778,
+            "population": "humanized_458",
+            "n_ref": 458
+          },
+          "charge_patch_max7": {
+            "value": 3.0,
+            "band": "p5\u2013p25",
+            "gate": "PASS",
+            "ref_p5": 2.0,
+            "ref_p25": 3.0,
+            "ref_p50": 3.0,
+            "ref_p75": 3.0,
+            "ref_p95": 4.0,
+            "population": "humanized_458",
+            "n_ref": 458
+          }
+        },
+        "rule_source": "clinical",
+        "note": "pI and instability are sequence-level estimates; confirm post-expression. Gates reference: humanized_458 clinical population.",
+        "flags": []
+      },
+      "cdr_scan": {
+        "status": "PASS",
+        "total_liabilities": 5,
+        "liabilities": [
+          {
+            "type": "deamidation",
+            "pattern": "NS",
+            "pos": 59,
+            "severity": "MEDIUM"
+          },
+          {
+            "type": "isomerization",
+            "pattern": "DG",
+            "pos": 53,
+            "severity": "MEDIUM"
+          },
+          {
+            "type": "isomerization",
+            "pattern": "DS",
+            "pos": 71,
+            "severity": "MEDIUM"
+          },
+          {
+            "type": "free_Cys_candidate",
+            "pos": 94,
+            "severity": "HIGH"
+          },
+          {
+            "type": "free_Cys_candidate",
+            "pos": 208,
+            "severity": "HIGH"
+          }
+        ],
+        "flags": [
+          "WARN:deamidation",
+          "WARN:isomerization"
+        ]
+      },
+      "cmc_advisor": {
+        "status": "FAIL",
+        "reference_population": "AbRef clinical panel",
+        "evaluation_standard": "CMC_STANDARD_v1.0",
+        "reference_dataset": "AbRef458_v1",
+        "metrics_version": "METRICS_v1",
+        "ADI": 60.3,
+        "ADI_percentile": null,
+        "ADI_interpretation": "Acceptable",
+        "metrics": {
+          "pI": {
+            "value": 6.18,
+            "label": "pI",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 5.197,
+            "ref_p25": 6.85,
+            "ref_p50": 8.3,
+            "ref_p75": 8.74,
+            "ref_p95": 9.09,
+            "ref_n": 458
+          },
+          "GRAVY": {
+            "value": -0.284,
+            "label": "GRAVY hydrophobicity",
+            "percentile_band": "p25\u2013p75",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": -0.475,
+            "ref_p25": -0.397,
+            "ref_p50": -0.339,
+            "ref_p75": -0.28,
+            "ref_p95": -0.192,
+            "ref_n": 458
+          },
+          "instability_index": {
+            "value": 43.4,
+            "label": "Instability Index",
+            "percentile_band": "p75\u2013p95",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 27.67,
+            "ref_p25": 33.225,
+            "ref_p50": 37.8,
+            "ref_p75": 41.6,
+            "ref_p95": 47.1,
+            "ref_n": 458
+          },
+          "net_charge_pH7": {
+            "value": -1.02,
+            "label": "Net charge (pH 7)",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": -3.381,
+            "ref_p25": -0.1075,
+            "ref_p50": 1.89,
+            "ref_p75": 3.8075,
+            "ref_p95": 5.88,
+            "ref_n": 458
+          },
+          "hydro_patch_max9": {
+            "value": 0.778,
+            "label": "Hydrophobic patch max (9mer)",
+            "percentile_band": "p75\u2013p95",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 0.556,
+            "ref_p25": 0.556,
+            "ref_p50": 0.556,
+            "ref_p75": 0.667,
+            "ref_p95": 0.778,
+            "ref_n": 458
+          },
+          "charge_patch_max7": {
+            "value": 3.0,
+            "label": "Charge patch max (7mer)",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 2.0,
+            "ref_p25": 3.0,
+            "ref_p50": 3.0,
+            "ref_p75": 3.0,
+            "ref_p95": 4.0,
+            "ref_n": 458
+          },
+          "SAP_score": {
+            "value": 0.857,
+            "label": "SAP score",
+            "percentile_band": "p75\u2013p95",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "lower_is_better",
+            "ref_p5": 0.571,
+            "ref_p25": 0.714,
+            "ref_p50": 0.714,
+            "ref_p75": 0.714,
+            "ref_p95": 0.857,
+            "ref_n": 458
+          },
+          "Fv_charge_asymmetry": {
+            "value": 0.818,
+            "label": "Fv charge asymmetry",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "lower_is_better",
+            "ref_p5": 0.0789,
+            "ref_p25": 1.0005,
+            "ref_p50": 1.9985,
+            "ref_p75": 3.0933,
+            "ref_p95": 6.1801,
+            "ref_n": 458
+          },
+          "agg_motifs": {
+            "value": 7,
+            "label": "Aggregation Risk",
+            "percentile_band": "p95+",
+            "gate": "FAIL",
+            "gate_note": "Aggregation Risk (7.0) > AbRef-458 observed range",
+            "direction": "in_range",
+            "ref_p5": 1.0,
+            "ref_p25": 2.0,
+            "ref_p50": 3.0,
+            "ref_p75": 4.0,
+            "ref_p95": 6.0,
+            "ref_n": 458
+          },
+          "hydro_cluster_count": {
+            "value": 4,
+            "label": "Hydrophobic Density",
+            "percentile_band": "p25\u2013p75",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 1.0,
+            "ref_p25": 2.0,
+            "ref_p50": 3.0,
+            "ref_p75": 4.0,
+            "ref_p95": 5.0,
+            "ref_n": 458
+          },
+          "glycosylation_sites": {
+            "value": [],
+            "label": "PTM Site Count",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 0.0,
+            "ref_p25": 0.0,
+            "ref_p50": 0.0,
+            "ref_p75": 0.0,
+            "ref_p95": 0.0,
+            "ref_n": 458
+          },
+          "deamidation_sites": {
+            "value": [
+              59
+            ],
+            "label": "Deamidation Risk",
+            "percentile_band": "p25\u2013p75",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 0.0,
+            "ref_p25": 0.0,
+            "ref_p50": 1.0,
+            "ref_p75": 2.0,
+            "ref_p95": 3.0,
+            "ref_n": 458
+          },
+          "isomerization_sites": {
+            "value": [
+              53,
+              71
+            ],
+            "label": "Isomerization Risk",
+            "percentile_band": "p75\u2013p95",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 0.0,
+            "ref_p25": 0.0,
+            "ref_p50": 1.0,
+            "ref_p75": 1.0,
+            "ref_p95": 3.0,
+            "ref_n": 458
+          },
+          "oxidation_sites": {
+            "value": [
+              35,
+              46,
+              51,
+              100,
+              110,
+              155
+            ],
+            "label": "Oxidation Risk",
+            "percentile_band": "p0\u2013p5",
+            "gate": "FAIL",
+            "gate_note": "Oxidation Risk (6.0) < AbRef-458 observed range",
+            "direction": "in_range",
+            "ref_p5": 7.0,
+            "ref_p25": 8.0,
+            "ref_p50": 9.0,
+            "ref_p75": 10.0,
+            "ref_p95": 11.0,
+            "ref_n": 458
+          },
+          "free_cys": {
+            "value": [
+              21,
+              94,
+              143,
+              208
+            ],
+            "label": "Free Cys Count",
+            "percentile_band": "p5\u2013p25",
+            "gate": "PASS",
+            "gate_note": null,
+            "direction": "in_range",
+            "ref_p5": 4.0,
+            "ref_p25": 4.0,
+            "ref_p50": 4.0,
+            "ref_p75": 4.0,
+            "ref_p95": 4.0,
+            "ref_n": 458
+          }
+        },
+        "gate_summary": {
+          "PASS": 13,
+          "WARN": 0,
+          "FAIL": 2
+        },
+        "mutation_suggestions": [
+          {
+            "metric": "agg_motifs",
+            "current_value": 7.0,
+            "gate": "FAIL",
+            "direction": "too_high",
+            "suggestion": "Introduce T/S/N substitutions at hydrophobic runs (\u22653 consecutive AILMFWV). Target FR positions first, especially in FR2/FR3.",
+            "rationale": "Multiple aggregation motifs (>p95=2.0) predict high risk during manufacturing and storage.",
+            "target_range": "p5\u2013p95 (1.00\u20136.00)",
+            "sequence_candidates": {
+              "metric": "agg_motifs",
+              "direction": "too_high",
+              "vernier_filter_applied": true,
+              "fr_hydrophobic_runs": [
+                {
+                  "chain": "VL",
+                  "start_1": 83,
+                  "end_1": 85,
+                  "length": 3,
+                  "segment": "VAV",
+                  "window": "SLEPEDVAVYYCQQE",
+                  "per_residue": [
+                    {
+                      "index_1": 83,
+                      "imgt": 99,
+                      "from_aa": "V",
+                      "to_aa_hint": "T",
+                      "region": "FR3"
+                    },
+                    {
+                      "index_1": 84,
+                      "imgt": 100,
+                      "from_aa": "A",
+                      "to_aa_hint": "S",
+                      "region": "FR3"
+                    },
+                    {
+                      "index_1": 85,
+                      "imgt": 101,
+                      "from_aa": "V",
+                      "to_aa_hint": "T",
+                      "region": "FR3"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "flags": [
+          "FAIL:Aggregation Risk (7.0) > AbRef-458 observed range",
+          "FAIL:Oxidation Risk (6.0) < AbRef-458 observed range"
+        ]
+      },
+      "_qa": {
+        "status": "PASS",
+        "n_pass": 9,
+        "n_warn": 0,
+        "n_fail": 0,
+        "input_hash": "854d9dd0c1afedd4",
+        "strict_qa": false,
+        "checks": []
+      }
+    },
+    "overall_status": "FAIL",
+    "overall_flags": [
+      "cdr_scan:WARN:deamidation",
+      "cdr_scan:WARN:isomerization",
+      "cmc_advisor:FAIL:Aggregation Risk (7.0) > AbRef-458 observed range",
+      "cmc_advisor:FAIL:Oxidation Risk (6.0) < AbRef-458 observed range"
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "0.1.0",
+  "id": "elife_author_year",
+  "display_name": "eLife author-year",
+  "based_on": "Harvard-style author-year",
+  "sourced_from": [
+    { "url": "https://elifesciences.org/author-guide", "label": "eLife author guide (reference style)", "captured_at": null }
+  ],
+
+  "in_text_citation": {
+    "mode": "author_year_parenthetical",
+    "examples": ["(Smith, 2024)", "(Smith and Jones, 2024)", "(Smith et al., 2024)"],
+    "multiple_citations": "semicolon-separated; chronological then alphabetical",
+    "verification_status": "unverified",
+    "source_url": "https://elifesciences.org/author-guide",
+    "notes": "Confirm exact 'et al.' threshold and punctuation."
+  },
+
+  "list_order": {
+    "mode": "alphabetical_by_author",
+    "verification_status": "unverified",
+    "source_url": "https://elifesciences.org/author-guide"
+  },
+
+  "list_entry": {
+    "author_list": {
+      "format": "last_initials",
+      "separator": ", ",
+      "et_al_threshold": null,
+      "et_al_keep_first": null,
+      "final_separator": ", "
+    },
+    "journal_abbreviation": "full_title",
+    "year_position": "after_authors",
+    "title_case": "sentence_case",
+    "italicize": { "journal_title": true, "book_title": true, "article_title": false },
+    "volume_issue_pages_format": null,
+    "doi_required": true,
+    "doi_format": "https://doi.org/10.xxxx/xxxx",
+    "url_required": false,
+    "preprint_handling": "bioRxiv / medRxiv with DOI accepted; confirm exact format.",
+    "verification_status": "unverified",
+    "source_url": "https://elifesciences.org/author-guide",
+    "examples": []
+  }
+}

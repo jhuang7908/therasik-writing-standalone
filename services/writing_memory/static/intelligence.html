@@ -1,0 +1,4040 @@
+<!DOCTYPE html>
+<!-- insynbio-intelligence-ide-v2.5.8-20260605 (Literature Radar: sub-database + keywords, simplified) -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>InSynBio · Intelligence &amp; IP Discovery</title>
+<style>
+:root {
+  --bg:#090d16; --panel:#0f1726; --panel-2:#111c2e;
+  --line:#253246; --line-2:#1b2637;
+  --text:#e5edf7; --muted:#8ea0b8;
+  --accent:#21c7d9; --accent-2:#0ea5b7;
+  --pass:#3fb950; --warn:#d4a72c; --fail:#f85149;
+  --mono:"JetBrains Mono","Consolas",monospace;
+  --sans:system-ui,"Segoe UI",sans-serif;
+  --radius:10px;
+  --sidebar-w:240px; --rail-w:clamp(360px,34vw,720px);
+  --active-bg:rgba(33,199,217,.08); --active-border:rgba(33,199,217,.28);
+  --splitter-hover:rgba(33,199,217,.38);
+  --shadow:0 4px 12px rgba(0,0,0,.15);
+}
+html.theme-beige {
+  --bg:#fdf6e3; --panel:#eee8d5; --panel-2:#e9e2d0;
+  --line:#d5cdb3; --line-2:#c9b98f;
+  --text:#073642; --muted:#586e75;
+  --accent:#b58900; --accent-2:#cb4b16;
+  --pass:#627400; --warn:#b58900; --fail:#dc322f;
+  --active-bg:rgba(181,137,0,.1); --active-border:rgba(181,137,0,.35);
+  --splitter-hover:rgba(181,137,0,.38);
+  --shadow:0 4px 12px rgba(0,0,0,.08);
+}
+html.theme-gruvbox {
+  --bg:#282828; --panel:#3c3836; --panel-2:#504945;
+  --line:#665c54; --line-2:#7c6f64;
+  --text:#ebdbb2; --muted:#a89984;
+  --accent:#fabd2f; --accent-2:#fe8019;
+  --pass:#b8bb26; --warn:#fabd2f; --fail:#fb4934;
+  --active-bg:rgba(250,189,47,.1); --active-border:rgba(250,189,47,.35);
+  --splitter-hover:rgba(250,189,47,.38);
+  --shadow:0 4px 12px rgba(0,0,0,.2);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font:14px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px}
+/* Topbar */
+.topbar{height:52px;border-bottom:1px solid var(--line);background:var(--panel);display:flex;align-items:center;padding:0 14px;gap:0;overflow:hidden;position:relative;z-index:100;font-weight:600}
+.brand{display:flex;align-items:center;gap:9px;flex-shrink:0;padding-right:14px;border-right:1px solid var(--line)}
+.brand-mark{width:26px;height:26px;border:1px solid var(--accent);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--accent);font:700 11px var(--mono)}
+.brand-text strong{display:block;color:var(--accent);letter-spacing:.03em;font-size:13px}
+.brand-text span{font-size:11px;color:var(--muted)}
+.top-status{display:flex;align-items:center;gap:8px;flex:1;min-width:0;overflow-x:auto;padding:0 14px;scrollbar-width:none}
+.top-status::-webkit-scrollbar{display:none}
+.status-chip{border:1px solid var(--line);background:var(--panel);padding:4px 9px;border-radius:999px;color:var(--muted);font-size:11px;white-space:nowrap}
+.status-chip.live{border-color:rgba(63,185,80,.45);color:var(--pass)}
+.top-meta{display:flex;align-items:center;gap:6px;flex-shrink:0;padding-left:10px}
+/* Module strip */
+.module-strip{height:34px;border-bottom:1px solid var(--line);background:var(--panel-2);display:flex;align-items:center;gap:8px;padding:0 12px;overflow-x:auto;scrollbar-width:none}
+.module-strip::-webkit-scrollbar{display:none}
+.module-strip .label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700;white-space:nowrap}
+.module-chip{border:1px solid var(--line);border-radius:999px;padding:3px 9px;font-size:11px;color:var(--muted);white-space:nowrap;text-decoration:none}
+.module-chip:hover{border-color:var(--accent);color:var(--text)}
+.module-chip.active{border-color:var(--accent);color:var(--accent);background:var(--active-bg)}
+/* Buttons */
+.btn{border-radius:8px;border:1px solid var(--line);background:var(--panel-2);color:var(--text);padding:8px 14px;cursor:pointer;font-weight:600;display:inline-flex;align-items:center;gap:6px;font-size:13px}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:#04131a;border-color:transparent}
+.btn.primary:hover{background:var(--accent-2)}
+.btn.link{background:transparent;border:1px solid transparent;color:var(--muted);padding:3px 7px;font-size:12px;font-weight:600;border-radius:6px;gap:4px}
+.btn.link:hover{border-color:var(--line);color:var(--text);background:var(--panel-2)}
+.btn.sm{font-size:11px;padding:4px 10px}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--muted);padding:3px 8px;font-size:11px;border-radius:6px}
+.btn.ghost:hover{border-color:var(--accent);color:var(--text)}
+.btn:disabled{opacity:.45;cursor:default}
+.btn.danger{border-color:rgba(248,81,73,.4);color:var(--fail)}
+.ref-modal{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}
+.ref-modal.hidden{display:none}
+.ref-modal-panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);max-width:760px;width:100%;max-height:88vh;display:flex;flex-direction:column}
+.ref-modal-panel h3{padding:14px 16px;border-bottom:1px solid var(--line);font-size:14px;font-weight:700}
+.ref-modal-body{padding:12px 16px;overflow:auto;flex:1}
+.ref-modal-foot{padding:10px 16px;border-top:1px solid var(--line);display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.ref-import-ta{width:100%;min-height:180px;font-family:var(--mono);font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px;color:var(--text)}
+.ref-format-out{white-space:pre-wrap;font-family:var(--mono);font-size:11px;line-height:1.55;color:var(--text)}
+.db-toolbar-block{margin-top:10px;border:1px solid var(--line);border-radius:8px;background:var(--panel-2);overflow:hidden;padding:2px 0}
+.db-toolbar-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:6px 12px;border-bottom:1px solid var(--line-2)}
+.db-toolbar-row:last-child{border-bottom:none}
+.db-toolbar-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);line-height:1.3;margin-right:4px}
+.db-toolbar-group{display:inline-flex;align-items:center;gap:4px;padding:0 8px;border-right:1px solid var(--line-2)}
+.db-toolbar-group:last-child{border-right:none}
+.db-toolbar-body{display:flex;flex-wrap:wrap;gap:6px;align-items:center;flex:1;min-width:0}
+.db-toolbar-body.toolbar-actions{align-items:center}
+.db-toolbar-body .btn.sm,
+.db-toolbar-body select.btn.sm{height:28px;min-height:28px;box-sizing:border-box;line-height:1;padding:0 10px;font-size:11px;vertical-align:middle;display:inline-flex;align-items:center;justify-content:center;border-radius:6px}
+.db-toolbar-body .tb-stat{font-size:11px;color:var(--muted);white-space:nowrap;display:inline-flex;align-items:center;margin-right:8px}
+.db-toolbar-body .tb-sep{width:1px;height:18px;background:var(--line);flex-shrink:0;margin:0 8px}
+.ref-io-bar,.sel-bar-inblock{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0;padding:0;border:none;background:transparent}
+/* Sidebar Facets */
+.sidebar-facets{padding:8px 12px;display:flex;flex-direction:column;gap:10px}
+.facet-group{display:flex;flex-direction:column;gap:6px}
+.facet-label{font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px}
+.facet-list{display:flex;flex-direction:column;gap:1px}
+.facet-item{padding:6px 10px;border-radius:7px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:all .12s;border:1px solid transparent}
+.facet-item:hover{background:var(--active-bg);color:var(--text);border-color:var(--active-border)}
+.facet-item.active{background:var(--active-bg);color:var(--accent);border-color:var(--active-border)}
+.facet-count{font-size:9px;opacity:.6;font-family:var(--mono)}
+.facet-title{display:flex;align-items:center;gap:4px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.facet-actions{display:none;gap:3px;align-items:center;flex-shrink:0}
+.facet-item:hover .facet-actions{display:flex}
+.facet-mini{border:1px solid var(--line);background:var(--panel);color:var(--muted);font-size:9px;font-weight:700;border-radius:5px;padding:2px 4px;line-height:1;cursor:pointer}
+.facet-mini:hover{border-color:var(--accent);color:var(--text)}
+.facet-mini.primary{color:var(--accent);border-color:var(--active-border)}
+.facet-mini.warn{color:var(--warn)}
+/* Radar & Digest Styles */
+.radar-card { background: var(--panel-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; }
+.radar-grid { display: grid; grid-template-columns: 1fr 2fr 100px 1fr; gap: 8px; margin-bottom: 12px; }
+.radar-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; margin-bottom: 6px; transition: border-color 0.15s; }
+.radar-item:hover { border-color: var(--accent); }
+.radar-info { flex: 1; min-width: 0; }
+.radar-name { font-weight: 700; color: var(--accent); font-size: 13px; margin-bottom: 2px; }
+.radar-meta { font-size: 11px; color: var(--muted); display: flex; gap: 10px; }
+.radar-actions { display: flex; gap: 6px; }
+.radar-guide{border:1px dashed var(--active-border);background:var(--active-bg);border-radius:8px;padding:12px 14px;margin-bottom:14px;font-size:11px;line-height:1.55;color:var(--text)}
+.radar-guide strong{color:var(--accent);font-size:11px}
+.radar-guide ol{margin:6px 0 0 18px;padding:0}
+.radar-guide li{margin:3px 0;color:var(--muted)}
+.radar-guide li b{color:var(--text)}
+.radar-field-label{display:flex;align-items:center;gap:4px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:3px}
+.tip-help{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border-radius:50%;border:1px solid var(--line);color:var(--muted);font-size:9px;font-weight:800;cursor:help;flex-shrink:0;line-height:1}
+.tip-help:hover{border-color:var(--accent);color:var(--accent)}
+.radar-field{margin-bottom:0}
+.radar-grid-fields{display:grid;grid-template-columns:minmax(140px,1fr) minmax(220px,2.2fr);gap:8px 12px;margin-top:10px}
+.radar-grid-opts{display:grid;grid-template-columns:110px 1fr auto;gap:8px 12px;margin-top:8px;align-items:end}
+@media (max-width:760px){.radar-grid-fields,.radar-grid-opts{grid-template-columns:1fr}}
+.digest-container { background: var(--active-bg); border: 1px solid var(--active-border); border-radius: var(--radius); padding: 16px; }
+.report-item { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-bottom: 1px solid var(--line-2); cursor: pointer; }
+.report-item:hover { background: var(--active-bg); }
+.report-icon { font-size: 18px; opacity: 0.7; }
+.report-info { flex: 1; }
+.report-date { font-size: 10px; color: var(--muted); }
+.completeness-panel{border:1px solid var(--active-border);background:var(--active-bg);border-radius:10px;padding:10px 12px;margin-top:10px}
+.completeness-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:8px}
+.completeness-title{font-size:11px;font-weight:800;color:var(--accent);text-transform:uppercase;letter-spacing:.06em}
+.completeness-grid{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:8px}
+.completeness-card{border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:8px 10px}
+.completeness-card b{display:block;font-size:18px;line-height:1.1;color:var(--text)}
+.completeness-card span{font-size:10px;color:var(--muted)}
+.completeness-bar{height:5px;border-radius:999px;background:var(--line-2);overflow:hidden;margin-top:7px}
+.completeness-fill{height:100%;background:var(--accent);border-radius:999px}
+.completeness-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.completeness-note{font-size:10px;color:var(--muted);line-height:1.45;margin-top:7px}
+#sidebar-completeness-dash{padding:8px 12px;border-top:1px solid var(--line);flex-shrink:0}
+#sidebar-completeness-dash .completeness-panel{margin-top:0;padding:9px;background:var(--panel-2)}
+#sidebar-completeness-dash .completeness-head{margin-bottom:6px}
+#sidebar-completeness-dash .completeness-title{font-size:10px}
+#sidebar-completeness-dash .completeness-grid{grid-template-columns:1fr 1fr;gap:5px}
+#sidebar-completeness-dash .completeness-card{padding:6px 7px}
+#sidebar-completeness-dash .completeness-card b{font-size:14px}
+#sidebar-completeness-dash .completeness-card span{font-size:9px}
+#sidebar-completeness-dash .completeness-actions{gap:4px;margin-top:7px}
+#sidebar-completeness-dash .btn.sm{font-size:9px;padding:3px 6px}
+
+.lib-table .ttl{font-size:13px;font-weight:700;color:var(--text);letter-spacing:-0.01em;display:block;margin-bottom:2px}
+.record-title-line{display:flex;align-items:flex-start;gap:6px;flex-wrap:wrap}
+.record-workflow-line{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:4px 0 2px}
+.record-actions-inline{display:inline-flex;gap:5px;align-items:center;padding-left:6px;border-left:1px solid var(--line)}
+.record-status-badge{display:inline-flex;align-items:center;gap:3px;border:1px solid var(--line);border-radius:999px;padding:1px 7px;font-size:9px;font-weight:800;line-height:1.5;letter-spacing:.02em;white-space:nowrap;background:var(--panel-2)}
+.record-status-badge.fulltext{color:var(--pass);border-color:rgba(63,185,80,.45);cursor:pointer}
+.record-status-badge.pdf{color:var(--pass);border-color:rgba(63,185,80,.45);cursor:pointer}
+.record-status-badge.learned{color:var(--accent);border-color:var(--active-border)}
+.record-status-badge.pending{color:var(--muted);opacity:.75}
+.lib-table .auth{font-size:11px;color:var(--muted);font-weight:500}
+.lib-table .meta-line{font-size:10px;color:var(--muted);opacity:.8;margin-top:3px;display:flex;gap:8px;align-items:center}
+.lib-table .meta-line span{display:inline-flex;align-items:center;gap:3px}
+.lib-table .meta-line .dot{width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.4}
+.lib-row:hover .ttl{color:var(--accent)}
+.lib-row.row-expanded{background:var(--active-bg)}
+.lib-row.row-expanded .ttl{color:var(--accent)}
+.sel-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px;padding:8px 10px;border:1px solid var(--active-border);border-radius:8px;background:var(--active-bg);font-size:11px}
+.seq-callout{font-size:11px;line-height:1.55;color:var(--muted);margin-top:8px;padding:10px 12px;border-left:3px solid var(--accent);background:var(--active-bg);border-radius:0 8px 8px 0}
+.seq-callout b{color:var(--text)}
+.sel-bar .sel-count{font-weight:700;color:var(--accent)}
+.lib-table .c-sel{width:36px;text-align:center;vertical-align:top;padding-top:10px}
+.lib-table .c-sel input{cursor:pointer;width:15px;height:15px;accent-color:var(--accent)}
+.lib-row.row-selected{background:rgba(33,199,217,.06)}
+.lib-row.row-expanded .ttl{color:var(--accent)}
+.lib-detail-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:2}
+.lib-detail-head .det-title{font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.06em}
+.lib-table-wrap .lib-detail td{max-height:min(65vh,480px);overflow:auto;vertical-align:top}
+.lib-table .c-link{width:56px;text-align:center}
+.lib-table .c-type{width:44px;text-align:center}
+.lib-table .c-sub{width:84px}
+.lib-table .c-year{width:52px;text-align:center;font-size:11px;color:var(--text);font-weight:700}
+.lib-table .c-journal{width:128px;font-size:10px;line-height:1.35;color:var(--text);font-weight:700}
+.lib-table .c-src{width:64px;text-align:center}
+.db-toolbar-hint{font-size:10px;color:var(--muted);margin-top:4px;line-height:1.45}
+.subproj-tag{display:inline-block;font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;background:var(--panel-2);border:1px solid var(--line);color:var(--accent);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:middle}
+html.theme-beige .lib-row.row-selected{background:rgba(181,137,0,.08)}
+html.theme-gruvbox .lib-row.row-selected{background:rgba(250,189,47,.08)}
+/* Shell */
+.shell{height:calc(100vh - 86px);display:flex;flex-direction:row;min-height:0;width:100%;align-items:stretch}
+/* Left sidebar */
+.sidebar{width:var(--sidebar-w);flex:0 0 var(--sidebar-w);border-right:1px solid var(--line);background:var(--panel);display:flex;flex-direction:column;min-height:0;overflow:hidden;max-width:min(400px,50vw)}
+.h-splitter{flex:0 0 5px;cursor:col-resize;background:var(--line-2);position:relative;z-index:5;touch-action:none;user-select:none}
+.h-splitter:hover,.h-splitter.is-dragging{background:var(--accent)}
+.v-splitter{height:4px;cursor:row-resize;background:var(--line-2);position:relative;z-index:5;touch-action:none;user-select:none;flex-shrink:0}
+.v-splitter:hover,.v-splitter.is-dragging{background:var(--accent)}
+.sidebar-section{display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.sidebar-section-content{flex:1;overflow-y:auto;min-height:0}
+/* Main content area */
+.main-area{flex:1;min-width:0;display:flex;flex-direction:column;overflow:hidden}
+/* View panes */
+.tab-pane{display:none;flex:1;min-height:0;flex-direction:column;overflow:hidden}
+.tab-pane.active{display:flex}
+/* Sidebar nav buttons (like Lab IDE) */
+.module-list{display:flex;flex-direction:column;gap:1px;padding:6px 8px}
+.module-btn{width:100%;text-align:left;background:transparent;border:1px solid transparent;border-radius:7px;padding:8px 10px;cursor:pointer;font-size:12px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:8px;transition:all .12s}
+.module-btn:hover{background:var(--active-bg);color:var(--text);border-color:var(--active-border)}
+.module-btn.active{background:var(--active-bg);color:var(--accent);border-color:var(--active-border)}
+.module-btn .icon{font-size:14px;flex-shrink:0}
+/* Sidebar section divider */
+.sidebar-divider{height:1px;background:var(--line);margin:6px 8px}
+.sidebar-section-label{font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;padding:6px 12px 2px}
+/* Right rail */
+.right-rail{width:var(--rail-w);flex:0 0 var(--rail-w);min-width:360px;border-left:1px solid var(--line);background:var(--panel);display:flex;flex-direction:column;min-height:0;overflow:hidden;max-width:min(900px,55vw)}
+/* Sidebar internals */
+.sidebar-head{padding:10px 12px;border-bottom:1px solid var(--line);flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
+.sidebar-head .title{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.sidebar-body{flex:1;overflow-y:auto;padding:8px 0}
+.lib-item{padding:7px 12px;border-bottom:1px solid var(--line-2);cursor:pointer;font-size:12px;line-height:1.45}
+.lib-item:hover{background:var(--active-bg)}
+.lib-item .li-title{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lib-item .li-meta{font-size:10px;color:var(--muted);margin-top:2px}
+.lib-item .li-type{display:inline-block;font-size:9px;font-weight:700;padding:1px 5px;border-radius:4px;margin-right:4px}
+.li-type.lit,.li-type.research{background:rgba(33,199,217,.15);color:var(--accent)}
+.li-type.review{background:rgba(168,85,247,.15);color:#a855f7}
+.li-type.sysreview{background:rgba(99,102,241,.15);color:#6366f1}
+.li-type.case{background:rgba(245,158,11,.15);color:#d97706}
+.li-type.letter{background:rgba(14,165,233,.15);color:#0284c7}
+.li-type.protocol{background:rgba(16,185,129,.15);color:#059669}
+.li-type.pat{background:rgba(212,167,44,.15);color:var(--warn)}
+.li-type.seq{background:rgba(63,185,80,.15);color:var(--pass)}
+.li-type.imp{background:rgba(142,160,184,.15);color:var(--muted)}
+/* Search panels */
+.search-panel{flex:1;min-height:0;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:12px}
+.search-row{display:flex;gap:6px;align-items:center}
+.search-input{flex:1;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--text);font-size:13px}
+.search-input:focus{outline:none;border-color:var(--accent)}
+.section-head{font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+/* Result cards */
+.result-list{display:flex;flex-direction:column;gap:6px}
+.result-card{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--panel-2);cursor:pointer;transition:border-color .15s}
+.result-card:hover,.result-card.selected{border-color:var(--accent);background:var(--active-bg)}
+.result-card .rc-title{font-size:12px;font-weight:600;line-height:1.4;margin-bottom:4px}
+.result-card .rc-meta{font-size:10px;color:var(--muted);line-height:1.5}
+.result-card .rc-actions{margin-top:7px;display:flex;gap:5px;flex-wrap:wrap}
+.lit-link-badge{display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;line-height:1;padding:2px 6px;border-radius:5px;border:1px solid var(--line);background:var(--panel);letter-spacing:.02em}
+.lit-link-badge.doi{color:var(--accent)}
+.lit-link-badge.oa{color:var(--pass)}
+/* Right rail internals */
+.rail-head{padding:10px 12px;border-bottom:1px solid var(--line);flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
+.rail-head .title{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.rail-body{flex:1;overflow-y:auto;padding:12px}
+.rail-section{margin-bottom:16px}
+.rail-section-head{font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid var(--line)}
+/* AI analysis area */
+.ai-output{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px;font-size:12px;line-height:1.6;white-space:pre-wrap;min-height:80px;color:var(--text)}
+/* Chat window */
+.chat-body{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px}
+.chat-msg{display:flex;flex-direction:column;max-width:96%}
+.chat-msg.user{align-self:flex-end;align-items:flex-end}
+.chat-msg.assistant{align-self:flex-start;align-items:flex-start}
+.chat-bubble{border:1px solid var(--line);border-radius:10px;padding:8px 11px;font-size:12px;line-height:1.55;white-space:pre-wrap;background:var(--panel-2)}
+.chat-msg.user .chat-bubble{background:var(--active-bg);border-color:var(--active-border);color:var(--text)}
+.chat-sources{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.5}
+.chat-sources a{color:var(--accent)}
+.chat-compose{flex-shrink:0;border-top:1px solid var(--line);background:var(--panel-2);padding:10px 12px;display:flex;flex-direction:column;gap:8px;min-height:150px;max-height:42vh}
+.chat-compose-hint{font-size:10px;color:var(--muted);line-height:1.45}
+.chat-input{flex:1;min-height:88px;resize:vertical;max-height:220px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--text);font-size:13px;font-family:var(--sans);line-height:1.5;width:100%;box-sizing:border-box}
+.chat-input:focus{outline:none;border-color:var(--accent)}
+.chat-compose-actions{display:flex;gap:6px;align-items:center;justify-content:flex-end;flex-wrap:wrap}
+/* Right-rail tabs (AI | Account) */
+.rail-tabs{flex:0 0 auto;display:flex;border-bottom:1px solid var(--line);background:var(--panel)}
+.rail-tab{flex:1;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);padding:9px 6px;font-size:12px;font-weight:700;cursor:pointer}
+.rail-tab:hover{color:var(--text)}
+.rail-tab.active{color:var(--accent);border-bottom-color:var(--accent);background:var(--active-bg)}
+.rail-panel{display:none;flex:1;min-height:0;flex-direction:column;overflow:hidden}
+.rail-panel.active{display:flex}
+.acct-body{flex:1;overflow-y:auto;padding:14px}
+.acct-field{margin-bottom:14px}
+.acct-label{font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+.acct-value{font-size:13px;font-weight:600;color:var(--text);word-break:break-all}
+.acct-row{display:flex;gap:6px;align-items:center}
+.acct-stat{display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:1px solid var(--line-2)}
+.acct-help{font-size:11px;line-height:1.6;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 11px}
+.acct-help b{color:var(--text)}
+.acct-help .tag{display:inline-block;font-size:10px;font-weight:700;padding:1px 5px;border-radius:4px;background:var(--active-bg);color:var(--accent);border:1px solid var(--active-border)}
+.qa-box{border:1px solid var(--line);border-radius:8px;padding:10px 11px;background:var(--bg);font-size:11px;line-height:1.55}
+.qa-box.pass{border-color:rgba(63,185,80,.45)}
+.qa-box.warn{border-color:rgba(212,167,44,.5)}
+.qa-box.fail{border-color:rgba(248,81,73,.5)}
+.qa-overall{font-size:13px;font-weight:800;letter-spacing:.04em;margin-bottom:6px}
+.qa-overall.pass{color:var(--pass)}.qa-overall.warn{color:var(--warn)}.qa-overall.fail{color:var(--fail)}
+.qa-meta{color:var(--muted);font-size:10px;margin-bottom:8px}
+.qa-counts{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.qa-counts span{font-weight:700}
+.qa-counts .p{color:var(--pass)}.qa-counts .w{color:var(--warn)}.qa-counts .f{color:var(--fail)}
+.qa-case{margin-top:6px;padding-top:6px;border-top:1px solid var(--line-2);font-size:10px;color:var(--muted)}
+.qa-case b{color:var(--text)}
+.status-chip.qa-pass{border-color:rgba(63,185,80,.45);color:var(--pass)}
+.status-chip.qa-warn{border-color:rgba(212,167,44,.5);color:var(--warn)}
+.status-chip.qa-fail{border-color:rgba(248,81,73,.5);color:var(--fail)}
+/* EndNote-style library table */
+.lib-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px}
+.lib-chip{border:1px solid var(--line);border-radius:999px;padding:3px 11px;font-size:11px;font-weight:600;color:var(--muted);cursor:pointer;background:var(--panel-2)}
+.lib-chip:hover{border-color:var(--accent);color:var(--text)}
+.lib-chip.active{border-color:var(--accent);color:var(--accent);background:var(--active-bg)}
+.lib-table{width:100%;border-collapse:collapse;font-size:12px}
+.lib-table th{position:sticky;top:0;background:var(--panel);text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700;padding:7px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+.lib-table td{padding:7px 8px;border-bottom:1px solid var(--line-2);vertical-align:top}
+.lib-table tr:hover td{background:var(--active-bg)}
+.lib-table .c-type{width:54px}
+.lib-table .c-year{width:50px;color:var(--muted)}
+.lib-table .c-src{width:120px;color:var(--muted)}
+.lib-table .c-link{width:54px}
+.lib-table .ttl{font-weight:600;line-height:1.4}
+.lib-table .auth{color:var(--muted);font-size:11px;margin-top:2px}
+.lib-table-wrap{flex:1;min-height:0;overflow:auto}
+.lib-row{cursor:pointer}
+.lib-row .ttl::before{content:"▸ ";color:var(--accent);font-size:10px}
+.lib-detail td{background:var(--bg);padding:10px 14px 14px 30px}
+.det-ident{font-size:10px;color:var(--accent);font-family:var(--mono);margin-bottom:6px;word-break:break-all}
+.det-abs{font-size:12px;line-height:1.6;color:var(--text);white-space:pre-wrap}
+.det-noabs{font-size:11px;line-height:1.6;color:var(--muted);font-style:italic}
+.pat-inline-detail{display:none;margin-top:8px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);font-size:11px;line-height:1.55}
+.pat-inline-detail.open{display:block}
+.pat-kv{display:grid;grid-template-columns:minmax(88px,auto) 1fr;gap:4px 10px;margin-bottom:8px}
+.pat-kv dt{color:var(--muted);font-weight:700}
+.pat-kv dd{margin:0;word-break:break-word}
+.pat-doc-table{width:100%;border-collapse:collapse;margin-top:6px;font-size:10px}
+.pat-doc-table th,.pat-doc-table td{padding:4px 6px;border-bottom:1px solid var(--line-2);text-align:left}
+.pat-doc-table th{color:var(--muted);font-weight:700}
+.pat-seq-block{margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
+.pat-seq-row{font-family:var(--mono);font-size:10px;line-height:1.45;word-break:break-all;background:var(--panel-2);padding:6px 8px;border-radius:6px;margin-top:4px;max-height:72px;overflow:auto}
+.pat-seq-badge{display:inline-block;font-size:9px;font-weight:700;padding:1px 6px;border-radius:4px;margin-right:4px;background:var(--active-bg);color:var(--accent);border:1px solid var(--active-border)}
+/* Toast */
+#toast{position:fixed;bottom:18px;right:18px;z-index:9999;display:flex;flex-direction:column;gap:6px;pointer-events:none}
+.toast-msg{padding:8px 14px;border-radius:8px;font-size:12px;font-weight:600;opacity:0;transform:translateY(6px);transition:all .25s;pointer-events:none}
+.toast-msg.show{opacity:1;transform:none}
+.toast-msg.ok{background:#1e3a24;color:var(--pass);border:1px solid rgba(63,185,80,.3)}
+.toast-msg.warn{background:#312a12;color:var(--warn);border:1px solid rgba(212,167,44,.3)}
+.toast-msg.err{background:#2d1010;color:var(--fail);border:1px solid rgba(248,81,73,.3)}
+.toast-msg.info{background:#0e2030;color:var(--accent);border:1px solid rgba(33,199,217,.3)}
+/* Empty state */
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:40px 20px;color:var(--muted);font-size:12px;text-align:center}
+.empty-state .icon{font-size:28px;opacity:.45}
+/* Loading spinner */
+.spinner{display:inline-block;width:14px;height:14px;border:2px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* Sequence result badge */
+.seq-badge{font-size:9px;font-family:var(--mono);background:var(--line);padding:1px 5px;border-radius:4px;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<!-- Reference I/O modal (RIS / BibTeX / formatted bibliography) -->
+<div id="ref-io-modal" class="ref-modal hidden" onclick="if(event.target===this)closeRefModal()">
+  <div class="ref-modal-panel" onclick="event.stopPropagation()">
+    <h3 id="ref-io-title">Reference I/O</h3>
+    <div class="ref-modal-body" id="ref-io-body"></div>
+    <div class="ref-modal-foot" id="ref-io-foot"></div>
+  </div>
+</div>
+
+<!-- Topbar -->
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark" style="user-select:none">IS</div>
+    <div class="brand-text">
+      <strong>Intelligence &amp; IP</strong>
+      <span>Module 4</span>
+    </div>
+  </div>
+  <div class="top-status">
+    <div class="status-chip live" id="top-status-chip">Literature · Patent · Sequence</div>
+    <div class="status-chip" id="top-qa-chip" data-tip="Latest Module 4 smoke test" style="display:none">QA · …</div>
+    <div class="status-chip" id="top-project-chip" style="cursor:pointer" onclick="promptProjectContext()" data-tip="Library data is isolated per Project ID — click to change">Project · —</div>
+  </div>
+  <div class="top-meta">
+    <button type="button" class="btn sm primary" onclick="loadDemoProject()" data-tip="31 seeded rows: literature + patents">Demo library</button>
+    <button type="button" class="btn link" onclick="promptProjectContext()" data-tip="Set project context">Project</button>
+    <button type="button" class="btn link" onclick="cycleTheme()" data-tip="Toggle theme" style="display:flex;align-items:center;gap:4px"><span style="font-size:14px">🌓</span> Theme</button>
+    <button type="button" class="btn sm" id="btn-open-writing" onclick="goToWriting()">→ Writing</button>
+    <a class="btn sm danger" href="https://insynbio.com/platform.html">← Platform</a>
+  </div>
+</header>
+
+<!-- Module strip -->
+<div class="module-strip" id="module-strip">
+  <span class="label">IDE modules</span>
+  <a class="module-chip" href="https://insynbio.com/platform.html">M1 Project Hub</a>
+  <a class="module-chip" href="https://write.insynbio.com/?entry=writing&doc=manuscript">M2 Writing</a>
+  <a class="module-chip" href="https://write.insynbio.com/lab">M3 Lab</a>
+  <a class="module-chip active" href="/intelligence">M4 Intelligence &amp; IP</a>
+  <a class="module-chip" href="https://write.insynbio.com/?entry=grant&doc=grant">M5 Grant</a>
+  <a class="module-chip" href="https://write.insynbio.com/?entry=admin">M6 Research Admin</a>
+</div>
+
+<!-- Shell -->
+<div class="shell">
+
+  <!-- Left sidebar — nav + saved library -->
+  <aside class="sidebar" id="sidebar">
+    <!-- Navigation -->
+    <div class="sidebar-section" style="flex: 0 0 240px" id="sb-sec-nav">
+      <div class="sidebar-body sidebar-section-content">
+        <div class="sidebar-section-label">📚 Literature &amp; IP</div>
+        <button class="module-btn active" id="m-litSearch" onclick="switchTab('litSearch')"><span class="icon">🔍</span> Literature Search</button>
+        <button class="module-btn" id="m-litDb" onclick="switchTab('litDb')"><span class="icon">🗄️</span> Literature Database</button>
+        <button class="module-btn" id="m-litDigest" onclick="switchTab('litDigest')" data-tip="Sub-database + keywords → scheduled watch, or one-time 30-day digest."><span class="icon">📡</span> Literature Radar</button>
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-section-label">🔒 Patent &amp; IP</div>
+        <button class="module-btn" id="m-patSearch" onclick="switchTab('patSearch')"><span class="icon">🔍</span> Patent Search</button>
+        <button class="module-btn" id="m-patDb" onclick="switchTab('patDb')"><span class="icon">🗄️</span> Patent Database</button>
+        <button class="module-btn" id="m-patFto" onclick="switchTab('patFto')"><span class="icon">⚖️</span> FTO Analysis</button>
+        <button class="module-btn" id="m-patSeq" onclick="switchTab('patSeq')"><span class="icon">🧬</span> Sequence / Structure</button>
+      </div>
+    </div>
+
+    <div class="v-splitter" id="v-split-1" data-tip="Drag to resize"></div>
+
+    <!-- Filters -->
+    <div class="sidebar-section" style="flex: 1 1 200px" id="sb-sec-filters">
+      <div class="sidebar-section-label">Filters</div>
+      <div class="sidebar-facets sidebar-section-content" id="sidebar-facets">
+        <!-- Dynamic facets (Sub-databases, Sources) -->
+        <div class="empty-state" style="padding:10px">Select a database to filter</div>
+      </div>
+      <div id="sidebar-completeness-dash"></div>
+    </div>
+  </aside>
+
+  <div class="h-splitter" id="h-split-left" data-tip="Drag to resize"></div>
+
+  <!-- Main area — content panes (driven by 2-level sidebar) -->
+  <div class="main-area">
+
+    <!-- Literature › Search -->
+    <div class="tab-pane active" id="pane-litSearch">
+      <div class="search-panel">
+        <div>
+          <div class="section-head">Literature Search</div>
+          <div class="lib-filter" style="margin-bottom:8px">
+            <button class="lib-chip active" id="lit-src-openalex" onclick="setLitSource('openalex')">OpenAlex</button>
+            <button class="lib-chip" id="lit-src-pubmed" onclick="setLitSource('pubmed')">PubMed</button>
+            <div style="flex:1"></div>
+            <div style="display:flex; gap:6px; align-items:center">
+              <span style="font-size:10px; color:var(--muted)">Type:</span>
+              <select id="lit-filter-type" class="btn sm" style="padding:2px 4px; font-size:10px">
+                <option value="all">All Types</option>
+                <option value="article">Research Article</option>
+                <option value="review">Review</option>
+                <option value="book">Book/Chapter</option>
+              </select>
+              <span style="font-size:10px; color:var(--muted); margin-left:6px">Years:</span>
+              <input id="lit-filter-year-min" type="number" placeholder="From" class="btn sm" style="width:50px; padding:2px 4px; font-size:10px">
+              <span style="font-size:10px; color:var(--muted)">-</span>
+              <input id="lit-filter-year-max" type="number" placeholder="To" class="btn sm" style="width:50px; padding:2px 4px; font-size:10px">
+            </div>
+          </div>
+          <div class="search-row">
+            <input class="search-input" id="lit-query" placeholder="e.g. HER2 ADC antibody humanization" type="text" onkeydown="if(event.key==='Enter')searchLiterature()">
+            <button class="btn sm primary" onclick="searchLiterature()" id="btn-lit-search">Search</button>
+            <div class="tb-sep"></div>
+            <span style="font-size:10px; color:var(--muted)">Sub-database:</span>
+            <select id="lit-save-subproject" class="btn sm" style="padding:2px 4px; font-size:10px" onchange="handleNewSubDb(this); renderLitResults()">
+              <option value="">Main Database</option>
+              <option value="Common">Common References</option>
+              <option value="Lab Experiments">Lab Experiments</option>
+              <option value="__new__">+ New Sub-database...</option>
+            </select>
+            <button class="btn sm primary" onclick="saveSelectedLit()" data-tip="Save selected search hits to the Topic Database above">💾 Save Selected</button>
+          </div>
+          <div id="lit-source-hint" style="font-size:10px;color:var(--muted);margin-top:5px">OpenAlex + Unpaywall OA links · broad coverage · relevance-ranked</div>
+        </div>
+        <div id="lit-results-area">
+          <div class="empty-state"><div class="icon">🔍</div><div>Enter keywords and press Search</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Literature › Database (EndNote-style, all saved items) -->
+    <div class="tab-pane" id="pane-litDb">
+      <div class="search-panel">
+        <div>
+          <div class="section-head">Reference Database</div>
+          <div class="search-row">
+            <input class="search-input" id="lit-db-query" placeholder="Search within your saved library…" type="text" onkeydown="if(event.key==='Enter')searchLibraryDb('lit')">
+            <button class="btn sm primary" onclick="searchLibraryDb('lit')">Search</button>
+            <button class="btn sm" onclick="loadAllDb('lit')" data-tip="Show all saved items across all sub-databases">↻ All</button>
+            <div class="tb-sep"></div>
+            <span style="font-size:10px; color:var(--muted)">Show:</span>
+            <select id="lit-db-subproject-filter" class="btn sm" style="padding:2px 4px; font-size:10px; min-width:150px" onchange="setSubprojectFilter('lit', this.value)" data-tip="Choose which saved sub-database to display">
+              <option value="all">All sub-databases</option>
+              <option value="__none__">Main Database</option>
+            </select>
+          </div>
+          <div id="lit-db-status" style="font-size:10px;color:var(--muted);margin-top:5px">Loading library status…</div>
+          <div class="db-toolbar-block">
+            <div class="db-toolbar-row">
+              <div class="db-toolbar-body toolbar-actions">
+                <!-- Group 1: Selection -->
+                <div class="db-toolbar-group">
+                  <span class="tb-stat"><b class="sel-count" id="lit-sel-count">0</b> selected</span>
+                  <button class="btn sm" onclick="dbSelectAll('lit', true)" data-tip="Select all visible records in this view">All</button>
+                  <button class="btn sm" onclick="dbSelectAll('lit', false)" data-tip="Clear current selection">Clear</button>
+                  <div class="tb-sep"></div>
+                  <button class="btn sm primary" onclick="bulkIngest('lit')" data-tip="AI Learn from selected items">Learn</button>
+                </div>
+                
+                <!-- Group 2: Library I/O -->
+                <div class="db-toolbar-group">
+                  <span class="db-toolbar-label">I/O</span>
+                  <button class="btn sm" onclick="openRefImport('lit')" data-tip="Import references from RIS or BibTeX text/files">Import</button>
+                  <button class="btn sm" onclick="syncZotero()" data-tip="Import items from your Zotero library (requires Zotero API key in Account)">Zotero Sync</button>
+                </div>
+
+                <!-- Group 3: Export -->
+                <div class="db-toolbar-group">
+                  <span class="db-toolbar-label">Export</span>
+                  <button class="btn sm" onclick="exportLibrary('ris','lit', _dbSelectedIds('lit').length > 0)" data-tip="Export as RIS (EndNote/Zotero compatible). Exports selection if any, otherwise all.">RIS</button>
+                  <button class="btn sm" onclick="exportLibrary('bibtex','lit', _dbSelectedIds('lit').length > 0)" data-tip="Export as BibTeX. Exports selection if any, otherwise all.">BibTeX</button>
+                  <button class="btn sm" onclick="exportLibrary('csl','lit', _dbSelectedIds('lit').length > 0)" data-tip="Export as CSL-JSON. Exports selection if any, otherwise all.">CSL</button>
+                </div>
+
+                <!-- Group 4: Journal Format -->
+                <div class="db-toolbar-group">
+                  <span class="db-toolbar-label">Journal</span>
+                  <select id="lit-batch-style" class="btn sm" style="max-width:180px" data-tip="Select citation style for formatted export"></select>
+                  <button class="btn sm primary" onclick="exportJournalFormat('lit', _dbSelectedIds('lit').length > 0)" data-tip="Download formatted reference list in the selected style. Exports selection if any, otherwise all.">Download List</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="db-toolbar-hint">Checkbox column = selection. <b>Details</b> column = expand row (Close with ✕ or Esc). RIS → EndNote.</div>
+        </div>
+        <div class="lib-table-wrap" id="lit-db-area">
+          <div class="empty-state"><div class="icon">🗄️</div><div>Loading saved items…</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Literature › Scheduled radar + manual digest -->
+    <div class="tab-pane" id="pane-litDigest">
+      <div class="search-panel">
+        <div class="radar-guide" data-tip="Name = Literature Database sub-folder. Keywords = OpenAlex search. Run watch → read report below. Hotspot Digest = one-time 30-day snapshot (no schedule).">
+          <strong>Literature Radar</strong> — Sub-database name + keywords → <b>Add Watch</b> → <b>Run</b> → open report below. Auto-save puts new papers into that sub-database.
+        </div>
+
+        <div class="radar-card">
+          <div class="section-head" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px">
+            <span>📡 Scheduled Watches</span>
+            <div id="radar-smtp-hint" style="font-size:10px;color:var(--muted);font-weight:normal">Loading…</div>
+          </div>
+
+          <div class="radar-grid-fields">
+            <div class="radar-field">
+              <div class="radar-field-label">Sub-database <span class="tip-help" data-tip="Same folder name as in Literature Database (e.g. <b>his mice</b>). Not the search keywords — just your category label. Auto-save uses this name.">?</span></div>
+              <input class="search-input" id="radar-label" list="radar-subproject-list" placeholder="e.g. his mice">
+              <datalist id="radar-subproject-list"></datalist>
+            </div>
+            <div class="radar-field">
+              <div class="radar-field-label">Keywords <span class="tip-help" data-tip="OpenAlex search terms — same as Literature Search (e.g. <b>humanized mouse immuno-oncology</b>).">?</span></div>
+              <input class="search-input" id="radar-query" placeholder="e.g. humanized mouse immuno-oncology">
+            </div>
+          </div>
+
+          <div class="radar-grid-opts">
+            <div class="radar-field">
+              <div class="radar-field-label">Cadence</div>
+              <select id="radar-cadence" class="search-input" style="padding:4px 8px">
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+              </select>
+            </div>
+            <div class="radar-field">
+              <div class="radar-field-label">Email (optional)</div>
+              <input class="search-input" id="radar-email" placeholder="Report email — needs server SMTP" type="email">
+            </div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;padding-bottom:2px">
+              <button class="btn sm" onclick="loadRadarWatches()">↻</button>
+              <button class="btn sm" onclick="runRadarDue()" data-tip="Run all due watches for this project.">Run Due</button>
+              <button class="btn sm primary" onclick="saveRadarWatch()" id="btn-radar-save">+ Add Watch</button>
+            </div>
+          </div>
+
+          <label style="font-size:11px; color:var(--muted); display:flex; align-items:center; gap:6px; cursor:pointer; margin-top:8px" data-tip="Save new hits into the sub-database name above.">
+            <input type="checkbox" id="radar-auto-save" style="width:14px; height:14px; accent-color:var(--accent)">
+            Auto-save new papers to sub-database
+          </label>
+
+          <div id="radar-watches-area" style="margin-top:14px; border-top:1px solid var(--line); padding-top:12px">
+            <div class="empty-state" style="padding:20px">
+              <div class="icon" style="font-size:32px; margin-bottom:10px">📡</div>
+              <div style="font-weight:600">No watches yet</div>
+              <div style="font-size:11px; color:var(--muted); margin-top:4px">Sub-database + keywords → <b>Add Watch</b> → <b>Run</b></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="radar-card">
+          <div class="section-head">📄 Reports</div>
+          <div style="display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap; align-items:center">
+            <button class="btn sm primary" onclick="loadRadarReports()">Load Reports</button>
+            <span style="font-size:10px; color:var(--muted)">After each <b>Run</b>. Click a row → right panel.</span>
+          </div>
+          <div id="radar-reports-area">
+            <div class="empty-state" style="padding:20px">
+              <div style="font-weight:600">No reports yet</div>
+              <div style="font-size:11px;color:var(--muted);margin-top:4px">Run a watch first.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="digest-container radar-card">
+          <div class="section-head">🔥 Hotspot Digest (30 days, one-time)</div>
+          <div class="search-row">
+            <input class="search-input" id="digest-query" placeholder="Keywords only, e.g. bispecific T-cell engager" type="text" onkeydown="if(event.key==='Enter')generateDigest()">
+            <button class="btn primary" onclick="generateDigest()" id="btn-lit-digest">Generate</button>
+            <button class="btn" onclick="loadDigestReports()">History</button>
+          </div>
+          <div id="digest-results-area" style="margin-top:12px">
+            <div class="empty-state" style="background:transparent; border:1px dashed var(--line); padding:24px">
+              <div style="font-size:11px;color:var(--muted)">One-time trend summary — no sub-database or schedule.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Patent › Search -->
+    <div class="tab-pane" id="pane-patSearch">
+      <div class="search-panel">
+        <div>
+          <div class="section-head">Patent Keyword Search</div>
+          <div class="search-row">
+            <input class="search-input" id="pat-query" placeholder="e.g. bispecific antibody linker payload" type="text" onkeydown="if(event.key==='Enter')searchPatents()">
+            <button class="btn sm primary" onclick="searchPatents()" id="btn-pat-search">Search</button>
+            <div class="tb-sep"></div>
+            <span style="font-size:10px; color:var(--muted)">Sub-database:</span>
+            <select id="pat-save-subproject" class="btn sm" style="padding:2px 4px; font-size:10px" onchange="handleNewSubDb(this); renderPatResults()">
+              <option value="">Main Database</option>
+              <option value="Common">Common References</option>
+              <option value="Lab Experiments">Lab Experiments</option>
+              <option value="__new__">+ New Sub-database...</option>
+            </select>
+            <button class="btn sm primary" onclick="saveSelectedPat()" data-tip="Save selected patents to the Topic Database above">💾 Save Selected</button>
+          </div>
+          <div id="pat-odp-status" style="font-size:10px;color:var(--muted);margin-top:5px"></div>
+          <div style="font-size:10px;color:var(--muted);margin-top:4px">Click a result to <b>view the record in-app</b> (USPTO bibliographic data via server API). PDFs are not mirrored; use optional Google Patents link for full text.</div>
+        </div>
+        <div id="pat-results-area">
+          <div class="empty-state"><div class="icon">🔒</div><div>Enter patent keywords and press Search</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Patent › Database (saved patents + sequences) -->
+    <div class="tab-pane" id="pane-patDb">
+      <div class="search-panel">
+        <div>
+          <div class="section-head">Patent Database</div>
+          <div class="search-row">
+            <input class="search-input" id="pat-db-query" placeholder="Search within saved patents / sequences…" type="text" onkeydown="if(event.key==='Enter')searchLibraryDb('pat')">
+            <button class="btn sm primary" onclick="searchLibraryDb('pat')">Search</button>
+            <button class="btn sm" onclick="loadAllDb('pat')" data-tip="Show all saved IP across all sub-databases">↻ All</button>
+            <div class="tb-sep"></div>
+            <span style="font-size:10px; color:var(--muted)">Show:</span>
+            <select id="pat-db-subproject-filter" class="btn sm" style="padding:2px 4px; font-size:10px; min-width:150px" onchange="setSubprojectFilter('pat', this.value)" data-tip="Choose which saved sub-database to display">
+              <option value="all">All sub-databases</option>
+              <option value="__none__">Main Database</option>
+            </select>
+          </div>
+          <div id="pat-db-status" style="font-size:10px;color:var(--muted);margin-top:5px">Loading library status…</div>
+          <div class="db-toolbar-block">
+            <div class="db-toolbar-row">
+              <div class="db-toolbar-body toolbar-actions">
+                <!-- Group 1: Selection -->
+                <div class="db-toolbar-group">
+                  <span class="tb-stat"><b class="sel-count" id="pat-sel-count">0</b> selected</span>
+                  <button class="btn sm" onclick="dbSelectAll('pat', true)" data-tip="Select all visible patents/sequences">All</button>
+                  <button class="btn sm" onclick="dbSelectAll('pat', false)" data-tip="Clear selection">Clear</button>
+                  <div class="tb-sep"></div>
+                  <button class="btn sm primary" onclick="bulkIngest('pat')" data-tip="AI Learn from selected patents">Learn</button>
+                </div>
+
+                <!-- Group 2: Export -->
+                <div class="db-toolbar-group">
+                  <span class="db-toolbar-label">Export</span>
+                  <button class="btn sm" onclick="exportLibrary('ris','pat', _dbSelectedIds('pat').length > 0)" data-tip="Export as RIS (EndNote compatible). Exports selection if any, otherwise all.">RIS</button>
+                  <select id="pat-batch-style" class="btn sm" style="max-width:180px" data-tip="Select citation style for formatted export"></select>
+                  <button class="btn sm primary" onclick="exportJournalFormat('pat', _dbSelectedIds('pat').length > 0)" data-tip="Download formatted reference list. Exports selection if any, otherwise all.">Download List</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="db-toolbar-hint">Checkbox = batch RIS. <b>Details</b> = bibliographic record + sequence block. Close with ✕ or Esc.</div>
+        </div>
+        <div class="lib-table-wrap" id="pat-db-area">
+          <div class="empty-state"><div class="icon">🗄️</div><div>Loading saved IP…</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Patent › FTO Analysis -->
+    <div class="tab-pane" id="pane-patFto">
+      <div class="search-panel">
+        <div>
+          <div class="section-head">FTO Analysis · preliminary, not legal advice</div>
+          <div class="search-row">
+            <input class="search-input" id="fto-query" placeholder="Technology to clear, e.g. anti-CD3 x anti-HER2 bispecific" type="text" onkeydown="if(event.key==='Enter')generateFto()">
+            <button class="btn sm primary" onclick="generateFto()" id="btn-fto">⚖️ Draft FTO</button>
+            <button class="btn sm" onclick="loadFtoReports()" data-tip="Show saved FTO notes">↻ History</button>
+          </div>
+          <div style="font-size:10px;color:var(--muted);margin-top:5px">Searches patents for the technology and drafts an internal claim-overlap / design-around note. A patent attorney must confirm before any decision.</div>
+        </div>
+        <div id="fto-results-area">
+          <div class="empty-state"><div class="icon">⚖️</div><div>Enter a technology and draft an FTO note</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Patent › Sequence / Structure -->
+    <div class="tab-pane" id="pane-patSeq">
+      <div class="search-panel">
+        <div>
+          <div class="section-head">Sequence → patent lookup (keyword)</div>
+          <div class="search-row">
+            <input class="search-input" id="seq-query" placeholder="Paste amino acid sequence (≥8 aa) or CDR3 keyword" type="text" style="font-family:var(--mono);font-size:12px" onkeydown="if(event.key==='Enter')searchSequence()">
+            <button class="btn sm primary" onclick="searchSequence()" id="btn-seq-search">Search</button>
+            <button class="btn sm" onclick="seqToFacts()" data-tip="Add hits to Writing Facts">→ Facts</button>
+          </div>
+          <div style="font-size:10px;color:var(--muted);margin-top:5px">Keyword search only (BLAST planned). To <b>extract chains from a patent</b>, use Patent Database → <b>Details</b>, or paste listing text below.</div>
+        </div>
+        <div>
+          <div class="section-head">Extract sequences · paste FASTA / ST.26 XML</div>
+          <textarea id="seq-parse-input" class="chat-input" rows="6" style="min-height:100px;font-family:var(--mono);font-size:11px" placeholder="Paste FASTA (&gt;VH …) or ST.26 XML from a patent sequence listing…"></textarea>
+          <div class="search-row" style="margin-top:6px">
+            <button class="btn sm primary" onclick="parseSequenceText()" id="btn-seq-parse">Parse chains</button>
+            <button class="btn sm" onclick="document.getElementById('seq-parse-input').value=''">Clear</button>
+          </div>
+        </div>
+        <div id="seq-results-area">
+          <div class="empty-state"><div class="icon">🧬</div><div>Paste a sequence or CDR motif and press Search</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="h-splitter" id="h-split-right" data-tip="Drag to resize"></div>
+
+  <!-- Right rail — AI chat + Account + Details (three tabs) -->
+  <div class="right-rail" id="right-rail">
+    <div class="rail-tabs">
+      <button class="rail-tab active" id="rt-ai" onclick="switchRail('ai')">💬 AI Chat</button>
+      <button class="rail-tab" id="rt-det" onclick="switchRail('det')">📄 Details</button>
+      <button class="rail-tab" id="rt-acct" onclick="switchRail('acct')">👤 Account</button>
+    </div>
+
+    <!-- Details panel -->
+    <div class="rail-panel" id="rail-det">
+      <div class="acct-body" id="det-body">
+        <div class="empty-state"><div class="icon">📄</div><div>Click a search result to view details</div></div>
+      </div>
+    </div>
+
+    <!-- AI Chat panel -->
+    <div class="rail-panel active" id="rail-ai">
+      <div class="chat-body" id="chat-body">
+        <div class="chat-msg assistant">
+          <div class="chat-bubble">Ask anything about your saved library — papers and patents you've stored for this project. Answers are grounded only on your private items; I won't fabricate citations.</div>
+        </div>
+      </div>
+      <div class="chat-compose">
+        <div class="chat-compose-hint">Ctrl+Enter to send · Shift+Enter for new line · grounded on your saved library only</div>
+        <textarea id="chat-input" class="chat-input" rows="4" placeholder="Ask about your saved literature / patents…" onkeydown="if(event.key==='Enter'&&(event.ctrlKey||event.metaKey)){event.preventDefault();sendChat();}"></textarea>
+        <div class="chat-compose-actions">
+          <button class="btn sm" onclick="resetRailWidth()" data-tip="Restore default AI panel width">↔ Reset width</button>
+          <button class="btn sm" onclick="clearChat()">Clear</button>
+          <button class="btn sm primary" id="btn-chat-send" onclick="sendChat()">Send (Ctrl+Enter)</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Account panel -->
+    <div class="rail-panel" id="rail-acct">
+      <div class="acct-body">
+        <div class="acct-field">
+          <div class="acct-label">User</div>
+          <div class="acct-row"><span class="acct-value" id="acct-user">Guest</span>
+            <button class="btn ghost" style="font-size:10px;padding:2px 7px" onclick="promptUser()">Change</button></div>
+        </div>
+        <div class="acct-field">
+          <div class="acct-label">Active project</div>
+          <div class="acct-row"><span class="acct-value" id="acct-project">—</span>
+            <button class="btn ghost" style="font-size:10px;padding:2px 7px" onclick="promptProjectContext()">Set</button></div>
+        </div>
+        <div class="acct-field">
+          <div class="acct-label">Library · this project</div>
+          <div class="acct-stat"><span>📰 Literature</span><b id="acct-n-lit">0</b></div>
+          <div class="acct-stat"><span>🔒 Patents</span><b id="acct-n-pat">0</b></div>
+          <div class="acct-stat"><span>🧬 Sequences</span><b id="acct-n-seq">0</b></div>
+          <div class="acct-stat"><span>Backend</span><b id="acct-backend">—</b></div>
+        </div>
+
+        <div class="sidebar-divider"></div>
+        <div class="acct-field">
+          <div class="acct-label">Settings</div>
+          <button class="btn ghost sm" style="width:100%; justify-content:center" onclick="applyProjectId('demo_m4_lit_pat');refreshLibraryViews();toast('Demo project loaded','ok')">Load demo project</button>
+          <button class="btn ghost sm" style="width:100%; justify-content:center; margin-top:6px" onclick="loadQaSummary(true)">↻ Refresh QA status</button>
+        </div>
+
+        <div class="acct-field">
+          <div class="acct-label">Zotero API Key</div>
+          <div style="display:flex; gap:6px">
+            <input type="password" id="acct-zotero-key" class="search-input" style="font-size:11px; padding:4px 8px; flex:1" placeholder="Paste key...">
+            <button class="btn sm primary" onclick="saveZoteroSettings()">Save</button>
+          </div>
+        </div>
+
+        <div class="sidebar-divider"></div>
+        <div class="acct-field">
+          <div class="acct-label">Modules</div>
+          <div class="acct-row" style="flex-wrap:wrap;gap:5px">
+            <a class="btn ghost" style="font-size:11px" href="https://write.insynbio.com/?entry=writing">M2 Writing</a>
+            <a class="btn ghost" style="font-size:11px" href="https://write.insynbio.com/lab">M3 Lab</a>
+            <a class="btn ghost" style="font-size:11px" href="https://insynbio.com/platform.html">Platform</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+'use strict';
+
+/* ── State ──────────────────────────────────────────────── */
+const API = location.origin;
+let _litResults = [];
+let _litSource = localStorage.getItem('intelLitSource') || 'openalex';
+let _patResults = [];
+const _patDetailCache = {};
+const _patSeqCache = {};
+let _seqResults = [];
+let _selectedCards = new Set();   // keys: "lit-0", "pat-2", etc.
+let _savedLibrary = [];           // {type:'lit'|'pat'|'seq', id, title, meta, raw}
+let _projectId = localStorage.getItem('intelProjectId') || '';
+let _aiNovelty = '';
+let _aiFto = '';
+let _username = localStorage.getItem('intelUsername') || 'Guest';
+
+/* ── Utility ────────────────────────────────────────────── */
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function toast(msg, type='info', dur=3500) {
+  const box = document.getElementById('toast');
+  const el = document.createElement('div');
+  el.className = `toast-msg ${type}`;
+  el.textContent = msg;
+  box.appendChild(el);
+  requestAnimationFrame(() => { el.classList.add('show'); });
+  setTimeout(() => {
+    el.classList.remove('show');
+    setTimeout(() => el.remove(), 300);
+  }, dur);
+}
+
+async function apiFetch(path, opts={}) {
+  const res = await fetch(API + path, opts);
+  if (!res.ok) {
+    const e = await res.json().catch(() => ({ detail: res.statusText }));
+    let msg = e.detail || res.statusText;
+    if (Array.isArray(msg)) {
+      msg = msg.map(m => (typeof m === 'object' ? (m.msg || JSON.stringify(m)) : m)).join('; ');
+    } else if (typeof msg === 'object') {
+      msg = JSON.stringify(msg);
+    }
+    throw new Error(msg);
+  }
+  return res.json();
+}
+
+/* ── Theme ──────────────────────────────────────────────── */
+const THEMES = ['dark', 'beige', 'gruvbox'];
+let _themeIdx = THEMES.indexOf(localStorage.getItem('intelTheme') || 'dark');
+if (_themeIdx < 0) _themeIdx = 0;
+applyTheme();
+function cycleTheme() {
+  _themeIdx = (_themeIdx + 1) % THEMES.length;
+  localStorage.setItem('intelTheme', THEMES[_themeIdx]);
+  applyTheme();
+}
+function applyTheme() {
+  document.documentElement.className = _themeIdx === 0 ? '' : `theme-${THEMES[_themeIdx]}`;
+}
+
+/* ── Project context (literature DB isolation boundary) ─── */
+function applyProjectId(pid) {
+  _projectId = (pid || '').trim();
+  localStorage.setItem('intelProjectId', _projectId);
+  const label = _projectId || '— (set Project)';
+  document.getElementById('top-project-chip').textContent = `Project · ${label}`;
+  const ap = document.getElementById('acct-project');
+  if (ap) ap.textContent = _projectId || '—';
+}
+
+function ensureProjectId(interactive) {
+  if (_projectId) return _projectId;
+  const suggested = (_username && _username !== 'Guest')
+    ? _username.replace(/\W/g, '_').slice(0, 32)
+    : 'demo_m4_lit_pat';
+  if (!interactive) {
+    applyProjectId(suggested);
+    return _projectId;
+  }
+  const pid = prompt('Library and AI chat are isolated by Project ID.\nEnter project ID:', suggested);
+  if (pid === null) return null;
+  applyProjectId(pid || suggested);
+  toast('Project: ' + _projectId, 'ok');
+  refreshLibraryViews();
+  return _projectId;
+}
+
+function promptProjectContext() {
+  const pid = prompt('Project ID (library + Facts routing):', _projectId || 'demo_m4_lit_pat');
+  if (pid === null) return;
+  applyProjectId(pid);
+  toast('Project context set: ' + (_projectId || '(none)'), 'ok');
+  refreshLibraryViews();
+}
+
+async function installSampleLibrary(force) {
+  if (!ensureProjectId(true)) return;
+  toast('Installing sample records…', 'info');
+  try {
+    const d = await apiFetch('/intelligence/library/seed-samples', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: _username,
+        project_id: _projectId,
+        force: !!force,
+      }),
+    });
+    if (d.skipped) {
+      toast(d.reason || 'Project already has saved records', 'warn', 4500);
+    } else {
+      toast(`Installed ${d.literature_saved || 0} literature + ${d.patents_saved || 0} patent rows`, 'ok', 5000);
+    }
+    await refreshLibraryViews();
+    if (document.getElementById('pane-litDb')?.classList.contains('active')) loadDb('lit');
+    if (document.getElementById('pane-patDb')?.classList.contains('active')) loadDb('pat');
+  } catch (e) {
+    toast('Install failed: ' + e.message, 'err');
+  }
+}
+
+async function maybeAutoSeedSamples() {
+  const pid = _projectId || 'demo_m4_lit_pat';
+  const auto = new Set(['demo_m4_lit_pat', 'lab_default', '_default']);
+  if (!auto.has(pid)) return;
+  const key = 'intelAutoSeed_' + pid;
+  if (localStorage.getItem(key) === 'done') return;
+  try {
+    const st = await apiFetch('/intelligence/library/status?' + new URLSearchParams({ project_id: pid }).toString());
+    if ((st.document_count || 0) >= 3) {
+      localStorage.setItem(key, 'done');
+      return;
+    }
+    const d = await apiFetch('/intelligence/library/seed-samples', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: _username, project_id: pid, force: false }),
+    });
+    if (!d.skipped && ((d.literature_saved || 0) + (d.patents_saved || 0)) > 0) {
+      localStorage.setItem(key, 'done');
+      await refreshLibraryViews();
+      toast(`Sample library: ${d.literature_saved || 0} literature + ${d.patents_saved || 0} patents`, 'ok', 5500);
+    }
+  } catch (_) { /* offline or API not deployed yet */ }
+}
+
+/** Full smoke demo (~31 rows from OpenAlex + USPTO search). */
+function loadDemoProject() {
+  applyProjectId('demo_m4_lit_pat');
+  refreshLibraryViews().then(() => {
+    updateLitDbStatus();
+    toast('Demo project demo_m4_lit_pat — use Install samples if the table is empty', 'ok', 5500);
+  });
+}
+
+async function refreshLibraryViews() {
+  await loadLibrary();
+  updateLitDbStatus();
+  if (document.getElementById('pane-litDb')?.classList.contains('active')) {
+    loadSubprojectFilters('lit');
+    loadDb('lit');
+  }
+  if (document.getElementById('pane-patDb')?.classList.contains('active')) {
+    loadSubprojectFilters('pat');
+    loadDb('pat');
+  }
+}
+
+function _fmtQaTime(iso) {
+  if (!iso) return '—';
+  try {
+    const d = new Date(iso);
+    return d.toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' });
+  } catch (_) { return iso.slice(0, 16); }
+}
+
+async function loadQaSummary(showToast) {
+  const box = document.getElementById('qa-summary-box');
+  const chip = document.getElementById('top-qa-chip');
+  if (!box) return;
+  try {
+    const q = await apiFetch('/intelligence/qa/summary');
+    if (!q.configured || !q.ok) {
+      box.className = 'qa-box';
+      box.innerHTML = `<div class="qa-meta">${esc(q.message || 'No smoke record on server.')}</div>`;
+      if (chip) chip.style.display = 'none';
+      return;
+    }
+    const ov = (q.overall || 'PASS').toLowerCase();
+    box.className = `qa-box ${ov}`;
+    const s = q.summary || {};
+    let html = `<div class="qa-overall ${ov}">SMOKE ${esc(q.overall || 'PASS')}</div>`;
+    html += `<div class="qa-meta">${_fmtQaTime(q.generated_at)} · ${esc(q.elapsed_s != null ? q.elapsed_s + 's' : '')} · project <b>${esc(q.project_id || '—')}</b></div>`;
+    html += `<div class="qa-counts"><span class="p">${s.pass || 0} PASS</span><span class="w">${s.warn || 0} WARN</span><span class="f">${s.fail || 0} FAIL</span><span style="color:var(--muted)">/ ${s.total || 0}</span></div>`;
+    const notes = (q.fail_cases || []).concat(q.warn_cases || []);
+    if (notes.length) {
+      html += '<div style="font-size:10px;color:var(--muted);margin-bottom:4px">Non-pass cases:</div>';
+      for (const c of notes.slice(0, 4)) {
+        const stCol = c.status === 'FAIL' ? 'var(--fail)' : 'var(--warn)';
+        html += `<div class="qa-case"><b>${esc(c.id)}</b> ${esc(c.feature || '')} — <span style="color:${stCol};font-weight:700">${esc(c.status)}</span></div>`;
+      }
+    } else {
+      html += '<div class="qa-case">All automated cases passed (or warn-only by design).</div>';
+    }
+    html += '<div class="qa-meta" style="margin-top:8px">Full report: repo <code>docs/operations/module4/smoke_latest.md</code></div>';
+    box.innerHTML = html;
+    if (chip) {
+      chip.style.display = '';
+      chip.className = `status-chip qa-${ov}`;
+      chip.textContent = `QA ${q.overall} · ${s.pass || 0}/${s.total || 0}`;
+      chip.title = `Smoke ${_fmtQaTime(q.generated_at)} — open Account for details`;
+    }
+    if (showToast) toast('QA summary updated', 'ok', 2000);
+  } catch (e) {
+    box.className = 'qa-box fail';
+    box.innerHTML = `<div class="qa-meta">${esc(e.message)}</div>`;
+    if (chip) chip.style.display = 'none';
+  }
+}
+
+async function updateLitDbStatus() {
+  const el = document.getElementById('lit-db-status');
+  if (!el) return;
+  try {
+    const qs = new URLSearchParams();
+    if (_projectId) qs.set('project_id', _projectId);
+    const s = await apiFetch('/intelligence/library/status?' + qs.toString());
+    const n = s.document_count ?? _savedLibrary.length;
+    const proj = _projectId || s.project_id || '_default';
+    el.innerHTML = `Backend: <b>${esc(s.active_backend || '—')}</b> · Project: <b>${esc(proj)}</b> · Saved records: <b>${n}</b>`;
+    el.style.color = n > 0 ? 'var(--pass)' : 'var(--warn)';
+  } catch (_) {
+    el.textContent = 'Library status unavailable';
+  }
+}
+
+/* ── Initialization ─────────────────────────────────────── */
+function initYearDefaults() {
+  const now = new Date();
+  const curYear = now.getFullYear();
+  const elMin = document.getElementById('lit-filter-year-min');
+  const elMax = document.getElementById('lit-filter-year-max');
+  if (elMin) elMin.value = curYear - 10;
+  if (elMax) elMax.value = curYear;
+}
+
+const _urlProject = new URLSearchParams(location.search).get('project_id')
+  || new URLSearchParams(location.search).get('project');
+if (_urlProject) applyProjectId(_urlProject);
+else applyProjectId(_projectId);
+if (!_projectId) ensureProjectId(false);
+initYearDefaults();
+
+/* ── Tab switching (6 second-level views) ───────────────── */
+const TABS = ['litSearch','litDb','litDigest','patSearch','patDb','patFto','patSeq'];
+const TAB_NAMES = {
+  litSearch:'Literature Search', litDb:'Reference Database', litDigest:'Literature Radar',
+  patSearch:'Patent Search', patDb:'Patent Database', patFto:'FTO Analysis', patSeq:'Sequence / Structure',
+};
+function switchTab(t) {
+  TABS.forEach(id => {
+    const m = document.getElementById(`m-${id}`);
+    const p = document.getElementById(`pane-${id}`);
+    if (m) m.classList.toggle('active', id === t);
+    if (p) p.classList.toggle('active', id === t);
+  });
+  document.getElementById('top-status-chip').textContent = TAB_NAMES[t] || '';
+  if (t === 'litDb') {
+    renderSidebarFacets('lit');
+    loadDb('lit');
+    toast('Database = saved items only. Save from Search first.', 'info', 4000);
+  } else {
+    const dash = document.getElementById('sidebar-completeness-dash');
+    if (dash) dash.innerHTML = '';
+  }
+  if (t === 'patDb') {
+    renderSidebarFacets('pat');
+    loadDb('pat');
+  }
+  if (t === 'litDigest') { populateRadarSubprojectDatalist(); loadRadarStatus(); loadRadarWatches(); loadRadarReports(); }
+  if (t === 'patFto') loadFtoReports();
+}
+
+/* ── Right rail tabs (AI | Account) ─────────────────────── */
+function switchRail(which) {
+  document.getElementById('rt-ai').classList.toggle('active', which === 'ai');
+  document.getElementById('rt-det').classList.toggle('active', which === 'det');
+  document.getElementById('rt-acct').classList.toggle('active', which === 'acct');
+  document.getElementById('rail-ai').classList.toggle('active', which === 'ai');
+  document.getElementById('rail-det').classList.toggle('active', which === 'det');
+  document.getElementById('rail-acct').classList.toggle('active', which === 'acct');
+  if (which === 'acct') loadAccount();
+}
+
+function promptUser() {
+  const u = prompt('Username (for quotas / Facts routing):', _username);
+  if (u === null) return;
+  _username = u.trim() || 'Guest';
+  localStorage.setItem('intelUsername', _username);
+  document.getElementById('acct-user').textContent = _username;
+  loadLibrary();
+}
+
+async function loadAccount() {
+  document.getElementById('acct-user').textContent = _username;
+  document.getElementById('acct-project').textContent = _projectId || '—';
+  let nLit = 0, nPat = 0, nSeq = 0;
+  for (const it of _savedLibrary) {
+    if (it.type === 'lit') nLit++; else if (it.type === 'seq') nSeq++; else nPat++;
+  }
+  document.getElementById('acct-n-lit').textContent = nLit;
+  document.getElementById('acct-n-pat').textContent = nPat;
+  document.getElementById('acct-n-seq').textContent = nSeq;
+  try {
+    const qs = new URLSearchParams();
+    if (_projectId) qs.set('project_id', _projectId);
+    const s = await apiFetch('/intelligence/library/status?' + qs.toString());
+    document.getElementById('acct-backend').textContent =
+      (s.active_backend || '—') + (s.embeddings_available ? ' · vec' : ' · text');
+  } catch(_) { document.getElementById('acct-backend').textContent = '—'; }
+  loadQaSummary(false);
+}
+
+/* ── Literature search ──────────────────────────────────── */
+function setLitSource(src) {
+  _litSource = src === 'pubmed' ? 'pubmed' : 'openalex';
+  localStorage.setItem('intelLitSource', _litSource);
+  document.getElementById('lit-src-openalex')?.classList.toggle('active', _litSource === 'openalex');
+  document.getElementById('lit-src-pubmed')?.classList.toggle('active', _litSource === 'pubmed');
+  const hint = document.getElementById('lit-source-hint');
+  if (hint) {
+    hint.innerHTML = _litSource === 'pubmed'
+      ? 'NCBI PubMed eutils · live PMID/DOI · biomedical MeSH scope · set <code>NCBI_API_KEY</code> on server for 10 req/s'
+      : 'OpenAlex + Unpaywall OA links · broad coverage · relevance-ranked';
+  }
+}
+
+async function searchLiterature() {
+  const q = document.getElementById('lit-query').value.trim();
+  if (q.length < 2) { toast('Enter at least 2 characters', 'warn'); return; }
+  const btn = document.getElementById('btn-lit-search');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>';
+  const isPm = _litSource === 'pubmed';
+  
+  const type = document.getElementById('lit-filter-type')?.value || 'all';
+  const yearMin = document.getElementById('lit-filter-year-min')?.value || null;
+  const yearMax = document.getElementById('lit-filter-year-max')?.value || null;
+
+  toast(isPm ? 'Searching PubMed…' : 'Searching OpenAlex…', 'info');
+  try {
+    const body = { 
+      username: _username, 
+      query: q, 
+      per_page: 15,
+      work_type: type !== 'all' ? type : null,
+      year_min: yearMin ? Number(yearMin) : null,
+      year_max: yearMax ? Number(yearMax) : null
+    };
+    if (isPm) body.max_results = 15;
+
+    const endpoint = isPm ? '/library/pubmed/search' : '/library/openalex/search';
+    const d = await apiFetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    
+    // Deduplication logic
+    const seen = new Set();
+    const unique = [];
+    (d.works || []).forEach(w => {
+      const doi = (w.doi || '').toLowerCase().trim();
+      const pmid = String(w.pmid || w.ext_id || '').trim();
+      const key = doi || (pmid ? 'pmid:' + pmid : null) || w.title;
+      if (!seen.has(key)) {
+        seen.add(key);
+        unique.push(w);
+      }
+    });
+
+    _litResults = unique;
+    _selectedCards.clear(); // Clear selection on new search
+    renderLitResults();
+    const meta = d._meta?.api_key_present === false && isPm ? ' (no NCBI_API_KEY — 3 req/s)' : '';
+    toast(_litResults.length ? `${_litResults.length} result(s)${meta}` : 'No matches', _litResults.length ? 'ok' : 'warn');
+  } catch(e) {
+    toast('Search failed: ' + e.message, 'err');
+    document.getElementById('lit-results-area').innerHTML =
+      `<div class="empty-state"><div class="icon">⚠️</div><div>${esc(e.message)}</div></div>`;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Search';
+  }
+}
+
+function renderLitResults() {
+  const box = document.getElementById('lit-results-area');
+  if (!_litResults.length) {
+    box.innerHTML = '<div class="empty-state"><div class="icon">🔍</div><div>No results found</div></div>';
+    return;
+  }
+  const targetSp = document.getElementById('lit-save-subproject')?.value || 'Main';
+  box.innerHTML = `<div style="font-size:10px; color:var(--muted); margin-bottom:8px; padding:0 4px">Saving to Sub-database: <b style="color:var(--accent)">${esc(targetSp)}</b></div>` + 
+    '<div class="result-list">' + _litResults.map((w, i) => {
+    const key = `lit-${i}`;
+    const doiUrl = w.doi ? `https://doi.org/${w.doi}` : null;
+    const doi = doiUrl ? `<a href="${esc(doiUrl)}" target="_blank" rel="noopener" class="lit-link-badge doi" onclick="event.stopPropagation()">DOI</a>` : '';
+    const pmid = w.pmid ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${esc(w.pmid)}/" target="_blank" rel="noopener" class="lit-link-badge doi" onclick="event.stopPropagation()">PMID</a>` : '';
+    const oaLabel = w.oa_pdf_url ? 'PDF' : 'OA';
+    const oaHref = w.oa_pdf_url || w.oa_url;
+    const oa = oaHref ? `<a href="${esc(oaHref)}" target="_blank" rel="noopener" class="lit-link-badge oa" onclick="event.stopPropagation()">${oaLabel}</a>` : '';
+  const oaTooltips = {
+    'gold': 'Gold OA: Published in a fully open access journal, permanently free to all.',
+    'hybrid': 'Hybrid OA: Published in a subscription journal but made open access via author fee.',
+    'green': 'Green OA: Author self-archived a version (e.g. manuscript) in a repository.',
+    'bronze': 'Bronze OA: Free to read on publisher site but without a clear open license.',
+    'closed': 'Closed: Requires subscription or payment to access full text.'
+  };
+    const oaSt = w.oa_status ? `<span class="seq-badge" style="color:var(--pass); cursor:help" data-tip="${esc(oaTooltips[String(w.oa_status).toLowerCase()] || 'Open access status')}">${esc(String(w.oa_status))}</span>` : (w.is_oa === false ? '<span class="seq-badge" style="color:var(--muted)">closed</span>' : '');
+    const cites = (typeof w.cited_by_count === 'number') ? ` · ${w.cited_by_count} cites` : '';
+    const meta = [w.authors, w.year, w.venue].filter(Boolean).map(esc).join(' · ');
+    const sel = _selectedCards.has(key) ? ' selected' : '';
+    const abs = w.abstract ? `<div class="rc-meta" style="margin-top:4px;color:var(--muted)">${esc(w.abstract.slice(0,200))}${w.abstract.length>200?'…':''}</div>` : '';
+    return `<div class="result-card${sel}" id="card-${key}" onclick="showLitDetail(${i})">
+      <div style="display:flex; gap:10px">
+        <input type="checkbox" ${sel ? 'checked' : ''} onclick="event.stopPropagation();toggleSelect('${key}')" style="margin-top:4px">
+        <div style="flex:1">
+          <div class="rc-title">${esc(w.title || 'Untitled')}</div>
+          <div class="rc-meta">${meta || '<span style="color:var(--muted)">metadata unavailable</span>'}${cites}</div>
+          ${abs}
+          <div class="rc-actions">
+            ${pmid} ${doi} ${oa} ${oaSt}
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('') + '</div>';
+}
+
+function showLitDetail(idx) {
+  const w = _litResults[idx];
+  if (!w) return;
+  switchRail('det');
+  const box = document.getElementById('det-body');
+  
+  const doiUrl = w.doi ? `https://doi.org/${w.doi}` : null;
+  const pmidUrl = w.pmid ? `https://pubmed.ncbi.nlm.nih.gov/${w.pmid}/` : null;
+  const oaHref = w.oa_pdf_url || w.oa_url;
+  const oaStatus = w.oa_status || (w.is_oa ? 'Open Access' : 'Closed');
+  
+  const oaTooltips = {
+    'gold': 'Gold OA: Published in a fully open access journal, permanently free to all.',
+    'hybrid': 'Hybrid OA: Published in a subscription journal but made open access via author fee.',
+    'green': 'Green OA: Author self-archived a version (e.g. manuscript) in a repository.',
+    'bronze': 'Bronze OA: Free to read on publisher site but without a clear open license.',
+    'closed': 'Closed: Requires subscription or payment to access full text.'
+  };
+  const tooltip = oaTooltips[String(oaStatus).toLowerCase()] || 'Open access status of this work.';
+  
+  box.innerHTML = `
+    <div class="acct-field">
+      <div class="acct-label">Title</div>
+      <div class="rc-title" style="font-size:14px">${esc(w.title)}</div>
+    </div>
+    <div class="acct-field">
+      <div class="acct-label">Journal / Venue</div>
+      <div class="acct-value">${esc(w.venue || 'Unknown')} (${esc(w.year || '—')})</div>
+    </div>
+    <div class="acct-field">
+      <div class="acct-label">Authors</div>
+      <div class="rc-meta">${esc(w.authors || 'Unknown')}</div>
+    </div>
+    <div class="acct-field">
+      <div class="acct-label">Abstract</div>
+      <div id="lit-abstract-box-${idx}" class="ai-output" style="max-height:300px; overflow-y:auto; font-size:11px; padding:8px">${esc(w.abstract || (w.doi || w.openalex_id ? 'Resolving abstract from DOI/OpenAlex metadata…' : 'No abstract available.'))}</div>
+    </div>
+    <div class="acct-field">
+      <div class="acct-label">Links & Availability</div>
+      <div class="rc-actions" style="margin-top:4px">
+        ${pmidUrl ? `<a href="${esc(pmidUrl)}" target="_blank" class="btn sm ghost">PMID: ${esc(w.pmid)}</a>` : ''}
+        ${doiUrl ? `<a href="${esc(doiUrl)}" target="_blank" class="btn sm ghost">DOI</a>` : ''}
+        <span class="seq-badge" style="color:var(--pass); cursor:help" data-tip="${esc(tooltip)}">${esc(oaStatus)}</span>
+      </div>
+    </div>
+    ${oaHref ? `
+    <div class="acct-field">
+      <div class="acct-label">Full Text</div>
+      <div style="display:flex; gap:8px; align-items:center">
+        <a href="${esc(oaHref)}" target="_blank" class="btn sm primary">Open PDF/Link</a>
+        <button class="btn sm" onclick="downloadAndSaveLit(${idx})">💾 Download & Save</button>
+      </div>
+      <div style="font-size:10px; color:var(--muted); margin-top:6px">
+        <b>Note:</b> "Download & Save" will save metadata to the selected Sub-database and attempt to download the PDF to your local library.
+      </div>
+    </div>` : `
+    <div class="acct-field">
+      <div class="acct-label">Full Text</div>
+      <div style="font-size:10px; color:var(--muted)">No direct full-text link found.</div>
+      <button class="btn sm" style="margin-top:6px" onclick="saveItem('lit', ${idx})">💾 Save Metadata Only</button>
+    </div>`}
+  `;
+  if (!w.abstract && (w.doi || w.openalex_id)) {
+    resolveLitAbstract(idx);
+  }
+}
+
+async function resolveLitAbstract(idx) {
+  const w = _litResults[idx];
+  if (!w || w._abstractResolving) return;
+  const box = document.getElementById(`lit-abstract-box-${idx}`);
+  w._abstractResolving = true;
+  try {
+    const d = await apiFetch('/library/openalex/resolve_abstract', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ doi: w.doi || null, openalex_id: w.openalex_id || null }),
+    });
+    if (d && d.abstract) {
+      w.abstract = d.abstract;
+      w.abstract_source = d.source || 'metadata';
+      if (box) box.innerHTML = `${esc(d.abstract)}<div style="font-size:10px;color:var(--muted);margin-top:6px">Resolved from ${esc(w.abstract_source)}; full text may still be unavailable.</div>`;
+      renderLitResults();
+    } else if (box) {
+      box.textContent = 'No abstract available from OpenAlex or DOI landing page. Full text may still be unavailable.';
+    }
+  } catch (e) {
+    if (box) box.textContent = 'Abstract lookup failed: ' + e.message;
+  } finally {
+    w._abstractResolving = false;
+  }
+}
+
+async function downloadAndSaveLit(idx) {
+  const w = _litResults[idx];
+  if (!w) return;
+  if (!ensureProjectId(true)) return;
+  
+  toast('Downloading and saving to library...', 'info');
+  try {
+    const subproject = document.getElementById('lit-save-subproject').value;
+    const res = await apiFetch('/intelligence/library/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: _username,
+        project_id: _projectId,
+        source: _litSaveSource(),
+        item: w,
+        subproject: subproject
+      }),
+    });
+    
+    if (res.id && (w.oa_pdf_url || w.oa_url)) {
+      await apiFetch('/intelligence/library/fetch-pdf', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: _username,
+          project_id: _projectId,
+          document_id: res.id
+        }),
+      });
+      toast('Saved and PDF download started', 'ok');
+    } else {
+      toast('Saved to library', 'ok');
+    }
+    await refreshLibraryViews();
+  } catch (e) {
+    toast('Failed: ' + e.message, 'err');
+  }
+}
+
+function showDbDetail(view, docId) {
+  const v = DBV[view];
+  const d = v.rows.find(r => Number(r.id) === Number(docId));
+  if (!d) return;
+  
+  switchRail('det');
+  const box = document.getElementById('det-body');
+  const src = d.source || 'manual';
+  
+  const doiUrl = d.doi ? `https://doi.org/${d.doi}` : null;
+  const pmidUrl = (src === 'pubmed' && d.ext_id) ? `https://pubmed.ncbi.nlm.nih.gov/${d.ext_id}/` : null;
+  const oaHref = d.oa_url || (typeof d.raw === 'object' && d.raw ? (d.raw.oa_pdf_url || d.raw.oa_url) : null);
+  
+  box.innerHTML = `
+    <div class="acct-field">
+      <div class="acct-label">Title</div>
+      <div class="rc-title" style="font-size:14px">${esc(d.title || 'Untitled')}</div>
+    </div>
+    <div class="acct-field">
+      <div class="acct-label">Sub-database</div>
+      <div class="acct-value">${esc(d.subproject || 'Main Database')}</div>
+    </div>
+    <div class="acct-field">
+      <div class="acct-label">Authors / Year</div>
+      <div class="rc-meta">${esc(d.authors || 'Unknown')} (${esc(d.year || '—')})</div>
+    </div>
+    <div class="acct-field">
+      <div class="acct-label">Abstract</div>
+      <div id="db-abstract-box-${docId}" class="ai-output" style="max-height:300px; overflow-y:auto; font-size:11px; padding:8px">${esc(d.abstract || 'No abstract available.')}</div>
+      ${!d.abstract && (d.doi || (d.raw && d.raw.openalex_id)) ? `<button class="btn sm ghost" style="margin-top:6px" onclick="resolveDbAbstract('${view}', ${docId})">🔍 Resolve Abstract</button>` : ''}
+    </div>
+    <div class="acct-field">
+      <div class="acct-label">Links & Files</div>
+      <div class="rc-actions" style="margin-top:4px">
+        ${pmidUrl ? `<a href="${esc(pmidUrl)}" target="_blank" class="btn sm ghost">PMID: ${esc(d.ext_id)}</a>` : ''}
+        ${doiUrl ? `<a href="${esc(doiUrl)}" target="_blank" class="btn sm ghost">DOI</a>` : ''}
+        ${oaHref ? `<a href="${esc(oaHref)}" target="_blank" class="btn sm ghost">OA Link</a>` : ''}
+        ${d.url ? `<a href="${esc(d.url)}" target="_blank" class="btn sm ghost">URL ↗</a>` : ''}
+      </div>
+    </div>
+    <div class="acct-field">
+      <div class="acct-label">Actions</div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap">
+        <button class="btn sm primary" onclick="openCiteModal('${view}', ${v.rows.indexOf(d)})">Cite</button>
+        ${d.pdf_path ? `<button class="btn sm" onclick="openLocalPdf(${d.id})">Open Local PDF</button>` : ''}
+        <button class="btn sm danger" onclick="deleteSavedDoc('${view}', ${d.id})">Delete</button>
+      </div>
+    </div>
+  `;
+}
+
+async function deleteSavedDoc(view, docId) {
+  if (!confirm('Are you sure you want to delete this record from your library?')) return;
+  try {
+    await apiFetch(`/intelligence/library/delete?username=${_username}&project_id=${_projectId}&id=${docId}`, { method: 'DELETE' });
+    toast('Record deleted', 'ok');
+    loadDb(view);
+    if (document.getElementById('rt-det').classList.contains('active')) {
+      switchRail('ai');
+    }
+  } catch (e) { toast('Delete failed: ' + e.message, 'err'); }
+}
+
+async function resolveDbAbstract(view, docId) {
+  const v = DBV[view];
+  const d = v.rows.find(r => Number(r.id) === Number(docId));
+  if (!d) return;
+  const box = document.getElementById(`db-abstract-box-${docId}`);
+  if (box) box.innerHTML = '<span class="spinner"></span> Resolving...';
+  
+  try {
+    const res = await apiFetch('/intelligence/library/resolve-abstract', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        doi: d.doi || null,
+        openalex_id: (d.raw && d.raw.openalex_id) || null
+      }),
+    });
+    
+    if (res.ok && res.abstract) {
+      // Update DB
+      await apiFetch('/intelligence/library/update-abstract', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: _username,
+          project_id: _projectId,
+          doc_id: docId,
+          abstract: res.abstract
+        }),
+      });
+      d.abstract = res.abstract;
+      if (box) box.innerHTML = esc(res.abstract) + `<div style="font-size:10px;color:var(--muted);margin-top:6px">Resolved from ${esc(res.source || 'external source')}</div>`;
+      toast('Abstract resolved and saved', 'ok');
+    } else {
+      if (box) box.textContent = 'Could not resolve abstract. ' + (res.message || '');
+    }
+  } catch (e) {
+    if (box) box.textContent = 'Lookup failed: ' + e.message;
+  }
+}
+
+async function litToFacts() {
+  const q = document.getElementById('lit-query').value.trim();
+  if (!q) { toast('Search first', 'warn'); return; }
+  toast('Sending to Writing Facts…', 'info');
+  try {
+    const path = _litSource === 'pubmed' ? '/library/pubmed/import_to_facts' : '/library/openalex/import_to_facts';
+    const d = await apiFetch(path, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: _username, query: q, limit: 6, project_id: _projectId || null }),
+    });
+    toast(`Added ${d.count||0} item(s) to Facts`, 'ok');
+  } catch(e) { toast('Failed: ' + e.message, 'err'); }
+}
+
+/* ── Patent search ──────────────────────────────────────── */
+async function searchPatents() {
+  const q = document.getElementById('pat-query').value.trim();
+  if (q.length < 2) { toast('Enter at least 2 characters', 'warn'); return; }
+  const btn = document.getElementById('btn-pat-search');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>';
+  toast('Searching patents…', 'info');
+  try {
+    const d = await apiFetch('/ip/patent/search', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: _username, query: q, limit: 10 }),
+    });
+    _patResults = d.patents || [];
+    renderPatResults();
+    const note = d.note ? d.note.slice(0,100) : `${_patResults.length} hit(s)`;
+    toast(note, d.note ? 'warn' : 'ok');
+  } catch(e) {
+    toast('Patent search failed: ' + e.message, 'err');
+    document.getElementById('pat-results-area').innerHTML =
+      `<div class="empty-state"><div class="icon">⚠️</div><div>${esc(e.message)}</div></div>`;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Search';
+  }
+}
+
+function renderPatDetailPanel(d) {
+  if (!d || !d.ok) {
+    return `<div class="det-noabs">${esc(d?.error || 'No bibliographic data for this number.')}</div>`;
+  }
+  const rows = [
+    ['Application', d.application_number],
+    ['Patent', d.patent_number],
+    ['Filed', d.filing_date],
+    ['Status', d.status],
+    ['Assignee', d.assignee],
+    ['Inventors', d.inventors],
+    ['Art unit', d.art_unit],
+    ['Examiner', d.examiner],
+  ].filter(([, v]) => v);
+  let html = '<dl class="pat-kv">';
+  for (const [k, v] of rows) {
+    html += `<dt>${esc(k)}</dt><dd>${esc(String(v))}</dd>`;
+  }
+  html += '</dl>';
+  if (d.abstract) {
+    html += `<div class="det-abs">${esc(d.abstract)}</div>`;
+  }
+  if (d.has_sequence_listing_code && !d.has_sequence_listing && d.sequence_listing_note) {
+    html += `<div class="det-noabs" style="margin-top:8px;border-left:3px solid var(--warn);padding-left:8px">${esc(d.sequence_listing_note)}</div>`;
+  } else if (!d.has_sequence_listing && d.sequence_listing_note) {
+    html += `<div class="det-noabs" style="margin-top:8px;border-left:3px solid var(--warn);padding-left:8px">${esc(d.sequence_listing_note)}</div>`;
+  }
+  if (d.documents && d.documents.length) {
+    const hidden = d.documents_admin_hidden ? ` · ${d.documents_admin_hidden} administrative filing codes hidden` : '';
+    html += `<details style="margin-top:8px"><summary class="section-head" style="cursor:pointer;display:inline">Substantive file-wrapper documents (${d.documents.length})${esc(hidden)}</summary>`;
+    html += '<table class="pat-doc-table" style="margin-top:6px"><thead><tr><th>Date</th><th>Code</th><th>Description</th></tr></thead><tbody>';
+    for (const doc of d.documents) {
+      html += `<tr><td>${esc(doc.date || '')}</td><td>${esc(doc.code || '')}</td><td>${esc(doc.description || '')}</td></tr>`;
+    }
+    html += '</tbody></table></details>';
+  } else if (d.document_codes_seen && d.document_codes_seen.length) {
+    html += `<div style="font-size:10px;color:var(--muted);margin-top:6px">Wrapper codes: ${esc(d.document_codes_seen.join(', '))}</div>`;
+  }
+  if (d.view_url) {
+    html += `<div style="margin-top:8px;font-size:10px;color:var(--muted)">Full text (external): <a href="${esc(d.view_url)}" target="_blank" rel="noopener" style="color:var(--accent)" onclick="event.stopPropagation()">Google Patents ↗</a> — sequence listing may only appear there until USPTO posts SEQLST.</div>`;
+  }
+  const skipSeqFetch = !d.has_sequence_listing;
+  const seqInit = skipSeqFetch
+    ? `<div class="det-noabs">${esc(d.sequence_listing_note || 'No downloadable USPTO sequence listing for this application yet.')}</div>`
+    : '<div class="det-noabs"><span class="spinner"></span> Loading sequence listing…</div>';
+  html += `<div class="pat-seq-block" data-pat-seq-slot="1" data-patent-id="${esc(d.application_number || '')}"><div class="section-head">Antibody sequences (USPTO ST.26)</div>${seqInit}</div>`;
+  return html;
+}
+
+function renderPatSequencesPanel(d) {
+  if (!d || (!d.sequences || !d.sequences.length)) {
+    const msg = d?.note || d?.error || 'No protein sequences in USPTO sequence listing for this application.';
+    const codes = (d?.document_codes_seen || []).join(', ');
+    const extra = codes ? `<div style="font-size:10px;color:var(--muted);margin-top:6px">File-wrapper codes seen: ${esc(codes)}</div>` : '';
+    const hint = `<div style="font-size:10px;color:var(--muted);margin-top:8px">Workaround: open <b>Sequence / Structure</b> → paste ST.26 XML or FASTA from the patent specification, or wait for SEQLST on USPTO ODP.</div>`;
+    return `<div class="section-head">Antibody sequences (USPTO ST.26)</div><div class="det-noabs">${esc(msg)}</div>${extra}${hint}`;
+  }
+  const rows = (d.antibody_like && d.antibody_like.length) ? d.antibody_like : d.sequences;
+  const label = (d.antibody_like_count > 0)
+    ? `Antibody-like chains (${d.antibody_like_count} of ${d.count})`
+    : `Protein sequences (${d.count})`;
+  let html = `<div class="section-head">${esc(label)}</div>`;
+  if (d.note) html += `<div style="font-size:10px;color:var(--muted);margin-bottom:8px">${esc(d.note)}</div>`;
+  rows.slice(0, 16).forEach((s, j) => {
+    const badge = s.domain_guess ? `<span class="pat-seq-badge">${esc(s.domain_guess)}</span>` : '';
+    const notes = (s.domain_notes || []).join(' · ');
+    const preview = esc((s.sequence || '').slice(0, 120) + ((s.sequence || '').length > 120 ? '…' : ''));
+    html += `<div style="margin-bottom:10px">
+      <div><b>${esc(s.seq_id || 'SEQ')}</b> ${badge}<span style="color:var(--muted);font-size:10px">${s.length || 0} aa</span></div>
+      ${notes ? `<div style="font-size:10px;color:var(--muted);margin:2px 0">${esc(notes)}</div>` : ''}
+      <div class="pat-seq-row" id="pat-seq-preview-${j}">${preview}</div>
+      <button class="btn ghost" style="font-size:10px;padding:2px 7px;margin-top:4px" data-seq-idx="${j}" onclick="event.stopPropagation();copyPatSeqFromPanel(this)">Copy full sequence</button>
+    </div>`;
+  });
+  return html;
+}
+
+function copyPatSeqFromPanel(btn) {
+  const block = btn.closest('.pat-seq-block');
+  const idx = parseInt(btn.getAttribute('data-seq-idx') || '0', 10);
+  const cacheKey = block && block.dataset.patIdx;
+  const d = cacheKey != null ? _patSeqCache[cacheKey] : null;
+  const rows = (d?.antibody_like?.length ? d.antibody_like : d?.sequences) || [];
+  const seq = rows[idx] && rows[idx].sequence;
+  if (!seq) { toast('Sequence not found', 'warn'); return; }
+  navigator.clipboard.writeText(seq).then(() => toast('Sequence copied', 'ok', 1500)).catch(() => toast('Copy failed', 'err'));
+}
+
+function _patSeqCacheKey(id, idx) {
+  return idx != null ? String(idx) : `app:${id}`;
+}
+
+async function loadPatSequencesByAppId(applicationId, slot, cacheKey) {
+  if (!slot || !applicationId) {
+    if (slot) slot.innerHTML = '<div class="section-head">Antibody sequences (USPTO ST.26)</div><div class="det-noabs">Application number required.</div>';
+    return;
+  }
+  const ck = cacheKey || `app:${applicationId}`;
+  if (_patSeqCache[ck]) {
+    slot.innerHTML = renderPatSequencesPanel(_patSeqCache[ck]);
+    return;
+  }
+  try {
+    const d = await apiFetch(`/ip/patent/sequences?application_id=${encodeURIComponent(applicationId)}`);
+    _patSeqCache[ck] = d;
+    slot.innerHTML = renderPatSequencesPanel(d);
+  } catch (e) {
+    slot.innerHTML = `<div class="section-head">Antibody sequences (USPTO ST.26)</div><div class="det-noabs">${esc(e.message)}</div>`;
+  }
+}
+
+async function loadPatSequences(i, container) {
+  const slot = container || document.querySelector(`#pat-det-${i} [data-pat-seq-slot]`);
+  if (!slot) return;
+  const p = _patResults[i];
+  const id = (slot.dataset.patentId || (p && p.patent_id) || '').trim();
+  if (p && p.source === 'portal_link') {
+    slot.innerHTML = '<div class="section-head">Antibody sequences (USPTO ST.26)</div><div class="det-noabs">Structured application number required.</div>';
+    return;
+  }
+  await loadPatSequencesByAppId(id, slot, _patSeqCacheKey(id, i));
+  slot.dataset.patIdx = String(i);
+}
+
+async function togglePatDetail(i) {
+  const el = document.getElementById(`pat-det-${i}`);
+  if (!el) return;
+  const opening = !el.classList.contains('open');
+  document.querySelectorAll('.pat-inline-detail.open').forEach(n => {
+    if (n.id !== `pat-det-${i}`) { n.classList.remove('open'); n.innerHTML = ''; }
+  });
+  if (!opening) {
+    el.classList.remove('open');
+    return;
+  }
+  el.classList.add('open');
+  if (_patDetailCache[i]) {
+    el.innerHTML = renderPatDetailPanel(_patDetailCache[i]);
+    return;
+  }
+  const p = _patResults[i];
+  const id = p && p.patent_id;
+  if (!id || p.source === 'portal_link') {
+    el.innerHTML = '<div class="det-noabs">This hit is an external portal link only. Configure USPTO ODP or try another keyword for in-app records.</div>';
+    return;
+  }
+  el.innerHTML = '<div class="det-noabs"><span class="spinner"></span> Loading in-app record…</div>';
+  try {
+    const d = await apiFetch(`/ip/patent/detail?application_id=${encodeURIComponent(id)}`);
+    _patDetailCache[i] = d;
+    el.innerHTML = renderPatDetailPanel(d);
+    const slot = el.querySelector('[data-pat-seq-slot]');
+    if (slot && d.has_sequence_listing) {
+      loadPatSequences(i, slot);
+    }
+  } catch (e) {
+    el.innerHTML = `<div class="det-noabs">${esc(e.message)}</div>`;
+  }
+}
+
+function renderPatResults() {
+  const box = document.getElementById('pat-results-area');
+  if (!_patResults.length) {
+    box.innerHTML = '<div class="empty-state"><div class="icon">🔒</div><div>No patent hits</div></div>';
+    return;
+  }
+  const targetSp = document.getElementById('pat-save-subproject')?.value || 'Main';
+  box.innerHTML = `<div style="font-size:10px; color:var(--muted); margin-bottom:8px; padding:0 4px">Saving to Sub-database: <b style="color:var(--accent)">${esc(targetSp)}</b></div>` +
+    '<div class="result-list">' + _patResults.map((p, i) => {
+    const key = `pat-${i}`;
+    const pid = p.patent_id ? `US ${esc(p.patent_id)}` : '';
+    const assignee = p.assignee ? `<span style="color:var(--warn)">${esc(p.assignee)}</span> · ` : '';
+    const preview = p.abstract ? ` · ${esc(p.abstract.slice(0, 100))}…` : '';
+    const sel = _selectedCards.has(key) ? ' selected' : '';
+    return `<div class="result-card${sel}" id="card-${key}" onclick="toggleSelect('${key}')">
+      <div style="display:flex; gap:10px">
+        <input type="checkbox" ${sel ? 'checked' : ''} onclick="event.stopPropagation();toggleSelect('${key}')" style="margin-top:4px">
+        <div style="flex:1">
+          <div style="cursor:pointer" onclick="togglePatDetail(${i})">
+            <div class="rc-title">▸ ${esc(p.title || 'Untitled')}</div>
+            <div class="rc-meta">${pid} · ${assignee}${esc(p.filing_date || p.date || '')}${preview}</div>
+          </div>
+          <div class="rc-actions">
+            <button class="btn ghost" style="font-size:10px;padding:2px 7px" onclick="event.stopPropagation();togglePatDetail(${i})">View record</button>
+          </div>
+          <div class="pat-inline-detail" id="pat-det-${i}"></div>
+        </div>
+      </div>
+    </div>`;
+  }).join('') + '</div>';
+}
+
+function handleNewSubDb(el) {
+  if (el.value === '__new__') {
+    const name = prompt('Enter new sub-database name (use "/" for levels, e.g. Project/Sub/Task):');
+    if (!name) {
+      el.value = '';
+      return;
+    }
+    const subproject = name.trim();
+    
+    // Persist locally
+    let custom = JSON.parse(localStorage.getItem('intelCustomSubprojects') || '[]');
+    if (!custom.includes(subproject)) {
+      custom.push(subproject);
+      localStorage.setItem('intelCustomSubprojects', JSON.stringify(custom));
+    }
+
+    ['lit-save-subproject', 'pat-save-subproject'].forEach(id => {
+      const select = document.getElementById(id);
+      if (select) {
+        if (![...select.options].some(o => o.value === subproject)) {
+          const opt = document.createElement('option');
+          opt.value = subproject;
+          opt.textContent = subproject;
+          select.insertBefore(opt, select.lastElementChild);
+        }
+      }
+    });
+    el.value = subproject;
+    renderLitResults();
+    renderPatResults();
+  }
+}
+
+async function saveSelectedLit() {
+  const selected = [..._selectedCards].filter(k => k.startsWith('lit-')).map(k => Number(k.split('-')[1]));
+  if (!selected.length) { toast('Select literature items first', 'warn'); return; }
+  if (!ensureProjectId(true)) return;
+  const subproject = document.getElementById('lit-save-subproject').value;
+  toast(`Saving ${selected.length} item(s) to ${subproject || 'Shared Library'}…`, 'info');
+  let ok = 0;
+  for (const idx of selected) {
+    try {
+      const raw = _litResults[idx];
+      await apiFetch('/intelligence/library/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: _username,
+          project_id: _projectId,
+          source: _litSaveSource(),
+          item: raw,
+          subproject: subproject
+        }),
+      });
+      ok++;
+    } catch(_) {}
+  }
+  toast(`Saved ${ok} item(s)`, 'ok');
+  _selectedCards.clear();
+  renderLitResults();
+  await refreshLibraryViews();
+}
+
+async function saveSelectedPat() {
+  const selected = [..._selectedCards].filter(k => k.startsWith('pat-')).map(k => Number(k.split('-')[1]));
+  if (!selected.length) { toast('Select patent items first', 'warn'); return; }
+  if (!ensureProjectId(true)) return;
+  const subproject = document.getElementById('pat-save-subproject').value;
+  toast(`Saving ${selected.length} item(s) to ${subproject || 'Shared Library'}…`, 'info');
+  let ok = 0;
+  for (const idx of selected) {
+    try {
+      const raw = _patResults[idx];
+      await apiFetch('/intelligence/library/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: _username,
+          project_id: _projectId,
+          source: 'patent',
+          item: raw,
+          subproject: subproject
+        }),
+      });
+      ok++;
+    } catch(_) {}
+  }
+  toast(`Saved ${ok} item(s)`, 'ok');
+  _selectedCards.clear();
+  renderPatResults();
+  await refreshLibraryViews();
+}
+
+async function refreshPatentConfig() {
+  const el = document.getElementById('pat-odp-status');
+  if (!el) return;
+  try {
+    const cfg = await apiFetch('/ip/config');
+    if (cfg.odp_configured) {
+      el.textContent = 'USPTO ODP connected — click results for in-app bibliographic record';
+      el.style.color = 'var(--pass)';
+    } else {
+      el.textContent = 'Portal link mode — add USPTO_ODP_API_KEY on server for in-app records';
+      el.style.color = 'var(--warn)';
+    }
+  } catch (_) {
+    el.textContent = '';
+  }
+}
+
+async function patentsToFacts() {
+  const q = document.getElementById('pat-query').value.trim();
+  if (!q) { toast('Search first', 'warn'); return; }
+  toast('Sending patent hits to Facts…', 'info');
+  try {
+    const d = await apiFetch('/ip/import_to_facts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: _username, query: q, limit: 5, mode: 'patent' }),
+    });
+    toast(`Added ${d.count||0} patent(s) to Facts`, 'ok');
+  } catch(e) { toast('Failed: ' + e.message, 'err'); }
+}
+
+/* ── Sequence search / parse ────────────────────────────── */
+async function parseSequenceText() {
+  const raw = document.getElementById('seq-parse-input').value.trim();
+  if (raw.length < 8) { toast('Paste FASTA or ST.26 XML', 'warn'); return; }
+  const btn = document.getElementById('btn-seq-parse');
+  btn.disabled = true;
+  toast('Parsing antibody chains…', 'info');
+  try {
+    const d = await apiFetch('/ip/sequence/parse', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: _username, content: raw }),
+    });
+    const box = document.getElementById('seq-results-area');
+    const fakeCache = { 0: d };
+    _patSeqCache[0] = d;
+    box.innerHTML = '<div class="result-list"><div class="result-card" style="cursor:default">' +
+      renderPatSequencesPanel(d) + '</div></div>';
+    toast(d.ok ? `${d.count} chain(s) parsed` : (d.note || 'No chains'), d.ok ? 'ok' : 'warn');
+  } catch (e) {
+    toast(e.message, 'err');
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+async function searchSequence() {
+  const seq = document.getElementById('seq-query').value.trim();
+  if (seq.length < 8) { toast('Sequence needs ≥8 characters', 'warn'); return; }
+  const btn = document.getElementById('btn-seq-search');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>';
+  toast('Searching sequence in patents…', 'info');
+  try {
+    const d = await apiFetch('/ip/sequence/search', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: _username, sequence: seq, limit: 8 }),
+    });
+    _seqResults = d.patents || [];
+    renderSeqResults();
+    toast(d.note || `${_seqResults.length} hit(s)`, d.note ? 'warn' : 'ok');
+  } catch(e) {
+    toast('Sequence search failed: ' + e.message, 'err');
+    document.getElementById('seq-results-area').innerHTML =
+      `<div class="empty-state"><div class="icon">⚠️</div><div>${esc(e.message)}</div></div>`;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Search';
+  }
+}
+
+function renderSeqResults() {
+  const box = document.getElementById('seq-results-area');
+  if (!_seqResults.length) {
+    box.innerHTML = '<div class="empty-state"><div class="icon">🧬</div><div>No sequence hits found</div></div>';
+    return;
+  }
+  box.innerHTML = '<div class="result-list">' + _seqResults.map((p, i) => {
+    const key = `seq-${i}`;
+    const pid = p.patent_id ? `US ${esc(p.patent_id)}` : '';
+    const url = p.url ? `<a href="${esc(p.url)}" target="_blank" rel="noopener" style="color:var(--accent)">Link</a>` : '';
+    const seq = p.matched_sequence ? `<span class="seq-badge">${esc(p.matched_sequence.slice(0,40))}…</span>` : '';
+    const sel = _selectedCards.has(key) ? ' selected' : '';
+    return `<div class="result-card${sel}" id="card-${key}" onclick="toggleSelect('${key}')">
+      <div class="rc-title">${esc(p.title||'Untitled')}</div>
+      <div class="rc-meta">${pid} · ${esc(p.assignee||'')} ${seq}</div>
+      <div class="rc-actions">
+        ${url}
+        <button class="btn ghost" style="font-size:10px;padding:2px 7px" onclick="event.stopPropagation();saveItem('seq',${i})">💾 Save</button>
+        <button class="btn ghost" style="font-size:10px;padding:2px 7px" onclick="event.stopPropagation();sendOneToFacts('seq',${i})">→ Facts</button>
+      </div>
+    </div>`;
+  }).join('') + '</div>';
+}
+
+async function seqToFacts() {
+  const seq = document.getElementById('seq-query').value.trim();
+  if (seq.length < 8) { toast('Enter a sequence first', 'warn'); return; }
+  toast('Sending to Facts…', 'info');
+  try {
+    const d = await apiFetch('/ip/import_to_facts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: _username, query: seq, limit: 5, mode: 'sequence' }),
+    });
+    toast(`Added ${d.count||0} item(s) to Facts`, 'ok');
+  } catch(e) { toast('Failed: ' + e.message, 'err'); }
+}
+
+/* ── Card selection ─────────────────────────────────────── */
+function toggleSelect(key) {
+  if (_selectedCards.has(key)) _selectedCards.delete(key);
+  else _selectedCards.add(key);
+  const el = document.getElementById(`card-${key}`);
+  if (el) el.classList.toggle('selected', _selectedCards.has(key));
+}
+
+/* ── Save to private library (persisted, per-project) ───── */
+function _litSaveSource() { return _litSource === 'pubmed' ? 'pubmed' : 'openalex'; }
+
+async function saveItem(type, idx) {
+  if (!ensureProjectId(true)) { toast('Set Project ID first (top bar)', 'warn'); return; }
+  const src = type === 'lit' ? _litResults : type === 'pat' ? _patResults : _seqResults;
+  const raw = src[idx];
+  if (!raw) return;
+  const title = raw.title || 'Untitled';
+  try {
+    const d = await apiFetch('/intelligence/library/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: _username,
+        project_id: _projectId,
+        source: type === 'lit' ? _litSaveSource() : (type === 'pat' ? 'patent' : type === 'seq' ? 'sequence' : 'manual'),
+        item: raw,
+      }),
+    });
+    toast(d.inserted === false ? `Updated: ${title.slice(0,40)}` : `Saved: ${title.slice(0,40)}`, 'ok');
+    await refreshLibraryViews();
+  } catch(e) {
+    toast('Save failed: ' + e.message, 'err');
+  }
+}
+
+async function saveAllLitToLibrary() {
+  if (!_litResults.length) { toast('Search literature first', 'warn'); return; }
+  if (!ensureProjectId(true)) return;
+  toast(`Saving ${_litResults.length} item(s)…`, 'info');
+  let ok = 0, fail = 0;
+  for (let i = 0; i < _litResults.length; i++) {
+    try {
+      await apiFetch('/intelligence/library/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: _username,
+          project_id: _projectId,
+          source: _litSaveSource(),
+          item: _litResults[i],
+        }),
+      });
+      ok++;
+    } catch (_) { fail++; }
+  }
+  toast(`Library: ${ok} saved${fail ? `, ${fail} failed` : ''}`, ok ? 'ok' : 'warn');
+  await refreshLibraryViews();
+  switchTab('litDb');
+}
+
+/* Load persisted library for the current project */
+async function loadLibrary() {
+  const box = document.getElementById('library-list');
+  try {
+    const qs = new URLSearchParams({ username: _username, limit: '200' });
+    if (_projectId) qs.set('project_id', _projectId);
+    const d = await apiFetch('/intelligence/library/list?' + qs.toString());
+    _savedLibrary = (d.documents || []).map(doc => ({
+      type: (doc.source === 'openalex' || doc.source === 'pubmed' || doc.source === 'manual') ? 'lit' : (doc.source === 'sequence' ? 'seq' : 'pat'),
+      id: doc.id,
+      title: doc.title || 'Untitled',
+      meta: (doc.patent_id ? `US ${doc.patent_id} · ` : '') + (doc.authors || '') + (doc.year ? ` · ${doc.year}` : ''),
+      raw: doc,
+    }));
+    renderLibrary();
+    DBV.lit.rows = d.documents || [];
+    updateLitDbStatus();
+  } catch(e) {
+    box.innerHTML = `<div class="empty-state"><div class="icon">⚠️</div><div>${esc(e.message)}</div></div>`;
+  }
+}
+
+function renderLibrary() {
+  const box = document.getElementById('library-list');
+  if (!_savedLibrary.length) {
+    box.innerHTML = '<div class="empty-state"><div class="icon">📚</div><div>No saved items yet</div></div>';
+    return;
+  }
+  box.innerHTML = _savedLibrary.map((item) => {
+    const t = (item.type === 'lit') ? 'lit' : 'pat';
+    return `<div class="lib-item" data-tip="${esc(item.title)}">
+      <div class="li-title"><span class="li-type ${t}">${item.type.toUpperCase()}</span>${esc(item.title.slice(0,60))}${item.title.length>60?'…':''}</div>
+      <div class="li-meta">${esc((item.meta||'').slice(0,80))}</div>
+    </div>`;
+  }).join('');
+}
+
+function clearLibrary() {
+  toast('Library is now persisted server-side; delete is managed per project.', 'info');
+}
+
+/* ── Send single item to Facts ──────────────────────────── */
+async function sendOneToFacts(type, idx) {
+  const src = type === 'lit' ? _litResults : type === 'pat' ? _patResults : _seqResults;
+  const raw = src[idx];
+  if (!raw) return;
+  if (type === 'lit') {
+    const q = document.getElementById('lit-query').value.trim() || (raw.title||'').split(' ').slice(0,4).join(' ');
+    await litToFactsOne(raw, q);
+  } else {
+    const q = type === 'seq'
+      ? document.getElementById('seq-query').value.trim()
+      : document.getElementById('pat-query').value.trim();
+    await patToFactsOne(raw, q, type === 'seq' ? 'sequence' : 'patent');
+  }
+}
+
+async function litToFactsOne(work, q) {
+  try {
+    const isPm = work.pmid || _litSource === 'pubmed';
+    const path = isPm ? '/library/pubmed/import_to_facts' : '/library/openalex/import_to_facts';
+    const body = isPm && work.pmid
+      ? { username: _username, pmid: String(work.pmid), limit: 1, project_id: _projectId || null }
+      : { username: _username, query: q || work.title, limit: 1, project_id: _projectId || null };
+    await apiFetch(path, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    toast(`Added to Facts`, 'ok');
+  } catch(e) { toast('Failed: ' + e.message, 'err'); }
+}
+
+async function patToFactsOne(pat, q, mode) {
+  try {
+    const d = await apiFetch('/ip/import_to_facts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: _username, query: q || pat.title, limit: 1, mode }),
+    });
+    toast(`Added to Facts`, 'ok');
+  } catch(e) { toast('Failed: ' + e.message, 'err'); }
+}
+
+/* ── Send all saved to Writing Facts ───────────────────── */
+async function sendAllToFacts() {
+  if (!_savedLibrary.length) { toast('No saved items', 'warn'); return; }
+  toast(`Sending ${_savedLibrary.length} item(s) to Writing…`, 'info');
+  let sent = 0;
+  for (const item of _savedLibrary) {
+    try {
+      if (item.type === 'lit') {
+        await apiFetch('/library/openalex/import_to_facts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: _username, query: item.title, limit: 1, project_id: _projectId || null }),
+        });
+      } else {
+        await apiFetch('/ip/import_to_facts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: _username, query: item.title, limit: 1, mode: item.type === 'seq' ? 'sequence' : 'patent' }),
+        });
+      }
+      sent++;
+    } catch(_) {}
+  }
+  toast(`${sent}/${_savedLibrary.length} item(s) sent to Writing Facts`, 'ok');
+  window.open('https://write.insynbio.com/?entry=writing', '_blank');
+}
+
+/* ── AI Chat (grounded on the private library) ──────────── */
+let _chatBusy = false;
+
+function appendChatMsg(role, text, sources) {
+  const body = document.getElementById('chat-body');
+  const wrap = document.createElement('div');
+  wrap.className = `chat-msg ${role}`;
+  const bubble = document.createElement('div');
+  bubble.className = 'chat-bubble';
+  bubble.textContent = text;
+  wrap.appendChild(bubble);
+  if (sources && sources.length) {
+    const sc = document.createElement('div');
+    sc.className = 'chat-sources';
+    sc.innerHTML = 'Sources: ' + sources.map(s => {
+      const label = esc((s.title || 'item').slice(0, 48));
+      return s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${label}</a>` : label;
+    }).join(' · ');
+    wrap.appendChild(sc);
+  }
+  body.appendChild(wrap);
+  body.scrollTop = body.scrollHeight;
+  return bubble;
+}
+
+async function sendChat() {
+  if (_chatBusy) return;
+  const input = document.getElementById('chat-input');
+  const msg = input.value.trim();
+  if (!msg) return;
+  input.value = '';
+  appendChatMsg('user', msg);
+  const pending = appendChatMsg('assistant', '⏳ Searching your library…');
+  _chatBusy = true;
+  const btn = document.getElementById('btn-chat-send');
+  btn.disabled = true;
+  try {
+    const d = await apiFetch('/intelligence/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: _username,
+        project_id: _projectId || null,
+        message: msg,
+        top_k: 6,
+      }),
+    });
+    pending.textContent = d.reply || '(no response)';
+    if (d.sources && d.sources.length) {
+      const sc = document.createElement('div');
+      sc.className = 'chat-sources';
+      sc.innerHTML = 'Sources: ' + d.sources.map(s => {
+        const label = esc((s.title || 'item').slice(0, 48));
+        return s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${label}</a>` : label;
+      }).join(' · ');
+      pending.parentElement.appendChild(sc);
+    }
+  } catch(e) {
+    pending.textContent = 'Chat failed: ' + e.message;
+    toast(e.message, 'err');
+  } finally {
+    _chatBusy = false;
+    btn.disabled = false;
+    document.getElementById('chat-body').scrollTop = 1e9;
+  }
+}
+
+function clearChat() {
+  document.getElementById('chat-body').innerHTML =
+    '<div class="chat-msg assistant"><div class="chat-bubble">Cleared. Ask anything about your saved library.</div></div>';
+}
+
+/* ── Reference / Patent Database (EndNote-style, sortable) ─ */
+const TYPE_LABEL = { openalex: 'Literature', pubmed: 'Literature', patent: 'Patent', sequence: 'Sequence', manual: 'Import' };
+const TYPE_CLASS = { openalex: 'lit', pubmed: 'lit', patent: 'pat', sequence: 'seq', manual: 'imp' };
+/* M2-aligned article types (write.html art-type radios) */
+const ARTICLE_TYPE_LABEL = {
+  research: 'Research',
+  original_research: 'Research',
+  literature: 'Research',
+  review: 'Review',
+  review_narrative: 'Review',
+  systematic_review: 'Systematic Review',
+  meta_analysis: 'Systematic Review',
+  case_report: 'Case Report',
+  letter: 'Letter / Brief',
+  brief_communication: 'Letter / Brief',
+  editorial: 'Letter / Brief',
+  protocol: 'Protocol',
+  methods_protocols: 'Protocol',
+};
+const ARTICLE_TYPE_CLASS = {
+  research: 'research',
+  original_research: 'research',
+  literature: 'research',
+  review: 'review',
+  review_narrative: 'review',
+  systematic_review: 'sysreview',
+  meta_analysis: 'sysreview',
+  case_report: 'case',
+  letter: 'letter',
+  brief_communication: 'letter',
+  editorial: 'letter',
+  protocol: 'protocol',
+  methods_protocols: 'protocol',
+};
+const LIT_SOURCES = new Set(['openalex', 'pubmed', 'manual']);
+
+function _inferArticleType(d) {
+  const raw = (typeof d.raw === 'object' && d.raw) ? d.raw : null;
+  if (!raw) return 'research';
+  const explicit = (raw.article_type || '').toLowerCase();
+  if (ARTICLE_TYPE_LABEL[explicit]) return explicit;
+  if ((raw.type || '').toLowerCase() === 'review') return 'review';
+  const pts = raw.pub_types || [];
+  if (!Array.isArray(pts) || !pts.length) return 'research';
+  const joined = pts.map(p => String(p).toLowerCase());
+  if (joined.some(p => p.includes('systematic review') || p === 'meta-analysis')) return 'systematic_review';
+  if (joined.some(p => p === 'review' || p.endsWith(' review'))) return 'review';
+  if (joined.some(p => p.includes('case report'))) return 'case_report';
+  if (joined.some(p => p.includes('protocol'))) return 'protocol';
+  if (joined.some(p => ['letter', 'comment', 'editorial', 'brief report'].includes(p))) return 'letter';
+  return 'research';
+}
+
+function _literatureTypeBadge(d) {
+  const src = d.source || 'manual';
+  if (!LIT_SOURCES.has(src)) {
+    return { label: TYPE_LABEL[src] || 'DOC', cls: TYPE_CLASS[src] || 'pat' };
+  }
+  const at = (d.article_type || _inferArticleType(d) || 'research').toLowerCase();
+  return {
+    label: ARTICLE_TYPE_LABEL[at] || 'Research',
+    cls: ARTICLE_TYPE_CLASS[at] || 'research',
+  };
+}
+
+// Two independent views: 'lit' (all types) and 'pat' (patents + sequences only).
+const DBV = {
+  lit: { rows: [], filter: 'all', subprojectFilter: 'all', sortKey: '', sortDir: 1, selected: new Set(),
+         box: 'lit-db-area', query: 'lit-db-query', base: null },
+  pat: { rows: [], filter: 'all', subprojectFilter: 'all', sortKey: '', sortDir: 1, selected: new Set(),
+         box: 'pat-db-area', query: 'pat-db-query', base: ['patent','sequence'] },
+};
+
+function _dbSelectedIds(view) {
+  return [...(DBV[view].selected || new Set())].map(Number).filter(n => n > 0);
+}
+
+function updateDbSelBar(view) {
+  const n = _dbSelectedIds(view).length;
+  const el = document.getElementById(`${view}-sel-count`);
+  if (el) el.textContent = String(n);
+}
+
+function onDbCheck(view, docId, el) {
+  const v = DBV[view];
+  const id = Number(docId);
+  if (!id) return;
+  if (el.checked) v.selected.add(id); else v.selected.delete(id);
+  const row = el.closest('tr.lib-row');
+  if (row) row.classList.toggle('row-selected', el.checked);
+  updateDbSelBar(view);
+  _syncDbCheckAll(view);
+}
+
+function _syncDbCheckAll(view) {
+  const rows = _dbRowsFor(view);
+  const v = DBV[view];
+  const all = rows.length > 0 && rows.every(d => v.selected.has(Number(d.id)));
+  const chk = document.getElementById(`${view}-chk-all`);
+  if (chk) chk.checked = all;
+}
+
+function onDbCheckAll(view, el) {
+  const v = DBV[view];
+  const rows = _dbRowsFor(view);
+  if (el.checked) {
+    rows.forEach(d => { if (d.id != null) v.selected.add(Number(d.id)); });
+  } else {
+    rows.forEach(d => { if (d.id != null) v.selected.delete(Number(d.id)); });
+  }
+  renderDbTable(view);
+}
+
+function dbSelectAll(view, on) {
+  const el = document.getElementById(`${view}-chk-all`);
+  if (el) { el.checked = on; onDbCheckAll(view, el); }
+  else onDbCheckAll(view, { checked: on });
+}
+
+function setSubprojectFilter(view, sp) {
+  const v = DBV[view];
+  v.subprojectFilter = sp;
+  syncDbSubprojectSelect(view);
+  renderSidebarFacets(view);
+  renderDbTable(view);
+}
+
+function setDbFilter(view, f) {
+  const v = DBV[view];
+  v.filter = f;
+  renderSidebarFacets(view);
+  renderDbTable(view);
+}
+
+function syncDbSubprojectSelect(view) {
+  const v = DBV[view];
+  const s = document.getElementById(`${view}-db-subproject-filter`);
+  if (!s) return;
+  const val = v.subprojectFilter || 'all';
+  if ([...s.options].some(o => o.value === val)) s.value = val;
+}
+
+function updateDbSubprojectSelect(view) {
+  const v = DBV[view];
+  const s = document.getElementById(`${view}-db-subproject-filter`);
+  if (!s) return;
+  const current = v.subprojectFilter || s.value || 'all';
+  s.innerHTML = '<option value="all">All sub-databases</option><option value="__none__">Main Database</option>';
+  (v.allSubprojects || []).slice().sort().forEach(label => {
+    const opt = document.createElement('option');
+    opt.value = label;
+    opt.textContent = label;
+    s.appendChild(opt);
+  });
+  if ([...s.options].some(o => o.value === current)) s.value = current;
+  else {
+    s.value = 'all';
+    v.subprojectFilter = 'all';
+  }
+}
+
+async function loadSubprojectFilters(view) {
+  if (!ensureProjectId(false)) return;
+  try {
+    const qs = new URLSearchParams();
+    if (_projectId) qs.set('project_id', _projectId);
+    const d = await apiFetch('/intelligence/library/subprojects?' + qs.toString());
+    let labels = d.subprojects || [];
+    
+    // Merge with local custom ones
+    const custom = JSON.parse(localStorage.getItem('intelCustomSubprojects') || '[]');
+    custom.forEach(c => {
+      if (!labels.includes(c)) labels.push(c);
+    });
+    
+    DBV[view].allSubprojects = labels;
+    updateDbSubprojectSelect(view);
+    renderSidebarFacets(view);
+    
+    // Also update the "Save to" dropdowns
+    ['lit-save-subproject', 'pat-save-subproject'].forEach(id => {
+      const s = document.getElementById(id);
+      if (!s) return;
+      const currentVal = s.value;
+      // Keep only fixed options (empty and __new__)
+      const fixed = [...s.options].filter(o => o.value === '' || o.value === '__new__');
+      s.innerHTML = '';
+      fixed.forEach(o => {
+        if (o.value === '__new__') {
+          // Add labels before "New..."
+          labels.forEach(l => {
+            const opt = document.createElement('option');
+            opt.value = l;
+            opt.textContent = l;
+            s.appendChild(opt);
+          });
+        }
+        s.appendChild(o);
+      });
+      if (labels.includes(currentVal)) s.value = currentVal;
+    });
+  } catch (_) { /* ignore */ }
+}
+
+function renderSidebarFacets(view) {
+  const box = document.getElementById('sidebar-facets');
+  if (!box) return;
+  const v = DBV[view];
+  const curSp = v.subprojectFilter || 'all';
+  const curSrc = v.filter || 'all';
+
+  let html = '';
+
+  // Type Facets
+  const sources = view === 'lit'
+    ? [{id:'all', label:'All Records'}, {id:'literature', label:'Literature'}, {id:'patent', label:'Patents'}, {id:'sequence', label:'Sequences'}]
+    : [{id:'all', label:'All IP'}, {id:'patent', label:'Patents'}, {id:'sequence', label:'Sequences'}];
+
+  html += `<div class="facet-group">
+    <div class="facet-label">Source Type</div>
+    <div class="facet-list">`;
+  sources.forEach(s => {
+    const active = curSrc === s.id ? ' active' : '';
+    html += `<div class="facet-item${active}" onclick="setDbFilter('${view}','${s.id}')">
+      <span>${s.label}</span>
+    </div>`;
+  });
+  html += `</div></div>`;
+
+  // Sub-database Facets (Hierarchical)
+  const labels = v.allSubprojects || [];
+  
+  // Build tree
+  const tree = { children: {}, fullPath: '' };
+  labels.forEach(path => {
+    const parts = path.split('/');
+    let cur = tree;
+    parts.forEach((part, i) => {
+      if (!cur.children[part]) {
+        cur.children[part] = { 
+          children: {}, 
+          fullPath: parts.slice(0, i+1).join('/')
+        };
+      }
+      cur = cur.children[part];
+    });
+  });
+
+  function renderTree(node, level = 0) {
+    let h = '';
+    const keys = Object.keys(node.children).sort();
+    keys.forEach(k => {
+      const child = node.children[k];
+      const active = curSp === child.fullPath ? ' active' : '';
+      const indent = level * 12;
+      const viewArg = JSON.stringify(view);
+      const pathArg = JSON.stringify(child.fullPath);
+      h += `<div class="facet-item${active}" style="padding-left:${10 + indent}px" onclick='setSubprojectFilter(${viewArg}, ${pathArg})'>
+        <span class="facet-title">
+          ${level > 0 ? '<span style="opacity:0.4">└</span>' : ''}
+          ${esc(k)}
+        </span>
+        <span class="facet-actions">
+          <button class="facet-mini primary" title="Move selected records here" onclick='event.stopPropagation(); assignSubprojectTo(${viewArg}, ${pathArg})'>Move</button>
+          <button class="facet-mini" title="Create child sub-database" onclick='event.stopPropagation(); createChildSubproject(${viewArg}, ${pathArg})'>+ child</button>
+          <button class="facet-mini warn" title="Rename this sub-database" onclick='event.stopPropagation(); renameSubproject(${viewArg}, ${pathArg})'>Rename</button>
+        </span>
+      </div>`;
+      h += renderTree(child, level + 1);
+    });
+    return h;
+  }
+
+  html += `<div class="facet-group" style="margin-top:12px">
+    <div class="facet-label">Sub-databases</div>
+    <div class="facet-list">
+      <div class="facet-item${curSp==='all'?' active':''}" onclick="setSubprojectFilter('${view}','all')">
+        <span>All Records</span>
+      </div>
+      <div class="facet-item${curSp==='__none__'?' active':''}" onclick="setSubprojectFilter('${view}','__none__')">
+        <span class="facet-title">Main Database</span>
+        <span class="facet-actions">
+          <button class="facet-mini primary" title="Move selected records to Main Database (clear labels)" onclick='event.stopPropagation(); assignSubprojectTo("${view}", "")'>Move</button>
+        </span>
+      </div>
+      ${renderTree(tree)}
+    </div>
+  </div>`;
+
+  // Organize Tool
+  html += `<div class="facet-group" style="margin-top:16px; padding-top:12px; border-top:1px solid var(--line)">
+    <div class="facet-label">Organize Database</div>
+    <div style="font-size:10px; color:var(--muted); margin-bottom:6px">Mouse workflow: select rows, then click <b>Move</b> on any sub-database. Manual path remains available below.</div>
+    <div style="display:flex; flex-direction:column; gap:6px; margin-top:4px">
+      <input class="search-input" id="${view}-subproject-input" placeholder="e.g. Cancer/Immunotherapy" style="font-size:11px; padding:5px 8px">
+      <button class="btn sm primary" onclick="assignSubproject('${view}')" style="width:100%; justify-content:center">Move to Sub-database</button>
+    </div>
+  </div>`;
+
+  box.innerHTML = html;
+}
+
+async function assignSubprojectTo(view, sp) {
+  if (!ensureProjectId(true)) return;
+  const ids = _dbSelectedIds(view);
+  if (!ids.length) { toast('Select rows to move first', 'warn'); return; }
+  const label = sp ? `"${sp}"` : 'Main Database';
+  try {
+    const d = await apiFetch('/intelligence/library/tag', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: _username,
+        project_id: _projectId,
+        document_ids: ids,
+        subproject: sp,
+      }),
+    });
+    toast(`Moved to ${label}: ${d.updated || ids.length} row(s)`, 'ok');
+    await loadDb(view);
+    await loadSubprojectFilters(view);
+  } catch (e) { toast('Move failed: ' + e.message, 'err'); }
+}
+
+function createChildSubproject(view, parentPath) {
+  const name = prompt(`Create child sub-database under "${parentPath}":`, '');
+  if (!name) return;
+  const fullPath = parentPath + '/' + name.trim();
+  const input = document.getElementById(`${view}-subproject-input`);
+  if (input) {
+    input.value = fullPath;
+    toast(`Path set to "${fullPath}". Select items and click "Move to Sub-database" or use "Move" button.`, 'info');
+  }
+}
+
+async function renameSubproject(view, oldPath) {
+  const newPath = prompt(`Rename sub-database "${oldPath}" to:`, oldPath);
+  if (newPath === null || newPath === oldPath) return;
+  try {
+    const d = await apiFetch('/intelligence/library/rename-subproject', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: _username,
+        project_id: _projectId,
+        old_subproject: oldPath,
+        new_subproject: newPath.trim() || null,
+      }),
+    });
+    toast(`Renamed "${oldPath}" to "${newPath}": ${d.updated} row(s) updated`, 'ok');
+    await loadDb(view);
+    await loadSubprojectFilters(view);
+  } catch (e) { toast('Rename failed: ' + e.message, 'err'); }
+}
+
+async function assignSubproject(view) {
+  if (!ensureProjectId(true)) return;
+  const ids = _dbSelectedIds(view);
+  if (!ids.length) { toast('Select rows to tag first', 'warn'); return; }
+  const sp = (document.getElementById(`${view}-subproject-input`)?.value || '').trim();
+  if (!sp) { toast('Enter a subproject name', 'warn'); return; }
+  await assignSubprojectTo(view, sp);
+}
+
+function closeLibDetail(detailId) {
+  const el = document.getElementById(detailId);
+  if (!el) return;
+  el.style.display = 'none';
+  const row = el.previousElementSibling;
+  if (row) row.classList.remove('row-expanded');
+  const btn = row && row.querySelector('[data-detail-btn]');
+  if (btn) btn.textContent = 'Details';
+}
+
+function closeAllLibDetails(view) {
+  const box = document.getElementById(DBV[view].box);
+  if (!box) return;
+  box.querySelectorAll('.lib-detail').forEach(el => { el.style.display = 'none'; });
+  box.querySelectorAll('.lib-row.row-expanded').forEach(r => {
+    r.classList.remove('row-expanded');
+    const btn = r.querySelector('[data-detail-btn]');
+    if (btn) btn.textContent = 'Details';
+  });
+}
+
+async function toggleLibDetail(view, detailId, patentId) {
+  const el = document.getElementById(detailId);
+  if (!el) return;
+  const opening = el.style.display === 'none' || !el.style.display;
+  if (!opening) {
+    closeLibDetail(detailId);
+    return;
+  }
+  closeAllLibDetails(view);
+  el.style.display = 'table-row';
+  const row = el.previousElementSibling;
+  if (row) {
+    row.classList.add('row-expanded');
+    const btn = row.querySelector('[data-detail-btn]');
+    if (btn) btn.textContent = 'Close';
+  }
+  if (!patentId) return;
+  const body = el.querySelector('[data-pat-detail-body]');
+  if (!body || body.dataset.loaded === '1') return;
+  body.innerHTML = '<div class="det-noabs"><span class="spinner"></span> Loading in-app record…</div>';
+  try {
+    const d = await apiFetch(`/ip/patent/detail?application_id=${encodeURIComponent(patentId)}`);
+    body.dataset.loaded = '1';
+    body.innerHTML = renderPatDetailPanel(d);
+    const slot = body.querySelector('[data-pat-seq-slot]');
+    if (slot && d.has_sequence_listing) {
+      loadPatSequencesByAppId(patentId, slot, `app:${patentId}`);
+    }
+  } catch (e) {
+    body.innerHTML = `<div class="det-noabs">${esc(e.message)}</div>`;
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  closeAllLibDetails('lit');
+  closeAllLibDetails('pat');
+});
+
+function sortDb(view, key) {
+  const v = DBV[view];
+  v.sortDir = (v.sortKey === key) ? -v.sortDir : 1;
+  v.sortKey = key;
+  renderDbTable(view);
+}
+
+function _dbRowsFor(view) {
+  const v = DBV[view];
+  let rows = v.rows.slice();
+  if (v.base) rows = rows.filter(d => v.base.includes(d.source || 'manual'));
+  if (v.filter === 'literature') rows = rows.filter(d => LIT_SOURCES.has(d.source || 'manual'));
+  else if (v.filter !== 'all') rows = rows.filter(d => (d.source || 'manual') === v.filter);
+  const spf = v.subprojectFilter || 'all';
+  if (spf === '__none__') rows = rows.filter(d => !(d.subproject || '').trim());
+  else if (spf !== 'all') rows = rows.filter(d => (d.subproject || '').trim() === spf);
+  if (v.sortKey) {
+    const k = v.sortKey;
+    rows.sort((a, b) => {
+      let av = a[k], bv = b[k];
+      if (k === 'type') { av = a.source || ''; bv = b.source || ''; }
+      if (k === 'source') { av = a.venue || a.source || ''; bv = b.venue || b.source || ''; }
+      av = (av == null) ? '' : av; bv = (bv == null) ? '' : bv;
+      if (typeof av === 'number' && typeof bv === 'number') return (av - bv) * v.sortDir;
+      return String(av).localeCompare(String(bv)) * v.sortDir;
+    });
+  }
+  return rows;
+}
+
+function _sortArrow(view, key) {
+  const v = DBV[view];
+  if (v.sortKey !== key) return '';
+  return v.sortDir > 0 ? ' ▲' : ' ▼';
+}
+
+function _rawField(d, keys) {
+  const raw = (typeof d.raw === 'object' && d.raw) ? d.raw : {};
+  for (const k of keys) {
+    if (d[k]) return d[k];
+    if (raw[k]) return raw[k];
+  }
+  return '';
+}
+
+function _hasUsefulAbstract(d) {
+  return !!String(d.abstract || '').trim();
+}
+
+function _hasLocalPdf(d) {
+  return !!(d.has_pdf || d.pdf_path);
+}
+
+function _fullTextHref(d) {
+  return _rawField(d, ['oa_pdf_url', 'oa_url']);
+}
+
+function _hasFullTextLink(d) {
+  return !!_fullTextHref(d);
+}
+
+function _hasFullTextAccess(d) {
+  return _hasFullTextLink(d) || _hasLocalPdf(d);
+}
+
+function _journalName(d) {
+  const raw = (typeof d.raw === 'object' && d.raw) ? d.raw : {};
+  const candidates = [
+    d.venue,
+    raw.venue,
+    raw.journal,
+    raw.journal_title,
+    raw.container_title,
+    raw.source_display_name,
+    raw.publication,
+    raw.publisher_journal,
+    raw.primary_location && raw.primary_location.source && raw.primary_location.source.display_name,
+    raw.host_venue && raw.host_venue.display_name,
+    raw.best_oa_location && raw.best_oa_location.source && raw.best_oa_location.source.display_name,
+  ];
+  const found = candidates.find(v => String(v || '').trim());
+  return found ? String(found).trim() : '';
+}
+
+function _hasPdfCandidate(d) {
+  return !!(_rawField(d, ['oa_pdf_url', 'oa_url']) || d.doi || d.url);
+}
+
+function _isLearned(d) {
+  return !!d.ingested_at;
+}
+
+function _pct(n, total) {
+  return total ? Math.round((n / total) * 100) : 0;
+}
+
+function _metricCard(label, count, total) {
+  const pct = _pct(count, total);
+  return `<div class="completeness-card">
+    <b>${count}<span style="font-size:11px;color:var(--muted)">/${total}</span></b>
+    <span>${label} · ${pct}%</span>
+    <div class="completeness-bar"><div class="completeness-fill" style="width:${pct}%"></div></div>
+  </div>`;
+}
+
+function renderCompletenessDashboard(view) {
+  const box = document.getElementById('sidebar-completeness-dash');
+  if (!box) return;
+  if (view !== 'lit') {
+    box.innerHTML = '';
+    return;
+  }
+  const rows = _dbRowsFor(view).filter(d => LIT_SOURCES.has(d.source || 'manual'));
+  const total = rows.length;
+  if (!total) {
+    box.innerHTML = '';
+    return;
+  }
+  const abstractOk = rows.filter(_hasUsefulAbstract).length;
+  const pdfOk = rows.filter(_hasLocalPdf).length;
+  const fullTextOk = rows.filter(_hasFullTextAccess).length;
+  const learnedOk = rows.filter(_isLearned).length;
+  const scope = DBV[view].subprojectFilter === 'all'
+    ? 'All visible literature records'
+    : (DBV[view].subprojectFilter === '__none__' ? 'Main Database' : DBV[view].subprojectFilter);
+  box.innerHTML = `<div class="completeness-panel">
+    <div class="completeness-head">
+      <div>
+        <div class="completeness-title">Library status</div>
+        <div style="font-size:9px;color:var(--muted);line-height:1.35">${esc(scope)}</div>
+      </div>
+      <button class="btn sm" onclick="renderCompletenessDashboard('lit')">↻</button>
+    </div>
+    <div class="completeness-grid">
+      ${_metricCard('Abstract', abstractOk, total)}
+      ${_metricCard('PDF', pdfOk, total)}
+      ${_metricCard('Full text', fullTextOk, total)}
+      ${_metricCard('Learned', learnedOk, total)}
+    </div>
+    <div class="completeness-actions">
+      <button class="btn sm" onclick="selectCompletenessRows('lit','missingAbstract')">Missing abs</button>
+      <button class="btn sm primary" onclick="bulkResolveMissingAbstracts('lit')">Resolve</button>
+      <button class="btn sm" onclick="selectCompletenessRows('lit','unlearned')">Unlearned</button>
+      <button class="btn sm primary" onclick="bulkIngestMissing('lit')">Learn</button>
+    </div>
+    <div class="completeness-note">Use external links or Upload PDF when a publisher blocks server-side download.</div>
+  </div>`;
+}
+
+function _completenessIds(view, mode) {
+  const rows = _dbRowsFor(view).filter(d => LIT_SOURCES.has(d.source || 'manual'));
+  let target = [];
+  if (mode === 'missingAbstract') target = rows.filter(d => !_hasUsefulAbstract(d) && (d.doi || d.ext_id));
+  else if (mode === 'pdfCandidate') target = rows.filter(d => !_hasLocalPdf(d) && _hasPdfCandidate(d));
+  else if (mode === 'unlearned') target = rows.filter(d => !_isLearned(d) && (_hasUsefulAbstract(d) || _hasLocalPdf(d)));
+  return target.map(d => Number(d.id)).filter(Boolean);
+}
+
+function selectCompletenessRows(view, mode) {
+  const ids = _completenessIds(view, mode);
+  const v = DBV[view];
+  v.selected = new Set(ids);
+  renderDbTable(view);
+  toast(ids.length ? `Selected ${ids.length} item(s)` : 'No matching records in current view', ids.length ? 'ok' : 'warn');
+}
+
+function renderDbTable(view) {
+  const v = DBV[view];
+  const box = document.getElementById(v.box);
+  const rows = _dbRowsFor(view);
+  renderCompletenessDashboard(view);
+  if (!rows.length) {
+    const proj = _projectId || '_default';
+    const isPat = view === 'pat';
+    box.innerHTML = `<div class="empty-state"><div class="icon">🗄️</div>
+      <div><b>${isPat ? 'Patent' : 'Reference'} database is empty</b> (project: <code>${esc(proj)}</code>)</div>
+      <div style="margin-top:8px;line-height:1.55;text-align:left;max-width:440px">
+        Common causes: wrong <b>Project ID</b>, or Search without <b>Save</b>.<br><br>
+        1) Top bar <b>Demo library</b> or Account → Load demo (<code>demo_m4_lit_pat</code>, ~31 rows)<br>
+        2) ${isPat ? '<b>Patent Search</b>' : '<b>Literature Search</b>'} → <b>Save</b> → this page <b>All</b><br>
+        3) Open <b>${isPat ? 'Patent Database' : 'Literature Database'}</b> in the sidebar
+      </div>
+      <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+        <button class="btn sm primary" onclick="installSampleLibrary(false)">Install samples (6 lit + 4 patents)</button>
+        <button class="btn sm" onclick="loadDemoProject()">Use project demo_m4_lit_pat</button>
+      </div>
+      </div>`;
+    return;
+  }
+  const th = (key, label, cls) =>
+    `<th class="${cls||''}" style="cursor:pointer" onclick="sortDb('${view}','${key}')">${label}${_sortArrow(view,key)}</th>`;
+  const allChecked = rows.length > 0 && rows.every(d => v.selected.has(Number(d.id)));
+  const hasDetailsCol = view === 'pat';
+  const sourceOrJournalHead = hasDetailsCol ? th('source','Source','c-src') : '<th class="c-journal">Journal</th>';
+  const head = `<table class="lib-table"><thead><tr>
+    <th class="c-sel"><input type="checkbox" id="${view}-chk-all" ${allChecked ? 'checked' : ''} onchange="onDbCheckAll('${view}', this)" onclick="event.stopPropagation()" data-tip="Select all visible"></th>
+    ${th('type','Type','c-type')}${th('subproject','Sub-database','c-sub')}${th('title','Record Details')}
+    ${th('year','Year','c-year')}
+    ${sourceOrJournalHead}
+    <th class="c-link">Link</th>${hasDetailsCol ? '<th class="c-act">Details</th>' : ''}</tr></thead><tbody>`;
+  const body = rows.map((d, i) => {
+    const src = d.source || 'manual';
+    const typeBadge = _literatureTypeBadge(d);
+    const badge = `<span class="li-type ${typeBadge.cls}">${esc(typeBadge.label)}</span>`;
+    const oaHref = _fullTextHref(d);
+    let link = '';
+    if (d.doi) {
+      link = `<a href="${esc('https://doi.org/' + d.doi)}" target="_blank" rel="noopener" style="color:var(--accent)" onclick="event.stopPropagation()">DOI</a>`;
+    } else if (src === 'pubmed' && (d.ext_id || (typeof d.raw === 'object' && d.raw && d.raw.pmid))) {
+      const pm = String(d.ext_id || d.raw.pmid);
+      link = `<a href="https://pubmed.ncbi.nlm.nih.gov/${esc(pm)}/" target="_blank" rel="noopener" style="color:var(--accent)" onclick="event.stopPropagation()">PMID</a>`;
+    } else if (src === 'patent' && (d.patent_id || d.url)) {
+      const pu = d.url || `https://patents.google.com/patent/US${d.patent_id}`;
+      link = `<a href="${esc(pu)}" target="_blank" rel="noopener" style="color:var(--accent)" onclick="event.stopPropagation()">Patent ↗</a>`;
+    } else if (d.url) {
+      link = `<a href="${esc(d.url)}" target="_blank" rel="noopener" style="color:var(--accent)" onclick="event.stopPropagation()">Open ↗</a>`;
+    }
+    
+    const authors = d.authors ? `<div class="auth">${esc(d.authors)}</div>` : '';
+    const yearText = d.year ? esc(d.year) : '—';
+    const journalText = _journalName(d);
+    const sourceOrJournalCell = hasDetailsCol
+      ? `<td class="c-src" style="font-size:10px; opacity:0.7">${esc(src.toUpperCase())}</td>`
+      : `<td class="c-journal">${journalText ? esc(journalText) : '—'}</td>`;
+
+    const score = (typeof d.score === 'number') ? ` <span class="seq-badge">sim ${d.score.toFixed(2)}</span>` : '';
+    const detailId = `${view}-det-${i}`;
+    const patId = (src === 'patent' || d.patent_id) ? (d.patent_id || d.ext_id || '') : '';
+    const absHtml = d.abstract
+      ? `<div class="det-abs">${esc(d.abstract)}</div>`
+      : (patId
+        ? `<div data-pat-detail-body></div>`
+        : `<div class="det-noabs">No abstract stored. Expand literature via Open ↗; full-text PDF ingestion planned (Phase 2).</div>`);
+    const docId = Number(d.id);
+    const checked = v.selected.has(docId);
+    const spLabel = (d.subproject || '').trim();
+    const spCell = spLabel
+      ? `<span class="subproj-tag" data-tip="${esc(spLabel)}">${esc(spLabel)}</span>`
+      : `<span class="subproj-tag" style="opacity:0.5; color:var(--muted)" data-tip="Main Database">Main</span>`;
+    const detBtn = `<button type="button" class="btn sm" data-detail-btn onclick="event.stopPropagation();showDbDetail('${view}', ${docId})">Details</button>`;
+    const citeBtn = `<button type="button" class="btn sm ghost" onclick="event.stopPropagation();openCiteModal('${view}', ${i})" data-tip="Cite this record (Word / Zotero / EndNote)">Cite</button>`;
+    const actionCell = hasDetailsCol ? `<td class="c-act"><div style="display:flex;gap:4px">${citeBtn}${detBtn}</div></td>` : '';
+    
+    // PDF & AI status
+    const hasPdf = d.has_pdf || d.pdf_path;
+    const isIngested = d.ingested_at;
+    const statusBadges = [
+      hasPdf
+        ? `<span class="record-status-badge fulltext" onclick="event.stopPropagation();openLocalPdf(${docId})" data-tip="Open your uploaded or linked PDF">Full text (PDF)</span>`
+        : oaHref
+          ? `<a class="record-status-badge fulltext" href="${esc(oaHref)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" data-tip="Open available full-text link">Full text available</a>`
+          : `<span class="record-status-badge pending" data-tip="No OA/full-text URL or local PDF for this record">Full text unknown</span>`,
+      hasPdf
+        ? `<span class="record-status-badge pdf" onclick="event.stopPropagation();openLocalPdf(${docId})" data-tip="This record has a server-linked PDF">PDF linked</span>`
+        : `<span class="record-status-badge pending" data-tip="No local PDF linked yet">PDF not linked</span>`,
+      isIngested
+        ? `<span class="record-status-badge learned" data-tip="AI learned this record at ${esc(d.ingested_at)}">AI learned</span>`
+        : `<span class="record-status-badge pending" data-tip="Not yet indexed for AI chat">Not learned</span>`,
+    ].filter(Boolean).join('');
+    const learnBtn = isIngested
+      ? ''
+      : `<button class="btn sm ghost" style="padding:1px 4px;font-size:9px" onclick="event.stopPropagation();ingestDoc('${view}', ${docId})" data-tip="Extract text and embed for AI chat">Learn</button>`;
+    const uploadBtn = `<button class="btn sm ghost" style="padding:1px 4px;font-size:9px" onclick="event.stopPropagation();promptUploadPdf('${view}', ${docId})" data-tip="Upload your own PDF for this record">Upload PDF</button>`;
+    const actionButtons = [learnBtn, uploadBtn].filter(Boolean).join('');
+    const workflowLine = `<div class="record-workflow-line">${statusBadges}<span class="record-actions-inline">${actionButtons}</span></div>`;
+
+    return `<tr class="lib-row${checked ? ' row-selected' : ''}" data-doc-id="${docId}" data-pat-id="${esc(patId)}" onclick="showDbDetail('${view}', ${docId})">
+      <td class="c-sel"><input type="checkbox" ${checked ? 'checked' : ''} onchange="onDbCheck('${view}', ${docId}, this)" onclick="event.stopPropagation()"></td>
+      <td class="c-type">${badge}</td>
+      <td class="c-sub">${spCell}</td>
+      <td>
+        <div class="record-title-line">
+          <div class="ttl">${esc((d.title||'Untitled').slice(0,160))}${score}</div>
+        </div>
+        ${authors}
+        ${workflowLine}
+      </td>
+      <td class="c-year">${yearText}</td>
+      ${sourceOrJournalCell}
+      <td class="c-link">${link}</td>
+      ${actionCell}
+    </tr>
+    <tr class="lib-detail" id="${detailId}" style="display:none"><td colspan="${hasDetailsCol ? 8 : 7}">
+      <div class="lib-detail-head">
+        <div class="det-title">${esc(d.title || 'Untitled')}</div>
+      </div>
+      <div class="lib-detail-body">
+        ${absHtml}
+        <div data-pat-seq-slot></div>
+      </div>
+    </td></tr>`;
+  }).join('');
+  box.innerHTML = head + body + '</tbody></table>';
+  updateDbSelBar(view);
+}
+
+async function loadDb(view) {
+  const v = DBV[view];
+  const box = document.getElementById(v.box);
+  box.innerHTML = '<div class="empty-state"><div class="icon">⏳</div><div>Loading…</div></div>';
+  const qInput = document.getElementById(v.query); if (qInput) qInput.value = '';
+  try {
+    const qs = new URLSearchParams({ username: _username, limit: '300' });
+    if (_projectId) qs.set('project_id', _projectId);
+    const d = await apiFetch('/intelligence/library/list?' + qs.toString());
+    v.rows = d.documents || [];
+    if (d.project_id && !_projectId) applyProjectId(d.project_id);
+    updateLitDbStatus();
+    renderDbTable(view);
+    loadSubprojectFilters(view);
+  } catch(e) {
+    box.innerHTML = `<div class="empty-state"><div class="icon">⚠️</div><div>${esc(e.message)}</div></div>`;
+  }
+}
+
+async function loadAllDb(view) {
+  const v = DBV[view];
+  v.subprojectFilter = 'all';
+  syncDbSubprojectSelect(view);
+  await loadDb(view);
+}
+
+async function searchLibraryDb(view) {
+  const v = DBV[view];
+  const q = document.getElementById(v.query).value.trim();
+  if (q.length < 2) { loadDb(view); return; }
+  const box = document.getElementById(v.box);
+  box.innerHTML = '<div class="empty-state"><div class="icon">⏳</div><div>Searching your library…</div></div>';
+  try {
+    const d = await apiFetch('/intelligence/library/search', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: _username, project_id: _projectId || null, query: q, top_k: 25 }),
+    });
+    v.rows = d.hits || [];
+    renderDbTable(view);
+  } catch(e) {
+    box.innerHTML = `<div class="empty-state"><div class="icon">⚠️</div><div>${esc(e.message)}</div></div>`;
+  }
+}
+
+/* ── Scheduled literature radar ─────────────────────────── */
+let _radarEditId = null;
+
+async function populateRadarSubprojectDatalist() {
+  const list = document.getElementById('radar-subproject-list');
+  if (!list || !ensureProjectId(false)) return;
+  try {
+    const qs = new URLSearchParams();
+    if (_projectId) qs.set('project_id', _projectId);
+    const d = await apiFetch('/intelligence/library/subprojects?' + qs.toString());
+    const labels = d.subprojects || [];
+    list.innerHTML = labels.map(l => `<option value="${esc(l)}">`).join('');
+  } catch (_) { /* optional autocomplete */ }
+}
+
+async function loadRadarStatus() {
+  const el = document.getElementById('radar-smtp-hint');
+  if (!el) return;
+  try {
+    const d = await apiFetch('/intelligence/radar/status');
+    el.textContent = d.smtp_configured
+      ? 'Email OK · weekly/monthly · new papers only'
+      : 'Reports in IDE only (no SMTP) · new papers since last run';
+  } catch (_) {
+    el.textContent = '';
+  }
+}
+
+async function loadRadarWatches() {
+  const box = document.getElementById('radar-watches-area');
+  if (!box || !ensureProjectId(false)) {
+    if (box) box.innerHTML = '<div class="empty-state"><div>Set Project ID to manage radar watches</div></div>';
+    return;
+  }
+  try {
+    const qs = new URLSearchParams({ username: _username });
+    if (_projectId) qs.set('project_id', _projectId);
+    const d = await apiFetch('/intelligence/radar/watches?' + qs.toString());
+    const watches = d.watches || [];
+    if (!watches.length) {
+      box.innerHTML = `<div class="empty-state" style="padding:20px">
+        <div style="font-weight:600">No watches yet</div>
+        <div style="font-size:11px; color:var(--muted); margin-top:4px">Sub-database + keywords → <b>Add Watch</b> → <b>Run</b></div>
+      </div>`;
+      return;
+    }
+    box.innerHTML = watches.map(w => {
+      const due = w.due ? '<span class="badge warn">Due</span>' : '';
+      const en = w.enabled ? '' : ' <span class="badge">Off</span>';
+      const cadence = w.cadence === 'monthly' ? '📅 Monthly' : '📅 Weekly';
+      const lastRun = w.last_run_at ? `Last run: ${w.last_run_at.split('T')[0]}` : 'Never run';
+      const autoSave = w.auto_save_library ? ' · Auto-save' : '';
+      
+      const subName = (w.label || '').trim() || '(no sub-database)';
+      return `
+        <div class="radar-item">
+          <div class="radar-info">
+            <div class="radar-name">${esc(subName)}${en}${due}</div>
+            <div class="radar-meta">
+              <span>🔍 ${esc(w.query)}</span>
+              <span>${cadence}</span>
+              <span>${lastRun}${autoSave}</span>
+            </div>
+            ${w.notify_email ? `<div class="radar-meta" style="margin-top:4px; opacity:0.8">📧 ${esc(w.notify_email)}</div>` : ''}
+          </div>
+          <div class="radar-actions">
+            <button class="btn sm" onclick="editRadarWatch(${w.id})">Edit</button>
+            <button class="btn sm primary" onclick="runRadarWatch(${w.id})">Run</button>
+            <button class="btn sm danger" onclick="deleteRadarWatch(${w.id})">Del</button>
+          </div>
+        </div>`;
+    }).join('');
+  } catch (e) {
+    box.innerHTML = `<div class="empty-state">${esc(e.message)}</div>`;
+  }
+}
+
+function editRadarWatch(id) {
+  _radarEditId = id;
+  const qs = new URLSearchParams({ username: _username });
+  if (_projectId) qs.set('project_id', _projectId);
+  apiFetch('/intelligence/radar/watches?' + qs.toString()).then(d => {
+    const w = (d.watches || []).find(x => x.id === id);
+    if (!w) return;
+    document.getElementById('radar-label').value = w.label || '';
+    document.getElementById('radar-query').value = w.query || '';
+    document.getElementById('radar-cadence').value = w.cadence || 'weekly';
+    document.getElementById('radar-email').value = w.notify_email || '';
+    document.getElementById('radar-auto-save').checked = !!w.auto_save_library;
+    document.getElementById('btn-radar-save').textContent = 'Update #' + id;
+    toast('Editing watch #' + id, 'info');
+  });
+}
+
+async function saveRadarWatch() {
+  if (!ensureProjectId(true)) return;
+  const query = (document.getElementById('radar-query')?.value || '').trim();
+  if (query.length < 2) { toast('Keywords need at least 2 characters', 'warn'); return; }
+  const body = {
+    username: _username,
+    project_id: _projectId,
+    id: _radarEditId,
+    label: (document.getElementById('radar-label')?.value || '').trim(),
+    query,
+    cadence: document.getElementById('radar-cadence')?.value || 'weekly',
+    notify_email: (document.getElementById('radar-email')?.value || '').trim() || null,
+    auto_save_library: !!document.getElementById('radar-auto-save')?.checked,
+    enabled: true,
+  };
+  try {
+    await apiFetch('/intelligence/radar/watches', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    _radarEditId = null;
+    document.getElementById('btn-radar-save').textContent = '+ Add Watch';
+    document.getElementById('radar-query').value = '';
+    toast('Watch saved', 'ok');
+    loadRadarWatches();
+  } catch (e) { toast('Save failed: ' + e.message, 'err'); }
+}
+
+async function deleteRadarWatch(id) {
+  if (!ensureProjectId(true) || !confirm('Delete watch #' + id + '?')) return;
+  try {
+    const qs = new URLSearchParams({ username: _username });
+    if (_projectId) qs.set('project_id', _projectId);
+    await apiFetch('/intelligence/radar/watches/' + id + '?' + qs.toString(), { method: 'DELETE' });
+    toast('Deleted', 'ok');
+    loadRadarWatches();
+  } catch (e) { toast('Delete failed: ' + e.message, 'err'); }
+}
+
+async function runRadarWatch(id, force) {
+  if (!ensureProjectId(true)) return;
+  toast('Running watch #' + id + '…', 'info');
+  try {
+    const d = await apiFetch('/intelligence/radar/run', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: _username, project_id: _projectId, watch_id: id, force: !!force,
+      }),
+    });
+    const em = d.email?.sent ? ' · email sent' : (d.email?.skipped ? '' : (d.email?.reason ? ' · email: ' + d.email.reason : ''));
+    toast(`Done: ${d.new_count || 0} new hits · report #${d.report_id || '—'}${em}`, 'ok', 5000);
+    loadRadarWatches();
+    loadRadarReports();
+    const box = document.getElementById('radar-reports-area');
+    if (box && d.report_md) {
+      box.innerHTML = `<div class="result-card"><div class="rc-meta">Just ran · watch #${id}</div>
+        <div class="ai-output pre-md">${esc(d.report_md)}</div></div>` + box.innerHTML;
+    }
+  } catch (e) { toast('Run failed: ' + e.message, 'err'); }
+}
+
+async function runRadarDue() {
+  if (!ensureProjectId(true)) return;
+  toast('Running due watches…', 'info');
+  try {
+    const d = await apiFetch('/intelligence/radar/run-due', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ project_id: _projectId }),
+    });
+    toast(`Due: ${d.due_count || 0} · ran: ${d.ran || 0}`, 'ok', 4500);
+    loadRadarWatches();
+    loadRadarReports();
+  } catch (e) { toast('Batch run failed: ' + e.message, 'err'); }
+}
+
+async function loadRadarReports() {
+  const box = document.getElementById('radar-reports-area');
+  if (!box || !ensureProjectId(false)) return;
+  try {
+    const qs = new URLSearchParams({ username: _username, limit: '12' });
+    if (_projectId) qs.set('project_id', _projectId);
+    const d = await apiFetch('/intelligence/radar/reports?' + qs.toString());
+    if (!d.reports?.length) {
+      box.innerHTML = `<div class="empty-state" style="padding:20px"><div style="font-weight:600">No reports yet</div><div style="font-size:11px;color:var(--muted);margin-top:4px">Run a watch first.</div></div>`;
+      return;
+    }
+    box.innerHTML = d.reports.map(r => {
+      const date = (r.created_at || '').split('T')[0];
+      return `
+        <div class="report-item" onclick="showReportDetail(${JSON.stringify(r.body_md)})">
+          <div class="report-icon">📄</div>
+          <div class="report-info">
+            <div style="font-weight:600; font-size:12px">${esc(r.query || 'Radar Report')}</div>
+            <div class="report-date">${date} · ${r.body_md ? r.body_md.length : 0} chars</div>
+          </div>
+          <button class="btn ghost sm">View</button>
+        </div>`;
+    }).join('');
+  } catch (e) {
+    box.innerHTML = `<div class="empty-state">${esc(e.message)}</div>`;
+  }
+}
+
+function showReportDetail(md) {
+  switchRail('det');
+  const box = document.getElementById('det-body');
+  box.innerHTML = `
+    <div class="acct-field">
+      <div class="acct-label">Report Content</div>
+      <div class="ai-output pre-md" style="margin-top:8px; white-space:pre-wrap; font-size:12px; line-height:1.6">${esc(md)}</div>
+    </div>
+    <div style="margin-top:12px">
+      <button class="btn sm primary" onclick="copyToClipboard(${JSON.stringify(md)})">Copy to Clipboard</button>
+    </div>
+  `;
+}
+
+function copyToClipboard(text) {
+  navigator.clipboard.writeText(text).then(() => toast('Copied!', 'ok'));
+}
+
+
+/* ── Hotspot digest (manual) ────────────────────────────── */
+async function generateDigest() {
+  const q = document.getElementById('digest-query').value.trim();
+  if (q.length < 2) { toast('Enter a topic first', 'warn'); return; }
+  const btn = document.getElementById('btn-lit-digest');
+  btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>';
+  toast('Generating hotspot digest…', 'info');
+  const box = document.getElementById('digest-results-area');
+  box.innerHTML = '<div class="ai-output">⏳ Scanning recent OpenAlex works and summarising…</div>';
+  try {
+    const d = await apiFetch('/intelligence/digest/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: _username, project_id: _projectId || null,
+        query: q, days: 30, per_page: 12, save: true,
+      }),
+    });
+    box.innerHTML = `<div class="ai-output">${esc(d.digest_md || 'No digest produced.')}</div>`;
+    toast(d.saved_report_id ? `Digest saved (#${d.saved_report_id})` : `Digest ready (${d.count} works)`, 'ok');
+  } catch(e) {
+    box.innerHTML = `<div class="empty-state"><div class="icon">⚠️</div><div>${esc(e.message)}</div></div>`;
+    toast('Digest failed: ' + e.message, 'err');
+  } finally {
+    btn.disabled = false; btn.textContent = '✦ Generate (30d)';
+  }
+}
+
+async function loadDigestReports() { return loadReports('digest', 'digest-results-area'); }
+async function loadFtoReports() { return loadReports('fto', 'fto-results-area'); }
+
+async function loadReports(kind, boxId) {
+  const box = document.getElementById(boxId);
+  if (!box || !ensureProjectId(false)) return;
+  try {
+    const qs = new URLSearchParams({ username: _username, kind, limit: '20' });
+    if (_projectId) qs.set('project_id', _projectId);
+    const d = await apiFetch('/intelligence/reports/list?' + qs.toString());
+    if (!d.reports?.length) {
+      box.innerHTML = `<div class="empty-state" style="padding:20px"><div>No ${kind} reports found</div></div>`;
+      return;
+    }
+    box.innerHTML = d.reports.map(r => {
+      const date = (r.created_at || '').split('T')[0];
+      const icon = kind === 'digest' ? '📈' : '⚖️';
+      return `
+        <div class="report-item" onclick="showReportDetail(${JSON.stringify(r.body_md)})">
+          <div class="report-icon">${icon}</div>
+          <div class="report-info">
+            <div style="font-weight:600; font-size:12px">${esc(r.query || (kind + ' report'))}</div>
+            <div class="report-date">${date} · ${r.body_md ? r.body_md.length : 0} chars</div>
+          </div>
+          <button class="btn ghost sm">View</button>
+        </div>`;
+    }).join('');
+  } catch (e) {
+    box.innerHTML = `<div class="empty-state">${esc(e.message)}</div>`;
+  }
+}
+
+
+/* ── FTO analysis ───────────────────────────────────────── */
+async function generateFto() {
+  const q = document.getElementById('fto-query').value.trim();
+  if (q.length < 2) { toast('Enter a technology first', 'warn'); return; }
+  const btn = document.getElementById('btn-fto');
+  btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>';
+  toast('Drafting FTO note…', 'info');
+  const box = document.getElementById('fto-results-area');
+  box.innerHTML = '<div class="ai-output">⏳ Searching patents and drafting a preliminary FTO note…</div>';
+  try {
+    const d = await apiFetch('/intelligence/fto/draft', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: _username, project_id: _projectId || null, query: q, limit: 10, save: true }),
+    });
+    box.innerHTML = `<div class="ai-output">${esc(d.fto_md || 'No FTO note produced.')}</div>`;
+    toast(d.saved_report_id ? `FTO note saved (#${d.saved_report_id})` : `FTO ready (${d.count} patents)`, 'ok');
+  } catch(e) {
+    box.innerHTML = `<div class="empty-state"><div class="icon">⚠️</div><div>${esc(e.message)}</div></div>`;
+    toast('FTO failed: ' + e.message, 'err');
+  } finally {
+    btn.disabled = false; btn.textContent = '⚖️ Draft FTO';
+  }
+}
+
+/* ── Navigation ─────────────────────────────────────────── */
+function goToWriting() {
+  window.open('https://write.insynbio.com/?entry=writing', '_blank');
+}
+
+/* ── Resizable splitters ────────────────────────────────── */
+function initVSplitter(splitterId, topId, bottomId, storageKey) {
+  const splitter = document.getElementById(splitterId);
+  const top = document.getElementById(topId);
+  if (!splitter || !top) return;
+  let dragging = false, startY = 0, startH = 0;
+  splitter.addEventListener('mousedown', e => {
+    dragging = true;
+    startY = e.clientY;
+    startH = top.getBoundingClientRect().height;
+    splitter.classList.add('is-dragging');
+    e.preventDefault();
+  });
+  window.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    const delta = e.clientY - startY;
+    const newH = Math.max(80, startH + delta);
+    top.style.height = newH + 'px';
+    top.style.flex = `0 0 ${newH}px`;
+    localStorage.setItem(storageKey, newH);
+  });
+  window.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    splitter.classList.remove('is-dragging');
+  });
+  const saved = localStorage.getItem(storageKey);
+  if (saved) {
+    top.style.height = saved + 'px';
+    top.style.flex = `0 0 ${saved}px`;
+  }
+}
+initVSplitter('v-split-1', 'sb-sec-nav', 'sb-sec-filters', 'intel-sb-nav-h');
+initVSplitter('v-split-2', 'sb-sec-filters', 'sb-sec-saved', 'intel-sb-filters-h');
+
+function initSplitter(splitterId, leftId, rightId, storageKey) {
+  const splitter = document.getElementById(splitterId);
+  const left = document.getElementById(leftId);
+  const right = document.getElementById(rightId);
+  if (!splitter || !left) return;
+  let dragging = false, startX = 0, startW = 0;
+  splitter.addEventListener('mousedown', e => {
+    dragging = true;
+    startX = e.clientX;
+    startW = left.getBoundingClientRect().width;
+    splitter.classList.add('is-dragging');
+    e.preventDefault();
+  });
+  window.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    const delta = e.clientX - startX;
+    const newW = Math.max(160, Math.min(startW + delta, window.innerWidth * 0.5));
+    left.style.width = newW + 'px';
+    left.style.flex = `0 0 ${newW}px`;
+    localStorage.setItem(storageKey, newW);
+  });
+  window.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    splitter.classList.remove('is-dragging');
+  });
+  const saved = localStorage.getItem(storageKey);
+  if (saved) {
+    left.style.width = saved + 'px';
+    left.style.flex = `0 0 ${saved}px`;
+  }
+}
+initSplitter('h-split-left', 'sidebar', null, 'intel-sidebar-w');
+const INTEL_RAIL_KEY = 'intel-rail-w-v3';
+
+function railDefaultWidth() {
+  // Match CSS clamp(360px, 34vw, 720px) — never narrower than Lab/Write feel (~300px).
+  return Math.round(Math.min(720, Math.max(360, window.innerWidth * 0.34)));
+}
+
+function applyRailWidth(px) {
+  const rail = document.getElementById('right-rail');
+  if (!rail) return;
+  const w = Math.max(360, Math.min(px, window.innerWidth * 0.62));
+  rail.style.width = w + 'px';
+  rail.style.flex = `0 0 ${w}px`;
+  document.documentElement.style.setProperty('--rail-w', w + 'px');
+  localStorage.setItem(INTEL_RAIL_KEY, String(w));
+}
+
+function resetRailWidth() {
+  localStorage.removeItem(INTEL_RAIL_KEY);
+  applyRailWidth(railDefaultWidth());
+  toast('AI panel width reset', 'info', 2000);
+}
+
+// Right rail splitter — single handler only (do not call initSplitter on #h-split-right).
+(function() {
+  const splitter = document.getElementById('h-split-right');
+  const rail = document.getElementById('right-rail');
+  if (!splitter || !rail) return;
+  let dragging = false, startX = 0, startW = 0;
+  splitter.addEventListener('mousedown', e => {
+    dragging = true;
+    startX = e.clientX;
+    startW = rail.getBoundingClientRect().width;
+    splitter.classList.add('is-dragging');
+    e.preventDefault();
+  });
+  window.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    const delta = startX - e.clientX;
+    const newW = Math.max(360, Math.min(startW + delta, window.innerWidth * 0.62));
+    applyRailWidth(newW);
+  });
+  window.addEventListener('mouseup', () => { if (!dragging) return; dragging = false; splitter.classList.remove('is-dragging'); });
+  localStorage.removeItem('intel-rail-w'); // legacy narrow width from v1.5.x
+  const saved = parseInt(localStorage.getItem(INTEL_RAIL_KEY) || '0', 10);
+  const def = railDefaultWidth();
+  applyRailWidth(saved >= def ? saved : def);
+})();
+
+/* ── Reference import / export / formatting (OSS formats) ─ */
+let _refStyles = [];
+
+function _fillStyleSelects() {
+  const html = _refStyles.map(s =>
+    `<option value="${esc(s.id)}">${esc(s.label)}</option>`
+  ).join('');
+  ['lit-batch-style', 'pat-batch-style'].forEach(id => {
+    const sel = document.getElementById(id);
+    if (sel) {
+      sel.innerHTML = html;
+      if (!sel.value && _refStyles.length) sel.value = _refStyles[0].id;
+      
+      // Make it searchable
+      if (!sel.getAttribute('data-search-bound')) {
+        sel.setAttribute('data-search-bound', '1');
+        sel.addEventListener('mousedown', e => {
+          if (e.detail > 1) return; // ignore double clicks
+          const search = prompt('Search for a journal style (e.g. Nature, Lancet, ACS):');
+          if (search && search.trim()) {
+            const term = search.trim().toLowerCase();
+            const found = _refStyles.find(s => s.label.toLowerCase().includes(term) || s.id.toLowerCase().includes(term));
+            if (found) {
+              sel.value = found.id;
+              sel.dispatchEvent(new Event('change'));
+            } else {
+              toast('No matching style found', 'warn');
+            }
+          }
+        });
+      }
+    }
+  });
+}
+
+async function loadRefStyles() {
+  try {
+    const d = await apiFetch('/intelligence/library/styles');
+    _refStyles = d.styles || [];
+    // Ensure common styles are present
+    const extra = [
+      { id: 'nature', label: 'Nature' },
+      { id: 'science', label: 'Science' },
+      { id: 'cell', label: 'Cell' },
+      { id: 'lancet', label: 'The Lancet' },
+      { id: 'nejm', label: 'NEJM' },
+      { id: 'acs_nano', label: 'ACS Nano' },
+      { id: 'jacs', label: 'JACS' },
+      { id: 'vancouver', label: 'Vancouver' },
+      { id: 'ama', label: 'AMA' },
+      { id: 'apa', label: 'APA 7th' },
+      { id: 'ieee', label: 'IEEE' },
+      { id: 'mhra', label: 'MHRA' },
+      { id: 'oxford', label: 'Oxford' },
+      { id: 'chicago_author_date', label: 'Chicago (Author-Date)' },
+    ];
+    extra.forEach(s => {
+      if (!_refStyles.find(x => x.id === s.id)) _refStyles.push(s);
+    });
+    _fillStyleSelects();
+  } catch (_) {
+    _refStyles = [
+      { id: 'pnas_numbered', label: 'PNAS Numbered' },
+      { id: 'plos_vancouver', label: 'PLOS Vancouver' },
+      { id: 'elife_author_year', label: 'ELife Author Year' },
+      { id: 'nature', label: 'Nature' },
+      { id: 'science', label: 'Science' },
+      { id: 'cell', label: 'Cell' },
+      { id: 'vancouver', label: 'Vancouver' },
+      { id: 'apa', label: 'APA 7th' },
+    ];
+    _fillStyleSelects();
+  }
+}
+
+function _activeSubprojectFilter(view) {
+  const sp = DBV[view].subprojectFilter || 'all';
+  return sp === 'all' ? null : sp;
+}
+
+async function openCiteModal(view, idx) {
+  const d = _dbRowsFor(view)[idx];
+  if (!d) return;
+  const modal = document.getElementById('ref-io-modal');
+  document.getElementById('ref-io-title').textContent = 'Cite Record';
+  
+  const styleId = document.getElementById(`${view}-batch-style`)?.value || 'pnas_numbered';
+  const styleLabel = _refStyles.find(s => s.id === styleId)?.label || styleId;
+
+  // Fetch formatted preview
+  let preview = 'Loading preview...';
+  try {
+    const res = await apiFetch('/intelligence/library/format', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: _username,
+        project_id: _projectId,
+        style_id: styleId,
+        document_ids: [Number(d.id)]
+      }),
+    });
+    preview = res.content || 'No preview available';
+  } catch (e) { preview = 'Error loading preview: ' + e.message; }
+
+  document.getElementById('ref-io-body').innerHTML = `
+    <div style="margin-bottom:16px">
+      <div class="section-head" style="color:var(--muted)">Formatted Preview (${styleLabel})</div>
+      <div class="ref-format-out" id="cite-preview" style="background:var(--bg); padding:12px; border-radius:8px; border:1px solid var(--line); font-size:12px">${esc(preview)}</div>
+      <button class="btn sm ghost" style="margin-top:6px" onclick="copyToClipboard(document.getElementById('cite-preview').textContent)">Copy Text</button>
+    </div>
+    
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px">
+      <div>
+        <div class="section-head">Zotero (Word Plugin)</div>
+        <p style="font-size:11px; color:var(--muted); margin-bottom:8px">Use Zotero's "Import from Clipboard" to add this record, then insert into Word.</p>
+        <button class="btn sm primary" onclick="copyCiteFormat('${view}', ${d.id}, 'csl')">Copy for Zotero</button>
+      </div>
+      <div>
+        <div class="section-head">EndNote / Mendeley</div>
+        <p style="font-size:11px; color:var(--muted); margin-bottom:8px">Copy RIS format to clipboard and paste into EndNote or Mendeley.</p>
+        <button class="btn sm primary" onclick="copyCiteFormat('${view}', ${d.id}, 'ris')">Copy RIS</button>
+      </div>
+    </div>
+
+    <div class="seq-callout" style="margin-top:16px">
+      <b>Word Integration:</b> Install the <a href="https://www.zotero.org/download/" target="_blank" style="color:var(--accent)">Zotero Word Plugin</a>. 
+      Once a record is in your Zotero library, you can use the "Add/Edit Citation" button in Word to search and insert it.
+    </div>
+  `;
+  
+  document.getElementById('ref-io-foot').innerHTML = `
+    <button class="btn sm" onclick="closeRefModal()">Close</button>
+  `;
+  modal.classList.remove('hidden');
+}
+
+async function copyCiteFormat(view, docId, format) {
+  try {
+    const res = await apiFetch('/intelligence/library/export-batch', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: _username,
+        project_id: _projectId,
+        format: format,
+        document_ids: [Number(docId)]
+      }),
+    });
+    const content = res.ris || res.bib || res.csl_json || '';
+    if (copyToClipboard(content)) {
+      toast(`Copied ${format.toUpperCase()} to clipboard`, 'ok');
+    }
+  } catch (e) { toast('Export failed: ' + e.message, 'err'); }
+}
+
+function copyToClipboard(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  document.body.appendChild(ta);
+  ta.select();
+  try {
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    return true;
+  } catch (err) {
+    console.error('Copy failed', err);
+    document.body.removeChild(ta);
+    return false;
+  }
+}
+
+async function saveZoteroSettings() {
+  const key = document.getElementById('acct-zotero-key')?.value.trim();
+  if (!key) { toast('Enter a Zotero API key', 'warn'); return; }
+  try {
+    await apiFetch('/library/settings/update', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: _username,
+        settings: { zotero_api_key: key }
+      }),
+    });
+    toast('Zotero key saved', 'ok');
+  } catch (e) { toast('Save failed: ' + e.message, 'err'); }
+}
+
+async function loadZoteroKey() {
+  try {
+    const res = await apiFetch(`/library/settings?username=${_username}`);
+    if (res.settings?.zotero_api_key) {
+      const el = document.getElementById('acct-zotero-key');
+      if (el) el.value = res.settings.zotero_api_key;
+    }
+  } catch (_) {}
+}
+
+async function syncZotero() {
+  if (!ensureProjectId(true)) return;
+  toast('Syncing with Zotero...', 'info');
+  try {
+    const d = await apiFetch('/library/sync_zotero', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: _username, project_id: _projectId, limit: 100 }),
+    });
+    toast(`Zotero synced: ${d.imported || 0} items`, 'ok');
+    await refreshLibraryViews();
+  } catch (e) { toast('Zotero sync failed: ' + e.message, 'err'); }
+}
+
+/* ── PDF & AI Ingestion ─────────────────────────────────── */
+async function fetchPdf(view, docId) {
+  if (!ensureProjectId(true)) return;
+  toast('Starting PDF fetch...', 'info');
+  try {
+    const res = await apiFetch('/intelligence/library/fetch-pdf', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: _username,
+        project_id: _projectId,
+        document_id: Number(docId)
+      }),
+    });
+    toast(res.message || 'Fetch started', 'ok');
+    // Refresh after a delay to see if it finished
+    setTimeout(() => loadDb(view), 3000);
+  } catch (e) { toast('Fetch failed: ' + e.message, 'err'); }
+}
+
+async function ingestDoc(view, docId) {
+  if (!ensureProjectId(true)) return;
+  toast('AI is learning from this record...', 'info');
+  try {
+    const res = await apiFetch('/intelligence/library/ingest', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: _username,
+        project_id: _projectId,
+        document_id: Number(docId)
+      }),
+    });
+    toast(`AI learned from ${res.chunks} chunk(s)` + (res.full_text ? ' (Full Text)' : ' (Abstract)') + '. Knowledge is now available in the Writing module (M2).', 'ok');
+    await loadDb(view);
+  } catch (e) { toast('Learning failed: ' + e.message, 'err'); }
+}
+
+async function bulkFetchPdf(view) {
+  const ids = _dbSelectedIds(view);
+  if (!ids.length) { toast('Select items first', 'warn'); return; }
+  toast(`Starting PDF fetch for ${ids.length} item(s)…`, 'info');
+  let ok = 0;
+  let failed = 0;
+  for (const id of ids) {
+    try {
+      await apiFetch('/intelligence/library/fetch-pdf', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: _username, project_id: _projectId, document_id: id }),
+      });
+      ok++;
+    } catch(e) {
+      console.warn(`Fetch failed for ${id}:`, e);
+      failed++;
+    }
+  }
+  if (failed > 0) {
+    toast(`Fetch started for ${ok} item(s). ${failed} failed (likely no free URL).`, 'warn');
+  } else {
+    toast(`Fetch started for ${ok} item(s)`, 'ok');
+  }
+  setTimeout(() => loadDb(view), 5000);
+}
+
+async function bulkResolveMissingAbstracts(view) {
+  if (!ensureProjectId(true)) return;
+  const rows = _dbRowsFor(view)
+    .filter(d => LIT_SOURCES.has(d.source || 'manual'))
+    .filter(d => !_hasUsefulAbstract(d) && (d.doi || d.ext_id));
+  if (!rows.length) { toast('No resolvable missing abstracts in current view', 'warn'); return; }
+  const max = 25;
+  const target = rows.slice(0, max);
+  if (rows.length > max && !confirm(`Resolve first ${max} of ${rows.length} missing abstracts?`)) return;
+  toast(`Resolving ${target.length} abstract(s)…`, 'info');
+  let ok = 0;
+  let failed = 0;
+  for (const d of target) {
+    try {
+      const res = await apiFetch('/intelligence/library/resolve-abstract', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          doi: d.doi || null,
+          openalex_id: (d.source === 'openalex' ? d.ext_id : null),
+        }),
+      });
+      if (res.ok && res.abstract) {
+        await apiFetch('/intelligence/library/update-abstract', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            username: _username,
+            project_id: _projectId,
+            doc_id: Number(d.id),
+            abstract: res.abstract,
+          }),
+        });
+        ok++;
+      } else {
+        failed++;
+      }
+    } catch (e) {
+      console.warn(`Abstract resolve failed for ${d.id}:`, e);
+      failed++;
+    }
+  }
+  toast(`Abstracts resolved: ${ok}${failed ? ` · failed: ${failed}` : ''}`, ok ? 'ok' : 'warn', 5000);
+  await loadDb(view);
+}
+
+async function bulkIngestMissing(view) {
+  if (!ensureProjectId(true)) return;
+  const ids = _completenessIds(view, 'unlearned');
+  if (!ids.length) { toast('No learnable unlearned records in current view', 'warn'); return; }
+  DBV[view].selected = new Set(ids);
+  renderDbTable(view);
+  await bulkIngest(view);
+}
+
+async function bulkIngest(view) {
+  const ids = _dbSelectedIds(view);
+  if (!ids.length) { toast('Select items first', 'warn'); return; }
+  toast(`AI is learning from ${ids.length} item(s)…`, 'info');
+  let ok = 0;
+  for (const id of ids) {
+    try {
+      await apiFetch('/intelligence/library/ingest', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: _username, project_id: _projectId, document_id: id }),
+      });
+      ok++;
+    } catch(e) {
+      console.warn(`Ingest failed for ${id}:`, e);
+    }
+  }
+  toast(`AI learned from ${ok} item(s). Knowledge is now available in the Writing module (M2).`, 'ok');
+  await loadDb(view);
+}
+
+function openLocalPdf(docId) {
+  const url = `/intelligence/library/pdf/${docId}?project_id=${encodeURIComponent(_projectId || '')}`;
+  window.open(url, '_blank');
+}
+
+function promptUploadPdf(view, docId) {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.pdf';
+  input.onchange = async e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    await handleUserPdfUpload(view, docId, file);
+  };
+  input.click();
+}
+
+async function handleUserPdfUpload(view, docId, file) {
+  toast('Uploading PDF...', 'info');
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('username', _username);
+  if (_projectId) formData.append('project_id', _projectId);
+  formData.append('document_id', docId);
+
+  try {
+    const res = await fetch('/intelligence/library/upload-pdf', {
+      method: 'POST',
+      body: formData,
+    });
+    const d = await res.json();
+    if (!res.ok) throw new Error(d.detail || 'Upload failed');
+    toast('PDF uploaded and linked', 'ok');
+    await loadDb(view);
+    try {
+      await ingestDoc(view, docId);
+    } catch (_) { /* loadDb already refreshed PDF badge */ }
+  } catch (e) {
+    toast('Upload failed: ' + e.message, 'err');
+  }
+}
+
+async function exportJournalFormat(view, selectedOnly) {
+  if (!ensureProjectId(true)) return;
+  const ids = selectedOnly ? _dbSelectedIds(view) : [];
+  if (selectedOnly && !ids.length) {
+    toast('Select literature rows for journal-format export', 'warn');
+    return;
+  }
+  const styleId = document.getElementById(`${view}-batch-style`)?.value
+    || document.getElementById('lit-ref-style')?.value
+    || 'pnas_numbered';
+  const sp = selectedOnly ? null : _activeSubprojectFilter(view);
+  try {
+    const d = await apiFetch('/intelligence/library/format', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: _username,
+        project_id: _projectId,
+        style_id: styleId,
+        literature_only: view === 'lit',
+        document_ids: ids.length ? ids : null,
+        subproject: sp,
+      }),
+    });
+    const fname = d.filename || `references_${styleId}.txt`;
+    _downloadText(fname, d.content || '', 'text/plain;charset=utf-8');
+    toast(`Journal format downloaded · ${d.count || 0} · ${styleId}`, 'ok', 4500);
+  } catch (e) { toast('Journal format export failed: ' + e.message, 'err'); }
+}
+
+function closeRefModal() {
+  document.getElementById('ref-io-modal').classList.add('hidden');
+}
+
+function _dbSourceFilter(view) {
+  const f = DBV[view]?.filter;
+  if (!f || f === 'all') return view === 'pat' ? 'patent' : null;
+  return f;
+}
+
+function openRefImport(view) {
+  if (!ensureProjectId(true)) return;
+  const modal = document.getElementById('ref-io-modal');
+  document.getElementById('ref-io-title').textContent = 'Import references (RIS / BibTeX)';
+  document.getElementById('ref-io-body').innerHTML = `
+    <p style="font-size:11px;color:var(--muted);margin-bottom:8px">Paste export from Zotero, EndNote, Mendeley, or upload a .ris / .bib file. Records merge into this project library.</p>
+    <div style="display:flex;gap:8px;margin-bottom:8px;align-items:center">
+      <label style="font-size:11px">Format</label>
+      <select id="ref-import-fmt" class="btn sm"><option value="ris">RIS</option><option value="bibtex">BibTeX</option></select>
+      <input type="file" id="ref-import-file" accept=".ris,.bib,.txt" style="font-size:11px">
+    </div>
+    <textarea id="ref-import-ta" class="ref-import-ta" placeholder="TY  - JOUR&#10;TI  - ..."></textarea>`;
+  document.getElementById('ref-io-foot').innerHTML = `
+    <button class="btn sm" onclick="closeRefModal()">Cancel</button>
+    <button class="btn sm primary" onclick="submitRefImport()">Import into library</button>`;
+  modal.classList.remove('hidden');
+  const fin = document.getElementById('ref-import-file');
+  if (fin) fin.onchange = () => {
+    const f = fin.files[0];
+    if (!f) return;
+    const r = new FileReader();
+    r.onload = () => { document.getElementById('ref-import-ta').value = r.result || ''; };
+    r.readAsText(f);
+  };
+}
+
+async function submitRefImport() {
+  const content = (document.getElementById('ref-import-ta')?.value || '').trim();
+  const fmt = document.getElementById('ref-import-fmt')?.value || 'ris';
+  if (content.length < 8) { toast('Paste or upload reference data', 'warn'); return; }
+  try {
+    const d = await apiFetch('/intelligence/library/import', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: _username, project_id: _projectId, format: fmt, content }),
+    });
+    toast(`Import: ${d.saved} new, ${d.updated} updated (${d.parsed} parsed)`, d.errors?.length ? 'warn' : 'ok');
+    closeRefModal();
+    await refreshLibraryViews();
+  } catch (e) { toast('Import failed: ' + e.message, 'err'); }
+}
+
+function _downloadText(filename, text, mime) {
+  const blob = new Blob([text], { type: mime || 'text/plain;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+async function exportLibrary(fmt, view, selectedOnly) {
+  if (!ensureProjectId(true)) return;
+  const ids = selectedOnly ? _dbSelectedIds(view) : [];
+  if (selectedOnly && !ids.length) {
+    toast('Select rows to export', 'warn');
+    return;
+  }
+  try {
+    let d;
+    if (ids.length) {
+      d = await apiFetch('/intelligence/library/export-batch', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: _username,
+          project_id: _projectId,
+          format: fmt,
+          document_ids: ids,
+        }),
+      });
+    } else {
+      const qs = new URLSearchParams({ username: _username, format: fmt });
+      if (_projectId) qs.set('project_id', _projectId);
+      const src = _dbSourceFilter(view);
+      if (src) qs.set('source', src);
+      d = await apiFetch('/intelligence/library/export?' + qs.toString());
+    }
+    _downloadText(d.filename || `library.${fmt}`, d.content || '', 'application/octet-stream');
+    toast(`Exported ${d.count} item(s)${d.batch ? ' (selected)' : ''}`, 'ok');
+  } catch (e) { toast('Export failed: ' + e.message, 'err'); }
+}
+
+async function syncWriteLibrary(direction) {
+  if (!ensureProjectId(true)) return;
+  const dir = direction || 'both';
+  toast(`Syncing with Write library (${dir})…`, 'info');
+  try {
+    const d = await apiFetch('/intelligence/library/sync', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: _username, project_id: _projectId, direction: dir }),
+    });
+    if (dir === 'both') {
+      const tw = d.to_write || {};
+      const fw = d.from_write || {};
+      toast(`Write: +${tw.pushed || 0} / ~${tw.updated || 0} updated · Module4: +${fw.saved || 0} / ~${fw.updated || 0} updated`, 'ok', 6000);
+    } else if (dir === 'to_write') {
+      toast(`Pushed to Write: ${d.pushed || 0} new, ${d.updated || 0} updated`, 'ok');
+    } else {
+      toast(`Pulled from Write: ${d.saved || 0} new, ${d.updated || 0} updated`, 'ok');
+    }
+    await refreshLibraryViews();
+  } catch (e) { toast('Sync failed: ' + e.message, 'err'); }
+}
+
+async function formatBibliography(view, patentsOnly, selectedOnly) {
+  if (!ensureProjectId(true)) return;
+  const styleId = document.getElementById('lit-ref-style')?.value || 'pnas_numbered';
+  const ids = selectedOnly ? _dbSelectedIds(view) : [];
+  if (selectedOnly && !ids.length) {
+    toast('Select rows to format', 'warn');
+    return;
+  }
+  const sp = selectedOnly ? null : _activeSubprojectFilter(view);
+  try {
+    const d = await apiFetch('/intelligence/library/format', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: _username,
+        project_id: _projectId,
+        style_id: styleId,
+        literature_only: !patentsOnly,
+        document_ids: ids.length ? ids : null,
+        subproject: sp,
+      }),
+    });
+    const body = patentsOnly ? (d.patent_references || []).join('\n\n') : (d.content || '');
+    document.getElementById('ref-io-title').textContent = patentsOnly
+      ? 'Formatted patent list'
+      : `Formatted references · ${styleId}`;
+    document.getElementById('ref-io-body').innerHTML = `<pre class="ref-format-out">${esc(body || '(empty)')}</pre>`;
+    document.getElementById('ref-io-foot').innerHTML = `
+      <button class="btn sm" onclick="navigator.clipboard.writeText(document.querySelector('.ref-format-out')?.textContent||'').then(()=>toast('Copied','ok'))">Copy</button>
+      <button class="btn sm" onclick="closeRefModal()">Close</button>`;
+    document.getElementById('ref-io-modal').classList.remove('hidden');
+    toast(`${d.count || 0} reference(s) formatted`, 'ok');
+  } catch (e) { toast('Format failed: ' + e.message, 'err'); }
+}
+
+/* ── Init ────────────────────────────────────────────────── */
+(function initProjectFromUrl() {
+  const urlPid = new URLSearchParams(location.search).get('project');
+  if (urlPid) applyProjectId(urlPid);
+  else if (!_projectId) applyProjectId('demo_m4_lit_pat');
+})();
+setLitSource(_litSource);
+toast('Module 4 — Intelligence & IP Discovery', 'info', 3000);
+document.getElementById('lit-query').focus();
+loadRefStyles();
+loadQaSummary(false);
+loadZoteroKey();
+refreshLibraryViews().then(() => {
+  maybeAutoSeedSamples();
+  loadSubprojectFilters('lit');
+});
+loadDb('lit');
+  refreshPatentConfig();
+
+  // Floating tooltip logic (shared style with M1/M2)
+  document.addEventListener('mouseover', evt => {
+    const t = evt.target.closest && (evt.target.closest('[data-tip]') || evt.target.closest('.has-tip'));
+    if (!t) return;
+    const tip = document.getElementById('intel-tip');
+    if (!tip) return;
+    const content = t.getAttribute('data-tip') || t.title;
+    if (!content) return;
+    if (t.title) { t.setAttribute('data-tip', t.title); t.removeAttribute('title'); }
+    tip.innerHTML = content;
+    tip.style.display = 'block';
+    
+    // Position logic
+    const x = Math.min(evt.clientX + 14, window.innerWidth - 380);
+    const y = Math.min(evt.clientY + 14, window.innerHeight - 200);
+    tip.style.left = x + 'px';
+    tip.style.top = y + 'px';
+  });
+  document.addEventListener('mouseout', evt => {
+    const t = evt.target.closest && (evt.target.closest('[data-tip]') || evt.target.closest('.has-tip'));
+    if (t) {
+      const tip = document.getElementById('intel-tip');
+      if (tip) tip.style.display = 'none';
+    }
+  });
+</script>
+<div id="intel-tip" style="position:fixed;z-index:9999;display:none;max-width:360px;padding:10px 14px;background:#1a2332;color:#e2e8f0;font-size:11px;line-height:1.6;border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,.4);pointer-events:none"></div>
+</body>
+</html>

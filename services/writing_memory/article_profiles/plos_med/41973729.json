@@ -1,0 +1,234 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "41990080",
+    "pmcid": "PMC13086301",
+    "doi": "10.1371/journal.pmed.1005035.r008",
+    "journal": "PLOS Medicine",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "data_first",
+    "dominant_frame": "epidemiology_population",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "question-method-result-interpretation",
+    "claim_chain": [
+      "Gabapentinoid consumption has increased worldwide and its association with drug poisoning is of public health concern",
+      "Risk of drug poisoning was highest in the 90-day period before treatment initiation",
+      "Risk remained elevated throughout gabapentinoid treatment period and did not return to non-treatment reference level",
+      "Multiple factors may explain why treatment initiation and increased risk coincide, including worsening underlying conditions",
+      "Concurrent use with opioids or benzodiazepines further increased the risk",
+      "Close monitoring throughout treatment journey is needed, especially at the initial phase"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "suggest",
+      "indicate",
+      "demonstrate",
+      "highlight",
+      "reflect",
+      "observed",
+      "increased",
+      "elevated",
+      "associated",
+      "warranted"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State main finding with quantitative result",
+      "Offer mechanistic or contextual explanation for the finding",
+      "Support explanation with additional data from the study",
+      "Acknowledge limitations or alternative interpretations",
+      "Connect to broader clinical or policy implications"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Control of time-varying confounders, especially changes in severity of underlying conditions",
+      "Exposure misclassification due to lack of adherence data",
+      "Completeness of drug poisoning capture in secondary care only",
+      "Generalizability to other healthcare systems with different prescribing patterns",
+      "Ability to determine precise clinical reasons for heightened risk before treatment initiation"
+    ],
+    "likely_attacks": [
+      "Unmeasured time-varying confounders such as transient socioeconomic status, life events and use of illicit drugs",
+      "Inability to identify specific clinical indications for gabapentinoid prescriptions",
+      "Potential misclassification of intention in accidental versus intentional drug poisoning",
+      "Missing prescriptions from secondary/tertiary care or illegal sources",
+      "Underestimation of incidence rate due to drug poisoning events not resulting in secondary care attendance"
+    ],
+    "inference_basis": "The discussion explicitly lists six numbered limitations: lack of adherence information leading to exposure misclassification, missing prescriptions from secondary/tertiary care or illegal means, underestimation of incidence due to events not captured in secondary care, potential misclassification of intention, inability to link prescribing records to diagnostic codes, and differences in prescribing patterns across healthcare systems. The text also states 'we cannot rule out the effect of unmeasured time-varying confounders' and 'our study cannot fully account for time-varying changes in the severity of the underlying clinical conditions.' These self-identified limitations form the basis for inferring likely reviewer concerns."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "These findings indicate that gabapentinoid use is associated with a higher risk of all-cause drug poisoning",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "may explain why gabapentinoid treatment initiation and increased risk of drug poisoning coincide",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "The results suggest that gabapentinoid is associated with an increased risk of drug poisoning",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "our data do not allow us to determine the precise clinical reasons",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "demonstrating that concurrent use of these substances is associated with elevated risk",
+        "category": "causal"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "In individuals who were exposed to gabapentinoids and had all-cause drug poisoning",
+      "category": "opening"
+    },
+    {
+      "phrase": "the incidence was highest in the 90-day period before treatment",
+      "category": "claim"
+    },
+    {
+      "phrase": "suggesting that the start of treatment tends to coincide with a period of increased risk",
+      "category": "hedge"
+    },
+    {
+      "phrase": "These findings indicate that",
+      "category": "claim"
+    },
+    {
+      "phrase": "Multiple factors may explain why",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Consistent with this hypothesis",
+      "category": "transition"
+    },
+    {
+      "phrase": "However, our data do not allow us to determine",
+      "category": "limitation"
+    },
+    {
+      "phrase": "further research is warranted",
+      "category": "implication"
+    },
+    {
+      "phrase": "This persistent elevated risk during gabapentinoid treatment is consistent with the findings from previous studies",
+      "category": "claim"
+    },
+    {
+      "phrase": "despite differences in study designs and settings",
+      "category": "hedge"
+    },
+    {
+      "phrase": "suggesting that caution is warranted after initiating gabapentinoids",
+      "category": "implication"
+    },
+    {
+      "phrase": "This phenomenon is further supported by",
+      "category": "transition"
+    },
+    {
+      "phrase": "demonstrating that concurrent use of these substances is associated with elevated risk",
+      "category": "claim"
+    },
+    {
+      "phrase": "Our results also echo previous studies that highlighted",
+      "category": "transition"
+    },
+    {
+      "phrase": "The within-individual design was adopted as",
+      "category": "other"
+    },
+    {
+      "phrase": "The within-individual design allows controlling for all time-invariant confounders",
+      "category": "claim"
+    },
+    {
+      "phrase": "potentially informing healthcare professionals and patients about periods associated with a high risk",
+      "category": "implication"
+    },
+    {
+      "phrase": "Our study may have limitations",
+      "category": "limitation"
+    },
+    {
+      "phrase": "potentially leading to an underestimation of the incidence rate",
+      "category": "limitation"
+    },
+    {
+      "phrase": "we were unable to identify the specific clinical indications",
+      "category": "limitation"
+    },
+    {
+      "phrase": "The observed risks may not be directly generalisable to countries with different model of care",
+      "category": "limitation"
+    },
+    {
+      "phrase": "we cannot rule out the effect of unmeasured time-varying confounders",
+      "category": "limitation"
+    },
+    {
+      "phrase": "although the negative control analysis result does not suggest issues with residual confounders",
+      "category": "hedge"
+    },
+    {
+      "phrase": "further studies are warranted to investigate",
+      "category": "implication"
+    },
+    {
+      "phrase": "The risk of drug poisoning increased in the period immediately preceding gabapentinoid initiation",
+      "category": "claim"
+    },
+    {
+      "phrase": "Although the heightened risk gradually declined as treatment progressed",
+      "category": "hedge"
+    },
+    {
+      "phrase": "The findings highlight the need for close monitoring",
+      "category": "implication"
+    },
+    {
+      "phrase": "Illustration of the study design and timeline for a single hypothetical participant",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "IRR, incidence rate ratio; CI, confidence interval",
+      "category": "figure_legend"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers were included. The profile is based solely on the provided abstract, discussion, and figure legends."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:06:06.642679+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\plos_med\\41973729.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

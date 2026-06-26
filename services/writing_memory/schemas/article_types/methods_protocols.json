@@ -1,0 +1,46 @@
+{
+  "id": "methods_protocols",
+  "display": "Methods / protocols paper",
+  "sections_required": ["abstract", "introduction", "methods", "results", "discussion"],
+  "word_targets_default": {
+    "abstract": 200,
+    "introduction": 400,
+    "methods": 2500,
+    "results": 1500,
+    "discussion": 600
+  },
+  "introduction": {
+    "paragraph_count": 2,
+    "flow": ["limitation_of_existing_methods", "what_this_protocol_adds"]
+  },
+  "methods": {
+    "emphasis": "stepwise reproducibility: reagents with [FILL: catalog], timings, QC checkpoints"
+  },
+  "results": {
+    "subsection_pattern": "benchmarking and validation figures",
+    "per_finding": ["metric vs gold standard", "runtime or cost if applicable"]
+  },
+  "quality_rules": {
+    "_note": "Methods papers demand precision and reproducibility above all — passive voice is appropriate; short numbered-step sentences preferred.",
+    "paragraph_words_max": 100,
+    "voice": {
+      "introduction": "active",
+      "methods": "passive_preferred",
+      "results": "active",
+      "discussion": "active"
+    },
+    "sentence_length_mean_max": 24,
+    "citation_density": {
+      "introduction": "one_per_claim_paragraph",
+      "methods": "cite_where_reagent_or_software_referenced",
+      "results": "figure_anchor_only",
+      "discussion": "minimal_comparison_only"
+    },
+    "preferred_verbs": ["centrifuged","incubated","washed","quantified","validated","compared","performed","collected","recorded","processed"],
+    "forbidden_verbs": ["highlighted","underscored","showcased","unveiled","shed light on"],
+    "triplet_parallel_max_per_section": 1
+  },
+  "exemplar_patterns": {
+    "methods_opener": "All reagents, software versions, and parameter files are listed before procedural steps."
+  }
+}

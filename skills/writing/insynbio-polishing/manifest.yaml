@@ -1,0 +1,57 @@
+version: "1.1.0"
+name: insynbio-polishing
+extends: nature-polishing
+
+always_load:
+  - ../../_shared/core/principles.md
+  - static/core/stance.md
+  - static/core/failure-modes.md
+  - static/core/output-format.md
+  - static/profiles/cns-nature.md
+
+axes:
+  paper_type:
+    detect: research | methods | hypothesis | algorithmic | review
+    values:
+      research: static/fragments/paper_type/research.md
+      methods: static/fragments/paper_type/methods.md
+      hypothesis: static/fragments/paper_type/hypothesis.md
+      algorithmic: static/fragments/paper_type/algorithmic.md
+      review: static/fragments/paper_type/review.md
+    default: review
+    multi: false
+
+  section:
+    detect: abstract | intro | results | discussion | conclusion | title | methods
+    values:
+      abstract: static/fragments/section/abstract.md
+      intro: static/fragments/section/intro.md
+      results: static/fragments/section/results.md
+      discussion: static/fragments/section/discussion.md
+      conclusion: static/fragments/section/conclusion.md
+      title: static/fragments/section/title.md
+      methods: static/fragments/section/methods.md
+    multi: true
+
+  language:
+    detect: en | zh-to-en
+    values:
+      en: static/fragments/language/en.md
+      zh-to-en: static/fragments/language/zh-to-en.md
+    default: en
+    multi: false
+
+  journal:
+    detect: nature | nat-comms | generic
+    values:
+      nature: static/fragments/journal/nature.md
+      nat-comms: static/fragments/journal/nat-comms.md
+      generic: static/fragments/journal/generic.md
+    default: generic
+    multi: false
+
+toolchain:
+  local_scan: scripts/insynbio_polishing.py
+  platform: https://write.insynbio.com
+  journal_context: services/writing_memory/journal_context.py
+

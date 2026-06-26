@@ -1,0 +1,547 @@
+{
+  "schema_version": "0.1.0",
+  "journal": {
+    "key": "pnas",
+    "display": "Proceedings of the National Academy of Sciences",
+    "issn": "1091-6490"
+  },
+  "profile_version": "0.1.0",
+  "source_paper_count": 48,
+  "source_paper_ids": [
+    "42085155",
+    "42085157",
+    "42085160",
+    "42085166",
+    "42090248",
+    "42090249",
+    "42090253",
+    "42090254",
+    "42090255",
+    "42090256",
+    "42090259",
+    "42090260",
+    "42090262",
+    "42090264",
+    "42090265",
+    "42096305",
+    "42096306",
+    "42096309",
+    "42101991",
+    "42101993",
+    "42101996",
+    "42101998",
+    "42101999",
+    "42113975",
+    "42113976",
+    "42113979",
+    "42113989",
+    "42113990",
+    "42113993",
+    "42113994",
+    "42113995",
+    "42113997",
+    "42118830",
+    "42118832",
+    "42118835",
+    "42118837",
+    "42118839",
+    "42118844",
+    "42127100",
+    "42127102",
+    "42127111",
+    "42127112",
+    "42127115",
+    "42133805",
+    "42139290",
+    "42133812",
+    "42139288",
+    "42139290"
+  ],
+  "rhetoric_profile": {
+    "value": {
+      "opening_style": "field_importance",
+      "dominant_frame": "molecular_mechanism",
+      "tone": "cautious_but_assertive",
+      "typical_verbs": [
+        "suggest",
+        "demonstrate",
+        "reveal",
+        "show",
+        "indicate",
+        "support",
+        "observe",
+        "reflect",
+        "identify",
+        "highlight"
+      ],
+      "description": "PNAS articles typically open by establishing field importance or identifying a mechanistic gap. The dominant rhetorical frame emphasizes molecular mechanisms over clinical applications. Tone is cautiously assertive, balancing confidence in findings with appropriate hedging. Authors favor verbs like 'suggest,' 'demonstrate,' and 'reveal' that convey evidence-based conclusions without overstatement."
+    },
+    "evidence_paper_count": 48,
+    "verification_status": "verified"
+  },
+  "logic_profile": {
+    "value": {
+      "main_pattern": "context-finding-mechanism-implication",
+      "alternative_patterns": [
+        "problem-gap-solution-implication",
+        "question-method-result-interpretation"
+      ],
+      "claim_chain_examples": [
+        "PAR levels are elevated in CSF of MCI and AD patients and correlate with amyloid biomarkers",
+        "Oligomeric Aβ1-42 activates PARP1 in neurons causing DNA damage and death",
+        "PARP1 loss enhances Aβ clearance through NEP2 upregulation",
+        "PARP1 ablation rescues cognitive deficits in AD mouse model",
+        "ATP2B1 expression stratifies CD49f+ LT-HSC into functionally distinct subpopulations"
+      ],
+      "description": "The dominant logical structure moves from contextual background to experimental findings to mechanistic explanation to broader implications. A secondary pattern frames a specific problem or gap, presents a solution, and discusses implications. Claims are typically chained through molecular pathways, linking biomarkers to mechanisms to functional outcomes."
+    },
+    "evidence_paper_count": 48,
+    "verification_status": "verified"
+  },
+  "sentence_style_profile": {
+    "value": {
+      "hedge_level": "medium",
+      "claim_strength": "moderate",
+      "avg_length": "long",
+      "characteristic_patterns": [
+        "Multi-clause sentences connecting observations to interpretations",
+        "Frequent use of participial phrases to embed mechanistic detail",
+        "Balanced hedging through modal verbs and epistemic markers",
+        "Explicit acknowledgment of alternative interpretations"
+      ],
+      "description": "Sentences are typically long and structurally complex, embedding multiple layers of information. Hedging is moderate, using phrases like 'suggest that,' 'may indicate,' and 'it is possible that' to temper claims. Claim strength is moderate overall, avoiding both overstatement and excessive tentativeness. Authors favor constructions that link data to interpretation within single sentences."
+    },
+    "evidence_paper_count": 48,
+    "verification_status": "verified"
+  },
+  "paragraph_structure_profile": {
+    "value": {
+      "typical_pattern": [
+        "Opening statement of main finding or importance",
+        "Molecular mechanism explanation with pathway details",
+        "Supporting evidence from multiple experimental approaches",
+        "Acknowledge limitations or alternative interpretations",
+        "Conclude with broader implications and future directions"
+      ],
+      "description": "Paragraphs typically open with a topic sentence stating the main finding or its significance. The body elaborates molecular mechanisms with detailed pathway information, supported by converging lines of evidence. Authors routinely acknowledge caveats or alternative explanations before closing with implications for the field or translational potential."
+    },
+    "evidence_paper_count": 48,
+    "verification_status": "verified"
+  },
+  "claim_strength_profile": {
+    "value": {
+      "overall_strength": "balanced",
+      "strong_claim_contexts": [
+        "Direct experimental observations",
+        "Replicated findings across multiple assays",
+        "Mechanistic validation through genetic perturbation"
+      ],
+      "hedged_claim_contexts": [
+        "Mechanistic speculation beyond direct evidence",
+        "Extrapolation to other systems or species",
+        "Clinical or translational implications",
+        "Interpretation of correlative data"
+      ],
+      "description": "PNAS articles maintain balanced claim strength, asserting direct findings confidently while hedging interpretations and broader implications. Strong claims are reserved for well-supported experimental observations. Speculation about mechanisms, generalization beyond the model system, and translational potential are consistently hedged with appropriate epistemic markers."
+    },
+    "evidence_paper_count": 48,
+    "verification_status": "verified"
+  },
+  "reviewer_attack_patterns": [
+    {
+      "pattern": "Reliance on CB for gold-standard assays rather than testing all sources equally",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42085155"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Lack of direct genetic perturbation to prove ATP2B1 sufficiency for stemness",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42085155"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Use of intrafemoral injection only without testing homing capacity",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42085155"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Autophagy flux not directly measured despite mechanistic claims",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42085155"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Structure obtained with stabilizing agent may not reflect native state",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42085157"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Simplified liposomal system may not capture membrane complexity",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42085157"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Limited to Arabidopsis model system without broader angiosperm validation",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42085160"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Insufficient number of archaeal ATGCs to support strong conclusions",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42085166"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Confounding of adaptive and neutral processes in interpreting correlations",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42085166"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Lack of dynamic imaging data to support claims about contact dynamics",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42090248"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Reliance on snapshots rather than time-resolved measurements",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42090248"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Yeast-based assay may not capture all substrate interactions in human cells",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42090249"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Lack of direct evidence for starch initiation function",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42090253"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Model requires presence of neighboring starch synthases but this localization is not demonstrated",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42090253"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Observational data challenges for causal inference",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42090254"
+      ],
+      "verification_status": "inferred"
+    }
+  ],
+  "phrase_bank": [
+    {
+      "phrase": "Notably",
+      "category": "transition",
+      "frequency": 2,
+      "evidence_paper_ids": [
+        "42096305",
+        "42133805"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Our results show that",
+      "category": "claim",
+      "frequency": 2,
+      "evidence_paper_ids": [
+        "42096305",
+        "42118839"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "In contrast",
+      "category": "transition",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42096305"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "By contrast",
+      "category": "transition",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42090262"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Interestingly",
+      "category": "transition",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42133805"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "We found",
+      "category": "claim",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42133805"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Here, we identify",
+      "category": "opening",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42133805"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Additionally, we show",
+      "category": "claim",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42133805"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "these data support",
+      "category": "claim",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42133805"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "We speculate that",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42118839"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "we anticipate that",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42118839"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "it is unclear whether",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42118839"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "This suggests that",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42101991"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "hold great promise for",
+      "category": "claim",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42101993"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "it may be possible to",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42101993"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "clearly indicating that",
+      "category": "claim",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42113997"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "allows us to envision exploiting",
+      "category": "implication",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42113997"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "This might also provide a route to",
+      "category": "implication",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42113997"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "We propose a model",
+      "category": "claim",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42090253"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "This observation suggests that",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42090253"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "suggesting a role for",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42090253"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "it remains possible that",
+      "category": "limitation",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42090253"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "While our data support",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42090253"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "we find scant evidence",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42090254"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "We therefore conclude",
+      "category": "claim",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42090256"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "we were unable to detect",
+      "category": "limitation",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42133805"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "future studies are necessary",
+      "category": "limitation",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42118837"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Our study has several limitations",
+      "category": "limitation",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42090249"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "remains elusive",
+      "category": "limitation",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42127115"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Our findings emphasize the value of",
+      "category": "implication",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42101999"
+      ],
+      "verification_status": "inferred"
+    }
+  ],
+  "generated_at": "2026-05-25T13:55:38Z"
+}

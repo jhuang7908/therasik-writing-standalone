@@ -1,0 +1,241 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42172063",
+    "pmcid": "PMC13197165",
+    "doi": "10.7554/eLife.107154.3.sa4",
+    "journal": "eLife",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "direct_problem_statement",
+    "dominant_frame": "method_innovation",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "problem-gap-solution-implication",
+    "claim_chain": [
+      "Dense 3D tissues like gastruloids present imaging challenges similar to tumors and spheroids",
+      "Cryosectioning cannot fully substitute for comprehensive 3D in toto analysis",
+      "We developed an integrated pipeline for whole-mount imaging and automated processing",
+      "The pipeline corrects optical artifacts and performs accurate 3D nuclei segmentation",
+      "Multi-scale analysis reveals how local cell deformations relate to tissue-scale organization",
+      "The pipeline is applicable to any large and dense 3D samples including organoids and tumors"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "developed",
+      "demonstrate",
+      "allows",
+      "enables",
+      "improves",
+      "reveals",
+      "requires",
+      "performs",
+      "applicable",
+      "tested",
+      "show",
+      "provide"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State innovation or key contribution",
+      "Explain technical challenge or limitation being addressed",
+      "Describe solution or approach",
+      "Provide technical details or requirements",
+      "Discuss applicability and limitations",
+      "Compare to alternative approaches or prior work"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Validation on diverse biological systems and imaging modalities",
+      "Quantitative benchmarking against ground truth or existing methods",
+      "Clear documentation of applicability conditions and limitations",
+      "Reproducibility through open-source code availability",
+      "Calibration requirements and experimental validation procedures"
+    ],
+    "likely_attacks": [
+      "Lack of quantitative validation on published datasets for spectral filtering and normalization",
+      "Only qualitative demonstration of segmentation performance across systems",
+      "Difficulty accessing ground truth annotations for 3D organoid data",
+      "Requirement for careful inspection when objects are significantly smaller along one dimension",
+      "Systematic errors from segmentation uncertainty along Z-axis due to anisotropy"
+    ],
+    "inference_basis": "The paper explicitly acknowledges validation limitations: 'To our knowledge, the calibration procedures for spectral-filtering and our image-normalization approach have not been performed previously in 3D samples, which is why validation on published datasets was not possible.' It also notes 'Given the difficulty to access ground truth annotations of 3D organoid data and the multiplicity of models in the literature, we only show qualitatively the versatility of our segmentation model.' The authors discuss systematic errors: 'systematic errors, such as segmentation uncertainty along the Z-axis due to strong anisotropy may accumulate and introduce bias.' They also specify conditions requiring careful inspection: 'images with objects that are significantly smaller along one or more dimensions will require careful inspection of the segmentation results.'"
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "A key innovation of our approach is its specific optimization for dense 3D tissues",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "Unlocking deep whole-mount imaging is crucial for researchers working with such dense tissues",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "may impair segmentation",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "making it the method of choice for studying cellular interactions and tissue architecture",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "should segment well after resampling",
+        "category": "hedge"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "We have developed an integrated pipeline for in toto imaging of whole-mount gastruloids and automated image processing",
+      "category": "opening"
+    },
+    {
+      "phrase": "A key innovation of our approach is its specific optimization for dense 3D tissues",
+      "category": "claim"
+    },
+    {
+      "phrase": "Unlocking deep whole-mount imaging is crucial for researchers working with such dense tissues",
+      "category": "claim"
+    },
+    {
+      "phrase": "cryosectioning strategies cannot fully substitute for comprehensive three-dimensional (3D) in toto analysis",
+      "category": "claim"
+    },
+    {
+      "phrase": "whole-mount imaging preserves spatial relationships and tissue integrity",
+      "category": "claim"
+    },
+    {
+      "phrase": "In general, the pipeline is applicable to any tissue, but it is particularly useful for large and dense 3D samples",
+      "category": "claim"
+    },
+    {
+      "phrase": "The processing and analysis pipeline are compatible with any type of 3D imaging data",
+      "category": "claim"
+    },
+    {
+      "phrase": "may impair segmentation",
+      "category": "hedge"
+    },
+    {
+      "phrase": "may bias results if no proper masking is available",
+      "category": "limitation"
+    },
+    {
+      "phrase": "To our knowledge",
+      "category": "hedge"
+    },
+    {
+      "phrase": "validation on published datasets was not possible",
+      "category": "limitation"
+    },
+    {
+      "phrase": "will require careful inspection of the segmentation results",
+      "category": "limitation"
+    },
+    {
+      "phrase": "The results show satisfactory performance on these different datasets and imaging conditions",
+      "category": "claim"
+    },
+    {
+      "phrase": "This quantitative pipeline improves our understanding of gastruloid development",
+      "category": "implication"
+    },
+    {
+      "phrase": "lays the groundwork for a wide range of multi-layered organoids and tumoroids systems",
+      "category": "implication"
+    },
+    {
+      "phrase": "However, cell packing in multilayered organoid tissues hinders both deep imaging and quantification",
+      "category": "transition"
+    },
+    {
+      "phrase": "To address these challenges",
+      "category": "transition"
+    },
+    {
+      "phrase": "In contrast",
+      "category": "transition"
+    },
+    {
+      "phrase": "Additionally",
+      "category": "transition"
+    },
+    {
+      "phrase": "Importantly, this calibration only needs to be performed once for a given set of experimental conditions",
+      "category": "claim"
+    },
+    {
+      "phrase": "Depending on the dispersion in optically dense samples, depth-dependent apparent emission spectra need to be considered",
+      "category": "limitation"
+    },
+    {
+      "phrase": "We demonstrate the pipeline by quantifying 3D spatial patterns of gene expression and nuclear morphology",
+      "category": "claim"
+    },
+    {
+      "phrase": "revealing how local cell deformations and gene co-expression relate to tissue-scale organization",
+      "category": "implication"
+    },
+    {
+      "phrase": "Insets show nuclei in the central 100x100 pixels",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Scale bars are 100 μm",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Given the difficulty to access ground truth annotations of 3D organoid data",
+      "category": "limitation"
+    },
+    {
+      "phrase": "we only show qualitatively the versatility of our segmentation model",
+      "category": "hedge"
+    },
+    {
+      "phrase": "systematic errors, such as segmentation uncertainty along the Z-axis due to strong anisotropy may accumulate and introduce bias",
+      "category": "limitation"
+    },
+    {
+      "phrase": "should segment well after resampling",
+      "category": "hedge"
+    },
+    {
+      "phrase": "the code used from the calibration measurements to the corrected images is available open-source",
+      "category": "other"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, invented numbers, or author names were included. The profile is based solely on the provided discussion, abstract, and figure legends sections."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:00:18.014358+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\elife\\42172063.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

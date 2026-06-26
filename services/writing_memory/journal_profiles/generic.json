@@ -1,0 +1,107 @@
+{
+  "schema_version": "0.1.0",
+  "journal": {
+    "key": "generic",
+    "display": "Generic style"
+  },
+  "profile_version": "0.1.0",
+  "source_paper_count": 1,
+  "source_paper_ids": ["99999999"],
+  "rhetoric_profile": {
+    "value": {
+      "opening_style": "direct_factual",
+      "hedge_level": "moderate",
+      "claim_chain": [
+        "establish background",
+        "describe gap",
+        "present clear data",
+        "conclude without overstating"
+      ]
+    },
+    "evidence_paper_count": 1,
+    "verification_status": "inferred"
+  },
+  "logic_profile": {
+    "value": {
+      "data_to_claim_mapping": "direct_translation",
+      "p_value_emphasis": "required",
+      "limitation_handling": "transparent"
+    },
+    "evidence_paper_count": 1,
+    "verification_status": "inferred"
+  },
+  "sentence_style_profile": {
+    "value": {
+      "complexity": "accessible",
+      "voice_preference": "active_mixed",
+      "typical_pattern": "Subject-verb-object with clear transitional clauses."
+    },
+    "evidence_paper_count": 1,
+    "verification_status": "inferred"
+  },
+  "paragraph_structure_profile": {
+    "value": {
+      "length_distribution": "medium",
+      "topic_sentence_placement": "first",
+      "transition_density": "high"
+    },
+    "evidence_paper_count": 1,
+    "verification_status": "inferred"
+  },
+  "claim_strength_profile": {
+    "value": {
+      "causation_verbs": ["associated with", "linked to", "demonstrates"],
+      "correlation_verbs": ["correlates", "suggests"],
+      "generalization_tolerance": "low"
+    },
+    "evidence_paper_count": 1,
+    "verification_status": "inferred"
+  },
+  "reviewer_attack_patterns": [
+    {
+      "pattern": "Did the authors overstate the clinical or biological significance?",
+      "suggested_fix": "Tone down conclusions to match exactly what the data shows.",
+      "frequency": 1,
+      "evidence_paper_ids": ["99999999"],
+      "verification_status": "inferred"
+    }
+  ],
+  "phrase_bank": [
+    {
+      "phrase": "Here we show that",
+      "category": "claim",
+      "frequency": 1,
+      "evidence_paper_ids": ["99999999"],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "To determine whether",
+      "category": "transition",
+      "frequency": 1,
+      "evidence_paper_ids": ["99999999"],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "These data suggest",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": ["99999999"],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "However, limitations include",
+      "category": "limitation",
+      "frequency": 1,
+      "evidence_paper_ids": ["99999999"],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "In conclusion",
+      "category": "opening",
+      "frequency": 1,
+      "evidence_paper_ids": ["99999999"],
+      "verification_status": "inferred"
+    }
+  ],
+  "generated_at": "2026-05-25T00:00:00Z"
+}

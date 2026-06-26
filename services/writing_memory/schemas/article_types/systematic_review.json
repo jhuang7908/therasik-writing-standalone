@@ -1,0 +1,28 @@
+{
+  "id": "systematic_review",
+  "display": "Systematic review / meta-analysis (PRISMA)",
+  "sections_required": ["abstract", "introduction", "methods", "results", "discussion"],
+  "word_targets_default": { "abstract": 300, "introduction": 700, "methods": 2000, "results": 3500, "discussion": 1500 },
+  "methods": { "emphasis": "search strategy, inclusion criteria, PRISMA flow reference" },
+  "results": { "subsection_pattern": "study_selection → quality → synthesis → meta_if_applicable" },
+  "quality_rules": {
+    "_note": "PRISMA-structured; methods heavy, high citation density throughout.",
+    "paragraph_words_max": 130,
+    "voice": {
+      "introduction": "active",
+      "methods": "passive_dominant",
+      "results": "mixed",
+      "discussion": "active"
+    },
+    "sentence_length_mean_max": 30,
+    "citation_density": {
+      "introduction": "one_per_claim_paragraph",
+      "methods": "protocol_reference_mandatory",
+      "results": "study_reference_per_finding",
+      "discussion": "one_per_claim_paragraph"
+    },
+    "preferred_verbs": ["included","excluded","reported","identified","found","compared","pooled","assessed","evaluated"],
+    "forbidden_verbs": ["highlighted","underscored","showcased","unveiled","shed light on"],
+    "triplet_parallel_max_per_section": 1
+  }
+}

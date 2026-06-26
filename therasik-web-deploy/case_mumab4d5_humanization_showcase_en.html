@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MuMAb4D5 Antibody Humanization Case Study | InSynBio AI</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0d9488;
+            --primary-dark: #0f766e;
+            --text: #111827;
+            --text-muted: #4b5563;
+            --border: #e5e7eb;
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header - InSynBio Branding */
+        .top-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 32px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            gap: 12px;
+        }
+
+        .top-header .brand {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 700;
+            font-size: 26px;
+            letter-spacing: -0.03em;
+            display: flex;
+            align-items: center;
+        }
+
+        .top-header .brand a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .top-header .brand .syn {
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        .top-header .slogan {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-left: 0;
+            padding-left: 14px;
+            border-left: 1px solid var(--border);
+            font-family: 'Inter', sans-serif;
+            white-space: nowrap;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .top-header-nav {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .top-header-nav a {
+            padding: 8px 16px;
+            font-size: 17px;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+
+        .top-header-nav a:hover {
+            color: var(--primary);
+            background: rgba(13, 148, 136, 0.06);
+        }
+
+        body { padding-top: 72px; }
+
+        /* Showcase Layout */
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-alt {
+            background: var(--bg-alt);
+        }
+
+        .hero {
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(13, 148, 136, 0.05), rgba(255, 255, 255, 1));
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 60%;
+            height: 140%;
+            background: url('images/hero-bg.svg') no-repeat center;
+            background-size: contain;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content-grid.reverse {
+            grid-template-columns: 1fr 1fr;
+            direction: rtl;
+        }
+
+        .content-grid.reverse > * {
+            direction: ltr;
+        }
+
+        .label {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+        }
+
+        h1, h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: #0b1220;
+            letter-spacing: -0.02em;
+        }
+
+        h1 span, h2 span {
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        .lead {
+            font-size: 20px;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .bullets {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .bullets li {
+            position: relative;
+            padding-left: 32px;
+            margin-bottom: 16px;
+            font-size: 17px;
+            color: var(--text);
+        }
+
+        .bullets li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 4px;
+            width: 20px;
+            height: 20px;
+            background: rgba(13, 148, 136, 0.1);
+            border-radius: 50%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .visual-panel {
+            background: #fff;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+            overflow: hidden;
+            transition: transform 0.4s ease;
+        }
+
+        .visual-panel:hover {
+            transform: translateY(-8px);
+        }
+
+        .visual-panel img {
+            width: 100%;
+            display: block;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .metric-card {
+            padding: 24px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .metric-card .val {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 38px;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+
+        .metric-card .lab {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .cta-box {
+            background: var(--bg-alt);
+            padding: 64px 32px;
+            border-radius: 32px;
+            text-align: center;
+            margin: 64px 0;
+            border: 1px solid var(--border);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 36px;
+            background: var(--primary);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 18px rgba(13,148,136,0.3);
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: #fff;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: none;
+        }
+
+        /* Fade Animation */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .site-footer {
+            padding: 48px 32px;
+            text-align: center;
+            font-size: 14px;
+            color: #9ca3af;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 900px) {
+            .content-grid, .content-grid.reverse {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+            h1, h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-header">
+        <div class="brand">
+            <a href="InSynBio_Showcase.html">
+                <svg width="34" height="28" viewBox="0 0 32 30" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+                    <path d="M16 2L2 10V22L16 28L30 22V10L16 2Z" fill="#0d9488" fill-opacity="0.1" stroke="#0d9488" stroke-width="2.5" />
+                    <path d="M7 14L16 19L25 14" stroke="#0d9488" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M16 19V28" stroke="#0d9488" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M7 14L7 6C7 6 10 2 16 2C22 2 25 6 25 6L25 14" stroke="#0d9488" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="7" cy="6" r="2" fill="#0f766e" />
+                    <circle cx="25" cy="6" r="2" fill="#0f766e" />
+                    <circle cx="16" cy="18" r="2" fill="white" stroke="#0d9488" stroke-width="1.5" />
+                </svg>
+                <span>InSyn<span class="syn">Bio</span></span>
+            </a>
+            <span class="slogan">AI-Driven Drug R&D</span>
+        </div>
+        <nav class="top-header-nav">
+            <a href="InSynBio_Showcase.html">Home</a>
+            <a href="InSynBio_Antibody_Developability_Assessment_Page.html">Antibody Service</a>
+            <a href="InSynBio_Showcase.html#partners">Partners</a>
+            <a href="index.html#contact" style="background:var(--primary); color:#fff; padding:8px 20px; border-radius:30px">Contact Us</a>
+        </nav>
+    </header>
+
+    <!-- Section: Hero -->
+    <section class="section hero">
+        <div class="container">
+            <div class="content-grid">
+                <div class="text-pane fade-up">
+                    <span class="label">Scientific Showcase</span>
+                    <h1>Re-Engineering <span>MuMAb4D5</span></h1>
+                    <p class="lead">Trastuzumab (Herceptin®) is a benchmark in oncology. This case study demonstrates how InSynBio's AI-driven V4.5 pipeline re-engineered the original murine precursor for superior performance.</p>
+                    <div class="metrics">
+                        <div class="metric-card">
+                            <span class="val">100%</span>
+                            <span class="lab">CDR Retention</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="val">Zero</span>
+                            <span class="lab">Back-Mutations</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual-panel fade-up" style="transition-delay: 0.2s;">
+                    <img src="images/case-humanization-showcase.png" alt="Antibody Model Illustration">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Process -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="content-grid reverse">
+                <div class="text-pane fade-up">
+                    <span class="label">Technological Logic</span>
+                    <h2>Framework Selection <span>Redefined</span></h2>
+                    <p class="lead">Moving beyond simple homology scores, we benchmarked MuMAb4D5 against our proprietary dataset of 1,133 verified clinical sequences.</p>
+                    <ul class="bullets">
+                        <li><strong>IGHV1-46*01:</strong> Selected from high-frequency clinical frameworks (validated in 210 approvals).</li>
+                        <li><strong>100% Vernier Alignment:</strong> Complete match between IGHV1-46 and murine 4D5 at critical Vernier residues.</li>
+                        <li><strong>IGKV4-1*01:</strong> Utilized a Hayne's framework with 97 clinical precedents for maximum safety.</li>
+                    </ul>
+                </div>
+                <div class="visual-panel fade-up" style="transition-delay: 0.2s; padding: 40px; background:#fff">
+                    <div style="background: #0f172a; border-radius: 12px; padding: 24px; color: #34d399; font-family: monospace; font-size: 14px;">
+                        <span style="color: #64748b">// VH Humanized Sequence Fragment</span><br>
+                        QVQLVQSGAEVKKPGASVKVSCKASGYTFTSYNMHWVRQAPGQGLEWMGIINPSGGSTSYAQKFQGRVTMTRDTSTSTVYMELSSLRSEDTAVYYCARDQGSIRGFDYWGQGTLVTVSS
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Validation -->
+    <section class="section">
+        <div class="container">
+            <div class="content-grid">
+                <div class="text-pane fade-up">
+                    <span class="label">Structural Precision</span>
+                    <h2>Fidelity at the <span>Sub-Angstrom</span> Level</h2>
+                    <p class="lead">Using AbodyBuilder2 and geometric constraints, we ensured the humanized variant preserves the exact binding topology of the original.</p>
+                    <ul class="bullets">
+                        <li><strong>VH/VL Angle Deviation:</strong> Only 0.026° (Passing gate: < 3.0°).</li>
+                        <li><strong>CDR RMSD:</strong> All 6 CDR loops maintained Cα-RMSD far below 1.5 Å threshold.</li>
+                        <li><strong>Pure Human Framework:</strong> High humanization levels achieved without any framework compensations.</li>
+                    </ul>
+                </div>
+                <div class="visual-panel fade-up" style="transition-delay: 0.2s; background: linear-gradient(to bottom, #f0fdfa, #fff); padding: 40px; text-align: center;">
+                    <div style="font-size: 64px; font-weight: 700; color: var(--primary); font-family: 'Cormorant Garamond', serif;">Δ 0.026°</div>
+                    <div style="font-size: 16px; color: var(--text-muted); font-weight: 600; margin-top: 8px;">VH/VL RELATIVE ORIENTATION DEVIATION</div>
+                    <div style="margin-top: 24px; display: inline-block; padding: 4px 12px; border: 1px solid var(--primary); border-radius: 4px; color: var(--primary); font-size: 12px; font-weight: 700;">PASSING GATES ✓</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: CTA -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="cta-box fade-up">
+                <h2>Scale Your <span>Antibody Engineering</span></h2>
+                <p class="lead" style="max-width: 600px; margin: 0 auto 32px">InSynBio's expert team leverages clinical-stage data to accelerate your biotherapeutic discovery.</p>
+                <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                    <a href="case_mumab4d5_humanization_en.html" class="btn btn-outline">Full Technical Report</a>
+                    <a href="index.html#contact" class="btn">Talk to an Expert</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <p>© 2026 InSynBio · <a href="https://insynbio.com">insynbio.com</a> · <a href="mailto:contact@insynbio.com">contact@insynbio.com</a></p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

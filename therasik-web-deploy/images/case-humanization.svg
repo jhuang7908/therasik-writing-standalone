@@ -1,0 +1,40 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f0fdfa"/>
+      <stop offset="0.55" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#ccfbf1"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d9488" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#2dd4bf" stop-opacity="0.35"/>
+    </linearGradient>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#0d9488" opacity="0.10"/>
+    </pattern>
+    <filter id="soft">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect width="1200" height="675" fill="url(#dots)"/>
+  <g opacity="0.55" fill="none" stroke="url(#line)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" filter="url(#soft)">
+    <path d="M190 465 C 330 300, 420 560, 560 395 S 820 240, 1010 330"/>
+    <path d="M220 250 C 360 170, 470 340, 640 260 S 880 120, 1020 180" stroke-width="4" opacity="0.8"/>
+  </g>
+  <g fill="#0d9488" opacity="0.25">
+    <circle cx="190" cy="465" r="10"/>
+    <circle cx="560" cy="395" r="12"/>
+    <circle cx="1010" cy="330" r="9"/>
+  </g>
+  <g font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+    <text x="40" y="72" font-size="14" fill="#0f766e" font-weight="800" letter-spacing="2" opacity="0.9">CASE STUDY</text>
+    <text x="40" y="118" font-size="34" fill="#111827" font-weight="750">Humanization</text>
+    <text x="40" y="148" font-size="14" fill="#6b7280" font-weight="500">Drop in: images/case-humanization.webp (or .png)</text>
+  </g>
+</svg>
+

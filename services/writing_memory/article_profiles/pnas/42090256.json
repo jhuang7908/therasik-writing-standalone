@@ -1,0 +1,228 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42090256",
+    "pmcid": "PMC13167803",
+    "doi": "10.1073/pnas.2533440123",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "direct_problem_statement",
+    "dominant_frame": "molecular_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "context-finding-mechanism-implication",
+    "claim_chain": [
+      "Circulatory IgA is regularly assumed to be monomeric, but we observed J-coupled dimers representing up to ~30% of total serum IgA",
+      "Mass spectrometry-based clonal profiling revealed three populations: monomer-only, dimer-only, and co-occurring clones",
+      "Structurally promiscuous clones dominated both individuals' serum IgA1 clonal repertoires",
+      "Co-occurring clones exhibited bimodal SEC distributions diagnostic of structural promiscuity",
+      "Every unique IgA1 clone could potentially be produced as a variable mixture of monomers and J-coupled dimers",
+      "The human immune system apparently prefers producing both forms in parallel"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "observed",
+      "revealed",
+      "demonstrated",
+      "suggest",
+      "support",
+      "indicate",
+      "show",
+      "reflect",
+      "validate",
+      "substantiate",
+      "conclude"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State conventional view or expectation",
+      "Present contrasting observation from current study",
+      "Describe implications or significance",
+      "Acknowledge limitations or caveats",
+      "Propose mechanism or interpretation",
+      "Call for future work or broader validation"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Validation of clonal assignment methodology and stringency of mass/RT matching criteria",
+      "Exclusion of methodological artifacts from SEC coelution or differential PTM",
+      "Direct cellular evidence for co-occurring clone production",
+      "Cohort size and generalizability beyond two donors",
+      "Quantitative accuracy of assembly ratios"
+    ],
+    "likely_attacks": [
+      "Small cohort size limits generalizability of findings",
+      "Protein-centric approach cannot establish cellular origins directly",
+      "Potential for SEC peak overlap causing artificial co-occurring clone assignment",
+      "Differential cleavage efficiency or PTM could skew assembly ratios",
+      "Serum half-life differences may inflate apparent monomer abundance"
+    ],
+    "inference_basis": "The discussion extensively addresses methodological concerns: 'Evaluation of Potential Methodological Biases' section discusses SEC coelution artifacts, differential PTM, unequal Fab release, and detection limits. The authors acknowledge 'A limitation of our protein-centric approach is that the cellular origins of these co-occurring IgA1 antibody clones cannot be directly established.' They note 'These results have potentially significant implications for our understanding of human IgA but are currently limited to the small cohort of this study. Analysis of a larger, more diverse donor cohort is needed.' The paper systematically defends against each potential artifact while acknowledging where uncertainties remain."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "This clearly does not align with the current findings",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "could conceivably be differentially posttranslationally modified",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "provide clear, strong evidence of the structural promiscuity",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "We therefore conclude the observed co-occurring assemblies are more",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "suggest every unique IgA1 clone could potentially be produced",
+        "category": "generalization"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "This clearly does not align with the current findings",
+      "category": "claim"
+    },
+    {
+      "phrase": "We observed hundreds of unique co-occurring clones",
+      "category": "claim"
+    },
+    {
+      "phrase": "these structurally promiscuous clones exhibited the same major features",
+      "category": "claim"
+    },
+    {
+      "phrase": "making up the majority of the total circulatory IgA1 pool",
+      "category": "claim"
+    },
+    {
+      "phrase": "These results have potentially significant implications",
+      "category": "implication"
+    },
+    {
+      "phrase": "but are currently limited to the small cohort of this study",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Analysis of a larger, more diverse donor cohort is needed",
+      "category": "limitation"
+    },
+    {
+      "phrase": "could conceivably be differentially posttranslationally modified",
+      "category": "hedge"
+    },
+    {
+      "phrase": "the probability of two unrelated Fabs meeting these criteria by random chance is negligible",
+      "category": "claim"
+    },
+    {
+      "phrase": "provide clear, strong evidence of the structural promiscuity",
+      "category": "claim"
+    },
+    {
+      "phrase": "Bimodal distributions are diagnostic for co-occurring clones",
+      "category": "claim"
+    },
+    {
+      "phrase": "validating our approach and substantiating the phenomenon",
+      "category": "claim"
+    },
+    {
+      "phrase": "may differ from their true values",
+      "category": "hedge"
+    },
+    {
+      "phrase": "could also result in skewed assembly ratios",
+      "category": "hedge"
+    },
+    {
+      "phrase": "strongly support the validity of our findings",
+      "category": "claim"
+    },
+    {
+      "phrase": "A limitation of our protein-centric approach is that",
+      "category": "limitation"
+    },
+    {
+      "phrase": "the cellular origins of these co-occurring IgA1 antibody clones cannot be directly established",
+      "category": "limitation"
+    },
+    {
+      "phrase": "this is not supported by the current data or other reports",
+      "category": "claim"
+    },
+    {
+      "phrase": "We therefore conclude",
+      "category": "claim"
+    },
+    {
+      "phrase": "Strikingly, a third population of IgA1 clones is present",
+      "category": "opening"
+    },
+    {
+      "phrase": "In fact, these shared, structurally promiscuous IgA1 clones dominated",
+      "category": "claim"
+    },
+    {
+      "phrase": "Our findings suggest every unique IgA1 clone could potentially be produced",
+      "category": "implication"
+    },
+    {
+      "phrase": "but what exactly determines this ratio requires further investigation",
+      "category": "limitation"
+    },
+    {
+      "phrase": "This finding is important, as monomers and J-coupled dimers have distinct characteristics",
+      "category": "implication"
+    },
+    {
+      "phrase": "the human immune system is not merely capable of producing both forms but apparently prefers doing so in parallel",
+      "category": "implication"
+    },
+    {
+      "phrase": "Each stick represents a unique IgA1 Fab clone",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Size exclusion chromatography was used to separate intact monomer and J-coupled dimers",
+      "category": "figure_legend"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers appear in the output. The profile is based solely on the discussion, abstract, and figure legend content provided."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:12:13.596763+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\pnas\\42090256.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

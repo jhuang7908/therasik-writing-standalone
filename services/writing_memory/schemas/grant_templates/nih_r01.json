@@ -1,0 +1,91 @@
+{
+  "id": "nih_r01",
+  "document_class": "grant",
+  "display": "NIH R01 (Research Project Grant)",
+  "agency": "NIH",
+  "mechanism": "R01",
+  "_provenance": "Structure reflects NIH SF424 (R&R) + PHS 398 Research Plan conventions. Page limits and budget caps MUST be verified against the specific NOFO and the current NIH application guide before submission.",
+  "sections_required": [
+    "specific_aims",
+    "significance",
+    "innovation",
+    "approach",
+    "preliminary_data"
+  ],
+  "sections_optional": [
+    "research_strategy_intro",
+    "rigor_and_reproducibility",
+    "timeline_milestones"
+  ],
+  "page_limits": {
+    "specific_aims": {"pages": 1, "verify_against_nofo": true},
+    "research_strategy": {"pages": 12, "verify_against_nofo": true, "_note": "Significance + Innovation + Approach combined."}
+  },
+  "section_intent": {
+    "specific_aims": "One page: long-term goal, central hypothesis, 2-3 testable aims, expected outcomes, impact.",
+    "significance": "Importance of the problem; gap in knowledge; how the project improves scientific knowledge, technical capability, or clinical practice.",
+    "innovation": "What is novel vs current paradigms; refinement/improvement/new application of concepts, methods, instrumentation, or interventions.",
+    "approach": "Per aim: rationale, design, methods, expected outcomes, potential pitfalls and alternatives, rigor of prior research, sex/biological-variable consideration.",
+    "preliminary_data": "Investigator's own data supporting feasibility and the central hypothesis (often embedded in Approach for R01)."
+  },
+  "budget_rules": {
+    "mechanism": "modular_or_detailed",
+    "_modular_note": "Modular budgets are requested in $25,000 modules; a per-year direct-cost ceiling applies. VERIFY current ceiling against NIH guide.",
+    "direct_cost_per_year_cap": "VERIFY_AGAINST_CURRENT_NIH_GUIDE",
+    "salary_cap_applies": true,
+    "salary_cap_value": "VERIFY_AGAINST_CURRENT_NIH_GUIDE",
+    "allowed_categories": [
+      "personnel",
+      "equipment",
+      "travel",
+      "supplies",
+      "consultant",
+      "subaward",
+      "patient_care",
+      "animal_costs",
+      "other_direct",
+      "indirect_facilities_and_admin"
+    ],
+    "indirect": {
+      "base": "MTDC",
+      "rate_pct": "VERIFY_INSTITUTIONAL_NEGOTIATED_RATE",
+      "_note": "F&A uses the institution's federally negotiated rate; equipment and subaward portions above threshold are excluded from MTDC."
+    },
+    "required_justification": ["personnel", "equipment", "consultant", "subaward", "travel"],
+    "ai_policy": "AI MUST NOT invent dollar amounts, caps, or rates. All numeric values come from the applicant. AI may only (a) check completeness, (b) flag suspected cap/category violations as 'verify against NOFO', and (c) draft justification narrative from applicant-provided numbers."
+  },
+  "required_facts": [
+    "long_term_goal",
+    "central_hypothesis",
+    "specific_aims_list",
+    "pi_role_and_effort",
+    "preliminary_data_summary",
+    "human_subjects_yes_no",
+    "vertebrate_animals_yes_no",
+    "budget_period_years",
+    "institutional_indirect_rate"
+  ],
+  "attachment_checklist": [
+    "specific_aims_page",
+    "research_strategy",
+    "bibliography_references_cited",
+    "biosketches_all_key_personnel",
+    "budget_and_justification",
+    "facilities_and_other_resources",
+    "equipment",
+    "human_subjects_section_if_applicable",
+    "vertebrate_animals_section_if_applicable",
+    "data_management_and_sharing_plan",
+    "letters_of_support_if_applicable"
+  ],
+  "review_criteria": {
+    "_source": "NIH peer review scored criteria (verify exact wording/weighting against current NIH review framework).",
+    "criteria": ["Significance", "Innovation", "Approach", "Investigators", "Environment"],
+    "note": "NIH has periodically revised how these are scored/grouped; verify the framework for the target council round."
+  },
+  "reviewer_personas": [
+    {"id": "rigor", "focus": "Scientific rigor: hypothesis testability, design, controls, statistics, feasibility of approach."},
+    {"id": "innovation", "focus": "Novelty vs funded landscape and prior art; differentiation from existing R01/awards."},
+    {"id": "completeness", "focus": "Completeness/compliance: required sections, page limits, budget justification, human/animal/DMS attachments."}
+  ]
+}

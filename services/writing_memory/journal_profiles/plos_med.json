@@ -1,0 +1,546 @@
+{
+  "schema_version": "0.1.0",
+  "journal": {
+    "key": "plos_med",
+    "display": "PLOS Medicine",
+    "issn": "1549-1676"
+  },
+  "profile_version": "0.1.0",
+  "source_paper_count": 50,
+  "source_paper_ids": [
+    "41818305",
+    "41818642",
+    "41843497",
+    "41855197",
+    "41855201",
+    "41802176",
+    "41875076",
+    "41886437",
+    "41886358",
+    "41886442",
+    "41915716",
+    "41915648",
+    "41880347",
+    "41886488",
+    "41926348",
+    "41911315",
+    "41880331",
+    "41931453",
+    "41950262",
+    "41955210",
+    "41931475",
+    "41955175",
+    "41941430",
+    "41941481",
+    "41941512",
+    "41945603",
+    "41990080",
+    "42013174",
+    "41990088",
+    "42024661",
+    "42030293",
+    "41990095",
+    "41973729",
+    "42048284",
+    "42048404",
+    "42048280",
+    "42085474",
+    "42085346",
+    "42085343",
+    "42090627",
+    "42101971",
+    "42102025",
+    "42085482",
+    "42118714",
+    "42090433",
+    "42090430",
+    "42133587",
+    "42139279",
+    "42127138",
+    "42133737"
+  ],
+  "rhetoric_profile": {
+    "value": {
+      "opening_style": "data_first",
+      "dominant_frame": "epidemiology_population",
+      "tone": "cautious_but_assertive",
+      "typical_verbs": [
+        "observed",
+        "found",
+        "suggest",
+        "demonstrated",
+        "identified",
+        "indicate",
+        "estimated",
+        "may",
+        "showed",
+        "associated"
+      ]
+    },
+    "evidence_paper_count": 50,
+    "verification_status": "verified",
+    "notes": "PLOS Medicine articles typically open with data or direct problem statements, frame discussions around epidemiological and population-level findings, and maintain a cautious but assertive tone throughout. The verb palette emphasizes observation and suggestion over strong causal claims."
+  },
+  "logic_profile": {
+    "value": {
+      "main_pattern": "question-method-result-interpretation",
+      "claim_chain": [
+        "Establish population-level problem or gap in evidence",
+        "Present quantitative findings with effect sizes and confidence intervals",
+        "Acknowledge limitations and alternative explanations",
+        "Interpret findings in context of public health or policy implications",
+        "Suggest directions for future research or intervention"
+      ]
+    },
+    "evidence_paper_count": 50,
+    "verification_status": "verified",
+    "notes": "The dominant logical structure follows a question-method-result-interpretation pattern, with nearly equal representation of problem-gap-solution-implication framing. Arguments build from empirical observations to cautious interpretations, consistently acknowledging uncertainty."
+  },
+  "sentence_style_profile": {
+    "value": {
+      "hedge_level": "medium",
+      "avg_length": "long",
+      "claim_strength": "moderate",
+      "characteristic_constructions": [
+        "Conditional phrasing with 'may', 'could', 'suggest'",
+        "Quantitative precision with confidence intervals",
+        "Multi-clause sentences linking findings to context",
+        "Explicit acknowledgment of uncertainty"
+      ]
+    },
+    "evidence_paper_count": 50,
+    "verification_status": "verified",
+    "notes": "Sentences tend toward longer constructions that balance quantitative precision with hedged interpretation. Medium hedging is achieved through modal verbs and cautious framing rather than absolute claims."
+  },
+  "paragraph_structure_profile": {
+    "value": {
+      "typical_pattern": [
+        "State main finding with quantitative result",
+        "Provide mechanistic or contextual explanation",
+        "Acknowledge limitations or alternative explanations",
+        "Connect to broader implications or prior literature"
+      ]
+    },
+    "evidence_paper_count": 50,
+    "verification_status": "verified",
+    "notes": "Paragraphs consistently open with quantitative findings, followed by contextual interpretation and limitation acknowledgment. This structure reflects the journal's emphasis on transparent reporting of uncertainty alongside empirical results."
+  },
+  "claim_strength_profile": {
+    "value": {
+      "overall": "balanced",
+      "characteristic_patterns": [
+        "Findings presented with explicit uncertainty bounds",
+        "Causal language avoided in observational studies",
+        "Limitations discussed alongside strengths",
+        "Policy implications framed as suggestions rather than directives"
+      ]
+    },
+    "evidence_paper_count": 48,
+    "verification_status": "verified",
+    "notes": "96% of articles maintain balanced claim strength, avoiding over-claiming while still asserting the significance of findings. The journal enforces careful distinction between association and causation."
+  },
+  "reviewer_attack_patterns": [
+    {
+      "pattern": "Small development and evaluation set size (40 diseases total)",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41818305"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Risk of LLM hallucinations, particularly for rare diseases with limited data",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41818305"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Epistemic circularity from LLMs being pretrained on biomedical text that encodes existing health priorities",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41818305"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Geographic and socioeconomic biases reflected in literature-based approach",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41818305"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "County-level exposure may introduce misclassification bias",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41818642"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Cannot directly assess co-exposure to extreme weather",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41818642"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Observational design limiting causal inference",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41843497"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Potential residual confounding despite adjustment for multiple covariates",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41843497"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Single baseline measurement may not capture temporal variation in metabolite levels",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41843497"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "National estimates masking subnational heterogeneity",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41855197"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Only neighborhood-level data for income and demographics, not individual-level",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41855201"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Residual confounding due to differences in healthcare seeking behaviors",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41855201"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Self-selection bias in PrEP initiation groups",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41802176"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Residual confounding from unmeasured or poorly measured covariates",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41802176"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Inability to assess psychosocial, behavioural, or biological confounders not captured in registries",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41875076"
+      ],
+      "verification_status": "inferred"
+    }
+  ],
+  "phrase_bank": [
+    {
+      "phrase": "This study has several limitations",
+      "category": "limitation",
+      "frequency": 4,
+      "evidence_paper_ids": [
+        "41941512",
+        "41950262",
+        "41973729",
+        "42133587"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Our study had several limitations",
+      "category": "limitation",
+      "frequency": 2,
+      "evidence_paper_ids": [
+        "41818642",
+        "42048280"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Our study has several limitations",
+      "category": "limitation",
+      "frequency": 2,
+      "evidence_paper_ids": [
+        "41955175",
+        "41955210"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Our results suggest that",
+      "category": "hedge",
+      "frequency": 2,
+      "evidence_paper_ids": [
+        "41880347",
+        "42085474"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Our findings suggest that",
+      "category": "hedge",
+      "frequency": 2,
+      "evidence_paper_ids": [
+        "41886442",
+        "41945603"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "It is possible that",
+      "category": "hedge",
+      "frequency": 2,
+      "evidence_paper_ids": [
+        "41886442",
+        "41911315"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "In contrast",
+      "category": "transition",
+      "frequency": 2,
+      "evidence_paper_ids": [
+        "41941512",
+        "42133737"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "It is plausible that",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41880347"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "One hypothesis is that",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41880347"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "We speculate that",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41875076"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "may be explained by",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42085474"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "This may be because",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42085482"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "could reflect",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42085474"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "might be effective for",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41911315"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "appear to be offset by",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41945603"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "suggesting that",
+      "category": "causal",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41911315"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "supports the idea that",
+      "category": "claim",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41875076"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "is unlikely to explain",
+      "category": "claim",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41880347"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "A major finding was that",
+      "category": "claim",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42133737"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Our results indicate that",
+      "category": "claim",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42085474"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Additionally",
+      "category": "transition",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41941430"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Furthermore",
+      "category": "transition",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41941430"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Specifically",
+      "category": "transition",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41941430"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Consistent with this",
+      "category": "transition",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41945603"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Study limitations include",
+      "category": "limitation",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41855201"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "may not have fully captured",
+      "category": "limitation",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41880347"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "A final study limitation is",
+      "category": "limitation",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41955175"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "In this population-based study",
+      "category": "opening",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41855201"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Using a causal inference framework",
+      "category": "opening",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41886358"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Our findings show that",
+      "category": "opening",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "41931475"
+      ],
+      "verification_status": "inferred"
+    }
+  ],
+  "generated_at": "2026-05-25T13:58:55Z"
+}

@@ -1,0 +1,221 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42170952",
+    "pmcid": "PMC13197162",
+    "doi": "10.7554/eLife.92796.3.sa2",
+    "journal": "eLife",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "direct_problem_statement",
+    "dominant_frame": "method_innovation",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "problem-gap-solution-implication",
+    "claim_chain": [
+      "Isolating sEVs from small plasma volumes is challenging",
+      "Neither SEC nor DGUC alone provides optimal isolation",
+      "SEC-DGUC combination yields higher sEV purity and yield than DGUC-SEC",
+      "Small-tube format DGUC reduces time and improves handling",
+      "High-purity isolates enable sensitive downstream analyses",
+      "Protocol is reproducible and suitable for standardization"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "medium",
+    "preferred_verbs": [
+      "demonstrated",
+      "showed",
+      "found",
+      "yields",
+      "enables",
+      "facilitates",
+      "isolated",
+      "obtained",
+      "recognized",
+      "concluded",
+      "suggested",
+      "matched"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State the challenge or problem",
+      "Describe what was tested or compared",
+      "Present key findings with supporting details",
+      "Explain mechanistic or practical implications",
+      "Acknowledge limitations or caveats where relevant"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Reproducibility and standardization of isolation protocols",
+      "Purity and yield quantification of sEV isolates",
+      "Comparison with existing methods in the literature",
+      "Validation using multiple orthogonal techniques",
+      "Practical applicability to small clinical sample volumes"
+    ],
+    "likely_attacks": [
+      "Potential damage to or aggregation of sEVs during ultracentrifugation",
+      "Low-level HDL contamination remaining after protocol",
+      "Iodixanol interference with certain downstream analyses",
+      "Missing lower density sEVs that require longer centrifugation",
+      "Variations in plasma samples impacting sEV purity",
+      "Need for careful manual handling introducing variability"
+    ],
+    "inference_basis": "The discussion explicitly lists limitations: 'The SEC-DGUC protocol, though efficient, has limitations like potential damage to or aggregation of sEVs and low-level contamination with HDL. The iodixanol reagent introduced in DGUC could potentially interfere with certain downstream analyses, and variations in plasma samples might impact sEV purity. Although the protocol effectively isolates representative sEVs from plasma, some lower density sEVs that require a longer centrifugation time may be missed.' The paper also emphasizes standardization ('It is of particular importance to standardize the sEV isolation protocol') and reproducibility ('highly reproducible'), suggesting these are anticipated reviewer priorities. The comparison with existing methods and validation using FCM and mass spectrometry indicate awareness of the need for rigorous characterization."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "our results clearly demonstrated the quality of the isolated sEVs and the robustness of the SEC-DGUC protocol",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "This is not to claim that the existing protocols are less reliable than the currently developed protocol",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "could potentially interfere with certain downstream analyses",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "yields a higher yield of sEVs",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "This could explain the lower yield of sEVs observed",
+        "category": "causal"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "The task of isolating sEVs from human plasma becomes particularly challenging when dealing with minimal volumes",
+      "category": "opening"
+    },
+    {
+      "phrase": "To tackle this challenge, our study scrutinized two commonly employed methods",
+      "category": "opening"
+    },
+    {
+      "phrase": "We found that neither SEC nor DGUC, when used individually, provide an optimal solution",
+      "category": "claim"
+    },
+    {
+      "phrase": "Interestingly, our results showed that performing SEC prior to DGUC yields a higher yield of sEVs",
+      "category": "claim"
+    },
+    {
+      "phrase": "This could explain the lower yield of sEVs observed in the DGUC-SEC protocol compared to the SEC-DGUC protocol",
+      "category": "transition"
+    },
+    {
+      "phrase": "More importantly, DGUC with the small-tube format is done using a fixed-angle rotor, which has a shorter sedimentation path length",
+      "category": "claim"
+    },
+    {
+      "phrase": "The advantage of high-purity sEV isolates was demonstrated by FCM and mass spectrometry",
+      "category": "claim"
+    },
+    {
+      "phrase": "suggesting a close representation of sEVs isolated from SEC-DGUC to the original plasma",
+      "category": "claim"
+    },
+    {
+      "phrase": "Therefore, we conclude that the sEVs isolates obtained using the small-volume plasma SEC and DGUC protocol are of sufficient yield and purity",
+      "category": "claim"
+    },
+    {
+      "phrase": "The key to the consistency of the SEC-DGUC protocol lies in three aspects",
+      "category": "transition"
+    },
+    {
+      "phrase": "Collectively, our results clearly demonstrated the quality of the isolated sEVs and the robustness of the SEC-DGUC protocol",
+      "category": "claim"
+    },
+    {
+      "phrase": "This is not to claim that the existing protocols are less reliable than the currently developed protocol",
+      "category": "hedge"
+    },
+    {
+      "phrase": "In fact, there is room to further improve the protocol in future efforts",
+      "category": "limitation"
+    },
+    {
+      "phrase": "The SEC-DGUC protocol, though efficient, has limitations like potential damage to or aggregation of sEVs",
+      "category": "limitation"
+    },
+    {
+      "phrase": "could potentially interfere with certain downstream analyses",
+      "category": "hedge"
+    },
+    {
+      "phrase": "variations in plasma samples might impact sEV purity",
+      "category": "limitation"
+    },
+    {
+      "phrase": "some lower density sEVs that require a longer centrifugation time may be missed",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Isolating high-purity sEVs from small volumes of plasma is essential in fully realizing the potential of using sEVs as biomarkers",
+      "category": "implication"
+    },
+    {
+      "phrase": "It is of particular importance to standardize the sEV isolation protocol so that the data obtained by different labs can be compared and integrated with high confidence",
+      "category": "implication"
+    },
+    {
+      "phrase": "The SEC-DGUC protocol presented here is relatively short, easy to carry out, and isolates sEVs with high purity in a repeatable and reliable manner",
+      "category": "claim"
+    },
+    {
+      "phrase": "It potentially offers a pathway for the standardization of sEV isolation from plasma",
+      "category": "implication"
+    },
+    {
+      "phrase": "500 μL of plasma was loaded on a SEC column and particle fractions (PFs) were collected",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Cryo-EM images of PFs obtained from the plasma of five he",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Both protocols successfully isolated high-purity sEVs; however, the SEC-DGUC combination yielded higher sEV protein and RNA content",
+      "category": "claim"
+    },
+    {
+      "phrase": "In conclusion, the optimized SEC-DGUC protocol is efficient, highly reproducible, and well suited for isolating high-purity sEVs from small blood volumes",
+      "category": "claim"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, invented numbers, or author names were introduced. The profile is based solely on the provided abstract, discussion, and figure legend excerpts."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:00:12.165873+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\elife\\42170952.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

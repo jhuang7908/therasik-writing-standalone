@@ -1,0 +1,241 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42085166",
+    "pmcid": "PMC13167734",
+    "doi": "10.1073/pnas.2605871123",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "field_importance",
+    "dominant_frame": "molecular_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "context-finding-mechanism-implication",
+    "claim_chain": [
+      "Previous work suggested either streamlining or diversification as dominant forces in prokaryote genome evolution",
+      "Extended analysis with more genomes and better methods reveals heterogeneity rather than a single pattern",
+      "Bacteria show positive correlation between selection and genome size (diversification)",
+      "Archaea show strong negative correlation (streamlining)",
+      "The dichotomy likely reflects ecological differences: generalists favor diversification, specialists favor streamlining",
+      "Gene flux rate correlates with selection strength, indicating dynamic equilibrium shapes genome evolution",
+      "Genome size evolution reflects a continuum of lineage-specific selective regimes rather than a universal trend"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "showed",
+      "observed",
+      "implies",
+      "suggests",
+      "reveals",
+      "indicates",
+      "reflects",
+      "likely",
+      "appears",
+      "remain to be explored"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State what previous work showed or assumed",
+      "Describe what the current analysis extended or refined",
+      "Present the main observation or finding",
+      "Interpret the finding in terms of underlying mechanisms",
+      "Acknowledge complexity, heterogeneity, or alternative explanations",
+      "Connect to broader evolutionary or ecological principles",
+      "Note what remains to be elucidated"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Mechanistic explanation for the bacteria-archaea dichotomy",
+      "Distinguishing adaptive selection from drift-driven processes",
+      "Validation of phylogenetic dN/dS decomposition method",
+      "Sample size adequacy for archaeal lineages",
+      "Generalizability across prokaryotic diversity"
+    ],
+    "likely_attacks": [
+      "Insufficient number of archaeal ATGCs to support strong conclusions",
+      "Confounding of adaptive and neutral processes in interpreting correlations",
+      "Lack of direct experimental validation of inferred selection regimes",
+      "Oversimplification of generalist vs specialist ecological dichotomy",
+      "Need for more theoretical modeling to support mechanistic claims"
+    ],
+    "inference_basis": "The paper explicitly acknowledges that 'there are many fewer archaeal ATGCs than bacterial ones' and addresses this with resampling analysis. It states that 'the observed correlations between genome size and selective constraints likely arise from both adaptive and population genetics factors,' showing awareness of confounding. The discussion notes that 'the causes of the pronounced dichotomy between the selective regimes of Archaea and Bacteria...remain to be explored and elucidated' and concludes that 'more theoretical work on models of evolution along with empirical analysis...are required to elucidate the underlying mechanisms.' These self-identified limitations and caveats indicate the authors anticipate reviewer concerns about sample size, mechanistic clarity, and the need for additional validation."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "This analysis validated the previous bulk estimates",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "likely arise from both adaptive and population genetics factors",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "the difference between the selection regimes cannot be explained by a sampling error",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "a plausible explanation of the heterogeneity of the evolutionary landscape could be",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "remain to be explored and elucidated",
+        "category": "limitation"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "Previously, the evolution of prokaryote genomes was primarily considered to be driven either by",
+      "category": "opening"
+    },
+    {
+      "phrase": "Here we extended and refined the analysis",
+      "category": "opening"
+    },
+    {
+      "phrase": "This analysis validated the previous bulk estimates but showed that",
+      "category": "transition"
+    },
+    {
+      "phrase": "The most striking observation is the dichotomy between",
+      "category": "claim"
+    },
+    {
+      "phrase": "likely arise from both adaptive and population genetics factors",
+      "category": "hedge"
+    },
+    {
+      "phrase": "in an agreement with a previous report",
+      "category": "claim"
+    },
+    {
+      "phrase": "the difference between the selection regimes cannot be explained by a sampling error",
+      "category": "claim"
+    },
+    {
+      "phrase": "remain to be explored and elucidated",
+      "category": "limitation"
+    },
+    {
+      "phrase": "a plausible explanation of the heterogeneity of the evolutionary landscape could be that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Compatible with the generalists vs specialists perspective",
+      "category": "transition"
+    },
+    {
+      "phrase": "indicating that selection operates on",
+      "category": "causal"
+    },
+    {
+      "phrase": "implies that many accessory genes are functionally relevant",
+      "category": "causal"
+    },
+    {
+      "phrase": "suggesting limits to the adaptive value",
+      "category": "hedge"
+    },
+    {
+      "phrase": "This nonlinearity implies diminishing returns",
+      "category": "causal"
+    },
+    {
+      "phrase": "making unlikely the fixation of acquired genes",
+      "category": "causal"
+    },
+    {
+      "phrase": "This covariation implies that",
+      "category": "causal"
+    },
+    {
+      "phrase": "in accord with the concept of",
+      "category": "claim"
+    },
+    {
+      "phrase": "reflects the selfishness of mobile elements",
+      "category": "causal"
+    },
+    {
+      "phrase": "our present work shows that genome size evolution in prokaryotes reflects",
+      "category": "claim"
+    },
+    {
+      "phrase": "rather than a single, universal evolutionary trend",
+      "category": "generalization"
+    },
+    {
+      "phrase": "highlighting the complexity and adaptability of prokaryotes",
+      "category": "implication"
+    },
+    {
+      "phrase": "However, more theoretical work on models of evolution along with empirical analysis",
+      "category": "limitation"
+    },
+    {
+      "phrase": "are required to elucidate the underlying mechanisms",
+      "category": "limitation"
+    },
+    {
+      "phrase": "reveal a pronounced heterogeneity in the relationship between",
+      "category": "claim"
+    },
+    {
+      "phrase": "These findings indicate that the selection regimes broadly vary",
+      "category": "generalization"
+    },
+    {
+      "phrase": "with their relative contributions depending on",
+      "category": "hedge"
+    },
+    {
+      "phrase": "ATGC-specific constraint represents lineage-level selective pressure estimated from the decomposition of dN/dS values",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Each point corresponds to a",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Left panels show scatterplots illustrating the relationship between",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Right panels display the distributions of",
+      "category": "figure_legend"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers appear in the output. Inferences about reviewer preferences are grounded in the paper's own limitations and caveats."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:35:38.298595+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\pnas\\42085166.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

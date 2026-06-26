@@ -1,0 +1,242 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42126091",
+    "pmcid": "PMC13171100",
+    "doi": "10.7554/eLife.109888.3.sa4",
+    "journal": "eLife",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "conclusion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "field_importance",
+    "dominant_frame": "molecular_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "context-finding-mechanism-implication",
+    "claim_chain": [
+      "Meningeal macrophages are essential for brain homeostasis but their Ca2+ dynamics are unknown",
+      "We developed intravital imaging to characterize macrophage Ca2+ activity at steady state",
+      "Macrophages in different niches exhibit distinct Ca2+ signal properties",
+      "Dural perivascular macrophage Ca2+ activity is coupled to vasomotion",
+      "CSD triggers opposing Ca2+ responses in different macrophage subsets",
+      "CGRP receptor signaling mediates persistent Ca2+ elevations post-CSD",
+      "These findings reveal biological diversity and neuroimmune signaling complexity"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "demonstrate",
+      "reveal",
+      "suggest",
+      "indicate",
+      "exhibit",
+      "provide",
+      "show",
+      "observe",
+      "characterize",
+      "highlight",
+      "support",
+      "reflect"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "Opening statement of what is known or unknown",
+      "Description of what the study demonstrates or reveals",
+      "Mechanistic interpretation or functional implication",
+      "Acknowledgment of limitations or need for further study",
+      "Broader significance or future direction"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Specificity of cell labeling and potential contamination from other cell types",
+      "Temporal resolution and potential missed fast Ca2+ transients",
+      "Generalizability beyond extrasinusoidal macrophages to sinus-associated cells",
+      "Direct versus indirect effects of pharmacological manipulations",
+      "Functional consequences of observed Ca2+ dynamics"
+    ],
+    "likely_attacks": [
+      "PF4-Cre labeling may include non-macrophage cells with low-level PF4 expression",
+      "Downsampling to 1 Hz could miss fast Ca2+ transients or microdomain activity",
+      "Extrasinusoidal macrophages may not represent all dural macrophage populations",
+      "CGRP receptor antagonism does not prove macrophage-specific signaling",
+      "Lack of causal manipulation to test macrophage-vascular coupling"
+    ],
+    "inference_basis": "The limitations paragraph explicitly states: (1) PF4-Cre labeling cannot fully exclude expression in a small subset of meningeal dendritic cells, monocytes, and T cells; (2) downsampling to ~1 Hz could have missed fast Ca2+ transients or microdomain activity; (3) imaging was restricted to extrasinusoidal macrophages which may exhibit distinct properties from sinus-associated cells; (4) pharmacological approach does not establish macrophage-specific CGRP signaling. The discussion also notes that studying whether macrophage Ca2+ signaling regulates dural vasomotion will require an experimental approach that has yet to be developed."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "may reflect functional interactions with the pulsation dynamics of dural vessels",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "we demonstrate a tight temporal association between the diameter fluctuations of the dural vessels and the Ca2+ signal of their associated macrophages",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "suggest that macrophages in discrete perivascular and interstitial non-perivascular meningeal niches exhibit several distinct Ca2+ signal properties",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "could underlie their pro-inflammatory-like morphological change",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "we cannot exclude a mechanically driven macrophage response",
+        "category": "limitation"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "Resident macrophages in the brain meninges are essential for maintaining brain homeostasis",
+      "category": "opening"
+    },
+    {
+      "phrase": "yet remarkably little is known about",
+      "category": "opening"
+    },
+    {
+      "phrase": "Here, using two-photon microscopy in awake behaving",
+      "category": "opening"
+    },
+    {
+      "phrase": "we provide a foundational landscape of",
+      "category": "claim"
+    },
+    {
+      "phrase": "Our data suggest that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "We further demonstrate",
+      "category": "claim"
+    },
+    {
+      "phrase": "The exact link between",
+      "category": "transition"
+    },
+    {
+      "phrase": "remains to be established",
+      "category": "limitation"
+    },
+    {
+      "phrase": "may reflect functional interactions",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Indeed, by combining",
+      "category": "transition"
+    },
+    {
+      "phrase": "we demonstrate a tight temporal association",
+      "category": "claim"
+    },
+    {
+      "phrase": "Direct vascular–macrophage coupling may underlie this interaction",
+      "category": "causal"
+    },
+    {
+      "phrase": "will require an experimental approach that has yet to be developed",
+      "category": "limitation"
+    },
+    {
+      "phrase": "supports recent findings that",
+      "category": "claim"
+    },
+    {
+      "phrase": "We show that the majority of",
+      "category": "claim"
+    },
+    {
+      "phrase": "suggesting that",
+      "category": "causal"
+    },
+    {
+      "phrase": "Further studies will be required to",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Our findings of",
+      "category": "claim"
+    },
+    {
+      "phrase": "suggest a rapid transfer of",
+      "category": "causal"
+    },
+    {
+      "phrase": "Nevertheless, we cannot exclude",
+      "category": "limitation"
+    },
+    {
+      "phrase": "could underlie their",
+      "category": "causal"
+    },
+    {
+      "phrase": "Our findings also support the view that",
+      "category": "claim"
+    },
+    {
+      "phrase": "potentially via the activation of",
+      "category": "causal"
+    },
+    {
+      "phrase": "Whether the relatively small subset",
+      "category": "limitation"
+    },
+    {
+      "phrase": "remains to be elucidated",
+      "category": "limitation"
+    },
+    {
+      "phrase": "There are several limitations to our study",
+      "category": "limitation"
+    },
+    {
+      "phrase": "we cannot fully exclude the possibility that",
+      "category": "limitation"
+    },
+    {
+      "phrase": "thereby expanding our understanding of",
+      "category": "implication"
+    },
+    {
+      "phrase": "may represent a unique homeostatic functional",
+      "category": "implication"
+    },
+    {
+      "phrase": "further highlights the complexity of",
+      "category": "implication"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, invented numbers, or author names were included. Claim strength and hedge examples are directly quoted. Reviewer concerns are inferred exclusively from the paper's own limitations section."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:22:37.538137+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\elife\\42125972.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

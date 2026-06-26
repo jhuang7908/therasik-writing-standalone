@@ -1,0 +1,222 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42166216",
+    "pmcid": "PMC13193715",
+    "doi": "10.7554/eLife.109093.3.sa3",
+    "journal": "eLife",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "data_first",
+    "dominant_frame": "molecular_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "context-finding-mechanism-implication",
+    "claim_chain": [
+      "B cells switch from quiescence to proliferation upon activation",
+      "Proteomic analysis reveals metabolic reprogramming including upregulation of amino acid transporters and cholesterol biosynthetic enzymes",
+      "SLC7A5 is markedly upregulated and its deletion impairs B cell proliferation",
+      "LPS elevates intracellular cholesterol and inhibition of HMG-CoA reductase blocks proliferation",
+      "The effect is mediated by dual requirement for cholesterol metabolism and protein prenylation",
+      "This metabolic rewiring is not unique to TLR4 but observed across multiple activation pathways"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "show",
+      "demonstrate",
+      "reveal",
+      "suggest",
+      "indicate",
+      "upregulate",
+      "require",
+      "inhibit",
+      "promote",
+      "increase"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "Opening statement of finding from proteomic or functional data",
+      "Description of specific proteins or pathways identified",
+      "Comparison to previous literature or related cell types",
+      "Functional validation with genetic or pharmacological perturbation",
+      "Mechanistic interpretation linking observation to broader biological process"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Mechanistic clarity distinguishing cholesterol versus prenylation effects",
+      "Validation across multiple B cell activation pathways",
+      "Comparison to T cell metabolism and identification of B cell-specific features",
+      "Functional consequences beyond proliferation such as antibody production",
+      "In vivo relevance of ex vivo findings"
+    ],
+    "likely_attacks": [
+      "Statins have pleiotropic effects beyond cholesterol that complicate interpretation",
+      "The relative contribution of LDL uptake versus de novo synthesis is context-dependent",
+      "Regulation of SLC7A5 may differ between B and T cells",
+      "Ex vivo stimulation conditions may not reflect physiological activation",
+      "Feedback mechanisms complicate interpretation of inhibitor studies"
+    ],
+    "inference_basis": "The paper explicitly acknowledges that 'Interpretation of the effects of statins on B cells is, however, complex' because statins affect not only cholesterol but also prenylation and ubiquinone pathways. It notes that 'The precise balance between these two mechanisms in B cells may depend on the duration of stimulation and the availability of LDL in the extracellular environment.' The authors compare their findings to T cells multiple times, noting differences such as 'transcriptional profiling following LPS stimulation of B cells has suggested that Slc7a5 mRNA induction in response to LPS can occur in the absence of c-Myc, suggesting that the regulation of SLC7A5 may not be identical between T and B cells.' These passages indicate the authors are defending against concerns about mechanistic complexity, cell-type specificity, and context-dependence."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "SLC7A5 was critical for the survival and expansion of B cells in response to ex vivo stimulation",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "This suggests that B cells, similar to T cells, may rely on different amino acid transporters at different points in their development",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "the effects of statins reported here could be due not only to their effects on cholesterol but also via these other pathways",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "metabolic rewiring, including amino acid uptake and cholesterol metabolism, is an essential feature of B cell activation and proliferation",
+        "category": "generalization"
+      },
+      {
+        "quoted_phrase": "The precise balance between these two mechanisms in B cells may depend on the duration of stimulation and the availability of LDL in the extracellular environment",
+        "category": "limitation"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "In this study, we have used proteomic analysis to highlight the switch in metabolic demand",
+      "category": "opening"
+    },
+    {
+      "phrase": "significantly increase their energy and biosynthetic requirements to sustain growth, proliferation, and class switching",
+      "category": "claim"
+    },
+    {
+      "phrase": "Upon activation, B cells upregulated several amino acid transporters",
+      "category": "claim"
+    },
+    {
+      "phrase": "SLC7A5 was expressed at a higher level and was responsible for the majority of amino acid uptake",
+      "category": "claim"
+    },
+    {
+      "phrase": "Previous work has shown that",
+      "category": "transition"
+    },
+    {
+      "phrase": "While not critical for initial B cell development, SLC7A5 was critical for the survival and expansion of B cells",
+      "category": "claim"
+    },
+    {
+      "phrase": "This suggests that B cells, similar to T cells, may rely on different amino acid transporters at different points in their development",
+      "category": "hedge"
+    },
+    {
+      "phrase": "While the role of c-Myc was not directly addressed in this study",
+      "category": "limitation"
+    },
+    {
+      "phrase": "This is consistent with previous reports showing",
+      "category": "transition"
+    },
+    {
+      "phrase": "suggesting that the regulation of SLC7A5 may not be identical between T and B cells",
+      "category": "hedge"
+    },
+    {
+      "phrase": "As B cells expand and divide, they will require an increase in lipids to generate new membrane",
+      "category": "causal"
+    },
+    {
+      "phrase": "The regulation of cholesterol levels in cells is therefore closely controlled",
+      "category": "generalization"
+    },
+    {
+      "phrase": "We show here that in response to several activating stimuli ex vivo",
+      "category": "claim"
+    },
+    {
+      "phrase": "blocking HMGCR, a key rate-limiting enzyme in the cholesterol biosynthesis pathway, inhibits B cell proliferation",
+      "category": "claim"
+    },
+    {
+      "phrase": "B cells seem to be able to obtain cholesterol by both uptake and biosynthesis",
+      "category": "hedge"
+    },
+    {
+      "phrase": "This suggests that a feedback mechanism exists whereby",
+      "category": "causal"
+    },
+    {
+      "phrase": "The precise balance between these two mechanisms in B cells may depend on the duration of stimulation and the availability of LDL in the extracellular environment",
+      "category": "limitation"
+    },
+    {
+      "phrase": "In line with our results",
+      "category": "transition"
+    },
+    {
+      "phrase": "Interpretation of the effects of statins on B cells is, however, complex",
+      "category": "limitation"
+    },
+    {
+      "phrase": "the effects of statins reported here could be due not only to their effects on cholesterol but also via these other pathways",
+      "category": "causal"
+    },
+    {
+      "phrase": "We therefore investigated whether",
+      "category": "transition"
+    },
+    {
+      "phrase": "Together, these findings reveal that metabolic rewiring, including amino acid uptake and cholesterol metabolism, is an essential feature of B cell activation and proliferation",
+      "category": "implication"
+    },
+    {
+      "phrase": "underscoring its essential role in B cell activation",
+      "category": "claim"
+    },
+    {
+      "phrase": "Notably, this was not unique to TLR4 signalling but is also observed in B cells activated via TLR7, TLR9, CD40, or the B cell receptor",
+      "category": "generalization"
+    },
+    {
+      "phrase": "Cells from the lymph nodes of C57BL6/J mice were stained with Cell Trace Violet (CTV) and stimulated with IL-4",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Volcano plot showing the cellular protein concentration (μM) of proteins involved in glycolysis",
+      "category": "figure_legend"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "The article provides substantial discussion and abstract text with clear mechanistic findings, functional validation, and appropriate hedging around complex interpretations. All extracted phrases are literal substrings from the input. No external references, invented numbers, or author names were included."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:24:00.889581+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\elife\\42166216.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

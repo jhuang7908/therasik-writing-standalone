@@ -1,0 +1,73 @@
+{
+  "protocol_version": "abstract_bmrc_smoke_v1",
+  "generated_at": "2026-05-27T04:05:46.793849+00:00",
+  "target_journal": "frontiers_immunology",
+  "article_type": "research",
+  "section_word_target": 280,
+  "auto_insert_citations": true,
+  "journal_context_preview": {
+    "http": 200,
+    "preview": {
+      "journal_key": "frontiers_immunology",
+      "section_key": "abstract",
+      "article_type": "original_research",
+      "article_type_canonical": "original_research",
+      "block_length": 1290,
+      "block": "<article_type_context type=\"original_research\" display=\"Original research (full IMRAD)\">\n  DEEP_STRUCTURE (content from user data only; patterns are cadence templates):\n    ABSTRACT_FORMAT: mandatory labeled sub-paragraphs: Background / Methods / Results / Conclusion (each on its own line with label + colon).\n    No inline citations in Background or Conclusion.\n    End Conclusion with mechanistic insight: State what the data imply beyond platform utility (e.g. pathway X occurs independently of Y)..\n    Pattern — Background: 2 sentences: disease/gap + why in vivo human innate immunity is needed.\n    Pattern — Methods: 1-2 sentences: model + challenge design only.\n    Pattern — Results: 3-4 sentences: engraftment + pathway readouts + pharmacology with numbers.\n    Pattern — Conclusion: 1-2 sentences: platform competence + one mechanistic insight.\n    ABSTRACT_LENGTH: 200–350 words.\n  SECTION_RULES section=\"abstract\":\n    SECTION_WORD_TARGET_DEFAULT: 280 words (override if user sets section_word_target).\n</article_type_context>\n\nDeep structure rules in <article_type_context> define WHAT to say in each section. Journal rules in <journal_context> define citation format and forbidden phrases. Never copy exemplar sentences verbatim — adapt patterns to user-supplied facts only.",
+      "diagnostics": {
+        "journal_key": "frontiers_immunology",
+        "profile_loaded": false,
+        "spec_loaded": false,
+        "phrase_bank_loaded": false,
+        "sections_with_phrases": [],
+        "reference_style_id": null,
+        "forbidden_phrase_count": 19
+      }
+    }
+  },
+  "plan_paper": {
+    "http": 200,
+    "elapsed_s": 148.4,
+    "suggested_title": null
+  },
+  "abstract": {
+    "http": 200,
+    "elapsed_s": 22.2,
+    "text": "Background: Dysregulated innate immune responses drive the pathogenesis of numerous inflammatory diseases, yet clinical translation of preclinical findings remains challenging due to fundamental differences between mouse and human immunity. NSG-QUAD mice express four human myelopoiesis transgenes (IL-3, GM-CSF, SCF, and CSF1) to enhance engraftment of human innate immune cells, but whether these mice support functional human inflammatory responses in vivo remains unknown.\n\nMethods: We reconstituted NSG-QUAD mice with human CD34+ hematopoietic stem and progenitor cells and assessed human myeloid cell development in peripheral blood, spleen, and liver by flow cytometry at 6 weeks post-transplantation. We challenged humanized mice with lipopolysaccharide via intraperitoneal (15 μg) and intranasal (6 mg/kg) routes and measured NF-κB-dependent cytokines, type I interferon, and inflammasome-derived cytokines in serum, bronchoalveolar lavage fluid, and tissue supernatants. We evaluated NLRP3 inflammasome specificity using the small-molecule inhibitor MCC950 (50 mg/kg).\n\nResults: Humanized NSG-QUAD mice displayed robust engraftment of human monocytes, dendritic cells, and granulocytes across peripheral blood, spleen, and liver. LPS challenge induced human NF-κB-dependent cytokines (TNF-α, IL-6, IL-12p70, IL-8) and type I interferon (IFN-α) in both systemic and mucosal compartments. LPS also triggered NLRP3 inflammasome activation, evidenced by IL-1β and IL-18 secretion. MCC950 specifically abrogated IL-1β and IL-18 production without affecting NF-κB cytokines or monocyte viability, demonstrating that inflammasome activation occurs independently of pyroptotic cell death.\n\nConclusion: Humanized NSG-QUAD mice support functional human NF-κB signaling, type I interferon responses, and NLRP3 inflammasome activation in vivo, providing a translational platform for studying human innate immunity and testing inflammasome-targeted therapeutics.",
+    "approximate_words": 280,
+    "bmrc_check": {
+      "labels_found": [
+        "Background:",
+        "Methods:",
+        "Results:",
+        "Conclusion:"
+      ],
+      "has_background": true,
+      "has_methods": true,
+      "has_results": true,
+      "has_conclusion": true,
+      "bmrc_complete": true
+    },
+    "reference_count": 0,
+    "reference_list": [],
+    "citation_meta": {
+      "citations_inserted": null,
+      "n_citation_audit": 0,
+      "cite_placeholders_left": 0
+    },
+    "fill_markers_used": []
+  },
+  "lint_prose": {
+    "total": 0,
+    "by_rule": {},
+    "by_severity": {},
+    "vale_available": true,
+    "error": null,
+    "findings": [],
+    "_meta": {
+      "service": "vale-cli",
+      "vale_available": true,
+      "generated_at": "2026-05-27T04:05:46.518797+00:00"
+    }
+  }
+}

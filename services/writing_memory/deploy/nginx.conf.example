@@ -1,0 +1,71 @@
+# InSynBio Writing-Memory — nginx reverse proxy + TLS
+# Path:  /etc/nginx/sites-available/writing-memory.conf
+# Enable: ln -s ../sites-available/writing-memory.conf /etc/nginx/sites-enabled/
+# Test:   nginx -t && systemctl reload nginx
+
+# ── Rate limit zones (defined once, used by server blocks below) ────
+limit_req_zone $binary_remote_addr zone=wm_writes:10m rate=10r/m;   # writes
+limit_req_zone $binary_remote_addr zone=wm_reads:10m  rate=60r/m;   # reads
+
+# Redirect HTTP → HTTPS
+server {
+    listen 80;
+    listen [::]:80;
+    server_name write.insynbio.com;
+
+    location /.well-known/acme-challenge/ { root /var/www/letsencrypt; }
+    location / { return 301 https://$host$request_uri; }
+}
+
+# HTTPS reverse proxy → uvicorn on 127.0.0.1:8100
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name write.insynbio.com;
+
+    # ── TLS (Let's Encrypt) ─────────────────────────────────────────
+    ssl_certificate     /etc/letsencrypt/live/write.insynbio.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/write.insynbio.com/privkey.pem;
+    ssl_protocols       TLSv1.2 TLSv1.3;
+    ssl_ciphers         HIGH:!aNULL:!MD5;
+
+    # ── Security headers ────────────────────────────────────────────
+    add_header X-Frame-Options "DENY"                always;
+    add_header X-Content-Type-Options "nosniff"      always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header X-Robots-Tag "noindex, nofollow"      always;
+
+    # ── Upload size limit (5MB images + a buffer) ───────────────────
+    client_max_body_size 8m;
+    client_body_timeout  60s;
+
+    # ── Anti-abuse: rate limit writes and reads separately ──────────
+    location ~ ^/(manuscript_qc_score|manuscript_qc_autofix|fix_sentence|finalize_package|prepare_submission_packages|plan_paper|draft_section|draft_cover_letter|export_docx|rewrite|claim_check|reduce_ai_tone|reviewer_sim|find_references|verify_pmid|insert_citations|describe_figure|parse_table|draft_figure_legend|recommend_journal|similar)$ {
+        limit_req zone=wm_writes burst=5 nodelay;
+        proxy_pass http://127.0.0.1:8100;
+        include /etc/nginx/proxy_params;
+    }
+
+    location ~ ^/(quota|health|journals)$ {
+        limit_req zone=wm_reads burst=20 nodelay;
+        proxy_pass http://127.0.0.1:8100;
+        include /etc/nginx/proxy_params;
+    }
+
+    # Static UI and everything else
+    location / {
+        proxy_pass http://127.0.0.1:8100;
+        include /etc/nginx/proxy_params;
+    }
+
+    # Tighter timeouts for long Claude calls (plan_paper can take 60s)
+    proxy_read_timeout 180s;
+    proxy_send_timeout 30s;
+    proxy_connect_timeout 10s;
+
+    # Pass real client IP to uvicorn (quota middleware reads X-Forwarded-For)
+    proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Real-IP         $remote_addr;
+    proxy_set_header Host              $host;
+}

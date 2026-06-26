@@ -1,0 +1,158 @@
+version: "1.3.0"
+name: insynbio-research-suite
+description: Master router for InSynBio general biomedical research writing. Covers all PubMed-indexed domains (80+ sub-domains across 12 MeSH categories). Literature → manuscript → style calibration → fact gate → material passport → submission → PPT.
+
+always_load:
+  - ../../_shared/core/principles.md
+  - static/core/biomedical-domains.md
+  - static/core/module-index.md
+  - static/core/pipeline-order.md
+
+workflow_axis:
+  name: workflow
+  detect: Map user intent to one primary workflow; combined jobs run modules in pipeline order.
+  values:
+    brainstorm:
+      file: static/workflows/brainstorm.md
+      skill: deep-research
+      external: ~/.cursor/skills/academic-research-skills/deep-research/SKILL.md
+    literature_search:
+      file: static/workflows/literature-search.md
+      skill: insynbio-literature-search
+    manuscript_write:
+      file: static/workflows/manuscript-write.md
+      skill: academic-paper
+      external: ~/.cursor/skills/academic-research-skills/academic-paper/SKILL.md
+    manuscript_polish:
+      file: static/workflows/manuscript-polish.md
+      skill: content-ssot-guard
+    pre_submission_review:
+      file: static/workflows/pre-submission-review.md
+      skill: academic-paper-reviewer
+      external: ~/.cursor/skills/academic-research-skills/academic-paper-reviewer/SKILL.md
+    submission_bundle:
+      file: static/workflows/submission-bundle.md
+      skill: journal-submission-bundle
+    paper2ppt:
+      file: static/workflows/paper2ppt.md
+      skill: insynbio-paper2ppt
+    figure_audit:
+      file: static/workflows/figure-audit.md
+      skill: insynbio-figure
+    paper_reader:
+      file: static/workflows/paper-reader.md
+      skill: insynbio-paper-reader
+    polish_scan:
+      file: static/workflows/polish-scan.md
+      skill: insynbio-polishing
+    patent_outline:
+      file: static/workflows/patent-outline.md
+      skill: insynbio-paper-to-patent
+    rigor_audit:
+      file: static/workflows/rigor-audit.md
+      skill: insynbio-rigor
+    # Step 3 additions (general biomedical, v1.1.0)
+    style_calibration:
+      file: static/workflows/style-calibration.md
+      skill: academic-paper
+      external: ~/.cursor/skills/academic-research-skills/shared/style_calibration_protocol.md
+      cli: scripts/insynbio_style_calibration.py
+    material_passport:
+      file: static/workflows/material-passport.md
+      cli: scripts/insynbio_material_passport.py
+    full_pipeline:
+      file: static/workflows/full-pipeline.md
+    # Step 4: journal format — external APIs, no self-built logic (v1.3.0)
+    journal_format:
+      file: static/workflows/journal-format.md
+      cli: scripts/insynbio_journal_format.py
+      note: "Delegates to CrossRef API + Zotero CSL 9000+ styles + Sherpa RoMEO OA policy"
+
+modules:
+  - id: insynbio-literature-search
+    path: ../insynbio-literature-search/SKILL.md
+    replaces_nature: nature-academic-search
+    advantage: denovo frozen corpus + PubMed scripts + MCP fallback
+  - id: insynbio-citation
+    path: ../insynbio-citation/SKILL.md
+    replaces_nature: nature-citation
+    advantage: corpus library + DOI verify CLI
+  - id: insynbio-polishing
+    path: ../insynbio-polishing/SKILL.md
+    replaces_nature: nature-polishing
+    advantage: journal_context + write.insynbio.com + local AI scan
+  - id: insynbio-figure
+    path: ../insynbio-figure/SKILL.md
+    replaces_nature: nature-figure
+    status: stable
+    advantage: DPI audit + Review B recipes
+  - id: insynbio-paper-reader
+    path: ../insynbio-paper-reader/SKILL.md
+    replaces_nature: nature-reader
+  - id: insynbio-paper-to-patent
+    path: ../insynbio-paper-to-patent/SKILL.md
+    replaces_nature: nature-paper-to-patent
+  - id: insynbio-paper2ppt
+    path: ../insynbio-paper2ppt/SKILL.md
+    replaces_nature: nature-paper2ppt
+    advantage: editable pptx + notes + QA + optional gpt-image2 heroes
+  - id: journal-submission-bundle
+    path: ../journal-submission-bundle/SKILL.md
+    replaces_nature: partial nature-data
+    advantage: ScholarOne profiles + PASS/FAIL audit
+  - id: journal-submission-prep
+    path: ~/.cursor/skills/academic-research-skills/journal-submission-prep/SKILL.md
+    replaces_nature: nature-polishing + PubMed verify
+  - id: content-ssot-guard
+    path: ../content-ssot-guard/SKILL.md
+    advantage: DeepSeek + Kimi gate (no nature equivalent)
+  - id: gpt-image2-ppt
+    path: ../gpt-image2-ppt/SKILL.md
+    mode: optional_visual_layer
+  - id: academic-pipeline
+    path: ~/.cursor/skills/academic-research-skills/academic-pipeline/SKILL.md
+    replaces_nature: academic-research-suite (orchestrator)
+  - id: insynbio-therasik-suite
+    path: ../insynbio-therasik-suite/SKILL.md
+    role: master_router
+
+journal_format:
+  # External APIs only — no self-built format database
+  cli: scripts/insynbio_journal_format.py
+  sources:
+    crossref:
+      url: "https://api.crossref.org/journals/{issn}"
+      note: "30,000+ journals, free, no key, polite pool via mailto"
+    zotero_csl:
+      url: "https://www.zotero.org/styles/{slug}"
+      library_size: "9,000+ journals"
+      note: "Download any CSL on demand; feeds into pandoc and ARS change_style.ps1"
+    sherpa_romeo:
+      url: "https://v2.sherpa.ac.uk/api/publication"
+      key_env: SHERPA_API_KEY
+      note: "Free key at https://v2.sherpa.ac.uk/api/registration"
+  commands:
+    lookup:   "python scripts/insynbio_journal_format.py lookup '<journal name>'"
+    get_csl:  "python scripts/insynbio_journal_format.py get-csl '<journal name>' --out styles/<slug>.csl"
+    oa_policy: "python scripts/insynbio_journal_format.py oa-policy '<journal name>'"
+    full_spec: "python scripts/insynbio_journal_format.py full-spec '<journal name>' --out specs/<slug>.json"
+    issn_lookup: "python scripts/insynbio_journal_format.py lookup --issn <ISSN>"
+  integration:
+    pandoc: "pandoc manuscript.md --bibliography refs.bib --csl <downloaded.csl> --output manuscript.docx"
+    ars_change_style: ".\\change_style.ps1 -CslUrl https://www.zotero.org/styles/<slug>"
+
+domain_detection:
+  # Live MeSH API — not a static list; backed by NLM NCBI E-utilities (free)
+  cli: scripts/insynbio_mesh_lookup.py
+  api: "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
+  key_env: NCBI_API_KEY       # optional — 3 req/s without key, 10 req/s with key
+  commands:
+    verify_keyword: "python scripts/insynbio_mesh_lookup.py query '<term>'"
+    auto_detect:    "python scripts/insynbio_mesh_lookup.py detect --title '<title>'"
+    tree_path:      "python scripts/insynbio_mesh_lookup.py tree-path <MeSH_UID>"
+
+references:
+  on_demand:
+    terminology: ../../_shared/core/terminology-ledger.md
+    review_b_golden: paper/Submission_Package/DENOVO_REVIEW_SUBMISSION_CHECKLIST.md
+    mesh_taxonomy: static/core/biomedical-domains.md

@@ -1,0 +1,228 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42172144",
+    "pmcid": "PMC13197166",
+    "doi": "10.7554/eLife.91713.4.sa3",
+    "journal": "eLife",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "field_importance",
+    "dominant_frame": "molecular_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "context-finding-mechanism-implication",
+    "claim_chain": [
+      "Boundary positioning is essential for proper development",
+      "The apE enhancer is required for correct establishment of the DV boundary",
+      "Both Hth and Grn are required for apE activity",
+      "A single HOX-binding site is essential for wing development",
+      "apE misregulation leads to mirror-image duplications",
+      "Compartment-dependent differences in enhancer regulation exist"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "provide",
+      "demonstrate",
+      "suggest",
+      "propose",
+      "reveal",
+      "show",
+      "indicate",
+      "confirm",
+      "arise",
+      "emerge",
+      "permit",
+      "contribute"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "Opening statement of developmental principle or context",
+      "Description of specific regulatory mechanism or finding",
+      "Integration with prior knowledge or alternative explanations",
+      "Mechanistic interpretation with supporting evidence",
+      "Broader implications or remaining questions"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Mechanistic clarity of enhancer regulation across compartments",
+      "Temporal resolution of transcription factor inputs",
+      "Distinction between direct and indirect regulatory effects",
+      "Validation of CRISPR-based enhancer disruption methods",
+      "Reconciliation with previous clonal analysis results"
+    ],
+    "likely_attacks": [
+      "Posterior bias may arise from tissue architecture rather than enhancer logic",
+      "Cannot exclude indirect effects through JAK-STAT signaling disruption",
+      "Temporal differences in experimental approaches complicate comparison with prior studies",
+      "Redundant sequences may compensate for enhancer deletions",
+      "Lineage tracing needed to confirm EGFR mechanism"
+    ],
+    "inference_basis": "The paper explicitly hedges on compartment-specific regulation stating 'we cannot exclude the possibility that the posterior bias we observe arises not from enhancer logic per se, but from intrinsic differences in tissue architecture'. It proposes alternative mechanisms for JAK-STAT duplications ('ap expression may indirectly disrupt JAK-STAT signaling' vs 'direct regulation of apE via JAK-STAT'). It acknowledges that 'To confirm whether this is the case, the lineage of en-expressing cells should be analyzed'. The discussion of grn discrepancies notes 'temporal difference is likely the main reason for these discrepancies'. The paper also notes that 'redundant sequences located in the vicinity' can compensate for enhancer deletions."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "we provide evidence that both Hth and Grn are required for apE activity",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "This extra layer of apE regulation might explain why",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "we propose that the previously reported phenotypes arise from apE misregulation rather than from loss of en maintenance",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "It is possible that apE is more sensitive to misregulation due to differential transcriptional regulation",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "we demonstrated that the transcription factors Pointed (Pnt), Homothorax (Hth), and Grain (Grn) are required for apE function",
+        "category": "claim"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "Boundary positioning is essential for proper development",
+      "category": "opening"
+    },
+    {
+      "phrase": "Mispositioning of developmental boundaries leads to severe developmental defects",
+      "category": "claim"
+    },
+    {
+      "phrase": "we provide evidence that both Hth and Grn are required for apE activity",
+      "category": "claim"
+    },
+    {
+      "phrase": "This extra layer of apE regulation might explain why",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Together, these patterns suggest a more complex regulatory landscape",
+      "category": "transition"
+    },
+    {
+      "phrase": "we propose that the previously reported phenotypes arise from",
+      "category": "claim"
+    },
+    {
+      "phrase": "To confirm whether this is the case",
+      "category": "limitation"
+    },
+    {
+      "phrase": "It is possible that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "we cannot exclude the possibility that",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Our data suggests that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "The apparent difference between these results is likely to emerge from",
+      "category": "hedge"
+    },
+    {
+      "phrase": "suggesting that Grn is only required during very early stages",
+      "category": "claim"
+    },
+    {
+      "phrase": "our results provide a comprehensive molecular basis",
+      "category": "claim"
+    },
+    {
+      "phrase": "shedding light on how compartmental boundaries are set up during development",
+      "category": "implication"
+    },
+    {
+      "phrase": "The asymmetric effect of apE perturbation on the anterior and posterior compartments suggests that",
+      "category": "claim"
+    },
+    {
+      "phrase": "Compartment-dependent differences in enhancer regulation have also been documented",
+      "category": "transition"
+    },
+    {
+      "phrase": "Nevertheless, we cannot exclude the possibility",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Alternatively",
+      "category": "transition"
+    },
+    {
+      "phrase": "Interestingly",
+      "category": "transition"
+    },
+    {
+      "phrase": "Remarkably",
+      "category": "transition"
+    },
+    {
+      "phrase": "Along these lines",
+      "category": "transition"
+    },
+    {
+      "phrase": "Given that",
+      "category": "transition"
+    },
+    {
+      "phrase": "Thus",
+      "category": "transition"
+    },
+    {
+      "phrase": "Illustration of ap upstream intergenic region",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Schematic representation of CRISPR-mediated targeting",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Wing discs of C2-mKate2 (red) and C5-eGFP (green) animals dissected at the indicated stages",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "These fragments were tested with two in vivo assays",
+      "category": "figure_legend"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers were included. Claim strength examples are direct quotes. Reviewer preferences are inferred solely from the paper's own hedges and limitations statements."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:00:34.536212+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\elife\\42172064.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

@@ -1,0 +1,43 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f0fdfa"/>
+      <stop offset="0.55" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#ccfbf1"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d9488" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#2dd4bf" stop-opacity="0.35"/>
+    </linearGradient>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#0d9488" opacity="0.10"/>
+    </pattern>
+    <filter id="soft">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect width="1200" height="675" fill="url(#dots)"/>
+
+  <!-- Abstract CAR-like loop + membrane hint -->
+  <g opacity="0.55" fill="none" stroke="url(#line)" stroke-linecap="round" stroke-linejoin="round" filter="url(#soft)">
+    <path d="M260 170 C 200 240, 200 355, 280 410 C 360 465, 470 440, 520 360 C 565 285, 520 195, 435 170 C 370 150, 305 150, 260 170" stroke-width="8"/>
+    <path d="M520 360 C 570 315, 605 260, 585 220" stroke-width="5" opacity="0.8"/>
+    <path d="M140 585 C 340 545, 560 545, 760 585 S 1080 625, 1160 585" stroke-width="5" opacity="0.75"/>
+  </g>
+  <g fill="#0d9488" opacity="0.22">
+    <circle cx="520" cy="360" r="12"/>
+    <circle cx="760" cy="585" r="10"/>
+  </g>
+
+  <g font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+    <text x="40" y="72" font-size="14" fill="#0f766e" font-weight="800" letter-spacing="2" opacity="0.9">CASE STUDY</text>
+    <text x="40" y="118" font-size="34" fill="#111827" font-weight="750">CART Design</text>
+    <text x="40" y="148" font-size="14" fill="#6b7280" font-weight="500">Drop in: images/case-cart.webp (or .png)</text>
+  </g>
+</svg>
+

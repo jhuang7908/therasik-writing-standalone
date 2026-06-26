@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Therasik Bispecific Antibody Engineering Platform — AI-driven design for multispecifics. Nano-Convert (VH-to-VHH), SmartLink optimization, and Virtual CMC for IgG-like pairing.">
+  <meta name="keywords" content="bispecific antibody, multispecific, VH to VHH, nanobody, smart linker, IgG-like pairing, knob-in-hole, crossmab, antibody engineering, Therasik">
+  <title>Bispecific Engineering | Therasik — AI for Life Sciences</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root { --primary: #2563eb; --primary-dark: #1e40af; --text: #1f2937; --text-muted: #6b7280; --border: #e5e7eb; --bg: #ffffff; --bg-alt: #f9fafb; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 16px; line-height: 1.6; color: var(--text); background: var(--bg-alt); }
+    /* T-shaped: top header + sidebar + main */
+    .top-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 24px; background: var(--bg); border-bottom: 1px solid var(--border); flex-shrink: 0; gap: 16px; flex-wrap: wrap; }
+    .top-header .brand { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 24px; letter-spacing: -0.02em; display: flex; align-items: center; }
+    .top-header .brand a { text-decoration: none; color: inherit; display: flex; align-items: center; gap: 9px; }
+    .top-header .brand .syn { color: var(--primary); font-style: italic; font-weight: 700; }
+    .top-header .slogan { font-size: 13px; color: var(--text-muted); margin-left: 0; padding-left: 14px; border-left: 1px solid var(--border); font-family: 'Inter', sans-serif; white-space: nowrap; }
+    .top-header-nav { display: flex; align-items: center; gap: 8px; flex: 1; justify-content: center; }
+    .top-header-nav a { padding: 8px 14px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-radius: 6px; transition: all 0.2s; }
+    .top-header-nav a:hover { color: var(--primary); background: var(--bg-alt); }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a::after { content: ' ▾'; font-size: 10px; opacity: 0.7; }
+    .nav-dropdown .dropdown-menu { position: absolute; top: 100%; left: 0; min-width: 160px; padding: 6px 0; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); opacity: 0; visibility: hidden; transform: translateY(-4px); transition: all 0.2s; z-index: 100; }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .nav-dropdown .dropdown-menu a { display: block; padding: 10px 16px; color: var(--text); text-decoration: none; line-height: 1.4; border-radius: 0; white-space: normal; }
+    .nav-dropdown .dropdown-menu a:hover { background: var(--bg-alt); }
+    .nav-dropdown .dropdown-menu a .menu-title { display: block; font-weight: 600; font-size: 14px; color: var(--text); }
+    .nav-dropdown .dropdown-menu a:hover .menu-title { color: var(--primary); }
+    .nav-dropdown .dropdown-menu a .menu-desc { display: block; font-size: 12px; color: var(--text-muted); font-weight: 400; margin-top: 2px; }
+    .top-header-nav a.active { background: var(--primary); color: #fff; font-weight: 500; }
+    .top-header-nav a.active:hover,
+    .top-header-nav a.active:focus { background: var(--primary-dark); color: #fff; }
+    .top-header-nav a[href="index.html"],
+    .top-header-nav a[href="index.html"].active { background: transparent; color: var(--text-muted); }
+    .top-header-nav a[href="index.html"]:hover { color: var(--primary); background: var(--bg-alt); }
+    .top-header .header-right { display: flex; align-items: center; gap: 16px; }
+    .top-header .lang-switch { margin: 0; }
+    .page-wrap { display: flex; min-height: calc(100vh - 57px); }
+    .sidebar { width: 260px; flex-shrink: 0; background: var(--bg); border-right: 1px solid var(--border); padding: 28px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+    .sidebar h3 { font-size: 12px; font-weight: 600; color: var(--text-muted); margin: 0 24px 12px; padding-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+    .sidebar nav a { display: flex; align-items: center; padding: 12px 24px; color: var(--text); text-decoration: none; font-size: 15px; transition: all 0.2s; border-left: 3px solid transparent; }
+    .sidebar nav a:hover { background: var(--bg-alt); color: var(--primary); }
+    .sidebar nav a.active { background: #f0fdfa; color: var(--primary-dark); border-left-color: var(--primary); font-weight: 500; }
+    .nav-icon { width: 18px; height: 18px; margin-right: 10px; opacity: 0.7; flex-shrink: 0; }
+    .main { flex: 1; padding: 36px 48px 64px; max-width: 920px; }
+    .main h1 { font-size: 32px; font-weight: 700; color: var(--text); margin: 0 0 12px; letter-spacing: -0.02em; }
+    .main .subtitle { font-size: 17px; color: var(--text-muted); margin-bottom: 4px; }
+    .main h2 { font-size: 21px; font-weight: 600; color: var(--text); margin: 36px 0 16px; padding-top: 28px; border-top: 1px solid var(--border); }
+    .main h2:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+    .h2-icon { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; margin-right: 10px; border-radius: 8px; background: rgba(13,148,136,0.12); color: var(--primary); vertical-align: middle; }
+    .main p, .main ul, .main li { margin: 0 0 16px; color: var(--text); font-size: 16px; }
+    .main ul { padding-left: 24px; }
+    .main li { margin-bottom: 10px; }
+    .main .input-note { font-size: 14px; color: var(--text-muted); margin-top: 8px; }
+    .form-section { background: var(--bg); border-radius: 12px; padding: 32px; margin-top: 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); border: 1px solid var(--border); }
+    .form-row { display: flex; gap: 24px; margin-bottom: 24px; flex-wrap: wrap; }
+    .form-group { flex: 1; min-width: 180px; }
+    .form-group.full { flex: 1 1 100%; }
+    .form-group label { display: block; font-weight: 500; margin-bottom: 8px; color: var(--text); font-size: 14px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; font-family: inherit; }
+    .form-group textarea { min-height: 100px; resize: vertical; }
+    .form-group textarea.seq { font-family: 'Consolas', 'Monaco', monospace; font-size: 13px; min-height: 80px; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(13,148,136,0.15); }
+    .form-group .hint { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
+    .form-group .hint a { color: var(--primary); }
+    .btn { padding: 14px 28px; background: var(--primary); color: #fff; border: none; border-radius: 30px; font-size: 15px; font-weight: 500; cursor: pointer; }
+    .btn:hover { background: var(--primary-dark); }
+    .check-group { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+    .check-item { display: flex; align-items: center; gap: 10px; }
+    .check-item input { width: 18px; height: 18px; }
+    .check-item label { margin: 0; font-weight: 400; cursor: pointer; }
+    .breadcrumb { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
+    .breadcrumb a { color: var(--primary); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { color: #d1d5db; margin: 0 8px; }
+    .table-wrap { overflow-x: auto; margin: 24px 0; border-radius: 6px; border: 1px solid var(--border); }
+    .main table { min-width: 100%; background: var(--bg); border-collapse: separate; border-spacing: 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+    .main table th, .main table td { padding: 16px 20px; border: none; border-bottom: 1px solid var(--border); font-size: 15px; color: var(--text); text-align: left; }
+    .main table th { background: #f8fafc; font-weight: 700; color: #0f172a; text-transform: uppercase; font-size: 14px; letter-spacing: 0.05em; }
+    .main table tr:last-child td { border-bottom: none; }
+    .main table tr:hover td { background-color: #f9fafb; }
+    .main table .status-link { display: inline-block; font-size: 12px; font-weight: 600; color: var(--primary); background: rgba(13,148,136,0.08); padding: 2px 9px; border-radius: 20px; text-decoration: none; }
+    .main table .status-link:hover { background: rgba(13,148,136,0.15); color: var(--primary-dark); }
+    .disclaimer { font-size: 14px; color: var(--text-muted); font-style: italic; margin-top: 12px; padding: 12px 16px; background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 6px 6px 0; }
+    .file-upload-wrap { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .file-input-hidden { position: absolute; width: 0.1px; height: 0.1px; opacity: 0; overflow: hidden; z-index: -1; }
+    .file-upload-btn { padding: 10px 18px; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 6px; font-size: 14px; cursor: pointer; color: var(--text); }
+    .file-upload-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .file-upload-name { font-size: 14px; color: var(--text-muted); }
+    .brand-logo { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 28px; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 24px; padding: 0 24px; }
+    .brand-logo a { text-decoration: none; color: inherit; display: inline-block; transition: opacity 0.2s; }
+    .brand-logo a:hover { opacity: 0.85; }
+    .brand-logo .in { color: var(--text); }
+    .brand-logo .syn { color: var(--primary); font-style: italic; font-weight: 700; }
+    .brand-logo .bio { color: var(--text); }
+    .brand-logo .tagline { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; font-style: normal; }
+    .lang-switch { display: flex; gap: 4px; margin: 0 24px 20px; }
+    .lang-switch button { padding: 6px 12px; font-size: 13px; border: 1px solid var(--border); background: var(--bg); color: var(--text-muted); border-radius: 6px; cursor: pointer; font-family: 'Noto Sans SC', 'Inter', sans-serif; transition: all 0.2s; }
+    .lang-switch button:hover { border-color: var(--primary); color: var(--primary); }
+    .lang-switch button.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    body[data-lang="zh"] .lang-en { display: none !important; }
+    body[data-lang="zh"] .lang-zh { display: none !important; }
+    .site-footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-muted); text-align: center; }
+    .site-footer a { color: var(--primary); text-decoration: none; }
+    .site-footer a:hover { text-decoration: underline; }
+    .mission-block { background-color: #ffffff; background-image: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.95) 100%), url('images/hero-bg.svg'); background-size: cover; background-position: center; border-radius: 12px; padding: 32px; margin-bottom: 32px; border: 1px solid rgba(13,148,136,0.1); border-left: 4px solid var(--primary); box-shadow: 0 4px 12px rgba(13,148,136,0.05); }
+    .mission-block p { margin: 0; font-size: 16px; line-height: 1.7; color: var(--text); }
+    .mission-block p + p { margin-top: 14px; }
+    /* Responsive styles */
+    @media (max-width: 900px) {
+      .top-header { flex-wrap: wrap; padding: 12px 16px; gap: 10px; }
+      .top-header .brand { flex: 1 1 auto; min-width: 0; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+      .top-header .slogan { display: inline-block !important; font-size: 12px; padding-left: 10px; border-left: 1px solid var(--border); white-space: nowrap; }
+      .top-header .header-right { order: 2; margin-left: auto; }
+      .top-header-nav { order: 3; width: 100%; flex: 1 1 100%; justify-content: flex-start; flex-wrap: wrap; gap: 6px; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; border-top: 1px solid var(--border); padding-top: 10px; margin-top: 2px; }
+      .top-header-nav a { flex-shrink: 0; font-size: 13px; padding: 6px 10px; }
+      .page-wrap { flex-direction: column; min-height: auto; }
+      .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid #e0e0e0; padding: 16px; }
+      .sidebar nav { display: flex; flex-wrap: wrap; gap: 8px; }
+      .sidebar nav a { display: inline-flex; padding: 8px 12px; border-radius: 6px; border-left: none; }
+      .main { padding: 24px 24px 48px; }
+      .mission-block { padding: 20px; margin-bottom: 24px; }
+    }
+  </style>
+</head>
+<body data-lang="zh" id="therasik-body">
+  <header class="top-header">
+    <div class="brand">
+      <a href="index.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+          <defs>
+            <linearGradient id="logo_grad_new" x1="4" y1="2" x2="28" y2="30" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#2563eb"/>
+              <stop offset="1" stop-color="#60a5fa"/>
+            </linearGradient>
+          </defs>
+          <path d="M16 3L27.2583 9.5V22.5L16 29L4.74167 22.5V9.5L16 3Z" stroke="url(#logo_grad_new)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="16" cy="16" r="3.5" fill="#1e40af"/>
+          <path d="M16 16L4.74167 9.5M16 16L27.2583 9.5M16 16L16 29" stroke="#2563eb" stroke-width="1.5" stroke-opacity="0.5"/>
+        </svg>
+        <span style="font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 26px; color: #1f2937; letter-spacing: -0.02em;">
+          Thera<span style="color: #2563eb;">sik</span>
+        </span>
+      </a>
+      <span class="slogan">AI </span>
+    </div>
+    <nav class="top-header-nav">
+      <a href="index.html"></a>
+      <a href="index.html#about"></a>
+      <div class="nav-dropdown" tabindex="0">
+        <a href="index.html#services"></a>
+        <div class="dropdown-menu">
+          <a href="Therasik_Antibody_Page.html">
+            <span class="menu-title"></span>
+            <span class="menu-desc"></span>
+          </a>
+          <a href="Therasik_Bispecific_Page.html">
+            <span class="menu-title"></span>
+            <span class="menu-desc"></span>
+          </a>
+          <a href="Therasik_CART_Design_Page.html">
+            <span class="menu-title">CAR-T</span>
+            <span class="menu-desc"> CAR-T </span>
+          </a>
+        </div>
+      </div>
+      <a href="#submit"></a>
+      <a href="#contact"></a>
+    </nav>
+    <div class="header-right">
+    </div>
+  </header>
+  <div class="page-wrap">
+    <aside class="sidebar">
+      <h3 ></h3>
+      <nav>
+        <a href="#platform" class="nav-link active">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          
+        </a>
+        <a href="#nano-convert" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l-6 6"/><path d="M4 4l5 5"/></svg>
+          Nano-Convert™
+        </a>
+        <a href="#smartlink" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          SmartLink™
+        </a>
+        <a href="#audit" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+          
+        </a>
+        <a href="#virtual-cmc" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+           CMC
+        </a>
+        <a href="#full-report" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          
+        </a>
+        <a href="#submit" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          
+        </a>
+        <a href="#contact" class="nav-link">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          
+        </a>
+      </nav>
+    </aside>
+    <main class="main">
+      <div class="breadcrumb">
+        <a href="index.html"></a><span>/</span><a href="index.html#services"></a><span>/</span><span></span>
+      </div>
+      <!-- Hero / Mission -->
+      <div class="mission-block">
+        <p ><strong>：</strong>。 <strong>Nano-Convert™ (VHVHH)</strong>、 <strong>SmartLink™ </strong> ， IgG-like  <strong>Virtual CMC </strong>。</p>
+        <p > <strong>125+ </strong> 。，： scFv  <strong>84+  Linker </strong>（ scFv  IgG-scFv ）， <strong>75+ IgG-like </strong>（ 50  23 ）。<a href="index.html#about"> →</a></p>
+      </div>
+      <h1></h1>
+      <p class="subtitle">。</p>
+      <p class="disclaimer lang-zh">：Therasik  in silico ，。。</p>
+      <h2 id="platform"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>AI </h2>
+      <p > AI ，。，。</p>
+      <ul >
+        <li><strong> (125+)</strong> —  125+ ，。</li>
+        <li><strong> (84+)</strong> —  84  Linker （scFv  IgG-scFv ），。</li>
+        <li><strong>CMC  (75+)</strong> —  75  IgG-like （50  + 23  + 2  VHH-IgG），。</li>
+      </ul>
+      <h2 id="nano-convert"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l-6 6"/><path d="M4 4l5 5"/></svg></span>Nano-Convert™ (VH  VHH)</h2>
+      <p >。。</p>
+      <div class="table-wrap">
+      <table style="width:100%; border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Camelization</strong></td>
+            <td> VHH  (FR2)， VH 。</td>
+          </tr>
+          <tr>
+            <td><strong>Tier-Based Humanization</strong></td>
+            <td> Tier 0-3 ，。 Vernier 。</td>
+          </tr>
+          <tr>
+            <td><strong>Affinity Recovery</strong></td>
+            <td> CDR ，。</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <h2 id="smartlink"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>SmartLink™ </h2>
+      <p > Linker ，。 Linker 。</p>
+      <ul >
+        <li><strong></strong> —  Linker （G4S, EAAAK ）。</li>
+        <li><strong></strong> — （+1+2） AlphaFold2 Multimer ，。</li>
+        <li><strong></strong> — 。</li>
+      </ul>
+      <h2 id="audit"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg></span></h2>
+      <p >。。</p>
+      <p ><strong>：</strong></p>
+      <ul >
+        <li><strong></strong> (pLDDT, PAE)</li>
+        <li><strong></strong> (BSA, Sc, )</li>
+        <li><strong></strong> (VH-VL  vs )</li>
+        <li><strong></strong> ( 10% /  /  10%)</li>
+      </ul>
+      <h2 id="virtual-cmc"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span> CMC</h2>
+      <p >。 IgG-like （CrossMab, KiH）。</p>
+      <ul >
+        <li><strong></strong> —  (H1L1)  (H1L2) 。</li>
+        <li><strong></strong> — 。</li>
+        <li><strong></strong> —  (SAP)、。</li>
+      </ul>
+      <h2 id="full-report"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span></h2>
+      <p >。</p>
+      <ul >
+        <li><strong></strong> — / DNA/。</li>
+        <li><strong></strong> —  PDB 。</li>
+        <li><strong></strong> — 。</li>
+        <li><strong></strong> — Linker 。</li>
+      </ul>
+      <h2 id="submit"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span></h2>
+      <p >。。</p>
+      <div class="form-section">
+        <form id="inquiry-form" action="https://formspree.io/f/mnjblezr" method="POST">
+          <input type="hidden" name="_subject" value="Therasik Bispecific Inquiry">
+          <input type="hidden" name="_next" value="https://therasik.com/thanks.html">
+          <h3 style="margin-top: 0; margin-bottom: 20px;"></h3>
+          <div class="form-group full">
+            <label> *</label>
+            <div class="check-group">
+              <div class="check-item"><input type="checkbox" name="services" id="s1" value="nano-convert"><label for="s1">Nano-Convert™ (VH  VHH)</label></div>
+              <div class="check-item"><input type="checkbox" name="services" id="s2" value="smartlink"><label for="s2">SmartLink™ </label></div>
+              <div class="check-item"><input type="checkbox" name="services" id="s3" value="audit"><label for="s3"> / </label></div>
+              <div class="check-item"><input type="checkbox" name="services" id="s4" value="virtual-cmc"><label for="s4"> CMC (IgG-like )</label></div>
+              <div class="check-item"><input type="checkbox" name="services" id="s5" value="full-design"><label for="s5"></label></div>
+              <div class="check-item"><input type="checkbox" name="services" id="s_other" value="other"><label for="s_other"> / </label></div>
+              <div class="check-item"><input type="checkbox" name="services" id="s_other" value="other"><label for="s_other"> / </label></div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label> 1 *</label>
+              <input type="text" name="target1" placeholder="e.g., CD3" required>
+            </div>
+            <div class="form-group">
+              <label> 2 *</label>
+              <input type="text" name="target2" placeholder="：BCMA" required>
+            </div>
+          </div>
+          <div class="form-group full">
+            <label></label>
+            <select name="format">
+              <option value="" disabled selected>...</option>
+              <option value="scfv-bite">scFv  ( BiTE)</option>
+              <option value="igg-like">IgG  ( KiH, CrossMab)</option>
+              <option value="vhh">VHH  ( Tandem VHH, VHH-Fc)</option>
+              <option value="unsure"> / </option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label for="message">（：、）</label>
+            <textarea id="message" name="message" placeholder="..." style="min-height: 100px;"></textarea>
+          </div>
+          <h3 style="margin-top: 24px; margin-bottom: 20px;"></h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname"> *</label>
+              <input type="text" id="fname" name="fname" required>
+            </div>
+            <div class="form-group">
+              <label for="lname"> *</label>
+              <input type="text" id="lname" name="lname" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="org"> *</label>
+              <input type="text" id="org" name="org" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+          </div>
+          <div style="margin-top: 24px;">
+            <button type="submit" class="btn"></button>
+          </div>
+        </form>
+      </div>
+      <!-- Contact -->
+      <h2 id="contact"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span></h2>
+      <p >：</p>
+      <p style="margin: 16px 0;"><a href="mailto:contact@therasik.com" style="font-size: 18px; font-weight: 600; color: var(--primary);">contact@therasik.com</a></p>
+      <p  style="color: var(--text-muted); font-size: 14px;"> 1–2 。</p>
+      <footer class="site-footer">
+        <p>© 2026 Therasik · <a href="https://therasik.com">therasik.com</a> · <a href="mailto:contact@therasik.com">contact@therasik.com</a></p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    function setTopNavActive {
+      var hash = window.location.hash || '';
+      document.querySelectorAll('.top-header-nav a[href^="#"]').forEach(function(a) {
+        a.classList.toggle('active', a.getAttribute('href') === hash);
+      });
+    }
+    setTopNavActive;
+    window.addEventListener('hashchange', setTopNavActive);
+    document.querySelectorAll('.nav-link').forEach(a => {
+      a.addEventListener('click', function(e) {
+        e.preventDefault;
+        const id = this.getAttribute('href').slice(1);
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+    const sections = ['platform','nano-convert','smartlink','audit','virtual-cmc','full-report','submit','contact'];
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        document.querySelectorAll('.nav-link').forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+        });
+      });
+    }, { rootMargin: '-20% 0px -60% 0px' });
+    sections.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
+    
+    // Form submission
+    const form = document.getElementById('inquiry-form');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault;
+        const btn = form.querySelector('button[type="submit"]');
+        const originalText = btn.innerText;
+        btn.disabled = true;
+        btn.innerText = document.body.getAttribute('data-lang') === 'zh' ? '...' : 'Submitting...';
+        const formData = new FormData(form);
+        fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        }).then(response => {
+          if (response.ok) {
+            window.location.href = 'thanks.html';
+          } else {
+            alert("Oops! There was a problem submitting your form");
+            btn.disabled = false;
+            btn.innerText = originalText;
+          }
+        }).catch(error => {
+          alert("Oops! There was a problem submitting your form");
+          btn.disabled = false;
+          btn.innerText = originalText;
+        });
+      });
+    }
+  </script>
+</body>
+</html>

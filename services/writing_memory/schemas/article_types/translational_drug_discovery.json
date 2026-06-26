@@ -1,0 +1,35 @@
+{
+  "id": "translational_drug_discovery",
+  "display": "Translational / drug discovery",
+  "sections_required": ["abstract", "introduction", "methods", "results", "discussion"],
+  "word_targets_default": {
+    "abstract": 250,
+    "introduction": 600,
+    "methods": 1200,
+    "results": 2800,
+    "discussion": 1800
+  },
+  "introduction": {
+    "paragraph_count": 5,
+    "flow": [
+      "disease_burden_and_unmet_need",
+      "current_therapy_limitations",
+      "target_rationale",
+      "preclinical_evidence_gap",
+      "study_objectives"
+    ]
+  },
+  "results": {
+    "subsection_pattern": "target_validation → lead_optimization → in_vitro → in_vivo → safety",
+    "per_finding": ["therapeutic window", "selectivity vs related targets"]
+  },
+  "discussion": {
+    "open_with": "most_important_finding_first",
+    "include_limitations_paragraph": true,
+    "clinical_implication_paragraph": true
+  },
+  "exemplar_patterns": {
+    "abstract": "Target, approach, lead molecule, key efficacy/safety readout, development implication.",
+    "discussion_close": "One paragraph on IND-enabling or clinical path, without overclaiming."
+  }
+}

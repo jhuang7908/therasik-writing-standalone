@@ -1,0 +1,46 @@
+{
+  "schema_version": "0.1.0",
+  "id": "pnas_numbered",
+  "display_name": "PNAS numbered (by appearance)",
+  "based_on": "CSE / numeric variant",
+  "sourced_from": [
+    { "url": "https://www.pnas.org/author-center/preparing-your-manuscript", "label": "PNAS Preparing Your Manuscript (reference style)", "captured_at": null }
+  ],
+
+  "in_text_citation": {
+    "mode": "numbered_parenthetical",
+    "examples": ["(1)", "(2, 5)", "(3-6)"],
+    "multiple_citations": "comma separated; ranges allowed with en-dash",
+    "verification_status": "unverified",
+    "source_url": "https://www.pnas.org/author-center/preparing-your-manuscript",
+    "notes": "Confirm whether superscript or parenthetical numbering is current."
+  },
+
+  "list_order": {
+    "mode": "by_appearance",
+    "verification_status": "unverified",
+    "source_url": "https://www.pnas.org/author-center/preparing-your-manuscript"
+  },
+
+  "list_entry": {
+    "author_list": {
+      "format": "last_initials",
+      "separator": ", ",
+      "et_al_threshold": null,
+      "et_al_keep_first": null,
+      "final_separator": ", "
+    },
+    "journal_abbreviation": "pubmed_nlm_ta",
+    "year_position": "after_authors",
+    "title_case": "sentence_case",
+    "italicize": { "journal_title": true, "book_title": true, "article_title": false },
+    "volume_issue_pages_format": null,
+    "doi_required": true,
+    "doi_format": "doi:10.xxxx/xxxx",
+    "url_required": false,
+    "preprint_handling": "Allowed with preprint server name; format unverified.",
+    "verification_status": "unverified",
+    "source_url": "https://www.pnas.org/author-center/preparing-your-manuscript",
+    "examples": []
+  }
+}

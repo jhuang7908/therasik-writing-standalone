@@ -1,0 +1,236 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "41886442",
+    "pmcid": "PMC13020835",
+    "doi": "10.1371/journal.pmed.1004846",
+    "journal": "PLOS Medicine",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "data_first",
+    "dominant_frame": "clinical_outcome",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "clinical_question-cohort-result-policy",
+    "claim_chain": [
+      "Medicare patients with OUD and chronic pain who initiated methadone had lower risks of pain-related hospitalizations and ED visits than those who initiated buprenorphine",
+      "No difference was observed in opioid overdose and all-cause mortality during 1-year follow-up",
+      "Differences in clinical settings (OTPs vs office-based clinics) may explain observed pain-related outcome differences",
+      "Unmeasured confounders such as pain and OUD severity cannot be accounted for",
+      "Differential dosing practices and pharmacological properties may contribute to outcome differences",
+      "Favorable pain-related outcomes should be interpreted with caution due to multiple unmeasured factors"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "observed",
+      "showed",
+      "suggest",
+      "may explain",
+      "cannot be determined",
+      "is possible",
+      "associated with",
+      "compared",
+      "found",
+      "indicated",
+      "merit"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State main finding with quantitative results",
+      "Compare to prior literature and note consistency or discrepancy",
+      "Offer mechanistic or contextual explanation for finding",
+      "Acknowledge alternative explanations or limitations",
+      "Note what cannot be determined from available data",
+      "Call for future research to confirm or extend findings"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Accounting for unmeasured confounders, particularly pain and OUD severity",
+      "Generalizability beyond Medicare population",
+      "Distinguishing treatment setting effects from medication effects",
+      "Quantifying dosing practices and their impact on outcomes",
+      "Measuring opioid-induced hyperalgesia occurrence"
+    ],
+    "likely_attacks": [
+      "Baseline differences in pain treatment utilization suggest selection bias",
+      "Lack of information on methadone dose limits causal interpretation",
+      "Cannot verify whether once-daily doses were divided for analgesic optimization",
+      "No data on pain severity or OUD severity to control for confounding",
+      "Differential treatment settings confound medication comparison"
+    ],
+    "inference_basis": "The discussion extensively addresses limitations including: 'the present study cannot account for unmeasured confounders, such as pain and OUD severity'; 'This possibility, however, cannot be determined in the present study due to the lack of information on methadone dose'; 'Due to a lack of information on opioid-induced hyperalgesia in Medicare data, the present study cannot determine whether the occurrence of opioid-induced hyperalgesia during the 1-year follow-up differs between treatment groups'; 'This possibility, however, cannot be verified with Medicare data that have no information on pain severity'; 'Main study limitations included unmeasured confounders and limited generalizability.' The authors repeatedly acknowledge what cannot be measured or determined, suggesting reviewers would focus on these data gaps."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "Our findings suggest that methadone solely administered at OTPs is associated with reduced pain-related medical encounters",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "The favorable pain-related outcomes in patients with methadone should be interpreted with caution",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "methadone treatment had lower risks of pain-related hospitalizations and ED visits than those who initiated buprenorphine treatment",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "may explain the observed differences in pain-related outcomes",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "Future studies that account for the severity of pain and OUD are warranted to confirm our findings",
+        "category": "hedge"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "In this population-based cohort study of Medicare patients with OUD and chronic pain",
+      "category": "opening"
+    },
+    {
+      "phrase": "those who initiated methadone treatment had lower risks of pain-related hospitalizations and ED visits than those who initiated buprenorphine treatment",
+      "category": "claim"
+    },
+    {
+      "phrase": "but had no difference in opioid overdose and all-cause mortality during the 1-year follow-up",
+      "category": "claim"
+    },
+    {
+      "phrase": "Consistent results were observed in sensitivity and subgroup analyses",
+      "category": "claim"
+    },
+    {
+      "phrase": "Our findings suggest that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "can be explained by several reasons",
+      "category": "transition"
+    },
+    {
+      "phrase": "may explain the observed differences",
+      "category": "hedge"
+    },
+    {
+      "phrase": "It is possible that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "This possibility, however, is not supported by existing literature",
+      "category": "hedge"
+    },
+    {
+      "phrase": "This possibility, however, cannot be determined in the present study due to the lack of information",
+      "category": "limitation"
+    },
+    {
+      "phrase": "the present study cannot account for unmeasured confounders",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Future studies that account for the severity of pain and OUD are warranted to confirm our findings",
+      "category": "limitation"
+    },
+    {
+      "phrase": "should be interpreted with caution",
+      "category": "hedge"
+    },
+    {
+      "phrase": "merit further investigations",
+      "category": "implication"
+    },
+    {
+      "phrase": "Few prior clinical studies compared pain outcomes",
+      "category": "transition"
+    },
+    {
+      "phrase": "showed mixed findings",
+      "category": "transition"
+    },
+    {
+      "phrase": "The present study uses a national Medicare sample to detect",
+      "category": "claim"
+    },
+    {
+      "phrase": "Our null results derived from Medicare patients were similar to those from",
+      "category": "claim"
+    },
+    {
+      "phrase": "While considering many measured patient characteristics at baseline",
+      "category": "limitation"
+    },
+    {
+      "phrase": "we observed lower proportions of patients with methadone",
+      "category": "claim"
+    },
+    {
+      "phrase": "Compared with buprenorphine, initiation of methadone was associated with lower adjusted incidence rates",
+      "category": "claim"
+    },
+    {
+      "phrase": "with no difference in opioid overdose",
+      "category": "claim"
+    },
+    {
+      "phrase": "Similar results were observed in intention-to-treat analyses",
+      "category": "claim"
+    },
+    {
+      "phrase": "Main study limitations included unmeasured confounders and limited generalizability",
+      "category": "limitation"
+    },
+    {
+      "phrase": "This population-based cohort study of Medicare patients with comorbid chronic pain and OUD found that",
+      "category": "opening"
+    },
+    {
+      "phrase": "while offering treatment outcomes similar to",
+      "category": "claim"
+    },
+    {
+      "phrase": "as the finding may reflect differences in",
+      "category": "hedge"
+    },
+    {
+      "phrase": "which cannot be measured in Medicare data",
+      "category": "limitation"
+    },
+    {
+      "phrase": "OUD, opioid use disorder",
+      "category": "figure_legend"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. Numeric values, percentages, and confidence intervals are directly quoted from the paper. No external references, author names, or invented data were included. The profile accurately reflects the paper's cautious but assertive tone, extensive discussion of limitations, and balanced claim strength."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:02:59.830901+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\plos_med\\41886358.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

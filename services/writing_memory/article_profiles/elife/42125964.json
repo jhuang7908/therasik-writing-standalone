@@ -1,0 +1,220 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42126916",
+    "pmcid": "PMC13171098",
+    "doi": "10.7554/eLife.107423.3.sa2",
+    "journal": "eLife",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "data_first",
+    "dominant_frame": "molecular_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "question-method-result-interpretation",
+    "claim_chain": [
+      "RNNs trained to control upper limb models show savings when learning multiple force fields",
+      "Savings is enhanced when dimensionality of control network is higher",
+      "A uniform shift in preparatory activity persists after washout",
+      "This residual trace does not interfere with null-field behavior but facilitates re-learning",
+      "Perturbing activity along the uniform shift causally modulates savings",
+      "High-dimensional neural state space enables encoding of multiple motor memories without interference"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "show",
+      "found",
+      "identified",
+      "tested",
+      "propose",
+      "supports",
+      "suggest",
+      "demonstrate",
+      "emerge",
+      "encode",
+      "facilitate",
+      "produce"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State main finding with supporting detail",
+      "Elaborate on mechanism or interpretation",
+      "Connect to broader theoretical framework",
+      "Cite compatible empirical or computational work",
+      "Discuss implications or future directions"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Biological plausibility of RNN training methods",
+      "Generalizability across different network architectures and learning rules",
+      "Experimental validation in biological systems",
+      "Mechanistic explanation of how error signals activate residual traces",
+      "Comparison with alternative theoretical accounts of savings"
+    ],
+    "likely_attacks": [
+      "RNNs trained with backpropagation may not reflect biological learning mechanisms",
+      "Lack of explicit contextual cues differs from primate motor learning paradigms",
+      "Perturbation experiments are not feasible in biological networks",
+      "Results may be specific to the MotorNet framework and training approach",
+      "Unclear how findings generalize to reinforcement learning or FORCE algorithm approaches"
+    ],
+    "inference_basis": "The paper explicitly acknowledges that 'The present results are based on RNNs trained in an error-based approach using backpropagation through time' and states 'An interesting avenue for future work is to determine how the present results may or may not generalize to different neural network architectures and learning rules.' It also notes that perturbations 'is possible in a computational model but is not presently feasible in a biological neural network.' The discussion extensively positions findings relative to empirical work and acknowledges that 'In our RNNs no such contextual signal was provided' unlike primate studies, raising the question of mechanism."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "We have shown here that RNNs trained to control a computational model of the upper limb show behavioral signatures of savings",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "We interpret this residual hidden unit activity as a neural trace of the initial learning that remains after washout",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "These results provide evidence of a causal link between the identified neural trace of learning that remains after washout and subsequent savings",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "Our results are compatible with the proposal",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "This implies that multiple motor memories can be encoded in neural subspaces so that they do not interfere with each other",
+        "category": "generalization"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "We have shown here that",
+      "category": "opening"
+    },
+    {
+      "phrase": "behavioral signatures of savings",
+      "category": "claim"
+    },
+    {
+      "phrase": "We interpret this residual hidden unit activity as",
+      "category": "hedge"
+    },
+    {
+      "phrase": "is consistent with the idea that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "We tested this hypothesis directly by",
+      "category": "transition"
+    },
+    {
+      "phrase": "These results provide evidence of a causal link",
+      "category": "claim"
+    },
+    {
+      "phrase": "Our results are compatible with the proposal",
+      "category": "hedge"
+    },
+    {
+      "phrase": "This implies that",
+      "category": "implication"
+    },
+    {
+      "phrase": "supports the idea that",
+      "category": "claim"
+    },
+    {
+      "phrase": "A number of recent empirical studies support this idea",
+      "category": "claim"
+    },
+    {
+      "phrase": "the question arises",
+      "category": "transition"
+    },
+    {
+      "phrase": "One possibility is that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "This seems compatible with",
+      "category": "hedge"
+    },
+    {
+      "phrase": "An interesting avenue for future work is to determine",
+      "category": "limitation"
+    },
+    {
+      "phrase": "remain unclear",
+      "category": "limitation"
+    },
+    {
+      "phrase": "is not presently feasible in a biological neural network",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Importantly, this",
+      "category": "transition"
+    },
+    {
+      "phrase": "Despite this",
+      "category": "transition"
+    },
+    {
+      "phrase": "presumably",
+      "category": "hedge"
+    },
+    {
+      "phrase": "likely occurring",
+      "category": "hedge"
+    },
+    {
+      "phrase": "These findings suggest a potential neural basis",
+      "category": "claim"
+    },
+    {
+      "phrase": "averaged over",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "indicates",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "No savings observed for",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "The mechanisms underlying this phenomenon",
+      "category": "opening"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers appear in the output. Reviewer preferences are inferred solely from the paper's own discussion of limitations and future work."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T12:52:13.840669+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\elife\\42125964.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

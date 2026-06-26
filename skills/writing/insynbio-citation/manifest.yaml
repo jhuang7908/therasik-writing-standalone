@@ -1,0 +1,17 @@
+version: "1.1.0"
+name: insynbio-citation
+extends: nature-citation
+
+always_load:
+  - ../../_shared/core/principles.md
+  - static/core/principles.md
+  - static/core/workflow.md
+  - static/core/chinese-mode.md
+
+toolchain:
+  cli: scripts/insynbio_citation.py
+  corpus_builder: scripts/build_review_b_reference_library.py
+  pubmed_verify: journal-submission-prep/scripts/pubmed_verify.py
+
+delegates:
+  deep_search: insynbio-literature-search

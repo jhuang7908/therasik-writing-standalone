@@ -1,0 +1,9 @@
+{
+  "id": "case_report",
+  "display": "Case report (CARE-oriented)",
+  "legacy_alias": "case_report",
+  "sections_required": ["abstract", "introduction", "case_presentation", "discussion"],
+  "word_targets_default": { "abstract": 200, "introduction": 400, "case_presentation": 1200, "discussion": 800 },
+  "introduction": { "paragraph_count": 2, "flow": ["disease_context", "why_this_case_matters"] },
+  "results": { "subsection_pattern": "timeline_of_presentation_and_management" }
+}

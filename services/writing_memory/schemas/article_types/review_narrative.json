@@ -1,0 +1,47 @@
+{
+  "id": "review_narrative",
+  "display": "Narrative review",
+  "legacy_alias": "review",
+  "sections_required": ["abstract", "introduction", "body", "discussion", "conclusion"],
+  "word_targets_default": {
+    "abstract": 250,
+    "introduction": 800,
+    "body": 6000,
+    "discussion": 1500,
+    "conclusion": 400
+  },
+  "introduction": {
+    "paragraph_count": 3,
+    "flow": ["scope_and_importance", "what_this_review_covers", "how_organized"]
+  },
+  "abstract": {
+    "logic": "scope → major themes → outlook",
+    "mechanism_required": false
+  },
+  "discussion": {
+    "open_with": "synthesis_not_new_data",
+    "include_limitations_paragraph": true
+  },
+  "quality_rules": {
+    "_note": "Reviews permit longer paragraphs and denser citations; active voice still preferred in synthesis paragraphs.",
+    "paragraph_words_max": 160,
+    "voice": {
+      "introduction": "active",
+      "body": "mixed",
+      "discussion": "active",
+      "conclusion": "active"
+    },
+    "sentence_length_mean_max": 32,
+    "citation_density": {
+      "introduction": "one_per_claim_paragraph",
+      "body": "dense_every_paragraph",
+      "discussion": "one_per_claim_paragraph"
+    },
+    "preferred_verbs": ["showed","reported","described","proposed","suggested","demonstrated","identified","reviewed"],
+    "forbidden_verbs": ["highlighted","showcased","unveiled","shed light on","paved the way","opened new avenues"],
+    "triplet_parallel_max_per_section": 2
+  },
+  "exemplar_patterns": {
+    "topic_sentence": "Each subsection opens with the theme, not chronology."
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "default_tenant": "insynbio-internal",
+  "tenants": [
+    {
+      "tenant_id": "insynbio-internal",
+      "customer_id": "insynbio",
+      "project_ids": ["demo-project-id"],
+      "base_url": "https://lab.insynbio.com",
+      "public_url": "https://lab.insynbio.com",
+      "api_token_env": "ELABFTW_API_TOKEN",
+      "lab_manager_email": "lab.manager@insynbio.com"
+    },
+    {
+      "tenant_id": "customer-a",
+      "customer_id": "customer-a",
+      "project_ids": ["customer-a-project-001"],
+      "base_url": "https://lab.insynbio.com",
+      "public_url": "https://lab.insynbio.com",
+      "api_token_env": "ELABFTW_TOKEN_CUSTOMER_A",
+      "lab_manager_email": "manager@customer-a-lab.org"
+    }
+  ]
+}

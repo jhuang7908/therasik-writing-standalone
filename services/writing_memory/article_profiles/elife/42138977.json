@@ -1,0 +1,219 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42138349",
+    "pmcid": "PMC13179062",
+    "doi": "10.7554/eLife.108143.3.sa3",
+    "journal": "eLife",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "data_first",
+    "dominant_frame": "molecular_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "question-method-result-interpretation",
+    "claim_chain": [
+      "We used stranded SNS-seq to identify active origins in T. brucei",
+      "The method maps origins between divergent SNS peaks with greater specificity",
+      "Origins are not random sequences but have specific genetic elements",
+      "DNA replication starts at sites where adenine and thymine are overrepresented in specific patterns",
+      "G4 structures near origins are embedded in poly(dA)-rich sequences in strand-specific manner",
+      "Origin centres are low nucleosome occupancy regions flanked by high nucleosome occupancy regions",
+      "RNA:DNA hybrids show enrichment near origins reflecting RNA-primed SNS molecules"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "revealed",
+      "showed",
+      "demonstrated",
+      "indicated",
+      "disclosed",
+      "suggest",
+      "propose",
+      "found",
+      "identified",
+      "mapped"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "Method comparison and key benefits statement",
+      "Acknowledgment of limitations or caveats",
+      "Main finding with supporting evidence",
+      "Mechanistic interpretation or model building",
+      "Broader implications or connections to field"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Methodological rigor and comparison to existing approaches",
+      "Completeness of origin mapping and potential false negatives",
+      "Validation across different datasets and strains",
+      "Mechanistic interpretation supported by multiple lines of evidence",
+      "Generalizability of findings beyond the specific organism"
+    ],
+    "likely_attacks": [
+      "Stringent selection may miss weak or inefficient origins",
+      "Comparing non-exhaustively mapped origins across life stages could be misleading",
+      "Elements not found in all origins may reflect strain differences rather than true biology",
+      "G4 detection may be influenced by stabilization conditions",
+      "Small overlap percentage between RNA:DNA hybrids and origins needs justification"
+    ],
+    "inference_basis": "The paper explicitly states 'Some weak or inefficient origins may be missed due to low activity, resulting in low read coverage' and 'It is therefore very likely that the number of origins of this parasite is higher than the number reported here.' It also notes 'we decided not to compare the PCF and BSF sets of origins in more detail because comparing non-exhaustively mapped origins in these two life cycle stages could be misleading.' The authors acknowledge 'The elements presented in our model were not found in all origins' and attribute this to 'the datasets used for the intersections were obtained from four different strains, rather than from just one.' They also discuss G4 detection under 'PDS-stabilised conditions compared to physiological ones' and justify the small overlap by stating 'a small proportion of previously reported RNA:DNA hybrids (1.7%) overlap with SNS-seq origins.'"
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "we suggest that these RNA:DNA hybrids represent the SNS-derived RNA:DNA hybrids at the DNA replication initiation sites",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "Our analysis revealed no consensus sequence associated with the origins",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "We therefore propose that the formation of G4s plays a regulatory role in the activation of replication origins",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "It is therefore very likely that the number of origins of this parasite is higher than the number reported here",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "Our analysis disclosed for the first time a strong link between RNA:DNA hybrid formation and DNA replication initiation",
+        "category": "claim"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "We used stranded SNS-seq to identify a set of active origins",
+      "category": "opening"
+    },
+    {
+      "phrase": "The key benefit of stranded over conventional (non-stranded) SNS-seq is the ability to identify origins with greater specificity",
+      "category": "claim"
+    },
+    {
+      "phrase": "Some weak or inefficient origins may be missed due to low activity",
+      "category": "limitation"
+    },
+    {
+      "phrase": "It is therefore very likely that the number of origins of this parasite is higher than the number reported here",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Our analysis revealed no consensus sequence associated with the origins",
+      "category": "claim"
+    },
+    {
+      "phrase": "the genomic sites that function as origins are not random sequences",
+      "category": "claim"
+    },
+    {
+      "phrase": "Thanks to the stranded SNS-seq approach, we were able to determine the positions and strand-specificity of some genetic elements",
+      "category": "claim"
+    },
+    {
+      "phrase": "DNA replication starts at genomic sites where adenine and thymine are overrepresented and arranged in a specific pattern",
+      "category": "claim"
+    },
+    {
+      "phrase": "the observed enrichment of G4s around origins cannot be an artefact of the enzymatic treatments",
+      "category": "claim"
+    },
+    {
+      "phrase": "We therefore propose that the formation of G4s plays a regulatory role in the activation of replication origins",
+      "category": "implication"
+    },
+    {
+      "phrase": "the formation of G4 structures could potentially pose or arrest replication fork progression",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Our analysis disclosed for the first time a strong link between RNA:DNA hybrid formation and DNA replication initiation",
+      "category": "claim"
+    },
+    {
+      "phrase": "we suggest that these RNA:DNA hybrids represent the SNS-derived RNA:DNA hybrids at the DNA replication initiation sites",
+      "category": "hedge"
+    },
+    {
+      "phrase": "we suggest that the summits of RNA:DNA hybrids near the origins reflect the enrichment of RNA-primed SNS molecules",
+      "category": "hedge"
+    },
+    {
+      "phrase": "the overlap between the two distinct techniques, DRIP-seq and stranded SNS-seq, provides compelling validation of our origin mapping approach",
+      "category": "claim"
+    },
+    {
+      "phrase": "The elements presented in our model were not found in all origins",
+      "category": "limitation"
+    },
+    {
+      "phrase": "This may be caused by the fact that the datasets used for the intersections were obtained from four different strains",
+      "category": "limitation"
+    },
+    {
+      "phrase": "comparing non-exhaustively mapped origins in these two life cycle stages could be misleading",
+      "category": "limitation"
+    },
+    {
+      "phrase": "consistent with the findings of most other studies of eukaryotic origins",
+      "category": "transition"
+    },
+    {
+      "phrase": "These findings shed new light on the sequence and structural features that define the topology of replication origins",
+      "category": "implication"
+    },
+    {
+      "phrase": "Schematic representation of the experimental workflow",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "A representative screenshot from Integrative Genomics Viewer (IGV) presenting the read coverage",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Violin-plots present the distribution of the lengths of mapped origins",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "The white line represents the median value",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Our methodology is comparable to previously published origin-derived single-stranded DNA sequencing",
+      "category": "transition"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers were included. The profile is based solely on the provided discussion, abstract, and figure legend sections."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T12:56:11.273810+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\elife\\42138977.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

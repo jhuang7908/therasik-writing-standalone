@@ -1,0 +1,235 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42090248",
+    "pmcid": "PMC13167770",
+    "doi": "10.1073/pnas.2522727123",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "field_importance",
+    "dominant_frame": "molecular_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "context-finding-mechanism-implication",
+    "claim_chain": [
+      "3D epithelial cell shapes control topology and cell-cell interface areas for contact signaling",
+      "Apico-basally elongated cells have extensive lateral contacts that profoundly impact signaling",
+      "3D cell topology provides feedback control between mechanical and biochemical signaling",
+      "Lateral cell surface signaling is essential to tune spacing between sensory organ precursors",
+      "Perturbing cortical stiffness and cell tortuosity modifies SOP spacing",
+      "Fine-tuning signaling range via 3D cell topology may be a unified mechanochemical mechanism"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "strong",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "show",
+      "highlights",
+      "control",
+      "provides",
+      "predicts",
+      "emphasize",
+      "could",
+      "may",
+      "speculate",
+      "imagine",
+      "suggest"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "Opening statement of main finding or importance",
+      "Elaboration with mechanistic detail",
+      "Contextualization within broader biological framework",
+      "Speculation or forward-looking statement about dynamics or generality",
+      "Closing with broader implications or future directions"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Experimental validation of model predictions",
+      "Dynamic characterization of 3D cell-cell contacts over time",
+      "Generalizability across multiple tissue types and organisms",
+      "Quantitative validation of signaling range predictions",
+      "Robustness of computational framework to segmentation errors"
+    ],
+    "likely_attacks": [
+      "Lack of dynamic imaging data to support claims about contact dynamics",
+      "Reliance on snapshots rather than time-resolved measurements",
+      "Limited experimental perturbation of 3D topology",
+      "Speculation about mechanisms without direct molecular evidence",
+      "Generalization beyond Drosophila wing disc system"
+    ],
+    "inference_basis": "The paper explicitly acknowledges that 'So far, it has not been possible to characterize dynamic apico-basal intercalations within live tissues over time' and states 'we speculate that lateral cell–cell contacts might be relatively dynamic' and 'we imagine that dynamic changes in 3D neighbors enable cells to explore their neighborhood'. The authors note 'Continuous improvements in imaging and segmentation may soon make it possible to address the question of contact dynamics experimentally'. They also acknowledge limitations by stating their analysis is of 'snapshots' and discuss what 'we expect' rather than what was directly observed. The paper defends generalizability by listing examples across organisms but acknowledges these are observations rather than tested predictions."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "Our work strongly highlights the need to consider 3D epithelial cell shapes in intercellular signaling",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "we speculate that lateral cell–cell contacts might be relatively dynamic",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "The model predicts that lateral cell surface signaling is essential to tune the spacing between sensory organ precursors",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "This suggests that it could be a universal mechanism by which cell–cell signaling is tuned",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "regulating intercellular signaling via 3D cell topology provides a mechanism of feedback control between mechanical and biochemical signaling",
+        "category": "causal"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "Our work strongly highlights the need to consider 3D epithelial cell shapes in intercellular signaling",
+      "category": "opening"
+    },
+    {
+      "phrase": "Strikingly, we show that",
+      "category": "claim"
+    },
+    {
+      "phrase": "can have a profound impact on signaling",
+      "category": "claim"
+    },
+    {
+      "phrase": "provides a mechanism of feedback control between mechanical and biochemical signaling",
+      "category": "implication"
+    },
+    {
+      "phrase": "So far, it has not been possible to",
+      "category": "limitation"
+    },
+    {
+      "phrase": "we speculate that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "we imagine that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "probably limits the maximum effective contact range that can be achieved",
+      "category": "hedge"
+    },
+    {
+      "phrase": "could indeed help confer robustness",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Continuous improvements in imaging and segmentation may soon make it possible to",
+      "category": "limitation"
+    },
+    {
+      "phrase": "could readily be applied to other systems",
+      "category": "implication"
+    },
+    {
+      "phrase": "This is especially true now that",
+      "category": "transition"
+    },
+    {
+      "phrase": "has broad implications in development, patterning, and growth control",
+      "category": "implication"
+    },
+    {
+      "phrase": "This suggests that it could be a universal mechanism",
+      "category": "implication"
+    },
+    {
+      "phrase": "may be a unified mechanochemical mechanism to ensure",
+      "category": "implication"
+    },
+    {
+      "phrase": "In agreement, we show that",
+      "category": "claim"
+    },
+    {
+      "phrase": "These results emphasize the importance of",
+      "category": "claim"
+    },
+    {
+      "phrase": "To quantitatively assess this behavior",
+      "category": "transition"
+    },
+    {
+      "phrase": "In exploring this question",
+      "category": "opening"
+    },
+    {
+      "phrase": "effectively increasing the number of neighbors each cell touches",
+      "category": "claim"
+    },
+    {
+      "phrase": "Signaling beyond the first apical neighbors is required to achieve",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "The topology of cell–cell contacts in 3D increases potential signaling range",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "A multilayer signaling model predicts the role of",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Changes in 3D contacts affect SOP patterning",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "In this study we have analyzed",
+      "category": "transition"
+    },
+    {
+      "phrase": "how dynamic do we expect these to be?",
+      "category": "transition"
+    },
+    {
+      "phrase": "The fact that",
+      "category": "transition"
+    },
+    {
+      "phrase": "Having these multiple redundant but still spatially restricted contacts",
+      "category": "claim"
+    },
+    {
+      "phrase": "without the need for actively controlled processes",
+      "category": "claim"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers were included. Claim strength profile reflects the paper's balanced use of strong claims supported by data alongside appropriate hedging for speculative elements. Reviewer preference profile is grounded in the paper's explicit acknowledgment of limitations regarding dynamic imaging and generalizability."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:11:22.247158+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\pnas\\42090248.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

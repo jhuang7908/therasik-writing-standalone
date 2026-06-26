@@ -1,0 +1,63 @@
+{
+  "schema_version": "0.1.0",
+  "journal": { "key": "nature_medicine", "display": "Nature Medicine" },
+  "spec_version": "0.1.0",
+  "sourced_from": [
+    { "url": "https://www.nature.com/nm/for-authors/preparing-your-submission", "label": "Nature Medicine — Preparing Your Submission", "captured_at": null },
+    { "url": "https://www.nature.com/nm/for-authors/editorial-process", "label": "Nature Medicine — Editorial Process", "captured_at": null }
+  ],
+  "captured_at": null,
+
+  "article_types": [
+    { "value": "Article", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nm/for-authors/preparing-your-submission" },
+    { "value": "Brief Communication", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nm/for-authors/preparing-your-submission" },
+    { "value": "Review / Perspective", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nm/for-authors/preparing-your-submission" }
+  ],
+
+  "structure": {
+    "required_sections": { "value": ["abstract","introduction","results","discussion","methods","references"], "verification_status": "published_guideline", "source_url": "https://www.nature.com/nm/for-authors/preparing-your-submission" },
+    "optional_sections": { "value": ["acknowledgements","author_contributions","competing_interests","data_availability","code_availability","extended_data","supplementary_information"], "verification_status": "published_guideline", "source_url": "https://www.nature.com/nm/for-authors/preparing-your-submission" }
+  },
+
+  "abstract": {
+    "word_limit": { "value": 200, "verification_status": "published_guideline", "source_url": "https://www.nature.com/nm/for-authors/preparing-your-submission" },
+    "structured": { "value": false, "verification_status": "published_guideline", "source_url": "https://www.nature.com/nm/for-authors/preparing-your-submission" }
+  },
+
+  "main_text": {
+    "word_limit": { "value": 4500, "verification_status": "published_guideline", "source_url": "https://www.nature.com/nm/for-authors/preparing-your-submission", "notes": "Article body ~4500 words excluding Methods and refs." },
+    "figure_count_limit": { "value": 6, "verification_status": "published_guideline", "source_url": "https://www.nature.com/nm/for-authors/preparing-your-submission" },
+    "table_count_limit": { "value": 3, "verification_status": "published_guideline", "source_url": "https://www.nature.com/nm/for-authors/preparing-your-submission" },
+    "supplementary_policy": { "value": "Extended Data + Supplementary Information allowed.", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nm/for-authors/preparing-your-submission" }
+  },
+
+  "figures_tables": {
+    "figure_resolution": { "value": "≥300 dpi (halftone); ≥600 dpi (line art).", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature/for-authors/final-submission" },
+    "color_policy": { "value": "Colour figures free of charge.", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nm/for-authors/preparing-your-submission" },
+    "legend_word_limit": { "value": 350, "verification_status": "published_guideline", "source_url": "https://www.nature.com/nm/for-authors/preparing-your-submission" },
+    "accepted_formats": { "value": ["TIFF","EPS","PDF","PNG (≥300 dpi)"], "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature/for-authors/final-submission" }
+  },
+
+  "declarations": {
+    "competing_interests": { "value": "Mandatory Competing Interests statement.", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature-portfolio/editorial-policies/competing-interests" },
+    "funding_statement": { "value": "Mandatory.", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nm/for-authors/preparing-your-submission" },
+    "author_contributions": { "value": "Mandatory CRediT taxonomy.", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature-portfolio/editorial-policies/authorship" },
+    "ethics_statement": { "value": "IRB/IACUC approval IDs + trial registration mandatory for clinical work.", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature-portfolio/editorial-policies/clinical-research" },
+    "consent_statement": { "value": "Mandatory for human-subject research.", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature-portfolio/editorial-policies/clinical-research" },
+    "reporting_checklist": { "value": "Reporting Summary mandatory; CONSORT for trials; ARRIVE for animal studies.", "verification_status": "published_guideline", "source_url": "https://www.nature.com/documents/nr-reporting-summary.pdf" }
+  },
+
+  "data_and_code": {
+    "data_availability": { "value": "Mandatory Data Availability Statement.", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature-portfolio/editorial-policies/reporting-standards" },
+    "code_availability": { "value": "Mandatory if reporting novel code.", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature-portfolio/editorial-policies/reporting-standards" },
+    "preferred_repositories": { "value": ["GEO","SRA","PDB","ClinicalTrials.gov","Zenodo"], "verification_status": "published_guideline", "source_url": "https://www.nature.com/sdata/policies/repositories" },
+    "accession_required": { "value": true, "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature-portfolio/editorial-policies/reporting-standards" }
+  },
+
+  "reference_style_id": "nature_superscript",
+  "reference_limit": { "value": 70, "verification_status": "published_guideline", "source_url": "https://www.nature.com/nm/for-authors/preparing-your-submission", "notes": "~50-70 main-text refs; can be extended via supplementary." },
+
+  "notes": [
+    { "value": "Trial registration (ClinicalTrials.gov / EU Clinical Trials Register / WHO ICTRP) required before patient enrolment.", "verification_status": "published_guideline", "source_url": "https://www.nature.com/nature-portfolio/editorial-policies/clinical-research" }
+  ]
+}

@@ -1,0 +1,226 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42085346",
+    "pmcid": "PMC13143085",
+    "doi": "10.1371/journal.pmed.1004745",
+    "journal": "PLOS Medicine",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "data_first",
+    "dominant_frame": "epidemiology_population",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "question-method-result-interpretation",
+    "claim_chain": [
+      "Substantial differences exist among countries in the proportion of people who reported poor or fair mental health",
+      "Comorbidity rates are overall high, suggesting an essential role for primary care",
+      "Major differences in use of mental healthcare are strongly associated with national income",
+      "People with poor mental health almost universally report worse quality and user experience in accessing general health services",
+      "These findings should prompt health systems to re-assess their services to better serve this growing patient group"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "medium",
+    "preferred_verbs": [
+      "found",
+      "reported",
+      "suggest",
+      "comport",
+      "may account",
+      "points to",
+      "underlines",
+      "prompt",
+      "require",
+      "assist"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State key finding with quantitative evidence",
+      "Compare to existing literature or other countries",
+      "Provide mechanistic or contextual explanation",
+      "Discuss implications for health systems or policy"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Validity of self-reported mental health as proxy for clinical diagnosis",
+      "Comparability across countries with different cultural norms around mental health reporting",
+      "Temporal relationship and causality between mental health and chronic conditions",
+      "Generalizability given survey methodology differences across countries"
+    ],
+    "likely_attacks": [
+      "Results based on self-reported mental health rather than clinical diagnoses",
+      "Question wording and time horizon differ across studies making direct comparison difficult",
+      "Cultural norms shape how individuals perceive and articulate mental health issues",
+      "Depressive symptoms may wax and wane and can resolve without clinical treatment"
+    ],
+    "inference_basis": "The paper explicitly states 'A study limitation is that results are based on self-reported mental health rather than clinical diagnoses' in the abstract. The discussion acknowledges that 'report of mental health conditions is shaped by cultural norms and societal context' and that 'question wording and the time horizon for measuring prevalence of mental health conditions differ across studies'. The authors also note that 'Depressive symptoms may wax and wane in the general population and can resolve without clinical treatment; thus a portion of our respondents may not require mental healthcare', suggesting awareness that their outcome measure may not directly correspond to treatment need."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "comorbidity rates are overall high, suggesting an essential role for primary care",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "people with poor mental health almost universally report worse quality and user experience",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "This relationship between depression and chronic conditions is likely bidirectional",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "our estimates broadly comport with the few available measures in the same time frame",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "These findings should prompt health systems to re-assess their services",
+        "category": "generalization"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "This study of 18 low-, middle-, and high-income countries yielded several key findings",
+      "category": "opening"
+    },
+    {
+      "phrase": "substantial differences among countries in the proportion of people who reported poor or fair mental health",
+      "category": "claim"
+    },
+    {
+      "phrase": "comorbidity rates are overall high, suggesting an essential role for primary care",
+      "category": "claim"
+    },
+    {
+      "phrase": "major differences in use of mental healthcare; these are strongly associated with national income",
+      "category": "claim"
+    },
+    {
+      "phrase": "people with poor mental health almost universally report worse quality and user experience",
+      "category": "claim"
+    },
+    {
+      "phrase": "prevalence was unrelated to national income, suggesting that factors other than economic resources or living standards are important drivers",
+      "category": "claim"
+    },
+    {
+      "phrase": "report of mental health conditions is shaped by cultural norms and societal context",
+      "category": "limitation"
+    },
+    {
+      "phrase": "our estimates broadly comport with the few available measures in the same time frame",
+      "category": "hedge"
+    },
+    {
+      "phrase": "which may account for their lower prevalence",
+      "category": "hedge"
+    },
+    {
+      "phrase": "This points to the need for health systems to pursue a range of strategies",
+      "category": "implication"
+    },
+    {
+      "phrase": "This relationship between depression and chronic conditions is likely bidirectional",
+      "category": "hedge"
+    },
+    {
+      "phrase": "underlines the need for health systems to screen people",
+      "category": "implication"
+    },
+    {
+      "phrase": "This has important implications for treatment success",
+      "category": "implication"
+    },
+    {
+      "phrase": "This is not a direct measure of treatment access",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Depressive symptoms may wax and wane in the general population and can resolve without clinical treatment",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Our country-level findings on the use of mental healthcare are consistent with other research",
+      "category": "claim"
+    },
+    {
+      "phrase": "One likely major factor is the shortage of mental health professionals",
+      "category": "hedge"
+    },
+    {
+      "phrase": "This suggests that repeated contact with health systems can promote uptake of needed mental healthcare",
+      "category": "claim"
+    },
+    {
+      "phrase": "This may be a combination of greater need for all medical services",
+      "category": "hedge"
+    },
+    {
+      "phrase": "These findings should prompt health systems to re-assess their services to better serve this growing patient group",
+      "category": "implication"
+    },
+    {
+      "phrase": "A study limitation is that results are based on self-reported mental health rather than clinical diagnoses",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Weighted percent of respondents who reported poor or fair on a five-point scale",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Error bars represent 95% CI",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Distribution of respondents reporting poor or fair mental health by age group",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Each figure icon represents 2% of the population",
+      "category": "figure_legend"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers were included. The profile is based entirely on the provided discussion, abstract, and figure legends."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_phrase_violations": [
+    {
+      "field": "phrase_evidence",
+      "phrase": "Weighted percent of respondents who reported poor or fair on a five-point scale",
+      "issue": "not found in paper text"
+    },
+    {
+      "field": "phrase_evidence",
+      "phrase": "Distribution of respondents reporting poor or fair mental health by age group",
+      "issue": "not found in paper text"
+    }
+  ],
+  "_meta": {
+    "generated_at": "2026-05-25T13:08:19.769076+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\plos_med\\42085346.json",
+    "phrase_check_violations": 2,
+    "schema_valid": true
+  }
+}

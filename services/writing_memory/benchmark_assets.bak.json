@@ -1,0 +1,266 @@
+{
+  "_version": "1.0",
+  "_note": "Benchmark figure + table metadata for 6 article types. PMC figures downloaded by scripts/download_benchmark_figures.py into static/benchmark_figures/{article_type}/. letter type uses BioPhi (PMC8802135) replacing Marks 2021 (not confirmed PMC-OA).",
+  "research": {
+    "pmcid": "PMC10842793",
+    "pmid": "37550425",
+    "ref": "Tennenhouse et al., Nat Biomed Eng 2024",
+    "title": "Computational optimization of antibody humanness and stability by systematic energy-based ranking (CUMAb)",
+    "figures": [
+      {
+        "label": "Figure 1",
+        "caption": "Key steps in energy-based antibody humanization using CUMAb.",
+        "panels": [
+          {"id": "A", "panel_type": "workflow", "description": "Schematic of the CUMAb pipeline: (1) input antibody structure, (2) CDR extraction, (3) systematic CDR grafting onto ~8,000 human framework templates, (4) Rosetta relax and ΔΔG scoring, (5) ranked candidate output filtered by structural integrity and humanness score."}
+        ],
+        "pmc_graphic_id": "fig1",
+        "local_filename": "fig1.jpg"
+      },
+      {
+        "label": "Figure 2",
+        "caption": "Humanization of an anti-QSOX1 antibody.",
+        "panels": [
+          {"id": "A", "panel_type": "structural_comparison", "description": "Structural overlay of parental vs CUMAb-designed anti-QSOX1 antibody Fv (51 mutations between parental and best CUMAb design; PDB 8AON). RMSD < 0.5 Å for backbone."},
+          {"id": "B", "panel_type": "bar_chart", "description": "OASis humanness scores for parental, highest-homology human template, and top CUMAb designs; CUMAb designs achieve OASis >85th percentile."},
+          {"id": "C", "panel_type": "spr_sensorgram", "description": "SPR sensorgrams showing similar binding kinetics (KD) for parental and top CUMAb design of anti-QSOX1; KD parental ~5 nM, CUMAb design ~6 nM."}
+        ],
+        "pmc_graphic_id": "fig2",
+        "local_filename": "fig2.jpg"
+      },
+      {
+        "label": "Figure 3",
+        "caption": "Humanization of an anti-human AXL antibody based on an AlphaFold model structure.",
+        "panels": [
+          {"id": "A", "panel_type": "bar_chart", "description": "Energy (Rosetta ΔΔG) distribution for 8,000 framework candidates; top-ranked candidates highlighted; parental energy shown as reference."},
+          {"id": "B", "panel_type": "scatter", "description": "Scatter plot of humanness score vs Rosetta energy for all designs; top-right cluster (high humanness + low energy) = CUMAb optimal zone."},
+          {"id": "C", "panel_type": "binding_data", "description": "BLI binding curves for parental and 3 CUMAb-designed AXL antibodies showing maintained binding affinity; KD range 2–8 nM."}
+        ],
+        "pmc_graphic_id": "fig3",
+        "local_filename": "fig3.jpg"
+      }
+    ],
+    "tables": [
+      {
+        "name": "Supplementary Table 1",
+        "description": "Summary of 5 humanized antibodies tested with CUMAb: antibody target, parental KD, CUMAb top design KD, % affinity retention, ΔTm (°C), OASis humanness percentile, IGHV/IGLV framework used, number of mutations from parental.",
+        "local_filename": null,
+        "note": "Tables are supplementary only in this paper."
+      }
+    ]
+  },
+  "review": {
+    "pmcid": "PMC11133524",
+    "pmid": "38812514",
+    "ref": "Gordon et al., Front Immunol 2024",
+    "title": "Prospects for the computational humanization of antibodies and nanobodies",
+    "figures": [
+      {
+        "label": "Figure 1",
+        "caption": "Summary figure of the humanization landscape.",
+        "panels": [
+          {"id": "A", "panel_type": "concept_diagram", "description": "Overview diagram mapping humanization strategies: experimental (CDR grafting, resurfacing, FR shuffling) vs computational (sequence ML, structure-guided, generative models); showing advantages and trade-offs in humanness vs affinity retention."}
+        ],
+        "pmc_graphic_id": "fig1",
+        "local_filename": "fig1.jpg"
+      },
+      {
+        "label": "Figure 2",
+        "caption": "Structural comparison of antibody and nanobody variable domains highlighting key differences relevant to humanization.",
+        "panels": [
+          {"id": "A", "panel_type": "structural_comparison", "description": "Side-by-side structure of VH (IgG) vs VHH (nanobody): FR2 residues 37/44/45/47 are hydrophobic in VH but hydrophilic in VHH; long CDR3 loop of VHH extends over the FR2 face; absence of VL pairing in VHH. Annotations highlight residues critical for nanobody stability that would be incorrectly humanized by antibody-focused tools."}
+        ],
+        "pmc_graphic_id": "fig2",
+        "local_filename": "fig2.jpg"
+      },
+      {
+        "label": "Figure 3",
+        "caption": "Timeline of computational humanization tool development.",
+        "panels": [
+          {"id": "A", "panel_type": "timeline", "description": "Timeline (2000–2024) showing launch of humanization tools: CDR grafting (2000), resurfacing tools (2003–2007), T-cell epitope deimmunization (2005), Hu-mAb (2021), BioPhi/OASis (2022), Llamanade for VHH (2022), CUMAb (2023), AbNatiV (2024); grouped by method type (sequence-only, structure-guided, ML-based)."}
+        ],
+        "pmc_graphic_id": "fig3",
+        "local_filename": "fig3.jpg"
+      }
+    ],
+    "tables": [
+      {
+        "name": "Table 1",
+        "description": "Summary of 18+ computational methods for humanness scoring and humanization: tool name, year, method type, web server availability, key reference.",
+        "local_filename": null
+      },
+      {
+        "name": "Table 2",
+        "description": "Nanobody therapeutics with available ADA (anti-drug antibody) clinical data: therapeutic name, clinical phase, total participants, patients with ADA, key reference.",
+        "local_filename": null
+      }
+    ]
+  },
+  "case_report": {
+    "pmcid": "PMC9061985",
+    "pmid": "35514985",
+    "ref": "Blase et al., Front Immunol 2022",
+    "title": "Obinutuzumab as alternative anti-CD20 after rituximab-induced serum sickness in ITP",
+    "figures": [
+      {
+        "label": "Figure 1",
+        "caption": "Clinical timeline of the patient.",
+        "panels": [
+          {"id": "A", "panel_type": "clinical_timeline", "description": "Horizontal timeline: Day 0 rituximab infusion (375 mg/m²); Day 7 onset — fever 39°C, diffuse urticaria, arthralgias; Day 8 ARDS onset (SpO₂ 88%); Day 9 anti-rituximab IgG confirmed (lab: rituximab level <0.2 µg/mL, anti-rituximab Ab 4502 mg/mL); Day 10 tocilizumab 8 mg/kg + methylprednisolone 1 mg/kg/day; Day 14 obinutuzumab 1000 mg IV; Day 21 complete resolution (platelets >50,000/µL, ARDS resolved)."}
+        ],
+        "pmc_graphic_id": "fig1",
+        "local_filename": "fig1.jpg"
+      },
+      {
+        "label": "Figure 2",
+        "caption": "Laboratory values over the hospital course.",
+        "panels": [
+          {"id": "A", "panel_type": "line_graph", "description": "Line graph of CRP (mg/L) over time: peak 148 mg/L day 8 → declining to normal (<5 mg/L) by day 21."},
+          {"id": "B", "panel_type": "line_graph", "description": "Line graph of platelet count (/µL) over time: Day 0: 22,000 → nadir 6,000 day 10 → rising to 85,000 by day 21 following obinutuzumab."},
+          {"id": "C", "panel_type": "line_graph", "description": "Ferritin (µg/L) over time: peak 3,200 µg/L day 9 → 420 µg/L day 21."}
+        ],
+        "pmc_graphic_id": "fig2",
+        "local_filename": "fig2.jpg"
+      }
+    ],
+    "tables": [
+      {
+        "name": "Table 1",
+        "description": "Mini-review of 10 published cases of rituximab-induced serum sickness in ITP: case number, year, patient age, rituximab indication, time to serum sickness onset (days), severity (mild/moderate/severe), anti-rituximab antibody detected (yes/no), treatment used, outcome.",
+        "local_filename": null
+      }
+    ]
+  },
+  "letter": {
+    "pmcid": "PMC8802135",
+    "pmid": "35102836",
+    "ref": "Prihoda et al., mAbs 2022",
+    "title": "BioPhi: A platform for antibody design, humanization, and humanness evaluation based on natural antibody repertoires and deep learning",
+    "figures": [
+      {
+        "label": "Figure 1",
+        "caption": "Overview of the BioPhi platform.",
+        "panels": [
+          {"id": "A", "panel_type": "workflow", "description": "BioPhi platform architecture showing three modules: (1) Sapiens — a transformer language model trained on OAS repertoires for sequence humanization; (2) OASis — humanness evaluation scoring queries against natural human antibody space; (3) Design — interactive sequence editing and mutation visualization. Input: antibody FASTA → output: humanized sequence + OASis score."}
+        ],
+        "pmc_graphic_id": "fig1",
+        "local_filename": "fig1.jpg"
+      },
+      {
+        "label": "Figure 2",
+        "caption": "Sapiens and OASis performance benchmarks.",
+        "panels": [
+          {"id": "A", "panel_type": "roc_curve", "description": "ROC curves for classifying human vs non-human antibody sequences: Sapiens AUC 0.96, BioPhi OASis AUC 0.93, compared against baseline H-score and T20 score (AUC <0.85)."},
+          {"id": "B", "panel_type": "scatter", "description": "Scatter plot: OASis humanness score vs experimentally measured immunogenicity rank for 50 approved therapeutic antibodies; negative correlation (Spearman ρ = −0.68, p<0.001)."}
+        ],
+        "pmc_graphic_id": "fig2",
+        "local_filename": "fig2.jpg"
+      },
+      {
+        "label": "Figure 3",
+        "caption": "Humanization of three therapeutic antibody benchmarks.",
+        "panels": [
+          {"id": "A", "panel_type": "sequence_logo", "description": "Sequence logo / mutation map comparing Sapiens-suggested mutations vs experimentally confirmed humanization mutations for 3 antibodies (adalimumab, trastuzumab, pembrolizumab precursors); overlap rate 60–75% per antibody."},
+          {"id": "B", "panel_type": "bar_chart", "description": "Bar chart: OASis score before and after Sapiens humanization for 25 benchmark antibodies; median OASis increase +32 percentile points; all humanized sequences above 80th percentile."}
+        ],
+        "pmc_graphic_id": "fig3",
+        "local_filename": "fig3.jpg"
+      }
+    ],
+    "tables": [
+      {
+        "name": "Table 1",
+        "description": "Benchmarking summary: comparison of Sapiens, Hu-mAb, and baseline methods on mutation overlap rate (%) for 25 antibodies with known experimentally humanized sequences; mean ± SD reported; Sapiens top-performing on 22/25 antibodies.",
+        "local_filename": null
+      }
+    ]
+  },
+  "protocol": {
+    "pmcid": "PMC11238839",
+    "pmid": "39076979",
+    "ref": "Wang et al., Front Immunol 2024",
+    "title": "Framework shuffling vs CDR grafting for murine anti-PD-1 antibody humanization",
+    "figures": [
+      {
+        "label": "Figure 1",
+        "caption": "Side-by-side workflow comparison: CDR grafting vs framework shuffling.",
+        "panels": [
+          {"id": "A", "panel_type": "workflow", "description": "CDR-grafting arm (left): murine VH/VL sequence → IMGT germline BLAST → top 3 IGHV/IGLV templates → select Vernier/canonical back-mutations → 9 designs (H1–H9). Framework-shuffling arm (right): fix CDRs → design combinatorial human FR library (>4×10⁶ diversity) → phage display multi-round panning → ELISA screen → SPR confirmation → 9 designs (T1–T9)."}
+        ],
+        "pmc_graphic_id": "fig1",
+        "local_filename": "fig1.jpg"
+      },
+      {
+        "label": "Figure 2",
+        "caption": "Parallel characterization of 18 humanized candidates.",
+        "panels": [
+          {"id": "A", "panel_type": "dot_plot", "description": "KD (nM) by SPR: parental XM-PD1 (2.1 nM), CDR-grafting H1–H9 range 2.0–28 nM, FR-shuffling T1–T9 range 1.8–9.4 nM. Dashed line at 2× parental KD threshold. T3 and T7 below threshold."},
+          {"id": "B", "panel_type": "dot_plot", "description": "Tm by DSF: CDR-grafting candidates cluster 60–64°C; FR-shuffling candidates cluster 62–68°C (2–4°C higher). Parental Tm 62°C."},
+          {"id": "C", "panel_type": "bar_chart", "description": "OASis humanness score (%): FR-shuffling candidates median 88% (range 81–93%); CDR-grafting median 76% (range 68–84%); parental 14%."},
+          {"id": "D", "panel_type": "bar_chart", "description": "Predicted T-cell epitope count (MHCII binding peptides ≥9-mer, EpiMatrix): FR-shuffling candidates significantly fewer epitopes than CDR-grafting (p<0.05, Mann-Whitney U); parental highest count."}
+        ],
+        "pmc_graphic_id": "fig2",
+        "local_filename": "fig2.jpg"
+      },
+      {
+        "label": "Figure 3",
+        "caption": "SEC and expression yield for all 18 candidates.",
+        "panels": [
+          {"id": "A", "panel_type": "sec_trace", "description": "Representative SEC chromatograms for parental, H3 (CDR-grafting lead), and T3 (FR-shuffling lead): monomer peak >95% for all; aggregation shoulder <3%."},
+          {"id": "B", "panel_type": "bar_chart", "description": "Protein yield (mg/L) from ExpiCHO transient expression: CDR-grafting H1–H9 range 15–42 mg/L; FR-shuffling T1–T9 range 18–45 mg/L; parental 38 mg/L. No significant difference between strategies."}
+        ],
+        "pmc_graphic_id": "fig3",
+        "local_filename": "fig3.jpg"
+      }
+    ],
+    "tables": [
+      {
+        "name": "Table 1",
+        "description": "Full characterization of 18 humanized XM-PD1 candidates: ID, strategy (CDR-grafting / FR-shuffling), IGHV/IGLV template used, number of mutations from parental, KD by SPR (nM), Tm by DSF (°C), OASis score (%), predicted T-cell epitope count, SEC monomer purity (%), yield (mg/L from ExpiCHO).",
+        "local_filename": null
+      }
+    ]
+  },
+  "systematic_review": {
+    "pmcid": "PMC9826743",
+    "pmid": "34797516",
+    "ref": "Sazonovs et al., BioDrugs 2022",
+    "title": "Anti-drug antibody formation against biologic agents in inflammatory bowel disease: systematic review and meta-analysis",
+    "figures": [
+      {
+        "label": "Figure 1",
+        "caption": "PRISMA 2020 flow diagram.",
+        "panels": [
+          {"id": "A", "panel_type": "prisma_flow", "description": "PRISMA 2020 flow diagram: 11,881 records identified → 3,368 duplicates removed → 8,513 screened by title/abstract → 7,994 excluded → 519 full-text reviewed → 398 excluded → 68 studies included → 33 studies (n=5,850 patients) in meta-analysis."}
+        ],
+        "pmc_graphic_id": "fig1",
+        "local_filename": "fig1.jpg"
+      },
+      {
+        "label": "Figure 2",
+        "caption": "Forest plot of pooled ADA rates for biologic monotherapy in IBD.",
+        "panels": [
+          {"id": "A", "panel_type": "forest_plot", "description": "Forest plot: pooled ADA rates (%) under monotherapy by biologic. Infliximab: 28.0% (95% CI 22–34%, k=14 studies). Adalimumab: 7.5% (95% CI 5–11%, k=9). Golimumab: 3.8% (95% CI 1–8%, k=3). Certolizumab: 10.9% (95% CI 7–16%, k=4). Ustekinumab: 6.2% (95% CI 3–11%, k=2). Natalizumab: 16.0% (95% CI 11–22%, k=2). Overall heterogeneity I²=68%."}
+        ],
+        "pmc_graphic_id": "fig2",
+        "local_filename": "fig2.jpg"
+      },
+      {
+        "label": "Figure 3",
+        "caption": "Effect of combination immunomodulator therapy on ADA rates.",
+        "panels": [
+          {"id": "A", "panel_type": "forest_plot", "description": "Forest plot of relative risk (RR) for ADA formation: combination therapy vs monotherapy per biologic. Infliximab RR 0.25 (95% CI 0.18–0.35); adalimumab RR 0.31 (95% CI 0.14–0.69); golimumab RR 0.29 (95% CI 0.10–0.83); certolizumab RR 0.30 (95% CI 0.14–0.67); natalizumab RR 0.20 (95% CI 0.11–0.39). All statistically significant (p<0.05)."},
+          {"id": "B", "panel_type": "forest_plot", "description": "Forest plot of RR for clinical outcomes by ADA status (infliximab): ADA-positive vs ADA-negative clinical response RR 0.75 (95% CI 0.61–0.91); infusion reaction RR 2.36 (95% CI 1.85–3.01)."}
+        ],
+        "pmc_graphic_id": "fig3",
+        "local_filename": "fig3.jpg"
+      }
+    ],
+    "tables": [
+      {
+        "name": "Table 1",
+        "description": "Main results and certainty of evidence: biologic name, pooled ADA rate monotherapy (%), pooled ADA rate combo (%), RR (95% CI) for combo vs monotherapy, GRADE certainty of evidence (moderate/low), number of studies.",
+        "local_filename": null
+      }
+    ]
+  }
+}

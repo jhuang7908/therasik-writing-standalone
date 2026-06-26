@@ -1,0 +1,78 @@
+{
+  "hub_version": "1.0.0",
+  "updated_at": "2026-06-04",
+  "description": "Free/open scientific illustration libraries mirrored for grant & publication workflows.",
+  "attribution_guide": "data/science_assets/ATTRIBUTION.md",
+  "libraries": [
+    {
+      "id": "bioicons",
+      "name": "Bioicons",
+      "method": "git_shallow",
+      "repo": "https://github.com/duerrsimon/bioicons.git",
+      "subdir": "static/icons",
+      "license": "Mixed (CC0, MIT, CC-BY per icon — check each file)",
+      "license_url": "https://bioicons.com/",
+      "publication_ok": true,
+      "grant_ok": true,
+      "attribution": "Per-icon license on bioicons.com; CC-BY icons require credit to original author.",
+      "drawio_url": "https://app.diagrams.net/?splash=0&libs=bioicons",
+      "install_dir": "libraries/bioicons"
+    },
+    {
+      "id": "healthicons",
+      "name": "Health Icons",
+      "method": "git_shallow",
+      "repo": "https://github.com/resolvetosavelives/healthicons.git",
+      "subdir": "public/icons/svg",
+      "license": "CC0 1.0",
+      "license_url": "https://healthicons.org/",
+      "publication_ok": true,
+      "grant_ok": true,
+      "attribution": "Optional courtesy credit to Health Icons.",
+      "install_dir": "libraries/healthicons"
+    },
+    {
+      "id": "servier_smart",
+      "name": "Servier Medical Art (SMART)",
+      "method": "http_discover",
+      "discover_url": "https://smart.servier.com/image-kits-by-category/",
+      "discover_pattern": "https://smart\\.servier\\.com/wp-content/uploads/[^\"'\\s]+\\.pptx",
+      "license": "CC BY 4.0",
+      "license_url": "https://smart.servier.com/terms-of-use/",
+      "publication_ok": true,
+      "grant_ok": true,
+      "attribution": "Image provided by Servier Medical Art (https://smart.servier.com/), licensed under CC BY 4.0.",
+      "install_dir": "libraries/servier_smart",
+      "files": []
+    }
+  ],
+  "tools": [
+    {
+      "id": "inkscape",
+      "name": "Inkscape",
+      "license": "GPL",
+      "role": "Publication-quality vector assembly, multi-panel figures",
+      "url": "https://inkscape.org/",
+      "extension": "https://github.com/burghoff/Scientific-Inkscape"
+    },
+    {
+      "id": "drawio",
+      "name": "draw.io (diagrams.net)",
+      "license": "Apache 2.0",
+      "role": "Grant technical route maps, study design flowcharts",
+      "url": "https://app.diagrams.net/",
+      "bioicons_integration": "https://bioicons.com/extensions/"
+    }
+  ],
+  "export_standards": {
+    "grant_figures": {
+      "min_dpi_raster": 300,
+      "preferred_formats": ["pdf", "svg", "png"],
+      "font_note": "Use one sans-serif family; 8–10 pt labels at final print size."
+    },
+    "journal_figures": {
+      "min_dpi_raster": 300,
+      "vector_preferred": true
+    }
+  }
+}

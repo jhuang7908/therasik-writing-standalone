@@ -1,0 +1,229 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42125972",
+    "pmcid": "PMC13171099",
+    "doi": "10.7554/eLife.109408.3.sa3",
+    "journal": "eLife",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "data_first",
+    "dominant_frame": "molecular_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "context-finding-mechanism-implication",
+    "claim_chain": [
+      "Dreg1 deletion causes specific reduction in ILC2 cells",
+      "Developmental bottleneck occurs during bone marrow ILC development",
+      "Dreg1 locus is accessible in early progenitors and gains H3K27ac during differentiation",
+      "Tcf1 binds to Dreg1 locus and is upstream of Dreg1 expression",
+      "Dreg1 contributes to dosage tuning of Gata3 during ILC2 commitment",
+      "Syntenic human enhancer contains non-coding transcripts expressed in ILC2",
+      "Dreg1 represents potential therapeutic target for allergic disease"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "show",
+      "revealed",
+      "observed",
+      "suggest",
+      "favour",
+      "identify",
+      "conclude",
+      "expect",
+      "may represent"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State main finding with supporting mechanistic detail",
+      "Connect finding to prior knowledge or threshold requirement",
+      "Present surprising or contrasting observation",
+      "Offer mechanistic interpretation or speculation",
+      "Acknowledge limitations and propose future experiments",
+      "Extend findings to human system or translational context"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Mechanistic clarity of how Dreg1 regulates Gata3 expression",
+      "Discrimination between RNA-dependent and DNA element-dependent effects",
+      "Validation of human homologue function in ILC2 development",
+      "Explanation for lineage-specific effects despite enhancer proximity to Tce1"
+    ],
+    "likely_attacks": [
+      "Lack of direct mechanistic experiments showing how Dreg1 controls Gata3",
+      "Reliance on publicly available data rather than new chromatin profiling",
+      "Speculation about enhancer RNA function without functional validation",
+      "Human data limited to expression analysis without functional perturbation"
+    ],
+    "inference_basis": "The discussion explicitly states 'how Dreg1 is involved in regulating Gata3 levels mechanistically is yet to be determined' and proposes 'Future experiments that selectively suppress Dreg1 transcription for example via antisense oligonucleotides or CRISPRi at the Dreg1 promoter will enable the discrimination of RNA-dependent from DNA element-dependent effects.' The authors also note 'further experiments will dig deeper into the mechanisms utilised by Dreg1 to control Gata3 expression' and acknowledge that human experiments 'were performed in T cells' rather than ILC2. The phrase 'it is tempting to speculate' signals awareness of interpretive limitations."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "we show that germline excision of the Dreg1 locus resulted in a specific reduction in ILC2 cells",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "we favour the idea that Dreg1 likely contributes to dosage tuning of Gata3",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "this suggests that Tcf1, which is known to be critical for Gata3 expression during ILC development is upstream of, and may act in concert with Dreg1",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "we expect that this enhancer region will likely also play an important role in the regulation of ILC2 development",
+        "category": "generalization"
+      },
+      {
+        "quoted_phrase": "we conclude that Dreg1 is a Tcf1-dependent non-coding RNA critical for fine tuning the high level of Gata3 required for the optimal development of the ILC2 lineage",
+        "category": "claim"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "Here, we show that germline excision of the Dreg1 locus resulted in a specific reduction in ILC2 cells",
+      "category": "opening"
+    },
+    {
+      "phrase": "These results are in line with the fact that very high levels of Gata3 are required for ILC2 development",
+      "category": "claim"
+    },
+    {
+      "phrase": "a surprising finding was that the deletion of Dreg1 did not affect T or NK cell lineages",
+      "category": "claim"
+    },
+    {
+      "phrase": "While it is tempting to speculate",
+      "category": "hedge"
+    },
+    {
+      "phrase": "we favour the idea that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "likely contributes to dosage tuning of Gata3",
+      "category": "claim"
+    },
+    {
+      "phrase": "ILC2s because of their higher Gata3 threshold are more sensitive to modest reductions",
+      "category": "claim"
+    },
+    {
+      "phrase": "Our analysis of publicly available data revealed that",
+      "category": "transition"
+    },
+    {
+      "phrase": "This region was enriched for Tcf1 motifs which was supported by analysis of data from",
+      "category": "claim"
+    },
+    {
+      "phrase": "Taken together, this suggests that",
+      "category": "transition"
+    },
+    {
+      "phrase": "may act in concert with",
+      "category": "hedge"
+    },
+    {
+      "phrase": "further experiments will dig deeper into the mechanisms",
+      "category": "limitation"
+    },
+    {
+      "phrase": "how Dreg1 is involved in regulating Gata3 levels mechanistically is yet to be determined",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Dreg1 may act as an enhancer RNA that cooperates with chromatin-modifying proteins",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Future experiments that selectively suppress Dreg1 transcription",
+      "category": "limitation"
+    },
+    {
+      "phrase": "will enable the discrimination of RNA-dependent from DNA element-dependent effects",
+      "category": "implication"
+    },
+    {
+      "phrase": "In humans, we identify two non-coding transcripts within the syntenic GATA3 distal enhancer",
+      "category": "claim"
+    },
+    {
+      "phrase": "we expect that this enhancer region will likely also play an important role",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Given that ILC2 have been implicated in the development of allergic reactions",
+      "category": "implication"
+    },
+    {
+      "phrase": "may represent targets for the modulation of GATA3 levels and ILC2 function in disease",
+      "category": "implication"
+    },
+    {
+      "phrase": "we conclude that Dreg1 is a Tcf1-dependent non-coding RNA critical for fine tuning",
+      "category": "claim"
+    },
+    {
+      "phrase": "Representative FACS plots and % of",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Quantification of ILC progenitor subsets in the bone marrow with percentages (upper) and total numbers (below)",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "owing to a developmental bottleneck during ILC development in the bone marrow",
+      "category": "claim"
+    },
+    {
+      "phrase": "buffered by redundant modules",
+      "category": "claim"
+    },
+    {
+      "phrase": "coinciding with increased Dreg1 expression",
+      "category": "claim"
+    },
+    {
+      "phrase": "showed indeed that Tcf1 bound to these regions in ILCP",
+      "category": "claim"
+    },
+    {
+      "phrase": "consistent with an early developmental bottleneck",
+      "category": "claim"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All phrases extracted are literal substrings from the input text. No external references, author names, or invented numbers were included. The profile accurately reflects the paper's mechanistic focus, balanced hedging, and acknowledgment of future experimental needs."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T12:52:55.068317+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\elife\\42125965.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

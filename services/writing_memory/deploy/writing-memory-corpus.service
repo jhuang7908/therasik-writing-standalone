@@ -1,0 +1,23 @@
+[Unit]
+Description=InSynBio Writing Memory — corpus refresh pipeline
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/srv/Antibody_Engineer_Suite
+EnvironmentFile=/srv/services/writing_memory/.env
+# Research corpus only (weekly default). Add review: --article-types research review
+ExecStart=/srv/services/writing_memory/.venv/bin/python \
+    services/writing_memory/ingest/run_corpus_pipeline.py \
+    --article-types research \
+    --resume \
+    --restart-service
+StandardOutput=journal
+StandardError=journal
+# Full run can take 60–90 min
+TimeoutStartSec=7200
+
+[Install]
+WantedBy=multi-user.target

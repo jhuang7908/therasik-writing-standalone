@@ -1,0 +1,46 @@
+{
+  "schema_version": "0.1.0",
+  "id": "plos_vancouver",
+  "display_name": "PLOS Medicine numbered (Vancouver)",
+  "based_on": "ICMJE/Vancouver",
+  "sourced_from": [
+    { "url": "https://journals.plos.org/plosmedicine/s/references", "label": "PLOS Medicine References", "captured_at": null }
+  ],
+
+  "in_text_citation": {
+    "mode": "numbered_bracketed",
+    "examples": ["[1]", "[1,2]", "[1-3]"],
+    "multiple_citations": "comma separated; ranges allowed with hyphen",
+    "verification_status": "unverified",
+    "source_url": "https://journals.plos.org/plosmedicine/s/references",
+    "notes": "Confirm bracket style and whether ranges are hyphen vs en-dash."
+  },
+
+  "list_order": {
+    "mode": "by_appearance",
+    "verification_status": "unverified",
+    "source_url": "https://journals.plos.org/plosmedicine/s/references"
+  },
+
+  "list_entry": {
+    "author_list": {
+      "format": "last_initials",
+      "separator": ", ",
+      "et_al_threshold": null,
+      "et_al_keep_first": null,
+      "final_separator": ", "
+    },
+    "journal_abbreviation": "pubmed_nlm_ta",
+    "year_position": "at_end_before_doi",
+    "title_case": "sentence_case",
+    "italicize": { "journal_title": false, "book_title": true, "article_title": false },
+    "volume_issue_pages_format": "Vol(Iss):Pages",
+    "doi_required": true,
+    "doi_format": "doi:10.xxxx/xxxx",
+    "url_required": false,
+    "preprint_handling": "Allowed with preprint label and DOI/URL; confirm exact format.",
+    "verification_status": "unverified",
+    "source_url": "https://journals.plos.org/plosmedicine/s/references",
+    "examples": []
+  }
+}

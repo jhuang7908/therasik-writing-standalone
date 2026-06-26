@@ -1,0 +1,231 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42113975",
+    "pmcid": "PMC13187819",
+    "doi": "10.1073/pnas.2602705123",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "translational_promise",
+    "dominant_frame": "method_innovation",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "problem-gap-solution-implication",
+    "claim_chain": [
+      "Conventional IVM systems face fundamental trade-offs between resolution, FOV, DOF, and system form factor",
+      "PrecisionView achieves significant improvement in both FOV and DOF through a simple optical layout and compact design",
+      "The extended FOV and DOF simplify large-area image mosaicking during manual scanning",
+      "PrecisionView generates large-scale coregistered maps of cellular and vascular structures",
+      "Results suggest the potential to address the unmet need for early cancer detection at the point of care"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "present",
+      "demonstrate",
+      "achieve",
+      "enable",
+      "facilitate",
+      "maintain",
+      "reflect",
+      "suggest",
+      "incorporate",
+      "integrate",
+      "mitigate",
+      "reveal"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State main contribution or finding",
+      "Contrast with prior approaches or conventional systems",
+      "Explain technical mechanism or design principle",
+      "Acknowledge trade-offs or limitations",
+      "Discuss implications for clinical translation or future work"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Validation of resolution claims across the full FOV and DOF",
+      "Comparison with existing IVM systems in clinical settings",
+      "Demonstration of diagnostic accuracy in precancer detection",
+      "Robustness of reconstruction in heterogeneous tissue with scattering",
+      "Clinical workflow integration and real-time performance"
+    ],
+    "likely_attacks": [
+      "Peak in-focus contrast may be modestly lower than conventional diffraction-limited systems",
+      "Motion blur visible in videos when probe is translated across tissue",
+      "System designed primarily for superficial epithelial imaging where scattering remains moderate",
+      "Effective acquisition frame rate limited by long exposure time required for fluorescence imaging",
+      "Insufficient validation in deeper or highly heterogeneous tissue with scattering-induced aberrations"
+    ],
+    "inference_basis": "The discussion explicitly acknowledges that peak in-focus contrast at the exact focal plane may be modestly lower than conventional systems, reflecting the trade-off of wavefront coding approaches. The authors note that motion blur is visible in videos during probe translation and that the system is designed primarily for superficial epithelial imaging where scattering-induced aberrations remain moderate. They discuss that in deeper or highly heterogeneous tissue, scattering can introduce additional distortions, and future work could improve robustness by incorporating simulated or experimentally measured scattering conditions. The effective acquisition frame rate limitation due to long exposure time is also discussed as a constraint. These self-identified limitations form the basis for inferring likely reviewer concerns about validation depth, clinical robustness, and performance trade-offs."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "Our results suggest the potential of this computational endomicroscope to address the unmet need for early cancer detection at the point of care",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "PrecisionView achieves significant improvement in both FOV and DOF through a simple optical layout and compact design, which are otherwise unachievable with conventional optics",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "The extended FOV demonstrated by PrecisionView reflects an increase in the effective usable field rather than simply an expansion of the geometric field defined by the optics and sensor",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "Although PrecisionView is designed to provide extended DOF, its peak in-focus contrast at the exact focal plane may be modestly lower than that of a conventional diffraction-limited system",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "These developments highlight how optical–computational imaging approaches can be translated from proof-of-concept demonstrations to clinically relevant imaging systems",
+        "category": "generalization"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "In this study, we present a compact, affordable ($3,000), AI-powered endomicroscope",
+      "category": "opening"
+    },
+    {
+      "phrase": "The present work builds upon prior phase-mask–based extended DOF approaches while extending these concepts toward a clinically deployable in vivo imaging system",
+      "category": "opening"
+    },
+    {
+      "phrase": "In contrast to earlier implementations",
+      "category": "transition"
+    },
+    {
+      "phrase": "Importantly, the deployment of real-time deep learning reconstruction enables immediate all-in-focus visualization",
+      "category": "claim"
+    },
+    {
+      "phrase": "These developments highlight how optical–computational imaging approaches can be translated from proof-of-concept demonstrations to clinically relevant imaging systems",
+      "category": "implication"
+    },
+    {
+      "phrase": "Conventional IVM systems face fundamental trade-offs between resolution, FOV, DOF, and system form factor",
+      "category": "opening"
+    },
+    {
+      "phrase": "However, these approaches increase system complexity and cost and are difficult to implement in handheld imaging systems due to their sensitivity to motion",
+      "category": "transition"
+    },
+    {
+      "phrase": "In contrast, PrecisionView achieves significant improvement in both FOV and DOF through a simple optical layout and compact design",
+      "category": "claim"
+    },
+    {
+      "phrase": "Although PrecisionView is designed to provide extended DOF, its peak in-focus contrast at the exact focal plane may be modestly lower",
+      "category": "hedge"
+    },
+    {
+      "phrase": "This behavior reflects the trade-off of wavefront coding approaches",
+      "category": "limitation"
+    },
+    {
+      "phrase": "There is a tradeoff between optical sharpness at the nominal focal plane and improved preservation of spatial frequency information across defocus",
+      "category": "limitation"
+    },
+    {
+      "phrase": "PrecisionView currently is designed primarily for superficial epithelial imaging where scattering-induced aberrations remain moderate",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Future work could improve robustness by incorporating simulated or experimentally measured scattering conditions into the training process",
+      "category": "implication"
+    },
+    {
+      "phrase": "The PrecisionView system can be readily assembled using off-the-shelf components and a customized phase mask at low cost",
+      "category": "claim"
+    },
+    {
+      "phrase": "Unlike most computational microscopy techniques that rely on extensive postprocessing, PrecisionView integrates rapid deep learning reconstruction directly into the video acquisition pipeline",
+      "category": "claim"
+    },
+    {
+      "phrase": "motion blur is visible in the videos when the probe is translated across tissue",
+      "category": "limitation"
+    },
+    {
+      "phrase": "To mitigate this effect, we implemented a handheld stop-and-go acquisition strategy",
+      "category": "transition"
+    },
+    {
+      "phrase": "The real-time reconstruction speed is determined by the computation capability of the hardware",
+      "category": "other"
+    },
+    {
+      "phrase": "In future prototypes, we plan to integrate miniature LEDs at the distal end of the PrecisionView",
+      "category": "implication"
+    },
+    {
+      "phrase": "Although image mosaicking has been used to expand the FOV of conventional IVM systems, the total stitched imaging area remains limited",
+      "category": "transition"
+    },
+    {
+      "phrase": "In contrast, the FOV and extended DOF of PrecisionView simplify large-area image mosaicking during manual scanning",
+      "category": "claim"
+    },
+    {
+      "phrase": "Our results suggest the potential of this computational endomicroscope to address the unmet need for early cancer detection at the point of care",
+      "category": "implication"
+    },
+    {
+      "phrase": "representing approximately 5× increase in FOV and 8× larger DOF compared to conventional IVM with similar resolution",
+      "category": "claim"
+    },
+    {
+      "phrase": "PrecisionView generates large-scale (1 to 3 cm2) coregistered maps of cellular and vascular structures",
+      "category": "claim"
+    },
+    {
+      "phrase": "revealing distinct microscopic patterns associated with anatomic structures and precancerous lesions",
+      "category": "claim"
+    },
+    {
+      "phrase": "PrecisionView is a compact, handheld, and simple-to-use endomicroscope designed for high-resolution, noninvasive",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "The device incorporates a simple conjugated microscope design with off-the-shelf lenses",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Experimentally captured images of 4 μm diameter fluorescent beads using PrecisionView and the conventional system",
+      "category": "figure_legend"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, invented numbers, or author names were introduced. Claim strength examples and phrase evidence are grounded in the provided discussion, abstract, and figure legends. Reviewer preference profile is inferred from explicit limitations and caveats stated by the authors."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:15:12.261477+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\pnas\\42113975.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

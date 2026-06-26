@@ -1,0 +1,237 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42138716",
+    "pmcid": "PMC13179060",
+    "doi": "10.7554/eLife.102680.3.sa4",
+    "journal": "eLife",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "data_first",
+    "dominant_frame": "molecular_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "context-finding-mechanism-implication",
+    "claim_chain": [
+      "Identified ATP5I as a candidate mitochondrial target using a biologically active probe",
+      "Biguanides bound purified ATP5I with low-micromolar affinity",
+      "Biguanides disrupted F₁F₀-ATP synthase oligomerization in cells",
+      "ATP5I knockout cells exhibited the same phenotype as biguanide-treated cells",
+      "ATP5I knockout cells were resistant to biguanide antiproliferative effects",
+      "Reintroduction of ATP5I rescued sensitivity to biguanides",
+      "Genome-wide CRISPR screening showed metformin shares genetic signature with oligomycin, not rotenone"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "identified",
+      "demonstrate",
+      "observed",
+      "exhibit",
+      "suggest",
+      "indicate",
+      "propose",
+      "confirm",
+      "strengthen",
+      "underscore",
+      "provide"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State main finding or observation",
+      "Present supporting evidence from experiments",
+      "Reconcile with or contrast against prior literature",
+      "Propose mechanistic interpretation",
+      "Acknowledge limitations or alternative explanations",
+      "State broader implications or future directions"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Mechanistic completeness and molecular detail of ATP5I-biguanide interaction",
+      "Reconciliation with existing complex I inhibition literature",
+      "Temporal discrepancy between immediate respiration effects and delayed oligomerization changes",
+      "Generalizability across cancer cell types and contexts",
+      "Clinical relevance and therapeutic potential"
+    ],
+    "likely_attacks": [
+      "Incomplete molecular mechanism for respiration inhibition",
+      "Time-course inconsistency between immediate respiration effects and 72-hour oligomerization changes",
+      "Partial rescue by ATP5I reintroduction rather than complete restoration",
+      "Context-dependent effects that may limit generalizability",
+      "Lack of direct demonstration of ATP5I-biguanide binding in intact cells"
+    ],
+    "inference_basis": "The paper explicitly states 'the explanation for the inhibition of respiration is still unknown' and 'the exact complete molecular mechanism remains unclear,' acknowledging mechanistic gaps. It addresses the temporal puzzle: 'biguanides have an immediate effect on mitochondrial respiration, but we needed to expose cells for longer times (72 hr in KP-4 cells) to observe an accumulation of vestigial intermediates.' The authors propose plausible indirect mechanisms ('It is plausible that biguanides perturb functions of the peripheral stalk' and 'It is therefore plausible that biguanides could impair Complex I indirectly') but do not claim certainty. They also note context-dependent findings from prior literature ('These context-dependent findings are compatible with the idea') and acknowledge that ATP5I reintroduction 'partially restored their sensitivity to biguanides' rather than fully. The paper devotes substantial space to reconciling their ATP5I findings with prior complex I inhibition claims, suggesting awareness that reviewers would prioritize this reconciliation."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "the explanation for the inhibition of respiration is still unknown",
+        "category": "limitation"
+      },
+      {
+        "quoted_phrase": "It is plausible that biguanides perturb functions of the peripheral stalk",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "We demonstrate that ATP5I interacts with a biguanide analogue in vitro",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "consistent with the proposed role of ATP5I being a biguanide target",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "the exact complete molecular mechanism remains unclear",
+        "category": "limitation"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "Using a biologically active, BFB, we identified and characterized the ATP synthase subunit e (ATP5I; complex V) as a candidate mitochondrial target",
+      "category": "opening"
+    },
+    {
+      "phrase": "Biguanides bound purified ATP5I with low-micromolar affinity",
+      "category": "claim"
+    },
+    {
+      "phrase": "Consistent with complex V involvement",
+      "category": "transition"
+    },
+    {
+      "phrase": "supporting a model in which biguanides impair ATP synthase organization/function while leaving upstream electron transport capacity intact",
+      "category": "causal"
+    },
+    {
+      "phrase": "Notably, several studies have argued that complex I inhibition accounts for the mitochondrial effects of biguanides",
+      "category": "transition"
+    },
+    {
+      "phrase": "However, we observed that uncoupling also restored respiration in phenformin-treated cells",
+      "category": "claim"
+    },
+    {
+      "phrase": "These context-dependent findings are compatible with the idea that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "the explanation for the inhibition of respiration is still unknown",
+      "category": "limitation"
+    },
+    {
+      "phrase": "It is plausible that biguanides perturb functions of the peripheral stalk",
+      "category": "hedge"
+    },
+    {
+      "phrase": "It is therefore plausible that biguanides could impair Complex I indirectly",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Consistent with this model",
+      "category": "transition"
+    },
+    {
+      "phrase": "We confirmed this interpretation since",
+      "category": "claim"
+    },
+    {
+      "phrase": "Reintroducing wild-type ATP5I in ATP5I KO cells partially restored their sensitivity to biguanides",
+      "category": "claim"
+    },
+    {
+      "phrase": "consistent with the proposed role of ATP5I being a biguanide target",
+      "category": "causal"
+    },
+    {
+      "phrase": "Further work is needed to determine",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Our findings, combined with recent published results, strengthen the correlation between",
+      "category": "generalization"
+    },
+    {
+      "phrase": "although the exact complete molecular mechanism remains unclear",
+      "category": "limitation"
+    },
+    {
+      "phrase": "these results suggest the intriguing possibility that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "highlighting its potential clinical relevance",
+      "category": "implication"
+    },
+    {
+      "phrase": "Identifying ATP5I as a potential antineoplastic target for medicinal biguanides provides insights into the mechanisms underlying their anticancer effects",
+      "category": "implication"
+    },
+    {
+      "phrase": "These findings also underscore the need for further exploration",
+      "category": "implication"
+    },
+    {
+      "phrase": "potentially leading to novel therapeutic strategies for cancer treatment",
+      "category": "implication"
+    },
+    {
+      "phrase": "We demonstrate that ATP5I interacts with a biguanide analogue in vitro",
+      "category": "claim"
+    },
+    {
+      "phrase": "disabling its expression by CRISPR–Cas9 in pancreatic cancer cells leads to the same phenotype as biguanide-treated cells",
+      "category": "causal"
+    },
+    {
+      "phrase": "metformin disrupts F₁F₀-ATP synthase oligomerization, leading to the accumulation of vestigial assembly intermediates",
+      "category": "causal"
+    },
+    {
+      "phrase": "This provides unbiased support for the relevance of the newly proposed target",
+      "category": "claim"
+    },
+    {
+      "phrase": "Design of bio-inspired probe biotin functionalized biguanide (BFB) based on the structure of metformin",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Mass spectrometry (MS/MS) analysis was performed to identify proteins potentially involved in BFB-specific interactions",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Purity is estimated at ≥90%",
+      "category": "figure_legend"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers were included. The profile accurately reflects the paper's mechanistic focus, balanced hedging, and acknowledgment of incomplete mechanistic understanding."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:23:21.108921+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\elife\\42138713.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

@@ -1,0 +1,256 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "41990095",
+    "pmcid": "PMC13120699",
+    "doi": "10.1371/journal.pmed.1005047.r008",
+    "journal": "PLOS Medicine",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "direct_problem_statement",
+    "dominant_frame": "clinical_outcome",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "problem-gap-solution-implication",
+    "claim_chain": [
+      "TRD imposes major clinical and economic burdens",
+      "Previous evaluations compared esketamine only with unrealistic comparators",
+      "Our model incorporates a broader spectrum of comparators reflecting actual clinical practice",
+      "Esketamine was not cost-effective compared to most treatment strategies under the WTP threshold",
+      "Combination therapy emerged as the most cost-effective option",
+      "Cost-effectiveness evidence may help inform more context-sensitive treatment sequencing strategies",
+      "Policy approaches such as price negotiation and optimized service delivery may improve the value of esketamine"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "indicated",
+      "emerged",
+      "suggested",
+      "appeared",
+      "confirmed",
+      "underscored",
+      "demonstrated",
+      "assessed",
+      "evaluated",
+      "compared",
+      "identified",
+      "supports"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State main finding or comparison result",
+      "Contextualize with prior literature or methodological differences",
+      "Explain discrepancies or mechanisms driving the result",
+      "Support interpretation with sensitivity analysis or additional evidence",
+      "Acknowledge limitations or boundary conditions",
+      "State implications for practice or policy"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Validity of indirect comparisons and heterogeneity of trial populations",
+      "Generalizability of findings to different healthcare systems and labor cost structures",
+      "Robustness of cost-effectiveness conclusions across sensitivity analyses",
+      "Appropriateness of effectiveness assumptions for ECT and other comparators",
+      "Context-specific costing methodology and transparency",
+      "Clinical relevance of model structure and treatment pathways"
+    ],
+    "likely_attacks": [
+      "Reliance on indirect comparisons and assumptions derived from heterogeneous clinical trial populations",
+      "Conservative estimation of ECT effectiveness not restricted to severe clinical subgroups",
+      "Generalizability limited to high-income healthcare systems with high labor costs",
+      "Potential underestimation of QALY gains for labor-intensive interventions like ECT",
+      "Lack of real-world head-to-head comparative effectiveness data",
+      "Uncertainty in long-term relapse and remission transition probabilities"
+    ],
+    "inference_basis": "The paper explicitly states that the main limitation is the reliance on indirect comparisons and assumptions derived from heterogeneous clinical trial populations. The discussion extensively addresses methodological differences with prior studies, particularly regarding ECT cost structure assumptions and effectiveness modeling choices. The authors acknowledge that ECT efficacy parameters were not consistently restricted to the most severe clinical subgroups, potentially leading to conservative QALY estimates. The paper emphasizes that findings should be interpreted in the context of a high-income healthcare system with relatively high labor costs, and that generalizability to lower-labor-cost systems may differ substantially. The authors also note that the component-level cost reporting enables context-specific re-estimation and supports adaptation to alternative healthcare settings."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "esketamine was not cost-effective compared to most other treatment strategies under the WTP threshold",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "combination therapy emerged as the most cost-effective option",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "may not fully reflect real-world patient characteristics and treatment pathways",
+        "category": "limitation"
+      },
+      {
+        "quoted_phrase": "can be largely explained by two key methodological differences",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "these findings suggest that cost-effectiveness evidence may help inform more context-sensitive treatment sequencing strategies",
+        "category": "hedge"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "In this study, we compared esketamine nasal spray with six commonly used third-line treatment strategies for TRD",
+      "category": "opening"
+    },
+    {
+      "phrase": "our model incorporates a broader spectrum of both pharmacological and nonpharmacological comparators, better reflecting actual clinical practice",
+      "category": "claim"
+    },
+    {
+      "phrase": "The base-case results indicated that esketamine was not cost-effective compared to most other treatment strategies under the WTP threshold",
+      "category": "claim"
+    },
+    {
+      "phrase": "combination therapy emerged as the most cost-effective option",
+      "category": "claim"
+    },
+    {
+      "phrase": "Our results are broadly consistent with prior economic evaluations",
+      "category": "transition"
+    },
+    {
+      "phrase": "This discrepancy is not unexpected and can be largely explained by two key methodological differences",
+      "category": "causal"
+    },
+    {
+      "phrase": "substantial differences exist in how ECT costs are defined across studies",
+      "category": "claim"
+    },
+    {
+      "phrase": "This interpretation is further supported by our DSA",
+      "category": "claim"
+    },
+    {
+      "phrase": "these findings underscore that differences in healthcare financing structures and labor cost accounting can materially affect cost-effectiveness estimates",
+      "category": "implication"
+    },
+    {
+      "phrase": "highlight the importance of context-specific costing in economic evaluations",
+      "category": "implication"
+    },
+    {
+      "phrase": "may further contribute to divergent findings",
+      "category": "hedge"
+    },
+    {
+      "phrase": "the incremental QALY gains associated with ECT may be conservatively estimated",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Taken together, these considerations also have important implications for the generalizability of our findings",
+      "category": "transition"
+    },
+    {
+      "phrase": "Our findings should be interpreted in the context of a high-income healthcare system with relatively high labor costs",
+      "category": "limitation"
+    },
+    {
+      "phrase": "the relative cost-effectiveness of these interventions may differ substantially",
+      "category": "hedge"
+    },
+    {
+      "phrase": "sensitivity and scenario analyses did not materially alter the conclusions of the base-case results",
+      "category": "claim"
+    },
+    {
+      "phrase": "DSA identified the efficacy parameters of esketamine as the most influential drivers of cost-effectiveness",
+      "category": "claim"
+    },
+    {
+      "phrase": "even under the most favorable assumptions, the resulting ICER still remained above the WTP threshold",
+      "category": "claim"
+    },
+    {
+      "phrase": "PSA further confirmed the limited cost-effectiveness of esketamine",
+      "category": "claim"
+    },
+    {
+      "phrase": "The main limitation of this study is the reliance on indirect comparisons and assumptions derived from heterogeneous clinical trial populations",
+      "category": "limitation"
+    },
+    {
+      "phrase": "which may not fully reflect real-world patient characteristics and treatment pathways",
+      "category": "limitation"
+    },
+    {
+      "phrase": "These findings suggest that cost-effectiveness evidence may help inform more context-sensitive treatment sequencing strategies",
+      "category": "implication"
+    },
+    {
+      "phrase": "Policy approaches such as price negotiation, optimized service delivery, and alternative dosing strategies may improve the value of esketamine",
+      "category": "implication"
+    },
+    {
+      "phrase": "Each point represents a third-line treatment strategy for TRD compared with augmentation therapy",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Ellipses indicate 95% uncertainty intervals",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Curves show the probability that each treatment strategy is the most cost-effective across a range of willingness-to-pay thresholds",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "This design enhances both the contextual relevance and the generalizability of our findings to routine clinical settings",
+      "category": "claim"
+    },
+    {
+      "phrase": "necessitating an estimated 60% price reduction to achieve cost-effectiveness",
+      "category": "claim"
+    },
+    {
+      "phrase": "primarily due to productivity gains from rapid functional improvement and reduced work loss",
+      "category": "causal"
+    },
+    {
+      "phrase": "making their economic value sensitive to local implementation practices",
+      "category": "generalization"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, invented numbers, or author names were included. The profile is based solely on the provided abstract, discussion, and figure legends."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_phrase_violations": [
+    {
+      "field": "phrase_evidence",
+      "phrase": "DSA identified the efficacy parameters of esketamine as the most influential drivers of cost-effectiveness",
+      "issue": "not found in paper text"
+    },
+    {
+      "field": "phrase_evidence",
+      "phrase": "Curves show the probability that each treatment strategy is the most cost-effective across a range of willingness-to-pay thresholds",
+      "issue": "not found in paper text"
+    }
+  ],
+  "_meta": {
+    "generated_at": "2026-05-25T13:25:54.780077+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\plos_med\\42024661.json",
+    "phrase_check_violations": 2,
+    "schema_valid": true
+  }
+}

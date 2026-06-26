@@ -1,0 +1,236 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "41855201",
+    "pmcid": "PMC13001984",
+    "doi": "10.1371/journal.pmed.1004924.r008",
+    "journal": "PLOS Medicine",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "data_first",
+    "dominant_frame": "epidemiology_population",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "clinical_question-cohort-result-policy",
+    "claim_chain": [
+      "COVID-19 vaccination was not associated with increased risk of sudden death in younger individuals",
+      "Finding persisted through multiple sensitivity analyses",
+      "No higher prevalence of vaccine exposure among those who died",
+      "Data align with recent publications showing no association",
+      "Apparent protective effect may reflect confounding by health-seeking behaviors",
+      "These observations refute the claim that COVID-19 vaccination increases risk of sudden death"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "strong",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "was not associated",
+      "demonstrated",
+      "showed",
+      "refute",
+      "align with",
+      "suggested",
+      "found",
+      "utilized",
+      "observed"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State main finding with quantitative support",
+      "Describe persistence through sensitivity analyses",
+      "Compare findings to prior literature",
+      "Acknowledge alternative explanations or confounding",
+      "State strengths of study design",
+      "Acknowledge limitations with specificity",
+      "Restate conclusion with policy implication"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Confirmation of cause of death, especially out-of-hospital deaths",
+      "Control for confounding by health-seeking behaviors",
+      "Individual-level versus neighborhood-level socioeconomic data",
+      "Capture of rapid antigen test results in addition to PCR",
+      "Detection of undiagnosed cardiovascular disease in apparently healthy cohort"
+    ],
+    "likely_attacks": [
+      "Cannot confirm underlying cause of death out of hospital",
+      "Could not exclude deaths due to motor vehicle collisions, violence, or suicides",
+      "Only neighborhood-level data for income and demographics, not individual-level",
+      "Could not capture rapid antigen test results",
+      "Registries would not capture people with undiagnosed diseases",
+      "Residual confounding due to differences in healthcare seeking behaviors"
+    ],
+    "inference_basis": "The paper explicitly states: 'A major limitation of this study is that we could not confirm the underlying cause of death out of hospital, so could not exclude deaths out of hospital that were due to motor vehicle collisions, violence, or suicides.' It also notes: 'We could only utilize neighborhood-level data rather than individual data for income, proportion of visible minorities, and occupations. For SARS-CoV-2 testing, we accounted for PCR tests but could not capture results of rapid antigen tests. Moreover, the registries used to derive a cohort free of cardiac and other chronic diseases would not capture people with undiagnosed diseases. Lastly, differences in healthcare seeking behaviors may have led to residual confounding.'"
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "vaccination against COVID-19 was not associated with an increased risk of sudden death",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "these observations refute the claim that COVID-19 vaccination increases the risk of sudden death",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "It is possible that the apparent protective effective of increasing doses of COVID-19 vaccination in the case-control analyses may reflect confounding",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "These data do not support the hypothesis that COVID-19 vaccines increase the risk of sudden cardiac death",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "this is expected to be less applicable for the SCCS analysis",
+        "category": "hedge"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "In this population-based study",
+      "category": "opening"
+    },
+    {
+      "phrase": "vaccination against COVID-19 was not associated with an increased risk of sudden death",
+      "category": "claim"
+    },
+    {
+      "phrase": "This finding persisted through sensitivity analyses",
+      "category": "claim"
+    },
+    {
+      "phrase": "Collectively, these observations refute the claim",
+      "category": "claim"
+    },
+    {
+      "phrase": "Our data align with recent publications",
+      "category": "transition"
+    },
+    {
+      "phrase": "It is possible that the apparent protective effective",
+      "category": "hedge"
+    },
+    {
+      "phrase": "may reflect confounding due to greater health-seeking behaviors",
+      "category": "hedge"
+    },
+    {
+      "phrase": "this does not align with our data",
+      "category": "claim"
+    },
+    {
+      "phrase": "Further supporting the absence of an increased risk",
+      "category": "transition"
+    },
+    {
+      "phrase": "The strengths of our study include",
+      "category": "transition"
+    },
+    {
+      "phrase": "A major limitation of this study is that",
+      "category": "limitation"
+    },
+    {
+      "phrase": "we could not confirm the underlying cause of death out of hospital",
+      "category": "limitation"
+    },
+    {
+      "phrase": "We could only utilize neighborhood-level data rather than individual data",
+      "category": "limitation"
+    },
+    {
+      "phrase": "differences in healthcare seeking behaviors may have led to residual confounding",
+      "category": "limitation"
+    },
+    {
+      "phrase": "this is expected to be less applicable for the SCCS analysis",
+      "category": "hedge"
+    },
+    {
+      "phrase": "These findings do not support the hypothesis",
+      "category": "claim"
+    },
+    {
+      "phrase": "adjusted odds ratio",
+      "category": "other"
+    },
+    {
+      "phrase": "95% confidence interval",
+      "category": "other"
+    },
+    {
+      "phrase": "assessed using conditional logistic regression modeling",
+      "category": "other"
+    },
+    {
+      "phrase": "Selection criteria of the study cohort",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "among the matched cohort",
+      "category": "other"
+    },
+    {
+      "phrase": "Despite a lack of strong evidence",
+      "category": "opening"
+    },
+    {
+      "phrase": "We conducted a population-based case-control study",
+      "category": "opening"
+    },
+    {
+      "phrase": "We excluded individuals aged",
+      "category": "other"
+    },
+    {
+      "phrase": "We defined cases as those with",
+      "category": "other"
+    },
+    {
+      "phrase": "We matched each case with five controls",
+      "category": "other"
+    },
+    {
+      "phrase": "after adjusting for multiple potential confounders",
+      "category": "other"
+    },
+    {
+      "phrase": "Sensitivity analyses were conducted",
+      "category": "transition"
+    },
+    {
+      "phrase": "Study limitations include",
+      "category": "limitation"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers were included. The profile is based solely on the provided abstract, discussion, and figure legends."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:01:48.048023+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\plos_med\\41855197.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

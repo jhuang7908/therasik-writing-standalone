@@ -1,0 +1,240 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "41990088",
+    "pmcid": "PMC13102303",
+    "doi": "10.1371/journal.pmed.1005030.r006",
+    "journal": "PLOS Medicine",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "direct_problem_statement",
+    "dominant_frame": "clinical_outcome",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "problem-gap-solution-implication",
+    "claim_chain": [
+      "LAI-PrEP is highly effective but requires appropriate testing strategies",
+      "Different testing approaches (RDT, NAT, immunoassay) have trade-offs in accuracy versus accessibility",
+      "RDTs provide similar clinical outcomes to NAT with faster results and lower costs",
+      "NAT offers higher sensitivity but minimal population-level clinical benefit",
+      "RDT-based strategies are more scalable and accessible for resource-limited settings",
+      "Testing requirements should prioritize flexibility to avoid barriers to access",
+      "WHO guidance supporting RDTs enables simpler and more user-centred approaches"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "showed",
+      "found",
+      "suggests",
+      "highlights",
+      "provides",
+      "offers",
+      "may",
+      "could",
+      "likely",
+      "warrants",
+      "enables",
+      "supports"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State main finding or contribution",
+      "Provide supporting evidence from meta-analysis or included studies",
+      "Compare alternative approaches (RDT vs NAT vs immunoassay)",
+      "Discuss practical implications for implementation",
+      "Address potential concerns or limitations",
+      "Connect to broader policy or public health context"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Diagnostic accuracy and sensitivity differences between testing strategies",
+      "Clinical significance of delayed HIV detection",
+      "Development and prevention of drug resistance mutations",
+      "Cost-effectiveness and resource allocation",
+      "Generalizability across different settings and populations",
+      "Quality and certainty of evidence"
+    ],
+    "likely_attacks": [
+      "Selection bias in assessment of performance accuracy",
+      "Low overall certainty of evidence (GRADE)",
+      "Lack of prospective evidence for NAT preventing resistance development",
+      "Limited evidence on HIV self-testing for LAI-PrEP",
+      "Insufficient data on downstream economic effects of missed diagnoses",
+      "Reliance on retrospective NAT use rather than real-time clinical decision-making"
+    ],
+    "inference_basis": "The paper explicitly acknowledges 'The overall certainty of evidence was low' and 'We noted that our assessment of performance accuracy in different testing strategies may introduce selection bias.' It addresses concerns about resistance by stating 'there is no direct evidence that NAT-based testing would prevent the development of resistance' and 'there is no prospective evidence that earlier NAT detection would have prevented the development of INSTI RAMs.' The paper notes 'There was limited evidence of HIV self-testing for LAI-PrEP delivery' and 'the included studies did not provide sufficient prospective data to quantify these downstream effects' regarding economic implications. It also emphasizes that 'NAT was used retrospectively on stored samples in HPTN 083 and 084—not prospectively as part of real-time clinical decision-making.'"
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "our analysis suggests this has minimal impact on absolute clinical outcomes at the population level",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "RDTs provide several advantages for patients' outcomes and management, including quicker results, faster linkage to care and ART initiation, lower costs, and higher feasibility and accessibility",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "the transmission risk associated with these infections is likely to be lower than for PrEP-naive individuals",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "This suggests that a lot of resources are needed for minimal gain, using a public health lens",
+        "category": "generalization"
+      },
+      {
+        "quoted_phrase": "there is no direct evidence that NAT-based testing would prevent the development of resistance",
+        "category": "hedge"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "This systematic review synthesises evidence on different LAI-PrEP testing strategies",
+      "category": "opening"
+    },
+    {
+      "phrase": "A key contribution of this work is its focus on the clinical utility and program delivery implications",
+      "category": "opening"
+    },
+    {
+      "phrase": "We found similarities in outcomes between RDT, laboratory-based immunoassay and NAT-based testing strategies",
+      "category": "claim"
+    },
+    {
+      "phrase": "While NAT offers benefits in higher diagnostic sensitivity",
+      "category": "hedge"
+    },
+    {
+      "phrase": "RDTs provide several advantages for patients' outcomes and management",
+      "category": "claim"
+    },
+    {
+      "phrase": "Further evidence on implementing HIVST to enhance access to LAI-PrEP is needed",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Integrating RDT-based testing into LAI-PrEP programs offers some advantages over NAT and laboratory-based immunoassays",
+      "category": "claim"
+    },
+    {
+      "phrase": "To ensure effective and equitable PrEP access, HIV testing must be feasible, accessible, and scalable",
+      "category": "implication"
+    },
+    {
+      "phrase": "Our findings showed that RDT provided quicker results than NAT",
+      "category": "claim"
+    },
+    {
+      "phrase": "This difference could be from operational and communication delays rather than laboratory processing time",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Simplified and affordable testing approaches that rely on RDTs and HIVST are important to ensuring LAI-PrEP has a public health impact",
+      "category": "implication"
+    },
+    {
+      "phrase": "Our findings highlight the benefits of transitioning global programming to RDTs",
+      "category": "claim"
+    },
+    {
+      "phrase": "guidance that requires confirmatory laboratory-based testing prior to, or for continuing, LAI-PrEP initiation warrants careful consideration",
+      "category": "implication"
+    },
+    {
+      "phrase": "making it a mandatory prerequisite may have unintended consequences",
+      "category": "hedge"
+    },
+    {
+      "phrase": "the included studies did not provide sufficient prospective data to quantify these downstream effects",
+      "category": "limitation"
+    },
+    {
+      "phrase": "A modelling study shows that NAT adds significant cost to CAB-LA rollout programs in LMICs, but provides a small benefit",
+      "category": "claim"
+    },
+    {
+      "phrase": "This does not imply that NAT has no role in LAI-PrEP delivery",
+      "category": "hedge"
+    },
+    {
+      "phrase": "our analysis suggests this has minimal impact on absolute clinical outcomes at the population level",
+      "category": "hedge"
+    },
+    {
+      "phrase": "the transmission risk associated with these infections is likely to be lower than for PrEP-naive individuals",
+      "category": "hedge"
+    },
+    {
+      "phrase": "there is no prospective evidence that earlier NAT detection would have prevented the development of INSTI RAMs",
+      "category": "limitation"
+    },
+    {
+      "phrase": "the benefit of a slightly earlier diagnosis may be limited",
+      "category": "hedge"
+    },
+    {
+      "phrase": "This suggests that a lot of resources are needed for minimal gain, using a public health lens",
+      "category": "implication"
+    },
+    {
+      "phrase": "it is important to note the limitations of these data",
+      "category": "limitation"
+    },
+    {
+      "phrase": "there is no direct evidence that NAT-based testing would prevent the development of resistance",
+      "category": "limitation"
+    },
+    {
+      "phrase": "RDT-based testing strategies have comparable accuracy to laboratory-based strategies and are more accessible and scalable",
+      "category": "claim"
+    },
+    {
+      "phrase": "adoption of new WHO guidance supporting the use of RDTs can enable simpler, more affordable, and user-centred HIV testing approaches",
+      "category": "implication"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers were included. The profile is based entirely on the provided abstract, discussion, and figure legends."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_phrase_violations": [
+    {
+      "field": "phrase_evidence",
+      "phrase": "RDTs provide several advantages for patients' outcomes and management",
+      "issue": "not found in paper text"
+    },
+    {
+      "field": "claim_strength_profile.examples.quoted_phrase",
+      "phrase": "RDTs provide several advantages for patients' outcomes and management, including quicker results, faster linkage to care and ART initiation, lower costs, and higher feasibility and accessibility",
+      "issue": "not found in paper text"
+    }
+  ],
+  "_meta": {
+    "generated_at": "2026-05-25T13:06:42.458426+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\plos_med\\41990088.json",
+    "phrase_check_violations": 2,
+    "schema_valid": true
+  }
+}

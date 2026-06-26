@@ -1,0 +1,223 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42149114",
+    "pmcid": "PMC13183375",
+    "doi": "10.7554/eLife.106134.3.sa3",
+    "journal": "eLife",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "field_importance",
+    "dominant_frame": "method_innovation",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "problem-gap-solution-implication",
+    "claim_chain": [
+      "Ion channels are fundamental to cellular function and druggable but understudied",
+      "We computationally defined the full human channelome with rich functional annotation",
+      "We identified orthologs across 48,000 sequences spanning the tree of life",
+      "Conservation depth clusters ICs into functionally meaningful groups",
+      "We applied this to CALHM channels to identify conserved gating residues",
+      "Mutations in these conserved residues dramatically impair gating function",
+      "This provides groundwork for accelerating functional characterization of dark channels"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "demonstrate",
+      "show",
+      "provide",
+      "identify",
+      "highlight",
+      "indicate",
+      "hypothesize",
+      "suggest",
+      "perform",
+      "present",
+      "support",
+      "allow"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State what was accomplished for the first time",
+      "Describe the resource or method created",
+      "Explain limitations or challenges encountered",
+      "Demonstrate application through specific example",
+      "Present experimental validation results",
+      "Interpret findings in mechanistic context",
+      "Connect to broader implications or future directions"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Validation of computational predictions with experimental data",
+      "Accuracy and reliability of LLM-based literature mining",
+      "Completeness and correctness of orthology assignments",
+      "Functional relevance of identified conserved residues",
+      "Generalizability of findings beyond CALHM channels"
+    ],
+    "likely_attacks": [
+      "LLM limitations in entity recognition and nomenclature handling",
+      "High frequency of evidence-not-found responses in RAG system",
+      "Potential overcorrections or misinterpretations without adequate validation",
+      "Limited set of homologs in prior studies versus comprehensive tree-of-life analysis",
+      "Exception cases like W113 in CALHM6 that did not impair function"
+    ],
+    "inference_basis": "The paper explicitly discusses limitations of the RAG system including 'diverse data presentation formats, complex channel subunit relationships, and variant gene nomenclature, which hinder its effectiveness' and 'high frequency of responses where evidence was not found'. It acknowledges concerns about 'potential overcorrections or misinterpretations without adequate validation'. The authors defend their approach by contrasting with 'prior studies examined conserved residues in CALHM channels' based on 'a limited set of homologs from model organisms' versus their 'thousands of CALHM sequences collected from the entire tree of life'. They also note the exception 'mutations in an analogous position W113 in CALHM6 did not impair channel function, presenting an exception compared to other residues'."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "for the first time, we have computationally defined the full IC complement of the human genome",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "we show that a mutation in any of these evolutionarily conserved residues results in a dramatic loss of gating function",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "we also hypothesize that all CALHM sequences share this gating mechanism",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "most likely due to their direct involvement in the conformational dynamics of S1 for channel gating",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "our experimental data indicate that the conserved residues at the S1-S2 linker and its immediate surroundings play an important role in CALHM channel gating",
+        "category": "causal"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "for the first time, we have computationally defined the full IC complement of the human genome",
+      "category": "opening"
+    },
+    {
+      "phrase": "we provide this comprehensive list and a rich annotation of functional, structural, and sequence features",
+      "category": "claim"
+    },
+    {
+      "phrase": "to the best of our knowledge",
+      "category": "hedge"
+    },
+    {
+      "phrase": "the clustering of human ICs based on their depth of conservation placed them into functionally meaningful clusters",
+      "category": "claim"
+    },
+    {
+      "phrase": "the placement of understudied ICs in such groups allows for meaningful functional predictions",
+      "category": "implication"
+    },
+    {
+      "phrase": "we demonstrate one such use by performing a Bayesian pattern-based classification",
+      "category": "transition"
+    },
+    {
+      "phrase": "these features reside on a functionally important S1-S2 linker region that potentially governs their gating mechanism",
+      "category": "hedge"
+    },
+    {
+      "phrase": "we show that a mutation in any of these evolutionarily conserved residues results in a dramatic loss of gating function",
+      "category": "claim"
+    },
+    {
+      "phrase": "thus highlighting the functional importance of the identified pattern positions",
+      "category": "implication"
+    },
+    {
+      "phrase": "most likely due to their direct involvement in the conformational dynamics of S1 for channel gating",
+      "category": "hedge"
+    },
+    {
+      "phrase": "we hypothesize that this bent conformation of S2 contributes to the flexibility of the S1-S2 linker",
+      "category": "hedge"
+    },
+    {
+      "phrase": "these findings complement prior studies and provide additional insights into CALHM gating mechanisms",
+      "category": "transition"
+    },
+    {
+      "phrase": "the system currently faces limitations related to diverse data presentation formats",
+      "category": "limitation"
+    },
+    {
+      "phrase": "the high frequency of responses where evidence was not found underscores the need for enhanced entity recognition capabilities",
+      "category": "limitation"
+    },
+    {
+      "phrase": "this also raises concerns about potential overcorrections or misinterpretations without adequate validation",
+      "category": "limitation"
+    },
+    {
+      "phrase": "our experimental data indicate that the conserved residues at the S1-S2 linker and its immediate surroundings play an important role",
+      "category": "claim"
+    },
+    {
+      "phrase": "supporting a model in which S1 dynamics are central to the gating mechanism",
+      "category": "implication"
+    },
+    {
+      "phrase": "the orthologous sequences identified and presented here can serve as a valuable resource",
+      "category": "implication"
+    },
+    {
+      "phrase": "by providing new tools and resources for performing large comparative analyses on ICs",
+      "category": "implication"
+    },
+    {
+      "phrase": "this study addresses the unique needs of the IC community and provides the groundwork for accelerating the functional characterization",
+      "category": "implication"
+    },
+    {
+      "phrase": "Each circle represents a human IC family, with the symbol at the center indicating its Group",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "The size of the circles is proportional to the number of sequences in that family",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Shapes of the markers indicate the different",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "presenting an exception compared to other residues across CALHM1 and 6",
+      "category": "limitation"
+    },
+    {
+      "phrase": "it is conceivable that the A127G mutant may indirectly affect the conformation",
+      "category": "hedge"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers were included. The profile is based entirely on the provided discussion, abstract, and figure legend content."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T12:57:00.684723+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\elife\\42148735.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

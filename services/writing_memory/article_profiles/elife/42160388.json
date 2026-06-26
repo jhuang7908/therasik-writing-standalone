@@ -1,0 +1,268 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42160203",
+    "pmcid": "PMC13189626",
+    "doi": "10.7554/eLife.108109.3.sa3",
+    "journal": "eLife",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "conclusion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "direct_problem_statement",
+    "dominant_frame": "method_innovation",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "question-method-result-interpretation",
+    "claim_chain": [
+      "Cognitive dysfunction co-occurs with psychopathology",
+      "Neural indicators predict cognition but their role in cognition-mental health link is unknown",
+      "We quantified how neural indicators explain cognition-mental health covariation",
+      "Neuroimaging captures up to 48% of cognition-mental health covariation when multimodal",
+      "Predictive ability of neural indicators extends beyond cognition to capture shared variance with mental health",
+      "Findings validate brain-based markers as core units for cognitive functioning in mental health research"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "demonstrate",
+      "show",
+      "indicate",
+      "suggest",
+      "capture",
+      "explain",
+      "reflect",
+      "quantify",
+      "enhance",
+      "support",
+      "validate",
+      "enable"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State main finding or claim",
+      "Provide quantitative evidence or effect size",
+      "Compare to prior literature or expectations",
+      "Discuss alternative explanations or mechanisms",
+      "Acknowledge limitations or caveats",
+      "State implications or future directions"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Quantitative validation of neural markers against behavioral outcomes",
+      "Comparison of predictive performance across MRI modalities",
+      "Generalizability beyond UK Biobank cohort",
+      "Clinical relevance and translational potential",
+      "Methodological rigor in machine learning and cross-validation",
+      "Acknowledgment of unexplained variance and missing modalities"
+    ],
+    "likely_attacks": [
+      "Limited generalizability due to UK Biobank-specific characteristics",
+      "Missing neuroimaging modalities like task-based fMRI and PET",
+      "Measurement error and intra-individual variability between cognitive assessments and MRI",
+      "Potential confounding by socioeconomic status in mental health measures",
+      "Unexplained variance in cognition-mental health relationship",
+      "Specificity of findings to normative non-clinical samples"
+    ],
+    "inference_basis": "The paper explicitly discusses limitations including: absence of certain neuroimaging modalities in UK Biobank (task-based fMRI, PET, ASL, MEG/EEG), measurement error and intra-individual variability, the fact that MRI represents only one level of neurobiological analysis per RDoC framework, and that findings may be specific to UK Biobank cohort characteristics. The authors also note that the mental health-cognition association may be bounded by other functional domains in normative samples, and that mental distress measures may reflect healthcare-seeking behavior influenced by socioeconomic status rather than distress per se."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "Our study is the first to quantify the contribution of the neural indicators of cognition",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "We demonstrate that the predictive ability of neural indicators extends beyond the prediction of cognition itself",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "may serve as a methodological 'bridge' linking other units of analysis",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "The remaining unexplained variance in the relationship between cognition and mental health likely stems from multiple sources",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "a pattern of RSFC maintained for an extended period may eventually cause concurrent alterations in cognition and mental health",
+        "category": "causal"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "Our study is the first to quantify the contribution of the neural indicators of cognition",
+      "category": "opening"
+    },
+    {
+      "phrase": "We show that the performance of each neural indicator in predicting cognition per se is strongly related to its ability to explain the link between cognition and mental health",
+      "category": "claim"
+    },
+    {
+      "phrase": "In other words, the 'robustness' of the neural indicator of cognition is associated with its capacity to capture the covariation between cognition and mental health",
+      "category": "transition"
+    },
+    {
+      "phrase": "We further demonstrate that information from 72 neuroimaging phenotypes from three MRI modalities accounts for almost half of the variance",
+      "category": "claim"
+    },
+    {
+      "phrase": "Integrating information from neuroimaging phenotypes within and across MRI modalities enhanced both the prediction of cognition and the explanation of the relationship",
+      "category": "claim"
+    },
+    {
+      "phrase": "consistent with prior studies",
+      "category": "transition"
+    },
+    {
+      "phrase": "aligns with existing literature",
+      "category": "transition"
+    },
+    {
+      "phrase": "Although the observed mental health-cognition association is lower than within-sample estimates",
+      "category": "hedge"
+    },
+    {
+      "phrase": "This means that neural indicators that capture more of the individual differences in cognition also capture more of the cognition–mental health covariation",
+      "category": "claim"
+    },
+    {
+      "phrase": "may indicate greater susceptibility to or exaggerated perception of stressful events",
+      "category": "hedge"
+    },
+    {
+      "phrase": "these findings may be specific to the UK Biobank cohort",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Mixed evidence on the link between alcohol and drug use and cognition makes it difficult to draw definite conclusions",
+      "category": "limitation"
+    },
+    {
+      "phrase": "The remaining unexplained variance in the relationship between cognition and mental health likely stems from multiple sources",
+      "category": "limitation"
+    },
+    {
+      "phrase": "One possibility is the absence of certain neuroimaging modalities in the UK Biobank dataset",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Moreover, there are inherent limitations in using MRI as a proxy for brain structure and function",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Measurement error and intra-individual variability, such as differences in a cognitive state between cognitive assessments and MRI acquisition, may also contribute to the unexplained variance",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Our findings validate brain-based neural markers as a core unit of analysis for cognitive functioning",
+      "category": "implication"
+    },
+    {
+      "phrase": "we support interventions that enhance cognition as a pathway to improving mental health",
+      "category": "implication"
+    },
+    {
+      "phrase": "Such work could enable personalised interventions, using neuroimaging to track cognitive changes and treatment efficacy",
+      "category": "implication"
+    },
+    {
+      "phrase": "In line with the National Institute of Mental Health's RDoC framework",
+      "category": "transition"
+    },
+    {
+      "phrase": "we shed light on the relationship between cognition and mental health as one of the six transdiagnostic spectrums",
+      "category": "claim"
+    },
+    {
+      "phrase": "This may serve as a methodological 'bridge' linking other units of analysis",
+      "category": "implication"
+    },
+    {
+      "phrase": "Although recent debates have challenged the predictive utility of MRI for cognition",
+      "category": "transition"
+    },
+    {
+      "phrase": "our multimodal marker integrating 72 neuroimaging phenotypes captures nearly half of the mental health-explained variance in cognition",
+      "category": "claim"
+    },
+    {
+      "phrase": "none of the neuroimaging phenotypes or MRI modalities alone is sufficient to provide a complete picture",
+      "category": "limitation"
+    },
+    {
+      "phrase": "combining all sources of information about brain structure and function reflected in three MRI modalities allows us to derive robust quantitative neuromarkers",
+      "category": "claim"
+    },
+    {
+      "phrase": "Bootstrap distribution of Pearson r for the g-factor derived from Exploratory structural equation modeling",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "For visualization purposes, we display the results",
+      "category": "figure_legend"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, invented numbers, or author names were included. The profile is based solely on the provided discussion, conclusion, abstract, and figure legend sections."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_phrase_violations": [
+    {
+      "field": "phrase_evidence",
+      "phrase": "In other words, the 'robustness' of the neural indicator of cognition is associated with its capacity to capture the covariation between cognition and mental health",
+      "issue": "not found in paper text"
+    },
+    {
+      "field": "phrase_evidence",
+      "phrase": "In line with the National Institute of Mental Health's RDoC framework",
+      "issue": "not found in paper text"
+    },
+    {
+      "field": "phrase_evidence",
+      "phrase": "This may serve as a methodological 'bridge' linking other units of analysis",
+      "issue": "not found in paper text"
+    },
+    {
+      "field": "phrase_evidence",
+      "phrase": "Although recent debates have challenged the predictive utility of MRI for cognition",
+      "issue": "not found in paper text"
+    },
+    {
+      "field": "claim_strength_profile.examples.quoted_phrase",
+      "phrase": "We demonstrate that the predictive ability of neural indicators extends beyond the prediction of cognition itself",
+      "issue": "not found in paper text"
+    },
+    {
+      "field": "claim_strength_profile.examples.quoted_phrase",
+      "phrase": "may serve as a methodological 'bridge' linking other units of analysis",
+      "issue": "not found in paper text"
+    }
+  ],
+  "_meta": {
+    "generated_at": "2026-05-25T12:58:50.113878+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\elife\\42160388.json",
+    "phrase_check_violations": 6,
+    "schema_valid": true
+  }
+}

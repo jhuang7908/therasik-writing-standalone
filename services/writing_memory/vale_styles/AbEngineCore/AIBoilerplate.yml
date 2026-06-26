@@ -1,0 +1,23 @@
+extends: existence
+message: "AI boilerplate transition — remove or replace: '%s'."
+level: error
+ignorecase: false
+nonword: false
+tokens:
+  - 'Furthermore,'
+  - 'Moreover,'
+  - 'Additionally,'
+  - 'In addition,'
+  - 'Taken together,?'
+  - 'Collectively,?'
+  - 'These findings demonstrate that'
+  - 'These results suggest that'
+  - 'These data indicate that'
+  - 'Together, these (findings|results|observations)'
+  - 'It is worth noting that'
+  - 'It is important to note that'
+  - 'In conclusion,'
+  - 'To summarize,?'
+  - 'In summary,?'
+  - 'Notably,'
+  - 'Importantly,'

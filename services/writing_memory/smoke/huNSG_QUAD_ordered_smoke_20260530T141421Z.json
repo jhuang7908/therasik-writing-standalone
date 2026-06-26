@@ -1,0 +1,1520 @@
+{
+  "protocol_version": "v15.45_ordered_smoke",
+  "generated_at": "2026-05-30T14:06:54.991461+00:00",
+  "base_url": "http://127.0.0.1:8100",
+  "health": {
+    "http": 200,
+    "status": "ok"
+  },
+  "step1_rewrite": {
+    "paragraph": "HuNSG-QUAD mice reconstituted with human HSPCs mount NF-κB-dependent, type I interferon, and NLRP3 inflammasome responses after lipopolysaccharide challenge; MCC950 selectively blocks IL-1β and IL-18 without increasing monocyte death, indicating cytokine release can proceed independently of pyroptotic cell death.",
+    "journals": {
+      "elife": {
+        "http": 502,
+        "elapsed_s": 18.2,
+        "signals": {
+          "author_year_paren": 0,
+          "numbered_bracket": 0,
+          "cite_placeholder": 0,
+          "ai_markers": 0
+        },
+        "text_preview": "{'detail': \"Anthropic API error: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-3-5-sonnet-20241022'}, 'request_id': 'req_011CbYtBdr8JDogkB8h1H9eK'}\"}",
+        "style_adjustments": []
+      },
+      "pnas": {
+        "http": 502,
+        "elapsed_s": 14.1,
+        "signals": {
+          "author_year_paren": 0,
+          "numbered_bracket": 0,
+          "cite_placeholder": 0,
+          "ai_markers": 0
+        },
+        "text_preview": "{'detail': \"Anthropic API error: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-3-5-sonnet-20241022'}, 'request_id': 'req_011CbYtCeAkAGoSC5o5xfHBj'}\"}",
+        "style_adjustments": []
+      },
+      "nejm": {
+        "http": 502,
+        "elapsed_s": 14.0,
+        "signals": {
+          "author_year_paren": 0,
+          "numbered_bracket": 0,
+          "cite_placeholder": 0,
+          "ai_markers": 0
+        },
+        "text_preview": "{'detail': \"Anthropic API error: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-3-5-sonnet-20241022'}, 'request_id': 'req_011CbYtDhkaSq66M3Y7icJfy'}\"}",
+        "style_adjustments": []
+      }
+    }
+  },
+  "step2_hungs": {
+    "recommend_journal": {
+      "http": 502,
+      "top": {
+        "detail": "Anthropic API error: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-3-5-sonnet-20241022'}, 'request_id': 'req_011CbYtEg4AAXB7GZErk8ynV'}"
+      }
+    },
+    "plan_paper": {
+      "http": 200,
+      "elapsed_s": 126.6,
+      "suggested_title": null,
+      "outline_keys": [
+        "abstract",
+        "introduction",
+        "methods",
+        "results",
+        "discussion",
+        "conclusion"
+      ]
+    },
+    "sections": [
+      {
+        "key": "abstract",
+        "title": "Abstract",
+        "text": "Background\n\nDysregulated innate immune responses drive the pathogenesis of inflammatory diseases, yet preclinical models often fail to predict human clinical outcomes [CITE: mouse models poor predictors of human inflammatory responses]. NSG-QUAD mice express four human myelopoiesis transgenes to enhance engraftment of human hematopoietic cells, but whether these mice support functional human innate immune responses—particularly inflammasome activation—remains unknown. We reconstituted NSG-QUAD mice with human hematopoietic stem and progenitor cells (HSPCs) and evaluated the development and function of human myeloid cells in vivo.\n\nMethods and Findings\n\nNSG-QUAD mice received human HSPCs and were assessed for myeloid cell engraftment at 6 weeks post-injection. Humanized mice were challenged with lipopolysaccharide (LPS) via intraperitoneal or intranasal routes, and cytokine responses were measured by Luminex. NLRP3 inflammasome inhibition was tested using MCC950. By 6 weeks, NSG-QUAD mice displayed human monocytes, dendritic cells, and granulocytes in peripheral blood, spleen, and liver (Figure 1). Intraperitoneal and intranasal LPS induced NF-κB-dependent cytokines and type I interferon in humanized mice (Figure 2). LPS challenge also triggered NLRP3 inflammasome-mediated secretion of IL-1β and IL-18 (Figure 3). MCC950 specifically abrogated IL-1β and IL-18 production without affecting monocyte viability or NF-κB-dependent cytokine levels (Figure 4).\n\nConclusions\n\nHumanized NSG-QUAD mice mount functional human innate immune responses, including NF-κB, type I interferon, and NLRP3 inflammasome activation, following LPS challenge. This model provides a platform for studying human innate immunity and testing inflammasome-targeted therapeutics in vivo.",
+        "http": 200,
+        "elapsed_s": 19.6,
+        "words": 248,
+        "fill_count": 0,
+        "fill_markers": [],
+        "citation_meta": {
+          "citations_inserted": null,
+          "n_citation_audit": 0,
+          "cite_placeholders_left": 1
+        },
+        "reference_count": 0
+      },
+      {
+        "key": "introduction",
+        "title": "Introduction",
+        "text": "Dysregulated innate immune responses contribute to the pathogenesis of inflammatory and autoimmune diseases ranging from rheumatoid arthritis to inflammatory bowel disease [CITE: innate immunity in inflammatory disease pathogenesis]. Therapeutic targeting of innate immune mediators, particularly IL-1β blockade, has demonstrated clinical efficacy in autoinflammatory syndromes and select rheumatic conditions [CITE: clinical efficacy of IL-1 blockade in autoinflammatory syndromes]. Despite these advances, the development of innate immune-targeted therapies remains constrained by the limited predictive value of preclinical models.\n\nMouse models of innate immunity frequently fail to recapitulate human responses due to species-specific differences in immune signaling pathways, receptor expression patterns, and cytokine networks [CITE: species differences in innate immune signaling between mice and humans]. Conventional humanized mouse models, while enabling the study of human adaptive immunity, show limited human myeloid cell engraftment and functionality [CITE: limitations of conventional humanized mouse models for myeloid cell studies]. In vivo platforms that faithfully reproduce human inflammasome responses—critical mediators of IL-1β and IL-18 secretion—are particularly lacking. This gap impedes the preclinical evaluation of inflammasome inhibitors and other innate immune therapeutics in a physiologically relevant context.\n\nNSG-QUAD mice express four human myelopoietic cytokines (M-CSF, IL-3, GM-CSF, and TPO) as transgenes, designed to enhance human myeloid cell development following hematopoietic stem and progenitor cell (HSPC) reconstitution [CITE: NSG-QUAD mouse strain development and transgene expression]. We hypothesized that HSPC-engrafted NSG-QUAD mice would support functional human innate immune responses, including NF-κB activation, type I interferon production, and NLRP3 inflammasome-mediated cytokine secretion. To test this hypothesis, we evaluated human myeloid cell engraftment in peripheral blood, spleen, and liver at 6 weeks post-HSPC injection, then challenged humanized mice with lipopolysaccharide (LPS), a canonical TLR4 agonist and inflammasome priming signal [CITE: LPS as TLR4 agonist and inflammasome priming signal]. We further assessed whether pharmacological inflammasome inhibition with MCC950 would selectively abrogate IL-1β and IL-18 secretion without affecting NF-κB-dependent cytokine production or monocyte viability, thereby validating this platform for testing human-specific innate immune therapeutics.",
+        "http": 200,
+        "elapsed_s": 27.2,
+        "words": 318,
+        "fill_count": 0,
+        "fill_markers": [],
+        "citation_meta": {
+          "citations_inserted": null,
+          "n_citation_audit": 0,
+          "cite_placeholders_left": 6
+        },
+        "reference_count": 0
+      },
+      {
+        "key": "results",
+        "title": "Results",
+        "text": "NSG-QUAD mice support rapid human myeloid cell engraftment\n\nNSG-QUAD mice reconstituted with human hematopoietic stem and progenitor cells displayed human myeloid cell populations in peripheral blood, spleen, and liver by 6 weeks post-injection. Flow cytometry analysis revealed human monocytes in all three tissues at this early time-point (Figure 1A). Human dendritic cells were similarly detected in peripheral blood, spleen, and liver at 6 weeks (Figure 1B). Human granulocytes engrafted in the same anatomical compartments within the same timeframe (Figure 1C). [FILL: quantitative engraftment data — percentage of human CD45+ cells, absolute cell counts per tissue, and frequency of each myeloid subset relative to total human leukocytes]\n\nHumanized NSG-QUAD mice mount NF-κB and type I interferon responses to LPS\n\nIntraperitoneal administration of LPS induced NF-κB-dependent cytokine production in humanized NSG-QUAD mice (Figure 2A). [FILL: specific NF-κB-dependent cytokines detected (e.g., TNF-α, IL-6, IL-12p70) and their absolute concentrations or fold-change relative to PBS-treated controls] Intranasal LPS challenge similarly triggered NF-κB-dependent cytokine secretion, demonstrating functional responses to both systemic and mucosal inflammatory stimuli (Figure 2C). Type I interferon was detected in serum following intraperitoneal LPS (Figure 2B) and intranasal LPS (Figure 2D). [FILL: type I interferon subtype measured (IFN-α or IFN-β), quantitative levels in pg/mL or U/mL, and kinetics of peak response]\n\nLPS induces NLRP3 inflammasome activation in humanized NSG-QUAD mice\n\nLPS challenge elicited IL-1β secretion in humanized NSG-QUAD mice (Figure 3A). [FILL: IL-1β levels in pg/mL or fold-change over baseline, time-point of measurement, and route of LPS administration] IL-18 was similarly detected following LPS stimulation (Figure 3B). [FILL: IL-18 levels, kinetics, and comparison to IL-1β response magnitude] Both cytokines are canonical products of NLRP3 inflammasome activation [CITE: IL-1β and IL-18 as NLRP3 inflammasome products], indicating functional assembly of the inflammasome complex in human myeloid cells within the NSG-QUAD microenvironment.\n\nMCC950 selectively inhibits inflammasome-mediated cytokines without affecting monocyte viability\n\nAdministration of the NLRP3 inhibitor MCC950 abrogated LPS-induced IL-1β secretion in humanized NSG-QUAD mice (Figure 4A). [FILL: quantitative reduction in IL-1β — percentage inhibition relative to vehicle-treated controls, or absolute concentrations in MCC950-treated vs. vehicle groups, with statistical significance] MCC950 blocked IL-18 production to a comparable extent (Figure 4B). [FILL: IL-18 inhibition data — percentage reduction, absolute levels, and p-value for MCC950 vs. vehicle comparison] Monocyte viability remained unchanged in MCC950-treated mice compared to vehicle-treated controls (Figure 4C). [FILL: monocyte viability percentages in MCC950 vs. vehicle groups, measured by flow cytometry or other method, with n per group and statistical test] NF-κB-dependent cytokines and type I interferon levels were unaffected by MCC950 treatment (Figure 4D), confirming selective inhibition of the NLRP3 inflammasome pathway without broader suppression of innate immune signaling.",
+        "http": 200,
+        "elapsed_s": 36.7,
+        "words": 448,
+        "fill_count": 8,
+        "fill_markers": [
+          "Quantitative engraftment data — percentage of human CD45+ cells, absolute cell counts per tissue, and frequency of each myeloid subset",
+          "Specific NF-κB-dependent cytokines detected and their absolute concentrations or fold-change",
+          "Type I interferon subtype measured, quantitative levels, and kinetics",
+          "IL-1β levels in pg/mL or fold-change, time-point, and LPS route",
+          "IL-18 levels, kinetics, and comparison to IL-1β magnitude",
+          "Quantitative IL-1β reduction by MCC950 — percentage inhibition or absolute levels with statistical significance",
+          "IL-18 inhibition data — percentage reduction, absolute levels, and p-value",
+          "Monocyte viability percentages in MCC950 vs. vehicle groups with n and statistical test"
+        ],
+        "citation_meta": {
+          "citations_inserted": null,
+          "n_citation_audit": 0,
+          "cite_placeholders_left": 1
+        },
+        "reference_count": 0
+      },
+      {
+        "key": "discussion",
+        "title": "Discussion",
+        "text": "NSG-QUAD mice reconstituted with human hematopoietic stem and progenitor cells developed functional human innate immune cells capable of mounting NF-κB, type I interferon, and NLRP3 inflammasome responses to lipopolysaccharide challenge. The 6-week engraftment timeline observed in this study is substantially shorter than many conventional humanized mouse protocols [CITE: typical engraftment timelines in conventional humanized mouse models], improving experimental throughput for innate immunity research. Detection of human monocytes, dendritic cells, and granulocytes across peripheral blood, spleen, and liver (Figure 1A–C) indicates that NSG-QUAD transgenes support broad myeloid lineage differentiation.\n\nPrevious humanized mouse models have shown limited human myeloid function, particularly for inflammasome-dependent responses [CITE: limited inflammasome function in conventional humanized mice]. The NSG-QUAD strain's expression of human M-CSF, IL-3, GM-CSF, and TPO likely enhances myeloid differentiation and survival [CITE: role of human cytokines in myeloid cell development]. Our findings demonstrate that human TLR4 signaling and downstream NF-κB activation remain intact in this model, as evidenced by robust cytokine production following both intraperitoneal and intranasal LPS challenge (Figure 2A, 2C). Type I interferon production (Figure 2B, 2D) indicates functional IRF pathway activation [CITE: TLR4-NF-κB and IRF pathways in human innate immunity], which is critical for antiviral and inflammatory responses in human myeloid cells.\n\nThe detection of IL-1β and IL-18 secretion following LPS stimulation (Figure 3A–B) confirms that humanized NSG-QUAD mice support NLRP3 inflammasome activation. MCC950's selective inhibition of IL-1β and IL-18 without affecting monocyte viability (Figure 4A–C) validates the model's utility for testing human-specific therapeutics. The lack of effect on NF-κB-dependent cytokines (Figure 4D) confirms MCC950's specificity for NLRP3 [CITE: MCC950 mechanism of action and specificity for NLRP3], consistent with in vitro human cell data. This pharmacological validation suggests the model can distinguish on-target from off-target drug effects, a critical requirement for preclinical therapeutic development.\n\nThis study has several limitations. The model uses a single HSPC source; donor-to-donor variability in engraftment and function requires further characterization. [FILL: whether cord blood or bone marrow HSPCs were used] We assessed responses to LPS, a potent but non-physiological stimulus. Validation with pathogen-associated molecular patterns from specific microbes is needed to establish the model's relevance to infectious disease contexts. Adaptive immune responses were not evaluated in this study; T and B cell function in NSG-QUAD mice remains to be determined. The extent to which tissue-resident human macrophages develop in this model is unclear, as our analysis focused on circulating and splenic myeloid populations.\n\nHumanized NSG-QUAD mice provide a platform for testing innate immune therapeutics, including inflammasome inhibitors, in a human cellular context. The model may enable mechanistic studies of human-specific innate immune pathways that cannot be recapitulated in conventional mouse models. Future applications could include modeling inflammatory diseases driven by dysregulated NF-κB or inflammasome signaling, particularly as clinical development of inflammasome inhibitors advances [CITE: clinical development of inflammasome inhibitors].\n\nCharacterizing additional innate immune pathways, such as cGAS-STING and AIM2 inflammasome responses, in this model would expand its utility for studying diverse pattern recognition receptor systems. Testing responses to live pathogens or pathogen-derived stimuli would better reflect physiological immune challenges than synthetic TLR agonists alone. Combining humanized NSG-QUAD mice with disease-relevant genetic variants, such as autoinflammatory mutations in NLRP3 or other inflammasome components, could model patient-specific innate immune dysregulation and facilitate precision medicine approaches to inflammatory disease.",
+        "http": 200,
+        "elapsed_s": 28.8,
+        "words": 548,
+        "fill_count": 1,
+        "fill_markers": [
+          "whether cord blood or bone marrow HSPCs were used — needed to specify HSPC source type for reproducibility and interpretation of donor variability"
+        ],
+        "citation_meta": {
+          "citations_inserted": null,
+          "n_citation_audit": 0,
+          "cite_placeholders_left": 6
+        },
+        "reference_count": 0
+      },
+      {
+        "key": "methods",
+        "title": "Methods",
+        "text": "NSG-QUAD mice (NOD.Cg-Prkdcscid Il2rgtm1Wjl Tg(CMV-IL3,CSF2,KITLG)1Eav Tg(TNFSF10)1Dvs/SzJ) were obtained [FILL: vendor and stock number for NSG-QUAD mice] and housed under specific pathogen-free conditions [FILL: institutional animal facility name and accreditation]. All procedures were approved [FILL: IACUC protocol number and institutional approval]. Human hematopoietic stem and progenitor cells were isolated [FILL: HSPC source — cord blood or bone marrow, IRB consent protocol, donor anonymization method]. HSPCs were prepared [FILL: HSPC isolation method and purity assessment] and injected [FILL: injection route — intravenous, intrahepatic, or other] at [FILL: exact cell number per mouse and injection volume]. Engraftment was assessed at 6 weeks post-injection by flow cytometry of peripheral blood, spleen, and liver.\n\nTissues were collected and processed for flow cytometric analysis. Peripheral blood was obtained by [FILL: blood collection method and anticoagulant]. Spleens and livers were harvested, mechanically dissociated, and filtered [FILL: filter pore size]. Red blood cells were lysed [FILL: lysis buffer composition and incubation time]. Single-cell suspensions were stained with antibodies targeting human myeloid markers [FILL: complete antibody panel — clone, fluorochrome, vendor, and catalog number for each marker used to identify monocytes, dendritic cells, and granulocytes]. Cells were acquired on [FILL: flow cytometer manufacturer and model] with [FILL: acquisition settings — number of events, flow rate]. Human myeloid populations were identified by sequential gating [FILL: gating strategy details]. Data were analyzed using [FILL: flow cytometry analysis software name and version].\n\nLipopolysaccharide [FILL: LPS serotype, vendor, and catalog number] was reconstituted [FILL: LPS reconstitution buffer and concentration]. For intraperitoneal challenge, mice received [FILL: exact LPS dose in μg or mg/kg for IP route] by injection into the peritoneal cavity. For intranasal challenge, mice were anesthetized [FILL: anesthetic agent and dose] and received [FILL: exact LPS dose for intranasal route] in [FILL: intranasal administration volume]. Blood and tissues were collected at [FILL: exact time points for sample collection after LPS challenge].\n\nCytokine concentrations were measured in [FILL: sample type — serum, plasma, or tissue homogenate and processing method]. Samples were analyzed using a Luminex multiplex immunoassay [FILL: Luminex kit manufacturer, catalog number, and complete list of cytokines measured]. The panel quantified NF-κB-dependent cytokines, type I interferon, IL-1β, and IL-18 [FILL: additional cytokines in the panel]. Assays were performed according to the manufacturer's protocol [FILL: any modifications to standard protocol]. Detection limits were [FILL: lower limit of detection for each cytokine].\n\nMCC950 [FILL: vendor and catalog number] was dissolved [FILL: vehicle composition and MCC950 concentration]. Mice received [FILL: exact MCC950 dose in mg/kg] by [FILL: administration route] at [FILL: timing relative to LPS challenge — pretreatment interval or concurrent administration]. Vehicle-treated controls received [FILL: vehicle composition and volume] on the same schedule.\n\nMonocyte viability was assessed by [FILL: cell death assay method — annexin V/PI staining, live/dead dye, or other approach]. Cells were stained with [FILL: viability marker antibodies or dyes — vendor, catalog number, and fluorochrome] and analyzed by flow cytometry. Viable monocytes were identified as [FILL: gating criteria for viable vs. dead cells].\n\nStatistical comparisons were performed using [FILL: specific statistical test — t-test, ANOVA, Mann-Whitney U test, or other]. Each experimental group contained [FILL: number of mice per group (n) for each experiment] mice. Analyses were conducted in [FILL: statistical software name and version]. P values less than 0.05 were considered statistically significant.",
+        "http": 200,
+        "elapsed_s": 38.9,
+        "words": 485,
+        "fill_count": 39,
+        "fill_markers": [
+          "vendor and stock number for NSG-QUAD mice",
+          "institutional animal facility name and accreditation",
+          "IACUC protocol number and institutional approval",
+          "HSPC source — cord blood or bone marrow, IRB consent protocol, donor anonymization method",
+          "HSPC isolation method and purity assessment",
+          "injection route — intravenous, intrahepatic, or other",
+          "exact cell number per mouse and injection volume",
+          "blood collection method and anticoagulant"
+        ],
+        "citation_meta": {
+          "citations_inserted": null,
+          "n_citation_audit": 0,
+          "cite_placeholders_left": 0
+        },
+        "reference_count": 0
+      }
+    ],
+    "merged_reference_list": [],
+    "auto_insert_citations": false,
+    "target_journal": "plos_med",
+    "plan": {
+      "research_statement": {
+        "english": "We established that NSG-QUAD mice reconstituted with human hematopoietic stem and progenitor cells develop functional human innate immune cells capable of mounting NF-κB, type I interferon, and NLRP3 inflammasome responses to lipopolysaccharide challenge in vivo.",
+        "chinese": null
+      },
+      "key_findings": [
+        "NSG-QUAD mice engrafted with human HSPCs display human monocytes, dendritic cells, and granulocytes in peripheral blood, spleen, and liver by 6 weeks post-injection.",
+        "Humanized NSG-QUAD mice respond to intraperitoneal and intranasal LPS with NF-κB-dependent cytokines and type I interferon.",
+        "LPS challenge induces NLRP3 inflammasome-mediated IL-1β and IL-18 secretion in humanized NSG-QUAD mice.",
+        "MCC950 specifically abrogates IL-1β and IL-18 production without affecting monocyte viability."
+      ],
+      "novelty_points": [
+        {
+          "point": "This is the first demonstration that NSG-QUAD mice support functional human innate immune responses including inflammasome activation in vivo.",
+          "evidence_in_input": "User states the goal was to 'establish in vivo human inflammatory responses in NSG-QUAD mice' and reports successful LPS-induced cytokine and inflammasome responses.",
+          "verification_status": "user_provided"
+        },
+        {
+          "point": "The model enables pharmacological validation of human inflammasome inhibitors in a living system, as shown by MCC950 selectivity.",
+          "evidence_in_input": "User reports 'MCC950 specifically abrogated IL-1β and IL-18 without affecting monocyte death,' demonstrating target engagement in vivo.",
+          "verification_status": "user_provided"
+        },
+        {
+          "point": "Rapid engraftment timeline (6 weeks) makes this model more practical than conventional humanized mouse systems.",
+          "evidence_in_input": "User states 'NSG-QUAD mice already displayed engraftment... at 6 weeks after HSPC injection.'",
+          "verification_status": "user_provided"
+        }
+      ],
+      "knowns_and_unknowns": {
+        "well_established": [
+          "Dysregulated innate immune responses underlie multiple inflammatory diseases.",
+          "Preclinical innate immunity research in mice often fails to translate to human clinical outcomes.",
+          "NSG-QUAD mice express four human myelopoiesis transgenes to improve human cell engraftment.",
+          "LPS activates NF-κB and type I interferon pathways in human myeloid cells.",
+          "NLRP3 inflammasome activation leads to IL-1β and IL-18 secretion.",
+          "MCC950 is a selective NLRP3 inhibitor."
+        ],
+        "gap_addressed": [
+          "Lack of in vivo models that recapitulate human innate immune responses, particularly inflammasome activation.",
+          "Uncertainty about whether NSG-QUAD mice support functional human myeloid cell responses beyond engraftment.",
+          "Need for preclinical platforms to test human-specific inflammasome inhibitors in a living system."
+        ]
+      },
+      "journal_recommendation": {
+        "skip_recommendation": false,
+        "recommendations": [
+          {
+            "journal_key": "elife",
+            "fit_score": 0.85,
+            "rationale": "eLife prioritizes mechanistic immunology studies with strong molecular validation. The demonstration of NF-κB, interferon, and inflammasome pathway functionality in a novel humanized mouse model aligns with eLife's molecular mechanism frame. The pharmacological validation with MCC950 provides the kind of mechanistic depth eLife values. The journal's data-first opening style matches the user's experimental approach.",
+            "scope_match": "eLife regularly publishes humanized mouse models and innate immunity mechanism studies. The combination of model development and functional validation fits the journal's emphasis on tools that enable mechanistic discovery.",
+            "main_concern": "eLife may expect more extensive mechanistic dissection of how NSG-QUAD transgenes enable inflammasome competence, or comparison with other humanized mouse strains."
+          },
+          {
+            "journal_key": "pnas",
+            "fit_score": 0.75,
+            "rationale": "PNAS publishes high-impact immunology and model organism studies. The study's focus on establishing a translational platform for human innate immunity research fits PNAS scope. The journal's cautious but assertive tone matches the user's balanced presentation of findings.",
+            "scope_match": "PNAS immunology papers often emphasize molecular mechanisms and translational potential. The inflammasome validation and rapid engraftment timeline provide practical utility that PNAS values.",
+            "main_concern": "PNAS may require broader mechanistic insights beyond model validation, such as novel biology revealed by the system or comparison with human patient samples."
+          },
+          {
+            "journal_key": "plos_med",
+            "fit_score": 0.45,
+            "rationale": "PLOS Medicine prioritizes clinical and population health research. While the user emphasizes translational potential, this is fundamentally a model development and mechanistic validation study without direct clinical data.",
+            "scope_match": "The study's focus on improving preclinical-to-clinical translation addresses a gap PLOS Medicine recognizes, but the journal typically requires human cohort data or direct clinical relevance.",
+            "main_concern": "PLOS Medicine's epidemiology/population frame does not align with this mechanistic immunology study. The journal would likely view this as too basic for their scope."
+          }
+        ],
+        "rationale_summary": "eLife is the strongest fit due to its emphasis on mechanistic immunology and model systems. PNAS is a viable alternative if the authors can frame broader mechanistic or translational implications. PLOS Medicine is not recommended for this study type."
+      },
+      "outline": {
+        "abstract": {
+          "word_target": 250,
+          "structure_notes": "Single continuous paragraph following implicit IMRAD order: background → gap → approach → findings → conclusion. Active voice dominant.",
+          "paragraphs": [
+            {
+              "purpose": "background",
+              "key_claims": [
+                "Dysregulated innate immune responses drive inflammatory diseases.",
+                "Mouse models poorly predict human inflammatory responses, limiting clinical translation."
+              ],
+              "citation_needs": []
+            },
+            {
+              "purpose": "gap",
+              "key_claims": [
+                "In vivo models that recapitulate human innate immunity, particularly inflammasome responses, are lacking."
+              ],
+              "citation_needs": []
+            },
+            {
+              "purpose": "approach",
+              "key_claims": [
+                "We reconstituted NSG-QUAD mice (expressing four human myelopoiesis transgenes) with human HSPCs.",
+                "We evaluated human myeloid cell development and responses to systemic and local LPS challenges."
+              ],
+              "citation_needs": []
+            },
+            {
+              "purpose": "finding",
+              "key_claims": [
+                "By 6 weeks post-injection, NSG-QUAD mice displayed human monocytes, dendritic cells, and granulocytes in blood, spleen, and liver.",
+                "Humanized mice responded to intraperitoneal and intranasal LPS with NF-κB-dependent cytokines, type I interferon, and NLRP3 inflammasome-mediated IL-1β and IL-18.",
+                "MCC950 specifically blocked IL-1β and IL-18 without affecting monocyte viability."
+              ],
+              "citation_needs": []
+            },
+            {
+              "purpose": "implication",
+              "key_claims": [
+                "Humanized NSG-QUAD mice provide a competent platform for studying NF-κB, type I interferon, and inflammasome effectors of human innate immunity in vivo."
+              ],
+              "citation_needs": []
+            }
+          ]
+        },
+        "introduction": {
+          "word_target": 600,
+          "paragraphs": [
+            {
+              "purpose": "field framing",
+              "key_claims": [
+                "Innate immune dysregulation underlies diverse inflammatory and autoimmune diseases.",
+                "Therapeutic targeting of innate pathways (e.g., IL-1β blockade) has shown clinical efficacy in specific conditions."
+              ],
+              "citation_needs": [
+                "[CITE: innate immunity in inflammatory disease pathogenesis]",
+                "[CITE: clinical efficacy of IL-1 blockade in autoinflammatory syndromes]"
+              ]
+            },
+            {
+              "purpose": "knowledge gap",
+              "key_claims": [
+                "Mouse models of innate immunity often fail to predict human responses due to species-specific differences in immune signaling.",
+                "Conventional humanized mouse models show limited human myeloid cell engraftment and functionality.",
+                "In vivo platforms that recapitulate human inflammasome responses are particularly lacking."
+              ],
+              "citation_needs": [
+                "[CITE: species differences in innate immune signaling between mice and humans]",
+                "[CITE: limitations of conventional humanized mouse models for myeloid cell studies]"
+              ]
+            },
+            {
+              "purpose": "this study",
+              "key_claims": [
+                "NSG-QUAD mice express four human cytokines (M-CSF, IL-3, GM-CSF, TPO) to enhance human myeloid engraftment.",
+                "We hypothesized that HSPC-reconstituted NSG-QUAD mice would support functional human innate immune responses including inflammasome activation.",
+                "We evaluated myeloid cell development and responses to LPS, a canonical innate immune stimulus.",
+                "We tested whether pharmacological inflammasome inhibition with MCC950 would selectively block IL-1β/IL-18 in this system."
+              ],
+              "citation_needs": [
+                "[CITE: NSG-QUAD mouse strain development and transgene expression]",
+                "[CITE: LPS as TLR4 agonist and inflammasome priming signal]"
+              ]
+            }
+          ]
+        },
+        "methods": {
+          "word_target": 1300,
+          "subsections": [
+            {
+              "title": "Mice and humanization",
+              "key_points": [
+                "NSG-QUAD mouse strain and housing conditions.",
+                "[FILL: IACUC protocol number and institutional approval]",
+                "Human HSPC source and preparation.",
+                "[FILL: HSPC donor characteristics — cord blood vs. bone marrow, IRB consent, donor anonymization]",
+                "HSPC injection route, cell dose, and timing.",
+                "[FILL: exact cell number per mouse and injection volume]",
+                "Engraftment assessment timeline (6 weeks post-injection)."
+              ],
+              "citation_needs": [
+                "[CITE: NSG-QUAD strain characterization]"
+              ]
+            },
+            {
+              "title": "Flow cytometry",
+              "key_points": [
+                "Tissue collection (peripheral blood, spleen, liver) and processing.",
+                "Antibody panel for human myeloid cell identification (monocytes, dendritic cells, granulocytes).",
+                "[FILL: complete antibody panel — clone, fluorochrome, vendor, catalog number for each marker]",
+                "Flow cytometer model and acquisition settings.",
+                "[FILL: flow cytometer manufacturer and model]",
+                "Gating strategy for human cell populations.",
+                "Data analysis software."
+              ],
+              "citation_needs": []
+            },
+            {
+              "title": "LPS challenge",
+              "key_points": [
+                "LPS source and preparation.",
+                "[FILL: LPS serotype, vendor, catalog number]",
+                "Intraperitoneal LPS dose and administration route.",
+                "[FILL: exact LPS dose in μg or mg/kg for IP route]",
+                "Intranasal LPS dose and administration route.",
+                "[FILL: exact LPS dose for intranasal route]",
+                "Timing of sample collection post-LPS.",
+                "[FILL: exact time points for blood/tissue collection after LPS]"
+              ],
+              "citation_needs": []
+            },
+            {
+              "title": "Cytokine measurement",
+              "key_points": [
+                "Sample type (serum, plasma, tissue homogenate).",
+                "[FILL: sample type and processing method]",
+                "Luminex multiplex assay for cytokine quantification.",
+                "[FILL: Luminex kit manufacturer, catalog number, and cytokines measured]",
+                "Cytokines measured: NF-κB-dependent cytokines, type I interferon, IL-1β, IL-18.",
+                "[FILL: complete list of cytokines in the panel]",
+                "Assay performance and detection limits."
+              ],
+              "citation_needs": []
+            },
+            {
+              "title": "MCC950 treatment",
+              "key_points": [
+                "MCC950 source and preparation.",
+                "[FILL: MCC950 vendor and catalog number]",
+                "MCC950 dose and administration route.",
+                "[FILL: exact MCC950 dose in mg/kg, vehicle composition]",
+                "Timing of MCC950 relative to LPS challenge.",
+                "[FILL: MCC950 administration timing — before, concurrent with, or after LPS]"
+              ],
+              "citation_needs": [
+                "[CITE: MCC950 as selective NLRP3 inhibitor]"
+              ]
+            },
+            {
+              "title": "Monocyte viability assay",
+              "key_points": [
+                "Method for assessing monocyte death.",
+                "[FILL: cell death assay method — annexin V/PI staining, live/dead dye, or other]",
+                "Flow cytometry gating for viable vs. dead monocytes.",
+                "[FILL: viability marker antibodies or dyes — vendor, catalog number]"
+              ],
+              "citation_needs": []
+            },
+            {
+              "title": "Statistical analysis",
+              "key_points": [
+                "Sample size per experimental group.",
+                "[FILL: number of mice per group (n) for each experiment]",
+                "Statistical tests for cytokine comparisons.",
+                "[FILL: specific statistical test — t-test, ANOVA, Mann-Whitney, etc.]",
+                "Software used for statistical analysis.",
+                "[FILL: statistical software name and version]",
+                "Significance threshold (typically p < 0.05)."
+              ],
+              "citation_needs": []
+            }
+          ]
+        },
+        "results": {
+          "word_target": 1200,
+          "subsections": [
+            {
+              "title": "NSG-QUAD mice support rapid human myeloid cell engraftment",
+              "key_points": [
+                "By 6 weeks post-HSPC injection, human monocytes were detected in peripheral blood, spleen, and liver.",
+                "Human dendritic cells engrafted in the same tissues by 6 weeks.",
+                "Human granulocytes were present in blood, spleen, and liver at 6 weeks.",
+                "[FILL: quantitative engraftment data — percentage of human CD45+ cells, absolute cell counts, or frequency of each subset]"
+              ],
+              "figures_referenced": [
+                "Figure 1"
+              ],
+              "citation_needs": []
+            },
+            {
+              "title": "Humanized NSG-QUAD mice mount NF-κB and type I interferon responses to LPS",
+              "key_points": [
+                "Intraperitoneal LPS induced NF-κB-dependent cytokines in humanized NSG-QUAD mice.",
+                "[FILL: specific NF-κB-dependent cytokines detected and their fold-change or absolute levels]",
+                "Intranasal LPS also triggered NF-κB-dependent cytokine production.",
+                "Type I interferon was detected following both IP and intranasal LPS challenge.",
+                "[FILL: type I interferon subtype (IFN-α, IFN-β) and quantitative levels]"
+              ],
+              "figures_referenced": [
+                "Figure 2"
+              ],
+              "citation_needs": []
+            },
+            {
+              "title": "LPS induces NLRP3 inflammasome activation in humanized NSG-QUAD mice",
+              "key_points": [
+                "IL-1β was detected in response to LPS challenge.",
+                "[FILL: IL-1β levels — pg/mL or fold-change over baseline]",
+                "IL-18 was secreted following LPS stimulation.",
+                "[FILL: IL-18 levels and kinetics]",
+                "Both cytokines are canonical NLRP3 inflammasome products, indicating functional inflammasome assembly."
+              ],
+              "figures_referenced": [
+                "Figure 3"
+              ],
+              "citation_needs": [
+                "[CITE: IL-1β and IL-18 as NLRP3 inflammasome products]"
+              ]
+            },
+            {
+              "title": "MCC950 selectively inhibits inflammasome-mediated cytokines without affecting monocyte viability",
+              "key_points": [
+                "MCC950 treatment abrogated LPS-induced IL-1β secretion.",
+                "[FILL: quantitative reduction in IL-1β — percentage inhibition or absolute levels]",
+                "MCC950 blocked IL-18 production to a similar extent.",
+                "[FILL: IL-18 inhibition data]",
+                "MCC950 did not reduce monocyte viability compared to vehicle-treated controls.",
+                "[FILL: monocyte viability percentages in MCC950 vs. control groups]",
+                "NF-κB-dependent cytokines and type I interferon were unaffected by MCC950, confirming selective NLRP3 inhibition."
+              ],
+              "figures_referenced": [
+                "Figure 4"
+              ],
+              "citation_needs": []
+            }
+          ]
+        },
+        "discussion": {
+          "word_target": 1000,
+          "paragraphs": [
+            {
+              "purpose": "interpret",
+              "key_claims": [
+                "We demonstrate that NSG-QUAD mice reconstituted with human HSPCs develop functional human innate immune cells capable of NF-κB, type I interferon, and NLRP3 inflammasome responses.",
+                "The 6-week engraftment timeline is faster than many conventional humanized mouse protocols, improving experimental throughput.",
+                "Detection of human monocytes, dendritic cells, and granulocytes indicates broad myeloid lineage support by NSG-QUAD transgenes."
+              ],
+              "citation_needs": [
+                "[CITE: typical engraftment timelines in conventional humanized mouse models]"
+              ]
+            },
+            {
+              "purpose": "contextualise",
+              "key_claims": [
+                "Previous humanized mouse models often show limited human myeloid function, particularly for inflammasome-dependent responses.",
+                "The NSG-QUAD strain's expression of human M-CSF, IL-3, GM-CSF, and TPO likely enhances myeloid differentiation and survival.",
+                "Our LPS challenge data confirm that human TLR4 signaling and downstream NF-κB activation are intact in this model.",
+                "Type I interferon production indicates functional IRF pathway activation, which is critical for antiviral and inflammatory responses."
+              ],
+              "citation_needs": [
+                "[CITE: limited inflammasome function in conventional humanized mice]",
+                "[CITE: role of human cytokines in myeloid cell development]",
+                "[CITE: TLR4-NF-κB and IRF pathways in human innate immunity]"
+              ]
+            },
+            {
+              "purpose": "interpret",
+              "key_claims": [
+                "MCC950's selective inhibition of IL-1β and IL-18 without affecting monocyte viability validates the model's utility for testing human-specific therapeutics.",
+                "The lack of effect on NF-κB cytokines confirms MCC950's specificity for NLRP3, consistent with in vitro human cell data.",
+                "This pharmacological validation suggests the model can distinguish on-target from off-target drug effects."
+              ],
+              "citation_needs": [
+                "[CITE: MCC950 mechanism of action and specificity for NLRP3]"
+              ]
+            },
+            {
+              "purpose": "limitations",
+              "key_claims": [
+                "The model uses a single HSPC source; donor-to-donor variability in engraftment and function requires further characterization.",
+                "[FILL: whether cord blood or bone marrow HSPCs were used]",
+                "We assessed responses to LPS, a potent but non-physiological stimulus; validation with pathogen-associated molecular patterns from specific microbes is needed.",
+                "Adaptive immune responses were not evaluated in this study; T and B cell function in NSG-QUAD mice remains to be determined.",
+                "The extent to which tissue-resident human macrophages develop in this model is unclear."
+              ],
+              "citation_needs": []
+            },
+            {
+              "purpose": "implications",
+              "key_claims": [
+                "Humanized NSG-QUAD mice provide a platform for testing innate immune therapeutics, including inflammasome inhibitors, in a human cellular context.",
+                "The model may enable mechanistic studies of human-specific innate immune pathways that cannot be recapitulated in conventional mouse models.",
+                "Future applications could include modeling inflammatory diseases driven by dysregulated NF-κB or inflammasome signaling."
+              ],
+              "citation_needs": [
+                "[CITE: clinical development of inflammasome inhibitors]"
+              ]
+            },
+            {
+              "purpose": "future",
+              "key_claims": [
+                "Characterizing additional innate immune pathways (e.g., cGAS-STING, AIM2 inflammasome) in this model would expand its utility.",
+                "Testing responses to live pathogens or pathogen-derived stimuli would better reflect physiological immune challenges.",
+                "Combining humanized NSG-QUAD mice with disease-relevant genetic variants (e.g., autoinflammatory mutations) could model patient-specific innate immune dysregulation."
+              ],
+              "citation_needs": []
+            }
+          ]
+        },
+        "conclusion": {
+          "word_target": 100,
+          "key_claims": [
+            "NSG-QUAD mice reconstituted with human HSPCs support functional human innate immune responses, including NF-κB, type I interferon, and NLRP3 inflammasome activation.",
+            "The model enables pharmacological validation of human-specific therapeutics, as demonstrated by MCC950's selective inflammasome inhibition.",
+            "This platform addresses a critical gap in preclinical innate immunity research by providing an in vivo system for studying human inflammatory responses."
+          ]
+        }
+      },
+      "figures_planned": [
+        {
+          "figure_number": 1,
+          "title": "Human myeloid cell engraftment in NSG-QUAD mice at 6 weeks post-HSPC injection",
+          "panels": [
+            {
+              "id": "1A",
+              "description": "Flow cytometry plots showing human monocytes in peripheral blood, spleen, and liver."
+            },
+            {
+              "id": "1B",
+              "description": "Flow cytometry plots showing human dendritic cells in the same tissues."
+            },
+            {
+              "id": "1C",
+              "description": "Flow cytometry plots showing human granulocytes in blood, spleen, and liver."
+            }
+          ],
+          "legend_summary": "Representative flow cytometry data demonstrating human myeloid cell populations in peripheral blood, spleen, and liver of NSG-QUAD mice 6 weeks after HSPC reconstitution.",
+          "verification_status": "user_provided"
+        },
+        {
+          "figure_number": 2,
+          "title": "NF-κB and type I interferon responses to LPS in humanized NSG-QUAD mice",
+          "panels": [
+            {
+              "id": "2A",
+              "description": "Luminex data showing NF-κB-dependent cytokines after intraperitoneal LPS."
+            },
+            {
+              "id": "2B",
+              "description": "Type I interferon levels following IP LPS challenge."
+            },
+            {
+              "id": "2C",
+              "description": "NF-κB-dependent cytokines after intranasal LPS."
+            },
+            {
+              "id": "2D",
+              "description": "Type I interferon levels following intranasal LPS."
+            }
+          ],
+          "legend_summary": "Cytokine responses to systemic (IP) and local (intranasal) LPS challenge, demonstrating functional NF-κB and type I interferon pathway activation in humanized NSG-QUAD mice.",
+          "verification_status": "user_provided"
+        },
+        {
+          "figure_number": 3,
+          "title": "NLRP3 inflammasome activation in response to LPS",
+          "panels": [
+            {
+              "id": "3A",
+              "description": "IL-1β levels in serum or tissue after LPS challenge."
+            },
+            {
+              "id": "3B",
+              "description": "IL-18 levels following LPS stimulation."
+            }
+          ],
+          "legend_summary": "LPS-induced secretion of IL-1β and IL-18, canonical NLRP3 inflammasome products, in humanized NSG-QUAD mice.",
+          "verification_status": "user_provided"
+        },
+        {
+          "figure_number": 4,
+          "title": "MCC950 selectively inhibits inflammasome-mediated cytokines without affecting monocyte viability",
+          "panels": [
+            {
+              "id": "4A",
+              "description": "IL-1β levels in MCC950-treated vs. vehicle-treated mice after LPS."
+            },
+            {
+              "id": "4B",
+              "description": "IL-18 levels in MCC950-treated vs. vehicle-treated mice."
+            },
+            {
+              "id": "4C",
+              "description": "Monocyte viability in MCC950-treated vs. vehicle-treated groups."
+            },
+            {
+              "id": "4D",
+              "description": "NF-κB-dependent cytokines in MCC950-treated vs. vehicle-treated mice, showing no inhibition."
+            }
+          ],
+          "legend_summary": "MCC950 specifically blocks IL-1β and IL-18 secretion without reducing monocyte viability or affecting NF-κB-dependent cytokine production, confirming selective NLRP3 inhibition.",
+          "verification_status": "user_provided"
+        }
+      ],
+      "_planner_notes": {
+        "input_language": "en",
+        "english_translation_made": false,
+        "missing_information": [
+          "[FILL: IACUC protocol number and institutional approval]",
+          "[FILL: HSPC donor characteristics — cord blood vs. bone marrow, IRB consent, donor anonymization]",
+          "[FILL: exact HSPC cell number per mouse and injection volume]",
+          "[FILL: complete antibody panel for flow cytometry — clone, fluorochrome, vendor, catalog number for each marker]",
+          "[FILL: flow cytometer manufacturer and model]",
+          "[FILL: LPS serotype, vendor, catalog number]",
+          "[FILL: exact LPS dose in μg or mg/kg for IP route]",
+          "[FILL: exact LPS dose for intranasal route]",
+          "[FILL: exact time points for blood/tissue collection after LPS]",
+          "[FILL: sample type for cytokine measurement — serum, plasma, or tissue homogenate]",
+          "[FILL: Luminex kit manufacturer, catalog number, and complete list of cytokines measured]",
+          "[FILL: MCC950 vendor and catalog number]",
+          "[FILL: exact MCC950 dose in mg/kg and vehicle composition]",
+          "[FILL: MCC950 administration timing relative to LPS challenge]",
+          "[FILL: cell death assay method — annexin V/PI staining, live/dead dye, or other]",
+          "[FILL: viability marker antibodies or dyes — vendor, catalog number]",
+          "[FILL: number of mice per group (n) for each experiment]",
+          "[FILL: specific statistical test used for cytokine comparisons]",
+          "[FILL: statistical software name and version]",
+          "[FILL: quantitative engraftment data — percentage of human CD45+ cells, absolute cell counts, or frequency of each myeloid subset]",
+          "[FILL: specific NF-κB-dependent cytokines detected and their fold-change or absolute levels]",
+          "[FILL: type I interferon subtype (IFN-α, IFN-β) and quantitative levels]",
+          "[FILL: IL-1β levels — pg/mL or fold-change over baseline]",
+          "[FILL: IL-18 levels and kinetics]",
+          "[FILL: quantitative reduction in IL-1β with MCC950 — percentage inhibition or absolute levels]",
+          "[FILL: IL-18 inhibition data with MCC950]",
+          "[FILL: monocyte viability percentages in MCC950 vs. control groups]"
+        ]
+      },
+      "clarification_questions": [
+        {
+          "priority": "critical",
+          "section": "results",
+          "question": "What were the quantitative engraftment levels (% human CD45+ cells, absolute counts) for each myeloid subset at 6 weeks?",
+          "reason": "Engraftment efficiency determines whether the model is robust enough for routine use and affects interpretation of functional responses.",
+          "skip_ok": true
+        },
+        {
+          "priority": "important",
+          "section": "methods",
+          "question": "Were HSPCs from cord blood or bone marrow, and was a single donor or pooled donors used?",
+          "reason": "HSPC source affects engraftment kinetics and functional capacity; single vs. pooled donors impacts reproducibility claims.",
+          "skip_ok": true
+        },
+        {
+          "priority": "important",
+          "section": "results",
+          "question": "Which specific NF-κB-dependent cytokines (e.g., TNF-α, IL-6) were detected, and what were their fold-changes?",
+          "reason": "Identifying the cytokine profile clarifies which NF-κB-dependent pathways are functional and enables comparison with human in vitro data.",
+          "skip_ok": true
+        }
+      ],
+      "_meta": {
+        "model": "claude-sonnet-4-5",
+        "generated_at": "2026-05-30T14:10:01Z",
+        "journal_key": null,
+        "profile_key": null,
+        "journal_mapping": null,
+        "article_type": "original_research",
+        "verification_status": "user_provided",
+        "fact_check_violations": [],
+        "note": "Plan is based ONLY on user input. Every [CITE: …] placeholder is a search topic, not a verified citation — call /insert_citations during drafting to resolve them."
+      }
+    }
+  },
+  "citations_smoke": {
+    "auto_insert_citations": false,
+    "merged_reference_count": 0
+  },
+  "step3_qc_before": {
+    "label": "before_autofix",
+    "http": 200,
+    "elapsed_s": 0.9,
+    "overall_score": 78,
+    "overall_verdict": "fail",
+    "hard_gate": true,
+    "dimensions_failed": [
+      "fill_marker_residual",
+      "logic_grounding"
+    ],
+    "dimensions_warned": [
+      "style_match",
+      "repetition",
+      "novelty_support",
+      "reference_relevance",
+      "reference_integrity"
+    ],
+    "dimensions": {
+      "fill_marker_residual": {
+        "score": 0,
+        "verdict": "fail",
+        "summary": "48 [FILL: ...] placeholder(s) remain — replace before submission."
+      },
+      "journal_compliance": {
+        "score": 100,
+        "verdict": "pass",
+        "summary": "PASS · 0 item(s) flagged"
+      },
+      "style_match": {
+        "score": 70,
+        "verdict": "warn",
+        "summary": "No exemplars loaded for this journal — style match unknown."
+      },
+      "ai_tone": {
+        "score": 100,
+        "verdict": "pass",
+        "summary": "0 AI-marker phrase(s) per 2018 words (0.00/1k)"
+      },
+      "repetition": {
+        "score": 77,
+        "verdict": "warn",
+        "summary": "18 4-gram(s) appear ≥3× (rate 0.038)"
+      },
+      "subjective_language": {
+        "score": 95,
+        "verdict": "pass",
+        "summary": "1 subjective marker(s) per 2018 words (0.50/1k)"
+      },
+      "logic_grounding": {
+        "score": 58,
+        "verdict": "fail",
+        "summary": "7/12 strong claims have a citation or data anchor"
+      },
+      "novelty_support": {
+        "score": 67,
+        "verdict": "warn",
+        "summary": "2/3 novelty claim(s) have a citation anchor."
+      },
+      "reference_relevance": {
+        "score": 50,
+        "verdict": "warn",
+        "summary": "No references to evaluate."
+      },
+      "reference_integrity": {
+        "score": 50,
+        "verdict": "warn",
+        "summary": "No references provided."
+      },
+      "grammar_correctness": {
+        "score": 100,
+        "verdict": "pass",
+        "summary": "0 grammar issue(s) detected (0 heuristic) per 2018 words."
+      }
+    }
+  },
+  "step4_autofix": {
+    "http": 200,
+    "final_score": {
+      "target_journal": "plos_med",
+      "profile_key": "plos_med",
+      "journal_display": "PLOS Medicine",
+      "article_type": "original_research",
+      "overall_score": 78,
+      "overall_verdict": "fail",
+      "dimensions_failed": [
+        "fill_marker_residual",
+        "logic_grounding"
+      ],
+      "dimensions_warned": [
+        "style_match",
+        "reference_relevance",
+        "reference_integrity"
+      ],
+      "hard_gate_triggered": true,
+      "dimensions": {
+        "fill_marker_residual": {
+          "score": 0,
+          "verdict": "fail",
+          "summary": "48 [FILL: ...] placeholder(s) remain — replace before submission.",
+          "issues": [
+            "[FILL: HSPC isolation method and purity assessment]",
+            "[FILL: HSPC source — cord blood or bone marrow, IRB consent protocol, donor anonymization method]",
+            "[FILL: IACUC protocol number and institutional approval]",
+            "[FILL: IL-18 inhibition data — percentage reduction, absolute levels, and p-value for MCC950 vs. vehicle comparison]",
+            "[FILL: IL-18 levels, kinetics, and comparison to IL-1β response magnitude]",
+            "[FILL: IL-1β levels in pg/mL or fold-change over baseline, time-point of measurement, and route of LPS administration]",
+            "[FILL: LPS reconstitution buffer and concentration]",
+            "[FILL: LPS serotype, vendor, and catalog number]",
+            "[FILL: Luminex kit manufacturer, catalog number, and complete list of cytokines measured]",
+            "[FILL: acquisition settings — number of events, flow rate]",
+            "[FILL: additional cytokines in the panel]",
+            "[FILL: administration route]",
+            "[FILL: anesthetic agent and dose]",
+            "[FILL: any modifications to standard protocol]",
+            "[FILL: blood collection method and anticoagulant]",
+            "[FILL: cell death assay method — annexin V/PI staining, live/dead dye, or other approach]",
+            "[FILL: complete antibody panel — clone, fluorochrome, vendor, and catalog number for each marker used to identify monocytes, dendritic cells, and granulocytes]",
+            "[FILL: exact LPS dose for intranasal route]",
+            "[FILL: exact LPS dose in μg or mg/kg for IP route]",
+            "[FILL: exact MCC950 dose in mg/kg]"
+          ],
+          "evidence": [
+            {
+              "marker": "[FILL: HSPC isolation method and purity assessment]",
+              "section": "methods",
+              "sentence": "After isolation using [FILL: HSPC isolation method and purity assessment], HSPCs were administered to recipient mice via [FILL: injection route — intravenous, intrahepatic, or other] at [FILL: exact cell number per mouse and injection volume].",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: HSPC source — cord blood or bone marrow, IRB consent protocol, donor anonymization method]",
+              "section": "methods",
+              "sentence": "Human hematopoietic stem and progenitor cells (HSPCs) were procured from [FILL: HSPC source — cord blood or bone marrow, IRB consent protocol, donor anonymization method].",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: IACUC protocol number and institutional approval]",
+              "section": "methods",
+              "sentence": "All experimental procedures involving animals were approved by [FILL: IACUC protocol number and institutional approval].",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: IL-18 inhibition data — percentage reduction, absolute levels, and p-value for MCC950 vs. vehicle comparison]",
+              "section": "results",
+              "sentence": "[FILL: IL-18 inhibition data — percentage reduction, absolute levels, and p-value for MCC950 vs.",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: IL-18 levels, kinetics, and comparison to IL-1β response magnitude]",
+              "section": "results",
+              "sentence": "[FILL: IL-18 levels, kinetics, and comparison to IL-1β response magnitude] Because both cytokines represent canonical outputs of NLRP3 inflammasome signaling [CITE: IL-1β and IL-18 as NLRP3 inflammasome products], these findings indicate successful assembly and function of the in",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: IL-1β levels in pg/mL or fold-change over baseline, time-point of measurement, and route of LPS administration]",
+              "section": "results",
+              "sentence": "[FILL: IL-1β levels in pg/mL or fold-change over baseline, time-point of measurement, and route of LPS administration] We also detected IL-18 in response to LPS (Figure 3B).",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: LPS reconstitution buffer and concentration]",
+              "section": "methods",
+              "sentence": "Human myeloid populations were identified through sequential gating [FILL: gating strategy details] and analyzed with [FILL: flow cytometry analysis software name and version].  Lipopolysaccharide [FILL: LPS serotype, vendor, and catalog number] was reconstituted in [FILL: LPS reconstitution buffer and concentration].",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: LPS serotype, vendor, and catalog number]",
+              "section": "methods",
+              "sentence": "Human myeloid populations were identified through sequential gating [FILL: gating strategy details] and analyzed with [FILL: flow cytometry analysis software name and version].  Lipopolysaccharide [FILL: LPS serotype, vendor, and catalog number] was reconstituted in [FILL: LPS reconstitution buffer and concentration].",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: Luminex kit manufacturer, catalog number, and complete list of cytokines measured]",
+              "section": "methods",
+              "sentence": "Samples were harvested at [FILL: exact time points for sample collection after LPS challenge].  Cytokine concentrations were measured in [FILL: sample type — serum, plasma, or tissue homogenate and processing method] using Luminex multiplex immunoassay technology [FILL: Luminex kit manufacturer, catalog number, and complete list of cytokines measured].",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: acquisition settings — number of events, flow rate]",
+              "section": "methods",
+              "sentence": "Samples were acquired on a [FILL: flow cytometer manufacturer and model] using [FILL: acquisition settings — number of events, flow rate].",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: additional cytokines in the panel]",
+              "section": "methods",
+              "sentence": "The assay panel quantified NF-κB-dependent cytokines, type I interferons, IL-1β, IL-18, and [FILL: additional cytokines in the panel].",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: administration route]",
+              "section": "methods",
+              "sentence": "Mice received [FILL: exact MCC950 dose in mg/kg] by [FILL: administration route] at [FILL: timing relative to LPS challenge — pretreatment interval or concurrent administration].",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: anesthetic agent and dose]",
+              "section": "methods",
+              "sentence": "For intranasal challenge, mice were anesthetized with [FILL: anesthetic agent and dose] and subsequently administered [FILL: exact LPS dose for intranasal route] in a total volume of [FILL: intranasal administration volume].",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: any modifications to standard protocol]",
+              "section": "methods",
+              "sentence": "All procedures were performed according to the manufacturer's protocol [FILL: any modifications to standard protocol].",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: blood collection method and anticoagulant]",
+              "section": "methods",
+              "sentence": "Peripheral blood was collected by [FILL: blood collection method and anticoagulant].",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: cell death assay method — annexin V/PI staining, live/dead dye, or other approach]",
+              "section": "methods",
+              "sentence": "Vehicle control animals received equal volumes of [FILL: vehicle composition and volume] according to an identical dosing schedule.  Monocyte viability was assessed by [FILL: cell death assay method — annexin V/PI staining, live/dead dye, or other approach].",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: complete antibody panel — clone, fluorochrome, vendor, and catalog number for each marker used to identify monocytes, dendritic cells, and granulocytes]",
+              "section": "methods",
+              "sentence": "Single-cell suspensions were stained with fluorochrome-conjugated antibodies against human myeloid lineage markers [FILL: complete antibody panel — clone, fluorochrome, vendor, and catalog number for each marker used to identify monocytes, dendritic cells, and granulocytes].",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: exact LPS dose for intranasal route]",
+              "section": "methods",
+              "sentence": "For intranasal challenge, mice were anesthetized with [FILL: anesthetic agent and dose] and subsequently administered [FILL: exact LPS dose for intranasal route] in a total volume of [FILL: intranasal administration volume].",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: exact LPS dose in μg or mg/kg for IP route]",
+              "section": "methods",
+              "sentence": "For intraperitoneal challenge, mice received [FILL: exact LPS dose in μg or mg/kg for IP route] via intraperitoneal injection.",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: exact MCC950 dose in mg/kg]",
+              "section": "methods",
+              "sentence": "Mice received [FILL: exact MCC950 dose in mg/kg] by [FILL: administration route] at [FILL: timing relative to LPS challenge — pretreatment interval or concurrent administration].",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: exact cell number per mouse and injection volume]",
+              "section": "methods",
+              "sentence": "After isolation using [FILL: HSPC isolation method and purity assessment], HSPCs were administered to recipient mice via [FILL: injection route — intravenous, intrahepatic, or other] at [FILL: exact cell number per mouse and injection volume].",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: exact time points for sample collection after LPS challenge]",
+              "section": "methods",
+              "sentence": "Samples were harvested at [FILL: exact time points for sample collection after LPS challenge].  Cytokine concentrations were measured in [FILL: sample type — serum, plasma, or tissue homogenate and processing method] using Luminex multiplex immunoassay technology [FILL: Luminex kit manufacturer, catalog n",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: filter pore size]",
+              "section": "methods",
+              "sentence": "Spleens and livers were mechanically dissociated and filtered through [FILL: filter pore size] mesh.",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: flow cytometer manufacturer and model]",
+              "section": "methods",
+              "sentence": "Samples were acquired on a [FILL: flow cytometer manufacturer and model] using [FILL: acquisition settings — number of events, flow rate].",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            },
+            {
+              "marker": "[FILL: flow cytometry analysis software name and version]",
+              "section": "methods",
+              "sentence": "Human myeloid populations were identified through sequential gating [FILL: gating strategy details] and analyzed with [FILL: flow cytometry analysis software name and version].  Lipopolysaccharide [FILL: LPS serotype, vendor, and catalog number] was reconstituted in [FILL: LPS reconstitution buffer and concentration].",
+              "suggestion": "Replace this placeholder with the actual value before submission (e.g., catalog number, dose, protocol ID)."
+            }
+          ],
+          "is_hard_gate": true
+        },
+        "journal_compliance": {
+          "score": 100,
+          "verdict": "pass",
+          "summary": "PASS · 0 item(s) flagged",
+          "issues": [],
+          "raw": {
+            "overall_status": "PASS",
+            "spec_key": "plos_med",
+            "article_type": "original_research",
+            "limits_source": "verified_spec",
+            "checklist": [
+              {
+                "check": "main_text_word_count",
+                "status": "PASS",
+                "message": "Main text ~2326 words — no official word-count limit for this journal.",
+                "observed": 2326
+              },
+              {
+                "check": "abstract_word_count",
+                "status": "PASS",
+                "message": "Abstract ~249 words within guidelines.",
+                "observed": 249
+              }
+            ],
+            "verified_spec": {
+              "schema_version": "0.1.0",
+              "journal": {
+                "key": "plos_med",
+                "display": "PLOS Medicine"
+              },
+              "spec_version": "0.1.1",
+              "reference_style_id": "plos_vancouver",
+              "sourced_from": [
+                {
+                  "url": "https://journals.plos.org/plosmedicine/s/submission-guidelines",
+                  "label": "PLOS Medicine Submission Guidelines",
+                  "captured_at": "2026-05-26T12:00:00Z"
+                },
+                {
+                  "url": "https://journals.plos.org/plosmedicine/s/manuscript-organization",
+                  "label": "PLOS Medicine Manuscript Organization",
+                  "captured_at": "2026-05-26T12:00:00Z"
+                },
+                {
+                  "url": "https://journals.plos.org/plosmedicine/s/references",
+                  "label": "PLOS Medicine References",
+                  "captured_at": "2026-05-26T12:00:00Z"
+                },
+                {
+                  "url": "https://journals.plos.org/plosmedicine/s/reporting-guidelines",
+                  "label": "PLOS Medicine Reporting Guidelines",
+                  "captured_at": "2026-05-26T12:00:00Z"
+                }
+              ],
+              "captured_at": "2026-05-26T12:00:00Z",
+              "article_types": [
+                {
+                  "value": [
+                    "Research Article",
+                    "Guidelines and Guidance",
+                    "Health in Action",
+                    "Essay",
+                    "Policy Forum",
+                    "Perspective"
+                  ],
+                  "source_url": "https://journals.plos.org/plosmedicine/s/submission-guidelines",
+                  "notes": "Confirm current list on each curation pass.",
+                  "verification_status": "verified"
+                }
+              ],
+              "structure": {
+                "required_sections": {
+                  "value": [
+                    "title",
+                    "abstract",
+                    "introduction",
+                    "methods",
+                    "results",
+                    "discussion",
+                    "references"
+                  ],
+                  "source_url": "https://journals.plos.org/plosmedicine/s/manuscript-organization",
+                  "notes": "Research articles use IMRaD; Strengths and Limitations may be required — verify on organization page.",
+                  "verification_status": "verified"
+                },
+                "optional_sections": {
+                  "value": [
+                    "acknowledgments",
+                    "supporting_information"
+                  ],
+                  "source_url": "https://journals.plos.org/plosmedicine/s/manuscript-organization",
+                  "verification_status": "verified"
+                },
+                "significance_statement": {
+                  "value": false,
+                  "source_url": "https://journals.plos.org/plosmedicine/s/submission-guidelines",
+                  "verification_status": "verified"
+                }
+              },
+              "abstract": {
+                "word_limit": {
+                  "value": {
+                    "preferred": 300,
+                    "max": 500
+                  },
+                  "source_url": "https://journals.plos.org/plosmedicine/s/submission-guidelines",
+                  "notes": "PLOS Medicine prefers ≤300 words; maximum 500 words.",
+                  "verification_status": "verified"
+                },
+                "structured": {
+                  "value": true,
+                  "source_url": "https://journals.plos.org/plosmedicine/s/submission-guidelines",
+                  "notes": "Sections: Background; Methods and Findings; Conclusions.",
+                  "verification_status": "verified"
+                },
+                "subsections": {
+                  "value": [
+                    "Background",
+                    "Methods and Findings",
+                    "Conclusions"
+                  ],
+                  "source_url": "https://journals.plos.org/plosmedicine/s/submission-guidelines",
+                  "verification_status": "verified"
+                }
+              },
+              "main_text": {
+                "supplementary_policy": {
+                  "value": "Supporting information encouraged; not copyedited; publish as submitted.",
+                  "source_url": "https://journals.plos.org/plosmedicine/s/submission-guidelines",
+                  "verification_status": "verified"
+                }
+              },
+              "figures_tables": {
+                "figure_resolution": {
+                  "value": "≥300 dpi for supporting information",
+                  "source_url": "https://journals.plos.org/plosmedicine/s/submission-guidelines",
+                  "verification_status": "verified"
+                },
+                "accepted_formats": {
+                  "value": [
+                    "doc",
+                    "docx",
+                    "rtf"
+                  ],
+                  "source_url": "https://journals.plos.org/plosmedicine/s/submission-guidelines",
+                  "notes": "Main manuscript file formats.",
+                  "verification_status": "verified"
+                }
+              },
+              "declarations": {
+                "competing_interests": {
+                  "value": "Required in submission form",
+                  "source_url": "https://journals.plos.org/plosmedicine/s/editorial-and-publishing-policies",
+                  "verification_status": "verified"
+                },
+                "funding_statement": {
+                  "value": "Required (Financial Disclosure)",
+                  "source_url": "https://journals.plos.org/plosmedicine/s/submission-guidelines",
+                  "verification_status": "verified"
+                },
+                "reporting_checklist": {
+                  "value": "Study-type reporting guidelines (CONSORT, STROBE, PRISMA, etc.) as applicable",
+                  "source_url": "https://journals.plos.org/plosmedicine/s/reporting-guidelines",
+                  "verification_status": "verified"
+                }
+              },
+              "data_and_code": {
+                "data_availability": {
+                  "value": "Data Availability Statement required",
+                  "source_url": "https://journals.plos.org/plosmedicine/s/editorial-and-publishing-policies",
+                  "verification_status": "verified"
+                },
+                "code_availability": {
+                  "value": "Author-generated code should be shared when central to findings",
+                  "source_url": "https://journals.plos.org/plosmedicine/s/materials-and-software-sharing",
+                  "verification_status": "verified"
+                }
+              },
+              "notes": [
+                {
+                  "value": "In-text citations use numbered brackets [1], [1,2], [1-3] in ascending order of appearance.",
+                  "source_url": "https://journals.plos.org/plosmedicine/s/references",
+                  "verification_status": "verified"
+                }
+              ]
+            },
+            "coverage": {
+              "total": 26,
+              "verified": 16,
+              "unverified": 8,
+              "out_of_date": 0
+            },
+            "disclaimer": "Format-readiness checks only. Does not predict editorial acceptance, scope fit, or impact tier."
+          }
+        },
+        "style_match": {
+          "score": 70,
+          "verdict": "warn",
+          "summary": "No exemplars loaded for this journal — style match unknown.",
+          "issues": []
+        },
+        "ai_tone": {
+          "score": 100,
+          "verdict": "pass",
+          "summary": "0 AI-marker phrase(s) per 2123 words (0.00/1k)",
+          "issues": [],
+          "evidence": []
+        },
+        "repetition": {
+          "score": 85,
+          "verdict": "pass",
+          "summary": "12 4-gram(s) appear ≥3× (rate 0.024)",
+          "issues": [
+            {
+              "phrase": "hematopoietic stem and progenitor",
+              "count": 5
+            },
+            {
+              "phrase": "peripheral blood spleen and",
+              "count": 5
+            },
+            {
+              "phrase": "blood spleen and liver",
+              "count": 5
+            },
+            {
+              "phrase": "human hematopoietic stem and",
+              "count": 4
+            },
+            {
+              "phrase": "stem and progenitor cells",
+              "count": 4
+            },
+            {
+              "phrase": "support functional human innate",
+              "count": 3
+            },
+            {
+              "phrase": "with human hematopoietic stem",
+              "count": 3
+            },
+            {
+              "phrase": "monocytes dendritic cells and",
+              "count": 3
+            },
+            {
+              "phrase": "dendritic cells and granulocytes",
+              "count": 3
+            },
+            {
+              "phrase": "il- and il- secretion",
+              "count": 3
+            },
+            {
+              "phrase": "conventional humanized mouse models",
+              "count": 3
+            },
+            {
+              "phrase": "vendor and catalog number",
+              "count": 3
+            }
+          ],
+          "evidence": [
+            {
+              "marker": "hematopoietic stem and progenitor",
+              "count": 5,
+              "sentence": "We reconstituted NSG-QUAD mice with human hematopoietic stem and progenitor cells (HSPCs) and examined the development and functional characteristics of human myeloid populations in vivo.  ## Methods and Findings  NSG-QUAD mice received human HSPCs and were assessed for myeloid engraftment at 6 weeks post-injection.",
+              "section": "abstract",
+              "suggestion": "This 4-word phrase appears 5×. Vary phrasing across paragraphs."
+            },
+            {
+              "marker": "human hematopoietic stem and",
+              "count": 4,
+              "sentence": "We reconstituted NSG-QUAD mice with human hematopoietic stem and progenitor cells (HSPCs) and examined the development and functional characteristics of human myeloid populations in vivo.  ## Methods and Findings  NSG-QUAD mice received human HSPCs and were assessed for myeloid engraftment at 6 weeks post-injection",
+              "section": "abstract",
+              "suggestion": "This 4-word phrase appears 4×. Vary phrasing across paragraphs."
+            },
+            {
+              "marker": "stem and progenitor cells",
+              "count": 4,
+              "sentence": "We reconstituted NSG-QUAD mice with human hematopoietic stem and progenitor cells (HSPCs) and examined the development and functional characteristics of human myeloid populations in vivo.  ## Methods and Findings  NSG-QUAD mice received human HSPCs and were assessed for myeloid engraftment at 6 weeks post-injection.",
+              "section": "abstract",
+              "suggestion": "This 4-word phrase appears 4×. Vary phrasing across paragraphs."
+            },
+            {
+              "marker": "support functional human innate",
+              "count": 3,
+              "sentence": "NSG-QUAD mice carry four human myelopoiesis transgenes that facilitate engraftment of human hematopoietic cells; however, the capacity of these animals to support functional human innate immunity—particularly inflammasome activation—remains unestablished.",
+              "section": "abstract",
+              "suggestion": "This 4-word phrase appears 3×. Vary phrasing across paragraphs."
+            },
+            {
+              "marker": "with human hematopoietic stem",
+              "count": 3,
+              "sentence": "We reconstituted NSG-QUAD mice with human hematopoietic stem and progenitor cells (HSPCs) and examined the development and functional characteristics of human myeloid populations in vivo.  ## Methods and Findings  NSG-QUAD mice received human HSPCs and were assessed for myeloid engraftment at 6 weeks post-inje",
+              "section": "abstract",
+              "suggestion": "This 4-word phrase appears 3×. Vary phrasing across paragraphs."
+            }
+          ]
+        },
+        "subjective_language": {
+          "score": 95,
+          "verdict": "pass",
+          "summary": "1 subjective marker(s) per 2123 words (0.47/1k)",
+          "issues": [
+            "nt and transgene expression]. We hypothesized that HSPC-reconstituted NSG-Q"
+          ],
+          "evidence": [
+            {
+              "marker": "We hypothesized",
+              "sentence": "We hypothesized that HSPC-reconstituted NSG-QUAD mice would support functional human innate immunity, including NF-κB signaling, type I interferon production, and NLRP3 inflammasome-mediated cytokine secretion.",
+              "section": "introduction",
+              "suggestion": "Remove or replace with a data-anchored, neutral statement."
+            }
+          ]
+        },
+        "logic_grounding": {
+          "score": 57,
+          "verdict": "fail",
+          "summary": "8/14 strong claims have a citation or data anchor",
+          "issues": [
+            {
+              "section": "introduction",
+              "phrase": "ion of inflammasome inhibitors and related innate immune therapeutics in physiologically relevant contexts.  NSG-QUAD mice carry t"
+            },
+            {
+              "section": "introduction",
+              "phrase": "ogical inflammasome inhibition with MCC950 would selectively block IL-1β and IL-18 release without affecting NF-κB-dependent cytok"
+            },
+            {
+              "section": "results",
+              "phrase": "MCC950 selectively inhibits inflammasome-mediated cytokines without affecting monocyte viability  To confirm the specificity of"
+            },
+            {
+              "section": "results",
+              "phrase": "nstrating selective inhibition of NLRP3 inflammasome activity without generalized suppression of innate immune responses."
+            },
+            {
+              "section": "discussion",
+              "phrase": "luding inflammasome inhibitors, within a human cellular context. This model may enable mechanistic investigation of human-specific"
+            },
+            {
+              "section": "discussion",
+              "phrase": "ent of inflammasome inhibitors].  Future studies should characterize additional innate immune pathways—such as cGAS-STING and AIM2"
+            }
+          ],
+          "evidence": [
+            {
+              "marker": "inhibitors",
+              "sentence": "This gap impedes preclinical evaluation of inflammasome inhibitors and related innate immune therapeutics in physiologically relevant contexts.  NSG-QUAD mice carry transgenes encoding four human myelopoietic cytokines (M-CSF, IL-3, GM-CSF, and TPO) designed to enhance human myeloid cell differentiation following hematopoietic stem an",
+              "section": "introduction",
+              "suggestion": "Anchor this claim: cite a supporting reference (e.g., [Smith 2020]) or add quantitative evidence (p-value, n, effect size)."
+            },
+            {
+              "marker": "inhibition",
+              "sentence": "We further assessed whether pharmacological inflammasome inhibition with MCC950 would selectively block IL-1β and IL-18 release without affecting NF-κB-dependent cytokine expression or monocyte viability, thereby validating this platform for testing human-specific innate immune therapies.",
+              "section": "introduction",
+              "suggestion": "Anchor this claim: cite a supporting reference (e.g., [Smith 2020]) or add quantitative evidence (p-value, n, effect size)."
+            },
+            {
+              "marker": "inhibits",
+              "sentence": "represent canonical outputs of NLRP3 inflammasome signaling [CITE: IL-1β and IL-18 as NLRP3 inflammasome products], these findings indicate successful assembly and function of the inflammasome complex within human myeloid cells engrafted in NSG-QUAD mice.  ## MCC950 selectively inhibits inflammasome-mediated cytokines without affecting monocyte viability  To confirm the specificity of inflammasome activation, we administered MCC950, a selective NLRP3 inhibitor.",
+              "section": "results",
+              "suggestion": "Anchor this claim: cite a supporting reference (e.g., [Smith 2020]) or add quantitative evidence (p-value, n, effect size)."
+            },
+            {
+              "marker": "inhibition",
+              "sentence": "Neither NF-κB-dependent cytokine nor type I interferon concentrations were altered by MCC950 administration (Figure 4D), demonstrating selective inhibition of NLRP3 inflammasome activity without generalized suppression of innate immune responses.",
+              "section": "results",
+              "suggestion": "Anchor this claim: cite a supporting reference (e.g., [Smith 2020]) or add quantitative evidence (p-value, n, effect size)."
+            },
+            {
+              "marker": "inhibitors",
+              "sentence": "urth, whether tissue-resident human macrophages develop in this model is unclear, as our analysis focused on circulating and splenic populations.  Despite these limitations, humanized NSG-QUAD mice provide a platform for testing innate immune therapeutics, including inflammasome inhibitors, within a human cellular context.",
+              "section": "discussion",
+              "suggestion": "Anchor this claim: cite a supporting reference (e.g., [Smith 2020]) or add quantitative evidence (p-value, n, effect size)."
+            },
+            {
+              "marker": "inhibitors",
+              "sentence": "Potential applications include modeling inflammatory diseases driven by dysregulated NF-κB or inflammasome signaling, particularly as clinical development of inflammasome inhibitors advances [CITE: clinical development of inflammasome inhibitors].  Future studies should characterize additional innate immune pathways—such as cGAS-STING and AIM2 inflammasome responses—to expand the model's utility for studying diverse pattern recognition receptor systems.",
+              "section": "discussion",
+              "suggestion": "Anchor this claim: cite a supporting reference (e.g., [Smith 2020]) or add quantitative evidence (p-value, n, effect size)."
+            }
+          ]
+        },
+        "novelty_support": {
+          "score": 85,
+          "verdict": "pass",
+          "summary": "No novelty claims detected without plan context.",
+          "issues": []
+        },
+        "reference_relevance": {
+          "score": 50,
+          "verdict": "warn",
+          "summary": "No references to evaluate.",
+          "issues": []
+        },
+        "reference_integrity": {
+          "score": 50,
+          "verdict": "warn",
+          "summary": "No references provided.",
+          "issues": [],
+          "checked_subset": 0,
+          "total_refs": 0
+        },
+        "grammar_correctness": {
+          "score": 100,
+          "verdict": "pass",
+          "summary": "0 grammar issue(s) detected (0 heuristic) per 2123 words.",
+          "issues": []
+        }
+      },
+      "weights": {
+        "journal_compliance": 0.18,
+        "style_match": 0.1,
+        "ai_tone": 0.14,
+        "repetition": 0.08,
+        "logic_grounding": 0.14,
+        "reference_integrity": 0.12,
+        "subjective_language": 0.08,
+        "reference_relevance": 0.1,
+        "grammar_correctness": 0.06
+      },
+      "_meta": {
+        "model": "claude-sonnet-4-5",
+        "generated_at": "2026-05-30T14:14:21Z",
+        "exemplars_used": 0,
+        "references_verified": false,
+        "grammar_checked": false,
+        "plan_provided": false,
+        "disclaimer": "Automated multi-dimension QC. Authors must verify facts, ethics, and references manually before submission."
+      }
+    },
+    "rounds": null
+  },
+  "step3_qc_after": {
+    "label": "after_autofix",
+    "http": 200,
+    "elapsed_s": 0.8,
+    "overall_score": 78,
+    "overall_verdict": "fail",
+    "hard_gate": true,
+    "dimensions_failed": [
+      "fill_marker_residual",
+      "logic_grounding"
+    ],
+    "dimensions_warned": [
+      "style_match",
+      "repetition",
+      "novelty_support",
+      "reference_relevance",
+      "reference_integrity"
+    ],
+    "dimensions": {
+      "fill_marker_residual": {
+        "score": 0,
+        "verdict": "fail",
+        "summary": "48 [FILL: ...] placeholder(s) remain — replace before submission."
+      },
+      "journal_compliance": {
+        "score": 100,
+        "verdict": "pass",
+        "summary": "PASS · 0 item(s) flagged"
+      },
+      "style_match": {
+        "score": 70,
+        "verdict": "warn",
+        "summary": "No exemplars loaded for this journal — style match unknown."
+      },
+      "ai_tone": {
+        "score": 100,
+        "verdict": "pass",
+        "summary": "0 AI-marker phrase(s) per 2018 words (0.00/1k)"
+      },
+      "repetition": {
+        "score": 77,
+        "verdict": "warn",
+        "summary": "18 4-gram(s) appear ≥3× (rate 0.038)"
+      },
+      "subjective_language": {
+        "score": 95,
+        "verdict": "pass",
+        "summary": "1 subjective marker(s) per 2018 words (0.50/1k)"
+      },
+      "logic_grounding": {
+        "score": 58,
+        "verdict": "fail",
+        "summary": "7/12 strong claims have a citation or data anchor"
+      },
+      "novelty_support": {
+        "score": 67,
+        "verdict": "warn",
+        "summary": "2/3 novelty claim(s) have a citation anchor."
+      },
+      "reference_relevance": {
+        "score": 50,
+        "verdict": "warn",
+        "summary": "No references to evaluate."
+      },
+      "reference_integrity": {
+        "score": 50,
+        "verdict": "warn",
+        "summary": "No references provided."
+      },
+      "grammar_correctness": {
+        "score": 100,
+        "verdict": "pass",
+        "summary": "0 grammar issue(s) detected (0 heuristic) per 2018 words."
+      }
+    }
+  }
+}

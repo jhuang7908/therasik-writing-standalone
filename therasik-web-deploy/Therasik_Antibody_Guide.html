@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noai, noimageai">
+  <meta name="AI-Training" content="opt-out">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Therasik  — Fc mutation library, developability metrics, and immunogenicity factors.">
+  <link rel="canonical" href="https://www.therasik.com/Therasik_Antibody_Guide.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.therasik.com/Therasik_Antibody_Guide.html">
+  <meta property="og:title" content=" | Therasik">
+  <meta property="og:description" content=" Fc 、，。">
+  <meta property="og:image" content="https://www.therasik.com/images/hero-bg.svg">
+  <title> | Therasik</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F0S2HLBZ0B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag{dataLayer.push(arguments);}
+    gtag('js', new Date);
+    gtag('config', 'G-F0S2HLBZ0B');
+  </script>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root{--primary:#0d9488;--primary-dark:#0f766e;--text:#111827;--text-muted:#4b5563;--border:#e5e7eb;--bg:#fff;--bg-alt:#f9fafb;}
+    *{box-sizing:border-box;}
+    body{margin:0;font-family:'Inter',-apple-system,sans-serif;font-size:15px;line-height:1.6;color:var(--text);background:var(--bg-alt);-webkit-font-smoothing:antialiased;}
+
+    /* ── Header ── */
+    .top-header{display:flex;align-items:center;justify-content:space-between;padding:12px 32px;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:2px solid rgba(13,148,136,0.1);flex-wrap:nowrap;gap:12px;position:fixed;width:100%;top:0;z-index:2000;}
+    .brand{display:flex;align-items:center;gap:0;flex-wrap:nowrap;min-width:max-content;}.brand a{text-decoration:none;color:inherit;display:flex;align-items:center;gap:10px;white-space:nowrap;flex-shrink:0;}
+    .slogan{font-size:13px;color:var(--text-muted);padding-left:14px;border-left:1px solid var(--border);white-space:nowrap;font-weight:500;letter-spacing:.02em;display:inline-flex;align-items:center;flex-shrink:0;}
+    .top-header-nav{display:flex;align-items:center;gap:6px;}
+    .top-header-nav a{padding:7px 14px;font-size:14px;color:var(--text-muted);text-decoration:none;border-radius:20px;transition:all .2s;font-weight:500;}
+    .top-header-nav a:hover{color:var(--primary);background:rgba(13,148,136,.06);}
+
+    /* ── Page header ── */
+    .page-header{background:linear-gradient(135deg,#f0fdfa 0%,#fff 80%);border-bottom:1px solid rgba(13,148,136,.1);padding:48px 40px 32px;margin-top:52px;}
+    .page-header h1{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:700;margin:0 0 10px;letter-spacing:-.02em;color:#111827;}
+    .page-header p{color:var(--text-muted);font-size:17px;margin:0 0 20px;max-width:700px;line-height:1.65;}
+    .back-link{font-size:14px;color:var(--primary);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:6px;margin-bottom:16px;}
+    .back-link:hover{color:var(--primary-dark);}
+    .domain-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
+    .dtab{padding:8px 20px;border-radius:24px;font-size:14px;font-weight:600;cursor:pointer;border:2px solid transparent;transition:all .2s;background:rgba(255,255,255,0.8);}
+    .dtab.active{background:var(--primary);color:#fff;border-color:var(--primary);}
+    .dtab:not(.active){color:var(--text-muted);border-color:var(--border);}
+    .dtab:not(.active):hover{border-color:var(--primary);color:var(--primary);}
+
+    /* ── Controls ── */
+    .controls{background:#fff;border-bottom:1px solid var(--border);padding:16px 40px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;position:sticky;top:52px;z-index:500;}
+    .search-wrap{position:relative;flex:1;min-width:200px;max-width:360px;}
+    .search-wrap input{width:100%;padding:10px 16px 10px 38px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;transition:border-color .2s,box-shadow .2s;background:var(--bg-alt);}
+    .search-wrap input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(13,148,136,.12);background:#fff;}
+    .search-wrap .si{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#9ca3af;pointer-events:none;}
+    .filter-sel{padding:9px 13px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;background:var(--bg-alt);cursor:pointer;color:var(--text);transition:border-color .2s;}
+    .filter-sel:focus{outline:none;border-color:var(--primary);}
+    .stats-chip{margin-left:auto;font-size:13px;color:var(--text-muted);font-weight:600;white-space:nowrap;padding:6px 14px;background:var(--bg-alt);border-radius:20px;border:1px solid var(--border);}
+    .clear-btn{padding:9px 15px;font-size:13px;font-weight:500;color:var(--primary);background:none;border:1px solid rgba(13,148,136,.3);border-radius:8px;cursor:pointer;transition:all .2s;display:none;}
+    .clear-btn:hover{background:rgba(13,148,136,.06);}
+    .clear-btn.visible{display:block;}
+
+    /* ── Grid ── */
+    .grid-container{max-width:1280px;margin:0 auto;padding:32px 40px 80px;}
+    .domain-section{margin-bottom:48px;}
+    .domain-section[data-domain].hidden{display:none;}
+    .cat-section{margin-bottom:36px;}
+    .cat-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--border);}
+    .cat-header h2{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;margin:0;color:#111827;letter-spacing:-.01em;}
+    .cat-header .cat-count{font-size:12px;font-weight:700;color:var(--primary);background:rgba(13,148,136,.08);padding:2px 10px;border-radius:20px;}
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:16px;}
+
+    /* ── Cards ── */
+    .comp-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px;cursor:pointer;transition:all .2s;position:relative;}
+    .comp-card:hover{border-color:rgba(13,148,136,.4);box-shadow:0 4px 16px rgba(13,148,136,.08);transform:translateY(-1px);}
+    .comp-card.expanded{border-color:var(--primary);box-shadow:0 4px 20px rgba(13,148,136,.12);}
+    .cc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
+    .cc-name{font-size:14px;font-weight:700;color:#111827;line-height:1.35;flex:1;min-width:0;word-break:break-word;}
+    .cc-alias{font-size:11px;color:#9ca3af;font-weight:400;font-family:'Consolas',monospace;word-break:break-all;}
+    .cc-meta{display:flex;gap:6px;align-items:center;margin-top:8px;flex-wrap:wrap;}
+    .cc-brief{font-size:13px;color:var(--text-muted);margin-top:6px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+    .comp-card.expanded .cc-brief{display:block;-webkit-line-clamp:unset;overflow:visible;}
+    .cc-examples{font-size:11.5px;margin-top:6px;line-height:1.5;}
+    .cc-examples .ex-approved{color:#0f766e;font-weight:600;}
+    .cc-examples .ex-trial{color:#1d4ed8;}
+
+    .cc-detail{display:none;margin-top:14px;padding-top:12px;border-top:1px solid var(--border);}
+    .comp-card.expanded .cc-detail{display:block;}
+    .cc-detail .collapse-bar{height:3px;background:#e5f7f5;border-radius:2px;margin-bottom:12px;overflow:hidden;}
+    .cc-detail .collapse-progress{height:100%;width:100%;background:var(--primary);border-radius:2px;}
+    .expand-toggle{font-size:11px;color:var(--primary);font-weight:600;float:right;margin-top:2px;user-select:none;}
+    .comp-card .expand-toggle::after{content:'▼ ';}
+    .comp-card.expanded .expand-toggle::after{content:'▲ ';}
+    .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px;}
+    .detail-full{grid-column:1/-1;}
+    .dl{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--primary);margin-bottom:3px;}
+    .dv{font-size:13px;color:#374151;line-height:1.55;word-break:break-word;overflow-wrap:break-word;}
+    .dv a{color:var(--primary);font-weight:500;text-decoration:none;}
+    .dv a:hover{text-decoration:underline;}
+    .dv code{font-family:'Consolas',monospace;background:rgba(13,148,136,.08);padding:1px 6px;border-radius:4px;color:var(--primary-dark);font-size:12px;}
+
+    /* ── Badges ── */
+    .tier{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;padding:2px 8px;border-radius:12px;}
+    .tier-T1{background:rgba(13,148,136,.12);color:#0f766e;}
+    .tier-T2{background:rgba(59,130,246,.12);color:#1d4ed8;}
+    .tier-T3{background:rgba(107,114,128,.1);color:#4b5563;}
+    .cat-chip{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:8px;background:#f0fdfa;color:#0f766e;border:1px solid rgba(13,148,136,.15);}
+    .risk-high{background:#fef2f2;color:#b91c1c;border:1px solid #fecaca;}
+    .risk-med{background:#fffbeb;color:#92400e;border:1px solid #fde68a;}
+    .risk-low{background:#f0fdf4;color:#166534;border:1px solid #bbf7d0;}
+    .risk-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:12px;}
+    .range-badge{display:inline-block;font-size:11px;font-weight:600;padding:2px 10px;border-radius:8px;background:#f8fafc;border:1px solid #e2e8f0;color:#374151;font-family:'Consolas',monospace;}
+
+    mark{background:rgba(13,148,136,.18);color:#065f46;border-radius:2px;padding:0 1px;}
+    .empty-state{text-align:center;padding:80px 20px;color:var(--text-muted);}
+    .site-footer{padding:28px 40px;border-top:1px solid var(--border);font-size:13px;color:#9ca3af;text-align:center;background:#fff;}
+    .site-footer a{color:#6b7280;text-decoration:none;}
+    .site-footer a:hover{color:var(--primary);}
+
+    /* ── Domain note bars ── */
+    .domain-note{background:linear-gradient(135deg,#f0fdfa,#fff);border:1px solid rgba(13,148,136,.15);border-radius:12px;padding:20px 24px;margin-bottom:28px;}
+    .domain-note p{margin:0;font-size:15px;color:#374151;line-height:1.65;}
+    .domain-note strong{color:var(--primary-dark);}
+    .page-card-hint{font-size:14px;color:#4b5563;margin:12px 0 0;max-width:720px;line-height:1.6;padding:12px 14px;background:rgba(13,148,136,.06);border:1px solid rgba(13,148,136,.12);border-radius:10px;}
+    .page-card-hint a{color:var(--primary);font-weight:600;text-decoration:none;}
+    .page-card-hint a:hover{text-decoration:underline;}
+
+    @media(max-width:900px){
+      .top-header{padding:10px 16px;}
+      .page-header{padding:28px 16px 24px;margin-top:48px;}
+      .page-header h1{font-size:28px;}
+      .controls{padding:12px 16px;top:48px;}
+      .grid-container{padding:20px 16px 60px;}
+      .card-grid{grid-template-columns:1fr 1fr;gap:10px;}
+      .detail-grid{grid-template-columns:1fr;}
+      .detail-full{grid-column:1;}
+      .top-header-nav{display:none;}
+    }
+    @media(max-width:520px){
+      .card-grid{grid-template-columns:1fr;}
+    }
+  </style>
+  <script>
+    // Anti-scraping: detect headless/automated browsers
+    (function {
+      var checks = [
+        typeof navigator.webdriver !== 'undefined' && navigator.webdriver,
+        !window.navigator.plugins || window.navigator.plugins.length === 0,
+        typeof window.callPhantom !== 'undefined' || typeof window._phantom !== 'undefined',
+        typeof window.__nightmare !== 'undefined',
+        navigator.languages && navigator.languages.length === 0,
+        !window.chrome && navigator.userAgent.indexOf('Chrome') > -1 && navigator.userAgent.indexOf('Edg') === -1
+      ];
+      var score = checks.filter(Boolean).length;
+      if (score >= 2) {
+        document.addEventListener('DOMContentLoaded', function {
+          var body = document.body;
+          if (body) {
+            body.setAttribute('data-protected', 'true');
+            // Inject invisible honeypot for scraper detection
+            var trap = document.createElement('a');
+            trap.href = 'https://www.therasik.com/honeypot';
+            trap.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0;';
+            trap.setAttribute('aria-hidden', 'true');
+            body.appendChild(trap);
+          }
+        });
+      }
+    });
+
+    // Disable right-click on data tables and SVG charts
+    document.addEventListener('DOMContentLoaded', function {
+      document.querySelectorAll('table, svg, .kpi-row, .card').forEach(function(el) {
+        el.addEventListener('contextmenu', function(e) { e.preventDefault; });
+      });
+      // Add copyright watermark to page title in source
+      var c = document.createComment(' © 2026 Therasik. All rights reserved. Unauthorized reproduction or scraping of this content is prohibited. contact@therasik.com ');
+      document.head.appendChild(c);
+    });
+  </script>
+  <meta name="citation_title" content=": Fc Mutations, Developability Assessment Metrics, and Immunogenicity Factors">
+  <meta name="citation_author" content="Therasik">
+  <meta name="citation_publisher" content="Therasik">
+  <meta name="citation_online_date" content="2026/02/01">
+  <meta name="citation_publication_date" content="2026/02/01">
+  <meta name="citation_language" content="en">
+  <meta name="citation_abstract_html_url" content="https://www.therasik.com/Therasik_Antibody_Guide.html">
+  <meta name="keywords" content="Fc mutations, antibody developability, immunogenicity, ADCC, CDC, FcRn, LALA, LS/YTE, SAP, deamidation, Therasik">
+</head>
+<body>
+
+<header class="top-header">
+  <div class="brand">
+    <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+      <svg width="34" height="28" viewBox="0 0 32 30" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+          <path d="M16 2L2 10V22L16 28L30 22V10L16 2Z" fill="#0d9488" fill-opacity="0.05" stroke="#0d9488" stroke-width="1" stroke-opacity="0.3"/>
+          <path d="M14.5 24 V 16" stroke="#0d9488" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M17.5 24 V 16" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="13" y1="19" x2="19" y2="19" stroke="#9ca3af" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="13" y1="21" x2="19" y2="21" stroke="#9ca3af" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M14.5 16 L 8 7" stroke="#0d9488" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M10 16 L 3.5 7" stroke="#2dd4bf" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M17.5 16 L 24 7" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+          <rect x="21.5" y="3.5" width="5" height="5" rx="1" fill="#f59e0b" transform="rotate(45 24 6)"/>
+        </svg>
+      <span style="font-family:'Cormorant Garamond',serif;font-weight:700;font-size:24px;color:#1f2937;letter-spacing:-.02em;">Thera<span style="color:#0d9488;">sik</span></span>
+    </a>
+    <span class="slogan"> AI</span>
+  </div>
+  <nav class="top-header-nav">
+    <a href="index.html"></a>
+    <a href="Therasik_Antibody_Page.html"></a>
+    <a href="Therasik_Antibody_Page.html#submit"></a>
+  </nav>
+</header>
+
+<div class="page-header">
+  <a href="Therasik_Antibody_Page.html" class="back-link">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    
+  </a>
+  <h1></h1>
+  <p>， <strong>Fc </strong>、<strong></strong>  <strong></strong>，。</p>
+  <p class="page-card-hint"><strong></strong>（， <a href="Therasik_Component_Browser.html">CAR </a> ）：<strong></strong>、 IP ；。「▼  / ▲ 」。/。</p>
+  <div class="domain-tabs">
+    <button class="dtab active" data-domain="fc" onclick="switchDomain('fc',this)">⚙ Fc </button>
+    <button class="dtab" data-domain="dev" onclick="switchDomain('dev',this)">📊 </button>
+    <button class="dtab" data-domain="immuno" onclick="switchDomain('immuno',this)">🛡 </button>
+    <button class="dtab" data-domain="wet" onclick="switchDomain('wet',this)">🧪 </button>
+  </div>
+</div>
+
+<div class="controls">
+  <div class="search-wrap">
+    <svg class="si" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" id="search-input" placeholder="Search name, mutation, drug, mechanism…" autocomplete="off" spellcheck="false">
+  </div>
+  <select class="filter-sel" id="cat-filter"><option value="">All Categories</option></select>
+  <select class="filter-sel" id="tier-filter" style="display:none;">
+    <option value="">All Evidence Levels</option>
+    <option value="T1">T1 — Approved drugs</option>
+    <option value="T2">T2 — Clinical trials</option>
+    <option value="T3">T3 — Preclinical / research</option>
+  </select>
+  <button class="clear-btn" id="clear-btn" onclick="clearFilters">✕ Clear</button>
+  <span class="stats-chip" id="stats-chip"></span>
+</div>
+
+<div class="grid-container" id="grid-container">
+  <!-- Rendered by JS -->
+</div>
+
+<div class="empty-state" id="empty-state" style="display:none;">
+  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:12px;opacity:.3;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+  <p>No entries match your filters.</p>
+  <p style="margin-top:8px;font-size:14px;"><button onclick="clearFilters" style="background:none;border:none;color:var(--primary);font-weight:600;cursor:pointer;font-size:14px;">Clear filters</button></p>
+</div>
+
+<div style="max-width:1200px;margin:48px auto 0;padding:0 24px 48px;">
+  <div style="background:linear-gradient(135deg,#f5f3ff 0%,#ede9fe 40%,#faf5ff 100%);border:1.5px solid rgba(124,58,237,0.18);border-radius:16px;padding:32px 36px;display:flex;align-items:center;gap:32px;flex-wrap:wrap;">
+    <div style="flex-shrink:0;width:56px;height:56px;border-radius:14px;background:rgba(124,58,237,0.12);display:flex;align-items:center;justify-content:center;font-size:28px;">⚙</div>
+    <div style="flex:1;min-width:260px;">
+      <div style="font-size:17px;font-weight:700;color:#4c1d95;margin-bottom:6px;">Need Fc Engineering Design Guidance?</div>
+      <div style="font-size:13.5px;color:#374151;line-height:1.6;">
+        Therasik provides expert Fc mutation selection, IgG subclass consultation, bispecific Fc format design, and Freedom-to-Operate guidance — integrated with full antibody developability and immunogenicity assessment.
+      </div>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+        <span style="font-size:11.5px;background:rgba(124,58,237,0.1);color:#6d28d9;padding:3px 10px;border-radius:20px;font-weight:600;">Half-life extension</span>
+        <span style="font-size:11.5px;background:rgba(124,58,237,0.1);color:#6d28d9;padding:3px 10px;border-radius:20px;font-weight:600;">Effector function tuning</span>
+        <span style="font-size:11.5px;background:rgba(124,58,237,0.1);color:#6d28d9;padding:3px 10px;border-radius:20px;font-weight:600;">Bispecific heterodimerization</span>
+        <span style="font-size:11.5px;background:rgba(124,58,237,0.1);color:#6d28d9;padding:3px 10px;border-radius:20px;font-weight:600;">IP / FTO analysis</span>
+      </div>
+    </div>
+    <div style="flex-shrink:0;display:flex;flex-direction:column;gap:10px;align-items:flex-end;">
+      <a href="Therasik_Antibody_Page.html#submit" style="display:inline-flex;align-items:center;gap:8px;background:#7c3aed;color:#fff;font-size:14px;font-weight:700;padding:12px 24px;border-radius:10px;text-decoration:none;white-space:nowrap;transition:background .2s;" onmouseover="this.style.background='#6d28d9'" onmouseout="this.style.background='#7c3aed'">
+         →
+      </a>
+      <a href="mailto:contact@therasik.com?subject=Fc%20Engineering%20Design%20Consultation" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#7c3aed;font-weight:600;text-decoration:none;opacity:.85;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.85'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        contact@therasik.com
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <p>&copy; 2026 Therasik Limited · </p>
+  <p style="margin-top:4px;"><a href="index.html"></a> &middot; <a href="Therasik_Antibody_Page.html"></a> &middot; <a href="Therasik_Component_Browser.html">CAR-T </a> &middot; <a href="Therasik_Antibody_Page.html#contact"></a></p>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════════════════
+
+// Fc ：21（fc1–fc18， fc13b / fc13c / fc14b）
+const FC_DATA = [
+  // ── FcRn Binding / Half-life Extension ──────────────────
+  {id:'fc1', cat:'FcRn Binding / Half-life', tier:'T1',
+   name:'LS (M428L/N434S)', alias:'M428L/N434S',
+   brief:'~2–3× half-life extension in primates; most widely used FcRn-enhancing pair.',
+   examples:['Crizanlizumab (FDA 2019)','Ravulizumab (FDA 2018)','Nipocalimab (clinical)'],
+   mechanism:'Increases FcRn affinity at pH 6.0 (endosome) without affecting pH 7.4 binding, enhancing IgG recycling. M428L improves contact with FcRn α-chain; N434S enhances the N434–FcRn interface.',
+   receptors:'FcRn (neonatal Fc receptor / FcRγ2b)',
+   tradeoffs:'May increase placental transfer (safety consideration in pregnancy). No change to FcγRI/IIA/IIB/III or C1q.',
+   ip:{holder:'AstraZeneca / MedImmune', key:'US7658921 · EP1751184', status:'expired', expiry:'US ~2024', workaround:'N434H (Merck, public domain concept); T307Q/N434A Xtend (Momenta/J&J, US9096877 ~2030); or use LS directly (US patent expired)'},
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/16614067/" target="_blank">Dall\'Acqua et al. J Biol Chem 2006</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/20173738/" target="_blank">Zalevsky et al. Nat Biotechnol 2010</a>'},
+  {id:'fc2', cat:'FcRn Binding / Half-life', tier:'T2',
+   name:'YTE (M252Y/S254T/T256E)', alias:'M252Y/S254T/T256E',
+   brief:'~4× half-life increase in cynomolgus monkeys; clinical validation in motavizumab.',
+   examples:['MEDI-524 (motavizumab variant; phase II)','Dapirolizumab pegol (with PEG)'],
+   mechanism:'Triple mutation at the CH2-CH3 interface alters pH-dependent FcRn binding: increases affinity at pH 6.0 ~10-fold. Key hydrogen-bond network restructuring at residues 252–256.',
+   receptors:'FcRn',
+   tradeoffs:'Greater half-life gain than LS but with larger sequence change. Increased placental transfer. Slightly reduced thermostability reported in some formats.',
+   ip:{holder:'AstraZeneca / MedImmune', key:'US7317091 · WO02/060919', status:'expired', expiry:'US ~2021–2023', workaround:'Core patent expired. LS (US also expired); N434H; Xtend (T307Q/N434A). Verify continuation coverage before commercial use'},
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/12165561/" target="_blank">Dall\'Acqua et al. J Immunol 2002</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/23896478/" target="_blank">Robbie et al. AAC 2013</a>'},
+  {id:'fc3', cat:'FcRn Binding / Half-life', tier:'T2',
+   name:'YTE+LS combined', alias:'M252Y/S254T/T256E/M428L/N434S',
+   brief:'Synergistic half-life extension; 5-fold or greater improvement over wild-type.',
+   examples:['Research-stage combination; used in some bispecific programs'],
+   mechanism:'Combines FcRn contact enhancement at two distinct regions of the Fc. Additive effect on pH 6.0 affinity without apparent steric interference.',
+   receptors:'FcRn',
+   tradeoffs:'More mutations = higher immunogenicity risk. Regulatory precedent limited vs single pairs.',
+   ip:{holder:'AstraZeneca (composite claim)', key:'Dependent on US7658921 + US7317091', status:'expired', expiry:'Both core patents expired by ~2024', workaround:'Both individual patents expired — combination can now be used freely. Verify no composition-of-matter continuation claims in specific jurisdictions'},
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/23896478/" target="_blank">Robbie et al. AAC 2013</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/11096108/" target="_blank">Shields et al. JBC 2001</a>'},
+  {id:'fc4', cat:'FcRn Binding / Half-life', tier:'T3',
+   name:'N434A/H (single substitution)', alias:'N434A or N434H',
+   brief:'Single-residue FcRn enhancement; simpler alternative to paired mutations.',
+   examples:['Research use; not yet in approved drugs as standalone'],
+   mechanism:'N434 is a critical FcRn contact residue in the CH3 domain. Substitution to Ala or His repositions the sidechain for tighter pH 6.0 packing.',
+   receptors:'FcRn',
+   tradeoffs:'Less half-life gain than LS (~1.5×). May be preferred when minimizing sequence changes is critical (e.g., VHH-Fc fusions).',
+   ip:{holder:'Broad academic disclosure (Petkova 2006); Merck filed specific N434H applications', key:'No dominant blocking patent identified for N434A/H alone', status:'public', expiry:'N/A', workaround:'N434A and N434H are generally considered low IP-risk alternatives to LS/YTE. Conduct FTO analysis for specific indications'},
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/16720616/" target="_blank">Petkova et al. Int Immunol 2006</a>'},
+
+  // ── Effector Function Silencing ──────────────────────────
+  {id:'fc5', cat:'Effector Function Silencing', tier:'T1',
+   name:'LALA (L234A/L235A)', alias:'L234A/L235A',
+   brief:'Abolishes FcγRI/IIA/III binding; widely used to prevent Fc-mediated ADCC/CDC.',
+   examples:['Atezolizumab (PD-L1; FDA 2016)','Durvalumab (PD-L1; FDA 2017)','Ipilimumab next-gen formats','Many bispecifics'],
+   mechanism:'Leu234 and Leu235 in the lower hinge of CH2 are primary contact points for FcγRs (I, IIa, IIIa) and C1q. Ala substitutions sterically and electrostatically disrupt binding. Reduces ADCC >99% and CDC >90%.',
+   receptors:'FcγRI, FcγRIIA, FcγRIIIA, C1q (all reduced)',
+   tradeoffs:'FcγRIIB (inhibitory) binding also reduced — potential loss of peripheral tolerance modulation. FcRn binding preserved.',
+   ip:{holder:'None — public domain', key:'Original disclosure: Duncan & Winter, Nature 1988', status:'public', expiry:'N/A', workaround:'Freely usable worldwide. No license required. One of the few Fc modifications with no IP encumbrance'},
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/11602730/" target="_blank">Hezareh et al. J Virol 2001</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/3260844/" target="_blank">Duncan & Winter Nature 1988</a>'},
+  {id:'fc6', cat:'Effector Function Silencing', tier:'T1',
+   name:'LALAPG (L234A/L235A/P329G)', alias:'L234A/L235A/P329G',
+   brief:'Enhanced silencing vs LALA alone; P329G disrupts remaining FcγR hydrophobic contacts.',
+   examples:['Tocilizumab SC format','Several anti-IL antibodies','PD-1/PD-L1 checkpoint inhibitors (various)'],
+   mechanism:'LALA removes primary hinge contacts; P329G (Pro329Gly) eliminates a hydrophobic "proline sandwich" formed between Pro329 and Trp87/Trp110 of FcγRIIA/III. Together, ADCC is reduced >1000-fold and C1q binding abolished.',
+   receptors:'FcγRI, FcγRIIA, FcγRIIIA, C1q (fully abolished); FcγRIIB (severely reduced)',
+   tradeoffs:'Current clinical gold standard for effector-silent antibodies. Some papers note marginal FcRn impact — verify per format.',
+   ip:{holder:'Roche / Genentech', key:'US8969526 · WO2006/082515 · EP2188313', status:'active', expiry:'~2029 (US)', workaround:'Use LALA alone (public domain, slightly weaker silencing); N297A/G (low IP risk, different mechanism); V234A/G237A/P238S/H268A/V309L/A330S/P331S (IgG2-like silencing approach). License from Roche if LALAPG specifically required'},
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/26976769/" target="_blank">Schlothauer et al. PEDS 2016</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/28003361/" target="_blank">Lo et al. JBC 2017</a>'},
+  {id:'fc7', cat:'Effector Function Silencing', tier:'T2',
+   name:'N297A/G (deglycosylation)', alias:'N297A or N297G',
+   brief:'Removes conserved N-glycan at Asn297; aglycosyl Fc loses all FcγR and C1q binding.',
+   examples:['OKT3-LALAGN (preclinical)','Several investigational antibodies','Used in bispecific platforms'],
+   mechanism:'Asn297 N-linked glycan in CH2 is required for FcγR binding by maintaining the correct CH2 domain conformation and by direct contact with FcγRIII. Glycan removal (Ala/Gly substitution) collapses CH2-CH2 interdomain space, abolishing all Fcγ interactions.',
+   receptors:'FcγRI, FcγRIIA, FcγRIIIA, FcγRIIB, C1q (all abolished)',
+   tradeoffs:'Aglycosyl IgG shows reduced thermal stability (Tm drops ~6°C). May affect manufacturability in some expression systems. Regulatory path less established than LALA/LALAPG.',
+   ip:{holder:'Concept in public domain (Tao & Morrison 1989); N297Q variant has separate coverage', key:'No dominant blocking patent for N297A or N297G substitutions', status:'public', expiry:'N/A', workaround:'Freely usable. N297A/G are the preferred silencing alternatives to LALAPG when Roche IP is a concern'},
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/2471552/" target="_blank">Tao & Morrison J Immunol 1989</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/11096108/" target="_blank">Shields et al. JBC 2001</a>'},
+  {id:'fc8', cat:'Effector Function Silencing', tier:'T2',
+   name:'DAPA (D265A/P329A)', alias:'D265A/P329A',
+   brief:'Alternative effector silencing pair; D265A disrupts Asp-mediated FcγRII contacts.',
+   examples:['MedImmune preclinical candidates','Used in anti-PCSK9 platforms'],
+   mechanism:'D265A disrupts critical hydrogen bonds at the FcγR binding interface in the CH2 lower hinge region. Combined with P329A (similar to P329G mechanism), full FcγR silencing is achieved.',
+   receptors:'FcγRIIA, FcγRIIB, FcγRIIIA (all abolished)',
+   tradeoffs:'Less characterized than LALAPG. D265A alone shows partial silencing only.',
+   ip:{holder:'MedImmune / AstraZeneca', key:'US7317091 patent family', status:'expiring', expiry:'US core ~2021–2024; continuation claims may extend to ~2026', workaround:'LALA (public domain); N297A/G (public domain). DAPA itself becoming freely usable as core patents expire'},
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/11096108/" target="_blank">Shields et al. JBC 2001</a>'},
+
+  // ── Effector Function Enhancement ───────────────────────
+  {id:'fc9', cat:'Effector Function Enhancement', tier:'T1',
+   name:'GASDALIE (G236A/S239D/A330L/I332E)', alias:'G236A/S239D/A330L/I332E',
+   brief:'Enhances FcγRIIIA binding ~1000×; dramatic ADCC increase with retained ADCP.',
+   examples:['Mogamulizumab variant research','Preclinical oncology programs'],
+   mechanism:'S239D/I332E (core enhancement pair) introduce new electrostatic contacts with FcγRIIIA. G236A improves FcγRIIA engagement for ADCP. A330L further increases hydrophobic packing at FcγRIII interface.',
+   receptors:'FcγRIIIA (+++), FcγRIIA (+), FcγRIIB (increased — potential safety concern)',
+   tradeoffs:'Increased FcγRIIB (inhibitory receptor) engagement may dampen B-cell responses. CRS risk in T-cell depletion settings. Not in approved drugs as standalone yet.',
+   ip:{holder:'Xencor / MedImmune (joint development)', key:'US7317091 (core, ~expired 2021) · US7960512 (continuation, ~2027)', status:'expiring', expiry:'Continuation coverage ~2027', workaround:'Afucosylation (Kyowa Kirin or Roche GnTIII method, different patent family); wait for US7960512 expiry ~2027; or use only S239D/I332E subset with separate FTO'},
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/16537476/" target="_blank">Lazar et al. PNAS 2006</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/17283120/" target="_blank">Stavenhagen et al. Cancer Res 2007</a>'},
+  {id:'fc10', cat:'Effector Function Enhancement', tier:'T1',
+   name:'Afucosylation', alias:'No core fucose on N297 glycan',
+   brief:'Removal of core fucose from N297 glycan increases FcγRIIIA affinity ~50-100× — most clinically validated ADCC enhancement.',
+   examples:['Mogamulizumab (Poteligeo; FDA 2018)','Obinutuzumab (Gazyva; FDA 2013)','Benralizumab (Fasenra; FDA 2017)'],
+   mechanism:'Core fucosylation on N297 sterically clashes with Trp158 of FcγRIIIA-158F/V. Removing fucose eliminates this clash, dramatically increasing FcγRIIIA binding and NK-cell mediated ADCC in both 158F and 158V FcγRIIIA polymorphisms.',
+   receptors:'FcγRIIIA (50-100× increase); FcγRIIB minimally affected',
+   tradeoffs:'Requires specialized expression system (e.g., FUT8-KO CHO, potelligent technology). No effect on FcRn or half-life. NK cell availability limits efficacy in lymphodepleted patients.',
+   ip:{holder:'Kyowa Kirin (Potelligent® FUT8-KO): US6946292 (~expired 2021). Roche (GnTIII overexpression): US7214775 (~expired 2022)', key:'US6946292 · US7214775 · multiple process patents', status:'expiring', expiry:'Core product patents expired; some process/manufacturing continuation patents may remain through ~2025–2026', workaround:'Kyowa core patent expired — FUT8-KO CHO method more accessible. Roche GnTIII approach also nearing expiry. Commercial process: kifunensine (α-mannosidase inhibitor) during CHO culture gives high-mannose/afucosylated product — distinct manufacturing IP. License from Kyowa Kirin (BioWa) or Roche for Potelligent/GnTIII platforms if needed'},
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/11916992/" target="_blank">Shields et al. JBC 2002</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/16615187/" target="_blank">Ferrara et al. Biotechnol Bioeng 2006</a>'},
+  {id:'fc11', cat:'Effector Function Enhancement', tier:'T2',
+   name:'S239D/I332E', alias:'SDIEM',
+   brief:'Core ADCC-enhancing pair; ~100× increase in FcγRIIIA affinity.',
+   examples:['MedImmune/AstraZeneca preclinical programs','Trastuzumab-SDIEM (research)'],
+   mechanism:'S239D introduces a negative charge at a key contact point with FcγRIIIA Lys158. I332E creates a new salt bridge with FcγRIIIA Arg176. Together they reorganize the CH2-FcγRIII interface.',
+   receptors:'FcγRIIIA (+++ ), FcγRIIB (increased)',
+   tradeoffs:'Subset of GASDALIE; G236A/A330L additions further improve ADCP. FcγRIIB co-enhancement is a safety consideration in autoimmune contexts.',
+   ip:{holder:'Xencor / MedImmune', key:'Same family as GASDALIE: US7317091 · US7960512', status:'expiring', expiry:'Continuation ~2027', workaround:'Same as GASDALIE. Afucosylation is the cleanest alternative for ADCC enhancement without Xencor IP constraints'},
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/16537476/" target="_blank">Lazar et al. PNAS 2006</a>'},
+  {id:'fc12', cat:'Effector Function Enhancement', tier:'T2',
+   name:'F243L/R292P/Y300L/V305I/P396L', alias:'CARB/5-point CDC+',
+   brief:'5-mutation combo enhancing both ADCC and CDC; improved NK cell recruitment.',
+   examples:['Anti-CD20 research (rituximab backbone)','Preclinical NHL programs'],
+   mechanism:'Multi-site CH2 optimization introducing hydrophobic contacts at the FcγRIIIA interface (F243L, Y300L, V305I) combined with structural stabilization (R292P, P396L).',
+   receptors:'FcγRIIIA (+), C1q (moderate increase)',
+   tradeoffs:'Large number of mutations may increase immunogenicity risk. Less widely characterized than afucosylation or GASDALIE.',
+   ip:{holder:'Genentech / MedImmune (research disclosure)', key:'Shields et al. JBC 2001 academic disclosure; limited proprietary patent coverage identified', status:'public', expiry:'N/A', workaround:'Largely free to use for research; conduct FTO analysis for specific commercial applications. Lower priority mutation set compared to afucosylation or GASDALIE'},
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/11096108/" target="_blank">Shields et al. JBC 2001</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/11238752/" target="_blank">Idusogie et al. J Immunol 2001</a>'},
+
+  // ── CDC Enhancement ──────────────────────────────────────
+  {id:'fc13', cat:'CDC Enhancement', tier:'T2',
+   name:'K326W/E333S', alias:'K326W/E333S',
+   brief:'Significantly enhances C1q binding and CDC activity; used in anti-CD20 format optimization.',
+   examples:['Ofatumumab-variant (research)','Obinutuzumab preclinical comparison'],
+   mechanism:'K326W introduces a large aromatic residue that creates new van der Waals contacts with C1q globular head domain. E333S reduces charge repulsion at the C1q-CH2 interface.',
+   receptors:'C1q (3-10× increase); FcγRs minimally affected',
+   tradeoffs:'Enhanced CDC may increase infusion reactions. Combination with GASDALIE is being explored for dual ADCC/CDC enhancement.',
+   ip:{holder:'MedImmune / AstraZeneca', key:'Related to US7317091 family; specific K326W/E333S composition claims', status:'expiring', expiry:'Core claims ~2021–2024', workaround:'E430G HexaBody achieves superior CDC via a completely different mechanism (hexamerization vs direct C1q contact); proceed with FTO before use or consider HexaBody approach'},
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/11238752/" target="_blank">Idusogie et al. J Immunol 2001</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/16614067/" target="_blank">Dall\'Acqua et al. J Immunol 2006</a>'},
+  {id:'fc13b', cat:'CDC Enhancement', tier:'T2',
+   name:'E430G (HexaBody)', alias:'E430G',
+   brief:'Promotes Fc hexamerization on the cell surface upon antigen binding, dramatically enhancing C1q recruitment and CDC. Core of Genmab\'s HexaBody platform.',
+   examples:['IgG1-CD38-E430G (multiple myeloma, clinical)','IgG1-CD20-E430G (CLL, Phase I)','Mezagitamab (anti-CD38, Phase III, Genmab/J&J)'],
+   mechanism:'E430G in the CH3 domain promotes non-covalent Fc–Fc interaction between adjacent antibody molecules bound to the same cell surface. This ordered hexameric IgG ring on the cell surface provides the ideal geometry for C1q hexameric binding (C1q itself has hexameric symmetry), triggering classical complement cascade with 100–10,000× greater efficiency than monomeric IgG.',
+   receptors:'C1q (100-10,000× increase via hexamer avidity); FcγRs and FcRn: not significantly affected at monomeric level',
+   tradeoffs:'Hexamerization is strictly surface-dependent (requires antigen cross-linking on cell surface) — no free-solution hexamerization with normal antigen densities. Soluble antigen (shed antigen) can limit efficacy. Not suitable for soluble targets.',
+   ip:{holder:'Genmab A/S', key:'US9340628 · US10800857 · US11427635 and continuations', status:'active', expiry:'~2032+ (core patent family)', workaround:'K326W/E333S (MedImmune, expiring/expired, direct C1q contact mechanism — different from hexamerization); E430G/E345K variants are all covered by Genmab. License from Genmab required for HexaBody platform. Academic/research use typically exempt'},
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/25473098/" target="_blank">Diebolder et al. Science 2014</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/27298261/" target="_blank">Oostindie et al. Nat Chem Biol 2022</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/29538065/" target="_blank">de Jong et al. MAbs 2016</a>'},
+  {id:'fc13c', cat:'CDC Enhancement', tier:'T3',
+   name:'E345K/R (hexamerization)', alias:'E345K / E345R',
+   brief:'Alternative hexamerization mutations in CH3; used alone or with E430G (E345R+E430G+S440Y = triple HexaBody) to maximize CDC.',
+   examples:['Genmab HexaBody-DR5/DR5 preclinical (TRAIL-R2)','Anti-CD20 research combinations'],
+   mechanism:'E345 and E430 form the core of the IgG Fc–Fc hexamerization interface (Glu345–Arg344 and Glu430–Lys439 contacts). E345K/R disrupts a repulsive charge interaction and creates a new attractive interaction, promoting ordered hexameric ring formation. Combined with E430G and S440Y (the "HexaBody triple"), hexamerization efficiency is maximized.',
+   receptors:'C1q (dramatically increased via hexamer ring); FcγRs: minimal direct impact',
+   tradeoffs:'Triple mutation (E345R+E430G+S440Y) can cause spontaneous hexamerization even in solution at high concentration — careful formulation required. S440Y adds a stabilizing contact but is less commonly used alone.',
+   ip:{holder:'Genmab A/S', key:'Same HexaBody patent family as E430G: US9340628 and continuations', status:'active', expiry:'~2032+', workaround:'Same situation as E430G — both E345 and E430 positions are covered by Genmab HexaBody patents. No clean design-around for hexamerization-based CDC enhancement without Genmab license'},
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/25473098/" target="_blank">Diebolder et al. Science 2014</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/26601645/" target="_blank">Wang et al. Cancer Cell 2015</a>'},
+
+  // ── FcγRIIb Selectivity ──────────────────────────────────
+  {id:'fc14', cat:'FcγRIIb Selectivity', tier:'T2',
+   name:'V262E/V264E (FcγRIIb bias)', alias:'V262E/V264E',
+   brief:'Shifts Fc binding from FcγRIIIa toward FcγRIIb; enables inhibitory receptor agonism.',
+   examples:['InVivo Therapeutics preclinical','Anti-IL31R programs (autoimmune)'],
+   mechanism:'V262E and V264E introduce negative charges that preferentially engage FcγRIIb (which has Arg at 131) over FcγRIIa/IIIa. FcγRIIb clustering on B cells and mast cells dampens immune activation.',
+   receptors:'FcγRIIb (+++ selective), FcγRIIa/IIIa (reduced)',
+   tradeoffs:'Intended for agonistic antibodies where crosslinking by FcγRIIb is needed (e.g., CD32B co-engagement). Loss of ADCC/ADCP.',
+   ip:{holder:'Xencor (primary filer); Mimoto et al. 2013 academic disclosure overlaps', key:'Xencor patent family covering lower hinge FcγRIIb-selective mutations', status:'active', expiry:'~2026–2028', workaround:'S267E/L328F SELF (also Xencor, same IP umbrella — no advantage); IgG2 backbone naturally biases toward FcγRIIb over FcγRIIa/IIIa without mutations (no IP encumbrance)'},
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/23389682/" target="_blank">Mimoto et al. PEDS 2013</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/21481790/" target="_blank">White et al. Cancer Cell 2011</a>'},
+  {id:'fc14b', cat:'FcγRIIb Selectivity', tier:'T2',
+   name:'S267E/L328F (SELF)', alias:'S267E/L328F',
+   brief:'Selectively enhances FcγRIIb binding while reducing activating FcγR (IIa/IIIa) engagement. Key mutation for FcγRIIb-mediated agonism in tumor immunology.',
+   examples:['Anti-OX40 agonist antibodies (Xencor/AZ AZD0221, Phase I)','Anti-CD40 agonist programs','Anti-TNFR superfamily agonists where FcγRIIb co-crosslinking is required'],
+   mechanism:'S267E introduces a negative charge that preferentially forms a salt bridge with Arg131 in FcγRIIb (inhibitory receptor). L328F creates a hydrophobic contact that is tolerated by FcγRIIb but disrupts FcγRIIa/IIIa engagement. Together, the SELF variant achieves ~10× enhanced FcγRIIb binding and ~5–10× reduced FcγRIIa/IIIa binding compared to wild-type IgG1.',
+   receptors:'FcγRIIb (10× enhanced); FcγRIIa (reduced 5-10×); FcγRIIIa (reduced); FcγRI (marginally reduced)',
+   tradeoffs:'Agonist activity is strictly FcγRIIb-dependent — efficacy requires co-expression of FcγRIIb on cells adjacent to tumor (e.g., macrophages, dendritic cells in tumor microenvironment). FcγRIIb polymorphisms (131H/R) can affect binding. Combination with IgG1 background (not IgG4) is preferred for sufficient baseline Fc interaction.',
+   ip:{holder:'Xencor', key:'US8101720 and related US7317091 continuation family', status:'active', expiry:'~2026–2028', workaround:'IgG2 subclass backbone (natural FcγRIIb preference, no patent cost); S267E alone (partial selectivity, weaker — check if covered separately); await ~2028 expiry. Xencor licensing historically available for academic programs'},
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/21441456/" target="_blank">Chu et al. Mol Immunol 2008</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/28003361/" target="_blank">Dahan et al. Cancer Cell 2016</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/28978735/" target="_blank">Zhang et al. Cancer Res 2018</a>'},
+
+  // ── IgG Subclass-based ───────────────────────────────────
+  {id:'fc15', cat:'Subclass & Hinge Engineering', tier:'T1',
+   name:'IgG4 S228P (hinge stabilization)', alias:'S228P',
+   brief:'Prevents IgG4 Fab arm exchange in vivo; clinical requirement for IgG4 therapeutics.',
+   examples:['Pembrolizumab (Keytruda; FDA 2014)','Nivolumab (Opdivo; FDA 2014)','Dupilumab (Dupixent; FDA 2018)','Most IgG4 therapeutics'],
+   mechanism:'Wild-type IgG4 undergoes Fab arm exchange through non-covalent hinge pairing. S228P stabilizes the core hinge disulfide, eliminating half-antibody formation and ensuring a homogeneous bispecific product for mono-specific antibodies.',
+   receptors:'No direct FcγR impact. Primarily hinge structural stabilization.',
+   tradeoffs:'Standard for all IgG4 therapeutics. Without S228P, ~50% of IgG4 may undergo exchange in vivo.',
+   ip:{holder:'Largely public domain; Angal et al. 1993 (Mol Immunol) first described F234A/IgG4 hinge stabilization; S228P specific characterization Labrijn/Genmab 2009', key:'No dominant blocking patent for S228P in IgG4 therapeutics; widely practiced without license', status:'public', expiry:'N/A', workaround:'Freely usable. S228P is a de facto standard with no IP barrier in major jurisdictions'},
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/19749776/" target="_blank">Labrijn et al. Nat Biotechnol 2009</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/17962523/" target="_blank">van der Neut Kolfschoten et al. Science 2007</a>'},
+  {id:'fc16', cat:'Subclass & Hinge Engineering', tier:'T1',
+   name:'IgG1 vs IgG4 subclass choice', alias:'IgG1 / IgG4',
+   brief:'IgG1 for ADCC/CDC effector function; IgG4 for minimal effector function in immune modulation.',
+   examples:['IgG1: Trastuzumab, Rituximab, Cetuximab (effector-active)','IgG4: Pembrolizumab, Nivolumab, Dupilumab (effector-silent)'],
+   mechanism:'IgG1 has the highest affinity for FcγRI, IIa, IIIa and C1q. IgG4 natively has poor FcγRI/IIIa binding and no C1q binding. IgG2 is intermediate with FcγRIIa(H131) selectivity. IgG4+S228P combines stability with effector silence.',
+   receptors:'IgG1: FcγRI/IIa/IIb/IIIa/b, C1q (all active). IgG4: FcγRIIb only (minimal)',
+   tradeoffs:'Subclass determines baseline Fc behavior before engineering. Mixing subclass with mutations (e.g., IgG1+LALA or IgG4+LS) provides orthogonal tuning.',
+   ip:{holder:'No patent — natural protein sequences', key:'IgG subclass sequences are natural human proteins; not patentable as such', status:'public', expiry:'N/A', workaround:'Freely selectable. The choice of IgG subclass carries no IP risk; only specific engineered mutations on top may require licenses'},
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/25520960/" target="_blank">Vidarsson et al. Front Immunol 2014</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/20176268/" target="_blank">Schroeder & Cavacini JACI 2010</a>'},
+
+  // ── Bispecific Fc ────────────────────────────────────────
+  {id:'fc17', cat:'Bispecific / Heterodimerization', tier:'T1',
+   name:'Knob-into-Hole (KiH)', alias:'T366W / T366S+L368A+Y407V',
+   brief:'Drives IgG CH3 heterodimerization; foundation of most bispecific IgG formats.',
+   examples:['Amivantamab (Rybrevant; FDA 2021)','Mosunetuzumab (Lunsumio; FDA 2022)','Teclistamab (Tecvayli; FDA 2022)','Blinatumomab (scFv, not KiH but similar logic)'],
+   mechanism:'T366W ("knob") introduces a bulky Trp in one CH3 that protrudes into a complementary cavity ("hole") formed by T366S/L368A/Y407V in the partner CH3. Thermodynamic preference for heterodimer (~95% purity) over homodimers.',
+   receptors:'Does not affect FcγR or FcRn binding directly (CH3 mutations distal to CH2).',
+   tradeoffs:'Requires separate expression of two HC chains. Knob-chain may have slightly lower expression. Light chain mispairing is a separate issue (solved by CrossMab, common LC, etc.).',
+   ip:{holder:'Genentech (original inventor: Ridgway et al. 1996)', key:'US5731168 (filed 1995)', status:'expired', expiry:'EXPIRED 2016 (20 years from 1996 filing)', workaround:'Freely usable worldwide — one of the most important bispecific technologies now in the public domain. Most approved KiH bispecifics (Amivantamab, Mosunetuzumab, Teclistamab) were developed before expiry; new programs can use KiH without license'},
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/8875953/" target="_blank">Ridgway et al. Protein Eng 1996</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/9731797/" target="_blank">Merchant et al. Nat Biotechnol 1998</a>'},
+  {id:'fc18', cat:'Bispecific / Heterodimerization', tier:'T2',
+   name:'DD/KK electrostatic steering', alias:'K409D+K392D / D399K+E356K',
+   brief:'Charge-pair engineering in CH3 for heterodimerization; alternative to KiH.',
+   examples:['AZ investigational bispecifics','Samsung Bioepis BEAT platform'],
+   mechanism:'Introduces complementary electrostatic interactions (+ and −) across the CH3-CH3 interface of two different heavy chains, driving preferential heterodimerization.',
+   receptors:'No direct FcγR change.',
+   tradeoffs:'High heterodimerization purity (~90%); may affect thermal stability slightly. Can be combined with light-chain pairing strategies.',
+   ip:{holder:'Genmab A/S', key:'US8227577 (filed ~2006)', status:'expiring', expiry:'~2026 (US); continuation patents may extend to ~2030', workaround:'KiH (EXPIRED — freely usable, preferred alternative); SEEDbody (AZ/MedImmune electrostatic approach, separate patent); DuetMab (Pfizer); EW/RVT pairing (different CH3 positions). DD/KK specific claims expiring ~2026 opens up this approach'},
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/20159975/" target="_blank">Gunasekaran et al. JBC 2010</a>'},
+];
+
+const DEV_DATA = [
+  // ── Physicochemical Properties ───────────────────────────
+  {id:'d1', cat:'Physicochemical', risk:'medium',
+   name:'pI (Isoelectric Point)', alias:'',
+   range:'IgG typical: 5.5–9.5 · Optimal: 6.5–8.5',
+   brief:'Net charge at physiological pH; predicts aggregation, viscosity, and colloidal stability.',
+   calc:'Computed from AA sequence using Henderson-Hasselbalch equation (pKa from Bjellqvist table). Modeled on full VH/VL or Fab sequence.',
+   threshold:'Therasik flag: pI > 9.0 or < 5.5. Clinical median (AbRef-1142): 8.1.',
+   interp:'High pI (>9) → net positive charge at pH 7.4 → electrostatic attraction to negatively charged cell membranes → non-specific binding, aggregation, and viscosity issues. Low pI (<5.5) → net negative → reduced FcRn interaction. Humanization typically shifts pI from murine (~9) toward human (~8).',
+   tools:'Therasik AbEvaluator; BioPython ProtParam; commercial tools: Reaxys pI calc'},
+  {id:'d2', cat:'Physicochemical', risk:'low',
+   name:'GRAVY (Grand Average of Hydropathicity)', alias:'GRAVY score',
+   range:'Typical range: −0.6 to +0.2 · Most IgGs: −0.3 to −0.1',
+   brief:'Average Kyte-Doolittle hydropathicity index; measures overall hydrophilicity of the protein.',
+   calc:'GRAVY = Σ(hydropathy values for each AA) / sequence length. Uses Kyte-Doolittle scale (1982).',
+   threshold:'Flag: GRAVY > 0 (unusually hydrophobic). Values near 0 indicate marginal hydrophilicity.',
+   interp:'More negative = more hydrophilic = lower aggregation risk. Positive GRAVY is uncommon for IgGs and warrants investigation. Correlates loosely with PSH but is a sequence-only proxy — use SAP/PSH for structure-based analysis when PDB is available.',
+   tools:'BioPython ProtParam; ExPASy ProtParam'},
+  {id:'d3', cat:'Physicochemical', risk:'low',
+   name:'Instability Index', alias:'Guruprasad index',
+   range:'<40: predicted stable · ≥40: predicted unstable',
+   brief:'Sequence-based predictor of in vitro protein stability based on dipeptide composition.',
+   calc:'Based on frequency of 400 dipeptides weighted by their contribution to instability (Guruprasad et al. 1990). Applied to VH, VL, or full Fab sequence.',
+   threshold:'Therasik flag: >40. Note: this metric has known limitations — interpret alongside wet-lab Tm data.',
+   interp:'Original training data from in vitro instability assays. Poor predictor of thermal stability (Tm) alone. Useful as a supplementary flag when combined with other metrics. Antibodies with index 35–45 are borderline; wet-lab Tm measurement recommended.',
+   tools:'ExPASy ProtParam; EMBOSS Pepstats'},
+  {id:'d4', cat:'Physicochemical', risk:'medium',
+   name:'Net Charge at pH 7.4', alias:'Z-charge',
+   range:'Most therapeutic IgGs: −5 to +10',
+   brief:'Sum of ionizable residue charges at physiological pH; directly impacts viscosity and formulation.',
+   calc:'Titrated using Henderson-Hasselbalch with pKa assignments for Asp (3.9), Glu (4.1), His (6.5), Lys (10.5), Arg (12.5), Tyr (10.1), N-term (8.0), C-term (3.1).',
+   threshold:'Flag: net charge > +15 (high viscosity risk). Optimal range for SC formulation: −5 to +5.',
+   interp:'Highly positive antibodies (>+10) tend to show higher viscosity at high concentration (>100 mg/mL), problematic for SC injection. Positively charged patches also increase non-specific cell binding. Negatively charged antibodies may aggregate at low ionic strength.',
+   tools:'Therasik AbEvaluator; PROPKA 3.0; Vienna AbDesign'},
+
+  // ── Aggregation Propensity ───────────────────────────────
+  {id:'d5', cat:'Aggregation Propensity', risk:'high',
+   name:'SAP (Spatial Aggregation Propensity)', alias:'SAP score',
+   range:'Per-residue score; CDR hotspot SAP > 0.5 is flagged',
+   brief:'Structure-based 9-mer sliding window identifying exposed hydrophobic patches that drive aggregation.',
+   calc:'Computes solvent accessibility (SASA) for each residue using a probe radius 1.4 Å. A 9-residue window centered on each position scores neighboring hydrophobic exposure. Requires 3D structure (PDB or model).',
+   threshold:'Therasik flag: any CDR position with SAP > 0.5 over a 9-mer window. FR SAP > 1.0 is flagged separately.',
+   interp:'SAP directly reflects aggregation-prone regions on the antibody surface. CDR hotspots are particularly problematic as they coincide with the antigen-binding site — mutations to reduce SAP must be validated for retained affinity. FR-SAP patches are more readily mutagenized.',
+   tools:'Therasik AbEvaluator; Sankar et al. Protein Eng Des Sel 2018; Chennamsetty et al. PNAS 2009'},
+  {id:'d6', cat:'Aggregation Propensity', risk:'high',
+   name:'PSH (Patches of Surface Hydrophobicity)', alias:'PSH · SHM',
+   range:'Reference range from AbRef database; flag: top 20% of clinical distribution',
+   brief:'Total hydrophobic surface area exposed on Fv; larger patches correlate with aggregation and non-specific binding.',
+   calc:'Identifies contiguous hydrophobic residues (GRAVY > 0) on solvent-exposed surfaces. Clusters of ≥3 exposed hydrophobic residues within 5 Å are scored as a "patch." Summed over the full Fv surface.',
+   threshold:'Flag: PSH > 80th percentile of AbRef-1142. Absolute threshold varies by antibody size.',
+   interp:'PSH is a stronger aggregation predictor than GRAVY when structure is available. Combined use with SAP provides complementary single-residue and patch-level risk assessment. Relevant for formulation development (temperature, excipients).',
+   tools:'TAP server (Raybould et al.); Therasik AbEvaluator; Palivizumab PSH benchmark'},
+  {id:'d7', cat:'Aggregation Propensity', risk:'medium',
+   name:'PPC (Patches of Positive Charge)', alias:'PPC',
+   range:'Flag: PPC > 75th percentile of clinical antibody distribution',
+   brief:'Clustered positive-charge patches on Fv surface; correlates with non-specific binding and heparin retention.',
+   calc:'Identifies surface-exposed Lys/Arg/His residues within 5 Å of each other. Total solvent-accessible positive charge summed across Fv surface. Includes FR and CDR contributions.',
+   threshold:'Flag: PPC > clinical 75th percentile. Particularly relevant for VH-CDR3 basic clusters.',
+   interp:'Positively charged CDRs are more common in VHH and some heavy-chain antibodies. High PPC is associated with: (1) polyspecificity/non-specific binding; (2) injection site pain for SC formulation; (3) elevated viscosity. Evaluate in tandem with net charge.',
+   tools:'TAP server; Therasik AbEvaluator; Haidar et al. MAbs 2014'},
+  {id:'d8', cat:'Aggregation Propensity', risk:'medium',
+   name:'PNC (Patches of Negative Charge)', alias:'PNC',
+   range:'Flag: PNC > 75th percentile of clinical antibody distribution',
+   brief:'Clustered negative-charge patches; associated with aggregation at acidic pH and formulation challenges.',
+   calc:'Surface-exposed Asp/Glu residues within 5 Å clusters. Relevant particularly for antibodies formulated at pH 5.0–6.0 (common lyophilized or liquid formats).',
+   threshold:'Flag: PNC > clinical 75th percentile.',
+   interp:'Negatively charged patches can drive aggregation in low-pH formulations (citrate, histidine buffers) through reduced electrostatic repulsion at low ionic strength. Relevant for multi-specific formats where isoelectric precipitation is a concern.',
+   tools:'TAP server; Therasik AbEvaluator'},
+
+  // ── CDR Chemical Liability ────────────────────────────────
+  {id:'d9', cat:'CDR Chemical Liability', risk:'high',
+   name:'Deamidation (NG / NS)', alias:'Asn deamidation',
+   range:'Critical: CDR-Asn in NG/NS/NG motif; FR deamidation lower priority',
+   brief:'Asn → iso-Asp / Asp conversion under stress conditions; disrupts CDR conformation and potency.',
+   calc:'Sequence scan for NG, NS, and NG+NxG motifs using IMGT-annotated CDR positions. NG has ~8-fold higher rate than NS. Surface-accessible Asn (SASA > 30%) in NG motif = high priority.',
+   threshold:'Therasik: any CDR NG or NS flagged as HIGH risk. NxS/T in FR flagged as MEDIUM.',
+   interp:'Deamidation occurs chemically (cyclic succinimide intermediate) and enzymatically. Rate depends on neighboring residues: NG >> NS > NQ, NA. High temperature and neutral-high pH accelerate reaction. May cause potency loss in CDR-H2 (common NG in human antibodies). Mutations: N→Q (conservative) or N→S (removes risk but may affect binding).',
+   tools:'Therasik AbEvaluator; Pace et al. Protein Sci 2013; Bischoff & Kolbe J Chromatogr B 1994'},
+  {id:'d10', cat:'CDR Chemical Liability', risk:'high',
+   name:'Oxidation (Met / Trp)', alias:'Met/Trp oxidation',
+   range:'Critical: CDR Met in any position; Trp in CDR-H3 or CDR-L1/L3',
+   brief:'Met oxidation → methionine sulfoxide; Trp → kynurenine/hydroxytryptophan. Both reduce potency and shelf-life.',
+   calc:'Sequence scan for Met (M) and Trp (W) in IMGT-annotated CDR positions. Met in FR2/FR3 at buried positions is lower risk. Surface-exposed CDR Met (SASA > 25%) = high priority.',
+   threshold:'Therasik: CDR Met or CDR Trp flagged as HIGH risk. FR buried Met as LOW.',
+   interp:'Met oxidation is particularly common at CDR-H2 Met52 and during stressed stability studies (H2O2, peroxide, light exposure). Trp is susceptible to photo-oxidation (UV exposure). Both can reduce antigen binding by distorting CDR loop conformation. Mutations: M→L (conservative) or W→ no direct equivalent — typically tolerated by V→I type changes.',
+   tools:'Therasik AbEvaluator; Yan et al. J Pharm Sci 2009'},
+  {id:'d11', cat:'CDR Chemical Liability', risk:'high',
+   name:'CDR N-Glycosylation (NxS/T)', alias:'CDR glycan motif',
+   range:'NxS/T in CDR: flagged HIGH. NxS/T in FR: flagged MEDIUM',
+   brief:'Aberrant glycosylation in CDR introduces heterogeneity; may enhance or disrupt antigen binding depending on location.',
+   calc:'NxS/T motif scan (N-P excluded) across IMGT CDR positions. Structural exposure (SASA) and context (buried/accessible) determine priority.',
+   threshold:'Therasik: any NxS/T in IMGT-annotated CDR = HIGH flag.',
+   interp:'CDR N-glycosylation is unusual and usually unwanted. It creates glycoform heterogeneity that complicates analytical characterization. However, some therapeutic antibodies have CDR glycans that are part of the antigen-binding mechanism (e.g., some anti-HIV broadly neutralizing antibodies). For most mAbs: remove if possible by N→Q mutation. Confirm retention of binding in new CDR glycan context.',
+   tools:'Therasik AbEvaluator; NetNGlyc server; Bondt et al. Mol Cell Proteomics 2014'},
+  {id:'d12', cat:'CDR Chemical Liability', risk:'high',
+   name:'Asp Isomerization (DG / DS)', alias:'Asp isomerization',
+   range:'DG: high risk · DS: moderate risk · DG in CDR-H3 = critical',
+   brief:'Asp → iso-Asp or cyclic succinimide (adjacent G or S accelerates reaction); reduces antigen-binding potency.',
+   calc:'Sequence scan for DG and DS in CDR positions. DG has ~5× faster rate than DS. Rate is pH-, temperature-, and structure-dependent.',
+   threshold:'Therasik: CDR DG = HIGH. CDR DS = MEDIUM. FR DG = MEDIUM.',
+   interp:'DG isomerization is faster than deamidation (NG) and may be the dominant degradation pathway in CDR-H3. Conformational constraint in the adjacent residues modulates rate. Mutations: D→E (conservative, eliminates isomerization risk), or G→A (reduces flexibility, slows rate).',
+   tools:'Therasik AbEvaluator; Robinson & Rudd Curr Drug Targets 2012; Rehder et al. J Pharm Sci 2008'},
+  {id:'d13', cat:'CDR Chemical Liability', risk:'high',
+   name:'Free Cysteine (unpaired Cys)', alias:'Free thiol',
+   range:'Any free Cys in VH/VL outside canonical disulfides = flagged',
+   brief:'Unpaired Cys can form unwanted disulfide bonds, mixed disulfides with excipients, or adducts affecting product quality.',
+   calc:'Structural assignment using canonical disulfide map (IMGT scheme). Cys not in intra-domain S-S bridge = free Cys. Confirmed by LC-MS for free thiol content.',
+   threshold:'Therasik: any free Cys in variable domain = HIGH flag (except engineered designs).',
+   interp:'Free Cys can form: (1) mixed disulfides with glutathione (cysteinylation); (2) intermolecular disulfides → dimer aggregation; (3) intrachain scrambled disulfides. Common source: CDR-introduced Cys during phage display or site-directed mutagenesis. In ADC design, engineered free Cys (e.g., ThioMab C239) is intentional for conjugation — context matters.',
+   tools:'Therasik AbEvaluator; Lyubarskaya et al. Anal Chem 2006'},
+
+  // ── Structural Metrics ───────────────────────────────────
+  {id:'d14', cat:'Structural Metrics', risk:'medium',
+   name:'VH-VL Packing Angle', alias:'β-barrel orientation angle',
+   range:'Normal: 35°–47° (Chothia convention) · Flag: <30° or >52°',
+   brief:'Angle between VH and VL β-sheet planes; deviations indicate compromised interface that may affect stability or antigen binding.',
+   calc:'Calculated from PDB or AlphaFold model using the Chothia VH-VL orientation angle algorithm. References the conserved FR2 and FR4 β-strands. Therasik pipeline: ABodyBuilder2 → IMGT numbering → angle calculation.',
+   threshold:'Therasik flag: angle outside ±6° of median clinical value (40.5°). Post-humanization Δangle < 2° = acceptable.',
+   interp:'Extreme angles indicate an unusual VH-VL packing that may destabilize the Fv or change CDR loop conformations. Common cause: incompatible germline pairing or aggressive back-mutation choices. Compare pre- and post-humanization angles. Clinical antibody database median: 40.5° (AbRef-1142).',
+   tools:'Therasik AbEvaluator; ABodyBuilder2; AbYsis VH-VL angle tool'},
+  {id:'d15', cat:'Structural Metrics', risk:'medium',
+   name:'pLDDT (AlphaFold confidence)', alias:'pLDDT per-residue',
+   range:'High confidence: pLDDT ≥ 70 · Low: < 50',
+   brief:'Per-residue confidence score from AlphaFold2/ABodyBuilder2 structural model; flags disordered or poorly predicted CDR regions.',
+   calc:'Output of ABodyBuilder2 (ImmunoBuilder) antibody-specific structure prediction. Scores range 0–100 per residue. CDR-H3 typically has lower pLDDT than framework (less conserved).',
+   threshold:'Therasik flag: CDR-H3 average pLDDT < 50 (high model uncertainty). FR average should be > 70.',
+   interp:'Low pLDDT in CDR-H3 indicates the model is uncertain — this reflects genuine conformational flexibility in long or unusual CDR-H3 loops, not a defect. High pLDDT across CDRs supports structural interpretation of docking, interface analysis, and back-mutation decisions. FR pLDDT < 60 suggests structural anomalies worth investigating.',
+   tools:'ABodyBuilder2 (Abanades et al. 2023); AlphaFold2; OpenFold'},
+  {id:'d16', cat:'Structural Metrics', risk:'low',
+   name:'SFvCSP (Fv Colloidal Stability Parameter)', alias:'SFvCSP',
+   range:'Flag: SFvCSP outside ±1 SD of AbRef distribution',
+   brief:'Whole-Fv colloidal stability metric integrating charge and hydrophobicity surface distribution.',
+   calc:'Combines Fv surface charge asymmetry with patch hydrophobicity distribution. Requires 3D structure. Proprietary score normalized against Therasik AbRef-1142 database.',
+   threshold:'Therasik: SFvCSP Z-score > +1.5 or < −1.5 is flagged.',
+   interp:'High SFvCSP (abnormal) → elevated risk of viscosity issues or aggregation at high concentration. Useful as a composite CMC summary metric in the full evaluation report. Not computed for sequence-only submissions.',
+   tools:'Therasik AbEvaluator (in-house); inspired by Bodnarchuk et al. J Phys Chem B 2020'},
+];
+
+const IMMUNO_DATA = [
+  // ── Sequence-based ────────────────────────────────────────
+  {id:'i1', cat:'Sequence-based', risk:'high',
+   name:'T-cell Epitopes (MHC-II Binding)', alias:'HLA-II epitopes',
+   brief:'Framework or CDR peptides that bind MHC-II → activate CD4+ T helper cells → ADA class-switch.',
+   mechanism:'9-mer peptides from VH/VL FR/CDR regions are presented by antigen-presenting cells on MHC-II alleles. Peptides binding multiple alleles (promiscuous binders) are highest risk. T-cell help is required for high-affinity ADA (IgG isotype).',
+   detection:'IEDB 27-allele HLA prediction (NetMHCII, NN-align). Therasik: EL4 percentile threshold per allele. Also: EpiMatrix (Epivax), iTope (Antitope).',
+   mitigation:'Germline-aligning humanization eliminates most framework T-cell epitopes. CDR deimmunization (T→S, N→Q) if CDR carries epitope — with caution to preserve binding. Regulatory: T-cell epitope prediction is requested in FDA guidance for biologic IMPs.',
+   ref:'Jones et al. J Clin Oncol 2016; Deehan et al. Clin Immunol 2015'},
+  {id:'i2', cat:'Sequence-based', risk:'high',
+   name:'Germline Identity (%)', alias:'Human germline identity',
+   brief:'% sequence identity to nearest human germline IGHV/IGKV/IGLV allele; proxy for immunogenic non-self residues.',
+   mechanism:'Murine-origin residues in FR regions are the primary source of T-cell epitopes in chimeric/poorly humanized antibodies. The lower the human germline identity, the more murine-like the framework and the higher the ADA risk.',
+   detection:'BLAST vs IMGT/GENE-DB human germline allele database. Therasik threshold: VH < 85% or VL < 80% → humanization recommended.',
+   mitigation:'CDR grafting + back-mutations targeting Vernier zone. Humanization protocol: AbEngineCore V4.4. Goal: VH ≥ 90%, VL ≥ 90% identity to nearest human germline.',
+   ref:'Hwang & Foote Methods 2005; Almagro & Fransson Front Biosci 2008'},
+  {id:'i3', cat:'Sequence-based', risk:'medium',
+   name:'CDR Length & Composition', alias:'CDR novelty',
+   brief:'Longer, unusual CDR sequences (especially CDR-H3) increase immunogenic peptide diversity.',
+   mechanism:'CDR-H3 encodes the most diverse sequences in the antibody repertoire. Very long CDR-H3 (>18 aa) or unusual CDR compositions create novel peptides not found in human germline context — potentially presented as foreign by MHC-II.',
+   detection:'IMGT CDR annotation + length distribution comparison vs clinical antibody database (AbRef-1142). Composition analysis: aromatic/basic/charged residue enrichment in CDR context.',
+   mitigation:'CDR composition is generally preserved during humanization (CDRs are not humanized). However, deimmunization of CDR MHC-II epitopes is possible when epitope overlaps CDR without compromising paratope residues.',
+   ref:'Kabat et al. NIH Pub 1991; Marks et al. Nat Biotechnol 2021'},
+
+  // ── Structural / Physical ────────────────────────────────
+  {id:'i4', cat:'Structural / Physical', risk:'high',
+   name:'Protein Aggregates', alias:'HMW species / oligomers',
+   brief:'Aggregated antibody is among the strongest immunogenicity triggers; bypasses T-cell tolerance mechanisms.',
+   mechanism:'Aggregates present repetitive epitope arrays that can directly crosslink B-cell receptors (T-independent pathway) even without T-cell help. This can trigger ADA to epitopes that are normally tolerized in monomer form.',
+   detection:'DLS (hydrodynamic radius), SEC-MALS (HMW %), turbidity. In silico: SAP + PSH predict aggregation-prone regions before wet lab.',
+   mitigation:'Reduce SAP/PSH by surface hydrophobicity engineering or formulation optimization (excipients, pH, ionic strength). Forced degradation studies recommended for all clinical candidates.',
+   ref:'Rosenberg Embo Mol Med 2014; Ratanji et al. J Immunotoxicol 2014; Joubert et al. J Pharm Sci 2012'},
+  {id:'i5', cat:'Structural / Physical', risk:'medium',
+   name:'Surface Hydrophobicity (SASA-based)', alias:'Exposed hydrophobic surface',
+   mechanism:'Hydrophobic patches on antibody surface promote uptake by dendritic cells and macrophages via scavenger receptors, increasing the probability of antigen presentation on MHC-II.',
+   brief:'High surface hydrophobicity correlates with non-specific protein uptake and enhanced MHC-II presentation of antibody-derived peptides.',
+   detection:'PSH from structure; Parker hydrophilicity plot from sequence. Therasik: SASA-based analysis (optional with PDB).',
+   mitigation:'Minimize CDR/FR surface hydrophobicity through design (preferred germlines). Formulation with polysorbate 80 partially mitigates surface adsorption.',
+   ref:'Chennamsetty et al. PNAS 2009; Chen et al. Protein Sci 2020'},
+
+  // ── Glycosylation ────────────────────────────────────────
+  {id:'i6', cat:'Glycosylation', risk:'medium',
+   name:'Fc N297 Glycan Composition', alias:'N297 glycan · core fucose',
+   brief:'Glycan variants at the conserved Fc N297 site affect immunogenicity through FcγR binding and complement activation.',
+   mechanism:'Non-human glycan structures (e.g., α-1,3-galactose from murine/NS0 expression, Neu5Gc from CHO) are recognized as foreign by human anti-carbohydrate antibodies. CHO-expressed antibodies may contain Neu5Gc. α-Gal epitopes from murine hosts are highly immunogenic.',
+   detection:'MALDI-TOF glycan profiling; LC-MS/MS glycopeptide analysis. Cell line screening: CHO-K1 has low Neu5Gc; NS0/Sp2/0 may have high α-Gal.',
+   mitigation:'Use CHO or HEK293 expression for lowest non-human glycan risk. FUT8-KO CHO (afucosylation) changes ADCC profile but not immunogenicity risk. Avoid NS0/Sp2/0 for clinical programs when possible.',
+   ref:'Chung et al. N Engl J Med 2008 (α-Gal/Neu5Gc); Ghaderi et al. Nat Biotechnol 2012'},
+  {id:'i7', cat:'Glycosylation', risk:'medium',
+   name:'CDR Glycosylation', alias:'Variable domain glycan',
+   brief:'N-glycans in CDR can mask or expose epitopes, affecting both potency and immunogenicity.',
+   mechanism:'CDR glycans are uncommon but structurally significant when present. They can shield T-cell epitopes (reducing immunogenicity) or — if non-human glycoforms are incorporated — introduce novel glycan immunogens.',
+   detection:'NetNGlyc in silico prediction; LC-MS/MS glycopeptide characterization; cell-line specific glycan profiling.',
+   mitigation:'If CDR glycan is functional (contributes to binding): use CHO/HEK for minimal non-human glycan risk. If CDR glycan is unwanted heterogeneity: N→Q mutation to remove.',
+   ref:'van Berkel et al. Mol Immunol 2009; Bondt et al. Mol Cell Proteomics 2014'},
+
+  // ── Administration & Clinical ────────────────────────────
+  {id:'i8', cat:'Administration & Clinical', risk:'high',
+   name:'Route of Administration', alias:'SC vs IV vs IM',
+   brief:'Subcutaneous administration is ~2–5× more immunogenic than IV infusion due to dermal APC exposure.',
+   mechanism:'SC injection deposits antibody in the subcutaneous adipose tissue where resident DCs, Langerhans cells, and macrophages are abundant. These APCs efficiently process and present antigen on MHC-II. IV bypasses peripheral APC exposure for most of the dose.',
+   detection:'Clinical ADA monitoring data — SC antibodies consistently show higher ADA incidence in controlled trials (e.g., adalimumab SC vs IV data).',
+   mitigation:'Optimize formulation for SC (pH 5.5–7.0, isotonic, low aggregates). Immunomodulatory co-administration (MTX for anti-TNF). PEGylation can reduce immunogenicity. SC device (pen/autoinjector) design minimizes aggregation during injection.',
+   ref:'Buss et al. MAbs 2012; Vincent et al. Front Immunol 2017'},
+  {id:'i9', cat:'Administration & Clinical', risk:'high',
+   name:'Prior Sensitization / Pre-existing ADA', alias:'Pre-existing immunity',
+   brief:'Anti-drug antibody responses are amplified in patients with pre-existing antibodies to the drug or structurally related proteins.',
+   mechanism:'Previous exposure to the same or similar antibody (including earlier treatment cycles, biosimilar switching, or cross-reactive native sequences) can pre-sensitize patients. Memory B cells and long-lived plasma cells amplify ADA response on re-challenge.',
+   detection:'Pre-dose ADA assay in Phase I/II. Bridging assay format for anti-idiotype detection. Clinical ADA surveillance per ICH S6(R1) and FDA guidance.',
+   mitigation:'Structured washout periods for antibody switching. Immunomodulatory co-therapy. ADA-tolerized sequences (highly humanized, minimal T-cell epitopes).',
+   ref:'ICH S6(R1); FDA Immunogenicity Guidance 2019; Mack et al. Clin Pharm 2019'},
+  {id:'i10', cat:'Administration & Clinical', risk:'medium',
+   name:'Disease State & Immune Status', alias:'Patient immunosuppression',
+   brief:'Immunosuppressed patients (oncology, post-transplant) show lower ADA rates; autoimmune patients on immunomodulators show variable ADA.',
+   mechanism:'ADA formation requires a functional adaptive immune response (T-cell help, B-cell activation). Chemotherapy, corticosteroids, and targeted immunosuppression all reduce ADA probability. Paradoxically, immunostimulatory conditions (active autoimmunity, adjuvant) may enhance immunogenicity.',
+   detection:'Stratify ADA analysis by disease indication and concomitant immunosuppressive therapy in clinical trials.',
+   mitigation:'Disease-specific ADA risk stratification in clinical design. For oncology: lower ADA threshold acceptable due to immunosuppression. For autoimmune: optimize sequence and formulation before Phase II.',
+   ref:'Sheehan & Isaacs Autoimmun Rev 2020; Vultaggio et al. Curr Opin Allergy Clin Immunol 2018'},
+  {id:'i11', cat:'Administration & Clinical', risk:'medium',
+   name:'Dosing Frequency & Cumulative Dose', alias:'Dose regimen',
+   brief:'Higher dosing frequency and cumulative dose increase ADA incidence for most therapeutic antibodies.',
+   mechanism:'Each dose provides additional antigen for B-cell activation and T-cell priming. Intermittent dosing (e.g., every 3 months) may be less immunogenic than weekly dosing for some antibodies. Tolerance induction occurs with continuous high-dose regimens in some cases.',
+   detection:'ADA time-course analysis in clinical trials — compare ADA positivity rate by dose cohort and treatment duration.',
+   mitigation:'Optimize dosing interval (longer intervals may reduce immunogenicity for cytokine-targeting antibodies). High-dose continuous dosing can induce tolerance for some targets (anti-TNF experience).',
+   ref:'Casadevall & Scharff Clin Infect Dis 1995; Schiff et al. Ann Rheum Dis 2006'},
+
+  // ── Formulation & Manufacturing ──────────────────────────
+  {id:'i12', cat:'Formulation & Manufacturing', risk:'high',
+   name:'Oxidative Stress & Light Exposure', alias:'Photo-oxidation',
+   brief:'Photo-oxidation of Trp/Met in CDR creates neo-epitopes with enhanced MHC-II binding.',
+   mechanism:'UV and visible light convert Trp to kynurenine, kynurenic acid, or hydroxytryptophan. These modified residues form new antigenic epitopes in the CDR that were not present in the designed sequence — bypassing tolerance built to the original sequence.',
+   detection:'Photo-stress stability study (ICH Q1B equivalent). LC-MS/MS for oxidized peptide mapping. Therasik: Trp/Met in CDR flagged in chemical liability scan.',
+   mitigation:'Amber/light-protective primary packaging. Reduce Trp/Met in CDR where tolerated. Antioxidant excipients (methionine, EDTA). Controlled nitrogen blanket in fill/finish.',
+   ref:'Qi et al. J Pharm Sci 2009; Haberger et al. MAbs 2014'},
+  {id:'i13', cat:'Formulation & Manufacturing', risk:'medium',
+   name:'Excipient / Adjuvant Co-administration', alias:'Formulation components',
+   brief:'Some excipients (polysorbates, silicone oil) can form sub-visible particles with protein, acting as adjuvants.',
+   mechanism:'Silicone oil from prefilled syringe barrels can form protein-lipid aggregates. Polysorbate degradation products can co-precipitate with antibody. Particulate matter formed from these interactions creates depot-effect adjuvancy at the SC injection site.',
+   detection:'Microflow imaging (MFI), nanoparticle tracking analysis (NTA), resonant mass measurement. Accelerated degradation of polysorbate-containing formulations.',
+   mitigation:'Minimize silicone oil use (baked-on vs. sprayed syringe). Monitor polysorbate degradation (PS20 vs PS80 stability). Sub-visible particle threshold: USP <788>/<789>.',
+   ref:'Demeule et al. Eur J Pharm Biopharm 2009; Shire SJ MAbs 2009'},
+];
+
+// ═══════════════════════════════════════════════════════════
+// WET LAB VALIDATION DATA
+// ═══════════════════════════════════════════════════════════
+const WET_DATA = [
+  // ── Developability · Physicochemical ─────────────────────
+  {id:'w1', name:'Dynamic Light Scattering', alias:'DLS',
+   cat:'Developability · Physicochemical',
+   brief:'Measures particle size distribution and colloidal stability in solution. Primary screen for aggregation propensity.',
+   principle:'Laser light is scattered by particles in solution; autocorrelation of intensity fluctuations gives hydrodynamic radius (Rh). Polydispersity index (PDI) reports size heterogeneity.',
+   readout:'Z-average Rh (nm), PDI, % large-particle species. Flag: PDI > 0.2 or bimodal distribution.',
+   compLink:'SAP (hydrophobic aggregation propensity), net charge (electrostatic repulsion), pI vs formulation pH gap',
+   context:'ICH Q8/Q9 recommended for early formulation screening. Required by FDA for BLA CMC package (sub-visible particles section).',
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/19219582/" target="_blank" rel="noopener">Shire SJ MAbs 2009</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/22327427/" target="_blank" rel="noopener">Chennamsetty et al. PNAS 2009</a>'},
+
+  {id:'w2', name:'Size Exclusion Chromatography — HPLC', alias:'SEC-HPLC',
+   cat:'Developability · Physicochemical',
+   brief:'Gold-standard for quantifying monomer purity and soluble aggregate content. Orthogonal to DLS.',
+   principle:'Proteins are separated by hydrodynamic volume through a porous stationary phase. UV absorbance (280 nm) quantifies each peak. Mobile phase pH and ionic strength affect resolution.',
+   readout:'Monomer % (target ≥ 95%), HMW species %, LMW species %. Retention time shift indicates conformational change.',
+   compLink:'SAP score, GRAVY (hydrophobicity), instability index — all predict aggregate-prone sequences',
+   context:'ICH Q6B identity/purity test. Required for all IND/BLA submissions. Stability studies use SEC-HPLC to track aggregation kinetics at 4°C / 25°C / 40°C.',
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/17880699/" target="_blank" rel="noopener">Rosenberg AS AAPS J 2006</a>; USP <621>'},
+
+  {id:'w3', name:'Differential Scanning Calorimetry / Fluorimetry', alias:'DSC / DSF (nanoDSF)',
+   cat:'Developability · Physicochemical',
+   brief:'Measures thermal unfolding transitions (Tm) of antibody domains. Predicts storage stability and formulation conditions.',
+   principle:'DSC: measures excess heat capacity during temperature ramp. DSF/nanoDSF: monitors intrinsic Trp/Tyr fluorescence ratio (350/330 nm) shift during unfolding — no dye required. Tm of CH2, CH3, Fab domains resolved as separate transitions.',
+   readout:'Tm1 (Fab), Tm2 (CH2), Tm3 (CH3) in °C. ΔTm between variants reflects stability impact of mutations. Onset temperature (Tonset) for formulation.',
+   compLink:'Instability index (aliphatic / hydrophobic buried residues), pLDDT (structural confidence) — low pLDDT regions often correspond to low-Tm domains',
+   context:'ICH Q8 formulation development. nanoDSF preferred for throughput screening; DSC for full characterization in BLA. Tm > 65°C (Fab) and > 70°C (CH2) are common industry thresholds.',
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/21445773/" target="_blank" rel="noopener">Ionescu et al. J Pharm Sci 2008</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/22327427/" target="_blank" rel="noopener">Freire E Methods Enzymol 1995</a>'},
+
+  {id:'w4', name:'Hydrophobic Interaction Chromatography', alias:'HIC',
+   cat:'Developability · Physicochemical',
+   brief:'Separates antibody variants by surface hydrophobicity. Used to assess drug-like character and predict HIC-based purification behavior.',
+   principle:'Proteins bind a hydrophobic resin under high-salt conditions; elution by decreasing ammonium sulfate gradient. More hydrophobic variants elute later. Retention time correlates with GRAVY and SAP scores.',
+   readout:'Relative retention time vs. reference standard. Column: Butyl-S, Phenyl-HP. Flag: retention time > 15 min on Butyl-S column.',
+   compLink:'GRAVY score (global hydrophobicity), PSH (patch surface hydrophobicity), SAP score',
+   context:'Used in downstream process development to optimize capture chromatography. Strongly hydrophobic mAbs may cause manufacturing challenges (resin fouling, low yield). Also predicts subcutaneous injection site reactions.',
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/24695285/" target="_blank" rel="noopener">Haverick et al. mAbs 2014</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/21984298/" target="_blank" rel="noopener">Demeule et al. MAbs 2009</a>'},
+
+  {id:'w5', name:'Cation Exchange Chromatography', alias:'CEX / IEX',
+   cat:'Developability · Physicochemical',
+   brief:'Resolves charge heterogeneity variants (acidic/basic peaks). Monitors deamidation, C-terminal Lys clipping, and oxidation in the context of charge state.',
+   principle:'Proteins bind a negatively charged resin at low ionic strength; salt or pH gradient elutes variants by charge. Main peak flanked by acidic variants (deamidation, sialylation) and basic variants (C-terminal Lys, Met oxidation).',
+   readout:'% acidic variants, % main peak, % basic variants. Stability trending: acidic peak growth rate reflects deamidation kinetics.',
+   compLink:'pI (determines binding strength and elution position), deamidation sites (NG/NS motifs), oxidation (Met/Trp)',
+   context:'ICH Q6B charge heterogeneity test. CEX profile is a key release and stability assay in BLA. Acidic peak > 20% often triggers investigation.',
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/17139657/" target="_blank" rel="noopener">Harris RJ J Chromatogr B 2005</a>; USP <1053>'},
+
+  // ── Developability · Chemical Liability ──────────────────
+  {id:'w6', name:'Peptide Mapping — LC-MS/MS', alias:'Peptide Map / PTM Analysis',
+   cat:'Developability · Chemical Liability',
+   brief:'Identifies and quantifies post-translational modifications (PTMs) at residue level. Gold standard for chemical liability characterization.',
+   principle:'Antibody is digested with trypsin (± Lys-C). Resulting peptides are separated by reverse-phase HPLC and identified by high-resolution MS/MS (Orbitrap or Q-TOF). Modified peptides identified by mass shift: +0.984 Da (deamidation), +15.995 Da (oxidation), +0.5 Da (Asp isomerization).',
+   readout:'% modification at each site (e.g., "N55 deamidation: 3.2% at t=0, 18.7% at 40°C/4wk"). Hotspot: NG/NS deamidation, DG/DS isomerization, Met/Trp oxidation, free Cys.',
+   compLink:'CDR deamidation flags (NG/NS), oxidation flags (Met/Trp), Asp isomerization (DG/DS), free Cys count — all from Therasik sequence analysis',
+   context:'FDA expects peptide map data in BLA CMC for each PTM hotspot identified in silico. Forced oxidation (H₂O₂) and deamidation (pH 9, 40°C) studies with peptide map readout are standard.',
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/19813233/" target="_blank" rel="noopener">Pan H et al. Biotechnol Bioeng 2009</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/25102867/" target="_blank" rel="noopener">Vlasak J, Ionescu R MAbs 2011</a>'},
+
+  {id:'w7', name:'Forced Degradation Study', alias:'Stress Testing / Accelerated Stability',
+   cat:'Developability · Chemical Liability',
+   brief:'Deliberately stresses antibody under heat, oxidation, light, pH, and freeze-thaw to reveal degradation pathways before clinical manufacturing.',
+   principle:'ICH Q1A(R2) stress conditions: thermal (40°C/75% RH, 6 months), oxidative (0.03–0.3% H₂O₂), photolytic (ICH Q1B), acidic/basic pH excursions, freeze-thaw cycling (≥5 cycles, −80°C/+25°C). Degradation products characterized by SEC-HPLC, CEX, and peptide mapping.',
+   readout:'Degradation rate constants, primary degradation pathway identification, formulation excipient protective effects. Orthogonal analytics: SEC (aggregation), CEX (charge), DLS (particle size).',
+   compLink:'All sequence-based liabilities (NG deamidation, Met oxidation, DG isomerization, CDR glycosylation sites) are prioritized stress testing targets. Computationally flagged sites validated by forced degradation kinetics.',
+   context:'ICH Q1A(R2) and Q8 mandatory for IND filing. Results define shelf-life and formulation conditions. FDA/EMA expect forced degradation data to support proposed degradation pathways in BLA.',
+   ref:'ICH Q1A(R2) 2003; <a href="https://pubmed.ncbi.nlm.nih.gov/19816943/" target="_blank" rel="noopener">Kerwin BA, Remmele RL Jr J Pharm Sci 2007</a>'},
+
+  // ── Immunogenicity ────────────────────────────────────────
+  {id:'w8', name:'EpiScreen™ / DC-T Cell Assay', alias:'PBMC T-cell Proliferation / DC-T Assay',
+   cat:'Immunogenicity · T-Cell Epitopes',
+   brief:'Ex vivo human PBMC-based assay that directly measures T-cell proliferative responses to antibody peptide pools. Functional validation of in silico MHC-II epitope predictions.',
+   principle:'Peptide library (15-mer overlapping, spanning full antibody sequence) is incubated with donor PBMCs (≥50 HLA-DR diverse donors). T-cell proliferation (³H-thymidine or CFSE dilution) or cytokine secretion (IFN-γ ELISPOT) measured after 7–10 days. Stimulation Index (SI) ≥ 2.0 defines positive epitope.',
+   readout:'SI per peptide per donor; % donors responding; epitope map overlaid on antibody sequence. Compare parent vs. humanized antibody.',
+   compLink:'Directly validates Therasik MHC-II 27-allele IEDB prediction — SI-positive regions should overlap with high-risk MHC-II clusters. Used to confirm that humanization reduced immunogenicity.',
+   context:'Antitope EpiScreen™ and Lonza EpiVax are commercial platforms. MHRA/EMA guidance encourages T-cell assay data for biosimilars and novel mAbs with high immunogenicity risk.',
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/15882712/" target="_blank" rel="noopener">Stickler MM et al. J Immunother 2004</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/19916168/" target="_blank" rel="noopener">Jawa V et al. Clin Immunol 2013</a>'},
+
+  {id:'w9', name:'ADA Detection — ECL Bridging Assay', alias:'Anti-Drug Antibody (ADA) Assay / MSD',
+   cat:'Immunogenicity · T-Cell Epitopes',
+   brief:'Gold-standard clinical assay for detecting anti-drug antibodies (ADA) in patient serum samples. Required for all clinical biologic programs.',
+   principle:'Electrochemiluminescence (ECL) bridging format: drug is coated as capture and labeled as detection. ADA in serum bridges both — signal proportional to ADA titer. MSD SECTOR platform preferred for sensitivity. Cut-point established from pre-dose samples.',
+   readout:'Screening positive rate (%), confirmatory positive rate (%), titer (dilution at cut-point), time to onset, persistence. Neutralizing ADA (NAb) in separate assay.',
+   compLink:'Validating all immunogenicity predictions: germline identity, MHC-II risk, aggregation, and immunodominant epitope mapping. Clinical ADA incidence is the ultimate readout of in silico immunogenicity score.',
+   context:'FDA Immunogenicity Guidance 2019 and EMA Guideline on Immunogenicity require ADA monitoring in all Phase I–III trials. Tier 1: screening → Tier 2: confirmatory → Tier 3: titer → Tier 4: NAb.',
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/29236280/" target="_blank" rel="noopener">FDA Immunogenicity Guidance 2019</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/24860609/" target="_blank" rel="noopener">Mire-Sluis AR et al. J Immunol Methods 2004</a>'},
+
+  {id:'w10', name:'Neutralizing ADA (NAb) Assay', alias:'NAb / Cell-Based Neutralization Assay',
+   cat:'Immunogenicity · T-Cell Epitopes',
+   brief:'Detects ADA that block drug pharmacological activity. Critical for differentiating non-neutralizing binding ADA from clinically impactful neutralizing ADA.',
+   principle:'Cell-based reporter assay: drug-responsive cell line (e.g., STAT-luciferase) is exposed to drug + patient serum. NAb in serum reduces drug-induced reporter signal. Ligand-binding assay (LBA) format used when cell-based is not feasible.',
+   readout:'% inhibition, NAb titer (dilution at 50% inhibition). Clinical impact correlates with NAb titer and PK/PD loss.',
+   compLink:'Epitope location matters: CDR-targeted ADA is more likely to be neutralizing. Therasik paratope residue analysis helps predict whether immunogenic regions overlap with antigen-binding site.',
+   context:'FDA requires NAb assay for all biologics with evidence of ADA. Particularly critical for cytokine/enzyme replacement therapies. NAb-positive patients may require dose adjustment or discontinuation.',
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/25319741/" target="_blank" rel="noopener">Shankar G et al. AAPS J 2014</a>; FDA Immunogenicity Guidance 2019'},
+
+  {id:'w11', name:'MHC-II Peptide Binding Assay', alias:'In Vitro MHC-II Binding / REVEAL Assay',
+   cat:'Immunogenicity · T-Cell Epitopes',
+   brief:'Direct biochemical measurement of peptide binding affinity to purified MHC-II alleles. Validates and refines in silico MHC-II epitope predictions.',
+   principle:'Competitive binding assay: test peptides compete with a fluorescently labeled reference peptide for binding to purified HLA-DR alleles. IC₅₀ determined. Alternatively, TR-FRET or AlphaLISA format. Epivax REVEAL platform provides multi-allele coverage.',
+   readout:'IC₅₀ (nM) per peptide-allele pair; binding percentile rank vs. IEDB background. Binders with IC₅₀ < 1000 nM considered significant.',
+   compLink:'Direct validation of Therasik 27-allele IEDB prediction output. High-risk predicted peptides should show IC₅₀ < 500 nM in binding assay. Used to prioritize which predicted epitopes to address by humanization.',
+   context:'Used in deimmunization and epitope removal programs. EMA Guideline on Immunogenicity Assessment recommends in vitro peptide binding data to support clinical risk stratification for novel modalities.',
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/19028671/" target="_blank" rel="noopener">Sturniolo T et al. Nat Biotechnol 1999</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/15882712/" target="_blank" rel="noopener">Jones TD et al. J Immunol 2004</a>'},
+
+  // ── Fc Function ───────────────────────────────────────────
+  {id:'w12', name:'ADCC Reporter Assay', alias:'Jurkat NFAT-Luciferase / ADCC Bioassay',
+   cat:'Fc Function · Effector Activity',
+   brief:'High-throughput cell-based assay for antibody-dependent cellular cytotoxicity (ADCC). Primary functional readout for FcγRIIIa-enhancing mutations (GASDALIE, afucosylation, S239D/I332E).',
+   principle:'Engineered Jurkat effector cells express FcγRIIIa (V158 high-affinity allele) and NFAT-luciferase reporter. Antibody-coated target cells activate Jurkat via FcγRIIIa crosslinking → NFAT → luciferase signal. EC₅₀ and Emax compared vs. reference standard.',
+   readout:'EC₅₀ (nM), Emax (% max activity), relative ADCC activity (% vs. reference). Afucosylated variants typically show 10–100× lower EC₅₀ than fucosylated.',
+   compLink:'Directly validates Fc mutation category "ADCC/ADCP Enhancement" (GASDALIE, S239D/I332E, K326W/E333S) and afucosylation. Computational prediction of FcγRIIIa contact residues (EU 234–239, 298, 332) matches ADCC activity.',
+   context:'Promega ADCC Reporter Bioassay is FDA-accepted for biosimilar ADCC comparability. Required for all ADCC-enhancing antibody programs. ICH Q6B functional characterization.',
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/17537386/" target="_blank" rel="noopener">Shields RL et al. J Biol Chem 2001</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/12370378/" target="_blank" rel="noopener">Lazar GA et al. PNAS 2006</a>'},
+
+  {id:'w13', name:'FcRn Binding Assay — SPR / BLI', alias:'FcRn SPR / Biacore / Octet',
+   cat:'Fc Function · Half-Life',
+   brief:'Measures Fc–FcRn binding affinity at pH 6.0 (endosomal, on-rate for recycling) and pH 7.4 (blood, off-rate for release). Key functional assay for half-life extending mutations (LS, YTE).',
+   principle:'Surface Plasmon Resonance (SPR, Biacore): FcRn immobilized on chip; antibody flowed at pH 6.0 to measure kon and koff. Wash at pH 7.4 to measure endosomal release rate. BLI (Octet): FcRn on biosensor tip. High pH 6.0 affinity + fast pH 7.4 release = longer half-life.',
+   readout:'KD at pH 6.0 (nM), off-rate (koff) at pH 7.4. LS mutation: ~10× increase in FcRn affinity at pH 6.0 vs. WT IgG1. YTE: ~10× increase (human FcRn).',
+   compLink:'Directly validates LS (M428L/N434S) and YTE (M252Y/S254T/T256E) mutation engineering goals. Computational FcRn contact residue analysis (EU 252, 254, 256, 428, 433, 434) predicts which mutations improve binding.',
+   context:'FDA expects FcRn binding data for any antibody with engineered half-life modifications. Cynomolgus monkey FcRn (cross-reactive with LS/YTE) used for PK prediction. Species differences important: YTE has weaker effect in mice.',
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/20622100/" target="_blank" rel="noopener">Dall\'Acqua WF et al. J Biol Chem 2006</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/20038795/" target="_blank" rel="noopener">Zalevsky J et al. Nat Biotechnol 2010</a>'},
+
+  {id:'w14', name:'FcγR Binding Panel — SPR', alias:'FcγR Panel / Biacore Multi-Cycle',
+   cat:'Fc Function · Effector Activity',
+   brief:'Quantifies binding affinity to all five human FcγRs (FcγRIa, IIa-H131, IIa-R131, IIb, IIIa-V158, IIIa-F158, IIIb) in a single SPR experiment. Defines the effector function profile of any Fc variant.',
+   principle:'SPR multi-cycle kinetics with recombinant human FcγRs immobilized on separate flow cells. Antibody injected as analyte. KD measured for each receptor. LALA/LALAPG/N297A variants show complete loss of FcγRIIIa and FcγRIIa binding. Afucosylated shows selective FcγRIIIa enhancement.',
+   readout:'KD (nM) per FcγR allele. FcγRIIb:FcγRIIa ratio (selectivity index for immunomodulatory antibodies). Complete binding profile used to predict ADCC, ADCP, and cytokine release risk.',
+   compLink:'Validates all Fc engineering categories: silencing (LALA, LALAPG, N297A/G → no FcγR binding), ADCC enhancement (GASDALIE, S239D/I332E → FcγRIIIa selectively improved), bispecific (KiH → heterodimer confirmed by asymmetric SPR).',
+   context:'FDA/EMA require FcγR panel for BLA CMC of any Fc-engineered antibody. Biosimilar comparability exercises require FcγR binding comparability to originator. FcγRIIb engagement relevant for agonist CD40/OX40 antibodies.',
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/11101895/" target="_blank" rel="noopener">Bruhns P et al. Blood 2009</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/15273120/" target="_blank" rel="noopener">Nimmerjahn F, Ravetch JV J Exp Med 2005</a>'},
+
+  {id:'w15', name:'Fc Glycan Profiling — LC-MS', alias:'N-Glycan Analysis / HILIC-FLR-MS',
+   cat:'Fc Function · Glycosylation',
+   brief:'Characterizes the N-glycan composition at Asn297 (EU). Essential for confirming afucosylation, monitoring glycan batch consistency, and assessing impact on FcγRIIIa binding and ADCC.',
+   principle:'Released glycans (PNGase F digest) labeled with 2-AB or RapiFluor-MS fluorescent tag, separated by HILIC (hydrophilic interaction) HPLC with fluorescence detection, identified by MS. Main glycoforms: G0F, G1F, G2F (fucosylated); G0, G1, G2 (afucosylated); Man5–9 (high mannose); A2G2S2 (sialylated).',
+   readout:'% each glycoform; core fucosylation % (target < 10% for afucosylated products, e.g., obinutuzumab). Sialylation %, high mannose % (affects clearance rate).',
+   compLink:'N297 glycosylation flag: if CDR contains NxS/T motif, it can also be glycosylated — peptide map + glycan profiling needed to confirm. Fc N297A mutation: glycan profiling confirms aglycosylation and FcγR silencing.',
+   context:'ICH Q6B glycan characterization required. FDA expects glycan profile comparability for biosimilars. Afucosylation achieved by CHO FUT8 knockout (e.g., Potelligent®) or GnTIII overexpression (e.g., glycoengineering). High mannose increases ADCC but reduces serum half-life via SIGN-R1 clearance.',
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/12370378/" target="_blank" rel="noopener">Umana P et al. Nat Biotechnol 1999</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/17537386/" target="_blank" rel="noopener">Shields RL et al. J Biol Chem 2002</a>'},
+
+  {id:'w16', name:'CDC Assay — Complement-Dependent Cytotoxicity', alias:'CDC / C1q Binding ELISA',
+   cat:'Fc Function · Effector Activity',
+   brief:'Measures antibody-mediated complement activation and target cell lysis. Relevant for mutations that enhance (K326W/E333S) or silence (DAPA) complement activity.',
+   principle:'Target cells incubated with antibody + human serum (complement source). Cell lysis measured by LDH release or calcein-AM fluorescence loss. C1q ELISA separately measures direct C1q binding affinity. DAPA (D265A/P329A) and LALA mutations should show < 5% CDC vs. WT IgG1.',
+   readout:'% specific lysis at antibody concentration range; EC₅₀. C1q binding: KD (nM) by ELISA. K326W/E333S shows 3–4× higher CDC vs. WT IgG1.',
+   compLink:'Validates complement-modulating Fc mutations. DAPA / LALA / LALAPG computational prediction of FcγR + C1q silencing confirmed by CDC ≈ 0. K326W/E333S enhancement confirmed by elevated CDC and C1q KD.',
+   context:'Required for CDC-dependent oncology antibodies (e.g., rituximab class). DAPA validation required if dual FcγR+complement silencing is claimed. ICH Q6B functional characterization for all cytotoxic mAbs.',
+   ref:'<a href="https://pubmed.ncbi.nlm.nih.gov/11805295/" target="_blank" rel="noopener">Idusogie EE et al. J Immunol 2001</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/18349143/" target="_blank" rel="noopener">Hezareh M et al. J Virol 2001</a>'},
+];
+
+// ═══════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════
+let currentDomain = 'fc';
+let searchTerm = '';
+let catFilter = '';
+let tierFilter = '';
+
+// ═══════════════════════════════════════════════════════════
+// DOMAIN CONFIG
+// ═══════════════════════════════════════════════════════════
+const DOMAINS = {
+  fc: {
+    data: FC_DATA,
+    note: '<strong>Fc Engineering Mutations</strong> — Each mutation entry shows its regulatory evidence tier (T1: approved drugs, T2: clinical trials, T3: preclinical), mechanism, affected receptors, commercial examples, and <strong>IP/patent status</strong> with design-around guidance. Use the category filter to focus on a specific engineering goal.<br><span style="font-size:12px;color:#6b7280;margin-top:6px;display:block;">⚖ <strong>IP status key:</strong> <span style="background:#f0fdf4;color:#166534;border:1px solid #bbf7d0;padding:1px 7px;border-radius:10px;font-weight:700;">Public Domain / Expired</span> = freely usable &nbsp;·&nbsp; <span style="background:#fffbeb;color:#92400e;border:1px solid #fde68a;padding:1px 7px;border-radius:10px;font-weight:700;">Expiring Soon</span> = core patent expiring within ~3 years &nbsp;·&nbsp; <span style="background:#fef2f2;color:#b91c1c;border:1px solid #fecaca;padding:1px 7px;border-radius:10px;font-weight:700;">Active Patent</span> = in-force protection; license or design-around required. &nbsp;<em>For commercial use, always conduct a full Freedom-to-Operate (FTO) analysis in your target jurisdictions — patent status varies by country and continuation filings.</em></span><br><span style="font-size:12px;color:#6b7280;margin-top:4px;display:block;">📌 Mutations use <strong>EU numbering</strong> (Edelman). For full IgG1/IgG2/IgG4 Fc sequences: <a href="https://www.imgt.org/IMGTrepertoire/Proteins/protein/human/IGH/IGHC/Hu_IGHCall.html" target="_blank" rel="noopener" style="color:var(--primary);font-weight:600;">IMGT IgHC database →</a> &nbsp;|&nbsp; <a href="https://www.uniprot.org/uniprotkb/P01857" target="_blank" rel="noopener" style="color:var(--primary);font-weight:600;">UniProt IgG1 (P01857) →</a> &nbsp;|&nbsp; <a href="https://www.ncbi.nlm.nih.gov/protein/NP_000149" target="_blank" rel="noopener" style="color:var(--primary);font-weight:600;">NCBI RefSeq →</a></span>',
+    catField: 'cat',
+    cats: [...new Set(FC_DATA.map(d=>d.cat))],
+    showTier: true,
+    filterLabel: 'All Fc Categories',
+    card: renderFcCard,
+  },
+  dev: {
+    data: DEV_DATA,
+    note: '<strong>Developability Assessment Metrics</strong> — 15 parameters across 4 categories. Each entry explains the calculation method, Therasik threshold, clinical interpretation, and relevant tools.<br><span style="font-size:12px;color:#6b7280;margin-top:6px;display:block;">⚠ <strong>Risk level definition (CMC context):</strong> <span style="color:#b91c1c;font-weight:700;">High</span> = directly linked to IND/BLA failure or clinical holds in published cases (e.g., aggregation, deamidation potency loss). <span style="color:#92400e;font-weight:700;">Medium</span> = significant concern requiring investigation but manageable by formulation or design change. <span style="color:#166534;font-weight:700;">Low</span> = supplementary metric; flag alone rarely causes failure. All risk levels are calibrated against Therasik AbRef-1142 clinical antibody database and published CMC literature.</span>',
+    catField: 'cat',
+    cats: [...new Set(DEV_DATA.map(d=>d.cat))],
+    showTier: false,
+    filterLabel: 'All Metric Categories',
+    card: renderDevCard,
+  },
+  immuno: {
+    data: IMMUNO_DATA,
+    note: '<strong>Immunogenicity Risk Factors</strong> — 13 key determinants of anti-drug antibody (ADA) formation. Organized into: sequence-based (addressable by humanization/design), structural/physical (addressable by engineering), glycosylation, and clinical/formulation factors (patient- or process-dependent).<br><span style="font-size:12px;color:#6b7280;margin-top:6px;display:block;">⚠ <strong>Risk level definition (ADA context):</strong> <span style="color:#b91c1c;font-weight:700;">High</span> = directly associated with significantly increased ADA incidence in clinical data (e.g., T-cell epitopes, aggregates, SC route). <span style="color:#92400e;font-weight:700;">Medium</span> = contributes to ADA risk but effect size depends on indication, dose, and patient immune status. <span style="color:#166534;font-weight:700;">Low</span> = minor or indirect contribution. ⚠ Clinical factors (route, disease state, dosing) reflect patient/design decisions — not intrinsic sequence defects.</span>',
+    catField: 'cat',
+    cats: [...new Set(IMMUNO_DATA.map(d=>d.cat))],
+    showTier: false,
+    filterLabel: 'All Factor Categories',
+    card: renderImmunoCard,
+  },
+  wet: {
+    data: WET_DATA,
+    note: '<strong>Wet Lab Validation Assays</strong> — 16 experimental assays across 4 categories, paired with corresponding Therasik computational metrics. Each entry describes the assay principle, key readout parameters, which in silico predictions it validates, and its regulatory context (ICH/FDA/EMA).<br><span style="font-size:12px;color:#6b7280;margin-top:6px;display:block;">🔬 <strong>Dry-Wet Integration:</strong> Therasik computational analysis identifies sequence liabilities and functional predictions <em>before</em> costly experiments are run. Use this tab to plan your experimental validation strategy after receiving an Therasik report — prioritizing assays for flagged metrics to maximize efficiency.</span>',
+    catField: 'cat',
+    cats: [...new Set(WET_DATA.map(d=>d.cat))],
+    showTier: false,
+    filterLabel: 'All Assay Categories',
+    card: renderWetCard,
+  },
+};
+
+// ═══════════════════════════════════════════════════════════
+// RENDER HELPERS
+// ═══════════════════════════════════════════════════════════
+function hl(text) {
+  if (!searchTerm || !text) return text;
+  const re = new RegExp('(' + searchTerm.replace(/[.*+?^${}|[\]\\]/g,'\\$&') + ')', 'gi');
+  return text.replace(re, '<mark>$1</mark>');
+}
+
+const RISK_LABEL = {high:'High Risk', medium:'Medium Risk', low:'Low Risk'};
+const RISK_CLASS = {high:'risk-high', medium:'risk-med', low:'risk-low'};
+const TIER_LABEL = {T1:'T1 · Approved', T2:'T2 · Clinical', T3:'T3 · Preclinical'};
+
+const IP_STATUS = {
+  public:   {label:'Public Domain',    bg:'#f0fdf4', color:'#166534', border:'#bbf7d0'},
+  expired:  {label:'Patent Expired',   bg:'#f0fdf4', color:'#166534', border:'#bbf7d0'},
+  expiring: {label:'Expiring Soon',    bg:'#fffbeb', color:'#92400e', border:'#fde68a'},
+  active:   {label:'Active Patent',    bg:'#fef2f2', color:'#b91c1c', border:'#fecaca'},
+};
+
+function renderFcCard(d) {
+  const exHtml = d.examples.map(e => {
+    const cls = e.toLowerCase.includes('fda') ? 'ex-approved' : 'ex-trial';
+    return `<span class="${cls}">${hl(e)}</span>`;
+  }).join(' · ');
+  const ip = d.ip;
+  const ipc = ip ? IP_STATUS[ip.status] : null;
+  const ipBadge = ipc ? `<span style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:12px;background:${ipc.bg};color:${ipc.color};border:1px solid ${ipc.border};white-space:nowrap;">${ipc.label}</span>` : '';
+  const ipBlock = ip ? `
+    <div class="detail-full" style="background:${ipc.bg};border:1px solid ${ipc.border};border-radius:8px;padding:10px 12px;margin-top:4px;">
+      <div class="dl" style="color:${ipc.color};">⚖ IP / Patent Status &nbsp;${ipBadge}</div>
+      <div class="dv" style="margin-top:6px;"><strong>Holder:</strong> ${hl(ip.holder)}<br><strong>Key Patent(s):</strong> ${hl(ip.key)}<br><strong>Expiry:</strong> ${hl(ip.expiry)}<br><strong style="color:#374151;">Design-around / Workaround:</strong> ${hl(ip.workaround)}</div>
+    </div>` : '';
+  return `
+    <div class="comp-card" id="card-${d.id}" onclick="toggleCard(event, '${d.id}')">
+      <div class="cc-top">
+        <div class="cc-name">${hl(d.name)}<br><span class="cc-alias">${hl(d.alias)}</span></div>
+        <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">${ipc ? ipBadge : ''}<span class="tier tier-${d.tier}">${TIER_LABEL[d.tier]}</span><span class="expand-toggle"></span></div>
+      </div>
+      <div class="cc-meta">
+        <span class="cat-chip">${hl(d.cat)}</span>
+      </div>
+      <div class="cc-brief">${hl(d.brief)}</div>
+      ${d.examples.length ? `<div class="cc-examples">${exHtml}</div>` : ''}
+      <div class="cc-detail">
+        <div class="collapse-bar"><div class="collapse-progress"></div></div>
+        <div class="detail-grid">
+          <div class="detail-full"><div class="dl">Mechanism</div><div class="dv">${hl(d.mechanism)}</div></div>
+          <div><div class="dl">Receptors / Targets Affected</div><div class="dv">${hl(d.receptors)}</div></div>
+          ${d.tradeoffs ? `<div><div class="dl">Trade-offs & Considerations</div><div class="dv">${hl(d.tradeoffs)}</div></div>` : '<div></div>'}
+          <div class="detail-full"><div class="dl">Key References</div><div class="dv">${d.ref}</div></div>
+          ${ipBlock}
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderDevCard(d) {
+  return `
+    <div class="comp-card" id="card-${d.id}" onclick="toggleCard(event, '${d.id}')">
+      <div class="cc-top">
+        <div class="cc-name">${hl(d.name)}<br><span class="cc-alias" style="font-family:inherit;">${hl(d.alias)}</span></div>
+        <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;"><span class="risk-badge ${RISK_CLASS[d.risk]}">${RISK_LABEL[d.risk]}</span><span class="expand-toggle"></span></div>
+      </div>
+      <div class="cc-meta">
+        <span class="cat-chip">${hl(d.cat)}</span>
+        ${d.range ? `<span class="range-badge">${hl(d.range)}</span>` : ''}
+      </div>
+      <div class="cc-brief">${hl(d.brief)}</div>
+      <div class="cc-detail">
+        <div class="collapse-bar"><div class="collapse-progress"></div></div>
+        <div class="detail-grid">
+          <div><div class="dl">How It Is Calculated</div><div class="dv">${hl(d.calc)}</div></div>
+          <div><div class="dl">Therasik Threshold / Flag</div><div class="dv">${hl(d.threshold)}</div></div>
+          <div class="detail-full"><div class="dl">Clinical Interpretation</div><div class="dv">${hl(d.interp)}</div></div>
+          <div class="detail-full"><div class="dl">Tools Used</div><div class="dv">${hl(d.tools)}</div></div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderImmunoCard(d) {
+  return `
+    <div class="comp-card" id="card-${d.id}" onclick="toggleCard(event, '${d.id}')">
+      <div class="cc-top">
+        <div class="cc-name">${hl(d.name)}<br><span class="cc-alias" style="font-family:inherit;">${hl(d.alias)}</span></div>
+        <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;"><span class="risk-badge ${RISK_CLASS[d.risk]}">${RISK_LABEL[d.risk]}</span><span class="expand-toggle"></span></div>
+      </div>
+      <div class="cc-meta">
+        <span class="cat-chip">${hl(d.cat)}</span>
+      </div>
+      <div class="cc-brief">${hl(d.brief)}</div>
+      <div class="cc-detail">
+        <div class="collapse-bar"><div class="collapse-progress"></div></div>
+        <div class="detail-grid">
+          <div class="detail-full"><div class="dl">Mechanism</div><div class="dv">${hl(d.mechanism)}</div></div>
+          <div><div class="dl">Detection Methods</div><div class="dv">${hl(d.detection)}</div></div>
+          <div><div class="dl">Mitigation Strategies</div><div class="dv">${hl(d.mitigation)}</div></div>
+          <div class="detail-full"><div class="dl">Key References</div><div class="dv">${hl(d.ref)}</div></div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderWetCard(d) {
+  return `
+    <div class="comp-card" id="card-${d.id}" onclick="toggleCard(event, '${d.id}')">
+      <div class="cc-top">
+        <div class="cc-name">${hl(d.name)}<br><span class="cc-alias">${hl(d.alias)}</span></div>
+        <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;"><span class="expand-toggle"></span></div>
+      </div>
+      <div class="cc-meta">
+        <span class="cat-chip">${hl(d.cat)}</span>
+      </div>
+      <div class="cc-brief">${hl(d.brief)}</div>
+      <div class="cc-detail">
+        <div class="collapse-bar"><div class="collapse-progress"></div></div>
+        <div class="detail-grid">
+          <div class="detail-full"><div class="dl">Assay Principle</div><div class="dv">${hl(d.principle)}</div></div>
+          <div><div class="dl">Key Readout / Parameters</div><div class="dv">${hl(d.readout)}</div></div>
+          <div><div class="dl">Validates Computational Metrics</div><div class="dv">${hl(d.compLink)}</div></div>
+          <div class="detail-full"><div class="dl">Regulatory Context</div><div class="dv">${hl(d.context)}</div></div>
+          <div class="detail-full"><div class="dl">Key References</div><div class="dv">${d.ref}</div></div>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════
+// RENDER GRID
+// ═══════════════════════════════════════════════════════════
+function renderGrid {
+  const dom = DOMAINS[currentDomain];
+  const data = dom.data;
+  const q = searchTerm.toLowerCase;
+
+  const filtered = data.filter(d => {
+    const matchCat = !catFilter || d.cat === catFilter;
+    const matchTier = !tierFilter || d.tier === tierFilter;
+    const matchSearch = !q || [d.name, d.alias, d.brief, d.cat,
+      d.mechanism || '', d.examples ? d.examples.join(' ') : '',
+      d.interp || '', d.detection || '', d.mitigation || '',
+      d.principle || '', d.readout || '', d.compLink || '', d.context || '',
+      d.ip ? `${d.ip.holder} ${d.ip.key} ${d.ip.workaround} ${d.ip.status}` : ''].some(f => f.toLowerCase.includes(q));
+    return matchCat && matchTier && matchSearch;
+  });
+
+  // Group by category
+  const groups = {};
+  filtered.forEach(d => {
+    (groups[d.cat] = groups[d.cat] || []).push(d);
+  });
+
+  const gc = document.getElementById('grid-container');
+  const es = document.getElementById('empty-state');
+
+  if (filtered.length === 0) {
+    gc.innerHTML = '';
+    es.style.display = '';
+    document.getElementById('stats-chip').textContent = '0 entries';
+    return;
+  }
+  es.style.display = 'none';
+
+  let html = `<div class="domain-note"><p>${dom.note}</p></div>`;
+  for (const [cat, cards] of Object.entries(groups)) {
+    html += `<div class="cat-section">
+      <div class="cat-header">
+        <h2>${hl(cat)}</h2>
+        <span class="cat-count">${cards.length}</span>
+      </div>
+      <div class="card-grid">${cards.map(d => dom.card(d)).join('')}</div>
+    </div>`;
+  }
+  gc.innerHTML = html;
+  document.getElementById('stats-chip').textContent = `${filtered.length} / ${data.length} entries`;
+}
+
+// ═══════════════════════════════════════════════════════════
+// INTERACTIONS
+// ═══════════════════════════════════════════════════════════
+function toggleCard(ev, id) {
+  // Clicks on PubMed / external links must not bubble — otherwise the card toggles
+  // collapsed and hides the detail panel (looks like "lost content" until refresh).
+  if (ev && ev.target && typeof ev.target.closest === 'function') {
+    if (ev.target.closest('a, button, input, select, textarea, label')) return;
+  }
+  const el = document.getElementById('card-' + id);
+  if (el) el.classList.toggle('expanded');
+}
+
+function switchDomain(domain, btn) {
+  currentDomain = domain;
+  searchTerm = '';
+  catFilter = '';
+  tierFilter = '';
+  document.getElementById('search-input').value = '';
+  document.getElementById('cat-filter').value = '';
+  document.querySelectorAll('.dtab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  updateCatFilter;
+  const tierEl = document.getElementById('tier-filter');
+  tierEl.style.display = (domain === 'fc') ? '' : 'none';
+  renderGrid;
+  updateClearBtn;
+}
+
+function updateCatFilter {
+  const dom = DOMAINS[currentDomain];
+  const sel = document.getElementById('cat-filter');
+  sel.innerHTML = `<option value="">${dom.filterLabel}</option>`;
+  dom.cats.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c; opt.textContent = c;
+    sel.appendChild(opt);
+  });
+}
+
+function clearFilters {
+  searchTerm = '';
+  catFilter = '';
+  tierFilter = '';
+  document.getElementById('search-input').value = '';
+  document.getElementById('cat-filter').value = '';
+  document.getElementById('tier-filter').value = '';
+  updateClearBtn;
+  renderGrid;
+}
+
+function updateClearBtn {
+  const hasFilter = searchTerm || catFilter || tierFilter;
+  document.getElementById('clear-btn').classList.toggle('visible', !!hasFilter);
+}
+
+// ── Event listeners ──────────────────────────────────────
+document.getElementById('search-input').addEventListener('input', e => {
+  searchTerm = e.target.value.trim;
+  updateClearBtn;
+  renderGrid;
+});
+document.getElementById('cat-filter').addEventListener('change', e => {
+  catFilter = e.target.value;
+  updateClearBtn;
+  renderGrid;
+});
+document.getElementById('tier-filter').addEventListener('change', e => {
+  tierFilter = e.target.value;
+  updateClearBtn;
+  renderGrid;
+});
+
+// ── Init: handle ?tab= URL param ─────────────────────────
+const urlTab = new URLSearchParams(window.location.search).get('tab');
+if (urlTab && DOMAINS[urlTab]) {
+  currentDomain = urlTab;
+  document.querySelectorAll('.dtab').forEach(b => {
+    b.classList.toggle('active', b.dataset.domain === urlTab);
+  });
+  if (urlTab !== 'fc') document.getElementById('tier-filter').style.display = 'none';
+}
+updateCatFilter;
+renderGrid;
+</script>
+</body>
+</html>
+
+

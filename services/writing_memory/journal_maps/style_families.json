@@ -1,0 +1,66 @@
+{
+  "version": "0.1.0",
+  "updated_at": "2026-05-26",
+  "families": {
+    "generic_academic": {
+      "display": "Standard Academic",
+      "profile_key": "generic",
+      "description": "Default native-English academic style for journals without a verified family mapping.",
+      "status": "active"
+    },
+    "pnas_broad": {
+      "display": "PNAS / Broad Interest",
+      "profile_key": "pnas",
+      "description": "Broad-interest biological and biomedical research with concise significance framing.",
+      "status": "active"
+    },
+    "elife_bio": {
+      "display": "eLife / Mechanistic Biology",
+      "profile_key": "elife",
+      "description": "Mechanistic life-science writing with transparent claims and accessible logic.",
+      "status": "active"
+    },
+    "plos_bmc_open": {
+      "display": "PLOS / BMC Open Science",
+      "profile_key": "generic",
+      "description": "Clear open-science style for accessible biomedical reporting.",
+      "status": "seed"
+    },
+    "clinical_high_impact": {
+      "display": "Clinical High Impact",
+      "profile_key": "plos_med",
+      "description": "Clinically oriented writing with cautious claims and patient-impact framing.",
+      "status": "seed"
+    },
+    "nature_like": {
+      "display": "Nature-like Broad Interest",
+      "profile_key": "generic",
+      "description": "Broad-interest positioning; uses generic profile until a verified family profile is trained.",
+      "status": "placeholder"
+    },
+    "cell_like": {
+      "display": "Cell-like Mechanistic",
+      "profile_key": "elife",
+      "description": "Mechanistic biological storytelling; uses eLife seed profile until a dedicated family is trained.",
+      "status": "seed"
+    },
+    "methods_bioinformatics": {
+      "display": "Methods / Bioinformatics",
+      "profile_key": "generic",
+      "description": "Method-focused manuscripts where reproducibility and technical clarity dominate.",
+      "status": "placeholder"
+    },
+    "review_narrative": {
+      "display": "Narrative Review",
+      "profile_key": "generic",
+      "description": "Review-article synthesis style controlled primarily by article_type=review.",
+      "status": "placeholder"
+    },
+    "case_report_clinical": {
+      "display": "Clinical Case Report",
+      "profile_key": "plos_med",
+      "description": "Clinical case-report style controlled primarily by article_type=case_report.",
+      "status": "seed"
+    }
+  }
+}

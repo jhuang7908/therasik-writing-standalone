@@ -1,0 +1,228 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42148735",
+    "pmcid": "PMC13183377",
+    "doi": "10.7554/eLife.103359.4.sa2",
+    "journal": "eLife",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "mechanism_gap",
+    "dominant_frame": "molecular_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "problem-gap-solution-implication",
+    "claim_chain": [
+      "Oviposition rhythm is less studied due to technical limitations",
+      "We developed semi-automated methods to overcome these constraints",
+      "Central clock neurons are key for oviposition timing",
+      "LNd neurons are necessary while LNv and DN neurons are dispensable",
+      "Connectome analysis reveals direct connections between Cry+ LNds and oviposition neurons",
+      "E1 LNds-oviIN connection mediates timing of egg laying rhythms"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "show",
+      "found",
+      "observed",
+      "suggest",
+      "reveal",
+      "display",
+      "underscore",
+      "posit",
+      "hypothesize",
+      "propose",
+      "demonstrate"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State technical or conceptual challenge in the field",
+      "Describe methodological innovation or approach taken",
+      "Present key experimental finding with supporting detail",
+      "Contrast with previous work or alternative scenarios",
+      "Interpret mechanistic implications",
+      "Acknowledge limitations or alternative explanations"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Methodological rigor and reproducibility of egg collection system",
+      "Statistical validity given low data points per cycle",
+      "Completeness of neuronal cluster screening",
+      "Functional validation of connectome predictions",
+      "Comparison with locomotor activity control mechanisms"
+    ],
+    "likely_attacks": [
+      "Oviposition rhythm is less consolidated than locomotor activity even in LD",
+      "Single fly data might not look rhythmic when analyzed individually",
+      "Cannot rule out contribution of PDF-expressing neurons",
+      "Disruption of DN1p clock does not abolish oviposition rhythm despite controlling oogenesis rhythm",
+      "E3-pC1b connection may be less important due to upstream position in circuit"
+    ],
+    "inference_basis": "The paper explicitly states that oviposition rhythm is less consolidated than locomotor activity rhythms and that single fly data might not look rhythmic. It acknowledges that PDF-expressing neuron contribution cannot be ruled out. The paper addresses the apparent paradox that DN1p control oogenesis rhythm but their disruption does not abolish oviposition rhythm. It also hedges on the importance of the E3-pC1b connection by stating it is hypothesized to be less important and uses tentative language about pC1b role in receptivity."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "we cannot rule out a contribution of PDF-expressing neurons",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "underscoring a key role of the central clock",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "Our data posits the E1 LNds-oviIN connection as the candidate to mediate the timing of egg laying rhythms",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "it is tempting to speculate that this behavior may have a circadian rhythm",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "these results reveal that Cry + LNd neurons have a leading role in the control of the egg-laying rhythm",
+        "category": "claim"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "The oviposition rhythm is one of the less studied behavioral traits of Drosophila",
+      "category": "opening"
+    },
+    {
+      "phrase": "To tackle these limitations, we developed a semi-automated method",
+      "category": "transition"
+    },
+    {
+      "phrase": "We observed that the oviposition rhythm is less consolidated than locomotor activity rhythms",
+      "category": "claim"
+    },
+    {
+      "phrase": "Surprisingly, this happens even in LD",
+      "category": "claim"
+    },
+    {
+      "phrase": "we cannot rule out a contribution",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Taken together, these results show that",
+      "category": "transition"
+    },
+    {
+      "phrase": "This is in stark contrast with the situation for locomotor activity",
+      "category": "transition"
+    },
+    {
+      "phrase": "Interestingly, however",
+      "category": "transition"
+    },
+    {
+      "phrase": "one might wonder why",
+      "category": "transition"
+    },
+    {
+      "phrase": "It is important to understand that",
+      "category": "transition"
+    },
+    {
+      "phrase": "which is the hypothesis more supported by our results",
+      "category": "claim"
+    },
+    {
+      "phrase": "Somewhat surprisingly",
+      "category": "transition"
+    },
+    {
+      "phrase": "underscoring a degree of specificity",
+      "category": "claim"
+    },
+    {
+      "phrase": "As far as we know",
+      "category": "hedge"
+    },
+    {
+      "phrase": "has just begun to be unraveled",
+      "category": "opening"
+    },
+    {
+      "phrase": "providing the anatomical substrate for our experimental results",
+      "category": "claim"
+    },
+    {
+      "phrase": "Our data posits",
+      "category": "claim"
+    },
+    {
+      "phrase": "We hypothesize that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "it is tempting to speculate that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "underscoring a key role",
+      "category": "claim"
+    },
+    {
+      "phrase": "in agreement with previous reports",
+      "category": "transition"
+    },
+    {
+      "phrase": "suggesting a more complex scenario",
+      "category": "implication"
+    },
+    {
+      "phrase": "The persistence of oviposition rhythm suggests that",
+      "category": "claim"
+    },
+    {
+      "phrase": "these results reveal that",
+      "category": "claim"
+    },
+    {
+      "phrase": "Average eggs collected as a function of time",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Schematic diagram of the neurons",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Demonstration of the functioning of",
+      "category": "figure_legend"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers were included. The profile accurately reflects the paper's mechanistic focus on circadian control of oviposition through specific neuronal clusters, with appropriate hedging around limitations and alternative explanations."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T12:57:00.440519+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\elife\\42149114.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

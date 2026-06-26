@@ -1,0 +1,66 @@
+{
+  "schema_version": "0.1.0",
+  "journal": { "key": "lancet", "display": "The Lancet" },
+  "spec_version": "0.1.0",
+  "sourced_from": [
+    { "url": "https://www.thelancet.com/lancet/information-for-authors", "label": "The Lancet Information for Authors", "captured_at": null },
+    { "url": "https://www.thelancet.com/pb/assets/raw/Lancet/authors/tlrm-info-for-authors-1718284105041.pdf", "label": "The Lancet Author Submission Pack", "captured_at": null }
+  ],
+  "captured_at": null,
+
+  "article_types": [
+    { "value": "Article (Research)", "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" },
+    { "value": "Review", "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" },
+    { "value": "Seminar", "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" },
+    { "value": "Correspondence", "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" }
+  ],
+
+  "structure": {
+    "required_sections": { "value": ["summary","research_in_context","introduction","methods","results","discussion","references"], "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" },
+    "optional_sections": { "value": ["contributors","declaration_of_interests","data_sharing_statement","acknowledgments","supplementary_appendix"], "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" },
+    "research_in_context": { "value": "Mandatory — three subsections: 'Evidence before this study' / 'Added value of this study' / 'Implications of all the available evidence'.", "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" }
+  },
+
+  "abstract": {
+    "word_limit": { "value": 300, "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors", "notes": "Lancet uses 'Summary' instead of 'Abstract'." },
+    "structured": { "value": true, "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors", "notes": "Sections: Background / Methods / Findings / Interpretation / Funding." }
+  },
+
+  "main_text": {
+    "word_limit": { "value": 4500, "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors", "notes": "Article ≤4500 words (excluding Summary, refs, figures, tables)." },
+    "figure_count_limit": { "value": 8, "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" },
+    "table_count_limit": { "value": 5, "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" },
+    "supplementary_policy": { "value": "Supplementary appendix encouraged for protocol, statistical analysis plan, detailed methods.", "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" }
+  },
+
+  "figures_tables": {
+    "figure_resolution": { "value": "≥300 dpi at print size.", "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" },
+    "color_policy": { "value": "Colour accepted; use accessible palettes.", "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" },
+    "legend_word_limit": { "value": null, "verification_status": "unverified", "source_url": null },
+    "accepted_formats": { "value": ["TIFF","EPS","PDF"], "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" }
+  },
+
+  "declarations": {
+    "competing_interests": { "value": "Mandatory ICMJE Disclosure Form per author + Declaration of Interests in text.", "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" },
+    "funding_statement": { "value": "Mandatory — listed in Summary's Funding section AND main text.", "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" },
+    "author_contributions": { "value": "Mandatory — Contributors section detailing each author's role.", "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" },
+    "ethics_statement": { "value": "IRB/ethics-committee approval ID + trial registration ID mandatory.", "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" },
+    "consent_statement": { "value": "Mandatory for human-subject research.", "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" },
+    "reporting_checklist": { "value": "CONSORT/STROBE/PRISMA/STARD required where applicable.", "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" }
+  },
+
+  "data_and_code": {
+    "data_availability": { "value": "Mandatory Data Sharing Statement.", "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" },
+    "code_availability": { "value": "Recommended.", "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" },
+    "preferred_repositories": { "value": ["ClinicalTrials.gov","ISRCTN","Vivli","DRYAD"], "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" },
+    "accession_required": { "value": true, "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" }
+  },
+
+  "reference_style_id": "lancet_numbered_vancouver",
+  "reference_limit": { "value": 50, "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" },
+
+  "notes": [
+    { "value": "Lancet uses British English spelling.", "verification_status": "published_guideline", "source_url": "https://www.thelancet.com/lancet/information-for-authors" },
+    { "value": "Trial pre-registration required.", "verification_status": "published_guideline", "source_url": "https://www.icmje.org/recommendations/browse/publishing-and-editorial-issues/clinical-trial-registration.html" }
+  ]
+}

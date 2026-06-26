@@ -1,0 +1,221 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "41802176",
+    "pmcid": "PMC13002101",
+    "doi": "10.1371/journal.pmed.1004962",
+    "journal": "PLOS Medicine",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "data_first",
+    "dominant_frame": "epidemiology_population",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "clinical_question-cohort-result-policy",
+    "claim_chain": [
+      "PrEP effectively reduces HIV but does not protect against bacterial STIs",
+      "High rates of bacterial STIs have been documented among PrEP users",
+      "We evaluated the association between PrEP use and STI risk in African women",
+      "Despite high rates of condomless sex, PrEP use was not associated with increased STI risk",
+      "HIV incidence was low overall, with no infections among consistent PrEP users",
+      "75% of new HIV acquisitions occurred in women who declined PrEP, representing missed opportunities"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "found",
+      "evaluated",
+      "conducted",
+      "included",
+      "occurred",
+      "suggest",
+      "represent",
+      "highlight",
+      "increased",
+      "observed"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State main finding with quantitative result",
+      "Compare to prior literature or alternative groups",
+      "Acknowledge limitations or alternative explanations",
+      "Restate implication or clinical significance"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Objective measurement of PrEP adherence rather than self-report",
+      "Comprehensive STI testing including syphilis and Trichomonas",
+      "Generalizability beyond family planning clinic settings",
+      "Control for confounding in observational design",
+      "Statistical power for HIV incidence comparisons"
+    ],
+    "likely_attacks": [
+      "Self-selection bias in PrEP initiation groups",
+      "Urine testing less sensitive than vaginal or endocervical swabs",
+      "No objective drug level testing to confirm PrEP use",
+      "Residual confounding from unmeasured or poorly measured covariates",
+      "Selection bias from non-random recruitment and participant compensation"
+    ],
+    "inference_basis": "The discussion explicitly lists multiple limitations: observational study with self-selection, urine GeneXpert less sensitive than swabs, no syphilis or Trichomonas testing, family planning clinic setting may reduce generalizability, PrEP use based on self-report prone to recall and social desirability bias, no objective measure of PrEP use, not powered for HIV incidence differences, non-random recruitment with compensation, and residual confounding possible. These self-acknowledged limitations directly inform the likely reviewer concerns."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "we reassuringly found no evidence to suggest that PrEP use is associated with increased risk for STIs",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "These secondary findings should be interpreted cautiously and viewed as hypothesis-generating rather than definitive",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "no HIV acquisition occurred in women who reported consistently high adherence to PrEP",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "may be attributed to differences in the study designs, outcome definition, and inclusion criteria",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "represent a missed opportunity but also highlight an urgent need to accelerate access",
+        "category": "causal"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "In this prospective cohort study among African women at substantial risk of HIV acquisition",
+      "category": "opening"
+    },
+    {
+      "phrase": "more than two-thirds used PrEP for HIV prevention at some point during the study period",
+      "category": "claim"
+    },
+    {
+      "phrase": "STI diagnoses were highly concentrated among young women ≤24 years",
+      "category": "claim"
+    },
+    {
+      "phrase": "Although STI diagnoses were high, the proportion of participants who had any STI diagnosis was relatively lower compared to",
+      "category": "transition"
+    },
+    {
+      "phrase": "The differences may be attributed to differences in the study designs",
+      "category": "hedge"
+    },
+    {
+      "phrase": "no HIV acquisition occurred in women who reported consistently high adherence to PrEP",
+      "category": "claim"
+    },
+    {
+      "phrase": "we reassuringly found no evidence to suggest that PrEP use is associated with increased risk for STIs",
+      "category": "claim"
+    },
+    {
+      "phrase": "a clear relationship was observed in this study between higher reported adherence and lower risk of HIV acquisition",
+      "category": "claim"
+    },
+    {
+      "phrase": "represent a missed opportunity but also highlight an urgent need to accelerate access",
+      "category": "implication"
+    },
+    {
+      "phrase": "These secondary findings should be interpreted cautiously and viewed as hypothesis-generating rather than definitive",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Future studies with larger samples and confirmatory analytic designs are needed to validate these associations",
+      "category": "limitation"
+    },
+    {
+      "phrase": "There are several strengths and limitations to our study",
+      "category": "transition"
+    },
+    {
+      "phrase": "this was an observational study, and groups were formed based on self-selection and self-reported oral PrEP use",
+      "category": "limitation"
+    },
+    {
+      "phrase": "there is a potential for underestimation of the overall STI prevalence",
+      "category": "limitation"
+    },
+    {
+      "phrase": "However, there is no impact on the primary question, as the non-testing syphilis or Trichomonas vaginosis applied uniformly across study exposure groups",
+      "category": "hedge"
+    },
+    {
+      "phrase": "this may reduce generalizability to other settings",
+      "category": "limitation"
+    },
+    {
+      "phrase": "which is prone to recall and social desirability bias",
+      "category": "limitation"
+    },
+    {
+      "phrase": "no objective measure of PrEP use was available, but the observation of a clear relationship between self-reported adherence and risk of HIV acquisition lends confidence to our findings",
+      "category": "hedge"
+    },
+    {
+      "phrase": "residual confounding is possible",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Despite these limitations, our large prospective data provides some of the most comprehensive empirical evidence",
+      "category": "claim"
+    },
+    {
+      "phrase": "Despite high rates of condomless sex in this study population, we found no evidence to suggest that PrEP use is associated with increased risk for STIs",
+      "category": "claim"
+    },
+    {
+      "phrase": "representing a missed opportunity for HIV prevention",
+      "category": "implication"
+    },
+    {
+      "phrase": "Figure depicts PrEP usage patterns over 12 months, with assessments at each study visit",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Each horizontal line represents one participant, color-coded by PrEP use status",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "The percentage of participants reporting condomless sex at last sexual encounter was assessed at baseline",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Estimates are stratified by PrEP use classification",
+      "category": "figure_legend"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. All numeric values appear in the source. No external references, author names, or invented data were included. The profile is based solely on the provided abstract, discussion, and figure legends."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:02:20.023331+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\plos_med\\41855201.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

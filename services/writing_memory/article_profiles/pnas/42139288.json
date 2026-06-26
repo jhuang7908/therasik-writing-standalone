@@ -1,0 +1,240 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42139288",
+    "pmcid": "PMC13187788",
+    "doi": "10.1073/pnas.2603294123",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "direct_problem_statement",
+    "dominant_frame": "method_innovation",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "question-method-result-interpretation",
+    "claim_chain": [
+      "Grokipedia was presented as a corrective to Wikipedia biases",
+      "Large-scale comparison of 17,790 matched article pairs reveals structural and content differences",
+      "Grokipedia articles are longer, more complex, with fewer references per word",
+      "Similarity measures reveal bimodal structure: some articles closely resemble Wikipedia, others diverge",
+      "Political bias shifts emerge primarily in divergent subset, showing rightward shift in news media sources",
+      "Pattern indicates selective, topic-specific divergence rather than uniform debiasing",
+      "AI-generated encyclopedias raise questions about transparency, provenance, and governance of knowledge"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "reveal",
+      "indicate",
+      "suggest",
+      "exhibit",
+      "show",
+      "contrast",
+      "reflect",
+      "produce",
+      "replace",
+      "extend",
+      "risk"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "Structural comparison opening with contrast to prior findings",
+      "Similarity measures and bimodal pattern description",
+      "Divergence in sourcing with ideological implications",
+      "Methodological and substantive scope contextualization",
+      "Comparison of transparency and accountability mechanisms",
+      "Broader implications for AI-generated knowledge systems"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Methodological transparency in bias measurement",
+      "Scope and generalizability of findings beyond news media sources",
+      "Validation of similarity measures and bimodal structure claims",
+      "Causal claims about AI-mediated reconfiguration",
+      "Broader implications for automated information systems"
+    ],
+    "likely_attacks": [
+      "Bias datasets primarily cover widely shared media domains and rely on audience-based measures",
+      "Estimates capture orientation of news media sources rather than full spectrum of cited references",
+      "Other aspects of sourcing remain outside scope of analysis",
+      "Claims about future propagation of biases lack direct evidence",
+      "Lack of mechanistic explanation for selective divergence patterns"
+    ],
+    "inference_basis": "The paper explicitly acknowledges methodological limitations: 'Because available bias datasets primarily cover widely shared media domains and rely on audience-based measures derived from social media activity, our estimates capture the orientation of news media sources rather than the full spectrum of cited references or the ideological content of individual sources.' It also notes scope limitations: 'other aspects of sourcing remain outside its scope' and 'The present analysis, therefore, isolates one specific dimension of this broader epistemic shift.' The discussion section preemptively addresses concerns about generalizability and measurement validity, suggesting these would be reviewer priorities. The forward-looking claims about future AI systems ('may itself be incorporated into future language models') and risk propagation are stated without direct evidence, making them vulnerable to challenge."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "This pattern contrasts with prior findings",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "suggesting expansion of narrative structure rather than simplification",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "This pattern indicates a hybrid authorship process",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "may itself be incorporated into future language models",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "risk propagating existing biases into the epistemic foundations",
+        "category": "causal"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "Structurally, Grokipedia articles are generally longer and exhibit more syntactically complex, less accessible prose",
+      "category": "opening"
+    },
+    {
+      "phrase": "This pattern contrasts with prior findings",
+      "category": "transition"
+    },
+    {
+      "phrase": "suggesting expansion of narrative structure rather than simplification",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Similarity measures reveal a bimodal structure",
+      "category": "claim"
+    },
+    {
+      "phrase": "This pattern indicates a hybrid authorship process",
+      "category": "claim"
+    },
+    {
+      "phrase": "Rather than reflecting a uniform correction",
+      "category": "transition"
+    },
+    {
+      "phrase": "this produces a patchwork of localized adjustments",
+      "category": "claim"
+    },
+    {
+      "phrase": "This should be understood in the context of both methodological and substantive scope",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Because available bias datasets primarily cover widely shared media domains",
+      "category": "limitation"
+    },
+    {
+      "phrase": "our estimates capture the orientation of news media sources rather than the full spectrum",
+      "category": "limitation"
+    },
+    {
+      "phrase": "other aspects of sourcing remain outside its scope",
+      "category": "limitation"
+    },
+    {
+      "phrase": "The present analysis, therefore, isolates one specific dimension",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Wikipedia's openness renders bias visible and contestable",
+      "category": "claim"
+    },
+    {
+      "phrase": "Grokipedia replaces this process with opaque, automated authorship",
+      "category": "claim"
+    },
+    {
+      "phrase": "embedding potential biases within model behavior rather than exposing them to scrutiny",
+      "category": "claim"
+    },
+    {
+      "phrase": "Grokipedia functions less as an epistemic alternative than as an AI-mediated reconfiguration",
+      "category": "claim"
+    },
+    {
+      "phrase": "these dynamics extend beyond a single platform",
+      "category": "implication"
+    },
+    {
+      "phrase": "risk propagating existing biases into the epistemic foundations",
+      "category": "implication"
+    },
+    {
+      "phrase": "whether such an AI-driven alternative can systematically correct the biases and limitations",
+      "category": "opening"
+    },
+    {
+      "phrase": "we conduct a large-scale computational comparison of 17,790 matched article pairs",
+      "category": "claim"
+    },
+    {
+      "phrase": "We find that Grokipedia pages are longer, more syntactically complex, and contain fewer references per word",
+      "category": "claim"
+    },
+    {
+      "phrase": "a considerable subset diverges",
+      "category": "claim"
+    },
+    {
+      "phrase": "particularly in articles related to religion and history",
+      "category": "claim"
+    },
+    {
+      "phrase": "These patterns indicate selective, topic-specific divergence",
+      "category": "claim"
+    },
+    {
+      "phrase": "raising questions about transparency, provenance, and the governance of knowledge",
+      "category": "implication"
+    },
+    {
+      "phrase": "Each point represents an article pair",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Positive values indicate a shift toward right-leaning sources",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Mean combined similarity scores between Wikipedia and Grokipedia articles within each topic",
+      "category": "figure_legend"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. Numeric values (17,790 matched article pairs, 20,000 most-edited pages) appear verbatim in the abstract. No external references, author names, or invented data were included. Reviewer preferences were inferred solely from the paper's explicit discussion of methodological limitations and scope constraints."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_phrase_violations": [
+    {
+      "field": "phrase_evidence",
+      "phrase": "Wikipedia's openness renders bias visible and contestable",
+      "issue": "not found in paper text"
+    }
+  ],
+  "_meta": {
+    "generated_at": "2026-05-25T13:19:28.125226+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\pnas\\42139288.json",
+    "phrase_check_violations": 1,
+    "schema_valid": true
+  }
+}

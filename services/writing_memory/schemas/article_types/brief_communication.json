@@ -1,0 +1,48 @@
+{
+  "id": "brief_communication",
+  "display": "Brief communication / short report",
+  "legacy_alias": "letter",
+  "sections_required": ["abstract", "introduction", "methods", "results", "discussion"],
+  "word_targets_default": {
+    "abstract": 150,
+    "introduction": 300,
+    "methods": 500,
+    "results": 800,
+    "discussion": 400
+  },
+  "introduction": {
+    "paragraph_count": 2,
+    "flow": ["gap_in_one_paragraph", "this_finding_in_one_paragraph"]
+  },
+  "results": {
+    "subsection_pattern": "single core figure",
+    "per_finding": ["one headline number", "one figure anchor"]
+  },
+  "discussion": {
+    "open_with": "finding_first",
+    "include_limitations_paragraph": false
+  },
+  "quality_rules": {
+    "_note": "Short format — every sentence must carry weight; no padding, no preamble paragraphs.",
+    "paragraph_words_max": 80,
+    "voice": {
+      "abstract": "active",
+      "introduction": "active",
+      "results": "active",
+      "methods": "passive_preferred",
+      "discussion": "active"
+    },
+    "sentence_length_mean_max": 22,
+    "citation_density": {
+      "introduction": "one_per_paragraph_max_2",
+      "results": "figure_anchor_only",
+      "discussion": "one_or_two_total"
+    },
+    "preferred_verbs": ["showed","found","demonstrated","observed","measured","identified"],
+    "forbidden_verbs": ["highlighted","underscored","showcased","unveiled","shed light on","paved the way","opened new avenues"],
+    "triplet_parallel_max_per_section": 0
+  },
+  "exemplar_patterns": {
+    "abstract": "One paragraph: gap, method in one line, main result, implication."
+  }
+}

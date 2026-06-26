@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Therasik antibody assessment and developability service — sequence analysis, humanization, immunogenicity prediction, structure evaluation, and affinity maturation.">
+  <meta name="keywords" content="antibody developability, VHH humanization, immunogenicity, CDR analysis, antibody engineering, Therasik">
+  <title> | Therasik —  AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root { --primary: #0d9488; --primary-dark: #0f766e; --text: #111827; --text-muted: #4b5563; --border: #e5e7eb; --bg: #ffffff; --bg-alt: #f9fafb; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 16px; line-height: 1.6; color: var(--text); background: var(--bg-alt); }
+    /* T-shaped: top header + sidebar + main */
+    .top-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 24px; background: var(--bg); border-bottom: 1px solid var(--border); flex-shrink: 0; gap: 16px; flex-wrap: wrap; }
+    .top-header .brand { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 24px; letter-spacing: -0.02em; display: flex; align-items: center; }
+    .top-header .brand a { text-decoration: none; color: inherit; display: flex; align-items: center; gap: 9px; }
+    .top-header .brand .syn { color: var(--primary); font-style: italic; font-weight: 700; }
+    .top-header .slogan { font-size: 13px; color: var(--text-muted); margin-left: 0; padding-left: 14px; border-left: 1px solid var(--border); font-family: 'Inter', sans-serif; white-space: nowrap; }
+    .top-header-nav { display: flex; align-items: center; gap: 8px; flex: 1; justify-content: center; }
+    .top-header-nav a { padding: 8px 14px; font-size: 14px; color: var(--text-muted); text-decoration: none; border-radius: 6px; transition: all 0.2s; }
+    .top-header-nav a:hover { color: var(--primary); background: var(--bg-alt); }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a::after { content: ' ▾'; font-size: 10px; opacity: 0.7; }
+    .nav-dropdown .dropdown-menu { position: absolute; top: 100%; left: 0; min-width: 160px; padding: 6px 0; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); opacity: 0; visibility: hidden; transform: translateY(-4px); transition: all 0.2s; z-index: 100; }
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown:focus-within .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .nav-dropdown .dropdown-menu a { display: block; padding: 10px 16px; color: var(--text); text-decoration: none; line-height: 1.4; border-radius: 0; white-space: normal; }
+    .nav-dropdown .dropdown-menu a:hover { background: var(--bg-alt); }
+    .nav-dropdown .dropdown-menu a .menu-title { display: block; font-weight: 600; font-size: 14px; color: var(--text); }
+    .nav-dropdown .dropdown-menu a:hover .menu-title { color: var(--primary); }
+    .nav-dropdown .dropdown-menu a .menu-desc { display: block; font-size: 12px; color: var(--text-muted); font-weight: 400; margin-top: 2px; }
+    .top-header-nav a.active { background: var(--primary); color: #fff; font-weight: 500; }
+    .top-header-nav a.active:hover,
+    .top-header-nav a.active:focus { background: var(--primary-dark); color: #fff; }
+    .top-header-nav a[href="index.html"] { background: transparent; color: var(--text-muted); }
+    .top-header-nav a[href="index.html"].active { background: var(--primary); color: #fff; font-weight: 500; }
+    .top-header-nav a[href="index.html"].active:hover,
+    .top-header-nav a[href="index.html"].active:focus { background: var(--primary-dark); color: #fff; }
+    .top-header-nav a[href="index.html"]:hover { color: var(--primary); background: var(--bg-alt); }
+    .top-header .header-right { display: flex; align-items: center; gap: 16px; }
+    .top-header .lang-switch { margin: 0; }
+    .page-wrap { display: flex; min-height: calc(100vh - 57px); }
+    .sidebar { width: 260px; flex-shrink: 0; background: var(--bg); border-right: 1px solid var(--border); padding: 28px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+    .sidebar h3 { font-size: 12px; font-weight: 600; color: var(--text-muted); margin: 0 24px 12px; padding-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+    .sidebar nav a { display: flex; align-items: center; padding: 12px 24px; color: var(--text); text-decoration: none; font-size: 15px; transition: all 0.2s; border-left: 3px solid transparent; }
+    .sidebar nav a:hover { background: var(--bg-alt); color: var(--primary); }
+    .sidebar nav a.active { background: #f0fdfa; color: var(--primary-dark); border-left-color: var(--primary); font-weight: 500; }
+    .nav-icon { width: 18px; height: 18px; margin-right: 10px; opacity: 0.7; flex-shrink: 0; }
+    .main { flex: 1; padding: 36px 48px 64px; max-width: 920px; }
+    .main h1 { font-size: 32px; font-weight: 700; color: var(--text); margin: 0 0 12px; letter-spacing: -0.02em; }
+    .main .subtitle { font-size: 17px; color: var(--text-muted); margin-bottom: 4px; }
+    .main h2 { font-size: 21px; font-weight: 600; color: var(--text); margin: 36px 0 16px; padding-top: 28px; border-top: 1px solid var(--border); }
+    .main h2:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+    .h2-icon { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; margin-right: 10px; border-radius: 8px; background: rgba(13,148,136,0.12); color: var(--primary); vertical-align: middle; }
+    .main p, .main ul, .main li { margin: 0 0 16px; color: var(--text); font-size: 16px; }
+    .main ul { padding-left: 24px; }
+    .main li { margin-bottom: 10px; }
+    .main .input-note { font-size: 14px; color: var(--text-muted); margin-top: 8px; }
+    .form-section { background: var(--bg); border-radius: 12px; padding: 32px; margin-top: 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); border: 1px solid var(--border); }
+    .form-row { display: flex; gap: 24px; margin-bottom: 24px; flex-wrap: wrap; }
+    .form-group { flex: 1; min-width: 180px; }
+    .form-group.full { flex: 1 1 100%; }
+    .form-group label { display: block; font-weight: 500; margin-bottom: 8px; color: var(--text); font-size: 14px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; font-family: inherit; }
+    .form-group textarea { min-height: 100px; resize: vertical; }
+    .form-group textarea.seq { font-family: 'Consolas', 'Monaco', monospace; font-size: 13px; min-height: 80px; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(13,148,136,0.15); }
+    .form-group .hint { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
+    .form-group .hint a { color: var(--primary); }
+    .btn { padding: 14px 28px; background: var(--primary); color: #fff; border: none; border-radius: 30px; font-size: 15px; font-weight: 500; cursor: pointer; }
+    .btn:hover { background: var(--primary-dark); }
+    .check-group { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+    .check-item { display: flex; align-items: center; gap: 10px; }
+    .check-item input { width: 18px; height: 18px; }
+    .check-item label { margin: 0; font-weight: 400; cursor: pointer; }
+    .breadcrumb { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
+    .breadcrumb a { color: var(--primary); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { color: #d1d5db; margin: 0 8px; }
+    .table-wrap { overflow-x: auto; margin: 24px 0; border-radius: 6px; border: 1px solid var(--border); }
+    .main table { min-width: 100%; background: var(--bg); border-collapse: separate; border-spacing: 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+    .main table th, .main table td { padding: 16px 20px; border: none; border-bottom: 1px solid var(--border); font-size: 15px; color: var(--text); text-align: left; }
+    .main table th { background: #f8fafc; font-weight: 700; color: #0f172a; text-transform: uppercase; font-size: 14px; letter-spacing: 0.05em; }
+    .main table tr:last-child td { border-bottom: none; }
+    .main table tr:hover td { background-color: #f9fafb; }
+    .main table .status-link { display: inline-block; font-size: 12px; font-weight: 600; color: var(--primary); background: rgba(13,148,136,0.08); padding: 2px 9px; border-radius: 20px; text-decoration: none; }
+    .main table .status-link:hover { background: rgba(13,148,136,0.15); color: var(--primary-dark); }
+    .disclaimer { font-size: 14px; color: var(--text-muted); font-style: italic; margin-top: 12px; padding: 12px 16px; background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 0 6px 6px 0; }
+    .file-upload-wrap { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .file-input-hidden { position: absolute; width: 0.1px; height: 0.1px; opacity: 0; overflow: hidden; z-index: -1; }
+    .file-upload-btn { padding: 10px 18px; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 6px; font-size: 14px; cursor: pointer; color: var(--text); }
+    .file-upload-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .file-upload-name { font-size: 14px; color: var(--text-muted); }
+    .brand-logo { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 28px; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 24px; padding: 0 24px; }
+    .brand-logo a { text-decoration: none; color: inherit; display: inline-block; transition: opacity 0.2s; }
+    .brand-logo a:hover { opacity: 0.85; }
+    .brand-logo .in { color: var(--text); }
+    .brand-logo .syn { color: var(--primary); font-style: italic; font-weight: 700; }
+    .brand-logo .bio { color: var(--text); }
+    .brand-logo .tagline { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; font-style: normal; }
+    .lang-switch { display: flex; gap: 4px; margin: 0 24px 20px; }
+    .lang-switch button { padding: 6px 12px; font-size: 13px; border: 1px solid var(--border); background: var(--bg); color: var(--text-muted); border-radius: 6px; cursor: pointer; font-family: 'Noto Sans SC', 'Inter', sans-serif; transition: all 0.2s; }
+    .lang-switch button:hover { border-color: var(--primary); color: var(--primary); }
+    .lang-switch button.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    body[data-lang="zh"] .lang-en { display: none !important; }
+    body[data-lang="zh"] .lang-zh { display: none !important; }
+    .nda-note { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: #6b7280; margin-top: 16px; padding: 10px 14px; background: rgba(13,148,136,0.04); border: 1px solid rgba(13,148,136,0.12); border-radius: 8px; line-height: 1.5; }
+    .nda-note svg { flex-shrink: 0; margin-top: 1px; stroke: var(--primary); }
+    .deliverables { margin: 12px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .deliverables li { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; color: #374151; }
+    .deliverables li .chk { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; flex-shrink: 0; background: rgba(13,148,136,0.1); border-radius: 50%; margin-top: 1px; }
+    .deliverables li .chk svg { width: 10px; height: 10px; stroke: var(--primary); stroke-width: 3; }
+    .faq-list { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+    .faq-item { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg); }
+    .faq-item summary { list-style: none; padding: 15px 20px; font-size: 15px; font-weight: 600; color: #111827; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary:hover { background: var(--bg-alt); }
+    .faq-item summary::after { content: "+"; font-size: 18px; font-weight: 400; color: var(--primary); flex-shrink: 0; transition: transform 0.2s; }
+    .faq-item[open] summary { background: rgba(13,148,136,0.04); border-bottom: 1px solid var(--border); }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-body { padding: 14px 20px 18px; font-size: 14px; color: #4b5563; line-height: 1.7; }
+    .faq-body p { margin: 0 0 8px; text-align: left !important; }
+    .faq-body p:last-child { margin-bottom: 0; }
+    .site-footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-muted); text-align: center; }
+    .site-footer a { color: var(--primary); text-decoration: none; }
+    .site-footer a:hover { text-decoration: underline; }
+    .mission-block { background-color: #ffffff; background-image: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.95) 100%), url('images/hero-bg.svg'); background-size: cover; background-position: center; border-radius: 12px; padding: 32px; margin-bottom: 32px; border: 1px solid rgba(13,148,136,0.1); border-left: 4px solid var(--primary); box-shadow: 0 4px 12px rgba(13,148,136,0.05); }
+    .mission-block p { margin: 0; font-size: 16px; line-height: 1.7; color: var(--text); }
+    .mission-block p + p { margin-top: 14px; }
+    /* Humanization table: card layout on mobile so Technology column wraps nicely */
+    @media (max-width: 768px) {
+      .humanization-table-wrap { overflow: visible; border: none; }
+      .humanization-table-wrap .humanization-table { display: block; }
+      .humanization-table-wrap .humanization-table thead { display: none; }
+      .humanization-table-wrap .humanization-table tbody tr { display: block; margin-bottom: 16px; padding: 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+      .humanization-table-wrap .humanization-table tbody td { display: block; padding: 10px 0; border: none; border-bottom: 1px solid var(--bg-alt); font-size: 15px; }
+      .humanization-table-wrap .humanization-table tbody tr td:last-child { border-bottom: none; padding-bottom: 0; }
+      .humanization-table-wrap .humanization-table tbody tr td:first-child { padding-top: 0; }
+      .humanization-table-wrap .humanization-table tbody td::before { content: attr(data-label); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); display: block; margin-bottom: 6px; }
+      body[data-lang="zh"] .humanization-table-wrap .humanization-table tbody td[data-label="Service"]::before { content: ""; }
+      body[data-lang="zh"] .humanization-table-wrap .humanization-table tbody td[data-label="Input"]::before { content: ""; }
+      body[data-lang="zh"] .humanization-table-wrap .humanization-table tbody td[data-label="Technology"]::before { content: ""; }
+    }
+    @media (max-width: 900px) {
+      .top-header { flex-wrap: wrap; padding: 12px 16px; gap: 10px; }
+      .top-header .brand { flex: 1 1 auto; min-width: 0; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+      .top-header .slogan { display: inline-block !important; font-size: 12px; padding-left: 10px; border-left: 1px solid var(--border); white-space: nowrap; }
+      .top-header .header-right { order: 2; margin-left: auto; }
+      .top-header-nav { order: 3; width: 100%; flex: 1 1 100%; justify-content: flex-start; flex-wrap: wrap; gap: 6px; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; border-top: 1px solid var(--border); padding-top: 10px; margin-top: 2px; }
+      .top-header-nav a { flex-shrink: 0; font-size: 13px; padding: 6px 10px; }
+      .page-wrap { flex-direction: column; min-height: auto; }
+      .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid #e0e0e0; padding: 16px; }
+      .sidebar nav { display: flex; flex-wrap: wrap; gap: 8px; }
+      .sidebar nav a { display: inline-flex; padding: 8px 12px; border-radius: 6px; border-left: none; }
+      .main { padding: 24px 24px 48px; }
+      .mission-block { padding: 20px; margin-bottom: 24px; }
+    }
+      body { padding-top: 72px; }
+    </style>
+</head>
+<body data-lang="zh" id="therasik-body">
+    
+  
+  <header class="top-header">
+    <div class="brand">
+      <a href="index.html">
+        <svg width="34" height="28" viewBox="0 0 32 30" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+          <path d="M16 2L2 10V22L16 28L30 22V10L16 2Z" fill="#0d9488" fill-opacity="0.1" stroke="#0d9488" stroke-width="2.5" />
+          <path d="M7 14L16 19L25 14" stroke="#0d9488" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M16 19V28" stroke="#0d9488" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M7 14L7 6C7 6 10 2 16 2C22 2 25 6 25 6L25 14" stroke="#0d9488" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="7" cy="6" r="2" fill="#0f766e" />
+          <circle cx="25" cy="6" r="2" fill="#0f766e" />
+          <circle cx="16" cy="18" r="2" fill="white" stroke="#0d9488" stroke-width="1.5" />
+        </svg>
+        <span><span style="color:#111827">Thera</span><span style="color:var(--primary); font-style:italic">sik</span></span>
+      </a>
+      <span class="slogan">AI </span>
+    </div>
+    <nav class="top-header-nav">
+      <a href="index.html"></a>
+      <a href="index.html#about"></a>
+      <div class="nav-dropdown" tabindex="0">
+        <a href="index.html#services"></a>
+        <div class="dropdown-menu">
+          <a href="Therasik_Antibody_Page.html">
+            <span class="menu-title"></span>
+            <span class="menu-desc"></span>
+          </a>
+          <a href="Therasik_CART_Page.html">
+            <span class="menu-title"> CAR-T </span>
+            <span class="menu-desc">ACTES </span>
+          </a>
+          <a href="Therasik_Bispecific_Page.html">
+            <span class="menu-title"></span>
+            <span class="menu-desc">Nano-Convert™ </span>
+          </a>
+        </div>
+      </div>
+      <a href="index.html#case-studies"></a>
+      <a href="index.html#workflow"></a>
+      <a href="index.html#faq"></a>
+      <a href="index.html#contact"></a>
+    </nav>
+  </header>
+
+
+  <div class="page-wrap">
+    <aside class="sidebar">
+      <h3 ></h3>
+      <nav>
+        <a href="#platform" class="nav-link active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></a>
+        <a href="#sequence" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M4 8h16M4 16h16"/></svg></a>
+        <a href="#developability" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg></a>
+        <a href="#immunogenicity" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></a>
+        <a href="#structure" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></a>
+        <a href="#affinity-maturation" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></a>
+        <a href="#humanization" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></a>
+        <a href="#full-report" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></a>
+        <a href="#submit" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></a>
+        <a href="#contact" class="nav-link"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+      </nav>
+    </aside>
+    <main class="main">
+      <div class="breadcrumb">
+        <a href="index.html"></a><span>/</span><a href="index.html#services"></a><span>/</span><span></span>
+      </div>
+      <!-- Hero / Mission -->
+      <div class="mission-block">
+        <p ><strong>：</strong> in silico 。 CDR 、、、、。</p>
+        <p >Therasik ，，。， 3–5 。<a href="index.html#about"> →</a></p>
+      </div>
+      <h1></h1>
+      <p class="subtitle">、，。</p>
+      <p class="disclaimer lang-zh">：Therasik  in silico ，。。</p>
+      <h2 id="platform"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span></h2>
+      <p >、、，。—— VH/VL  VHH ；。、、、、、、。</p>
+      <p >，—— 3–5 。 1,133 ，。，。。</p>
+      <h2 id="sequence"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M4 8h16M4 16h16"/></svg></span></h2>
+      <p ><strong></strong></p>
+      <ul >
+        <li><strong> CDR </strong> — IMGT/Kabat ，FR/CDR </li>
+        <li><strong></strong> —  1,133  identity (%)</li>
+        <li><strong>VH/VL </strong> — </li>
+      </ul>
+      <p class="input-note">：VH/VL </p>
+      <h2 id="developability"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg></span></h2>
+      <p ><strong> CMC</strong></p>
+      <ul >
+        <li><strong></strong> — pI、GRAVY、、</li>
+        <li><strong>SAP</strong> — 9-mer  7-mer </li>
+        <li><strong>CDR </strong> — (NG/NS)、(M/W)、(NxS/T)、 Cys</li>
+        <li><strong>TAP</strong> — Total CDR length、PSH、PPC、PNC、SFvCSP（Therasik ，）。<em> PDB  CDR 。</em></li>
+        <li><strong>CMC </strong> — pI 、FR-only </li>
+      </ul>
+      <p class="input-note">：VH/VL 。TAP  PDB  CDR 。</p>
+      <h2 id="immunogenicity"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span></h2>
+      <p ><strong></strong></p>
+      <ul >
+        <li><strong>MHC-II 27 </strong> — IEDB 、FR </li>
+        <li><strong></strong> — </li>
+        <li><strong></strong> — Parker ；SASA （ PDB ）</li>
+        <li><strong></strong> — IGHV/IGKV/IGLV </li>
+      </ul>
+      <p class="input-note">：VH/VL （PDB ）</p>
+      <h2 id="structure"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span></h2>
+      <p ><strong></strong></p>
+      <ul >
+        <li><strong> (Fab) </strong> — 13 ：VH-VL 、、Vernier SASA、CDR 、pLDDT</li>
+        <li><strong>VHH </strong> — 、CDR 、pLDDT</li>
+        <li><strong>-</strong> — BSA、paratope/epitope 、H 、、</li>
+        <li><strong></strong> — 、、BSA/SC </li>
+      </ul>
+      <p class="input-note">：PDB（Fab、VHH -）。 ID。</p>
+      <h2 id="affinity-maturation"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span></h2>
+      <p ><strong></strong></p>
+      <p >。。。</p>
+      <ul >
+        <li><strong>-</strong> —  Ab-Ag  CDR ，</li>
+        <li><strong>-</strong> — - paratope </li>
+        <li><strong>VHH </strong> — VHH- CDR </li>
+      </ul>
+      <p class="input-note">： PDB。（ CDR-H3）。</p>
+      <h2 id="humanization"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span></h2>
+      <p ><strong></strong></p>
+      <p >。VH/VL ， 1,133 。</p>
+      <div class="table-wrap humanization-table-wrap">
+      <table class="humanization-table" style="width:100%; border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Service"><strong>VH/VL </strong></td>
+            <td data-label="Input"> VH  VL</td>
+            <td data-label="Technology">AbEngineCore V4.4 。， 842 。CDR  + 。。</td>
+          </tr>
+          <tr>
+            <td data-label="Service"><strong>VHH </strong></td>
+            <td data-label="Input"> VHH</td>
+            <td data-label="Technology">。 CDR 。。</td>
+          </tr>
+          <tr>
+            <td data-label="Service"><strong>VH  VHH</strong></td>
+            <td data-label="Input"> VH（ mAb）</td>
+            <td data-label="Technology">CDR  VHH ，。。。</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <div style="margin-top: 16px; margin-bottom: 24px;">
+        <a href="case_mumab4d5_humanization_showcase_zh.html" class="status-link" style="display:inline-flex; align-items:center; gap:6px; font-size:14px; font-weight:600; color:var(--primary); background:rgba(37,99,235,0.08); padding:6px 14px; border-radius:30px; text-decoration:none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          MuMAb4D5  →
+        </a>
+      </div>
+      <h2 id="full-report"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span></h2>
+      <p ><strong></strong></p>
+      <p >、、、、。Markdown  PDF ， JSON。 3–5 。</p>
+      <p class="input-note">：VH/VL （PDB ）</p>
+      <h2 id="deliverables"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span></h2>
+      <p>，：</p>
+      <ul class="deliverables">
+        <li><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div><strong>Kabat/IMGT </strong> —  CDR </div></li>
+        <li><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div><strong></strong> — IGHV/IGKV/IGLV </div></li>
+        <li><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div><strong></strong> — 、、CMC </div></li>
+        <li><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div><strong></strong> —  27  HLA </div></li>
+        <li><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div><strong>（3–5 ）</strong> — FR 、CDR </div></li>
+        <li><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div><strong></strong>（ PDB）— 、VH-VL 、</div></li>
+        <li><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div><strong></strong>— CDR </div></li>
+      </ul>
+
+      <h2 id="faq-ab"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span></h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>？</summary>
+          <div class="faq-body">
+            <p> NDA ，，，。</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>？</summary>
+          <div class="faq-body">
+            <p>// <strong>VH/VL</strong>、<strong>VHH</strong>、IgG ，。，。</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>？？</summary>
+          <div class="faq-body">
+            <p> <strong>3–5 </strong>。（FASTA ）； PDB ，。</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>，？</summary>
+          <div class="faq-body">
+            <p> FR 。<strong></strong> CDR ，。</p>
+          </div>
+        </details>
+      </div>
+
+      <h2 id="submit"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span></h2>
+      <p >，。 1–2 。</p>
+      <div class="form-section">
+        <!-- Form submits to Formspree -->
+        <form id="inquiry-form" action="https://formspree.io/f/mnjblezr" method="POST">
+          <input type="hidden" name="_subject" value="Therasik Inquiry">
+          <input type="hidden" name="_next" value="https://therasik.com/thanks.html">
+          <h3 style="margin-top: 0; margin-bottom: 20px;"></h3>
+          <div class="form-group full">
+            <div class="check-group">
+              <div class="check-item"><input type="checkbox" name="service_type" id="st1" value="assessment"><label for="st1">（、、、）</label></div>
+              <div class="check-item"><input type="checkbox" name="service_type" id="st2" value="humanization"><label for="st2"></label></div>
+            </div>
+          </div>
+          <div class="form-group full">
+            <label></label>
+            <div class="check-group">
+              <div class="check-item"><input type="checkbox" name="humanization" id="h1" value="vhvl"><label for="h1">VH/VL </label></div>
+              <div class="check-item"><input type="checkbox" name="humanization" id="h2" value="vhh"><label for="h2">VHH </label></div>
+              <div class="check-item"><input type="checkbox" name="humanization" id="h3" value="vh2vhh"><label for="h3">VH  VHH</label></div>
+            </div>
+          </div>
+          <div class="form-group full">
+            <label></label>
+            <div class="check-group">
+              <div class="check-item"><input type="checkbox" name="affinity" id="a1" value="ab_ag"><label for="a1">-</label></div>
+              <div class="check-item"><input type="checkbox" name="affinity" id="a2" value="ligand_receptor"><label for="a2">-</label></div>
+              <div class="check-item"><input type="checkbox" name="affinity" id="a3" value="vhh"><label for="a3">VHH </label></div>
+            </div>
+          </div>
+          <h3 style="margin-top: 24px; margin-bottom: 20px;"></h3>
+          <div class="form-group full">
+            <label for="vh">VH （，）</label>
+            <textarea id="vh" name="vh" class="seq" placeholder="EVQLVESGGGLVQPGGSLRLSCAAS..."></textarea>
+            <span class="hint"></span>
+          </div>
+          <div class="form-group full">
+            <label for="vl">VL （，）</label>
+            <textarea id="vl" name="vl" class="seq" placeholder="EIVLTQSPATLSLSPGERATLSC..."></textarea>
+            <span class="hint">（κ  λ）。VHH  VH  VHH 。</span>
+          </div>
+          <div class="form-group full">
+            <label></label>
+            <div class="check-group">
+              <div class="check-item"><input type="checkbox" name="services" id="s1" value="sequence"><label for="s1"></label></div>
+              <div class="check-item"><input type="checkbox" name="services" id="s2" value="developability"><label for="s2"></label></div>
+              <div class="check-item"><input type="checkbox" name="services" id="s3" value="immunogenicity"><label for="s3"></label></div>
+              <div class="check-item"><input type="checkbox" name="services" id="s4" value="structure"><label for="s4"></label></div>
+              <div class="check-item"><input type="checkbox" name="services" id="s5" value="full"><label for="s5"></label></div>
+              <div class="check-item"><input type="checkbox" name="services" id="s_other" value="other"><label for="s_other"> / </label></div>
+            </div>
+          </div>
+          <div class="form-group full">
+            <label>PDB </label>
+             and mention your inquiry in the subject or body.</p>
+            <p class="hint" style="margin: 0;">，。 PDB ， <a href="mailto:contact@therasik.com">contact@therasik.com</a>，。</p>
+          </div>
+          <div class="form-group full">
+            <label for="message"></label>
+            <textarea id="message" name="message"   placeholder="： ID、CDR "></textarea>
+          </div>
+          <h3 style="margin-top: 0; margin-bottom: 20px;"></h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname"> *</label>
+              <input type="text" id="fname" name="fname" required>
+            </div>
+            <div class="form-group">
+              <label for="lname"> *</label>
+              <input type="text" id="lname" name="lname" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="org"> *</label>
+              <input type="text" id="org" name="org" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone"></label>
+              <input type="tel" id="phone" name="phone">
+            </div>
+          </div>
+          <div class="form-group full" style="margin-top: 16px;">
+            <div class="check-group">
+              <div class="check-item">
+                <input type="checkbox" name="newsletter" id="newsletter" value="yes">
+                <label for="newsletter">
+                  
+                </label>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 24px;">
+            <button type="submit" class="btn"></button>
+          </div>
+          <p class="nda-note">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+             NDA 。，，。
+          </p>
+        </form>
+      </div>
+      <!-- Contact -->
+      <h2 id="contact"><span class="h2-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span></h2>
+      <p >：</p>
+      <p style="margin: 16px 0;"><a href="mailto:contact@therasik.com" style="font-size: 18px; font-weight: 600; color: var(--primary);">contact@therasik.com</a></p>
+      <p  style="color: var(--text-muted); font-size: 14px;"> 1–2 。</p>
+      
+  
+  <footer class="site-footer">
+    <p>© 2026 Therasik · <a href="https://therasik.com">therasik.com</a> · <a href="mailto:contact@therasik.com">contact@therasik.com</a></p>
+  </footer>
+
+
+    </main>
+  </div>
+  <script>
+    function setTopNavActive {
+      var hash = window.location.hash || '';
+      document.querySelectorAll('.top-header-nav a[href^="#"]').forEach(function(a) {
+        a.classList.toggle('active', a.getAttribute('href') === hash);
+      });
+    }
+    setTopNavActive;
+    window.addEventListener('hashchange', setTopNavActive);
+    document.querySelectorAll('.nav-link').forEach(a => {
+      a.addEventListener('click', function(e) {
+        e.preventDefault;
+        const id = this.getAttribute('href').slice(1);
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+    const sections = ['services','platform','sequence','developability','immunogenicity','structure','affinity-maturation','humanization','full-report','submit','contact'];
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        document.querySelectorAll('.nav-link').forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+        });
+      });
+    }, { rootMargin: '-20% 0px -60% 0px' });
+    sections.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
+    // Form submits to Formspree. 
+    // Handle AJAX submission to allow local testing redirection
+    const form = document.getElementById('inquiry-form');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault;
+        const btn = form.querySelector('button[type="submit"]');
+        const originalText = btn.innerText;
+        btn.disabled = true;
+        btn.innerText = document.body.getAttribute('data-lang') === 'zh' ? '...' : 'Submitting...';
+        const formData = new FormData(form);
+        fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        }).then(response => {
+          if (response.ok) {
+            // Success - redirect to thanks page
+            window.location.href = 'thanks.html';
+          } else {
+            response.json.then(data => {
+              if (Object.hasOwn(data, 'errors')) {
+                alert(data["errors"].map(error => error["message"]).join(", "));
+              } else {
+                alert("Oops! There was a problem submitting your form");
+              }
+            });
+            btn.disabled = false;
+            btn.innerText = originalText;
+          }
+        }).catch(error => {
+          alert("Oops! There was a problem submitting your form");
+          btn.disabled = false;
+          btn.innerText = originalText;
+        });
+      });
+    }
+  </script>
+</body>
+</html>

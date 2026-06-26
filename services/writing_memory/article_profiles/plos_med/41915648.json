@@ -1,0 +1,231 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "41926348",
+    "pmcid": "PMC13046137",
+    "doi": "10.1371/journal.pmed.1004642",
+    "journal": "PLOS Medicine",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "data_first",
+    "dominant_frame": "epidemiology_population",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "question-method-result-interpretation",
+    "claim_chain": [
+      "Sugary drink taxes reduce sales in supermarkets but their impact in restaurants is unknown",
+      "We analyzed millions of transactions from fast food restaurants in five jurisdictions with taxes",
+      "Overall, taxes were not associated with meaningful changes in beverage calories purchased",
+      "Oakland showed reductions in combo meal beverage calories; Philadelphia showed total calorie reductions",
+      "Results suggest current tax sizes may be too small to change restaurant purchases",
+      "Restaurant consumers may differ from retail consumers in their response to taxes"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "found",
+      "observed",
+      "reported",
+      "suggest",
+      "may",
+      "examined",
+      "used",
+      "estimated",
+      "defined",
+      "identified",
+      "compared"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State main finding with quantitative result",
+      "Compare to prior literature or other jurisdictions",
+      "Provide mechanistic or contextual explanation",
+      "Acknowledge limitations or alternative explanations",
+      "Connect to broader implications or policy relevance"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Generalizability beyond single restaurant chain",
+      "Completeness of transaction data (in-store vs drive-through)",
+      "Validity of synthetic control matching approach",
+      "Potential confounding by unmeasured characteristics",
+      "Representativeness of Cook County sample (47 of 60 restaurants)"
+    ],
+    "likely_attacks": [
+      "Exclusion of 30% of transactions (in-store) limits conclusions",
+      "Majority of sample from Cook County where tax was repealed after 4 months",
+      "Cannot observe demographic characteristics of purchasers",
+      "Quasi-experimental design may have unobserved confounding",
+      "Results may not generalize to other restaurant types or jurisdictions"
+    ],
+    "inference_basis": "The paper explicitly states 'A key limitation of our study was the exclusion of beverage calorie data from in-store transactions (~30% of the sample)' and 'The majority of the restaurants in our sample (47 out of 60) were located in Cook County, where the tax was repealed after 4 months'. It acknowledges 'it is possible that unobserved characteristics of comparison restaurants were correlated with sugary drink tax implementation' and 'our data may not be generalizable to all restaurant settings or jurisdictions'. The authors also note 'We do not know the demographic characteristics of the person(s) who made the transactions'. These self-identified limitations form the basis for inferring likely reviewer concerns."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "was not associated with meaningful changes in beverage calories purchased over time",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "may have changed their non-beverage purchases after tax implementation",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "suggests that the sizes of sugary drink taxes in the U.S. are too small to effect meaningful changes to restaurant purchases",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "it is possible that unobserved characteristics of comparison restaurants were correlated with sugary drink tax implementation",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "our data may not be generalizable to all restaurant settings or jurisdictions",
+        "category": "generalization"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "We found that the implementation of sugary drink taxes in fast food restaurants in five U.S. jurisdictions was not associated with meaningful changes in beverage calories purchased over time",
+      "category": "opening"
+    },
+    {
+      "phrase": "In contrast, a systematic review reported that sugary drink taxes are associated with a ~15% reduction in sugary drink sales in supermarkets",
+      "category": "transition"
+    },
+    {
+      "phrase": "potentially due to differences in baseline consumption, social norms, or other unmeasured population-level characteristics",
+      "category": "hedge"
+    },
+    {
+      "phrase": "customers ordered ~14% fewer beverage calories per transaction from combo meals",
+      "category": "claim"
+    },
+    {
+      "phrase": "A key limitation of our study was the exclusion of beverage calorie data from in-store transactions",
+      "category": "limitation"
+    },
+    {
+      "phrase": "it is possible that unobserved characteristics of comparison restaurants were correlated with sugary drink tax implementation",
+      "category": "limitation"
+    },
+    {
+      "phrase": "our data may not be generalizable to all restaurant settings or jurisdictions",
+      "category": "limitation"
+    },
+    {
+      "phrase": "suggests that the sizes of sugary drink taxes in the U.S. are too small to change beverage calories purchased in fast food restaurants",
+      "category": "implication"
+    },
+    {
+      "phrase": "provide evidence that customers may change their non-beverage purchases after tax implementation",
+      "category": "implication"
+    },
+    {
+      "phrase": "Our results are consistent with the one other study assessing the impact of sugary drink taxes on sales from restaurant purchases",
+      "category": "transition"
+    },
+    {
+      "phrase": "In the absence of randomization, our quasi-experimental approach was rigorous and accounted for secular trends over time",
+      "category": "claim"
+    },
+    {
+      "phrase": "we maintain that our limitations are an acceptable trade-off of analyzing a detailed set of objective data from millions of transactions",
+      "category": "claim"
+    },
+    {
+      "phrase": "The findings from our quasi-experimental study are valuable in that we used millions of transactions across five jurisdictions",
+      "category": "claim"
+    },
+    {
+      "phrase": "We used six years of transaction-level sales data from 7,341 Taco Bell restaurant locations",
+      "category": "other"
+    },
+    {
+      "phrase": "We used a difference-in-differences design with calendar month and restaurant fixed effects",
+      "category": "other"
+    },
+    {
+      "phrase": "Overall, we observed no association between taxes and changes in beverage calories per transaction",
+      "category": "claim"
+    },
+    {
+      "phrase": "our findings suggest that sugary drink taxes may not be effective in reducing beverage calorie consumption in fast food restaurants",
+      "category": "implication"
+    },
+    {
+      "phrase": "a signaling effect may have also shifted customers to purchase meals with lower overall calories",
+      "category": "hedge"
+    },
+    {
+      "phrase": "restaurant consumers may be less likely to travel to other jurisdictions for a single meal",
+      "category": "hedge"
+    },
+    {
+      "phrase": "We cannot observe whether larger taxes would be more effective using real-world data",
+      "category": "limitation"
+    },
+    {
+      "phrase": "The vertical dashed line represents the date of repeal for Cook County, IL",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Conditional on a transaction including a beverage item",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Unconditional on a transaction including a beverage item",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "This provides additional evidence to suggest that",
+      "category": "transition"
+    },
+    {
+      "phrase": "That said, it is possible that",
+      "category": "hedge"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, invented numbers, or author names were included. The profile is based entirely on the provided abstract, discussion, and figure legends."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_phrase_violations": [
+    {
+      "field": "phrase_evidence",
+      "phrase": "a signaling effect may have also shifted customers to purchase meals with lower overall calories",
+      "issue": "not found in paper text"
+    },
+    {
+      "field": "claim_strength_profile.examples.quoted_phrase",
+      "phrase": "suggests that the sizes of sugary drink taxes in the U.S. are too small to effect meaningful changes to restaurant purchases",
+      "issue": "not found in paper text"
+    }
+  ],
+  "_meta": {
+    "generated_at": "2026-05-25T13:04:02.213921+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\plos_med\\41915648.json",
+    "phrase_check_violations": 2,
+    "schema_valid": true
+  }
+}

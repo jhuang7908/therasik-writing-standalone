@@ -1,0 +1,221 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42127112",
+    "pmcid": "PMC13187790",
+    "doi": "10.1073/pnas.2531118123",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "mechanism_gap",
+    "dominant_frame": "method_innovation",
+    "tone": "assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "problem-gap-solution-implication",
+    "claim_chain": [
+      "Readout inversion is fundamental to quantitative image formation but has not been considered in functional superresolution imaging",
+      "FINICI is not restricted to fluctuating output and should suppress other characteristics inherent to these fluorescent proteins",
+      "The sensitivity of FINICI matches and can exceed that of FRET",
+      "FINICI can reveal signaling dynamics at superresolution",
+      "The superresolution visualization reported here will complement tools such as optogenetics to confirm the precise spatiotemporal control of active Src",
+      "Our imaging supports the literature and directly showed how cGMP compartmentalization is stimulation dependent"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "low",
+    "claim_strength": "strong",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "showed",
+      "revealed",
+      "demonstrated",
+      "supports",
+      "visualized",
+      "reported",
+      "confirmed",
+      "suggested",
+      "complement",
+      "generate",
+      "break",
+      "develop"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "Opening statement of principle or gap",
+      "Technical description of mechanism or approach",
+      "Comparison to existing methods or literature",
+      "Presentation of key findings with specific examples",
+      "Mechanistic interpretation of results",
+      "Broader implications or future directions"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Validation of biosensor responses with appropriate controls",
+      "Quantitative comparison to established methods like FRET",
+      "Demonstration across multiple biochemical systems",
+      "Temporal resolution and imaging parameters",
+      "Signal-to-noise considerations and expression levels"
+    ],
+    "likely_attacks": [
+      "Complexity introduced by photoswitching phase in fast protocols",
+      "Reliability concerns with basal-state minimization using long linkers",
+      "Need for optimization of switch orientation relative to RFP",
+      "Temporal resolution limitations",
+      "Expression level requirements for adequate signal-to-noise"
+    ],
+    "inference_basis": "The paper explicitly addresses validation steps: 'Each FINICI biosensor reported here was optimized over a range of excitation laser intensities with appropriate controls to validate responses.' It acknowledges temporal resolution limitations: 'The reported 51-s temporal resolution was limited here by resource/throughput.' It discusses photoswitching complexities: 'When using the fast protocol for FINICI-SrcAR, the photoswitching phase may give complexities.' It notes optimization needs: 'To further enhance a given FINICI biosensor, optimizing the switch orientation relative to the RFP will likely give the best return.' It mentions reliability issues: 'attempts at basal-state minimization with a long linker made these biosensors less reliable in FINICI readout.' It addresses expression concerns: 'very high expression is unnecessary and to aid signal-to-noise, cells with poor expression of the biosensor should be avoided.'"
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "the sensitivity of FINICI matches and can exceed that of FRET",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "FINICI can reveal signaling dynamics at superresolution",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "Our results suggested that SNO-stimulated cGMP drives less compartment weakening",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "we believe this perspective hints at an upstream-centric nature of cGMP signaling",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "directly showed how cGMP compartmentalization is stimulation dependent",
+        "category": "causal"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "Readout inversion is fundamental to quantitative image formation but has not been considered in functional superresolution imaging",
+      "category": "opening"
+    },
+    {
+      "phrase": "We break this barrier and rationally develop a genetically encoded principle",
+      "category": "opening"
+    },
+    {
+      "phrase": "As a principle, FINICI is not restricted to fluctuating output",
+      "category": "claim"
+    },
+    {
+      "phrase": "the sensitivity of FINICI matches and can exceed that of FRET",
+      "category": "claim"
+    },
+    {
+      "phrase": "It is genetically encodable, does not require the introduction of exogenous dyes or enzymes",
+      "category": "claim"
+    },
+    {
+      "phrase": "Data showed that FINICI can reveal signaling dynamics at superresolution",
+      "category": "claim"
+    },
+    {
+      "phrase": "We have outlined and shown the steps for adopting new inverse switches",
+      "category": "claim"
+    },
+    {
+      "phrase": "Each FINICI biosensor reported here was optimized over a range of excitation laser intensities with appropriate controls to validate responses",
+      "category": "claim"
+    },
+    {
+      "phrase": "The reported 51-s temporal resolution was limited here by resource/throughput",
+      "category": "limitation"
+    },
+    {
+      "phrase": "attempts at basal-state minimization with a long linker made these biosensors less reliable in FINICI readout",
+      "category": "limitation"
+    },
+    {
+      "phrase": "To further enhance a given FINICI biosensor, optimizing the switch orientation relative to the RFP will likely give the best return",
+      "category": "implication"
+    },
+    {
+      "phrase": "Our imaging supports the literature and directly showed how cGMP compartmentalization is stimulation dependent",
+      "category": "claim"
+    },
+    {
+      "phrase": "Our results suggested that SNO-stimulated cGMP drives less compartment weakening",
+      "category": "hedge"
+    },
+    {
+      "phrase": "we believe this perspective hints at an upstream-centric nature of cGMP signaling",
+      "category": "hedge"
+    },
+    {
+      "phrase": "The superresolution visualization reported here will complement tools such as optogenetics",
+      "category": "implication"
+    },
+    {
+      "phrase": "FINICI-SykAR will help visualize and differentiate between these models",
+      "category": "implication"
+    },
+    {
+      "phrase": "normalized pcSOFI images of live HeLa cells expressing WT raft-targeted biosensor before/after huEGF stimulation",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Domain structure of FINICI-cGi and resultant whole cell averaged fluorescence intensity traces",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Fast FINICI-cGi kymographs directly captured compartment weakening",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "The flexibilities introduced here to superresolution activity imaging",
+      "category": "transition"
+    },
+    {
+      "phrase": "Where applicable, appropriate filtering is applied to isolate the fluctuation phase containing statistical information",
+      "category": "other"
+    },
+    {
+      "phrase": "While the normalized pcSOFI response is independent of biosensor expression",
+      "category": "hedge"
+    },
+    {
+      "phrase": "very high expression is unnecessary and to aid signal-to-noise, cells with poor expression of the biosensor should be avoided",
+      "category": "limitation"
+    },
+    {
+      "phrase": "dynamic imaging remains possible by tuning a higher excitation intensity to optimally cycle the biosensors",
+      "category": "claim"
+    },
+    {
+      "phrase": "This is a significant obstacle for understanding the ways cells organize their signaling via nanodomains and compartments",
+      "category": "opening"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers were included. The profile is based solely on the provided abstract, discussion, and figure legends."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:18:46.425178+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\pnas\\42127112.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

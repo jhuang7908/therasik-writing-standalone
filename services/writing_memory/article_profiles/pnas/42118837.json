@@ -1,0 +1,232 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42118837",
+    "pmcid": "PMC13187773",
+    "doi": "10.1073/pnas.2603297123",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "field_importance",
+    "dominant_frame": "molecular_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "context-finding-mechanism-implication",
+    "claim_chain": [
+      "Functional divergence of upper and lower limbs is critical in hominin evolution",
+      "We identified thousands of regulatory elements and genes in developing human hand and foot skeleton",
+      "Regulatory and gene expression modules have similar profiles in hand and foot, providing genetic basis for morphological integration",
+      "Some modules are enriched for human-specific genomic features and could underlie evolution of human-specific autopod traits",
+      "Stronger enrichments for human-specific genomic features in foot than hand, consistent with stronger selective pressure during transition to bipedalism",
+      "Results highlight modular genetic architecture underlying human autopod evolution"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "identified",
+      "reveal",
+      "found",
+      "suggest",
+      "may have",
+      "could potentially",
+      "provides",
+      "implicating",
+      "show",
+      "highlighting"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State broad evolutionary context and study goal",
+      "Present main findings about modules and their patterns",
+      "Connect findings to predictions and evolutionary models",
+      "Discuss enrichments for human-specific genomic features in specific modules",
+      "Acknowledge limitations and complexities in interpretation",
+      "Propose future directions needed to address gaps",
+      "Conclude with broader implications for understanding human evolution"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Direct functional validation of identified regulatory elements",
+      "Comparative data from other primate species beyond chimps",
+      "Higher resolution spatial methods to validate bulk tissue findings",
+      "Earlier developmental timepoints to capture digit I-specific signals",
+      "Integration of proximal autopod bones and soft tissue data"
+    ],
+    "likely_attacks": [
+      "Cannot rule out possibility that few mutations outside modules had large contributions",
+      "Absence of genetic module defining digit I despite substantial anatomical change",
+      "Bulk tissue dissections lack anatomical precision for shape-related changes",
+      "Missing data on wrist, midfoot, and hindfoot bones that underwent substantial evolution",
+      "Lack of exploration of extrinsic signaling and mechanical impacts from neighboring tissues"
+    ],
+    "inference_basis": "The discussion explicitly states 'Linking the identified genomic changes to observed evolutionary changes in anatomy remains a major challenge' and 'we cannot rule out the possibility that a few mutations in elements either within or outside these modules had large contributions.' It notes 'Notably absent in our data, however, is a genetic module(s) defining digit I' and calls this a limitation. The authors repeatedly state 'future studies are necessary' for additional timepoints, proximal autopod bones, soft tissues, and higher resolution methods like 'spatial multiomics.' They acknowledge 'As this study was based on bulk chondrocyte tissue dissections, future research would also benefit from techniques with greater resolution' and note the need to 'explore the impacts of extrinsic signaling and mechanical impacts from neighboring tissues.'"
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "could potentially underlie the evolution of human-specific autopod traits",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "providing a genetic basis for models of human limb evolution",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "may have contributed to the reduction in phalangeal length",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "This provides partial support for our second prediction",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "we cannot rule out the possibility that a few mutations in elements either within or outside these modules had large contributions",
+        "category": "limitation"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "The functional divergence of the upper and lower limbs is a critical event in hominin evolution",
+      "category": "opening"
+    },
+    {
+      "phrase": "To further our understanding of the genetic mechanisms underlying these skeletal changes",
+      "category": "opening"
+    },
+    {
+      "phrase": "These data reveal substantial differences in gene expression and regulation",
+      "category": "claim"
+    },
+    {
+      "phrase": "Consistent with our first prediction",
+      "category": "transition"
+    },
+    {
+      "phrase": "providing a genetic basis for models of human limb evolution",
+      "category": "claim"
+    },
+    {
+      "phrase": "could potentially underlie the evolution of human-specific autopod traits",
+      "category": "hedge"
+    },
+    {
+      "phrase": "may have contributed to the reduction in phalangeal length",
+      "category": "causal"
+    },
+    {
+      "phrase": "implicating these genomic features in autopod evolution",
+      "category": "causal"
+    },
+    {
+      "phrase": "This provides partial support for our second prediction",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Linking the identified genomic changes to observed evolutionary changes in anatomy remains a major challenge",
+      "category": "limitation"
+    },
+    {
+      "phrase": "we cannot rule out the possibility",
+      "category": "hedge"
+    },
+    {
+      "phrase": "This is a limitation of our focus on modules",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Notably absent in our data, however",
+      "category": "limitation"
+    },
+    {
+      "phrase": "This suggests the possibility that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "future studies are necessary",
+      "category": "limitation"
+    },
+    {
+      "phrase": "future research would also benefit from techniques with greater resolution",
+      "category": "limitation"
+    },
+    {
+      "phrase": "a holistic approach that integrates datasets from multiple tissue types will ultimately be necessary",
+      "category": "implication"
+    },
+    {
+      "phrase": "Nevertheless, this study provides insights into the evolutionary history",
+      "category": "claim"
+    },
+    {
+      "phrase": "highlighting the modular genetic architecture underlying human autopod evolution",
+      "category": "claim"
+    },
+    {
+      "phrase": "We identified genetic modules based on patterns of gene expression or regulatory activity",
+      "category": "claim"
+    },
+    {
+      "phrase": "We show that some of these genetic modules are enriched for human-specific genomic features",
+      "category": "claim"
+    },
+    {
+      "phrase": "We find stronger enrichments for human-specific genomic features related to the foot than the hand",
+      "category": "claim"
+    },
+    {
+      "phrase": "consistent with models hypothesizing stronger selective pressure",
+      "category": "generalization"
+    },
+    {
+      "phrase": "Our results highlight the modular genetic architecture",
+      "category": "claim"
+    },
+    {
+      "phrase": "average percent change in length",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Volcano plot showing the differences in",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Average module eigengene expression",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "plotted onto a diagram of the autopod skeleton to show the spatial arrangement",
+      "category": "figure_legend"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, invented numbers, or author names were included. The profile accurately reflects the writing style of this evolutionary genomics paper with appropriate hedging and claim strength."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:39:18.166650+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\pnas\\42118837.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

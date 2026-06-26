@@ -1,0 +1,48 @@
+version: "1.2.0"
+name: insynbio-literature-search
+extends: nature-academic-search
+
+always_load:
+  - ../../_shared/core/principles.md
+  # nature-academic-search Stable core (T1→T2→T3 routing table)
+  - static/core/tools.md
+  - static/core/routing-and-ops.md
+  # InSynBio overlay
+  - static/core/tools-routing.md
+  # GDM science-skills OpenAlex layer (v1.2.0+)
+  - static/core/openalex-layer.md
+
+axes:
+  workflow:
+    detect: |
+      denovo_corpus | verify_citations | multi_source | mesh_strategy |
+      citation_file_mgmt | reference_mgmt | openalex_search | doi_verify — multi allowed.
+    values:
+      denovo_corpus: static/workflows/denovo-corpus.md
+      verify_citations: static/workflows/verify-citations.md
+      multi_source: static/workflows/multi-source.md
+      # GDM OpenAlex workflows (v1.2.0+)
+      openalex_search: static/workflows/openalex-search.md
+      doi_verify: static/workflows/doi-verify.md
+      # nature upstream workflows (on-demand via references/)
+      multi_source_search: references/workflows/wf1-multi-source-search.md
+      citation_verification: references/workflows/wf2-citation-verification.md
+      mesh_strategy: references/workflows/wf3-mesh-strategy.md
+      citation_file_mgmt: references/workflows/wf4-citation-file-mgmt.md
+      reference_mgmt: references/workflows/wf5-reference-mgmt.md
+    multi: true
+
+corpus_ssot:
+  review_b: config/denovo_literature_corpus.json
+  scripts:
+    build: scripts/build_review_b_reference_library.py
+    fetch_missing: scripts/denovo_literature/fetch_missing_review_refs.py
+    openalex_cli: scripts/insynbio_openalex.py
+
+api_layers:
+  # GDM science-skills adopted: OpenAlex (free polite pool, no key required)
+  openalex:
+    cli: scripts/insynbio_openalex.py
+    vendor_mirror: vendor/adopted/science-skills/openalex/SKILL_mirror.md
+    lock: vendor/science_skills.lock.json
+    key_env: OPENALEX_API_KEY        # optional — works without key (polite pool)

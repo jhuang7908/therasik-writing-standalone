@@ -1,0 +1,24 @@
+extends: existence
+message: "AI tone marker — sounds machine-generated: '%s'."
+level: warning
+ignorecase: true
+tokens:
+  - 'delve into'
+  - 'plays? a (?:crucial|pivotal|vital|key|important) role'
+  - '(?:robust|comprehensive|nuanced|holistic) (?:approach|framework|analysis)'
+  - 'cutting-edge'
+  - 'state-of-the-art'
+  - 'paradigm shift'
+  - 'revolutionary'
+  - 'unprecedented'
+  - 'leverage'
+  - 'leveraging'
+  - 'in the realm of'
+  - 'in the landscape of'
+  - 'navigate the complexities'
+  - 'shed light on'
+  - 'underscores? the importance'
+  - 'highlights? the (?:significance|importance)'
+  - 'lays? the (?:foundation|groundwork) for'
+  - 'opens? (?:up )?new avenues'
+  - 'paves? the way'

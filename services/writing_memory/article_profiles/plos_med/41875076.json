@@ -1,0 +1,227 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "41875076",
+    "pmcid": "PMC13012496",
+    "doi": "10.1371/journal.pmed.1004688.r008",
+    "journal": "PLOS Medicine",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "data_first",
+    "dominant_frame": "epidemiology_population",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "question-method-result-interpretation",
+    "claim_chain": [
+      "Severe infections have been linked to dementia but comorbidities may confound this association",
+      "We examined 170 diseases among 60,000+ dementia cases and 300,000+ controls using nationwide registries",
+      "We identified 29 diseases robustly associated with dementia including 2 severe infections",
+      "Less than one-seventh of excess dementia risk from infections was attributable to comorbidities",
+      "The associations between infections and dementia are largely independent of prior conditions",
+      "Severe infections may be independent risk factors for dementia"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "examined",
+      "identified",
+      "supports",
+      "suggests",
+      "indicates",
+      "found",
+      "showed",
+      "may",
+      "might",
+      "associated"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State main finding or context",
+      "Provide supporting evidence or detail from the data",
+      "Compare with previous literature or expectations",
+      "Acknowledge limitations or alternative explanations",
+      "State implication or interpretation"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Validity of register-based diagnoses and case ascertainment",
+      "Adequacy of adjustment for confounding",
+      "Appropriateness of statistical methods including multiple testing correction",
+      "Generalizability beyond Finnish population",
+      "Distinction between dementia subtypes"
+    ],
+    "likely_attacks": [
+      "Lack of baseline cognitive assessments and clinical examination data",
+      "Potential misclassification of dementia cases as controls due to delayed diagnosis",
+      "Missing data on specific infection treatments",
+      "Inability to assess psychosocial, behavioural, or biological confounders not captured in registries",
+      "Overly conservative Bonferroni correction may miss true associations",
+      "Analysis of all-cause dementia rather than subtypes"
+    ],
+    "inference_basis": "The paper explicitly lists limitations including: 'baseline cognitive assessments and clinical examination data leading to dementia and other disease diagnoses were not available', 'no data on specific treatments were available', 'We examined all-cause dementia as the outcome. Future work should investigate dementia subtypes', 'We may have missed some true associations because we...applied Bonferroni correction for multiple testing, which may be overly conservative', 'Some dementia cases may have been misclassified as controls owing to delayed dementia diagnosis', and 'We were not able to directly assess psychosocial, behavioural, or biological confounders that are not captured in nationwide registries.'"
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "the present study suggests that the associations between these infections and dementia are largely independent of prior conditions",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "supports the idea that severe infections are risk factors for dementia",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "may accelerate pre-existing preclinical stage of dementia rather than initiate neurodegeneration",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "These results support the role of severe infections as independent risk factors for dementia",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "We speculate that the relative contribution of infections on dementia risk might be stronger",
+        "category": "hedge"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "In this analysis of electronic health records from nationwide registries",
+      "category": "opening"
+    },
+    {
+      "phrase": "we examined 170 physical and mental diseases among more than 60,000 cases",
+      "category": "opening"
+    },
+    {
+      "phrase": "the present study suggests that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "supports the idea that",
+      "category": "claim"
+    },
+    {
+      "phrase": "However, as less than one-seventh of the excess dementia risk",
+      "category": "transition"
+    },
+    {
+      "phrase": "Supporting this reasoning, we found that",
+      "category": "transition"
+    },
+    {
+      "phrase": "Consistent with previous findings",
+      "category": "transition"
+    },
+    {
+      "phrase": "In contrast, evidence on",
+      "category": "transition"
+    },
+    {
+      "phrase": "may accelerate pre-existing preclinical stage of dementia",
+      "category": "hedge"
+    },
+    {
+      "phrase": "We speculate that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "The mechanisms underlying these differences are unclear",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Our study has some important strengths",
+      "category": "transition"
+    },
+    {
+      "phrase": "Our study also has some important limitations",
+      "category": "limitation"
+    },
+    {
+      "phrase": "baseline cognitive assessments and clinical examination data leading to dementia and other disease diagnoses were not available",
+      "category": "limitation"
+    },
+    {
+      "phrase": "This bias is unlikely to be major",
+      "category": "hedge"
+    },
+    {
+      "phrase": "We may have missed some true associations because",
+      "category": "limitation"
+    },
+    {
+      "phrase": "which may be overly conservative",
+      "category": "limitation"
+    },
+    {
+      "phrase": "would likely attenuate the observed associations",
+      "category": "hedge"
+    },
+    {
+      "phrase": "These results support the role of severe infections as independent risk factors for dementia",
+      "category": "claim"
+    },
+    {
+      "phrase": "showed that the increased incidence of dementia among individuals with severe infections is not attributable to these comorbid conditions",
+      "category": "claim"
+    },
+    {
+      "phrase": "The figure outlines the criteria used to select dementia cases and matched controls",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "The figure shows the steps used to identify the 29 diseases robustly associated with incident dementia",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Rate ratios and p-values are based on incidence-density sampling and matched analysis",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "The arrows indicate disease pairs in which the first-occurring diseases",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "vaccination against infectious diseases might be an effective strategy",
+      "category": "implication"
+    },
+    {
+      "phrase": "Future work should investigate dementia subtypes",
+      "category": "implication"
+    },
+    {
+      "phrase": "We were not able to directly assess psychosocial, behavioural, or biological confounders that are not captured in nationwide registries",
+      "category": "limitation"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, invented numbers, or author names were included. The profile is based solely on the provided abstract, discussion, and figure legends."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:02:23.929554+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\plos_med\\41875076.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

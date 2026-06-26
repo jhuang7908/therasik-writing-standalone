@@ -1,0 +1,97 @@
+{
+  "id": "nih_sbir_phase1",
+  "document_class": "grant",
+  "display": "NIH SBIR Phase I (Small Business Innovation Research)",
+  "agency": "NIH",
+  "mechanism": "R43",
+  "_provenance": "Structure reflects NIH SBIR/STTR Phase I (SF424 R&R) conventions. Phase I funding ceilings, page limits, and eligibility MUST be verified against the specific NOFO and the current SBIR/STTR program solicitation; agency-specific budget caps differ and change yearly.",
+  "sections_required": [
+    "specific_aims",
+    "significance",
+    "innovation",
+    "approach",
+    "commercialization_potential"
+  ],
+  "sections_optional": [
+    "preliminary_data",
+    "company_and_team",
+    "phase2_path"
+  ],
+  "page_limits": {
+    "specific_aims": {"pages": 1, "verify_against_nofo": true},
+    "research_strategy": {"pages": 6, "verify_against_nofo": true, "_note": "NIH SBIR Phase I Research Strategy is typically shorter than R01; confirm exact limit in the NOFO."}
+  },
+  "section_intent": {
+    "specific_aims": "Feasibility-focused aims for a short Phase I; clear go/no-go milestones.",
+    "significance": "Commercial and scientific problem; market/clinical need; why this is a small-business opportunity.",
+    "innovation": "Technical innovation and competitive differentiation vs existing products and prior SBIR/STTR awards.",
+    "approach": "Phase I feasibility plan with quantitative success criteria and milestones; risk mitigation.",
+    "commercialization_potential": "Target market, customers, competition, IP/FTO posture, path to revenue, and what Phase II would fund."
+  },
+  "budget_rules": {
+    "mechanism": "detailed",
+    "phase_total_cost_cap": "VERIFY_AGAINST_CURRENT_NIH_SBIR_GUIDELINE",
+    "_cap_note": "NIH follows SBA-set guideline ceilings for Phase I and may grant exceptions for specific topics; the exact dollar figure changes and is topic-dependent. VERIFY against the current solicitation.",
+    "salary_cap_applies": true,
+    "salary_cap_value": "VERIFY_AGAINST_CURRENT_NIH_GUIDE",
+    "allowed_categories": [
+      "personnel",
+      "equipment",
+      "travel",
+      "supplies",
+      "consultant",
+      "subaward_or_contract",
+      "other_direct",
+      "indirect_facilities_and_admin",
+      "fee_profit"
+    ],
+    "indirect": {
+      "base": "agency_dependent",
+      "rate_pct": "VERIFY_SBIR_INDIRECT_RULE",
+      "_note": "SBIR indirect/F&A handling differs from R01; small businesses without a negotiated rate may use a provisional rate per the solicitation."
+    },
+    "fee_profit": {
+      "allowed": true,
+      "rate_pct": "VERIFY_AGAINST_CURRENT_NIH_SBIR_GUIDELINE",
+      "_note": "SBIR allows a fixed fee (profit) — unusual vs research grants; verify allowable percentage."
+    },
+    "required_justification": ["personnel", "equipment", "consultant", "subaward_or_contract", "travel", "fee_profit"],
+    "ai_policy": "AI MUST NOT invent dollar amounts, caps, fee percentages, or rates. All numeric values come from the applicant. AI may only (a) check completeness, (b) flag suspected cap/category/fee violations as 'verify against solicitation', and (c) draft justification narrative from applicant-provided numbers."
+  },
+  "required_facts": [
+    "small_business_eligibility_confirmed",
+    "specific_aims_list",
+    "feasibility_success_criteria",
+    "target_market_and_customer",
+    "competitive_landscape",
+    "ip_fto_status",
+    "pi_primary_employment_note",
+    "budget_period_months",
+    "requested_total_cost"
+  ],
+  "attachment_checklist": [
+    "specific_aims_page",
+    "research_strategy",
+    "bibliography_references_cited",
+    "biosketches_all_key_personnel",
+    "budget_and_justification",
+    "commercialization_plan_if_required",
+    "facilities_and_other_resources",
+    "equipment",
+    "human_subjects_section_if_applicable",
+    "vertebrate_animals_section_if_applicable",
+    "data_management_and_sharing_plan",
+    "letters_of_support_if_applicable",
+    "sbir_sttr_eligibility_certifications"
+  ],
+  "review_criteria": {
+    "_source": "NIH SBIR/STTR peer review (verify against current solicitation).",
+    "criteria": ["Significance", "Innovation", "Approach", "Investigators", "Environment", "Commercialization Potential"],
+    "note": "Commercialization potential is weighted for SBIR and is absent from a standard R01."
+  },
+  "reviewer_personas": [
+    {"id": "rigor", "focus": "Technical feasibility: success criteria, milestones, controls, statistics for a short Phase I."},
+    {"id": "innovation", "focus": "Technical and commercial differentiation vs existing products and prior SBIR/STTR awards; FTO posture."},
+    {"id": "completeness", "focus": "Completeness/compliance: SBIR eligibility, required sections, page limits, budget+fee justification, commercialization plan."}
+  ]
+}

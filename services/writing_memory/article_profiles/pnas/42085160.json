@@ -1,0 +1,162 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42085160",
+    "pmcid": "PMC13168535",
+    "doi": "10.1073/pnas.2515702123",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "year": 2026,
+    "sections_used": [
+      "abstract"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "field_importance",
+    "dominant_frame": "molecular_mechanism",
+    "tone": "assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "context-finding-mechanism-implication",
+    "claim_chain": [
+      "The evolution of the seed habit traces back to a change in nucellus cell fate",
+      "Seeds arose when the nucellus retained female spores instead of releasing them",
+      "Nucellus elimination was requisitioned to allow endosperm growth in angiosperms",
+      "Cell elimination differs from known cell death programs by dismantling the cell wall",
+      "Nucellus elimination is initiated by demethylesterification and lysis of pectic polysaccharides",
+      "This process exposes other cell wall components and precedes nuclear DNA fragmentation",
+      "Both pathways are regulated by TRANSPARENT TESTA 16, a MADS-domain transcription factor",
+      "Results highlight convergence in extracellular polysaccharide structure and function between animals and plants"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "low",
+    "claim_strength": "strong",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "show",
+      "arose",
+      "retained",
+      "leads",
+      "exposes",
+      "precedes",
+      "regulated",
+      "highlight",
+      "emphasize"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "Evolutionary context establishing the biological phenomenon",
+      "Historical progression of the trait through evolutionary time",
+      "Mechanistic finding statement with molecular detail",
+      "Regulatory framework identifying key transcription factor",
+      "Broader implication connecting to comparative biology and significance"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Mechanistic detail of cell wall modification pathway",
+      "Evolutionary conservation of TRANSPARENT TESTA 16 function",
+      "Distinction between cell elimination and canonical cell death programs",
+      "Evidence for convergence between animal and plant extracellular polysaccharides"
+    ],
+    "likely_attacks": [
+      "Limited to Arabidopsis model system without broader angiosperm validation",
+      "Temporal relationship between cell wall changes and DNA fragmentation needs more support",
+      "Convergence claim between animals and plants may be overstated from plant-only data"
+    ],
+    "inference_basis": "The abstract presents strong mechanistic claims about initiation and regulation without hedging language. The evolutionary framing spans seed plants broadly but data appears Arabidopsis-specific. The convergence statement about animals and plants is presented as a highlight without qualification, suggesting potential reviewer concern about comparative evidence. The claim that cell elimination differs from most known cell death programs invites scrutiny of the distinction."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "we show that nucellus elimination in Arabidopsis is initiated by demethylesterification and subsequent lysis of the pectic polysaccharides",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "This process exposes other cell wall components to possible further degradation",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "Both pathways are regulated by TRANSPARENT TESTA 16",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "Cell elimination differs from most known cell death programs as it leads to the apparent dismantling of the cell wall",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "Our results highlight a convergence in the structure and function of extracellular polysaccharides in animals and plants",
+        "category": "generalization"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "The evolution of the seed habit can be traced back to a change in the cell fate of the nucellus",
+      "category": "opening"
+    },
+    {
+      "phrase": "Seeds arose when the nucellus retained the female spores instead of releasing them into the environment",
+      "category": "claim"
+    },
+    {
+      "phrase": "As a consequence, the nucellus was partially eliminated to accommodate the growth of the female gametophyte inside the sporophyte",
+      "category": "claim"
+    },
+    {
+      "phrase": "the process of nucellus elimination was requisitioned to allow the growth of the endosperm",
+      "category": "claim"
+    },
+    {
+      "phrase": "the fertilization product devoted to storing nutrients that are at the foundation of the human diet",
+      "category": "implication"
+    },
+    {
+      "phrase": "Cell elimination differs from most known cell death programs as it leads to the apparent dismantling of the cell wall",
+      "category": "claim"
+    },
+    {
+      "phrase": "Here, we show that nucellus elimination in Arabidopsis is initiated by demethylesterification and subsequent lysis of the pectic polysaccharides in the cell wall",
+      "category": "claim"
+    },
+    {
+      "phrase": "This process exposes other cell wall components to possible further degradation",
+      "category": "hedge"
+    },
+    {
+      "phrase": "precedes a cell death program that leads to nuclear DNA fragmentation",
+      "category": "claim"
+    },
+    {
+      "phrase": "Both pathways are regulated by TRANSPARENT TESTA 16, a MADS-domain transcription factor that evolved with seed plants",
+      "category": "claim"
+    },
+    {
+      "phrase": "Our results highlight a convergence in the structure and function of extracellular polysaccharides in animals and plants",
+      "category": "implication"
+    },
+    {
+      "phrase": "emphasize their crucial contribution to the development of multicellular organisms",
+      "category": "implication"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "Profile extracted from abstract only. All phrases are literal substrings from the input. No external references, invented numbers, or author names included. Claim strength assessment based on direct language analysis."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:10:54.431073+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\pnas\\42085160.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

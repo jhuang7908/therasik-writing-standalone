@@ -1,0 +1,220 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42148733",
+    "pmcid": "PMC13183374",
+    "doi": "10.7554/eLife.106662.3.sa3",
+    "journal": "eLife",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "field_importance",
+    "dominant_frame": "molecular_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "context-finding-mechanism-implication",
+    "claim_chain": [
+      "Rnt1 has a well-characterized role in ncRNA maturation but its mRNA function is less defined",
+      "We identify 60 novel mRNA targets cleaved by Rnt1 in vivo using PARE",
+      "Cleavage sites possess double-stranded stem loops with AGNN tetraloops",
+      "Cleaved mRNAs are exported to cytoplasm and degraded by Xrn1",
+      "Rnt1 preferentially cleaves newly made mRNAs before export",
+      "Nuclear localization limits cleavage and forms a kinetic proofreading mechanism",
+      "YDR514C cleavage is critical for maintaining normal cell growth"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "identify",
+      "show",
+      "find",
+      "demonstrate",
+      "expand",
+      "highlight",
+      "indicate",
+      "suggest",
+      "uncover",
+      "discover",
+      "conclude"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "Opening statement of what was achieved or expanded",
+      "Description of methodology and key findings",
+      "Mechanistic interpretation with supporting evidence",
+      "Discussion of alternative possibilities or caveats",
+      "Broader implications or outstanding questions"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Direct experimental evidence of Rnt1 binding to mRNA targets",
+      "Mechanistic explanation for differential in vitro versus in vivo cleavage",
+      "Quantitative data on nuclear versus cytoplasmic Rnt1 localization",
+      "Functional consequences of Rnt1 cleavage beyond YDR514C",
+      "Validation of kinetic proofreading model with export rate measurements"
+    ],
+    "likely_attacks": [
+      "Lack of direct binding experiments to prove direct cleavage",
+      "Inconsistency between cytoplasmic cleavage model and scarcely detectable cytoplasmic Rnt1",
+      "Small subset of mRNAs not cleaved in vitro requires further analysis",
+      "Whether mRNAs fold differently in vitro or require cofactors is unresolved",
+      "Outstanding question about whether efficiently cleaved mRNAs remain in nucleus longer"
+    ],
+    "inference_basis": "The paper explicitly states 'Although this study does not experimentally determine direct Rnt1 binding sites in mRNA targets' and acknowledges 'One outstanding question is whether mRNAs efficiently cleaved by Rnt1 remain in the nucleus for longer periods'. It notes 'For the small subset of mRNAs that were not cleaved in vitro, further analysis is needed'. The paper also discusses the conflict: 'Rnt1 cytoplasmic localization conflicts with the scarcely detectable level of Rnt1 in the cytoplasm'. It states 'In future studies, it will be interesting to dissect the biological consequences of Rnt1 cleavage of individual mRNA targets beyond YDR514C'."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "we greatly expand the known mRNA target repertoire of Rnt1 and highlight the biological importance of its mRNA cleavage function",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "All these observations indicate direct cleavage of these targets by Rnt1",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "This likely reflects that Rnt1-cleaved mRNAs are exported to the cytoplasm",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "we conclude that Rnt1 preferentially cleaves newly made mRNAs that have not had their poly(A) tail shortened significantly",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "mutations in one Rnt1 target, YDR514C, suppress the growth defect of an RNT1 deletion",
+        "category": "claim"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "Here, we greatly expand the known mRNA target repertoire",
+      "category": "opening"
+    },
+    {
+      "phrase": "Using PARE, we identify a novel set of 60 mRNAs that are cleaved by Rnt1 in vivo",
+      "category": "claim"
+    },
+    {
+      "phrase": "we find that Rnt1 cleaves mRNAs that possess double-stranded stem loops with terminal AGNN tetraloops",
+      "category": "claim"
+    },
+    {
+      "phrase": "we further show that the catalytic activity of Rnt1 is required for mRNA cleavage",
+      "category": "claim"
+    },
+    {
+      "phrase": "Although this study does not experimentally determine direct Rnt1 binding sites",
+      "category": "limitation"
+    },
+    {
+      "phrase": "All these observations indicate direct cleavage of these targets by Rnt1",
+      "category": "claim"
+    },
+    {
+      "phrase": "This likely reflects that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "One outstanding question is whether",
+      "category": "limitation"
+    },
+    {
+      "phrase": "This partially explains why",
+      "category": "transition"
+    },
+    {
+      "phrase": "In support of the alternate possibility that",
+      "category": "transition"
+    },
+    {
+      "phrase": "we show that Rnt1 relocalized to the cytoplasm retains its ability to cleave mRNAs",
+      "category": "claim"
+    },
+    {
+      "phrase": "conflicts with the scarcely detectable level of Rnt1 in the cytoplasm",
+      "category": "limitation"
+    },
+    {
+      "phrase": "seems most consistent with all the available data",
+      "category": "hedge"
+    },
+    {
+      "phrase": "This study has also expanded the number of known Rnt1 targets",
+      "category": "claim"
+    },
+    {
+      "phrase": "It remains to be determined whether",
+      "category": "limitation"
+    },
+    {
+      "phrase": "We suspect that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Overall, our results suggest that",
+      "category": "implication"
+    },
+    {
+      "phrase": "We conclude that",
+      "category": "claim"
+    },
+    {
+      "phrase": "This suggests that",
+      "category": "implication"
+    },
+    {
+      "phrase": "dramatically expand this class of targets",
+      "category": "claim"
+    },
+    {
+      "phrase": "In future studies, it will be interesting to dissect",
+      "category": "implication"
+    },
+    {
+      "phrase": "Schematic of PARE workflow",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Examples of known Rnt1 cleavage sites detected by PARE",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Novel Rnt1 cleavage sites detected by PARE",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "further analysis is needed to determine whether",
+      "category": "limitation"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers were included. The profile is based entirely on the provided abstract, discussion, and figure legends."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T12:56:43.585103+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\elife\\42148733.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

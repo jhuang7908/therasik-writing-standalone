@@ -1,0 +1,74 @@
+{
+  "schema_version": "0.1.0",
+  "journal": { "key": "pnas", "display": "Proceedings of the National Academy of Sciences" },
+  "spec_version": "0.1.0",
+  "sourced_from": [
+    {
+      "url": "https://www.pnas.org/author-center/editorial-and-journal-policies",
+      "label": "PNAS Editorial and Journal Policies",
+      "captured_at": null
+    },
+    {
+      "url": "https://www.pnas.org/author-center/preparing-your-manuscript",
+      "label": "PNAS Preparing Your Manuscript",
+      "captured_at": null
+    },
+    {
+      "url": "https://www.pnas.org/author-center/publication-charges",
+      "label": "PNAS Publication Charges (OA terms; PMC deposition)",
+      "captured_at": null
+    }
+  ],
+  "captured_at": null,
+
+  "article_types": [
+    { "value": null, "verification_status": "unverified", "source_url": "https://www.pnas.org/author-center/preparing-your-manuscript", "notes": "Populate with PNAS-allowed article types (Research Article / Brief Report / Letter / Perspective / Commentary / ...) from official page." }
+  ],
+
+  "structure": {
+    "required_sections":     { "value": null, "verification_status": "unverified", "source_url": null, "notes": "PNAS Research Articles typically include Significance Statement + Abstract + Intro + Results + Discussion + Materials and Methods. Verify exact required list before marking 'verified'." },
+    "optional_sections":     { "value": null, "verification_status": "unverified", "source_url": null },
+    "significance_statement":{ "value": null, "verification_status": "unverified", "source_url": "https://www.pnas.org/author-center/preparing-your-manuscript", "notes": "PNAS requires a Significance Statement; capture exact word limit." }
+  },
+
+  "abstract": {
+    "word_limit": { "value": null, "verification_status": "unverified", "source_url": null, "notes": "Confirm current PNAS abstract word limit." },
+    "structured": { "value": null, "verification_status": "unverified", "source_url": null }
+  },
+
+  "main_text": {
+    "word_limit":          { "value": null, "verification_status": "unverified", "source_url": null },
+    "figure_count_limit":  { "value": null, "verification_status": "unverified", "source_url": null },
+    "table_count_limit":   { "value": null, "verification_status": "unverified", "source_url": null },
+    "supplementary_policy":{ "value": null, "verification_status": "unverified", "source_url": null }
+  },
+
+  "figures_tables": {
+    "figure_resolution": { "value": null, "verification_status": "unverified", "source_url": null },
+    "color_policy":      { "value": null, "verification_status": "unverified", "source_url": null },
+    "legend_word_limit": { "value": null, "verification_status": "unverified", "source_url": null },
+    "accepted_formats":  { "value": null, "verification_status": "unverified", "source_url": null }
+  },
+
+  "declarations": {
+    "competing_interests":  { "value": null, "verification_status": "unverified", "source_url": null },
+    "funding_statement":    { "value": null, "verification_status": "unverified", "source_url": null },
+    "author_contributions": { "value": null, "verification_status": "unverified", "source_url": null },
+    "ethics_statement":     { "value": null, "verification_status": "unverified", "source_url": null },
+    "consent_statement":    { "value": null, "verification_status": "unverified", "source_url": null },
+    "reporting_checklist":  { "value": null, "verification_status": "unverified", "source_url": null }
+  },
+
+  "data_and_code": {
+    "data_availability":      { "value": null, "verification_status": "unverified", "source_url": null },
+    "code_availability":      { "value": null, "verification_status": "unverified", "source_url": null },
+    "preferred_repositories": { "value": null, "verification_status": "unverified", "source_url": null },
+    "accession_required":     { "value": null, "verification_status": "unverified", "source_url": null }
+  },
+
+  "reference_style_id": "pnas_numbered",
+
+  "notes": [
+    { "value": "PNAS deposits the version of record to PubMed Central; Delayed OA has a 6-month embargo unless Immediate OA is chosen. This affects MVP corpus building, not the submission spec itself.", "verification_status": "verified", "source_url": "https://www.pnas.org/author-center/publication-charges" }
+  ]
+}

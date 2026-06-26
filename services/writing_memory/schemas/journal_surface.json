@@ -1,0 +1,54 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-05-27",
+  "journals": {
+    "frontiers_immunology": {
+      "abstract_format": "bmrc_subheadings",
+      "abstract_subheadings": ["Background", "Methods", "Results", "Conclusion"],
+      "abstract_words": { "min": 200, "max": 350 },
+      "significance_statement": false,
+      "reference_style_hint": "vancouver_numbered",
+      "sentence_length": { "max_mean": 28, "max_hard": 42 },
+      "paragraph_words": { "max": 120 },
+      "citation_density": { "min_per_para_intro_discussion": 0.5 },
+      "preferred_verbs": ["showed", "revealed", "demonstrated", "detected", "observed",
+                          "confirmed", "found", "measured", "identified", "quantified",
+                          "compared", "determined", "indicated"],
+      "forbidden_verbs": ["highlighted", "underscored", "showcased", "unveiled",
+                          "shed light on", "paved the way", "opened new avenues",
+                          "underlined the importance", "offered insights"],
+      "voice_preference": { "results": "active", "methods": "passive", "discussion": "active" }
+    },
+    "elife": {
+      "abstract_format": "single_paragraph",
+      "abstract_words": { "min": 150, "max": 200 },
+      "significance_statement": false,
+      "reference_style_hint": "author_year"
+    },
+    "pnas": {
+      "abstract_format": "single_paragraph",
+      "abstract_words": { "min": 200, "max": 250 },
+      "significance_statement": true,
+      "significance_words": { "min": 100, "max": 120 },
+      "reference_style_hint": "numbered"
+    },
+    "plos_med": {
+      "abstract_format": "structured",
+      "abstract_subheadings": ["Background", "Methods and Findings", "Conclusions"],
+      "abstract_words": { "min": 200, "max": 300 },
+      "significance_statement": false,
+      "reference_style_hint": "vancouver_numbered"
+    },
+    "nature": {
+      "abstract_format": "single_paragraph",
+      "abstract_words": { "min": 150, "max": 200 },
+      "significance_statement": false,
+      "reference_style_hint": "numbered_superscript"
+    },
+    "generic": {
+      "abstract_format": "single_paragraph",
+      "abstract_words": { "min": 200, "max": 300 },
+      "significance_statement": false
+    }
+  }
+}

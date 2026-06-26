@@ -1,0 +1,242 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42127111",
+    "pmcid": "PMC13187791",
+    "doi": "10.1073/pnas.2601795123",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "mechanism_gap",
+    "dominant_frame": "translational_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "context-finding-mechanism-implication",
+    "claim_chain": [
+      "ICMT role in BRAFV600E-driven cancers and critical substrates remains unclear",
+      "Genetic and pharmacologic ICMT inhibition suppressed BRAFV600E-mutant melanoma proliferation and invasion",
+      "ICMT suppression did not reduce MAPK signaling, suggesting a mechanism distinct from BRAF-MEK-ERK inhibition",
+      "INPP5E identified as an ICMT-dependent substrate with reduced methylation and membrane displacement upon ICMT inhibition",
+      "Forced INPP5E membrane targeting partially rescued growth defects caused by ICMT inhibition",
+      "Findings implicate an ICMT-INPP5E-axis that supports BRAFV600E-driven tumor growth"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "medium",
+    "preferred_verbs": [
+      "suppressed",
+      "reduced",
+      "inhibited",
+      "identify",
+      "implicate",
+      "suggest",
+      "indicate",
+      "revealed",
+      "rescued",
+      "abolished"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "Opening statement of finding or observation",
+      "Experimental approach and system used",
+      "Quantitative result with figure reference",
+      "Additional supporting evidence from related experiments",
+      "Mechanistic interpretation or implication",
+      "Transition to next experimental question or context"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Mechanistic clarity of ICMT-INPP5E pathway and downstream effectors",
+      "Therapeutic window and selectivity for tumor versus normal cells",
+      "Completeness of ICMT substrate identification beyond INPP5E",
+      "Clinical relevance and translatability of ICMT inhibition",
+      "Robustness across multiple model systems and resistance contexts"
+    ],
+    "likely_attacks": [
+      "Downstream effectors of PI P2 increase remain undefined",
+      "Partial rescue by Lyn-INPP5E implies contributions from additional ICMT substrates",
+      "Modest effects in fibroblasts may not fully establish therapeutic window",
+      "Lack of MAPK suppression requires further mechanistic explanation",
+      "Limited characterization of UCM-1336 selectivity and off-target effects"
+    ],
+    "inference_basis": "The paper explicitly states 'downstream effectors remain undefined' when discussing PI P2 increases. It acknowledges that 'Lyn-INPP5E partially restored proliferation' and 'implies contributions from additional ICMT substrates,' indicating incomplete mechanistic understanding. The phrase 'modest effects in fibroblasts under matched conditions suggest a therapeutic window' shows the authors are addressing potential toxicity concerns. The statement 'without measurable mitogen-activated protein kinase (MAPK) suppression, consistent with a mechanism distinct from BRAF-MEK-ERK inhibition' indicates awareness that the non-MAPK mechanism requires explanation."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "these findings identify a dependence of BRAFV600E-driven tumors on ICMT",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "consistent with a mechanism distinct from BRAF-MEK-ERK inhibition",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "Icmt deficiency significantly reduced lung tumor burden",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "may contribute to the growth and invasion defects by altering phosphoinositide-dependent signaling, although downstream effectors remain undefined",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "places INPP5E downstream of ICMT",
+        "category": "causal"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "its role in BRAFV600E-driven cancers and critical substrates remains unclear",
+      "category": "opening"
+    },
+    {
+      "phrase": "genetic and pharmacologic ICMT inhibition suppressed proliferation and invasion",
+      "category": "claim"
+    },
+    {
+      "phrase": "without measurable mitogen-activated protein kinase (MAPK) suppression",
+      "category": "claim"
+    },
+    {
+      "phrase": "consistent with a mechanism distinct from BRAF-MEK-ERK inhibition",
+      "category": "hedge"
+    },
+    {
+      "phrase": "we identify INPP5E as an ICMT-dependent substrate",
+      "category": "claim"
+    },
+    {
+      "phrase": "forced INPP5E membrane targeting partially rescued growth defects",
+      "category": "claim"
+    },
+    {
+      "phrase": "these findings implicate an ICMT-INPP5E-axis",
+      "category": "implication"
+    },
+    {
+      "phrase": "Icmt inactivation abolished this proliferative advantage",
+      "category": "claim"
+    },
+    {
+      "phrase": "as expected",
+      "category": "transition"
+    },
+    {
+      "phrase": "notably",
+      "category": "transition"
+    },
+    {
+      "phrase": "together, these findings identify a dependence",
+      "category": "claim"
+    },
+    {
+      "phrase": "the modest effects in fibroblasts under matched conditions suggest a therapeutic window",
+      "category": "hedge"
+    },
+    {
+      "phrase": "addressing concern that CAAX processing enzymes might be broadly required in normal cells",
+      "category": "limitation"
+    },
+    {
+      "phrase": "we asked whether other CAAX proteins mediate the antitumor effects",
+      "category": "transition"
+    },
+    {
+      "phrase": "consistent with ICMT-dependent membrane targeting",
+      "category": "claim"
+    },
+    {
+      "phrase": "may contribute to the growth and invasion defects by altering phosphoinositide-dependent signaling, although downstream effectors remain undefined",
+      "category": "limitation"
+    },
+    {
+      "phrase": "places INPP5E downstream of ICMT",
+      "category": "claim"
+    },
+    {
+      "phrase": "implies contributions from additional ICMT substrates",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Icmt deficiency significantly reduced lung tumor burden",
+      "category": "claim"
+    },
+    {
+      "phrase": "dose-dependently reduced proliferation",
+      "category": "claim"
+    },
+    {
+      "phrase": "proliferation of MEFs from BrafCA/+Icmtfl/+ and BrafCA/+Icmtfl/fl embryos after infection with Ad-βgal or Ad-Cre",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "tumor size was measured 2 to 3 times/wk",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "data are mean values from triplicates",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "indicating that acquired BRAF-inhibitor resistance does not eliminate ICMT vulnerability",
+      "category": "implication"
+    },
+    {
+      "phrase": "to test endogenous BRAFV600E",
+      "category": "transition"
+    },
+    {
+      "phrase": "we next used the selective ICMT inhibitor UCM-1336",
+      "category": "transition"
+    },
+    {
+      "phrase": "exploratory transcriptomic profiling revealed cilia-associated genes",
+      "category": "claim"
+    },
+    {
+      "phrase": "functionally",
+      "category": "transition"
+    },
+    {
+      "phrase": "finally",
+      "category": "transition"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers were included. The profile accurately reflects the paper's mechanistic focus, balanced claim strength with explicit acknowledgment of undefined downstream effectors and partial rescue phenotypes, and the translational framing around ICMT inhibition in BRAFV600E-driven cancers."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_phrase_violations": [
+    {
+      "field": "phrase_evidence",
+      "phrase": "genetic and pharmacologic ICMT inhibition suppressed proliferation and invasion",
+      "issue": "not found in paper text"
+    }
+  ],
+  "_meta": {
+    "generated_at": "2026-05-25T13:18:30.031045+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\pnas\\42127111.json",
+    "phrase_check_violations": 1,
+    "schema_valid": true
+  }
+}

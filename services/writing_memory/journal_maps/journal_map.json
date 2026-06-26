@@ -1,0 +1,153 @@
+{
+  "version": "0.2.0",
+  "updated_at": "2026-05-26",
+  "notes": "v0.2: added 6 high-impact journal specs (Nature, Cell, Science, NEJM, Lancet, Nature Medicine). Submission specs verified against publicly documented author guidelines; numerical limits should be re-confirmed by author before final submission.",
+  "journals": {
+    "generic": {
+      "display": "Generic style",
+      "canonical_name": "Generic style",
+      "style_family": "generic_academic",
+      "profile_key": "generic",
+      "spec_key": "generic",
+      "mapping_status": "verified_internal"
+    },
+    "nature": {
+      "display": "Nature",
+      "canonical_name": "Nature",
+      "style_family": "nature_like",
+      "profile_key": "generic",
+      "spec_key": "nature",
+      "mapping_status": "verified_internal"
+    },
+    "cell": {
+      "display": "Cell",
+      "canonical_name": "Cell",
+      "style_family": "cell_like",
+      "profile_key": "generic",
+      "spec_key": "cell",
+      "mapping_status": "verified_internal"
+    },
+    "science": {
+      "display": "Science",
+      "canonical_name": "Science",
+      "style_family": "nature_like",
+      "profile_key": "generic",
+      "spec_key": "science",
+      "mapping_status": "verified_internal"
+    },
+    "nejm": {
+      "display": "NEJM",
+      "canonical_name": "New England Journal of Medicine",
+      "style_family": "clinical_high_impact",
+      "profile_key": "plos_med",
+      "spec_key": "nejm",
+      "mapping_status": "verified_internal"
+    },
+    "lancet": {
+      "display": "The Lancet",
+      "canonical_name": "The Lancet",
+      "style_family": "clinical_high_impact",
+      "profile_key": "plos_med",
+      "spec_key": "lancet",
+      "mapping_status": "verified_internal"
+    },
+    "nature_medicine": {
+      "display": "Nature Medicine",
+      "canonical_name": "Nature Medicine",
+      "style_family": "nature_like",
+      "profile_key": "plos_med",
+      "spec_key": "nature_medicine",
+      "mapping_status": "verified_internal"
+    },
+    "pnas": {
+      "display": "PNAS",
+      "canonical_name": "Proceedings of the National Academy of Sciences",
+      "style_family": "pnas_broad",
+      "profile_key": "pnas",
+      "spec_key": "pnas",
+      "mapping_status": "verified_internal"
+    },
+    "elife": {
+      "display": "eLife",
+      "canonical_name": "eLife",
+      "style_family": "elife_bio",
+      "profile_key": "elife",
+      "spec_key": "elife",
+      "mapping_status": "verified_internal"
+    },
+    "plos_med": {
+      "display": "PLOS Medicine",
+      "canonical_name": "PLOS Medicine",
+      "style_family": "clinical_high_impact",
+      "profile_key": "plos_med",
+      "spec_key": "plos_med",
+      "mapping_status": "verified_internal"
+    },
+    "nature_communications": {
+      "display": "Nature Communications",
+      "canonical_name": "Nature Communications",
+      "style_family": "nature_like",
+      "profile_key": "generic",
+      "spec_key": "nature",
+      "mapping_status": "style_family_seed",
+      "notes": "Reuses Nature spec; Nat Commun has slightly higher word/figure limits."
+    },
+    "scientific_reports": {
+      "display": "Scientific Reports",
+      "canonical_name": "Scientific Reports",
+      "style_family": "plos_bmc_open",
+      "profile_key": "generic",
+      "spec_key": "generic",
+      "mapping_status": "style_family_seed"
+    },
+    "cell_reports": {
+      "display": "Cell Reports",
+      "canonical_name": "Cell Reports",
+      "style_family": "cell_like",
+      "profile_key": "generic",
+      "spec_key": "cell",
+      "mapping_status": "style_family_seed",
+      "notes": "Reuses Cell spec; Cell Reports is shorter."
+    },
+    "cell_reports_medicine": {
+      "display": "Cell Reports Medicine",
+      "canonical_name": "Cell Reports Medicine",
+      "style_family": "clinical_high_impact",
+      "profile_key": "plos_med",
+      "spec_key": "cell",
+      "mapping_status": "style_family_seed"
+    },
+    "bmc_biology": {
+      "display": "BMC Biology",
+      "canonical_name": "BMC Biology",
+      "style_family": "plos_bmc_open",
+      "profile_key": "generic",
+      "spec_key": "generic",
+      "mapping_status": "style_family_seed"
+    },
+    "frontiers_immunology": {
+      "display": "Frontiers in Immunology",
+      "canonical_name": "Frontiers in Immunology",
+      "style_family": "plos_bmc_open",
+      "profile_key": "generic",
+      "spec_key": "plos_med",
+      "mapping_status": "style_family_seed"
+    },
+    "journal_clinical_investigation": {
+      "display": "Journal of Clinical Investigation",
+      "canonical_name": "Journal of Clinical Investigation",
+      "style_family": "clinical_high_impact",
+      "profile_key": "plos_med",
+      "spec_key": "plos_med",
+      "mapping_status": "style_family_seed"
+    },
+    "bioinformatics": {
+      "display": "Bioinformatics",
+      "canonical_name": "Bioinformatics",
+      "style_family": "methods_bioinformatics",
+      "profile_key": "generic",
+      "spec_key": "generic",
+      "mapping_status": "style_family_seed"
+    }
+  }
+}

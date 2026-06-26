@@ -1,0 +1,5673 @@
+{
+  "release_id": "RELEASE_v1",
+  "version": "1.0.0",
+  "generated_at": "2026-05-28T18:15:16.575279+00:00",
+  "policy": {
+    "language": "English",
+    "region_preference": "US/UK journals",
+    "corresponding_author": "native_speaker_heuristic_last_author",
+    "fame": "seed_landmark_plus_local_ranked",
+    "partial_text": "PMC abstract+discussion+conclusion only in MVP"
+  },
+  "notes": "Owner-approved build: US/UK English sources; native correspondent heuristic; landmark seeds from SEED_FAMOUS_V1.json. Metrics on partial PMC text.",
+  "cohorts": {
+    "original_research": {
+      "target_n": 8,
+      "selected_n": 8,
+      "stats": {
+        "abstract_words": {
+          "n": 8,
+          "median": 198.0,
+          "p10": 108,
+          "p90": 334
+        },
+        "discussion_words": {
+          "n": 8,
+          "median": 683.0,
+          "p10": 0,
+          "p90": 1961
+        },
+        "citations_per_1000_words": {
+          "n": 8,
+          "median": 0.0,
+          "p10": 0.0,
+          "p90": 0.0
+        }
+      },
+      "papers": [
+        {
+          "pmid": "32678530",
+          "pmcid": "PMC7211726",
+          "doi": "10.1056/NEJMoa2021436",
+          "title": "Dexamethasone in Hospitalized Patients with Covid-19.",
+          "journal": "The New England journal of medicine",
+          "journal_abbrev": "N Engl J Med",
+          "year": 2021,
+          "pub_types": [
+            "Comparative Study",
+            "Journal Article",
+            "Multicenter Study",
+            "Randomized Controlled Trial"
+          ],
+          "article_type": {
+            "canonical": "original_research",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Landray",
+              "initials": "MJ"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1264,
+              "unique_ratio": 0.318,
+              "title": "Dexamethasone in Hospitalized Patients with Covid-19 — Preliminary Report"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 268,
+              "discussion": 712,
+              "conclusion": 0,
+              "total_available": 1264
+            },
+            "word_targets_default": {
+              "abstract": 280,
+              "introduction": 550,
+              "methods": 1300,
+              "results": 3000,
+              "discussion": 1900
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\32678530.json",
+          "fame_tier": "landmark",
+          "verification_status": "verified",
+          "seed_label": "NEJM RECOVERY dexamethasone COVID-19 RCT"
+        },
+        {
+          "pmid": "20525992",
+          "pmcid": "PMC1435696",
+          "doi": "10.1056/NEJMoa1003466",
+          "title": "Improved survival with ipilimumab in patients with metastatic melanoma.",
+          "journal": "The New England journal of medicine",
+          "journal_abbrev": "N Engl J Med",
+          "year": 2010,
+          "pub_types": [
+            "Clinical Trial, Phase III",
+            "Comparative Study",
+            "Journal Article",
+            "Multicenter Study",
+            "Randomized Controlled Trial"
+          ],
+          "article_type": {
+            "canonical": "original_research",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Urba",
+              "initials": "WJ"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1184,
+              "unique_ratio": 0.3024,
+              "title": "Improved Survival with Ipilimumab in Patients with Metastatic Melanoma"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 276,
+              "discussion": 634,
+              "conclusion": 0,
+              "total_available": 1184
+            },
+            "word_targets_default": {
+              "abstract": 280,
+              "introduction": 550,
+              "methods": 1300,
+              "results": 3000,
+              "discussion": 1900
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "below_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\20525992.json",
+          "fame_tier": "landmark",
+          "verification_status": "verified",
+          "seed_label": "NEJM ipilimumab melanoma survival"
+        },
+        {
+          "pmid": "36652990",
+          "pmcid": "PMC9257064",
+          "doi": "10.1038/s41591-023-02219-5",
+          "title": "Real-world COVID-19 vaccine effectiveness against the Omicron BA.2 variant in a SARS-CoV-2 infection-naive population.",
+          "journal": "Nature medicine",
+          "journal_abbrev": "Nat Med",
+          "year": 2023,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "original_research",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.8500000000000001,
+            "reason": "uk_us_hits:2"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Wu",
+              "initials": "JT"
+            },
+            "reason": "non_anglo_surname_but_uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1704,
+              "unique_ratio": 0.3316,
+              "title": "Real-world COVID-19 vaccine effectiveness against the Omicron BA.2 variant in a SARS-CoV-2 infection-naive population"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 179,
+              "discussion": 1961,
+              "conclusion": 0,
+              "total_available": 3311
+            },
+            "word_targets_default": {
+              "abstract": 280,
+              "introduction": 550,
+              "methods": 1300,
+              "results": 3000,
+              "discussion": 1900
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\36652990.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Nat Med real-world COVID-19 vaccine effectiveness"
+        },
+        {
+          "pmid": "30361170",
+          "pmcid": null,
+          "doi": "10.1016/S1470-2045(18)30700-9",
+          "title": "Nivolumab plus ipilimumab or nivolumab alone versus ipilimumab alone in advanced melanoma (CheckMate 067): 4-year outcomes of a multicentre, randomised, phase 3 trial.",
+          "journal": "The Lancet. Oncology",
+          "journal_abbrev": "Lancet Oncol",
+          "year": 2018,
+          "pub_types": [
+            "Clinical Trial, Phase III",
+            "Comparative Study",
+            "Journal Article",
+            "Multicenter Study",
+            "Randomized Controlled Trial",
+            "Research Support, N.I.H., Extramural",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "original_research",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Wolchok",
+              "initials": "JD"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1546,
+              "unique_ratio": 0.3564,
+              "title": "Phenotypic, functional, prognostic and predictive significance of B-cell and antibody responses in human melanoma: a scoping review"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 334,
+              "discussion": 888,
+              "conclusion": 0,
+              "total_available": 2324
+            },
+            "word_targets_default": {
+              "abstract": 280,
+              "introduction": 550,
+              "methods": 1300,
+              "results": 3000,
+              "discussion": 1900
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": null,
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Lancet Oncol nivolumab plus ipilimumab melanoma"
+        },
+        {
+          "pmid": "37824647",
+          "pmcid": "PMC4137411",
+          "doi": "10.1126/science.adf0834",
+          "title": "Single-cell analysis of prenatal and postnatal human cortical development.",
+          "journal": "Science (New York, N.Y.)",
+          "journal_abbrev": "Science",
+          "year": 2023,
+          "pub_types": [
+            "Journal Article"
+          ],
+          "article_type": {
+            "canonical": "original_research",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Kriegstein",
+              "initials": "AR"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1316,
+              "unique_ratio": 0.3252,
+              "title": "Single-cell analysis of prenatal and postnatal human cortical development"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 127,
+              "discussion": 654,
+              "conclusion": 0,
+              "total_available": 1316
+            },
+            "word_targets_default": {
+              "abstract": 280,
+              "introduction": 550,
+              "methods": 1300,
+              "results": 3000,
+              "discussion": 1900
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "below_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\37824647.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Science single-cell human cortical development"
+        },
+        {
+          "pmid": "38246194",
+          "pmcid": null,
+          "doi": "10.1016/S0140-6736(23)02268-7",
+          "title": "Individualised neoantigen therapy mRNA-4157 (V940) plus pembrolizumab versus pembrolizumab monotherapy in resected melanoma (KEYNOTE-942): a randomised, phase 2b study.",
+          "journal": "Lancet (London, England)",
+          "journal_abbrev": "Lancet",
+          "year": 2024,
+          "pub_types": [
+            "Clinical Trial, Phase II",
+            "Journal Article",
+            "Randomized Controlled Trial",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "original_research",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Zaks",
+              "initials": "T"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 487,
+              "unique_ratio": 0.5257,
+              "title": "New Perspectives and Open Issues in the Adjuvant and Neoadjuvant Treatment of Melanoma"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 186,
+              "discussion": 0,
+              "conclusion": 211,
+              "total_available": 487
+            },
+            "word_targets_default": {
+              "abstract": 280,
+              "introduction": 550,
+              "methods": 1300,
+              "results": 3000,
+              "discussion": 1900
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": false,
+              "conclusion": true,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": null,
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Lancet personalised neoantigen vaccine trial"
+        },
+        {
+          "pmid": "30429547",
+          "pmcid": "PMC5003816",
+          "doi": "10.1038/s41586-018-0678-x",
+          "title": "Distinct proteostasis circuits cooperate in nuclear and cytoplasmic protein quality control.",
+          "journal": "Nature",
+          "journal_abbrev": "Nature",
+          "year": 2018,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, N.I.H., Extramural",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "original_research",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Frydman",
+              "initials": "J"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 210,
+              "unique_ratio": 0.5381,
+              "title": "Distinct proteostasis circuits cooperate in nuclear and cytoplasmic protein quality control"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 210,
+              "discussion": 0,
+              "conclusion": 0,
+              "total_available": 3158
+            },
+            "word_targets_default": {
+              "abstract": 280,
+              "introduction": 550,
+              "methods": 1300,
+              "results": 3000,
+              "discussion": 1900
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": false,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\30429547.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Nature nuclear proteostasis circuits"
+        },
+        {
+          "pmid": "28029927",
+          "pmcid": "PMC3888798",
+          "doi": "10.1056/NEJMoa1610497",
+          "title": "Regression of Glioblastoma after Chimeric Antigen Receptor T-Cell Therapy.",
+          "journal": "The New England journal of medicine",
+          "journal_abbrev": "N Engl J Med",
+          "year": 2016,
+          "pub_types": [
+            "Case Reports",
+            "Clinical Trial, Phase I",
+            "Journal Article",
+            "Research Support, N.I.H., Extramural",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "original_research",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": false,
+            "confidence": "low",
+            "correspondent": {
+              "last": "Badie",
+              "initials": "B"
+            },
+            "reason": "unclassified_surname"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1674,
+              "unique_ratio": 0.313,
+              "title": "Regression of Glioblastoma after Chimeric Antigen Receptor T-Cell Therapy"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 108,
+              "discussion": 799,
+              "conclusion": 0,
+              "total_available": 1723
+            },
+            "word_targets_default": {
+              "abstract": 280,
+              "introduction": 550,
+              "methods": 1300,
+              "results": 3000,
+              "discussion": 1900
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\28029927.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "NEJM CAR-T glioblastoma regression"
+        }
+      ]
+    },
+    "review_narrative": {
+      "target_n": 6,
+      "selected_n": 6,
+      "stats": {
+        "abstract_words": {
+          "n": 6,
+          "median": 190.5,
+          "p10": 122,
+          "p90": 334
+        },
+        "discussion_words": {
+          "n": 6,
+          "median": 371.5,
+          "p10": 0,
+          "p90": 2315
+        },
+        "citations_per_1000_words": {
+          "n": 6,
+          "median": 0.0,
+          "p10": 0.0,
+          "p90": 0.0
+        }
+      },
+      "papers": [
+        {
+          "pmid": "22437870",
+          "pmcid": "PMC3967236",
+          "doi": "10.1038/nrc3239",
+          "title": "The blockade of immune checkpoints in cancer immunotherapy.",
+          "journal": "Nature reviews. Cancer",
+          "journal_abbrev": "Nat Rev Cancer",
+          "year": 2012,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, Non-U.S. Gov't",
+            "Review"
+          ],
+          "article_type": {
+            "canonical": "review_narrative",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Pardoll",
+              "initials": "DM"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 168,
+              "unique_ratio": 0.7024,
+              "title": "The blockade of immune checkpoints in cancer immunotherapy"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 168,
+              "discussion": 0,
+              "conclusion": 0,
+              "total_available": 1351
+            },
+            "word_targets_default": {
+              "abstract": 250,
+              "introduction": 800,
+              "body": 6000,
+              "discussion": 1500,
+              "conclusion": 400
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "body": "no_data",
+              "discussion": "no_data",
+              "conclusion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": false,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "body",
+              "discussion",
+              "conclusion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\22437870.json",
+          "fame_tier": "landmark",
+          "verification_status": "verified",
+          "seed_label": "Nat Rev Cancer Pardoll checkpoint blockade"
+        },
+        {
+          "pmid": "21376230",
+          "pmcid": null,
+          "doi": "10.1016/j.cell.2011.02.013",
+          "title": "Hallmarks of cancer: the next generation.",
+          "journal": "Cell",
+          "journal_abbrev": "Cell",
+          "year": 2011,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, N.I.H., Extramural",
+            "Review"
+          ],
+          "article_type": {
+            "canonical": "review_narrative",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Weinberg",
+              "initials": "RA"
+            },
+            "reason": "european_surname_suffix"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1575,
+              "unique_ratio": 0.3048,
+              "title": "Zinc Affinity of Benzamide-Based Histone Deacetylase Inhibitors: A DFT Study"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 213,
+              "discussion": 2315,
+              "conclusion": 222,
+              "total_available": 2806
+            },
+            "word_targets_default": {
+              "abstract": 250,
+              "introduction": 800,
+              "body": 6000,
+              "discussion": 1500,
+              "conclusion": 400
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "body": "no_data",
+              "discussion": "in_band",
+              "conclusion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": true,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "body",
+              "discussion",
+              "conclusion"
+            ]
+          },
+          "local_path": null,
+          "fame_tier": "landmark",
+          "verification_status": "verified",
+          "seed_label": "Cell Hanahan hallmarks of cancer next generation"
+        },
+        {
+          "pmid": "41742701",
+          "pmcid": "PMC7889146",
+          "doi": "10.1093/bjd/ljag074",
+          "title": "Phenotypic, functional, prognostic and predictive significance of B-cell and antibody responses in human melanoma: a scoping review.",
+          "journal": "The British journal of dermatology",
+          "journal_abbrev": "Br J Dermatol",
+          "year": 2026,
+          "pub_types": [
+            "Journal Article",
+            "Scoping Review"
+          ],
+          "article_type": {
+            "canonical": "review_narrative",
+            "source": "title_regex",
+            "confidence": "medium"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.45,
+            "reason": "english_journal_unlisted"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Karagiannis",
+              "initials": "SN"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1546,
+              "unique_ratio": 0.3564,
+              "title": "Phenotypic, functional, prognostic and predictive significance of B-cell and antibody responses in human melanoma: a scoping review"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 334,
+              "discussion": 888,
+              "conclusion": 0,
+              "total_available": 2324
+            },
+            "word_targets_default": {
+              "abstract": 250,
+              "introduction": 800,
+              "body": 6000,
+              "discussion": 1500,
+              "conclusion": 400
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "body": "no_data",
+              "discussion": "in_band",
+              "conclusion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "body",
+              "discussion",
+              "conclusion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\30361170.json",
+          "fame_tier": "standard",
+          "verification_status": "verified"
+        },
+        {
+          "pmid": "42195292",
+          "pmcid": "PMC8492820",
+          "doi": "10.3390/life16050736",
+          "title": "A Focused Comparative Review of Innovative Therapeutics Across Autoimmune and Chronic Inflammatory Diseases.",
+          "journal": "Life (Basel, Switzerland)",
+          "journal_abbrev": "Life (Basel)",
+          "year": 2026,
+          "pub_types": [
+            "Journal Article",
+            "Review"
+          ],
+          "article_type": {
+            "canonical": "review_narrative",
+            "source": "title_regex",
+            "confidence": "medium"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.45,
+            "reason": "english_journal_unlisted"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Sher",
+              "initials": "EK"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 634,
+              "unique_ratio": 0.5142,
+              "title": "A Focused Comparative Review of Innovative Therapeutics Across Autoimmune and Chronic Inflammatory Diseases"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 168,
+              "discussion": 0,
+              "conclusion": 225,
+              "total_available": 634
+            },
+            "word_targets_default": {
+              "abstract": 250,
+              "introduction": 800,
+              "body": 6000,
+              "discussion": 1500,
+              "conclusion": 400
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "body": "no_data",
+              "discussion": "no_data",
+              "conclusion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": false,
+              "conclusion": true,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "body",
+              "discussion",
+              "conclusion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\38381673.json",
+          "fame_tier": "standard",
+          "verification_status": "verified"
+        },
+        {
+          "pmid": "31925406",
+          "pmcid": null,
+          "doi": "10.1038/s41577-020-0275-8",
+          "title": "Dissecting the mechanisms of immune checkpoint therapy.",
+          "journal": "Nature reviews. Immunology",
+          "journal_abbrev": "Nat Rev Immunol",
+          "year": 2020,
+          "pub_types": [
+            "Journal Article",
+            "Review"
+          ],
+          "article_type": {
+            "canonical": "review_narrative",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Allison",
+              "initials": "JP"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 386,
+              "unique_ratio": 0.5596,
+              "title": "Influence of Gut Microbiota on Response to Immune Check Point Inhibitors in MASLD Patients With HCC: Unraveling the Connection"
+            },
+            "qc_pass": false,
+            "word_count": {
+              "abstract": 122,
+              "discussion": 0,
+              "conclusion": 122,
+              "total_available": 386
+            },
+            "word_targets_default": {
+              "abstract": 250,
+              "introduction": 800,
+              "body": 6000,
+              "discussion": 1500,
+              "conclusion": 400
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "body": "no_data",
+              "discussion": "no_data",
+              "conclusion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": false,
+              "conclusion": true,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "body",
+              "discussion",
+              "conclusion"
+            ]
+          },
+          "local_path": null,
+          "fame_tier": "landmark",
+          "verification_status": "estimated",
+          "seed_label": "Nat Rev Immunol immune checkpoint mechanisms"
+        },
+        {
+          "pmid": "29658848",
+          "pmcid": "PMC4191830",
+          "doi": "10.1056/NEJMoa1716078",
+          "title": "Neoadjuvant PD-1 Blockade in Resectable Lung Cancer.",
+          "journal": "The New England journal of medicine",
+          "journal_abbrev": "N Engl J Med",
+          "year": 2018,
+          "pub_types": [
+            "Clinical Trial",
+            "Journal Article",
+            "Research Support, N.I.H., Extramural",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "review_narrative",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": false,
+            "confidence": "low",
+            "correspondent": {
+              "last": "Pardoll",
+              "initials": "DM"
+            },
+            "reason": "unclassified_surname"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1682,
+              "unique_ratio": 0.3092,
+              "title": "Neoadjuvant PD-1 Blockade in Resectable Lung Cancer"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 304,
+              "discussion": 743,
+              "conclusion": 0,
+              "total_available": 1888
+            },
+            "word_targets_default": {
+              "abstract": 250,
+              "introduction": 800,
+              "body": 6000,
+              "discussion": 1500,
+              "conclusion": 400
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "body": "no_data",
+              "discussion": "in_band",
+              "conclusion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "body",
+              "discussion",
+              "conclusion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\29658848.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "NEJM neoadjuvant PD-1 blockade review context"
+        }
+      ]
+    },
+    "systematic_review": {
+      "target_n": 5,
+      "selected_n": 5,
+      "stats": {
+        "abstract_words": {
+          "n": 5,
+          "median": 290,
+          "p10": 122,
+          "p90": 497
+        },
+        "discussion_words": {
+          "n": 5,
+          "median": 1388,
+          "p10": 632,
+          "p90": 1577
+        },
+        "citations_per_1000_words": {
+          "n": 5,
+          "median": 0.0,
+          "p10": 0.0,
+          "p90": 1.19
+        }
+      },
+      "papers": [
+        {
+          "pmid": "33782057",
+          "pmcid": "PMC6689876",
+          "doi": "10.1136/bmj.n71",
+          "title": "The PRISMA 2020 statement: an updated guideline for reporting systematic reviews.",
+          "journal": "BMJ (Clinical research ed.)",
+          "journal_abbrev": "BMJ",
+          "year": 2021,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, N.I.H., Extramural",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "systematic_review",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Moher",
+              "initials": "D"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 885,
+              "unique_ratio": 0.4,
+              "title": "The PRISMA 2020 statement: an updated guideline for reporting systematic reviews"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 122,
+              "discussion": 632,
+              "conclusion": 58,
+              "total_available": 885
+            },
+            "word_targets_default": {
+              "abstract": 300,
+              "introduction": 700,
+              "methods": 2000,
+              "results": 3500,
+              "discussion": 1500
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": true,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\33782057.json",
+          "fame_tier": "landmark",
+          "verification_status": "verified",
+          "seed_label": "BMJ PRISMA 2020 statement"
+        },
+        {
+          "pmid": "33781993",
+          "pmcid": "PMC6088505",
+          "doi": "10.1136/bmj.n160",
+          "title": "PRISMA 2020 explanation and elaboration: updated guidance and exemplars for reporting systematic reviews.",
+          "journal": "BMJ (Clinical research ed.)",
+          "journal_abbrev": "BMJ",
+          "year": 2021,
+          "pub_types": [
+            "Guideline",
+            "Journal Article",
+            "Research Support, N.I.H., Extramural",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "systematic_review",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "McKenzie",
+              "initials": "JE"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1675,
+              "unique_ratio": 0.3504,
+              "title": "PRISMA 2020 explanation and elaboration: updated guidance and exemplars for reporting systematic reviews"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 128,
+              "discussion": 1324,
+              "conclusion": 52,
+              "total_available": 1675
+            },
+            "word_targets_default": {
+              "abstract": 300,
+              "introduction": 700,
+              "methods": 2000,
+              "results": 3500,
+              "discussion": 1500
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 2,
+            "citations_per_1000_words": 1.19,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": true,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\33781993.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "BMJ PRISMA 2020 explanation"
+        },
+        {
+          "pmid": "41886437",
+          "pmcid": "PMC8890404",
+          "doi": "10.1371/journal.pmed.1004995",
+          "title": "Early aspirin withdrawal versus dual antiplatelet therapy in high-risk patients after percutaneous coronary intervention: Meta-analysis of randomized trials.",
+          "journal": "PLoS medicine",
+          "journal_abbrev": "PLoS Med",
+          "year": 2026,
+          "pub_types": [
+            "Journal Article",
+            "Meta-Analysis"
+          ],
+          "article_type": {
+            "canonical": "systematic_review",
+            "source": "title_regex",
+            "confidence": "medium"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.8500000000000001,
+            "reason": "uk_us_hits:2"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Kereiakes",
+              "initials": "DJ"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1535,
+              "unique_ratio": 0.3498,
+              "title": "Early aspirin withdrawal versus dual antiplatelet therapy in high-risk patients after percutaneous coronary intervention: Meta-analysis of randomized trials"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 290,
+              "discussion": 1454,
+              "conclusion": 0,
+              "total_available": 2607
+            },
+            "word_targets_default": {
+              "abstract": 300,
+              "introduction": 700,
+              "methods": 2000,
+              "results": 3500,
+              "discussion": 1500
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\plos_med\\41880331.json",
+          "fame_tier": "standard",
+          "verification_status": "verified"
+        },
+        {
+          "pmid": "41931475",
+          "pmcid": "PMC7799804",
+          "doi": "10.1371/journal.pmed.1004982",
+          "title": "Cost-effectiveness and benefit-cost analyses of promoting handwashing with soap: A systematic review.",
+          "journal": "PLoS medicine",
+          "journal_abbrev": "PLoS Med",
+          "year": 2026,
+          "pub_types": [
+            "Journal Article",
+            "Systematic Review"
+          ],
+          "article_type": {
+            "canonical": "systematic_review",
+            "source": "title_regex",
+            "confidence": "medium"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.8500000000000001,
+            "reason": "uk_us_hits:2"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Cumming",
+              "initials": "O"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1704,
+              "unique_ratio": 0.3462,
+              "title": "Cost-effectiveness and benefit-cost analyses of promoting handwashing with soap: A systematic review"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 315,
+              "discussion": 1388,
+              "conclusion": 0,
+              "total_available": 1853
+            },
+            "word_targets_default": {
+              "abstract": 300,
+              "introduction": 700,
+              "methods": 2000,
+              "results": 3500,
+              "discussion": 1500
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\plos_med\\41941481.json",
+          "fame_tier": "standard",
+          "verification_status": "verified"
+        },
+        {
+          "pmid": "41941512",
+          "pmcid": "PMC8082281",
+          "doi": "10.1371/journal.pmed.1004779",
+          "title": "Urban and rural prevalence of tuberculosis in low- and middle-income countries: A systematic review and meta-analysis.",
+          "journal": "PLoS medicine",
+          "journal_abbrev": "PLoS Med",
+          "year": 2026,
+          "pub_types": [
+            "Journal Article",
+            "Systematic Review",
+            "Meta-Analysis"
+          ],
+          "article_type": {
+            "canonical": "systematic_review",
+            "source": "title_regex",
+            "confidence": "medium"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.8500000000000001,
+            "reason": "uk_us_hits:2"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "MacPherson",
+              "initials": "P"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1686,
+              "unique_ratio": 0.3203,
+              "title": "Urban and rural prevalence of tuberculosis in low- and middle-income countries: A systematic review and meta-analysis"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 497,
+              "discussion": 1577,
+              "conclusion": 0,
+              "total_available": 2274
+            },
+            "word_targets_default": {
+              "abstract": 300,
+              "introduction": 700,
+              "methods": 2000,
+              "results": 3500,
+              "discussion": 1500
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\plos_med\\41955175.json",
+          "fame_tier": "standard",
+          "verification_status": "verified"
+        }
+      ]
+    },
+    "methods_protocols": {
+      "target_n": 6,
+      "selected_n": 6,
+      "stats": {
+        "abstract_words": {
+          "n": 6,
+          "median": 166.5,
+          "p10": 80,
+          "p90": 214
+        },
+        "discussion_words": {
+          "n": 6,
+          "median": 903.0,
+          "p10": 0,
+          "p90": 2025
+        },
+        "citations_per_1000_words": {
+          "n": 6,
+          "median": 0.0,
+          "p10": 0.0,
+          "p90": 0.0
+        }
+      },
+      "papers": [
+        {
+          "pmid": "24157548",
+          "pmcid": "PMC3177952",
+          "doi": "10.1038/nprot.2013.143",
+          "title": "Genome engineering using the CRISPR-Cas9 system.",
+          "journal": "Nature protocols",
+          "journal_abbrev": "Nat Protoc",
+          "year": 2013,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, N.I.H., Extramural"
+          ],
+          "article_type": {
+            "canonical": "methods_protocols",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Zhang",
+              "initials": "F"
+            },
+            "reason": "non_anglo_surname_but_uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 153,
+              "unique_ratio": 0.7124,
+              "title": "Genome engineering using the CRISPR-Cas9 system"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 153,
+              "discussion": 0,
+              "conclusion": 0,
+              "total_available": 1192
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 400,
+              "methods": 2500,
+              "results": 1500,
+              "discussion": 600
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": false,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\24157548.json",
+          "fame_tier": "landmark",
+          "verification_status": "verified",
+          "seed_label": "Nat Protoc CRISPR-Cas9 genome engineering"
+        },
+        {
+          "pmid": "36035804",
+          "pmcid": "PMC4779178",
+          "doi": "10.1016/j.xpro.2022.101560",
+          "title": "A review of protocols for human iPSC culture, cardiac differentiation, subtype-specification, maturation, and direct reprogramming.",
+          "journal": "STAR protocols",
+          "journal_abbrev": "STAR Protoc",
+          "year": 2022,
+          "pub_types": [
+            "Journal Article",
+            "Review",
+            "Research Support, N.I.H., Extramural",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "methods_protocols",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.45,
+            "reason": "english_journal_unlisted"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Burridge",
+              "initials": "PW"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 659,
+              "unique_ratio": 0.4552,
+              "title": "A review of protocols for human iPSC culture, cardiac differentiation, subtype-specification, maturation, and direct reprogramming"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 99,
+              "discussion": 0,
+              "conclusion": 343,
+              "total_available": 659
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 400,
+              "methods": 2500,
+              "results": 1500,
+              "discussion": 600
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": false,
+              "conclusion": true,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\36035804.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "STAR Protoc human iPSC culture review"
+        },
+        {
+          "pmid": "33111119",
+          "pmcid": "PMC3279583",
+          "doi": "10.1016/j.xpro.2020.100086",
+          "title": "Protocol for Primary Mouse Hepatocyte Isolation.",
+          "journal": "STAR protocols",
+          "journal_abbrev": "STAR Protoc",
+          "year": 2020,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "methods_protocols",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.45,
+            "reason": "english_journal_unlisted"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Goldstein",
+              "initials": "I"
+            },
+            "reason": "european_surname_suffix"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 80,
+              "unique_ratio": 0.8375,
+              "title": "Protocol for Primary Mouse Hepatocyte Isolation"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 80,
+              "discussion": 0,
+              "conclusion": 0,
+              "total_available": 367
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 400,
+              "methods": 2500,
+              "results": 1500,
+              "discussion": 600
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": false,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\33111119.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "STAR Protoc primary mouse hepatocyte isolation"
+        },
+        {
+          "pmid": "33495626",
+          "pmcid": "5210636",
+          "doi": "10.1038/s41596-020-00466-1",
+          "title": "Isolation and characterization of extracellular vesicle subpopulations from tissues.",
+          "journal": "Nature protocols",
+          "journal_abbrev": "Nat Protoc",
+          "year": 2021,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "methods_protocols",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": false,
+            "confidence": "low",
+            "correspondent": {
+              "last": "Lötvall",
+              "initials": "J"
+            },
+            "reason": "unclassified_surname"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1605,
+              "unique_ratio": 0.3308,
+              "title": "In-situ polymerization-mediated glycan density measurement on extracellular vesicle surface for acute myeloid leukemia diagnosis"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 208,
+              "discussion": 1806,
+              "conclusion": 134,
+              "total_available": 2618
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 400,
+              "methods": 2500,
+              "results": 1500,
+              "discussion": 600
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "above_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": true,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": null,
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Nat Protoc extracellular vesicle isolation"
+        },
+        {
+          "pmid": "28492527",
+          "pmcid": null,
+          "doi": "10.1038/nprot.2017.029",
+          "title": "Single-cell template strand sequencing by Strand-seq enables the characterization of individual homologs.",
+          "journal": "Nature protocols",
+          "journal_abbrev": "Nat Protoc",
+          "year": 2017,
+          "pub_types": [
+            "Journal Article"
+          ],
+          "article_type": {
+            "canonical": "methods_protocols",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": false,
+            "confidence": "low",
+            "correspondent": {
+              "last": "Lansdorp",
+              "initials": "PM"
+            },
+            "reason": "unclassified_surname"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1691,
+              "unique_ratio": 0.3678,
+              "title": "Recurrent DNA break clusters drive replication-stress-induced copy number variants and genome diversification"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 180,
+              "discussion": 1889,
+              "conclusion": 0,
+              "total_available": 3796
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 400,
+              "methods": 2500,
+              "results": 1500,
+              "discussion": 600
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "above_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": null,
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Nat Protoc single-cell template strand sequencing"
+        },
+        {
+          "pmid": "29939987",
+          "pmcid": "PMC2094010",
+          "doi": "10.1371/journal.pone.0198293",
+          "title": "Heat stress transcripts, differential expression, and profiling of heat stress tolerant gene TaHsp90 in Indian wheat (Triticum aestivum L.) cv C306.",
+          "journal": "PloS one",
+          "journal_abbrev": "PLoS One",
+          "year": 2018,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "methods_protocols",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": false,
+            "confidence": "low",
+            "correspondent": {
+              "last": "Padaria",
+              "initials": "JC"
+            },
+            "reason": "unclassified_surname"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1748,
+              "unique_ratio": 0.3581,
+              "title": "Heat stress transcripts, differential expression, and profiling of heat stress tolerant gene TaHsp90 in Indian wheat (Triticum aestivum L.) cv C306"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 214,
+              "discussion": 2025,
+              "conclusion": 0,
+              "total_available": 2709
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 400,
+              "methods": 2500,
+              "results": 1500,
+              "discussion": 600
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "above_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\29939987.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "PLoS ONE heat stress RNA-seq protocol"
+        }
+      ]
+    },
+    "case_report": {
+      "target_n": 5,
+      "selected_n": 5,
+      "stats": {
+        "abstract_words": {
+          "n": 5,
+          "median": 103,
+          "p10": 0,
+          "p90": 168
+        },
+        "discussion_words": {
+          "n": 5,
+          "median": 0,
+          "p10": 0,
+          "p90": 799
+        },
+        "citations_per_1000_words": {
+          "n": 5,
+          "median": 0.0,
+          "p10": 0.0,
+          "p90": 0.0
+        }
+      },
+      "papers": [
+        {
+          "pmid": "10791527",
+          "pmcid": null,
+          "doi": "10.1016/S0140-6736(00)02142-5",
+          "title": "Cryptococcal meningitis, an endocrine emergency?",
+          "journal": "Lancet (London, England)",
+          "journal_abbrev": "Lancet",
+          "year": 2000,
+          "pub_types": [
+            "Case Reports",
+            "Journal Article"
+          ],
+          "article_type": {
+            "canonical": "case_report",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Razavi",
+              "initials": "M"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 126,
+              "unique_ratio": 0.7302,
+              "title": "Unusual infections and thrombotic events in Cushing’s syndrome"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 66,
+              "discussion": 0,
+              "conclusion": 60,
+              "total_available": 126
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 400,
+              "case_presentation": 1200,
+              "discussion": 800
+            },
+            "word_band_check": {
+              "abstract": "below_band",
+              "introduction": "no_data",
+              "case_presentation": "no_data",
+              "discussion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": false,
+              "conclusion": true,
+              "figure_legends": false
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "case_presentation",
+              "discussion"
+            ]
+          },
+          "local_path": null,
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Lancet cryptococcal meningitis case"
+        },
+        {
+          "pmid": "30567199",
+          "pmcid": "PMC5600084",
+          "doi": "10.1136/bcr-2018-226497",
+          "title": "Use of platelet and erythroid growth factors during induction chemotherapy for acute lymphoblastic leukaemia in a Jehovah's Witness.",
+          "journal": "BMJ case reports",
+          "journal_abbrev": "BMJ Case Rep",
+          "year": 2018,
+          "pub_types": [
+            "Case Reports",
+            "Journal Article"
+          ],
+          "article_type": {
+            "canonical": "case_report",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Sadeghi",
+              "initials": "N"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 103,
+              "unique_ratio": 0.7087,
+              "title": "Use of platelet and erythroid growth factors during induction chemotherapy for acute lymphoblastic leukaemia in a Jehovah’s Witness"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 103,
+              "discussion": 0,
+              "conclusion": 0,
+              "total_available": 103
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 400,
+              "case_presentation": 1200,
+              "discussion": 800
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "case_presentation": "no_data",
+              "discussion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": false,
+              "conclusion": false,
+              "figure_legends": false
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "case_presentation",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\30567199.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "BMJ Case Rep growth factors case"
+        },
+        {
+          "pmid": "38381673",
+          "pmcid": null,
+          "doi": "10.1056/NEJMoa2308917",
+          "title": "CD19 CAR T-Cell Therapy in Autoimmune Disease - A Case Series with Follow-up.",
+          "journal": "The New England journal of medicine",
+          "journal_abbrev": "N Engl J Med",
+          "year": 2024,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "case_report",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": false,
+            "confidence": "low",
+            "correspondent": {
+              "last": "Schett",
+              "initials": "G"
+            },
+            "reason": "unclassified_surname"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 634,
+              "unique_ratio": 0.5142,
+              "title": "A Focused Comparative Review of Innovative Therapeutics Across Autoimmune and Chronic Inflammatory Diseases"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 168,
+              "discussion": 0,
+              "conclusion": 225,
+              "total_available": 634
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 400,
+              "case_presentation": 1200,
+              "discussion": 800
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "case_presentation": "no_data",
+              "discussion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": false,
+              "conclusion": true,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "case_presentation",
+              "discussion"
+            ]
+          },
+          "local_path": null,
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "NEJM CD19 CAR-T autoimmune disease case series"
+        },
+        {
+          "pmid": "28029927",
+          "pmcid": "PMC3888798",
+          "doi": "10.1056/NEJMoa1610497",
+          "title": "Regression of Glioblastoma after Chimeric Antigen Receptor T-Cell Therapy.",
+          "journal": "The New England journal of medicine",
+          "journal_abbrev": "N Engl J Med",
+          "year": 2016,
+          "pub_types": [
+            "Case Reports",
+            "Clinical Trial, Phase I",
+            "Journal Article",
+            "Research Support, N.I.H., Extramural",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "case_report",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": false,
+            "confidence": "low",
+            "correspondent": {
+              "last": "Badie",
+              "initials": "B"
+            },
+            "reason": "unclassified_surname"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1674,
+              "unique_ratio": 0.313,
+              "title": "Regression of Glioblastoma after Chimeric Antigen Receptor T-Cell Therapy"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 108,
+              "discussion": 799,
+              "conclusion": 0,
+              "total_available": 1723
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 400,
+              "case_presentation": 1200,
+              "discussion": 800
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "case_presentation": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "case_presentation",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\28029927.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "NEJM glioblastoma CAR-T regression case"
+        },
+        {
+          "pmid": "32229548",
+          "pmcid": "PMC2710788",
+          "doi": "10.1136/bcr-2019-232761",
+          "title": "Rare case of adult colocolic intussusception.",
+          "journal": "BMJ case reports",
+          "journal_abbrev": "BMJ Case Rep",
+          "year": 2020,
+          "pub_types": [
+            "Case Reports",
+            "Journal Article"
+          ],
+          "article_type": {
+            "canonical": "case_report",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": false,
+            "confidence": "low",
+            "correspondent": {
+              "last": "Cover",
+              "initials": "J"
+            },
+            "reason": "unclassified_surname"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "fail",
+              "issues": [
+                "too_short",
+                "too_few_words",
+                "low_lexical_diversity"
+              ],
+              "word_count": 0,
+              "unique_ratio": 0.0,
+              "title": "Rare case of adult colocolic intussusception"
+            },
+            "qc_pass": false,
+            "word_count": {
+              "abstract": 0,
+              "discussion": 0,
+              "conclusion": 0,
+              "total_available": 0
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 400,
+              "case_presentation": 1200,
+              "discussion": 800
+            },
+            "word_band_check": {
+              "abstract": "no_data",
+              "introduction": "no_data",
+              "case_presentation": "no_data",
+              "discussion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": false,
+              "discussion": false,
+              "conclusion": false,
+              "figure_legends": false
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "case_presentation",
+              "discussion"
+            ]
+          },
+          "local_path": null,
+          "fame_tier": "high",
+          "verification_status": "estimated",
+          "seed_label": "BMJ Case Rep adult colocolic intussusception case"
+        }
+      ]
+    },
+    "brief_communication": {
+      "target_n": 5,
+      "selected_n": 5,
+      "stats": {
+        "abstract_words": {
+          "n": 5,
+          "median": 143,
+          "p10": 0,
+          "p90": 230
+        },
+        "discussion_words": {
+          "n": 5,
+          "median": 0,
+          "p10": 0,
+          "p90": 614
+        },
+        "citations_per_1000_words": {
+          "n": 5,
+          "median": 0.0,
+          "p10": 0.0,
+          "p90": 0.0
+        }
+      },
+      "papers": [
+        {
+          "pmid": "31043757",
+          "pmcid": "PMC3840312",
+          "doi": "10.1038/s41588-019-0402-2",
+          "title": "The genome of cultivated peanut provides insight into legume karyotypes, polyploid evolution and crop domestication.",
+          "journal": "Nature genetics",
+          "journal_abbrev": "Nat Genet",
+          "year": 2019,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "brief_communication",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Varshney",
+              "initials": "RK"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1029,
+              "unique_ratio": 0.4169,
+              "title": "The genome of cultivated peanut provides insight into legume karyotypes, polyploid evolution and crop domestication"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 143,
+              "discussion": 97,
+              "conclusion": 0,
+              "total_available": 1029
+            },
+            "word_targets_default": {
+              "abstract": 150,
+              "introduction": 300,
+              "methods": 500,
+              "results": 800,
+              "discussion": 400
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "below_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\31043757.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Nat Genet cultivated peanut genome brief"
+        },
+        {
+          "pmid": "29950729",
+          "pmcid": "PMC2818760",
+          "doi": "10.1038/s41586-018-0251-7",
+          "title": "Acquired resistance to IDH inhibition through trans or cis dimer-interface mutations.",
+          "journal": "Nature",
+          "journal_abbrev": "Nature",
+          "year": 2018,
+          "pub_types": [
+            "Case Reports",
+            "Journal Article",
+            "Research Support, N.I.H., Extramural",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "brief_communication",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Stein",
+              "initials": "EM"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 230,
+              "unique_ratio": 0.5043,
+              "title": "Acquired resistance to IDH inhibition through trans or cis dimer-interface mutations"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 230,
+              "discussion": 0,
+              "conclusion": 0,
+              "total_available": 1930
+            },
+            "word_targets_default": {
+              "abstract": 150,
+              "introduction": 300,
+              "methods": 500,
+              "results": 800,
+              "discussion": 400
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": false,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\29950729.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Nature IDH inhibitor resistance short report"
+        },
+        {
+          "pmid": "31827273",
+          "pmcid": null,
+          "doi": "10.1038/s41557-019-0403-x",
+          "title": "Interfacing electronic and genetic circuits.",
+          "journal": "Nature chemistry",
+          "journal_abbrev": "Nat Chem",
+          "year": 2020,
+          "pub_types": [
+            "Journal Article",
+            "Comment"
+          ],
+          "article_type": {
+            "canonical": "brief_communication",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Rahn",
+              "initials": "KL"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "fail",
+              "issues": [
+                "too_short",
+                "too_few_words",
+                "low_lexical_diversity"
+              ],
+              "word_count": 0,
+              "unique_ratio": 0.0,
+              "title": "Interfacing electronic and genetic circuits."
+            },
+            "qc_pass": false,
+            "word_count": {
+              "abstract": 0,
+              "discussion": 0,
+              "conclusion": 0,
+              "total_available": 0
+            },
+            "word_targets_default": {
+              "abstract": 150,
+              "introduction": 300,
+              "methods": 500,
+              "results": 800,
+              "discussion": 400
+            },
+            "word_band_check": {
+              "abstract": "no_data",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": false
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": null,
+          "fame_tier": "high",
+          "verification_status": "estimated",
+          "seed_label": "Nat Chem genetic-electronic circuits"
+        },
+        {
+          "pmid": "30424070",
+          "pmcid": "PMC2917882",
+          "doi": "10.3390/mi9030136",
+          "title": "Optofluidics Refractometers.",
+          "journal": "Micromachines",
+          "journal_abbrev": "Micromachines (Basel)",
+          "year": 2018,
+          "pub_types": [
+            "Journal Article",
+            "Review"
+          ],
+          "article_type": {
+            "canonical": "brief_communication",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.45,
+            "reason": "english_journal_unlisted"
+          },
+          "corresponding_author_native": {
+            "pass": false,
+            "confidence": "low",
+            "correspondent": {
+              "last": "Jian",
+              "initials": "A"
+            },
+            "reason": "unclassified_surname"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1062,
+              "unique_ratio": 0.4482,
+              "title": "Optofluidics Refractometers"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 97,
+              "discussion": 614,
+              "conclusion": 89,
+              "total_available": 1062
+            },
+            "word_targets_default": {
+              "abstract": 150,
+              "introduction": 300,
+              "methods": 500,
+              "results": 800,
+              "discussion": 400
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": true,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\30424070.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Micromachines optofluidics brief communication"
+        },
+        {
+          "pmid": "29173274",
+          "pmcid": "PMC4336045",
+          "doi": "10.5489/cuaj.4393",
+          "title": "Single lower calyceal percutaneous tract combined with flexible nephroscopy: A valuable treatment paradigm for staghorn stones.",
+          "journal": "Canadian Urological Association journal = Journal de l'Association des urologues du Canada",
+          "journal_abbrev": "Can Urol Assoc J",
+          "year": 2018,
+          "pub_types": [
+            "Journal Article"
+          ],
+          "article_type": {
+            "canonical": "brief_communication",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.45,
+            "reason": "english_journal_unlisted"
+          },
+          "corresponding_author_native": {
+            "pass": false,
+            "confidence": "low",
+            "correspondent": {
+              "last": "Duvdevani",
+              "initials": "M"
+            },
+            "reason": "unclassified_surname"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 203,
+              "unique_ratio": 0.6108,
+              "title": "Single lower calyceal percutaneous tract combined with flexible nephroscopy: A valuable treatment paradigm for staghorn stones"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 203,
+              "discussion": 0,
+              "conclusion": 0,
+              "total_available": 203
+            },
+            "word_targets_default": {
+              "abstract": 150,
+              "introduction": 300,
+              "methods": 500,
+              "results": 800,
+              "discussion": 400
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": false,
+              "conclusion": false,
+              "figure_legends": false
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\29173274.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Can Urol Assoc J surgical brief report"
+        }
+      ]
+    },
+    "perspective": {
+      "target_n": 5,
+      "selected_n": 5,
+      "stats": {
+        "abstract_words": {
+          "n": 5,
+          "median": 107,
+          "p10": 0,
+          "p90": 151
+        },
+        "discussion_words": {
+          "n": 5,
+          "median": 0,
+          "p10": 0,
+          "p90": 641
+        },
+        "citations_per_1000_words": {
+          "n": 5,
+          "median": 0.0,
+          "p10": 0.0,
+          "p90": 0.0
+        }
+      },
+      "papers": [
+        {
+          "pmid": "33894193",
+          "pmcid": "PMC7458531",
+          "doi": "10.1016/S1474-4422(21)00030-2",
+          "title": "Challenges in the diagnosis of Parkinson's disease.",
+          "journal": "The Lancet. Neurology",
+          "journal_abbrev": "Lancet Neurol",
+          "year": 2021,
+          "pub_types": [
+            "Journal Article",
+            "Review"
+          ],
+          "article_type": {
+            "canonical": "perspective",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Poewe",
+              "initials": "W"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 683,
+              "unique_ratio": 0.4729,
+              "title": "Challenges in the diagnosis of Parkinson’s disease"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 151,
+              "discussion": 0,
+              "conclusion": 431,
+              "total_available": 683
+            },
+            "word_targets_default": {
+              "abstract": 150,
+              "introduction": 500,
+              "body": 2000,
+              "conclusion": 300
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "body": "no_data",
+              "conclusion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": false,
+              "conclusion": true,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "body",
+              "conclusion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\33894193.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Lancet Neurol Parkinson diagnosis perspective"
+        },
+        {
+          "pmid": "31748743",
+          "pmcid": "PMC4666778",
+          "doi": "10.1038/s41586-019-1763-5",
+          "title": "Circular ecDNA promotes accessible chromatin and high oncogene expression.",
+          "journal": "Nature",
+          "journal_abbrev": "Nature",
+          "year": 2019,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, N.I.H., Extramural",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "perspective",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Mischel",
+              "initials": "PS"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 135,
+              "unique_ratio": 0.7259,
+              "title": "Circular ecDNA promotes accessible chromatin and high oncogene expression"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 135,
+              "discussion": 0,
+              "conclusion": 0,
+              "total_available": 2129
+            },
+            "word_targets_default": {
+              "abstract": 150,
+              "introduction": 500,
+              "body": 2000,
+              "conclusion": 300
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "body": "no_data",
+              "conclusion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": false,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "body",
+              "conclusion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\31748743.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Nature ecDNA chromatin commentary"
+        },
+        {
+          "pmid": "30356215",
+          "pmcid": "PMC4177744",
+          "doi": "10.1038/s41586-018-0634-9",
+          "title": "A gut microbial factor modulates locomotor behaviour in Drosophila.",
+          "journal": "Nature",
+          "journal_abbrev": "Nature",
+          "year": 2018,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, N.I.H., Extramural",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "perspective",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Mazmanian",
+              "initials": "SK"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "fail",
+              "issues": [
+                "too_short",
+                "too_few_words",
+                "low_lexical_diversity"
+              ],
+              "word_count": 0,
+              "unique_ratio": 0.0,
+              "title": "A gut microbial factor modulates locomotor behavior in Drosophila"
+            },
+            "qc_pass": false,
+            "word_count": {
+              "abstract": 0,
+              "discussion": 0,
+              "conclusion": 0,
+              "total_available": 2725
+            },
+            "word_targets_default": {
+              "abstract": 150,
+              "introduction": 500,
+              "body": 2000,
+              "conclusion": 300
+            },
+            "word_band_check": {
+              "abstract": "no_data",
+              "introduction": "no_data",
+              "body": "no_data",
+              "conclusion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": false,
+              "discussion": false,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "body",
+              "conclusion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\30356215.json",
+          "fame_tier": "high",
+          "verification_status": "estimated",
+          "seed_label": "Nature gut microbiome locomotion commentary"
+        },
+        {
+          "pmid": "31509679",
+          "pmcid": null,
+          "doi": "10.1056/NEJMe1911103",
+          "title": "Changing Principals, Keeping Principles.",
+          "journal": "The New England journal of medicine",
+          "journal_abbrev": "N Engl J Med",
+          "year": 2019,
+          "pub_types": [
+            "Editorial"
+          ],
+          "article_type": {
+            "canonical": "perspective",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": false,
+            "confidence": "low",
+            "correspondent": {
+              "last": "Rubin",
+              "initials": "EJ"
+            },
+            "reason": "unclassified_surname"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1130,
+              "unique_ratio": 0.3673,
+              "title": "The scientific journal, beyond experts: the communication strategies of The New England Journal of Medicine and The Lancet"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 107,
+              "discussion": 641,
+              "conclusion": 382,
+              "total_available": 1130
+            },
+            "word_targets_default": {
+              "abstract": 150,
+              "introduction": 500,
+              "body": 2000,
+              "conclusion": 300
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "body": "no_data",
+              "conclusion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": true,
+              "figure_legends": false
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "body",
+              "conclusion"
+            ]
+          },
+          "local_path": null,
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "NEJM Changing Principals editorial perspective"
+        },
+        {
+          "pmid": "27729682",
+          "pmcid": "PMC5057201",
+          "doi": "10.1310/hpj5010-933",
+          "title": "Approvals, Submission, and Important Labeling Changes for US Marketed Pharmaceuticals.",
+          "journal": "Hospital pharmacy",
+          "journal_abbrev": "Hosp Pharm",
+          "year": 2015,
+          "pub_types": [
+            "Editorial"
+          ],
+          "article_type": {
+            "canonical": "perspective",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.45,
+            "reason": "english_journal_unlisted"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "high",
+            "correspondent": {
+              "last": "Baker",
+              "initials": "DE"
+            },
+            "reason": "anglo_surname_common"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "fail",
+              "issues": [
+                "too_short",
+                "too_few_words"
+              ],
+              "word_count": 49,
+              "unique_ratio": 0.9592,
+              "title": "Approvals, Submission, and Important Labeling Changes for US Marketed Pharmaceuticals"
+            },
+            "qc_pass": false,
+            "word_count": {
+              "abstract": 49,
+              "discussion": 0,
+              "conclusion": 0,
+              "total_available": 49
+            },
+            "word_targets_default": {
+              "abstract": 150,
+              "introduction": 500,
+              "body": 2000,
+              "conclusion": 300
+            },
+            "word_band_check": {
+              "abstract": "below_band",
+              "introduction": "no_data",
+              "body": "no_data",
+              "conclusion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": false,
+              "conclusion": false,
+              "figure_legends": false
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "body",
+              "conclusion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\27729682.json",
+          "fame_tier": "high",
+          "verification_status": "estimated",
+          "seed_label": "Hosp Pharm FDA approvals editorial"
+        }
+      ]
+    },
+    "clinical_trial": {
+      "target_n": 5,
+      "selected_n": 5,
+      "stats": {
+        "abstract_words": {
+          "n": 5,
+          "median": 268,
+          "p10": 139,
+          "p90": 334
+        },
+        "discussion_words": {
+          "n": 5,
+          "median": 712,
+          "p10": 0,
+          "p90": 992
+        },
+        "citations_per_1000_words": {
+          "n": 5,
+          "median": 0.0,
+          "p10": 0.0,
+          "p90": 0.0
+        }
+      },
+      "papers": [
+        {
+          "pmid": "32678530",
+          "pmcid": "PMC7211726",
+          "doi": "10.1056/NEJMoa2021436",
+          "title": "Dexamethasone in Hospitalized Patients with Covid-19.",
+          "journal": "The New England journal of medicine",
+          "journal_abbrev": "N Engl J Med",
+          "year": 2021,
+          "pub_types": [
+            "Comparative Study",
+            "Journal Article",
+            "Multicenter Study",
+            "Randomized Controlled Trial"
+          ],
+          "article_type": {
+            "canonical": "clinical_trial",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Landray",
+              "initials": "MJ"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1264,
+              "unique_ratio": 0.318,
+              "title": "Dexamethasone in Hospitalized Patients with Covid-19 — Preliminary Report"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 268,
+              "discussion": 712,
+              "conclusion": 0,
+              "total_available": 1264
+            },
+            "word_targets_default": {
+              "abstract": 300,
+              "introduction": 600,
+              "methods": 1500,
+              "results": 2500,
+              "discussion": 1200
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\32678530.json",
+          "fame_tier": "landmark",
+          "verification_status": "verified",
+          "seed_label": "NEJM RECOVERY dexamethasone RCT"
+        },
+        {
+          "pmid": "20525992",
+          "pmcid": "PMC1435696",
+          "doi": "10.1056/NEJMoa1003466",
+          "title": "Improved survival with ipilimumab in patients with metastatic melanoma.",
+          "journal": "The New England journal of medicine",
+          "journal_abbrev": "N Engl J Med",
+          "year": 2010,
+          "pub_types": [
+            "Clinical Trial, Phase III",
+            "Comparative Study",
+            "Journal Article",
+            "Multicenter Study",
+            "Randomized Controlled Trial"
+          ],
+          "article_type": {
+            "canonical": "clinical_trial",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Urba",
+              "initials": "WJ"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1184,
+              "unique_ratio": 0.3024,
+              "title": "Improved Survival with Ipilimumab in Patients with Metastatic Melanoma"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 276,
+              "discussion": 634,
+              "conclusion": 0,
+              "total_available": 1184
+            },
+            "word_targets_default": {
+              "abstract": 300,
+              "introduction": 600,
+              "methods": 1500,
+              "results": 2500,
+              "discussion": 1200
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\20525992.json",
+          "fame_tier": "landmark",
+          "verification_status": "verified",
+          "seed_label": "NEJM ipilimumab phase 3 melanoma"
+        },
+        {
+          "pmid": "30361170",
+          "pmcid": null,
+          "doi": "10.1016/S1470-2045(18)30700-9",
+          "title": "Nivolumab plus ipilimumab or nivolumab alone versus ipilimumab alone in advanced melanoma (CheckMate 067): 4-year outcomes of a multicentre, randomised, phase 3 trial.",
+          "journal": "The Lancet. Oncology",
+          "journal_abbrev": "Lancet Oncol",
+          "year": 2018,
+          "pub_types": [
+            "Clinical Trial, Phase III",
+            "Comparative Study",
+            "Journal Article",
+            "Multicenter Study",
+            "Randomized Controlled Trial",
+            "Research Support, N.I.H., Extramural",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "clinical_trial",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Wolchok",
+              "initials": "JD"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1546,
+              "unique_ratio": 0.3564,
+              "title": "Phenotypic, functional, prognostic and predictive significance of B-cell and antibody responses in human melanoma: a scoping review"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 334,
+              "discussion": 888,
+              "conclusion": 0,
+              "total_available": 2324
+            },
+            "word_targets_default": {
+              "abstract": 300,
+              "introduction": 600,
+              "methods": 1500,
+              "results": 2500,
+              "discussion": 1200
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": null,
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Lancet Oncol CheckMate 067 nivolumab trial"
+        },
+        {
+          "pmid": "38246194",
+          "pmcid": null,
+          "doi": "10.1016/S0140-6736(23)02268-7",
+          "title": "Individualised neoantigen therapy mRNA-4157 (V940) plus pembrolizumab versus pembrolizumab monotherapy in resected melanoma (KEYNOTE-942): a randomised, phase 2b study.",
+          "journal": "Lancet (London, England)",
+          "journal_abbrev": "Lancet",
+          "year": 2024,
+          "pub_types": [
+            "Clinical Trial, Phase II",
+            "Journal Article",
+            "Randomized Controlled Trial",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "clinical_trial",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Zaks",
+              "initials": "T"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 487,
+              "unique_ratio": 0.5257,
+              "title": "New Perspectives and Open Issues in the Adjuvant and Neoadjuvant Treatment of Melanoma"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 186,
+              "discussion": 0,
+              "conclusion": 211,
+              "total_available": 487
+            },
+            "word_targets_default": {
+              "abstract": 300,
+              "introduction": 600,
+              "methods": 1500,
+              "results": 2500,
+              "discussion": 1200
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": false,
+              "conclusion": true,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": null,
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Lancet mRNA-4157 neoantigen phase 2"
+        },
+        {
+          "pmid": "29091570",
+          "pmcid": null,
+          "doi": "10.1056/NEJMoa1702752",
+          "title": "Nusinersen versus Sham Control in Infantile-Onset Spinal Muscular Atrophy.",
+          "journal": "The New England journal of medicine",
+          "journal_abbrev": "N Engl J Med",
+          "year": 2017,
+          "pub_types": [
+            "Clinical Trial, Phase III",
+            "Journal Article",
+            "Multicenter Study",
+            "Randomized Controlled Trial"
+          ],
+          "article_type": {
+            "canonical": "clinical_trial",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "De Vivo",
+              "initials": "DC"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1423,
+              "unique_ratio": 0.3219,
+              "title": "Rare SMA Patients: A Comprehensive Look at Clinical Features, Genetic Profiles and Therapeutic Approaches"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 139,
+              "discussion": 992,
+              "conclusion": 239,
+              "total_available": 1423
+            },
+            "word_targets_default": {
+              "abstract": 300,
+              "introduction": 600,
+              "methods": 1500,
+              "results": 2500,
+              "discussion": 1200
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": true,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": null,
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "NEJM nusinersen infantile SMA phase 3 trial"
+        }
+      ]
+    },
+    "hypothesis": {
+      "target_n": 5,
+      "selected_n": 5,
+      "stats": {
+        "abstract_words": {
+          "n": 5,
+          "median": 178,
+          "p10": 123,
+          "p90": 271
+        },
+        "discussion_words": {
+          "n": 5,
+          "median": 953,
+          "p10": 0,
+          "p90": 2240
+        },
+        "citations_per_1000_words": {
+          "n": 5,
+          "median": 0.0,
+          "p10": 0.0,
+          "p90": 4.6
+        }
+      },
+      "papers": [
+        {
+          "pmid": "30531980",
+          "pmcid": null,
+          "doi": "10.1038/s41564-018-0319-z",
+          "title": "Unexpected mode of engagement between enterovirus 71 and its receptor SCARB2.",
+          "journal": "Nature microbiology",
+          "journal_abbrev": "Nat Microbiol",
+          "year": 2019,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "hypothesis",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Stuart",
+              "initials": "DI"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1624,
+              "unique_ratio": 0.3134,
+              "title": "Genistein inhibits the replication of enterovirus A71"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 178,
+              "discussion": 887,
+              "conclusion": 37,
+              "total_available": 3046
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 600,
+              "body": 2500,
+              "discussion": 800
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "body": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 14,
+            "citations_per_1000_words": 4.6,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": true,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "body",
+              "discussion"
+            ]
+          },
+          "local_path": null,
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Nat Microbiol enterovirus engagement hypothesis"
+        },
+        {
+          "pmid": "29846171",
+          "pmcid": "PMC1852705",
+          "doi": "10.7554/eLife.34408",
+          "title": "The MR-Base platform supports systematic causal inference across the human phenome.",
+          "journal": "eLife",
+          "journal_abbrev": "Elife",
+          "year": 2018,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "hypothesis",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Haycock",
+              "initials": "PC"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1741,
+              "unique_ratio": 0.3561,
+              "title": "The MR-Base platform supports systematic causal inference across the human phenome"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 151,
+              "discussion": 2240,
+              "conclusion": 0,
+              "total_available": 3369
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 600,
+              "body": 2500,
+              "discussion": 800
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "body": "no_data",
+              "discussion": "above_band"
+            },
+            "reference_markers_estimated": 15,
+            "citations_per_1000_words": 4.45,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "body",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\elife\\29846171.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "eLife MR-Base causal inference hypothesis"
+        },
+        {
+          "pmid": "29437877",
+          "pmcid": "PMC1435667",
+          "doi": "10.1136/jech-2017-209330",
+          "title": "How many people have been bitten by dogs? A cross-sectional survey of prevalence, incidence and factors associated with dog bites in a UK community.",
+          "journal": "Journal of epidemiology and community health",
+          "journal_abbrev": "J Epidemiol Community Health",
+          "year": 2018,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "hypothesis",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.45,
+            "reason": "english_journal_unlisted"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Christley",
+              "initials": "RM"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1837,
+              "unique_ratio": 0.2847,
+              "title": "How many people have been bitten by dogs? A cross-sectional survey of prevalence, incidence and factors associated with dog bites in a UK community"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 271,
+              "discussion": 1942,
+              "conclusion": 0,
+              "total_available": 2213
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 600,
+              "body": 2500,
+              "discussion": 800
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "body": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": false
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "body",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\29437877.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "J Epidemiol Community Health dog bite survey"
+        },
+        {
+          "pmid": "31600176",
+          "pmcid": "PMC6108909",
+          "doi": "10.1097/PAS.0000000000001307",
+          "title": "TFEB Expression Profiling in Renal Cell Carcinomas: Clinicopathologic Correlations.",
+          "journal": "The American journal of surgical pathology",
+          "journal_abbrev": "Am J Surg Pathol",
+          "year": 2019,
+          "pub_types": [
+            "Journal Article"
+          ],
+          "article_type": {
+            "canonical": "hypothesis",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.45,
+            "reason": "english_journal_unlisted"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Reuter",
+              "initials": "VE"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1562,
+              "unique_ratio": 0.2746,
+              "title": "TFEB Expression Profiling in Renal Cell Carcinomas: Clinicopathologic Correlations"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 231,
+              "discussion": 953,
+              "conclusion": 0,
+              "total_available": 1810
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 600,
+              "body": 2500,
+              "discussion": 800
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "body": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "body",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\31600176.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Am J Surg Pathol TFEB renal carcinoma"
+        },
+        {
+          "pmid": "30046107",
+          "pmcid": null,
+          "doi": "10.1038/s41586-018-0357-y",
+          "title": "Room-temperature electrical control of exciton flux in a van der Waals heterostructure.",
+          "journal": "Nature",
+          "journal_abbrev": "Nature",
+          "year": 2018,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "hypothesis",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": false,
+            "confidence": "low",
+            "correspondent": {
+              "last": "Kis",
+              "initials": "A"
+            },
+            "reason": "unclassified_surname"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 123,
+              "unique_ratio": 0.6911,
+              "title": "Ferroelectric Control of Interlayer Excitons in 3R-MoS2/MoSe2 Heterostructures"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 123,
+              "discussion": 0,
+              "conclusion": 0,
+              "total_available": 649
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 600,
+              "body": 2500,
+              "discussion": 800
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "body": "no_data",
+              "discussion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": false,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "body",
+              "discussion"
+            ]
+          },
+          "local_path": null,
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Nature exciton fluidity room temperature"
+        }
+      ]
+    },
+    "negative_results": {
+      "target_n": 5,
+      "selected_n": 5,
+      "stats": {
+        "abstract_words": {
+          "n": 5,
+          "median": 172,
+          "p10": 0,
+          "p90": 302
+        },
+        "discussion_words": {
+          "n": 5,
+          "median": 666,
+          "p10": 0,
+          "p90": 2723
+        },
+        "citations_per_1000_words": {
+          "n": 5,
+          "median": 0.0,
+          "p10": 0.0,
+          "p90": 0.0
+        }
+      },
+      "papers": [
+        {
+          "pmid": "31289395",
+          "pmcid": null,
+          "doi": "10.1038/d41586-019-02116-3",
+          "title": "Poverty insights for policy from co-produced research.",
+          "journal": "Nature",
+          "journal_abbrev": "Nature",
+          "year": 2019,
+          "pub_types": [
+            "Letter",
+            "Comment"
+          ],
+          "article_type": {
+            "canonical": "negative_results",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "high",
+            "correspondent": {
+              "last": "Walker",
+              "initials": "R"
+            },
+            "reason": "anglo_surname_common"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "fail",
+              "issues": [
+                "too_short",
+                "too_few_words",
+                "low_lexical_diversity"
+              ],
+              "word_count": 0,
+              "unique_ratio": 0.0,
+              "title": "Poverty insights for policy from co-produced research."
+            },
+            "qc_pass": false,
+            "word_count": {
+              "abstract": 0,
+              "discussion": 0,
+              "conclusion": 0,
+              "total_available": 0
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 500,
+              "methods": 1000,
+              "results": 1500,
+              "discussion": 1000
+            },
+            "word_band_check": {
+              "abstract": "no_data",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": false
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": null,
+          "fame_tier": "high",
+          "verification_status": "estimated",
+          "seed_label": "Nature poverty policy co-production"
+        },
+        {
+          "pmid": "37729320",
+          "pmcid": "PMC3474591",
+          "doi": "10.1371/journal.pone.0291470",
+          "title": "Global risk factor analysis of myopia onset in children: A systematic review and meta-analysis.",
+          "journal": "PloS one",
+          "journal_abbrev": "PLoS One",
+          "year": 2023,
+          "pub_types": [
+            "Meta-Analysis",
+            "Systematic Review",
+            "Journal Article",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "negative_results",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": false,
+            "confidence": "low",
+            "correspondent": {
+              "last": "Bi",
+              "initials": "H"
+            },
+            "reason": "unclassified_surname"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1373,
+              "unique_ratio": 0.3015,
+              "title": "Global risk factor analysis of myopia onset in children: A systematic review and meta-analysis"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 302,
+              "discussion": 2723,
+              "conclusion": 133,
+              "total_available": 3194
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 500,
+              "methods": 1000,
+              "results": 1500,
+              "discussion": 1000
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "above_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": true,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\plos_med\\37729320.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "PLoS ONE myopia risk factor null/global analysis"
+        },
+        {
+          "pmid": "30356299",
+          "pmcid": "PMC4249650",
+          "doi": "10.1371/journal.pone.0206261",
+          "title": "Increased Trimethylation of histone H3K36 associates with biliary differentiation and predicts poor prognosis in resectable hepatocellular carcinoma.",
+          "journal": "PloS one",
+          "journal_abbrev": "PLoS One",
+          "year": 2018,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "negative_results",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": false,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Yuan",
+              "initials": "RH"
+            },
+            "reason": "surname_heuristic_non_native"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1422,
+              "unique_ratio": 0.3045,
+              "title": "Increased Trimethylation of histone H3K36 associates with biliary differentiation and predicts poor prognosis in resectable hepatocellular carcinoma"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 207,
+              "discussion": 916,
+              "conclusion": 0,
+              "total_available": 1422
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 500,
+              "methods": 1000,
+              "results": 1500,
+              "discussion": 1000
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\plos_med\\30356299.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "PLoS ONE histone trimethylation association study"
+        },
+        {
+          "pmid": "29596422",
+          "pmcid": "PMC5875745",
+          "doi": "10.1371/journal.pone.0180880",
+          "title": "Calculation for tensile strength and fracture toughness of granite with three kinds of grain sizes using three-point-bending test.",
+          "journal": "PloS one",
+          "journal_abbrev": "PLoS One",
+          "year": 2018,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "negative_results",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": false,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Yu",
+              "initials": "Y"
+            },
+            "reason": "surname_heuristic_non_native"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 776,
+              "unique_ratio": 0.2552,
+              "title": "Calculation for tensile strength and fracture toughness of granite with three kinds of grain sizes using three-point-bending test"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 171,
+              "discussion": 0,
+              "conclusion": 303,
+              "total_available": 776
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 500,
+              "methods": 1000,
+              "results": 1500,
+              "discussion": 1000
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": false,
+              "conclusion": true,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\plos_med\\29596422.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "PLoS ONE tensile strength calculation"
+        },
+        {
+          "pmid": "26057369",
+          "pmcid": null,
+          "doi": "10.1016/j.jmr.2015.05.007",
+          "title": "High-sensitivity NMR beyond 200,000 atmospheres of pressure.",
+          "journal": "Journal of magnetic resonance (San Diego, Calif. : 1997)",
+          "journal_abbrev": "J Magn Reson",
+          "year": 2015,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "negative_results",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.45,
+            "reason": "english_journal_unlisted"
+          },
+          "corresponding_author_native": {
+            "pass": false,
+            "confidence": "low",
+            "correspondent": {
+              "last": "Haase",
+              "initials": "J"
+            },
+            "reason": "unclassified_surname"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1138,
+              "unique_ratio": 0.4218,
+              "title": "Magnetic flux tailoring through Lenz lenses for ultrasmall samples: A new pathway to high-pressure nuclear magnetic resonance"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 172,
+              "discussion": 666,
+              "conclusion": 0,
+              "total_available": 1138
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 500,
+              "methods": 1000,
+              "results": 1500,
+              "discussion": 1000
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": null,
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "J Magn Reson NMR sensitivity methods"
+        }
+      ]
+    },
+    "resource_paper": {
+      "target_n": 5,
+      "selected_n": 5,
+      "stats": {
+        "abstract_words": {
+          "n": 5,
+          "median": 151,
+          "p10": 139,
+          "p90": 244
+        },
+        "discussion_words": {
+          "n": 5,
+          "median": 166,
+          "p10": 0,
+          "p90": 991
+        },
+        "citations_per_1000_words": {
+          "n": 5,
+          "median": 0.0,
+          "p10": 0.0,
+          "p90": 0.24
+        }
+      },
+      "papers": [
+        {
+          "pmid": "30333627",
+          "pmcid": "PMC4967469",
+          "doi": "10.1038/s41586-018-0623-z",
+          "title": "Functional genomic landscape of acute myeloid leukaemia.",
+          "journal": "Nature",
+          "journal_abbrev": "Nature",
+          "year": 2018,
+          "pub_types": [
+            "Comparative Study",
+            "Journal Article",
+            "Research Support, N.I.H., Extramural",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "resource_paper",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Druker",
+              "initials": "BJ"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1756,
+              "unique_ratio": 0.3166,
+              "title": "Functional Genomic Landscape of Acute Myeloid Leukemia"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 148,
+              "discussion": 155,
+              "conclusion": 0,
+              "total_available": 2128
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 500,
+              "methods": 1000,
+              "results": 2000,
+              "discussion": 800
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "below_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\30333627.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Nature AML functional genomic landscape"
+        },
+        {
+          "pmid": "26430181",
+          "pmcid": "PMC2441508",
+          "doi": "10.7861/clinmedicine.15-5-437",
+          "title": "Experience from two decades of the Cambridge Rapid Access Neurology Clinic.",
+          "journal": "Clinical medicine (London, England)",
+          "journal_abbrev": "Clin Med (Lond)",
+          "year": 2015,
+          "pub_types": [
+            "Journal Article"
+          ],
+          "article_type": {
+            "canonical": "resource_paper",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.45,
+            "reason": "english_journal_unlisted"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Stacpoole",
+              "initials": "SR"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 153,
+              "unique_ratio": 0.7647,
+              "title": "Experience from two decades of the Cambridge Rapid Access Neurology Clinic"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 153,
+              "discussion": 0,
+              "conclusion": 0,
+              "total_available": 153
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 500,
+              "methods": 1000,
+              "results": 2000,
+              "discussion": 800
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": false,
+              "conclusion": false,
+              "figure_legends": false
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\26430181.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Clin Med Cambridge rapid access clinic resource"
+        },
+        {
+          "pmid": "22955616",
+          "pmcid": "PMC3890430",
+          "doi": "10.1038/nature11247",
+          "title": "An integrated encyclopedia of DNA elements in the human genome.",
+          "journal": "Nature",
+          "journal_abbrev": "Nature",
+          "year": 2012,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, American Recovery and Reinvestment Act",
+            "Research Support, N.I.H., Extramural",
+            "Research Support, N.I.H., Intramural",
+            "Research Support, U.S. Gov't, Non-P.H.S."
+          ],
+          "article_type": {
+            "canonical": "resource_paper",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": false,
+            "confidence": "low",
+            "correspondent": null,
+            "reason": "no_authors"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1720,
+              "unique_ratio": 0.3291,
+              "title": "An Integrated Encyclopedia of DNA Elements in the Human Genome"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 139,
+              "discussion": 657,
+              "conclusion": 1117,
+              "total_available": 4211
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 500,
+              "methods": 1000,
+              "results": 2000,
+              "discussion": 800
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 1,
+            "citations_per_1000_words": 0.24,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": true,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\22955616.json",
+          "fame_tier": "landmark",
+          "verification_status": "verified",
+          "seed_label": "Nature ENCODE integrative encyclopedia"
+        },
+        {
+          "pmid": "31292543",
+          "pmcid": "PMC1239896",
+          "doi": "10.1038/s41586-019-1373-2",
+          "title": "A human liver cell atlas reveals heterogeneity and epithelial progenitors.",
+          "journal": "Nature",
+          "journal_abbrev": "Nature",
+          "year": 2019,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "resource_paper",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": false,
+            "confidence": "low",
+            "correspondent": {
+              "last": "Grün",
+              "initials": "D"
+            },
+            "reason": "unclassified_surname"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1646,
+              "unique_ratio": 0.2874,
+              "title": "A Human Liver Cell Atlas reveals Heterogeneity and Epithelial Progenitors"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 151,
+              "discussion": 166,
+              "conclusion": 0,
+              "total_available": 3367
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 500,
+              "methods": 1000,
+              "results": 2000,
+              "discussion": 800
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "below_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\31292543.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Nature human liver cell atlas"
+        },
+        {
+          "pmid": "31217585",
+          "pmcid": null,
+          "doi": "10.1038/s41586-019-1321-1",
+          "title": "A universal biomolecular integral feedback controller for robust perfect adaptation.",
+          "journal": "Nature",
+          "journal_abbrev": "Nature",
+          "year": 2019,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "resource_paper",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": false,
+            "confidence": "low",
+            "correspondent": {
+              "last": "Khammash",
+              "initials": "M"
+            },
+            "reason": "unclassified_surname"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1643,
+              "unique_ratio": 0.3993,
+              "title": "Generative design of synthetic gene circuits for functional and evolutionary properties"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 244,
+              "discussion": 991,
+              "conclusion": 0,
+              "total_available": 2071
+            },
+            "word_targets_default": {
+              "abstract": 200,
+              "introduction": 500,
+              "methods": 1000,
+              "results": 2000,
+              "discussion": 800
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": null,
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Nature universal biomolecular feedback control"
+        }
+      ]
+    },
+    "translational_drug_discovery": {
+      "target_n": 5,
+      "selected_n": 5,
+      "stats": {
+        "abstract_words": {
+          "n": 5,
+          "median": 173,
+          "p10": 0,
+          "p90": 190
+        },
+        "discussion_words": {
+          "n": 5,
+          "median": 1029,
+          "p10": 0,
+          "p90": 1313
+        },
+        "citations_per_1000_words": {
+          "n": 5,
+          "median": 0.0,
+          "p10": 0.0,
+          "p90": 0.0
+        }
+      },
+      "papers": [
+        {
+          "pmid": "38266107",
+          "pmcid": null,
+          "doi": "10.1126/scitranslmed.adf4590",
+          "title": "Single-cell atlas of human infrapatellar fat pad and synovium implicates APOE signaling in osteoarthritis pathology.",
+          "journal": "Science translational medicine",
+          "journal_abbrev": "Sci Transl Med",
+          "year": 2024,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "translational_drug_discovery",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.8500000000000001,
+            "reason": "uk_us_hits:2"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Ding",
+              "initials": "C"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1581,
+              "unique_ratio": 0.3795,
+              "title": "APOA4 Protects Chondrocytes and Modulates Wnt Signaling in Osteoarthritis"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 185,
+              "discussion": 1313,
+              "conclusion": 194,
+              "total_available": 2595
+            },
+            "word_targets_default": {
+              "abstract": 250,
+              "introduction": 600,
+              "methods": 1200,
+              "results": 2800,
+              "discussion": 1800
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": true,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": null,
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Sci Transl Med infrapatellar fat pad atlas"
+        },
+        {
+          "pmid": "37524953",
+          "pmcid": "PMC10414695",
+          "doi": "10.1038/s41591-023-02465-7",
+          "title": "Zolbetuximab plus CAPOX in CLDN18.2-positive gastric or gastroesophageal junction adenocarcinoma: the randomized, phase 3 GLOW trial.",
+          "journal": "Nature medicine",
+          "journal_abbrev": "Nat Med",
+          "year": 2023,
+          "pub_types": [
+            "Clinical Trial, Phase III",
+            "Journal Article",
+            "Randomized Controlled Trial",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "translational_drug_discovery",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.8500000000000001,
+            "reason": "uk_us_hits:2"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Xu",
+              "initials": "RH"
+            },
+            "reason": "non_anglo_surname_but_uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1681,
+              "unique_ratio": 0.2719,
+              "title": "Zolbetuximab plus CAPOX in CLDN18.2-positive gastric or gastroesophageal junction adenocarcinoma: the randomized, phase 3 GLOW trial"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 173,
+              "discussion": 1188,
+              "conclusion": 0,
+              "total_available": 1681
+            },
+            "word_targets_default": {
+              "abstract": 250,
+              "introduction": 600,
+              "methods": 1200,
+              "results": 2800,
+              "discussion": 1800
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\37524953.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Nat Med zolbetuximab CLDN18.2 gastric cancer"
+        },
+        {
+          "pmid": "30992377",
+          "pmcid": "PMC2725188",
+          "doi": "10.1073/pnas.1902649116",
+          "title": "Select sequencing of clonally expanded CD8+ T cells reveals limits to clonal expansion.",
+          "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+          "journal_abbrev": "Proc Natl Acad Sci U S A",
+          "year": 2019,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, N.I.H., Extramural",
+            "Research Support, Non-U.S. Gov't"
+          ],
+          "article_type": {
+            "canonical": "translational_drug_discovery",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.7000000000000001,
+            "reason": "uk_us_hits:1"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Steinmetz",
+              "initials": "LM"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 1784,
+              "unique_ratio": 0.338,
+              "title": "Select sequencing of clonally expanded CD8+ T cells reveals limits to clonal expansion"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 190,
+              "discussion": 1029,
+              "conclusion": 0,
+              "total_available": 2082
+            },
+            "word_targets_default": {
+              "abstract": 250,
+              "introduction": 600,
+              "methods": 1200,
+              "results": 2800,
+              "discussion": 1800
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "in_band"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": true,
+              "conclusion": false,
+              "figure_legends": true
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\30992377.json",
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "PNAS CD8 T cell clonal sequencing"
+        },
+        {
+          "pmid": "31515457",
+          "pmcid": null,
+          "doi": "10.1158/1078-0432.CCR-19-0463",
+          "title": "Long-Term Survival Analysis of Adjuvant Chemotherapy with or without Trastuzumab in Patients with T1, Node-Negative HER2-Positive Breast Cancer.",
+          "journal": "Clinical cancer research : an official journal of the American Association for Cancer Research",
+          "journal_abbrev": "Clin Cancer Res",
+          "year": 2019,
+          "pub_types": [
+            "Journal Article",
+            "Research Support, N.I.H., Extramural"
+          ],
+          "article_type": {
+            "canonical": "translational_drug_discovery",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.45,
+            "reason": "english_journal_unlisted"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "medium",
+            "correspondent": {
+              "last": "Yeung",
+              "initials": "SJ"
+            },
+            "reason": "uk_us_affiliation"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "pass",
+              "issues": [],
+              "word_count": 352,
+              "unique_ratio": 0.4915,
+              "title": "Risk Factors for Disease Recurrence in Patients with HER2+ Early Breast Cancer and Implications for Therapy: A Narrative Review"
+            },
+            "qc_pass": true,
+            "word_count": {
+              "abstract": 168,
+              "discussion": 0,
+              "conclusion": 184,
+              "total_available": 352
+            },
+            "word_targets_default": {
+              "abstract": 250,
+              "introduction": 600,
+              "methods": 1200,
+              "results": 2800,
+              "discussion": 1800
+            },
+            "word_band_check": {
+              "abstract": "in_band",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": true,
+              "discussion": false,
+              "conclusion": true,
+              "figure_legends": false
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": null,
+          "fame_tier": "high",
+          "verification_status": "verified",
+          "seed_label": "Clin Cancer Res adjuvant chemotherapy survival"
+        },
+        {
+          "pmid": "29769229",
+          "pmcid": "PMC5718263",
+          "doi": "10.1681/ASN.2018040441",
+          "title": "The Underestimated Burden of Monogenic Diseases in Adult-Onset ESRD.",
+          "journal": "Journal of the American Society of Nephrology : JASN",
+          "journal_abbrev": "J Am Soc Nephrol",
+          "year": 2018,
+          "pub_types": [
+            "Editorial",
+            "Research Support, N.I.H., Extramural",
+            "Research Support, Non-U.S. Gov't",
+            "Comment"
+          ],
+          "article_type": {
+            "canonical": "translational_drug_discovery",
+            "source": "seed_manifest",
+            "confidence": "high"
+          },
+          "uk_us_source": {
+            "pass": true,
+            "score": 0.45,
+            "reason": "english_journal_unlisted"
+          },
+          "corresponding_author_native": {
+            "pass": true,
+            "confidence": "high",
+            "correspondent": {
+              "last": "Harris",
+              "initials": "PC"
+            },
+            "reason": "anglo_surname_common"
+          },
+          "metrics": {
+            "partial_coverage": true,
+            "quality_gate": {
+              "verdict": "fail",
+              "issues": [
+                "too_short",
+                "too_few_words",
+                "low_lexical_diversity"
+              ],
+              "word_count": 0,
+              "unique_ratio": 0.0,
+              "title": "The Underestimated Burden of Monogenic Diseases in Adult-Onset ESRD"
+            },
+            "qc_pass": false,
+            "word_count": {
+              "abstract": 0,
+              "discussion": 0,
+              "conclusion": 0,
+              "total_available": 0
+            },
+            "word_targets_default": {
+              "abstract": 250,
+              "introduction": 600,
+              "methods": 1200,
+              "results": 2800,
+              "discussion": 1800
+            },
+            "word_band_check": {
+              "abstract": "no_data",
+              "introduction": "no_data",
+              "methods": "no_data",
+              "results": "no_data",
+              "discussion": "no_data"
+            },
+            "reference_markers_estimated": 0,
+            "citations_per_1000_words": 0.0,
+            "sections_available": {
+              "abstract": false,
+              "discussion": false,
+              "conclusion": false,
+              "figure_legends": false
+            },
+            "sections_required_schema": [
+              "abstract",
+              "introduction",
+              "methods",
+              "results",
+              "discussion"
+            ]
+          },
+          "local_path": "papers_raw\\pnas\\29769229.json",
+          "fame_tier": "high",
+          "verification_status": "estimated",
+          "seed_label": "J Am Soc Nephrol monogenic disease burden"
+        }
+      ]
+    }
+  }
+}

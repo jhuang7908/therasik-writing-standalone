@@ -1,0 +1,52 @@
+# systemd unit for non-Docker installs (bare metal / VPS)
+# Install:  sudo cp writing-memory.service /etc/systemd/system/
+#           sudo systemctl daemon-reload
+#           sudo systemctl enable --now writing-memory.service
+# Check:    systemctl status writing-memory
+# Logs:     journalctl -u writing-memory -f
+
+[Unit]
+Description=InSynBio Writing-Memory FastAPI service
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=insynbio
+Group=insynbio
+WorkingDirectory=/srv/writing-memory
+EnvironmentFile=/srv/writing-memory/.env
+
+# Quota tuning (overrides defaults in quota.py)
+Environment="WM_QUOTA_PLAN=2"
+Environment="WM_QUOTA_DRAFT=6"
+Environment="WM_QUOTA_POLISH=10"
+Environment="WM_QUOTA_DB=/srv/writing-memory/data/quota.db"
+Environment="WM_TRUSTED_IPS=127.0.0.1,::1"
+
+ExecStart=/srv/writing-memory/.venv/bin/python -m uvicorn app:app \
+  --host 127.0.0.1 --port 8100 \
+  --proxy-headers --forwarded-allow-ips '*' \
+  --workers 1 --log-level info
+
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+# Hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/srv/writing-memory/data /srv/writing-memory/_index
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictNamespaces=true
+RestrictRealtime=true
+LockPersonality=true
+MemoryDenyWriteExecute=false
+
+[Install]
+WantedBy=multi-user.target

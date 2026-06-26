@@ -1,0 +1,228 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42133805",
+    "pmcid": "PMC13187809",
+    "doi": "10.1073/pnas.2535550123",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "direct_problem_statement",
+    "dominant_frame": "translational_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "problem-gap-solution-implication",
+    "claim_chain": [
+      "EBV-positive NHL is aggressive and develops treatment resistance",
+      "NEK2 expression increases upon EBV infection and is driven by viral latency proteins",
+      "NEK2 inhibition selectively kills EBV-positive NHL through inflammatory cell death",
+      "NEK2 inhibition reduces drug resistance protein expression and activity",
+      "NEK2 inhibition decreases tumor burden and prolongs survival in humanized mice",
+      "NEK2 represents a viable therapeutic target for EBV-positive NHL"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "low",
+    "claim_strength": "strong",
+    "avg_sentence_length": "medium",
+    "preferred_verbs": [
+      "demonstrate",
+      "show",
+      "identify",
+      "observe",
+      "suggest",
+      "found",
+      "postulate",
+      "support"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State main finding or observation",
+      "Provide supporting evidence from multiple cell lines or models",
+      "Discuss mechanistic interpretation",
+      "Connect to broader implications or related findings",
+      "Acknowledge limitations or alternative explanations where relevant"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Mechanistic clarity of NEK2-mediated cell death pathways",
+      "Specificity of NEK2 inhibition for EBV-positive versus EBV-negative cells",
+      "In vivo toxicity and safety profile of JH295",
+      "Clinical translatability and therapeutic window",
+      "Completeness of cell death mechanism characterization"
+    ],
+    "likely_attacks": [
+      "Incomplete characterization of pyroptosis markers (no cleaved caspase 1 or IL-1 detected)",
+      "Reliance on inference rather than direct proof for inflammatory cell death mechanism",
+      "Lack of clarity on how NEK2 inhibition works in latency I cells without LMP1",
+      "Need for more direct evidence linking beta-catenin to observed phenotypes",
+      "Generalizability across all EBV-positive NHL subtypes"
+    ],
+    "inference_basis": "The paper explicitly states 'we were unable to detect cleaved caspase 1 or cleaved IL-1 protein following JH295 treatment. Therefore, we could not confirm pyroptosis and instead refer to the observed cell death as an inflammatory, non-apoptotic mechanism.' The authors also acknowledge 'it is tempting to speculate JH295 mediates lymphoma cell death by suppressing LMP1 signaling. However, we also observed robust cell death in the latency stage I BL cell lines, which do not express LMP1. Therefore, JH295-mediated cell death cannot be solely attributed to loss of LMP1 expression.' These passages show the authors pre-emptively address mechanistic uncertainties and alternative explanations, suggesting reviewers would focus on mechanistic completeness and specificity."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "our data suggest targeting NEK2 could be a viable therapeutic strategy in EBV-positive NHL",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "We demonstrate NEK2 protein expression is increased in primary lymphocytes following EBV infection",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "it is tempting to speculate JH295 mediates lymphoma cell death by suppressing LMP1 signaling",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "Our data suggest JH295 mediates inflammatory cell death in EBV-positive NHL",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "these data demonstrate how the relationship between NEK2 and beta-catenin signaling can account for the phenotypes observed",
+        "category": "causal"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "This report describes the importance of NEK2 in EBV-positive NHL pathogenesis",
+      "category": "opening"
+    },
+    {
+      "phrase": "We show primary EBV infection increases NEK2 expression in human B cells",
+      "category": "claim"
+    },
+    {
+      "phrase": "We demonstrate both genetic depletion and pharmacologic inhibition of NEK2 result in significant EBV-positive NHL cell death",
+      "category": "claim"
+    },
+    {
+      "phrase": "Taken together, our data suggest",
+      "category": "transition"
+    },
+    {
+      "phrase": "it is tempting to speculate",
+      "category": "hedge"
+    },
+    {
+      "phrase": "However, we also observed",
+      "category": "transition"
+    },
+    {
+      "phrase": "Therefore, JH295-mediated cell death cannot be solely attributed to",
+      "category": "limitation"
+    },
+    {
+      "phrase": "we were unable to detect",
+      "category": "limitation"
+    },
+    {
+      "phrase": "we could not confirm pyroptosis and instead refer to the observed cell death as",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Notably",
+      "category": "transition"
+    },
+    {
+      "phrase": "Interestingly",
+      "category": "transition"
+    },
+    {
+      "phrase": "we postulate loss of NEK2 signaling in normal cells, but not lymphoma cells, can be compensated for by other mitotic kinases",
+      "category": "hedge"
+    },
+    {
+      "phrase": "supporting feasibility of this therapeutic approach",
+      "category": "implication"
+    },
+    {
+      "phrase": "represents one of the most challenging obstacles",
+      "category": "opening"
+    },
+    {
+      "phrase": "our data suggest targeting NEK2 could be a viable therapeutic strategy",
+      "category": "implication"
+    },
+    {
+      "phrase": "We found",
+      "category": "claim"
+    },
+    {
+      "phrase": "Additionally, we show",
+      "category": "claim"
+    },
+    {
+      "phrase": "Furthermore, we demonstrate",
+      "category": "claim"
+    },
+    {
+      "phrase": "consistent with decreased expression and signaling capacity",
+      "category": "claim"
+    },
+    {
+      "phrase": "these data support",
+      "category": "claim"
+    },
+    {
+      "phrase": "N = 3 biological replicates",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Data graphed as fold change relative to",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "analyzed using two-way ANOVA",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "significantly decreased tumor burden and tumor incidence while prolonging survival",
+      "category": "claim"
+    },
+    {
+      "phrase": "leading to poor patient outcomes",
+      "category": "opening"
+    },
+    {
+      "phrase": "Here, we identify",
+      "category": "opening"
+    },
+    {
+      "phrase": "characterized by reactive oxygen species accumulation and gasdermin D cleavage",
+      "category": "claim"
+    },
+    {
+      "phrase": "without detrimental effects to body weight, organ function, and immune cell function",
+      "category": "claim"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. Numeric values, study details, and claims are grounded in the provided discussion and abstract. No external references, author names, or invented data were included."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:19:03.151350+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\pnas\\42133805.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

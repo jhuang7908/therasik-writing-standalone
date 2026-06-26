@@ -1,0 +1,43 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-05-27",
+  "notes": "Deep structure by article type; journal surface rules live in journal_surface.json.",
+  "canonical_types": [
+    "original_research",
+    "brief_communication",
+    "methods_protocols",
+    "resource_paper",
+    "translational_drug_discovery",
+    "clinical_trial",
+    "review_narrative",
+    "systematic_review",
+    "case_report",
+    "perspective",
+    "hypothesis",
+    "negative_results"
+  ],
+  "aliases": {
+    "research": "original_research",
+    "full": "original_research",
+    "letter": "brief_communication",
+    "short_communication": "brief_communication",
+    "review": "review_narrative",
+    "protocol": "methods_protocols",
+    "methods": "methods_protocols",
+    "resource": "resource_paper",
+    "translational": "translational_drug_discovery",
+    "drug_discovery": "translational_drug_discovery",
+    "consort": "clinical_trial",
+    "prisma": "systematic_review",
+    "meta_analysis": "systematic_review",
+    "opinion": "perspective",
+    "commentary": "perspective"
+  },
+  "priority_implemented": [
+    "original_research",
+    "brief_communication",
+    "review_narrative",
+    "methods_protocols",
+    "translational_drug_discovery"
+  ]
+}

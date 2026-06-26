@@ -1,0 +1,543 @@
+{
+  "schema_version": "0.1.0",
+  "journal": {
+    "key": "elife",
+    "display": "eLife",
+    "issn": "2050-084X"
+  },
+  "profile_version": "0.1.0",
+  "source_paper_count": 48,
+  "source_paper_ids": [
+    "42112672",
+    "42118681",
+    "42117453",
+    "42118675",
+    "42116725",
+    "42118136",
+    "42126916",
+    "42125972",
+    "42126091",
+    "42125965",
+    "42126303",
+    "42126405",
+    "42125964",
+    "42126073",
+    "42126964",
+    "42126963",
+    "42133696",
+    "42132118",
+    "42132124",
+    "42133529",
+    "42138979",
+    "42138977",
+    "42138716",
+    "42138713",
+    "42138349",
+    "42138352",
+    "42148728",
+    "42148733",
+    "42149114",
+    "42148735",
+    "42153623",
+    "42153619",
+    "42154822",
+    "42153621",
+    "42159330",
+    "42159049",
+    "42160388",
+    "42159345",
+    "42160203",
+    "42165310",
+    "42165314",
+    "42166216",
+    "42170952",
+    "42171335",
+    "42171335",
+    "42172063",
+    "42172144",
+    "42172064"
+  ],
+  "rhetoric_profile": {
+    "value": {
+      "opening_style": "data_first",
+      "dominant_frame": "molecular_mechanism",
+      "tone": "cautious_but_assertive",
+      "top_verbs": [
+        "suggest",
+        "demonstrate",
+        "show",
+        "indicate",
+        "provide",
+        "reveal",
+        "observed",
+        "support",
+        "found",
+        "propose"
+      ]
+    },
+    "evidence_paper_count": 48,
+    "verification_status": "verified",
+    "notes": "eLife articles typically open with data-first or mechanism-gap statements, maintain a molecular mechanism frame throughout, and adopt a cautious but assertive tone. The verb palette emphasizes suggestion and demonstration over strong claims."
+  },
+  "logic_profile": {
+    "value": {
+      "main_pattern": "context-finding-mechanism-implication",
+      "typical_claim_chains": [
+        "Optic flow sensitive descending neurons show sexually dimorphic velocity response functions",
+        "Despite multi-level anatomical and neural sexual dimorphism, WBA and head movements remain mostly monomorphic",
+        "Differences between neural and behavioural velocity response functions highlight likely involvement of downstream processing mechanisms",
+        "Sensory processing differences emerge at lower velocities than the velocities where motor output diverges",
+        "Regime shifts are challenging to detect due to noisy signals and environmental volatility"
+      ]
+    },
+    "evidence_paper_count": 48,
+    "verification_status": "verified",
+    "notes": "The dominant logical structure moves from contextual background through experimental findings to mechanistic interpretation and broader implications. Alternative patterns include problem-gap-solution and question-method-result structures."
+  },
+  "sentence_style_profile": {
+    "value": {
+      "hedge_level": "medium",
+      "avg_length": "long",
+      "claim_strength": "moderate"
+    },
+    "evidence_paper_count": 48,
+    "verification_status": "verified",
+    "notes": "eLife sentences tend toward longer constructions with medium hedging and moderate claim strength, balancing precision with caution."
+  },
+  "paragraph_structure_profile": {
+    "value": {
+      "typical_patterns": [
+        "Acknowledge limitations or alternative explanations",
+        "State main finding or observation",
+        "Interpret mechanistic implications",
+        "Propose mechanistic interpretation",
+        "State broader implications or future directions"
+      ]
+    },
+    "evidence_paper_count": 48,
+    "verification_status": "verified",
+    "notes": "Paragraphs frequently open with findings, develop mechanistic interpretations, and close with limitations or broader implications. Limitation acknowledgment is a recurring structural element."
+  },
+  "claim_strength_profile": {
+    "value": {
+      "overall": "balanced"
+    },
+    "evidence_paper_count": 48,
+    "verification_status": "verified",
+    "notes": "All 48 papers exhibit balanced claim strength, avoiding both overstatement and excessive hedging."
+  },
+  "reviewer_attack_patterns": [
+    {
+      "pattern": "Task design differences from standard reversal-learning paradigm may limit comparability",
+      "suggested_fix": null,
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42112672"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Explicit instruction about regimes removes ecological validity of learning through experience",
+      "suggested_fix": null,
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42112672"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Generalizability beyond stylized laboratory task to real-world decision making",
+      "suggested_fix": null,
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42112672"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Limited spatial resolution prevents definitive localization of cortical sources",
+      "suggested_fix": null,
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42118681"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Directionality analysis may not establish true causality",
+      "suggested_fix": null,
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42118681"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Mechanism linking cortical activity to apnoea reduction is not fully explained",
+      "suggested_fix": null,
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42118681"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Lack of formal probabilistic inference and single-ROI posterior uncertainty estimates",
+      "suggested_fix": null,
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42117453"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Requirement for anesthesia during spectral imaging may limit applicability",
+      "suggested_fix": null,
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42117453"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Genetic variation for drift does not prove it is under selection",
+      "suggested_fix": null,
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42118675"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Model assumes organisms cannot sense or predict environmental changes",
+      "suggested_fix": null,
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42118675"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Limited to one behavior in one model organism",
+      "suggested_fix": null,
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42118675"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Lack of identified inputs triggering CRZ release at mating",
+      "suggested_fix": null,
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42116725"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "RNNs trained with backpropagation may not reflect biological learning mechanisms",
+      "suggested_fix": null,
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42126916"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "Lack of direct mechanistic experiments showing how Dreg1 controls Gata3",
+      "suggested_fix": null,
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42125972"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "pattern": "PF4-Cre labeling may include non-macrophage cells with low-level PF4 expression",
+      "suggested_fix": null,
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42126091"
+      ],
+      "verification_status": "inferred"
+    }
+  ],
+  "phrase_bank": [
+    {
+      "phrase": "These findings suggest that",
+      "category": "hedge",
+      "frequency": 2,
+      "evidence_paper_ids": [
+        "42138979",
+        "42171335"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "It is possible that",
+      "category": "hedge",
+      "frequency": 2,
+      "evidence_paper_ids": [
+        "42159330",
+        "42172144"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "In contrast",
+      "category": "transition",
+      "frequency": 2,
+      "evidence_paper_ids": [
+        "42138979",
+        "42172063"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "we cannot fully exclude the possibility that",
+      "category": "limitation",
+      "frequency": 2,
+      "evidence_paper_ids": [
+        "42126091",
+        "42126964"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "We propose that",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42138979"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "We predict that",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42126963"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "We suspect that",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42148733"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "We conclude that",
+      "category": "claim",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42148733"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "demonstrate that",
+      "category": "claim",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42116725"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "suggesting that",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42126091"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "may result from",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42132118"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "are likely to be",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42116725"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "may facilitate",
+      "category": "hedge",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42159330"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Notably",
+      "category": "transition",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42138979"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Importantly,",
+      "category": "transition",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42116725"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Additionally,",
+      "category": "transition",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42116725"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Moreover,",
+      "category": "transition",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42116725"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Finally,",
+      "category": "transition",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42116725"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Remarkably",
+      "category": "transition",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42172144"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Interestingly",
+      "category": "transition",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42172144"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Alternatively",
+      "category": "transition",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42172144"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Given that",
+      "category": "transition",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42172144"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "In contrast to",
+      "category": "transition",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42116725"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "remains unknown",
+      "category": "limitation",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42159330"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "remain unclear",
+      "category": "limitation",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42126916"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "remains to be elucidated",
+      "category": "limitation",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42126091"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "It remains to be seen if",
+      "category": "limitation",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42159330"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "This suggests that",
+      "category": "implication",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42148733"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "This implies that",
+      "category": "implication",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42126916"
+      ],
+      "verification_status": "inferred"
+    },
+    {
+      "phrase": "Further research to explore",
+      "category": "implication",
+      "frequency": 1,
+      "evidence_paper_ids": [
+        "42159330"
+      ],
+      "verification_status": "inferred"
+    }
+  ],
+  "generated_at": "2026-05-25T13:56:37Z"
+}

@@ -1,0 +1,222 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42138352",
+    "pmcid": "PMC13179063",
+    "doi": "10.7554/eLife.93664.3.sa4",
+    "journal": "eLife",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "data_first",
+    "dominant_frame": "molecular_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "question-method-result-interpretation",
+    "claim_chain": [
+      "Addictive drugs cause long-lasting changes in connectivity from inputs onto ventral tegmental area dopamine cells",
+      "We used rabies virus-based mapping to quantify inputs after drug exposure",
+      "All tested addictive drugs elicited similar input changes onto VTADA cells",
+      "Changes were most apparent in DA cells projecting to lateral nucleus accumbens shell and amygdala",
+      "Gene expression patterns, especially calcium channels, correlated with extent of drug-induced changes",
+      "Reducing Cacna1e expression reduced RABV-mediated input labeling"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "showed",
+      "observed",
+      "demonstrated",
+      "confirmed",
+      "explored",
+      "implicated",
+      "triggered",
+      "revealed",
+      "suggest",
+      "indicate"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "Opening statement of what was done or found",
+      "Detailed description of specific findings with reference to figures",
+      "Interpretation of results in context of existing knowledge",
+      "Acknowledgment of limitations or alternative explanations",
+      "Implications for the field or future directions"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Mechanistic clarity about whether changes reflect synapse number, strength, or input cell activity",
+      "Validation that RABV labeling changes reflect true connectivity changes",
+      "Control for technical variation in starter cell location",
+      "Generalizability beyond single drug exposure paradigm",
+      "Causal demonstration of gene expression effects on connectivity"
+    ],
+    "likely_attacks": [
+      "Cannot rule out that changes in synapse number or strength influence connectivity results",
+      "Drug-induced differences less substantial than intrinsic cell type differences or starter location variation",
+      "Cannot definitively determine which anesthesia mode alters RABV patterns",
+      "Negative correlation of gene expression with RABV labeling has unclear implications",
+      "Single exposure paradigm may not reflect chronic drug use"
+    ],
+    "inference_basis": "The paper explicitly states 'we have not confirmed this to be true for all cases' regarding activity-driven changes, acknowledges 'we cannot rule out that changes in synapse number or strength may also influence the observed connectivity results', notes that 'drug-induced differences in input labeling were less substantial than intrinsic cell type connectivity differences', states 'we cannot perform RABV mapping on unanesthetized mice, making it impossible to definitively define which mode of anesthesia, or both, alters RABV input patterns', and admits 'We are not sure of the implications of this negative correlation' regarding gene expression patterns."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "we cannot rule out that changes in synapse number or strength may also influence the observed connectivity results",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "These results directly link genes controlling cellular excitability and the extent of input labeling by RABV",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "Our interpretation of these data is that the changes are largely being driven by a change in the activity of input cells",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "demonstrated the causative role of one calcium channel gene, Cacna1e, in influencing RABV input mapping efficiency",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "these differences were more apparent when using dimensionality reduction methods such as PCA and UMAP",
+        "category": "claim"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "Here we explored the long-term consequences of a single injection of a variety of addictive drugs on the connectivity of VTADA cells",
+      "category": "opening"
+    },
+    {
+      "phrase": "We first confirmed that dimensionality reduction approaches could adequately differentiate the connectivity between different cell populations",
+      "category": "opening"
+    },
+    {
+      "phrase": "We then showed that a variety of addictive drugs as well as K/X-based anesthesia trigger long-lasting changes in the brain-wide input patterns",
+      "category": "claim"
+    },
+    {
+      "phrase": "which were clearly observable though less substantial than the differences onto different cell types or natural variation in starter cell location",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Notably, these differences were distinct from those triggered by the psychoactive but non-addictive substance fluoxetine",
+      "category": "claim"
+    },
+    {
+      "phrase": "While these drug-induced differences in input labeling were less substantial than intrinsic cell type connectivity differences",
+      "category": "limitation"
+    },
+    {
+      "phrase": "these differences were more apparent when using dimensionality reduction methods such as PCA and UMAP",
+      "category": "claim"
+    },
+    {
+      "phrase": "That different cell types exhibit larger differences in input patterns than the same cell type with and without drug administration is perhaps not surprising",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Importantly, these analyses may provide important insight into the circuit mechanisms underlying SUDs",
+      "category": "implication"
+    },
+    {
+      "phrase": "Thus, our data could be used to generate new hypotheses about connections that are yet-unstudied but play important roles in addiction",
+      "category": "implication"
+    },
+    {
+      "phrase": "The results in this study further confirm our previous observations that a single exposure to a variety of addictive drugs triggers long-lasting changes",
+      "category": "claim"
+    },
+    {
+      "phrase": "Our interpretation of these data is that the changes are largely being driven by a change in the activity of input cells",
+      "category": "hedge"
+    },
+    {
+      "phrase": "However, we have not confirmed this to be true for all cases",
+      "category": "limitation"
+    },
+    {
+      "phrase": "we cannot rule out that changes in synapse number or strength may also influence the observed connectivity results",
+      "category": "limitation"
+    },
+    {
+      "phrase": "we suspect that isoflurane anesthesia has minimal effect on the brain-wide inputs to VTADA cells",
+      "category": "hedge"
+    },
+    {
+      "phrase": "we cannot perform RABV mapping on unanesthetized mice, making it impossible to definitively define which mode of anesthesia",
+      "category": "limitation"
+    },
+    {
+      "phrase": "We are not sure of the implications of this negative correlation",
+      "category": "limitation"
+    },
+    {
+      "phrase": "We then demonstrated the causative role of one calcium channel gene, Cacna1e, in influencing RABV input mapping efficiency",
+      "category": "claim"
+    },
+    {
+      "phrase": "These results directly link genes controlling cellular excitability and the extent of input labeling by RABV",
+      "category": "claim"
+    },
+    {
+      "phrase": "Schematic and timeline of viral injections into mice",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Representative images of the BNST, GPe, and DCN",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Green indicates RABV-labeled cells",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Each input region is denoted where it is present",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "PCA can deconvolve drug-induced effects from experimental variation",
+      "category": "claim"
+    },
+    {
+      "phrase": "caution should be taken when using ketamine/xylazine-based anesthesia in rodents when assessing motivated behaviors",
+      "category": "implication"
+    },
+    {
+      "phrase": "the basal expression patterns of several gene classes, especially calcium channels, were highly correlated with the extent of both addictive drug- or ketamine/xylazine-induced changes",
+      "category": "claim"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers were included. The profile accurately reflects the paper's cautious but assertive tone, its focus on molecular mechanisms of drug-induced connectivity changes, and its balanced approach to claiming while acknowledging limitations."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T12:56:23.925294+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\elife\\42138979.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

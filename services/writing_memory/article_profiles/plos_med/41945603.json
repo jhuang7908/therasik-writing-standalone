@@ -1,0 +1,243 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "41941430",
+    "pmcid": "PMC13065332",
+    "doi": "10.1371/journal.pmed.1005045.r006",
+    "journal": "PLOS Medicine",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "data_first",
+    "dominant_frame": "epidemiology_population",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "question-method-result-interpretation",
+    "claim_chain": [
+      "Physical frailty is associated with increased suicide attempt risk independent of psychiatric disorders and genetic susceptibility",
+      "Two-sample Mendelian randomization provides complementary genetic evidence supporting the observed association",
+      "Frailty and genetic risk interact additively to elevate suicide attempt risk",
+      "Approximately 14.2% of the frailty-suicide attempt association could be statistically explained by biomarkers related to liver function, metabolism, immune function, and inflammation",
+      "Mendelian randomization did not support a causal mediating role for these biomarkers",
+      "Frailty may contribute to suicide attempt through psychosocial adversity and emotional distress that facilitate the transition from suicidal ideation to suicide attempt"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "found",
+      "observed",
+      "demonstrated",
+      "revealed",
+      "identified",
+      "suggested",
+      "may",
+      "could",
+      "examined",
+      "investigated",
+      "associated",
+      "supported"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State main finding with quantitative results",
+      "Compare with or extend previous literature",
+      "Acknowledge limitations or gaps in prior work",
+      "Present additional supporting evidence or subgroup analyses",
+      "Discuss potential mechanisms or explanations",
+      "Acknowledge remaining uncertainties"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Causal inference and directionality of associations",
+      "Generalizability beyond UK Biobank population",
+      "Mechanistic pathways linking frailty to suicide attempt",
+      "Residual confounding by unmeasured variables",
+      "Clinical applicability and prevention strategies",
+      "Validation of biomarker mediation findings"
+    ],
+    "likely_attacks": [
+      "Limited representativeness of the study population",
+      "Potential residual confounders not fully adjusted",
+      "Mendelian randomization did not support causal mediating effects of biomarkers despite statistical mediation",
+      "Cross-sectional nature of frailty assessment",
+      "Reliance on hospital inpatient records may underestimate suicide attempt incidence",
+      "Complexity and cost of frailty index measurements limits practical application"
+    ],
+    "inference_basis": "The paper explicitly states 'The key limitations of this analysis include potential residual confounders and the limited representativeness of the study population' in the abstract. The discussion acknowledges that 'MR did not support a causal mediating role' for biomarkers despite statistical mediation. The text notes that 'given the complexity and high cost of FI measurements, the user-friendly FP provides a more practical alternative.' The paper also acknowledges that 'the precise mechanisms underlying the frailty-SA association remain unclear' and that 'adjusting for these comorbidities only partially attenuated the observed association, suggesting that frailty may influence SA risk through additional pathways.' These self-identified limitations and uncertainties form the basis for inferring likely reviewer concerns."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "physical frailty was associated with an increased risk of SA, independent of psychiatric disorders and genetic susceptibility",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "Two-sample MR analyses provided complementary genetic evidence supporting the observed association",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "the observed association may be consistent with a potential causal relationship",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "may have partially explained this association",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "frailty may contribute to SA through both psychosocial adversity and emotional distress",
+        "category": "causal"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "Using data from the UK Biobank cohort, we found that",
+      "category": "opening"
+    },
+    {
+      "phrase": "independent of psychiatric disorders and genetic susceptibility",
+      "category": "claim"
+    },
+    {
+      "phrase": "Two-sample MR analyses provided complementary genetic evidence supporting",
+      "category": "claim"
+    },
+    {
+      "phrase": "Our findings complement and extend previous observations",
+      "category": "transition"
+    },
+    {
+      "phrase": "This association persisted even after adjusting for",
+      "category": "claim"
+    },
+    {
+      "phrase": "suggesting that the observed association may be consistent with a potential causal relationship",
+      "category": "hedge"
+    },
+    {
+      "phrase": "The precise mechanisms underlying the frailty-SA association remain unclear",
+      "category": "limitation"
+    },
+    {
+      "phrase": "One plausible explanation involves",
+      "category": "hedge"
+    },
+    {
+      "phrase": "may not stem purely from biological factors",
+      "category": "hedge"
+    },
+    {
+      "phrase": "could be statistically attributed to",
+      "category": "hedge"
+    },
+    {
+      "phrase": "although MR did not support a causal mediating role",
+      "category": "limitation"
+    },
+    {
+      "phrase": "These findings highlight the potential benefits of",
+      "category": "implication"
+    },
+    {
+      "phrase": "may inform the development of tailored suicide prevention strategies",
+      "category": "implication"
+    },
+    {
+      "phrase": "Incorporating frailty assessment and management into primary prevention strategies may have implications for",
+      "category": "implication"
+    },
+    {
+      "phrase": "After multivariable adjustment for",
+      "category": "other"
+    },
+    {
+      "phrase": "During a median follow-up of 13.6 years",
+      "category": "other"
+    },
+    {
+      "phrase": "with the highest risk observed among",
+      "category": "claim"
+    },
+    {
+      "phrase": "The key limitations of this analysis include potential residual confounders and the limited representativeness of the study population",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Model adjusted for age, sex, education, employment",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Note: ORs (95% CIs) and P-values were estimated using",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "consistent with previous findings",
+      "category": "transition"
+    },
+    {
+      "phrase": "Supporting this finding",
+      "category": "transition"
+    },
+    {
+      "phrase": "Similar to our results",
+      "category": "transition"
+    },
+    {
+      "phrase": "In line with this",
+      "category": "transition"
+    },
+    {
+      "phrase": "Notably",
+      "category": "transition"
+    },
+    {
+      "phrase": "Additionally",
+      "category": "transition"
+    },
+    {
+      "phrase": "Furthermore",
+      "category": "transition"
+    },
+    {
+      "phrase": "Still",
+      "category": "transition"
+    },
+    {
+      "phrase": "Overall",
+      "category": "transition"
+    },
+    {
+      "phrase": "Specifically",
+      "category": "transition"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. Numeric values (14.2%, 13.6 years, HRs, CIs, P-values) appear verbatim in the input. No external references, author names, or invented data were included. The profile is based solely on the provided abstract, discussion, and figure legends."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:05:29.009503+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\plos_med\\41945603.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

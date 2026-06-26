@@ -1,0 +1,9 @@
+extends: existence
+message: "Unresolved FILL placeholder — must be replaced before submission: '%s'."
+level: error
+tokens:
+  - '\[FILL:[^\]]*\]'
+  - '\[CITE:[^\]]*\]'
+  - 'TODO:?'
+  - 'XXX:?'
+  - 'TBD:?'

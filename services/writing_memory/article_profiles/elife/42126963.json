@@ -1,0 +1,223 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42126964",
+    "pmcid": "PMC13171106",
+    "doi": "10.7554/eLife.107860.3.sa4",
+    "journal": "eLife",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "mechanism_gap",
+    "dominant_frame": "molecular_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "problem-gap-solution-implication",
+    "claim_chain": [
+      "The mechanism underlying increased iRBC cytoadhesion following febrile heat stress is not well understood",
+      "We selected a non-destructive heat stress condition (39 °C, 16–24 hpi) to minimise stress responses that could confound cytoadhesion outcomes",
+      "Our data confirm increased PfEMP1 on the RBC surface following febrile heat stress and propose this results from a reduction in a trafficking bottleneck",
+      "Elevated temperature enhances trafficking of other TMD-containing proteins into the RBC, not just PfEMP1",
+      "Under our heat stress conditions, parasite development does not accelerate, indicating observed phenotypes are due to differences in protein trafficking",
+      "Elevated PfEMP1 levels at the iRBC surface during heat stress may help counteract negative effects of increased cellular rigidity at higher temperatures",
+      "If increased body temperature leads to increased cytoadhering parasite load, malaria symptoms may be exacerbated"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "demonstrate",
+      "show",
+      "indicate",
+      "propose",
+      "confirm",
+      "suggest",
+      "conclude",
+      "observe",
+      "find",
+      "enhance",
+      "increase",
+      "affect"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "Open with gap or controversy in the field",
+      "Describe methodological choices made to address the gap",
+      "Present key findings with supporting evidence from multiple approaches",
+      "Acknowledge limitations or alternative explanations",
+      "Propose mechanistic interpretation",
+      "Discuss broader implications for disease pathology or clinical relevance",
+      "End with outstanding questions or future directions"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Mechanistic clarity: distinguishing PfEMP1-dependent from PfEMP1-independent pathways and establishing whether effects occur at PVM or later trafficking steps",
+      "Experimental rigor: using physiologically relevant conditions that do not trigger apoptosis or confounding stress responses",
+      "Generalizability: demonstrating phenomena across multiple strains and clinical isolates, not just laboratory strains",
+      "Quantitative validation: using complementary approaches to rule out alternative explanations such as accelerated development or altered protein activity",
+      "Clinical relevance: connecting molecular findings to patient fever patterns and disease severity"
+    ],
+    "likely_attacks": [
+      "Incomplete mechanistic resolution: the paper acknowledges the mechanism by which proteins are differentially exported at elevated temperatures remains unknown",
+      "Inability to definitively distinguish trafficking steps: the reporter assay cannot definitively distinguish whether differences occur at the PVM or later",
+      "Lack of genetic validation: genetic deletion of proteins required for PS exposure and PfEMP1 surface translocation may be necessary to unequivocally establish individual contributions",
+      "Uncertainty about PSAC mechanism: cannot fully exclude the possibility that increased sorbitol sensitivity is due to enhanced PSAC activity rather than increased surface levels",
+      "Unclear clinical implications: it is unclear if febrile conditions promote survival of the parasite or the host"
+    ],
+    "inference_basis": "The discussion explicitly states 'The mechanism by which proteins are differentially exported at elevated temperatures remains unknown' and 'Our reporter assay measures export into the RBC compartment but cannot definitively distinguish whether the trafficking differences occur at the level of the PVM or later'. The authors acknowledge 'genetic deletion of proteins required for PS exposure and PfEMP1 surface translocation may be necessary to unequivocally establish the individual contribution of each'. They also note 'we cannot fully exclude the possibility that the observed increase in sorbitol sensitivity is due to enhanced PSAC activity following heat stress' and conclude 'Ultimately, it is unclear if febrile conditions promote survival of the parasite or the host'. These self-identified limitations form the basis for inferring likely reviewer concerns."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "We demonstrate that exposure of Plasmodium falciparum-infected red blood cells (iRBCs) to physiologically relevant febrile heat stress (39 °C), derived from patient data, enhances cytoadhesion through increased trafficking of the major virulence factor PfEMP1 to the iRBC surface",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "We propose that this increase in surface trafficking results from a reduction in a trafficking bottleneck during elevated temperature",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "This likely results in increased PSAC levels at the iRBC surface, although we cannot fully exclude the possibility that the observed increase in sorbitol sensitivity is due to enhanced PSAC activity following heat stress",
+        "category": "limitation"
+      },
+      {
+        "quoted_phrase": "These findings indicate that the observed phenotypes are due to differences in protein trafficking",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "If increased body temperature leads to an increased cytoadhering parasite load, malaria symptoms may be exacerbated",
+        "category": "generalization"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "The mechanism underlying increased iRBC cytoadhesion following febrile heat stress is not well understood",
+      "category": "opening"
+    },
+    {
+      "phrase": "To minimise the potential for such stress responses to confound cytoadhesion outcomes",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Our data confirm a previous study reporting increased PfEMP1 on the RBC surface following febrile heat stress",
+      "category": "claim"
+    },
+    {
+      "phrase": "We propose that this increase in surface trafficking results from a reduction in a trafficking bottleneck during elevated temperature",
+      "category": "causal"
+    },
+    {
+      "phrase": "This likely results in increased PSAC levels at the iRBC surface",
+      "category": "hedge"
+    },
+    {
+      "phrase": "we cannot fully exclude the possibility that",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Using several complementary approaches, including NanoLuc reporter assays, proteomics, DNA content measurements, egress timing, and assessments of subsequent replication",
+      "category": "claim"
+    },
+    {
+      "phrase": "we conclude that under our heat stress conditions (39 °C, 16–24 hpi), parasite development does not accelerate",
+      "category": "claim"
+    },
+    {
+      "phrase": "These findings indicate that the observed phenotypes are due to differences in protein trafficking",
+      "category": "causal"
+    },
+    {
+      "phrase": "The mechanism by which proteins are differentially exported at elevated temperatures remains unknown",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Our reporter assay measures export into the RBC compartment but cannot definitively distinguish whether the trafficking differences occur at the level of the PVM or later",
+      "category": "limitation"
+    },
+    {
+      "phrase": "is a likely candidate to facilitate increased export",
+      "category": "hedge"
+    },
+    {
+      "phrase": "may help counteract the negative effects of increased cellular rigidity",
+      "category": "hedge"
+    },
+    {
+      "phrase": "If increased body temperature leads to an increased cytoadhering parasite load, malaria symptoms may be exacerbated",
+      "category": "implication"
+    },
+    {
+      "phrase": "Ultimately, it is unclear if febrile conditions promote survival of the parasite or the host",
+      "category": "limitation"
+    },
+    {
+      "phrase": "genetic deletion of proteins required for PS exposure and PfEMP1 surface translocation may be necessary to unequivocally establish the individual contribution of each to overall cytoadhesion",
+      "category": "limitation"
+    },
+    {
+      "phrase": "This phenomenon is not limited to PfEMP1 and common laboratory strains, as it extends to the surface nutrient channel PSAC in four clinical isolates of diverse geographic origin",
+      "category": "generalization"
+    },
+    {
+      "phrase": "The increased surface protein display occurs without changes in overall protein expression or parasite developmental progression",
+      "category": "claim"
+    },
+    {
+      "phrase": "Collectively, our results indicate that febrile temperatures commonly experienced during infection can accelerate protein export",
+      "category": "claim"
+    },
+    {
+      "phrase": "This enhanced export following heat stress is relevant because increased cytoadhesion could influence disease severity through earlier iRBC sequestration and elevated bound parasite mass",
+      "category": "implication"
+    },
+    {
+      "phrase": "Median fluorescent intensity (MFI) of Hoechst-stained infected red blood cells (iRBCs) at 24 hpi was not significantly altered",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Singlets were gated, followed by DNA staining to distinguish uninfected and infected red blood cells (iRBCs)",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "More extreme protocols may not accurately reflect the febrile temperatures typically experienced by malaria patients",
+      "category": "limitation"
+    },
+    {
+      "phrase": "However, it is worthwhile to note that some phosphorylation sites increase upon heat stress that do not depend on FIKK10.2 nor FIKK4.1",
+      "category": "transition"
+    },
+    {
+      "phrase": "This suggests that proteins involved in accelerated trafficking during heat stress are also present and likely functional at normal temperatures",
+      "category": "causal"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, invented numbers, or author names were included. The profile is based solely on the provided abstract, discussion, and figure legends."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:42:24.976831+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\elife\\42126963.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

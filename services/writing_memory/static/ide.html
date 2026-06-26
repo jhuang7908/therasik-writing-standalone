@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research OS IDE</title>
+    <!-- Split.js for IDE layout -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.6.5/split.min.js"></script>
+    <!-- Marked.js for Markdown rendering -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.2/marked.min.js"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #1e1e1e;
+            --bg-panel: #252526;
+            --bg-sidebar: #333333;
+            --text-main: #cccccc;
+            --text-light: #ffffff;
+            --accent: #007acc;
+            --border: #3e3e42;
+            --hover: #2a2d2e;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-dark); color: var(--text-main); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+        
+        /* Header */
+        .header { height: 35px; background-color: #333333; display: flex; align-items: center; padding: 0 15px; font-size: 13px; border-bottom: 1px solid var(--border); }
+        .header .logo { color: var(--accent); font-weight: bold; margin-right: 20px; }
+        
+        /* Main Layout */
+        .main-content { display: flex; flex: 1; height: calc(100vh - 35px - 200px); }
+        .split { display: flex; flex-direction: row; width: 100%; }
+        .gutter { background-color: var(--border); cursor: col-resize; }
+        .gutter.gutter-vertical { cursor: row-resize; }
+        
+        /* Panels */
+        .panel { background-color: var(--bg-panel); display: flex; flex-direction: column; overflow: hidden; }
+        .panel-header { padding: 8px 15px; background-color: var(--bg-dark); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;}
+        .panel-content { flex: 1; overflow-y: auto; padding: 10px; font-size: 13px; }
+        
+        /* Left Sidebar (Explorer) */
+        .tree-item { padding: 4px 5px; cursor: pointer; display: flex; align-items: center; border-radius: 3px; }
+        .tree-item:hover { background-color: var(--hover); color: var(--text-light); }
+        .tree-item i { margin-right: 8px; width: 14px; text-align: center; }
+        .tree-item.file { padding-left: 20px; color: #9cdcfe; }
+        
+        /* Middle Editor */
+        .editor-split { display: flex; flex-direction: row; width: 100%; height: 100%; }
+        .editor-pane { flex: 1; display: flex; flex-direction: column; background-color: #1e1e1e; }
+        .editor-tabs { display: flex; background-color: #2d2d2d; }
+        .tab { padding: 8px 15px; background-color: #1e1e1e; border-top: 1px solid var(--accent); color: var(--text-light); font-size: 12px; cursor: pointer; }
+        .textarea-editor { flex: 1; background-color: #1e1e1e; color: #d4d4d4; border: none; padding: 15px; font-family: 'Consolas', monospace; font-size: 14px; resize: none; outline: none; line-height: 1.5; }
+        .pdf-viewer { flex: 1; background-color: #525659; display: flex; justify-content: center; align-items: center; color: #fff; padding: 20px; overflow-y: auto;}
+        
+        /* Right Sidebar (AI Inspector) */
+        .ai-box { background-color: var(--bg-dark); border: 1px solid var(--border); border-radius: 4px; padding: 10px; margin-bottom: 15px; }
+        .ai-box h4 { color: var(--text-light); font-size: 12px; margin-bottom: 8px; display: flex; align-items: center;}
+        .ai-box h4 i { margin-right: 6px; color: var(--accent); }
+        .btn { background-color: var(--accent); color: white; border: none; padding: 6px 12px; border-radius: 3px; cursor: pointer; font-size: 12px; width: 100%; margin-top: 5px;}
+        .btn:hover { background-color: #005f9e; }
+        
+        /* Bottom Terminal */
+        .terminal-container { height: 250px; background-color: #1e1e1e; border-top: 1px solid var(--border); display: flex; flex-direction: column; }
+        .terminal-tabs { display: flex; background-color: var(--bg-panel); padding-left: 10px; }
+        .term-tab { padding: 8px 15px; font-size: 11px; text-transform: uppercase; cursor: pointer; border-bottom: 2px solid transparent; }
+        .term-tab.active { color: var(--text-light); border-bottom: 2px solid var(--accent); }
+        .terminal-content { flex: 1; padding: 10px; overflow-y: auto; }
+        
+        .search-bar { display: flex; margin-bottom: 10px; }
+        .search-bar input { flex: 1; background-color: #3c3c3c; border: 1px solid var(--border); color: white; padding: 6px 10px; outline: none; border-radius: 3px 0 0 3px; }
+        .search-bar button { background-color: var(--accent); color: white; border: none; padding: 6px 15px; cursor: pointer; border-radius: 0 3px 3px 0; }
+        
+        .result-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+        .result-table th, .result-table td { padding: 6px 10px; text-align: left; border-bottom: 1px solid var(--border); }
+        .result-table tr:hover { background-color: var(--hover); }
+        .add-btn { background: none; border: 1px solid var(--accent); color: var(--accent); padding: 2px 6px; border-radius: 3px; cursor: pointer; }
+        .add-btn:hover { background: var(--accent); color: white; }
+
+        /* Markdown Styles */
+        .markdown-body h1 { font-size: 18px; margin-bottom: 10px; color: #fff; }
+        .markdown-body h2 { font-size: 15px; margin-top: 15px; margin-bottom: 8px; color: #fff; }
+        .markdown-body p { margin-bottom: 10px; }
+        .markdown-body ul { margin-left: 20px; margin-bottom: 10px; }
+        .markdown-body li { margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="logo"><i class="fa-solid fa-flask"></i> Research OS</div>
+        <div>Project: HER2_ADC_Development</div>
+    </div>
+
+    <div class="main-content split" id="main-split">
+        
+        <!-- Left Sidebar -->
+        <div class="panel" id="sidebar-left">
+            <div class="panel-header">Explorer</div>
+            <div class="panel-content">
+                <div class="tree-item"><i class="fa-solid fa-chevron-down"></i> <strong>PROJECT_HER2</strong></div>
+                <div class="tree-item file" onclick="openEditor('grant')"><i class="fa-solid fa-file-word"></i> NSFC_Grant_Draft.md</div>
+                <div class="tree-item file"><i class="fa-solid fa-vial"></i> Exp_Plan_001.eln</div>
+                
+                <div style="margin-top: 15px;"></div>
+                <div class="tree-item"><i class="fa-solid fa-chevron-down"></i> <strong>LIBRARY (References)</strong></div>
+                <div id="library-list">
+                    <div class="tree-item file"><i class="fa-solid fa-file-pdf"></i> Trastuzumab Deruxtecan Review</div>
+                    <div class="tree-item file"><i class="fa-solid fa-file-contract"></i> US20250012345A1 (Patent)</div>
+                </div>
+
+                <div style="margin-top: 15px;"></div>
+                <div class="tree-item" style="justify-content: space-between;">
+                    <span><i class="fa-solid fa-rss"></i> <strong>FEEDS & REPORTS</strong></span>
+                    <i class="fa-solid fa-rotate-right" style="cursor:pointer; color:var(--accent)" onclick="generateDigest()" title="Generate Weekly Digest"></i>
+                </div>
+                <div id="feeds-list">
+                    <!-- Digests will appear here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Editor -->
+        <div class="panel" id="editor-area">
+            <div class="editor-split" id="editor-split">
+                
+                <!-- Left Split: PDF/Patent Viewer -->
+                <div class="editor-pane" id="viewer-pane">
+                    <div class="editor-tabs">
+                        <div class="tab">Reference Viewer</div>
+                    </div>
+                    <div class="pdf-viewer" id="pdf-container">
+                        <div style="text-align: center; color: #888;">
+                            <i class="fa-solid fa-book-open" style="font-size: 40px; margin-bottom: 15px;"></i>
+                            <p>Select a document from Library or Search to view</p>
+                            <p style="font-size: 11px; margin-top: 10px;">(PDF.js / Patent iframe renders here)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Split: Markdown Writer -->
+                <div class="editor-pane" id="writer-pane">
+                    <div class="editor-tabs">
+                        <div class="tab">NSFC_Grant_Draft.md</div>
+                    </div>
+                    <textarea class="textarea-editor" id="md-editor"># 立项依据 (Background)
+
+HER2-targeted ADCs have revolutionized breast cancer treatment. However, resistance mechanisms remain a challenge. 
+
+In this project, we propose a novel bispecific approach...
+
+[Type '@' to insert citation from Library]
+</textarea>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="panel" id="sidebar-right">
+            <div class="panel-header">AI Inspector</div>
+            <div class="panel-content">
+                
+                <div class="ai-box">
+                    <h4><i class="fa-solid fa-lightbulb"></i> Novelty Analysis</h4>
+                    <p style="font-size: 11px; color: #aaa; margin-bottom: 10px;">Powered by DeepSeek Reasoner</p>
+                    <button class="btn" onclick="runNovelty()">Analyze Current Draft</button>
+                    <div id="novelty-result" style="margin-top: 10px; font-size: 11px; color: #9cdcfe; display: none;">
+                        <strong>[FTO Alert]</strong> Your proposed linker design shares 85% similarity with Daiichi Sankyo's US2026 patent. Suggest modifying the cleavage site.
+                    </div>
+                </div>
+
+                <div class="ai-box">
+                    <h4><i class="fa-solid fa-dna"></i> Entity Extraction</h4>
+                    <p style="font-size: 11px; color: #aaa; margin-bottom: 10px;">Extract Sequences & Molecules from Viewer</p>
+                    <button class="btn" onclick="extractEntities()">Extract from Document</button>
+                    <div id="entity-result" style="margin-top: 10px; font-size: 11px; display: none;">
+                        <div style="color: #ce9178; margin-bottom: 5px;"><strong>Sequence (CDR-H3):</strong><br>ARWGGDGFYAMDY</div>
+                        <div style="color: #4ec9b0;"><strong>Molecule (SMILES):</strong><br>CC(=O)OC1=CC=CC=C1C(=O)O<br><i>(Ketcher 2D render goes here)</i></div>
+                    </div>
+                </div>
+
+                <div class="ai-box">
+                    <h4><i class="fa-solid fa-comments"></i> Knowledge Chat</h4>
+                    <input type="text" placeholder="Ask about this project..." style="width: 100%; background: #1e1e1e; border: 1px solid var(--border); color: white; padding: 5px; border-radius: 3px; font-size: 11px;">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Terminal -->
+    <div class="terminal-container" id="terminal-area">
+        <div class="terminal-tabs">
+            <div class="term-tab active">Literature Search (OpenAlex)</div>
+            <div class="term-tab">Patent Search</div>
+            <div class="term-tab">Output</div>
+        </div>
+        <div class="terminal-content">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search OpenAlex (e.g., HER2 ADC toxicity)..." onkeypress="if(event.key === 'Enter') searchLit()">
+                <button onclick="searchLit()"><i class="fa-solid fa-search"></i> Search</button>
+            </div>
+            <table class="result-table" id="result-table">
+                <thead>
+                    <tr>
+                        <th width="50%">Title</th>
+                        <th width="25%">Authors</th>
+                        <th width="10%">Year</th>
+                        <th width="15%">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="result-body">
+                    <tr><td colspan="4" style="text-align:center; color:#888;">Enter keywords to search 250M+ papers</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Split.js Layouts
+        Split(['#sidebar-left', '#editor-area', '#sidebar-right'], {
+            sizes: [18, 62, 20],
+            minSize: [150, 400, 200],
+            gutterSize: 4,
+        });
+
+        Split(['#viewer-pane', '#writer-pane'], {
+            sizes: [50, 50],
+            minSize: 200,
+            gutterSize: 4,
+        });
+
+        // Literature Search Function
+        async function searchLit() {
+            const q = document.getElementById('search-input').value;
+            if(!q) return;
+            
+            const tbody = document.getElementById('result-body');
+            tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">Searching OpenAlex...</td></tr>';
+            
+            try {
+                const res = await fetch(`/api/search/literature?q=${encodeURIComponent(q)}`);
+                const data = await res.json();
+                
+                if(data.ok && data.results.length > 0) {
+                    tbody.innerHTML = '';
+                    data.results.forEach(item => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td><a href="#" style="color:#9cdcfe; text-decoration:none;" onclick="viewDoc('${item.title}')">${item.title}</a></td>
+                            <td>${item.authors}</td>
+                            <td>${item.year}</td>
+                            <td><button class="add-btn" onclick="addToLibrary('${item.title.replace(/'/g, "\\'")}')">+ Library</button></td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                } else {
+                    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">No results found.</td></tr>';
+                }
+            } catch (e) {
+                tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:red;">Error: ${e.message}</td></tr>`;
+            }
+        }
+
+        // Add to Library
+        function addToLibrary(title) {
+            const list = document.getElementById('library-list');
+            const div = document.createElement('div');
+            div.className = 'tree-item file';
+            div.innerHTML = `<i class="fa-solid fa-file-pdf"></i> ${title.substring(0, 25)}...`;
+            div.onclick = () => viewDoc(title);
+            list.appendChild(div);
+            
+            // Flash terminal tab to indicate success
+            document.querySelector('.term-tab.active').style.color = '#4ec9b0';
+            setTimeout(() => document.querySelector('.term-tab.active').style.color = '', 1000);
+        }
+
+        // View Document in Left Pane
+        function viewDoc(title) {
+            const viewer = document.getElementById('pdf-container');
+            viewer.innerHTML = `
+                <div style="padding: 20px; width: 100%; height: 100%; background: #fff; color: #333; overflow-y: auto;">
+                    <h2 style="margin-bottom: 15px; color: #005f9e;">${title}</h2>
+                    <div style="background: #f5f5f5; padding: 10px; border-left: 4px solid #007acc; margin-bottom: 15px;">
+                        <strong>Abstract:</strong> This is a simulated view of the document. In production, PDF.js or an iframe to Google Patents will render here.
+                    </div>
+                    <p>Introduction...</p>
+                    <p>Methods...</p>
+                    <p>Results...</p>
+                </div>
+            `;
+        }
+
+        // Generate Weekly Digest
+        async function generateDigest() {
+            const list = document.getElementById('feeds-list');
+            list.innerHTML = '<div class="tree-item file" style="color:#aaa;">Generating...</div>';
+            
+            try {
+                const res = await fetch('/api/generate_digest', {method: 'POST'});
+                const data = await res.json();
+                
+                if(data.ok) {
+                    list.innerHTML = '';
+                    const div = document.createElement('div');
+                    div.className = 'tree-item file';
+                    div.style.color = '#ce9178';
+                    div.innerHTML = `<i class="fa-solid fa-bolt"></i> ${data.title}`;
+                    div.onclick = () => {
+                        // Render markdown in viewer
+                        const viewer = document.getElementById('pdf-container');
+                        viewer.innerHTML = `<div class="markdown-body" style="padding: 20px; width: 100%; height: 100%; overflow-y: auto; text-align: left;">${marked.parse(data.report)}</div>`;
+                    };
+                    list.appendChild(div);
+                    div.click(); // Auto open
+                }
+            } catch (e) {
+                list.innerHTML = '<div class="tree-item file" style="color:red;">Failed</div>';
+            }
+        }
+
+        // Mock AI Functions
+        function runNovelty() {
+            const res = document.getElementById('novelty-result');
+            res.style.display = 'block';
+            res.innerHTML = 'Analyzing...';
+            setTimeout(() => {
+                res.innerHTML = '<strong>[FTO Alert]</strong> Your proposed bispecific approach shares 85% similarity with Daiichi Sankyo\'s US2026 patent. <br><br><strong>[Novelty]</strong> The lysosomal modulation pathway is highly novel compared to current literature.';
+            }, 1500);
+        }
+
+        function extractEntities() {
+            const res = document.getElementById('entity-result');
+            res.style.display = 'block';
+            res.innerHTML = 'Extracting...';
+            setTimeout(() => {
+                res.innerHTML = `
+                    <div style="color: #ce9178; margin-bottom: 5px;"><strong>Sequence (CDR-H3):</strong><br>ARWGGDGFYAMDY</div>
+                    <div style="color: #4ec9b0;"><strong>Molecule (SMILES):</strong><br>CC(=O)OC1=CC=CC=C1C(=O)O<br><i style="color:#888;">(Ketcher 2D render goes here)</i></div>
+                `;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

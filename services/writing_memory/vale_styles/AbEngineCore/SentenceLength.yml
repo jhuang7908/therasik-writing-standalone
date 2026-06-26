@@ -1,0 +1,6 @@
+extends: occurrence
+message: "Sentence over 40 words — split into two for clarity."
+level: warning
+max: 1
+scope: sentence
+token: '(\w+\W+){40,}'

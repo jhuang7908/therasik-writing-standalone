@@ -1,0 +1,242 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://insynbio.com/schemas/writing_memory/article_profile.v0_1.schema.json",
+  "title": "ArticleProfile",
+  "description": "Per-paper writing-style profile extracted from PMC JATS full text by an LLM. The schema is deliberately closed (additionalProperties=false) so that the model cannot smuggle in invented fields such as references. There is no references field anywhere in this schema by design.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "source",
+    "rhetoric_profile",
+    "logic_profile",
+    "sentence_style_profile",
+    "paragraph_structure_profile",
+    "reviewer_preference_profile",
+    "claim_strength_profile",
+    "phrase_evidence",
+    "verification_status",
+    "extraction_constraints_respected"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "0.1.0" },
+
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pmid", "pmcid", "journal"],
+      "properties": {
+        "pmid": { "type": "string", "pattern": "^[0-9]+$" },
+        "pmcid": { "type": "string", "pattern": "^PMC[0-9]+$" },
+        "doi": { "type": ["string", "null"] },
+        "journal": { "type": "string" },
+        "year": { "type": ["integer", "null"], "minimum": 1900, "maximum": 2100 },
+        "sections_used": {
+          "type": "array",
+          "items": { "enum": ["abstract", "discussion", "conclusion", "figure_legends"] },
+          "uniqueItems": true
+        }
+      }
+    },
+
+    "rhetoric_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["opening_style", "dominant_frame", "tone"],
+      "properties": {
+        "opening_style": {
+          "description": "How the paper opens its Discussion/Abstract.",
+          "enum": [
+            "clinical_unmet_need",
+            "field_importance",
+            "mechanism_gap",
+            "method_innovation",
+            "direct_problem_statement",
+            "data_first",
+            "translational_promise",
+            "other"
+          ]
+        },
+        "dominant_frame": {
+          "enum": [
+            "translational_mechanism",
+            "molecular_mechanism",
+            "clinical_outcome",
+            "epidemiology_population",
+            "method_innovation",
+            "broad_significance",
+            "other"
+          ]
+        },
+        "tone": {
+          "enum": [
+            "cautious_but_assertive",
+            "hedged",
+            "assertive",
+            "neutral_descriptive",
+            "policy_oriented"
+          ]
+        }
+      }
+    },
+
+    "logic_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["main_pattern", "claim_chain"],
+      "properties": {
+        "main_pattern": {
+          "enum": [
+            "problem-gap-solution-implication",
+            "question-method-result-interpretation",
+            "context-finding-mechanism-implication",
+            "clinical_question-cohort-result-policy",
+            "hypothesis-evidence-caveat-outlook",
+            "other"
+          ]
+        },
+        "claim_chain": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 8,
+          "items": { "type": "string", "minLength": 3, "maxLength": 300 }
+        }
+      }
+    },
+
+    "sentence_style_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hedge_level", "claim_strength", "avg_sentence_length", "preferred_verbs"],
+      "properties": {
+        "hedge_level": { "enum": ["low", "medium", "high"] },
+        "claim_strength": { "enum": ["weak", "moderate", "strong"] },
+        "avg_sentence_length": { "enum": ["short", "medium", "long"] },
+        "preferred_verbs": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 12,
+          "items": { "type": "string", "minLength": 2, "maxLength": 24 }
+        }
+      }
+    },
+
+    "paragraph_structure_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["typical_pattern"],
+      "properties": {
+        "typical_pattern": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 8,
+          "items": { "type": "string", "minLength": 3, "maxLength": 400 }
+        }
+      }
+    },
+
+    "reviewer_preference_profile": {
+      "type": "object",
+      "description": "Reviewer concerns INFERRED from the article's own self-defense and limitations text. Never represented to the user as a prediction of real peer review.",
+      "additionalProperties": false,
+      "required": ["likely_priorities", "likely_attacks", "inference_basis"],
+      "properties": {
+        "likely_priorities": {
+          "type": "array",
+          "minItems": 1, "maxItems": 6,
+          "items": { "type": "string", "minLength": 3, "maxLength": 400 }
+        },
+        "likely_attacks": {
+          "type": "array",
+          "minItems": 1, "maxItems": 6,
+          "items": { "type": "string", "minLength": 3, "maxLength": 400 }
+        },
+        "inference_basis": {
+          "type": "string",
+          "description": "Which input passages the inference is grounded in.",
+          "minLength": 10,
+          "maxLength": 1200
+        }
+      }
+    },
+
+    "claim_strength_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["overall", "examples"],
+      "properties": {
+        "overall": { "enum": ["under-hedged", "balanced", "over-claiming"] },
+        "examples": {
+          "type": "array",
+          "minItems": 0, "maxItems": 5,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["quoted_phrase", "category"],
+            "properties": {
+              "quoted_phrase": { "type": "string", "minLength": 5, "maxLength": 400 },
+              "category": { "enum": ["hedge", "claim", "causal", "generalization", "limitation"] }
+            }
+          }
+        }
+      }
+    },
+
+    "phrase_evidence": {
+      "type": "array",
+      "description": "Phrases/snippets directly observed in the input text. The model MUST NOT invent phrases. Each phrase must literally appear in the input (case-insensitive substring).",
+      "minItems": 1,
+      "maxItems": 30,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["phrase", "category"],
+        "properties": {
+          "phrase": { "type": "string", "minLength": 3, "maxLength": 400 },
+          "category": {
+            "enum": [
+              "opening",
+              "transition",
+              "hedge",
+              "claim",
+              "causal",
+              "generalization",
+              "limitation",
+              "implication",
+              "figure_legend",
+              "other"
+            ]
+          }
+        }
+      }
+    },
+
+    "verification_status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["overall", "notes"],
+      "properties": {
+        "overall": { "enum": ["verified", "inferred", "unverified"] },
+        "notes": { "type": "string", "maxLength": 600 }
+      }
+    },
+
+    "extraction_constraints_respected": {
+      "type": "object",
+      "description": "Self-attestation by the model that anti-hallucination constraints were respected. The application layer re-validates these.",
+      "additionalProperties": false,
+      "required": [
+        "no_external_references",
+        "no_invented_numbers",
+        "no_invented_author_names",
+        "phrases_from_input_only"
+      ],
+      "properties": {
+        "no_external_references":   { "const": true },
+        "no_invented_numbers":      { "const": true },
+        "no_invented_author_names": { "const": true },
+        "phrases_from_input_only":  { "const": true }
+      }
+    }
+  }
+}

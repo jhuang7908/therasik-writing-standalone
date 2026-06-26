@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therasik AI | Technology Showcase & Future Vision</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0d9488;
+            --primary-dark: #0f766e;
+            --primary-text: #0a7a71;
+            --text: #111827;
+            --text-muted: #4b5563;
+            --border: #e2e8f0;
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
+            --accent: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .section {
+            padding: 80px 0;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.015);
+        }
+
+        .section-alt {
+            background: var(--bg-alt);
+        }
+
+    /* Global Header (Verified Alignment) */
+    .top-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 32px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid rgba(13, 148, 136, 0.08); /* Modern subtle teal border */
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 2000; /* Ensure it stays above everything */
+      gap: 12px;
+    }
+
+    .top-header .brand a {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .top-header .brand-text {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 700;
+      font-size: 28px;
+      letter-spacing: -0.03em;
+      color: #111827;
+    }
+
+    .top-header .brand .syn {
+      color: var(--primary);
+      font-style: italic;
+    }
+
+    .top-header .slogan {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-left: 0;
+      padding-left: 14px;
+      border-left: 1px solid #e5e7eb;
+      font-family: 'Inter', sans-serif;
+      white-space: nowrap;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .top-header-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .top-header-nav a {
+      padding: 8px 16px;
+      font-size: 15px;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-radius: 20px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      font-weight: 600;
+    }
+
+    .top-header-nav a:hover {
+      color: var(--primary);
+      background: rgba(13, 148, 136, 0.06);
+    }
+
+    /* Dropdown Styles */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a::after { content: ' ▾'; font-size: 10px; opacity: 0.6; margin-left: 4px; }
+    .dropdown-menu {
+      position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
+      min-width: 240px; background: #fff; border: 1px solid rgba(0,0,0,0.06); border-radius: 12px;
+      padding: 10px; box-shadow: 0 10px 40px -10px rgba(0,0,0,0.15); opacity: 0; visibility: hidden;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); z-index: 2001;
+    }
+    .nav-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+    .dropdown-menu a { display: block; padding: 12px 14px; color: var(--text); border-radius: 8px; text-decoration: none; }
+    .dropdown-menu a:hover { background: #f9fafb; }
+    .menu-title { display: block; font-weight: 700; font-size: 14px; color: #111827; margin-bottom: 2px; }
+    .menu-desc { display: block; font-size: 12px; color: #6b7280; font-weight: 400; }
+    body { padding-top: 72px; } /* Header offset */
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 52px;
+            align-items: center;
+        }
+
+        .content-grid.reverse {
+            direction: rtl;
+        }
+
+        .content-grid.reverse .text-content {
+            direction: ltr;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(13, 148, 136, 0.1);
+            color: var(--primary-text);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        h1,
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: #111827;
+            letter-spacing: -0.02em;
+        }
+
+        h1 span,
+        h2 span {
+            color: var(--primary);
+        }
+
+        .lead-text {
+            font-size: 16px;
+            color: var(--muted);
+            margin-bottom: 32px;
+            font-weight: 400;
+        }
+
+        .bullet-list {
+            list-style: none;
+        }
+
+        .bullet-list li {
+            margin-bottom: 12px;
+            padding-left: 32px;
+            position: relative;
+            font-size: 15px;
+            color: var(--muted);
+        }
+
+        .bullet-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 4px;
+            width: 18px;
+            height: 18px;
+            background: rgba(13, 148, 136, 0.1);
+            border-radius: 50%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%230d9488' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .bullet-list li strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .visual-panel {
+            background: white;
+            border-radius: 24px;
+            width: 100%;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .visual-panel:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.12);
+        }
+
+        .visual-panel img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            padding: 16px;
+        }
+
+        .partner-card {
+            padding: 20px 24px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--primary);
+            margin-bottom: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+            transition: all 0.3s ease;
+        }
+
+        .partner-card:hover {
+            transform: translateX(8px);
+            border-color: var(--primary);
+            background: #fdfdfd;
+        }
+
+        .partner-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text);
+        }
+
+        .partner-card p {
+            font-size: 14px;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            background: var(--primary);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 18px 0 rgba(13, 148, 136, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(13, 148, 136, 0.4);
+        }
+
+        .progress-wrap {
+            position: fixed;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--border);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: var(--primary);
+            transform: scale(1.3);
+            box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.1);
+        }
+
+        .reveal-left,
+        .reveal-right {
+            opacity: 0;
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-left {
+            transform: translateX(-30px);
+        }
+
+        .reveal-right {
+            transform: translateX(30px);
+        }
+
+        .reveal-left.visible,
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .site-footer {
+            padding: 48px 0;
+            text-align: center;
+            font-size: 14px;
+            color: #9ca3af;
+            border-top: 1px solid var(--border);
+            background: #fff;
+        }
+
+        @media (max-width: 968px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .content-grid.reverse {
+                direction: ltr;
+            }
+
+            h1,
+            h2 {
+                font-size: 42px;
+            }
+
+            .visual-panel {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    
+  
+  <header class="top-header">
+    <div class="brand">
+      <a href="index.html">
+        <svg width="34" height="28" viewBox="0 0 32 30" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+          <path d="M16 2L2 10V22L16 28L30 22V10L16 2Z" fill="#0d9488" fill-opacity="0.1" stroke="#0d9488" stroke-width="2.5" />
+          <path d="M7 14L16 19L25 14" stroke="#0d9488" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M16 19V28" stroke="#0d9488" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M7 14L7 6C7 6 10 2 16 2C22 2 25 6 25 6L25 14" stroke="#0d9488" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="7" cy="6" r="2" fill="#0f766e" />
+          <circle cx="25" cy="6" r="2" fill="#0f766e" />
+          <circle cx="16" cy="18" r="2" fill="white" stroke="#0d9488" stroke-width="1.5" />
+        </svg>
+        <span><span style="color:#111827">Thera</span><span style="color:var(--primary); font-style:italic">sik</span></span>
+      </a>
+      <span class="slogan">AI </span>
+    </div>
+    <nav class="top-header-nav">
+      <a href="index.html"></a>
+      <a href="index.html#about"></a>
+      <div class="nav-dropdown" tabindex="0">
+        <a href="index.html#services"></a>
+        <div class="dropdown-menu">
+          <a href="Therasik_Antibody_Page.html">
+            <span class="menu-title"></span>
+            <span class="menu-desc"></span>
+          </a>
+          <a href="Therasik_CART_Page.html">
+            <span class="menu-title"> CAR-T </span>
+            <span class="menu-desc">ACTES </span>
+          </a>
+          <a href="Therasik_Bispecific_Page.html">
+            <span class="menu-title"></span>
+            <span class="menu-desc">Nano-Convert™ </span>
+          </a>
+        </div>
+      </div>
+      <a href="index.html#case-studies"></a>
+      <a href="index.html#workflow"></a>
+      <a href="index.html#faq"></a>
+      <a href="index.html#contact"></a>
+    </nav>
+  </header>
+
+
+
+    <div class="progress-wrap">
+        <div class="dot active" onclick="scrollToSection('hero')"></div>
+        <div class="dot" onclick="scrollToSection('antibody')"></div>
+        <div class="dot" onclick="scrollToSection('cart')"></div>
+        <div class="dot" onclick="scrollToSection('future')"></div>
+        <div class="dot" onclick="scrollToSection('partners')"></div>
+    </div>
+
+    <!-- Section 1: Hero -->
+    <section class="section" id="hero">
+        <div class="container">
+            <div class="content-grid">
+                <div class="text-content reveal-left">
+                    <div class="tag">The Challenge</div>
+                    <h1>AI Drug Discovery: <span>Frontiers & Friction</span></h1>
+                    <p class="lead-text">Transitioning from "Brute Force Computation" to "Biological Rule-Based
+                        Intelligence" in the era of generative design.</p>
+                    <ul class="bullet-list">
+                        <li><strong>Outlook:</strong> Rapid growth and massive reduction in R&D costs.</li>
+                        <li><strong>Dilemma:</strong> Data hallucinations and "Black Box" models leading to unreliable
+                            designs.</li>
+                        <li><strong>Solution:</strong> Integrating <strong>Scientific Computing</strong> with
+                            <strong>Biological Rules</strong>.
+                        </li>
+                        <li><strong>Standard:</strong> Grounded in Clinical Structures and Wet-Lab closed-loop
+                            validation.</li>
+                    </ul>
+                </div>
+                <div class="visual-panel reveal-right">
+                    <img src="images/slide1.png.jpeg" alt="AI Discovery Challenge">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Antibody -->
+    <section class="section section-alt" id="antibody">
+        <div class="container">
+            <div class="content-grid reverse">
+                <div class="text-content reveal-right">
+                    <div class="tag">Antibody Tech</div>
+                    <h2>Engineering: <span>The Golden Standard</span></h2>
+                    <p class="lead-text">Defining the boundaries of next-gen biotherapeutics using clinical performance
+                        as the ultimate benchmark.</p>
+                    <ul class="bullet-list">
+                        <li><strong>Dataset:</strong> Trained on over 1,133+ verified clinical antibody sequences.</li>
+                        <li><strong>Spectrum:</strong> Native support for IgG, VHH (Nanobodies), and Bispecific formats.
+                        </li>
+                        <li><strong>Benchmarking:</strong> Every design phase is compared against successful clinical
+                            analogs.</li>
+                        <li><strong>Physical Logic:</strong> Focus on paratope topology and developability risk
+                            mitigation.</li>
+                        <li style="margin-top: 10px; list-style: none; padding-left: 0;">
+                            <a href="case_mumab4d5_humanization_showcase_en.html" class="status-link" style="background:var(--primary); color:#fff; text-decoration:none; padding:6px 16px; border-radius:6px; display:inline-block; font-weight:600; font-size:14px; letter-spacing:0.02em;">Featured Case Study: muMAb4D5 Humanization &rarr;</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="visual-panel reveal-left">
+                    <img src="images/slide2.png.jpeg" alt="Antibody Engineering">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: CAR-T -->
+    <section class="section" id="cart">
+        <div class="container">
+            <div class="content-grid">
+                <div class="text-content reveal-left">
+                    <div class="tag">Cellular Therapy</div>
+                    <h2>Intelligent <span>CAR-T Design</span></h2>
+                    <p class="lead-text">Moving beyond trial-and-error to rational architecture customization based on
+                        TME and target profiles.</p>
+                    <ul class="bullet-list">
+                        <li><strong>Context-Driven:</strong> Decision engine begins with Disease Type and Target Density
+                            analysis.</li>
+                        <li><strong>TME Awareness:</strong> Overcoming suppression through structural and logic-gate
+                            innovation.</li>
+                        <li><strong>Modality Strategy:</strong> Optimized selection for Ex-vivo vs. In-vivo delivery and
+                            cell types.</li>
+                        <li><strong>Modular Platform:</strong> Selection from 180+ validated components to ensure safety
+                            and potency.</li>
+                    </ul>
+                </div>
+                <div class="visual-panel reveal-right">
+                    <img src="images/slide3.png.jpeg" alt="CAR-T Strategy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Future -->
+    <section class="section section-alt" id="future">
+        <div class="container">
+            <div class="content-grid reverse">
+                <div class="text-content reveal-right">
+                    <div class="tag">Future Vision</div>
+                    <h2>Beyond the <span>Horizon</span></h2>
+                    <p class="lead-text">The leap from optimizing existing scaffolds to de novo design of fully
+                        synthetic protein therapeutic.</p>
+                    <ul class="bullet-list">
+                        <li><strong>De Novo Design:</strong> Full primary sequence redesign and CDR geometric
+                            recalculation.</li>
+                        <li><strong>Strategic Evolution:</strong> High-precision CDR remodeling and synthetic protein
+                            candidates.</li>
+                        <li><strong>Platform Growth:</strong> Extending to mRNA vaccine design and multi-epitope antigen
+                            screening.</li>
+                        <li><strong>Integration:</strong> Proprietary algorithm packaging for seamless design logic
+                            migration.</li>
+                    </ul>
+                </div>
+                <div class="visual-panel reveal-left">
+                    <img src="images/slide4.png.jpeg" alt="Future Roadmap">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Partners -->
+    <section class="section" id="partners">
+        <div class="container">
+            <div class="content-grid">
+                <div class="text-content reveal-left">
+                    <div class="tag">Ecosystem</div>
+                    <h2>Strategic <span>Partnerships</span></h2>
+
+                    <div class="partner-card">
+                        <h3>Pharma & Biopharma</h3>
+                        <p>Joint development programs and clinical asset licensing collaborations.</p>
+                    </div>
+                    <div class="partner-card" style="border-left-color: #5eead4;">
+                        <h3>Research Network</h3>
+                        <p>Translational medicine research with world-leading medical centers.</p>
+                    </div>
+                    <div class="partner-card" style="border-left-color: var(--accent);">
+                        <h3>Specialized Capital</h3>
+                        <p>Backed by top-tier investment firms specializing in AI healthcare.</p>
+                    </div>
+
+                    <div style="margin-top: 32px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap;">
+                        <a href="https://therasik.com" target="_blank" class="btn">Visit therasik.com</a>
+
+                        <div style="font-family: 'Inter', sans-serif; font-size: 14px;">
+                            <p style="color: var(--muted); margin-bottom: 4px;">🌐 <a href="https://therasik.com"
+                                    style="color: var(--primary); text-decoration: none;">www.therasik.com</a></p>
+                            <p style="color: var(--muted);">📧 <a href="mailto:contact@therasik.com"
+                                    style="color: var(--primary); text-decoration: none;">contact@therasik.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual-panel reveal-right">
+                    <img src="images/slide5.png.jpeg" alt="Global Ecosystem">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+  
+  <footer class="site-footer">
+    <p>© 2026 Therasik · <a href="https://therasik.com">therasik.com</a> · <a href="mailto:contact@therasik.com">contact@therasik.com</a></p>
+  </footer>
+
+
+
+    <script>
+        const observerOptions = { threshold: 0.2, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    updateDots(entry.target.id);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-left, .reveal-right, .section').forEach(el => observer.observe(el));
+
+        function updateDots(id) {
+            const sections = ['hero', 'antibody', 'cart', 'future', 'partners'];
+            const index = sections.indexOf(id);
+            if (index !== -1) {
+                document.querySelectorAll('.dot').forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+            }
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>

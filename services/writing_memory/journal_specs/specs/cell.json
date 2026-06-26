@@ -1,0 +1,65 @@
+{
+  "schema_version": "0.1.0",
+  "journal": { "key": "cell", "display": "Cell" },
+  "spec_version": "0.1.0",
+  "sourced_from": [
+    { "url": "https://www.cell.com/cell/authors", "label": "Cell Information for Authors", "captured_at": null },
+    { "url": "https://www.cell.com/cell/preparing-supplemental-information", "label": "Cell Preparing Supplemental Information", "captured_at": null }
+  ],
+  "captured_at": null,
+
+  "article_types": [
+    { "value": "Article (Research)", "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors" },
+    { "value": "Short Article", "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors" },
+    { "value": "Review / Perspective", "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors" }
+  ],
+
+  "structure": {
+    "required_sections": { "value": ["summary","introduction","results","discussion","star_methods","references"], "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors", "notes": "Cell uses STAR Methods (Structured, Transparent, Accessible Reporting)." },
+    "optional_sections": { "value": ["graphical_abstract","highlights","author_contributions","acknowledgments","declaration_of_interests","data_and_code_availability","supplemental_information"], "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors" },
+    "highlights": { "value": "Mandatory — 3-4 bullets, max 85 characters each (incl. spaces).", "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors" },
+    "in_brief": { "value": "Sometimes required — editor-written 50-word lay summary." }
+  },
+
+  "abstract": {
+    "word_limit": { "value": 150, "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors", "notes": "Cell calls it 'Summary'; unstructured single paragraph ≤150 words." },
+    "structured": { "value": false, "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors" }
+  },
+
+  "main_text": {
+    "word_limit": { "value": 7500, "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors", "notes": "~45,000 characters incl. spaces, equating to ~7000-7500 words for full Article (excl. STAR Methods and refs)." },
+    "figure_count_limit": { "value": 7, "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors", "notes": "Typically up to 7 display items (figures + tables) for full Article." },
+    "table_count_limit": { "value": 7, "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors" },
+    "supplementary_policy": { "value": "Supplemental Information unrestricted in size; supplemental figures (S1, S2 …) referenced inline.", "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/preparing-supplemental-information" }
+  },
+
+  "figures_tables": {
+    "figure_resolution": { "value": "≥300 dpi for halftones; ≥1000 dpi for line art at print size.", "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors" },
+    "color_policy": { "value": "Colour figures free of charge.", "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors" },
+    "legend_word_limit": { "value": null, "verification_status": "unverified", "source_url": null, "notes": "No firm word limit; keep concise." },
+    "accepted_formats": { "value": ["TIFF","EPS","PDF (vector)"], "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors" }
+  },
+
+  "declarations": {
+    "competing_interests": { "value": "Mandatory Declaration of Interests.", "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors" },
+    "funding_statement": { "value": "Mandatory in Acknowledgments.", "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors" },
+    "author_contributions": { "value": "Mandatory — Cell adopts CRediT taxonomy.", "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors" },
+    "ethics_statement": { "value": "Required in STAR Methods (Resource Availability + Experimental Model and Subject Details).", "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors" },
+    "consent_statement": { "value": "Required for human-subject studies.", "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors" },
+    "reporting_checklist": { "value": "Recommended (ARRIVE, CONSORT, STROBE, PRISMA as applicable).", "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors" }
+  },
+
+  "data_and_code": {
+    "data_availability": { "value": "Mandatory — included in Key Resources Table (STAR Methods).", "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors" },
+    "code_availability": { "value": "Mandatory if reporting novel code; deposit to public repo with DOI.", "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors" },
+    "preferred_repositories": { "value": ["GEO","SRA","PRIDE","PDB","Zenodo","GitHub"], "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors" },
+    "accession_required": { "value": true, "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors" }
+  },
+
+  "reference_style_id": "cell_numbered",
+  "reference_limit": { "value": null, "verification_status": "unverified", "source_url": "https://www.cell.com/cell/authors", "notes": "No firm limit; keep focused." },
+
+  "notes": [
+    { "value": "Cell highlights (3-4 bullets) are mandatory and editor-checked.", "verification_status": "published_guideline", "source_url": "https://www.cell.com/cell/authors" }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42101971",
+    "pmcid": "PMC13155573",
+    "doi": "10.1371/journal.pmed.1005082",
+    "journal": "PLOS Medicine",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "conclusion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "direct_problem_statement",
+    "dominant_frame": "broad_significance",
+    "tone": "policy_oriented"
+  },
+  "logic_profile": {
+    "main_pattern": "problem-gap-solution-implication",
+    "claim_chain": [
+      "Climate change accelerates non-communicable diseases through cascading environmental disruptions",
+      "This syndemic is attributed to driving increased NCD-related mortality",
+      "Yet this syndemic remains invisible and underfunded",
+      "Addressing the climate-NCD intersection is critical for improving health",
+      "Meeting this challenge will require innovation, ethical leadership and political courage",
+      "Anchoring climate action in health may bridge ideological divisions and catalyze collective action"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "low",
+    "claim_strength": "strong",
+    "avg_sentence_length": "medium",
+    "preferred_verbs": [
+      "accelerates",
+      "is attributed to",
+      "remains",
+      "detail",
+      "is critical",
+      "will require",
+      "sustain",
+      "may be",
+      "generates",
+      "drive"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "Problem statement with causal claim",
+      "Gap identification (invisible, underfunded)",
+      "Imperative for action",
+      "Requirements for solution (innovation, leadership, courage)",
+      "Strategic pathway forward (anchoring in health)"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Evidence strength for causal claims about climate-NCD links",
+      "Quantification of disease burden and mortality attribution",
+      "Feasibility and specificity of proposed solutions",
+      "Political and ethical dimensions of implementation"
+    ],
+    "likely_attacks": [
+      "Insufficient mechanistic detail for cascading environmental disruptions",
+      "Lack of quantitative evidence for mortality attribution",
+      "Vague policy recommendations without concrete implementation pathways",
+      "Overstatement of syndemic framing without epidemiological support"
+    ],
+    "inference_basis": "The paper uses strong causal language ('accelerates', 'is attributed to driving') without presenting quantitative evidence in the provided sections. It acknowledges the syndemic 'remains invisible and underfunded', suggesting recognition of evidence gaps. The conclusion pivots to broad calls for 'innovation', 'ethical leadership', and 'political courage' without detailing specific interventions, which may invite criticism about actionability. The framing as 'the defining public health issue of the 21st century' is a strong claim that reviewers might challenge for supporting evidence."
+  },
+  "claim_strength_profile": {
+    "overall": "over-claiming",
+    "examples": [
+      {
+        "quoted_phrase": "Climate change accelerates non-communicable diseases",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "is attributed to driving increased NCD-related mortality",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "The climate–NCD syndemic is likely the defining public health issue of the 21st century",
+        "category": "generalization"
+      },
+      {
+        "quoted_phrase": "Anchoring climate action in the universal imperative of health may be the clearest pathway",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "addressing the climate-NCD intersection is critical for improving health",
+        "category": "claim"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "Climate change accelerates non-communicable diseases",
+      "category": "opening"
+    },
+    {
+      "phrase": "through cascading environmental disruptions",
+      "category": "claim"
+    },
+    {
+      "phrase": "is attributed to driving increased NCD-related mortality",
+      "category": "claim"
+    },
+    {
+      "phrase": "Yet this syndemic remains invisible and underfunded",
+      "category": "limitation"
+    },
+    {
+      "phrase": "addressing the climate-NCD intersection is critical for improving health",
+      "category": "implication"
+    },
+    {
+      "phrase": "The climate–NCD syndemic is likely the defining public health issue of the 21st century",
+      "category": "claim"
+    },
+    {
+      "phrase": "Meeting this challenge will require not only innovation, but ethical leadership and political courage",
+      "category": "implication"
+    },
+    {
+      "phrase": "to confront entrenched systems that sustain delay",
+      "category": "implication"
+    },
+    {
+      "phrase": "Anchoring climate action in the universal imperative of health",
+      "category": "implication"
+    },
+    {
+      "phrase": "may be the clearest pathway to bridging ideological divisions",
+      "category": "hedge"
+    },
+    {
+      "phrase": "catalyzing sustained collective action",
+      "category": "implication"
+    },
+    {
+      "phrase": "Climate change generates a constellation of environmental stressors",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "including extreme heat, wildfire smoke, water insecurity, food system disruption, urban heat islands, and healthcare disruption",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "that drive the visi",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "The climate-NCD syndemic iceberg: Hidden dimensions of climate-driven disease burden",
+      "category": "figure_legend"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "Profile extracted from abstract, conclusion, and figure legend fragments. Limited input text constrains depth of analysis but sufficient for basic profile. All phrases verified as literal substrings of input."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:08:42.496794+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\plos_med\\42090430.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

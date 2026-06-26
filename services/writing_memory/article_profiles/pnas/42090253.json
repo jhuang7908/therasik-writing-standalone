@@ -1,0 +1,239 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42090253",
+    "pmcid": "PMC13167743",
+    "doi": "10.1073/pnas.2533609123",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "mechanism_gap",
+    "dominant_frame": "molecular_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "context-finding-mechanism-implication",
+    "claim_chain": [
+      "SAGA1 and SAGA2 function redundantly to localize starch to the pyrenoid",
+      "Single mutants show early defects that are remedied by later timepoints",
+      "Double mutant lacks starch sheath at all stages",
+      "SAGA1 and SAGA2 likely function as starch granule initiation factors rather than merely tethers",
+      "Both proteins bind to starch precursors and share structural similarity with Arabidopsis initiation factors",
+      "SAGA1 and SAGA2 establish distinct sites of starch initiation at different regions of the pyrenoid surface"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "indicate",
+      "suggest",
+      "establish",
+      "propose",
+      "support",
+      "raise the possibility",
+      "implicate",
+      "is consistent with",
+      "remains possible",
+      "speculate"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "Topic sentence stating main claim or interpretation",
+      "Multiple pieces of evidence presented sequentially with explicit numbering or ordering",
+      "Each piece of evidence described with supporting observations from figures",
+      "Interpretation of what each piece of evidence implies",
+      "Synthesis statement connecting evidence to broader model or mechanism"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Direct experimental evidence for proposed initiation function",
+      "Identification of starch synthase interactions or localization",
+      "In vivo binding partners and substrates of SAGA proteins",
+      "Mechanistic details of how SAGA proteins promote starch granule initiation",
+      "Validation that observed in vitro binding reflects in vivo function"
+    ],
+    "likely_attacks": [
+      "Lack of direct evidence for starch initiation function",
+      "Failure to detect starch synthase interactions by immunoprecipitation-mass spectrometry",
+      "Uncertainty about what SAGA1 and SAGA2 bind to in vivo versus in vitro",
+      "Possibility that binding to β-cyclodextrin and maltoheptaose is merely due to similar chemical structure",
+      "Speculation about combined MFP1 and PTST2 function without direct proof",
+      "Model requires presence of neighboring starch synthases but this localization is not demonstrated"
+    ],
+    "inference_basis": "The paper explicitly acknowledges multiple limitations: 'direct evidence for such a function is still lacking, and additional work will be required to test this proposed function'; 'we did not observe interactions between SAGA1 and SAGA2 and any starch synthase by immunoprecipitation-mass spectrometry'; 'it remains possible that the binding of the SAGA1 and SAGA2 CBM20 domains with β-cyclodextrin and maltoheptaose is merely the result of the similar chemical structure'; 'what SAGA1 and SAGA2 bind to in vivo may differ from our observations in vitro'; 'our model requires the presence of neighboring starch synthases...and further work is needed to determine whether starch synthases localize in proximity to the two SAGA proteins'. These self-identified limitations indicate the authors anticipate reviewer concerns about the lack of direct mechanistic evidence and the speculative nature of the initiation model."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "our results establish that SAGA1 and SAGA2 can each localize the starch sheath to the pyrenoid matrix in the absence of the other",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "our data raise the possibility that SAGA1 and SAGA2 do not merely tether starch to the matrix, but rather directly promote starch granule initiation",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "This observation suggests that starch in the saga1; saga2 double mutant was initiated away from the matrix",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "it remains possible that the binding of the SAGA1 and SAGA2 CBM20 domains with β-cyclodextrin and maltoheptaose is merely the result of the similar chemical structure",
+        "category": "limitation"
+      },
+      {
+        "quoted_phrase": "lead us to speculate that SAGA1 and SAGA2 could perform the combined function of MFP1 and PTST2",
+        "category": "hedge"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "This work provides experimental evidence that",
+      "category": "opening"
+    },
+    {
+      "phrase": "Taken together, our results establish that",
+      "category": "claim"
+    },
+    {
+      "phrase": "our data raise the possibility that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "The first piece of evidence that",
+      "category": "transition"
+    },
+    {
+      "phrase": "The second piece of evidence that",
+      "category": "transition"
+    },
+    {
+      "phrase": "The third piece of evidence consistent with the idea that",
+      "category": "transition"
+    },
+    {
+      "phrase": "A final piece of evidence that supports the idea that",
+      "category": "transition"
+    },
+    {
+      "phrase": "This observation suggests that",
+      "category": "causal"
+    },
+    {
+      "phrase": "This observation indicates that",
+      "category": "causal"
+    },
+    {
+      "phrase": "which is consistent with",
+      "category": "hedge"
+    },
+    {
+      "phrase": "it remains possible that",
+      "category": "limitation"
+    },
+    {
+      "phrase": "lead us to speculate that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "We propose a model",
+      "category": "claim"
+    },
+    {
+      "phrase": "direct evidence for such a function is still lacking",
+      "category": "limitation"
+    },
+    {
+      "phrase": "additional work will be required to test this proposed function",
+      "category": "limitation"
+    },
+    {
+      "phrase": "further work is needed to determine whether",
+      "category": "limitation"
+    },
+    {
+      "phrase": "implicating SAGA1 and SAGA2 in",
+      "category": "causal"
+    },
+    {
+      "phrase": "disproves the hypothesis that",
+      "category": "claim"
+    },
+    {
+      "phrase": "can be explained by",
+      "category": "causal"
+    },
+    {
+      "phrase": "We note that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "what SAGA1 and SAGA2 bind to in vivo may differ from our observations in vitro",
+      "category": "limitation"
+    },
+    {
+      "phrase": "such interactions may occur but be too transient to detect with our assays",
+      "category": "limitation"
+    },
+    {
+      "phrase": "While our data support",
+      "category": "hedge"
+    },
+    {
+      "phrase": "that is consistent with our data and with the hypothesis that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Representative confocal images of",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Cells were grown at high",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Serial 1:10 dilutions were spotted on",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "thought to slow the escape of CO2 from the pyrenoid",
+      "category": "hedge"
+    },
+    {
+      "phrase": "suggesting a role for",
+      "category": "causal"
+    },
+    {
+      "phrase": "These findings advance the understanding of",
+      "category": "implication"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers were included. The profile accurately reflects the paper's mechanistic focus, moderate hedging, and explicit acknowledgment of limitations regarding the proposed starch initiation function."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:26:31.692763+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\pnas\\42090253.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42159330",
+    "pmcid": "PMC13189620",
+    "doi": "10.7554/eLife.104778.4.sa3",
+    "journal": "eLife",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "field_importance",
+    "dominant_frame": "molecular_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "context-finding-mechanism-implication",
+    "claim_chain": [
+      "Tau filaments from AD brains are hyperphosphorylated full-length tau",
+      "Recombinant tau assembly previously required cofactors and yielded different structures",
+      "Twelve phosphomimetic mutations induce full-length tau assembly into PHFs without cofactors",
+      "NMR data suggest phosphorylation disrupts intramolecular interaction between IVYK motifs",
+      "Hyperphosphorylation may be sufficient for formation of the Alzheimer tau fold",
+      "PAD12 tau provides a useful tool for studying neurodegeneration mechanisms"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "show",
+      "suggest",
+      "indicate",
+      "support",
+      "facilitate",
+      "disrupt",
+      "reveal",
+      "lead to",
+      "may",
+      "remains"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State known background or previous finding",
+      "Present new finding or observation from current study",
+      "Provide mechanistic interpretation or comparison",
+      "Acknowledge limitations or alternative explanations",
+      "State broader implications or future directions"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Structural verification by cryo-EM that filaments are authentic PHFs",
+      "Demonstration that findings represent minimal necessary conditions",
+      "Mechanistic explanation for how phosphorylation induces assembly",
+      "Comparison with previous phosphorylation studies",
+      "Functional relevance to disease pathology"
+    ],
+    "likely_attacks": [
+      "Other phosphomimetic combinations might also work but were not tested systematically",
+      "Each construct may require its own optimization of assembly conditions",
+      "The role of the fuzzy coat in disease mechanisms remains poorly understood",
+      "Unknown whether physiological phosphorylation ever reaches levels required for filament formation",
+      "The amino-terminal interaction in the paperclip model remains uncharacterized"
+    ],
+    "inference_basis": "The paper explicitly states 'We cannot exclude the possibility that each construct requires its own optimisation of assembly conditions and that constructs with modifications other than those of PAD12 could be made to form PHFs too.' It acknowledges that 'The definition of a minimal set of phosphomimetic mutations that is necessary for the spontaneous assembly of full-length tau into PHFs would require the systematic removal of PAD12 mutations.' The authors note 'The role of tau's fuzzy coat in the molecular mechanisms of disease remains poorly understood' and 'the corresponding interaction between the amino-terminal domain of tau and the core-forming region remains unknown.' They also state 'It remains to be seen if tau filaments form occasionally as a result of this physiological regulation.'"
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "These findings show for the first time the nucleation-dependent assembly of full-length recombinant tau into PHFs",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "Our findings suggest that hyperphosphorylation of tau may be sufficient for the formation of the Alzheimer tau fold",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "Phosphorylation of the fuzzy coat may facilitate spontaneous filament assembly by reducing the entropic cost of nucleating new filaments",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "We cannot exclude the possibility that each construct requires its own optimisation of assembly conditions",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "PAD12 tau will be a useful tool for the study of molecular mechanisms of neurodegeneration",
+        "category": "generalization"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "Tau filaments that are extracted from the brains of individuals with AD using sarkosyl contain full-length, hyperphosphorylated tau of all six isoforms",
+      "category": "opening"
+    },
+    {
+      "phrase": "These findings show for the first time",
+      "category": "claim"
+    },
+    {
+      "phrase": "We previously showed that",
+      "category": "transition"
+    },
+    {
+      "phrase": "In this paper, we show that",
+      "category": "transition"
+    },
+    {
+      "phrase": "Our findings suggest that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "This is in agreement with",
+      "category": "transition"
+    },
+    {
+      "phrase": "We cannot exclude the possibility that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "It is possible that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "may facilitate",
+      "category": "hedge"
+    },
+    {
+      "phrase": "It is striking that",
+      "category": "claim"
+    },
+    {
+      "phrase": "In agreement",
+      "category": "transition"
+    },
+    {
+      "phrase": "remains poorly understood",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Further research to explore",
+      "category": "implication"
+    },
+    {
+      "phrase": "will facilitate this",
+      "category": "implication"
+    },
+    {
+      "phrase": "It remains to be seen if",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Combined, these observations support a model where",
+      "category": "claim"
+    },
+    {
+      "phrase": "This model agrees with",
+      "category": "transition"
+    },
+    {
+      "phrase": "although the corresponding interaction",
+      "category": "limitation"
+    },
+    {
+      "phrase": "remains unknown",
+      "category": "limitation"
+    },
+    {
+      "phrase": "provide insights into the mechanism by which",
+      "category": "claim"
+    },
+    {
+      "phrase": "suggest that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "lead to the assembly of",
+      "category": "claim"
+    },
+    {
+      "phrase": "will be a useful tool for",
+      "category": "implication"
+    },
+    {
+      "phrase": "Schematic of PAD12 tau",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Cross-sections of cryo-EM reconstructions perpendicular to the helical axis",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Fourier shell correlation curves between two independently refined half-maps",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Coomassie-stained SDS-PAGE",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "The definition of a minimal set of phosphomimetic mutations that is necessary for the spontaneous assembly of full-length tau into PHFs would require the systematic removal of PAD12 mutations",
+      "category": "limitation"
+    },
+    {
+      "phrase": "we feel that the assembly of PAD12 full-length tau into PHFs warrants dissemination before such explorations are performed",
+      "category": "claim"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers were included. The profile is based solely on the provided abstract, discussion, and figure legends."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T12:58:03.611275+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\elife\\42159049.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

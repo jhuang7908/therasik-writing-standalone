@@ -1,0 +1,155 @@
+{
+  "mvp_doc": "services/writing_memory/docs/ARTICLE_TYPE_COHORT_MVP_V1.md",
+  "papers_raw": {
+    "total": 151,
+    "by_journal": {
+      "papers_raw": 1,
+      "elife": 50,
+      "plos_med": 50,
+      "pnas": 50
+    },
+    "paths_sample": [
+      "papers_raw\\_load_report.json",
+      "papers_raw\\elife\\42112672.json",
+      "papers_raw\\elife\\42116725.json",
+      "papers_raw\\elife\\42117453.json",
+      "papers_raw\\elife\\42118136.json"
+    ]
+  },
+  "article_profiles": {
+    "total": 146,
+    "by_journal": {
+      "eLife": 48,
+      "PLOS Medicine": 50,
+      "Proceedings of the National Academy of S": 48
+    }
+  },
+  "journal_specs_count": 10,
+  "journal_specs_keys": [
+    "cell",
+    "elife",
+    "generic",
+    "lancet",
+    "nature",
+    "nature_medicine",
+    "nejm",
+    "plos_med",
+    "pnas",
+    "science"
+  ],
+  "canonical_types": [
+    "original_research",
+    "brief_communication",
+    "methods_protocols",
+    "resource_paper",
+    "translational_drug_discovery",
+    "clinical_trial",
+    "review_narrative",
+    "systematic_review",
+    "case_report",
+    "perspective",
+    "hypothesis",
+    "negative_results"
+  ],
+  "cohort_targets": {
+    "original_research": 8,
+    "review_narrative": 6,
+    "systematic_review": 5,
+    "methods_protocols": 6,
+    "case_report": 5,
+    "brief_communication": 5,
+    "perspective": 5,
+    "clinical_trial": 5,
+    "hypothesis": 5,
+    "negative_results": 5,
+    "resource_paper": 5,
+    "translational_drug_discovery": 5
+  },
+  "cohort_gaps": [
+    {
+      "canonical_type": "original_research",
+      "local_count": 0,
+      "target": 8,
+      "need_download": 8,
+      "note": "article_type not tagged on papers_raw yet; run Phase B classifier"
+    },
+    {
+      "canonical_type": "review_narrative",
+      "local_count": 0,
+      "target": 6,
+      "need_download": 6,
+      "note": "article_type not tagged on papers_raw yet; run Phase B classifier"
+    },
+    {
+      "canonical_type": "systematic_review",
+      "local_count": 0,
+      "target": 5,
+      "need_download": 5,
+      "note": "article_type not tagged on papers_raw yet; run Phase B classifier"
+    },
+    {
+      "canonical_type": "methods_protocols",
+      "local_count": 0,
+      "target": 6,
+      "need_download": 6,
+      "note": "article_type not tagged on papers_raw yet; run Phase B classifier"
+    },
+    {
+      "canonical_type": "case_report",
+      "local_count": 0,
+      "target": 5,
+      "need_download": 5,
+      "note": "article_type not tagged on papers_raw yet; run Phase B classifier"
+    },
+    {
+      "canonical_type": "brief_communication",
+      "local_count": 0,
+      "target": 5,
+      "need_download": 5,
+      "note": "article_type not tagged on papers_raw yet; run Phase B classifier"
+    },
+    {
+      "canonical_type": "perspective",
+      "local_count": 0,
+      "target": 5,
+      "need_download": 5,
+      "note": "article_type not tagged on papers_raw yet; run Phase B classifier"
+    },
+    {
+      "canonical_type": "clinical_trial",
+      "local_count": 0,
+      "target": 5,
+      "need_download": 5,
+      "note": "article_type not tagged on papers_raw yet; run Phase B classifier"
+    },
+    {
+      "canonical_type": "hypothesis",
+      "local_count": 0,
+      "target": 5,
+      "need_download": 5,
+      "note": "article_type not tagged on papers_raw yet; run Phase B classifier"
+    },
+    {
+      "canonical_type": "negative_results",
+      "local_count": 0,
+      "target": 5,
+      "need_download": 5,
+      "note": "article_type not tagged on papers_raw yet; run Phase B classifier"
+    },
+    {
+      "canonical_type": "resource_paper",
+      "local_count": 0,
+      "target": 5,
+      "need_download": 5,
+      "note": "article_type not tagged on papers_raw yet; run Phase B classifier"
+    },
+    {
+      "canonical_type": "translational_drug_discovery",
+      "local_count": 0,
+      "target": 5,
+      "need_download": 5,
+      "note": "article_type not tagged on papers_raw yet; run Phase B classifier"
+    }
+  ],
+  "reference_plugin": "journal_specs/format_reference.py"
+}

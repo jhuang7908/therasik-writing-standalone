@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "insynbio/project_asset_hub/v1",
+  "title": "InSynBio Project Asset Hub",
+  "description": "Cross-module asset registry. Each asset is owned by an open-source system of record; hub stores pointers, ACL, and audit.",
+  "type": "object",
+  "required": ["hub_version", "project_id", "assets"],
+  "properties": {
+    "hub_version": { "const": "1.0.0" },
+    "project_id": { "type": "string", "description": "Same id as writing_memory project (wmProjects.projects[].id)" },
+    "display_name": { "type": "string" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "assets": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/asset" }
+    }
+  },
+  "$defs": {
+    "asset": {
+      "type": "object",
+      "required": ["asset_id", "asset_type", "source_module", "title", "created_at"],
+      "properties": {
+        "asset_id": { "type": "string" },
+        "asset_type": {
+          "enum": [
+            "literature",
+            "reagent",
+            "instrument",
+            "method",
+            "sop",
+            "experiment",
+            "dataset",
+            "design",
+            "grant_draft",
+            "manuscript_draft",
+            "patent",
+            "patent_sequence"
+          ]
+        },
+        "source_module": {
+          "enum": ["design", "writing", "lab", "grant", "library", "ip"]
+        },
+        "system_of_record": {
+          "type": "string",
+          "description": "e.g. zotero, openalex, elabftw, abenginecore, writing_memory"
+        },
+        "external_ref": {
+          "type": "object",
+          "description": "Opaque pointer in the SoR",
+          "properties": {
+            "doi": { "type": "string" },
+            "openalex_id": { "type": "string" },
+            "zotero_key": { "type": "string" },
+            "elabftw_item_id": { "type": "integer" },
+            "elabftw_experiment_id": { "type": "integer" },
+            "writing_article_id": { "type": "string" },
+            "patent_number": { "type": "string" },
+            "patent_id": { "type": "string" },
+            "wipo_id": { "type": "string" },
+            "sequence_accession": { "type": "string" }
+          },
+          "additionalProperties": true
+        },
+        "title": { "type": "string" },
+        "summary": { "type": "string" },
+        "visibility": {
+          "enum": ["project", "pi_only", "public_metadata"],
+          "default": "project"
+        },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "created_by": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "verification_status": {
+          "enum": ["verified", "user-provided", "inferred", "unverified"],
+          "default": "user-provided"
+        }
+      }
+    }
+  }
+}

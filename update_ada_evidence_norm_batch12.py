@@ -1,0 +1,173 @@
+import pandas as pd
+
+ada_path = "data/immunogenicity_knowledge_base/master/ada_master_328_final_comprehensive.csv"
+df = pd.read_csv(ada_path)
+
+updates = {
+    "Secukinumab": {
+        "ada_value": "In COSENTYX labeling, immunogenicity was evaluated by an electrochemiluminescence-based bridging immunoassay. In up to 52 weeks of treatment across adult PsO, PsA, AS, nr-axSpA, HS and pediatric PsO/JPsA/ERA controlled trials, anti-secukinumab antibody formation was less than 1% (25/6268); approximately 8% of ADA-positive subjects developed neutralizing antibodies.",
+        "ada_value_display": "<1% ADA (25/6268); ~8% of ADA-positive neutralizing",
+        "ada_first_pct": 1.0,
+        "nab_pct": "Approximately 8% of ADA-positive subjects developed neutralizing antibodies",
+        "assay_platform": "Electrochemiluminescence-based bridging immunoassay; label notes drug-interference limitations",
+        "pk_efficacy_impact": "Because of low ADA occurrence, the effect on pharmacokinetics, pharmacodynamics, safety, or effectiveness is unknown.",
+        "evidence_source": "DailyMed/FDA COSENTYX prescribing information, Section 12.6 Immunogenicity",
+        "citation_urls": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=77c4b13e-7df3-42d4-81db-3d0cddb7f67a",
+        "ada_source_url_primary": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=77c4b13e-7df3-42d4-81db-3d0cddb7f67a",
+        "ada_source_type_curated": "fda_label",
+        "ada_has_text_evidence": True,
+        "ada_source_section": "Section 12.6 Immunogenicity: <1% ADA formation, 25/6268 total COSENTYX-treated subjects; approximately 8% of ADA-positive subjects developed neutralizing antibodies; impact unknown due to low occurrence.",
+        "verify_note": "Normalized source fields from current DailyMed/FDA label; ada_first_pct stores the label's <1% upper-bound value.",
+    },
+    "Sifalimumab": {
+        "ada_value": "In a phase Ib SLE dose-escalation study, 29/121 (24.0%) sifalimumab-treated patients and 1/40 (2.5%) placebo-treated patients had detectable antisifalimumab antibodies at one or more visits. Antisifalimumab antibody titers were mostly low; antibodies had no observed impact on sifalimumab pharmacokinetics. A later phase IIb study reported no neutralizing antibodies to sifalimumab in any patient.",
+        "ada_value_display": "24.0% antisifalimumab antibodies (29/121); no neutralizing antibodies in later phase IIb study",
+        "ada_first_pct": 24.0,
+        "nab_pct": "No neutralizing antibodies to sifalimumab were found in the later phase IIb SLE study",
+        "assay_platform": "Antisifalimumab antibody assay; later phase IIb included neutralizing antibody assessment",
+        "pk_efficacy_impact": "Phase Ib study reported no impact of antisifalimumab antibodies on sifalimumab pharmacokinetics.",
+        "evidence_source": "PMC phase Ib sifalimumab SLE study; Annals of the Rheumatic Diseases phase IIb SLE study",
+        "citation_urls": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3654174/; https://ard.bmj.com/content/75/11/1909",
+        "ada_source_url_primary": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3654174/",
+        "ada_source_type_curated": "peer_reviewed_article",
+        "ada_has_text_evidence": True,
+        "ada_source_section": "Immunogenicity: 29/121 (24.0%) sifalimumab-treated patients had detectable antisifalimumab antibodies; 1/40 placebo; titers mostly low; no PK impact. Phase IIb text: no neutralizing antibodies to sifalimumab in any patient.",
+        "verify_note": "Replaced unsupported 0.0% value with source-confirmed phase Ib ADA incidence; retained separate phase IIb no-neutralizing statement.",
+    },
+    "Sintilimab": {
+        "ada_value": "A peer-reviewed systematic review of treatment-emergent ADAs for PD-1/PD-L1/CTLA-4 inhibitors reported sintilimab treatment-emergent ADA incidence of 0.52% in 381 patients in the largest included sintilimab dataset.",
+        "ada_value_display": "0.52% treatment-emergent ADA in 381 patients",
+        "ada_first_pct": 0.52,
+        "nab_pct": "Not reported in the retrieved review line for sintilimab",
+        "assay_platform": "Systematic review; assay details varied across included trials and were often not reported",
+        "pk_efficacy_impact": "The review states checkpoint inhibitor ADA impact on outcomes remains unclear overall; sintilimab-specific impact was not stated in the extracted line.",
+        "evidence_source": "PMC systematic review of treatment-emergent ADAs for checkpoint inhibitors",
+        "citation_urls": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10806538/",
+        "ada_source_url_primary": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10806538/",
+        "ada_source_type_curated": "peer_reviewed_systematic_review",
+        "ada_has_text_evidence": True,
+        "ada_source_section": "Results: among larger datasets, remaining treatments had lower ADA levels ranging from 0.52% in 381 patients with sintilimab to 4.4% in 1609 patients with avelumab.",
+        "verify_note": "Replaced legacy '<2%' display with review-confirmed 0.52% dataset value.",
+    },
+    "Spesolimab": {
+        "ada_value": "In SPEVIGO labeling, ADAs formed after intravenous and subcutaneous spesolimab. In Effisayil-1 after 900 mg intravenous SPEVIGO, 12/50 (24%) subjects had maximum ADA titer greater than 4000 and were neutralizing-antibody-positive by Weeks 12 to 17. In Effisayil-2 after 600 mg subcutaneous loading dose followed by 300 mg every 4 weeks for 48 weeks, 24% of subjects had maximum ADA titer greater than 4000 and were neutralizing-antibody-positive.",
+        "ada_value_display": "24% high-titer ADA and NAb-positive in Effisayil-1 and Effisayil-2",
+        "ada_first_pct": 24.0,
+        "nab_pct": "24% high-titer ADA subjects were NAb-positive in the labeled Effisayil-1 and Effisayil-2 summaries",
+        "assay_platform": "ADA and neutralizing antibody assays (label; method-dependent)",
+        "pk_efficacy_impact": "ADA titers below 4000 had no apparent PK impact; some subjects with titers >4000 had significantly reduced concentrations after reaching that titer. Label states limited or insufficient data for clinically significant safety/efficacy impact.",
+        "evidence_source": "FDA SPEVIGO prescribing information, Section 12.6 Immunogenicity",
+        "citation_urls": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/761244s003lbl.pdf",
+        "ada_source_url_primary": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/761244s003lbl.pdf",
+        "ada_source_type_curated": "fda_label",
+        "ada_has_text_evidence": True,
+        "ada_source_section": "Section 12.6 Immunogenicity: Effisayil-1 IV 900 mg, 12/50 (24%) had maximum ADA titer >4000 and were NAb-positive; Effisayil-2 SC regimen, 24% had maximum ADA titer >4000 and were NAb-positive; high titers may reduce concentrations.",
+        "verify_note": "Replaced generic 10-15% legacy value with FDA label-confirmed high-titer/NAb-positive incidence.",
+    },
+    "Sutimlimab": {
+        "ada_value": "During CARDINAL and CADENZA treatment periods in ENJAYMO labeling, 8/66 (12%) ENJAYMO-treated patients developed anti-sutimlimab-jome antibodies with exposure up to 177 weeks.",
+        "ada_value_display": "12% ADA (8/66) during CARDINAL/CADENZA",
+        "ada_first_pct": 12.0,
+        "nab_pct": "Not stated",
+        "assay_platform": "ADA assay (label; method-dependent)",
+        "pk_efficacy_impact": "No clinically significant effect of ADAs on pharmacokinetics, pharmacodynamics, safety, or effectiveness was identified over the treatment duration.",
+        "evidence_source": "DailyMed/FDA ENJAYMO prescribing information, Section 12.6 Immunogenicity",
+        "citation_urls": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=281cf1d4-6296-4416-858e-9bff46d01b71",
+        "ada_source_url_primary": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=281cf1d4-6296-4416-858e-9bff46d01b71",
+        "ada_source_type_curated": "fda_label",
+        "ada_has_text_evidence": True,
+        "ada_source_section": "Section 12.6 Immunogenicity: during CARDINAL and CADENZA, 8/66 (12%) treated patients developed anti-sutimlimab-jome antibodies; no identified clinically significant PK/PD/safety/effectiveness effect.",
+        "verify_note": "Corrected legacy 10% to current label-confirmed 12%.",
+    },
+    "Tabalumab": {
+        "ada_value": "In a randomized phase 3 RA study, treatment-emergent ADA incidence during 24 weeks was 3.9% for tabalumab 120 mg every 4 weeks, 4.8% for tabalumab 90 mg every 2 weeks, and 3.9% for placebo. Persistent treatment-emergent ADA occurred in 2.6%, 1.4%, and 2.6% respectively.",
+        "ada_value_display": "3.9% ADA at 120 mg Q4W; 4.8% at 90 mg Q2W; placebo 3.9%",
+        "ada_first_pct": 3.9,
+        "nab_pct": "Not stated",
+        "assay_platform": "Treatment-emergent ADA assessment in phase 3 RA trial",
+        "pk_efficacy_impact": "No correlation was observed between immunoglobulin changes and treatment-emergent antidrug antibodies.",
+        "evidence_source": "RMD Open phase 3 tabalumab rheumatoid arthritis study",
+        "citation_urls": "https://rmdopen.bmj.com/content/1/1/e000037",
+        "ada_source_url_primary": "https://rmdopen.bmj.com/content/1/1/e000037",
+        "ada_source_type_curated": "peer_reviewed_article",
+        "ada_has_text_evidence": True,
+        "ada_source_section": "Immunogenicity: over 24 weeks, 6 (3.9%), 7 (4.8%), and 6 (3.9%) patients in 120/Q4W, 90/Q2W, and placebo groups developed persistent or transient treatment-emergent ADA.",
+        "verify_note": "Replaced broad RMD Open citation with article-specific source fields; ada_first_pct stores first active treatment-arm rate.",
+    },
+    "Tafasitamab": {
+        "ada_value": "In MONJUVI labeling, anti-tafasitamab-cxix antibodies developed in 2.5% (2/81) of DLBCL patients in Study L-MIND up to 23 cycles and 0.9% (3/327) of FL patients in Study inMIND up to 12 cycles.",
+        "ada_value_display": "DLBCL L-MIND: 2.5% ADA (2/81); FL inMIND: 0.9% (3/327)",
+        "ada_first_pct": 2.5,
+        "nab_pct": "Not stated",
+        "assay_platform": "ADA assay (label; method-dependent)",
+        "pk_efficacy_impact": "Because of low ADA occurrence, the effect on pharmacokinetics, pharmacodynamics, safety, and effectiveness is unknown.",
+        "evidence_source": "FDA MONJUVI prescribing information, Section 12.6 Immunogenicity",
+        "citation_urls": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/761163s013lbl.pdf",
+        "ada_source_url_primary": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/761163s013lbl.pdf",
+        "ada_source_type_curated": "fda_label",
+        "ada_has_text_evidence": True,
+        "ada_source_section": "Section 12.6 Immunogenicity: anti-tafasitamab antibodies developed in 2.5% (2/81) of DLBCL patients in L-MIND and 0.9% (3/327) of FL patients in inMIND; impact unknown due to low occurrence.",
+        "verify_note": "Replaced unsupported 10% legacy value with current FDA label values.",
+    },
+    "Tafolecimab": {
+        "ada_value": "In the CREDIT-2 randomized phase 3 HeFH study, one participant in the tafolecimab 150 mg group developed anti-drug antibody during the double-blind treatment period; neutralizing antibody remained negative throughout the study. Overall, 100 participants received tafolecimab in the double-blind period.",
+        "ada_value_display": "1/100 active-treated participants (1.0%) developed ADA; NAb negative",
+        "ada_first_pct": 1.0,
+        "nab_pct": "Neutralizing antibody remained negative throughout the study",
+        "assay_platform": "Anti-drug antibody and neutralizing antibody detection in CREDIT-2",
+        "pk_efficacy_impact": "No specific PK/efficacy impact of the single ADA case was stated in the retrieved article text.",
+        "evidence_source": "BMC Medicine CREDIT-2 tafolecimab HeFH phase 3 study",
+        "citation_urls": "https://bmcmedicine.biomedcentral.com/articles/10.1186/s12916-023-02797-8",
+        "ada_source_url_primary": "https://bmcmedicine.biomedcentral.com/articles/10.1186/s12916-023-02797-8",
+        "ada_source_type_curated": "peer_reviewed_article",
+        "ada_has_text_evidence": True,
+        "ada_source_section": "Safety: 148 participants received study treatment, including 100 tafolecimab; one participant in the 150 mg group developed ADA during double-blind treatment; neutralizing antibody remained negative throughout the study.",
+        "verify_note": "Replaced unsupported 10-15% legacy value with CREDIT-2 source-confirmed one active-treated ADA case.",
+    },
+    "Tagitanlimab": {
+        "ada_value": "No precise numerical human ADA incidence for tagitanlimab/KL-A167 was confirmed in the retrieved peer-reviewed or regulatory-accessible sources. Retrieved sources confirm clinical development/approval and that immunogenicity assessment was included in a phase 3 protocol, but no citable ADA percentage was found.",
+        "ada_value_display": "No confirmed numerical ADA percentage found in retrieved sources",
+        "ada_first_pct": pd.NA,
+        "nab_pct": "Not confirmed",
+        "assay_platform": "Not confirmed",
+        "pk_efficacy_impact": "Not confirmed",
+        "evidence_source": "No confirmed numerical ADA source retrieved",
+        "citation_urls": "https://nature.com/articles/s41591-025-03883-5; https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4063818; https://english.nmpa.gov.cn/2025-06/11/c_1101547.htm",
+        "ada_source_url_primary": pd.NA,
+        "ada_source_type_curated": pd.NA,
+        "ada_has_text_evidence": False,
+        "ada_source_section": pd.NA,
+        "verify_note": "Cleared legacy '<1%' value because no retrievable source with a precise tagitanlimab/KL-A167 ADA percentage was found.",
+    },
+    "Tanezumab": {
+        "ada_value": "In two subcutaneous tanezumab OA studies, ADA was assessed using a validated semi-quantitative ELISA with NAb assay for ADA-positive samples. In Study 1027, 2.3% of patients across four tanezumab treatment groups tested ADA-positive; six had treatment-induced ADA and three patients had confirmed low-titer NAb-positive samples. In Study 1043, 1.3% of patients across three treatment groups tested ADA-positive; six had treatment-induced ADA and four patients had confirmed low-titer NAb-positive samples.",
+        "ada_value_display": "Study 1027: 2.3% ADA; Study 1043: 1.3% ADA",
+        "ada_first_pct": 2.3,
+        "nab_pct": "Study 1027: confirmed NAb-positive samples from 3 patients; Study 1043: confirmed NAb-positive samples from 4 patients",
+        "assay_platform": "Validated semi-quantitative enzyme-linked immunosorbent Fab assay; NAb binding assay for ADA-positive samples",
+        "pk_efficacy_impact": "Individual profiles indicated no apparent alterations in tanezumab concentrations, efficacy, or safety for ADA-positive patients compared with ADA-negative patients.",
+        "evidence_source": "PMC safety and efficacy study of subcutaneous tanezumab in knee/hip osteoarthritis",
+        "citation_urls": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5764290/",
+        "ada_source_url_primary": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5764290/",
+        "ada_source_type_curated": "peer_reviewed_article",
+        "ada_has_text_evidence": True,
+        "ada_source_section": "Pharmacokinetics and anti-tanezumab antibodies: Study 1027 2.3% ADA-positive across four treatment groups; Study 1043 1.3% ADA-positive across three treatment groups; low-titer NAb-positive samples; no apparent concentration/efficacy/safety differences.",
+        "verify_note": "Replaced unsupported 0.5% legacy value with source-confirmed study-specific ADA rates.",
+    },
+}
+
+for col in set().union(*(entry.keys() for entry in updates.values())):
+    if col not in df.columns:
+        df[col] = pd.NA
+    df[col] = df[col].astype("object")
+
+for name, data in updates.items():
+    mask = df["antibody_name"].fillna("").astype(str).str.casefold() == name.casefold()
+    if mask.any():
+        for col, val in data.items():
+            df.loc[mask, col] = val
+        print(f"Updated {name}")
+    else:
+        print(f"MISSING {name}")
+
+df.to_csv(ada_path, index=False)

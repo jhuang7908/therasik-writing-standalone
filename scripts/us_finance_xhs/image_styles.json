@@ -1,0 +1,47 @@
+{
+  "default": "lifestyle_infographic",
+  "styles": {
+    "editorial_soft": {
+      "label": "编辑感轻插画（推荐）",
+      "renderer_preference": "seedream",
+      "prompt_prefix": "小红书竖版3:4财经编辑插画，莫兰迪灰蓝与米白，轻手绘线条，杂志封面感，大量留白，",
+      "prompt_suffix": "不要PPT信息图，不要金边商务模板，不要满屏表格与箭头，禁止任何文字字母数字。"
+    },
+    "minimal_line": {
+      "label": "极简线稿",
+      "renderer_preference": "seedream",
+      "prompt_prefix": "小红书竖版3:4极简线稿插画，黑白灰+一点淡蓝，单线条图表与图标，北欧简约，",
+      "prompt_suffix": "不要Corporate风，不要立体金属质感，禁止任何文字。"
+    },
+    "warm_sketch": {
+      "label": "暖色手账风",
+      "renderer_preference": "seedream",
+      "prompt_prefix": "小红书竖版3:4暖色手账风插画，纸纹背景，彩铅质感，生活化理财笔记感，",
+      "prompt_suffix": "不要商业路演PPT风，不要蓝金Corporate，禁止任何文字。"
+    },
+    "gpt_infographic": {
+      "label": "信息图（旧版，偏商业）",
+      "renderer_preference": "gpt-image-2",
+      "prompt_prefix": "小红书财经信息图，3:4竖版，清晰中文排版，",
+      "prompt_suffix": "风格：简洁数据可视化。"
+    },
+    "lifestyle_infographic": {
+      "label": "轻松生活化信息图（image2-medium → Nano Banana Pro 2K）",
+      "renderer_preference": "xhs_text_hero",
+      "prompt_prefix": "小红书竖版3:4轻松活泼生活化理财笔记信息图，奶油色纸纹背景、手绘贴纸风、柔和粉蓝绿配色、圆角卡片、像闺蜜聊天记笔记，不要深蓝金商务模板，不要Corporate路演风，",
+      "prompt_suffix": "排版用阿拉伯数字1/2/3，语气口语化；禁止出现「贷款」二字，涉及借款请写「dai款」或「贷kuai」；画面清爽留白，小图标可爱。"
+    },
+    "lifestyle_text_seedream": {
+      "label": "生活化信息图（Seedream 中文排版）",
+      "renderer_preference": "seedream",
+      "prompt_prefix": "小红书竖版3:4轻松活泼生活化理财手账信息图，奶油米色纸纹、手绘贴纸、粉蓝绿柔和配色、圆角便签卡片、闺蜜聊天笔记感，不要深蓝金商务模板，不要Corporate路演PPT，",
+      "prompt_suffix": "中文清晰可读、阿拉伯数字编号1/2/3；禁止「贷款」二字，借款写「dai款」；口语化短句；可爱小图标；留白充足。"
+    },
+    "modern_office_minimal": {
+      "label": "马卡龙暖色圆幼风格看板图（微信朋友圈/日更看板专用）",
+      "renderer_preference": "xhs_text_hero",
+      "prompt_prefix": "温馨可爱且极其清爽的个人理财日更看板，比例3:4竖版。采用温柔彩色马卡龙浅淡底色（如温柔的浅米黄色、淡绿或暖珊瑚色拼色底，绝不要严肃沉闷的黑板或深色背景），画面带有满满的治愈感和华人的亲切生活气息。排版采用温馨可爱的中文「圆幼体」或「手写圆体」字体，字形圆润、呆萌且排版规整，搭配精致可爱的彩色手绘小箭头、荧光笔涂鸦划线或小爱心贴纸，重点数据有绿色或粉色荧光描边标记。整体设计干练专业但情调极度轻松温暖，像闺蜜在一旁用可爱手账白板为你画图写数字。充分留白，文字清晰，画面干净整洁无杂乱背景物。",
+      "prompt_suffix": "排版完全采用圆润可爱的圆幼体中文字体，比率和数字清晰，绝对禁止出现「贷款」二字，涉及借款一律用「dai款」或「房dai」表示。"
+    }
+  }
+}

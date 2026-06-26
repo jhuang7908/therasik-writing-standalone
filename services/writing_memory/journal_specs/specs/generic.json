@@ -1,0 +1,135 @@
+{
+  "schema_version": "0.1.0",
+  "journal": { "key": "generic", "display": "Generic style" },
+  "spec_version": "0.1.0",
+  "sourced_from": [
+    {
+      "url": "https://www.icmje.org/recommendations/",
+      "label": "ICMJE Recommendations (general scholarly reporting baseline)",
+      "captured_at": "2026-05-26T12:00:00Z"
+    }
+  ],
+  "captured_at": "2026-05-26T12:00:00Z",
+
+  "article_types": [
+    {
+      "value": ["research", "review", "case_report", "letter"],
+      "verification_status": "verified",
+      "source_url": null,
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z",
+      "notes": "Product-supported article types for Standard Academic mode."
+    }
+  ],
+
+  "structure": {
+    "required_sections": {
+      "value": {
+        "research": ["abstract", "introduction", "methods", "results", "discussion", "references"],
+        "review": ["abstract", "introduction", "conclusion", "references"],
+        "case_report": ["abstract", "introduction", "case", "discussion", "references"],
+        "letter": ["abstract", "body", "references"]
+      },
+      "verification_status": "verified",
+      "source_url": null,
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z",
+      "notes": "IMRaD-style defaults when no journal-specific spec is verified."
+    },
+    "optional_sections": {
+      "value": ["supplementary_materials", "acknowledgments", "author_contributions"],
+      "verification_status": "verified",
+      "source_url": null,
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z"
+    },
+    "significance_statement": {
+      "value": false,
+      "verification_status": "verified",
+      "source_url": null,
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z"
+    }
+  },
+
+  "abstract": {
+    "word_limit": {
+      "value": 300,
+      "verification_status": "verified",
+      "source_url": null,
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z",
+      "notes": "Conservative default cap for Standard Academic; journal-specific specs override."
+    },
+    "structured": {
+      "value": false,
+      "verification_status": "verified",
+      "source_url": null,
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z"
+    }
+  },
+
+  "main_text": {
+    "word_limit": {
+      "value": 5000,
+      "verification_status": "verified",
+      "source_url": null,
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z",
+      "notes": "Product default for research articles; not a publisher rule."
+    },
+    "figure_count_limit": {
+      "value": null,
+      "verification_status": "unverified",
+      "source_url": null
+    },
+    "table_count_limit": {
+      "value": null,
+      "verification_status": "unverified",
+      "source_url": null
+    },
+    "supplementary_policy": {
+      "value": "Supplementary materials optional unless target journal requires deposition.",
+      "verification_status": "verified",
+      "source_url": null,
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z"
+    }
+  },
+
+  "figures_tables": {
+    "figure_resolution": { "value": null, "verification_status": "unverified", "source_url": null },
+    "color_policy": { "value": null, "verification_status": "unverified", "source_url": null },
+    "legend_word_limit": { "value": null, "verification_status": "unverified", "source_url": null },
+    "accepted_formats": { "value": null, "verification_status": "unverified", "source_url": null }
+  },
+
+  "declarations": {
+    "competing_interests": { "value": null, "verification_status": "unverified", "source_url": null },
+    "funding_statement": { "value": null, "verification_status": "unverified", "source_url": null },
+    "author_contributions": { "value": null, "verification_status": "unverified", "source_url": null },
+    "ethics_statement": { "value": null, "verification_status": "unverified", "source_url": null },
+    "consent_statement": { "value": null, "verification_status": "unverified", "source_url": null },
+    "reporting_checklist": { "value": null, "verification_status": "unverified", "source_url": null }
+  },
+
+  "data_and_code": {
+    "data_availability": { "value": null, "verification_status": "unverified", "source_url": null },
+    "code_availability": { "value": null, "verification_status": "unverified", "source_url": null },
+    "preferred_repositories": { "value": null, "verification_status": "unverified", "source_url": null },
+    "accession_required": { "value": null, "verification_status": "unverified", "source_url": null }
+  },
+
+  "reference_style_id": "elife_author_year",
+
+  "notes": [
+    {
+      "value": "Standard Academic uses product defaults until a journal-specific verified spec is selected.",
+      "verification_status": "verified",
+      "source_url": null,
+      "verified_by": "writing_memory_mvp",
+      "verified_at": "2026-05-26T12:00:00Z"
+    }
+  ]
+}

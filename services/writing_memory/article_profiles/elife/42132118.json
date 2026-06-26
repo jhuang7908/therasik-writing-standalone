@@ -1,0 +1,231 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42133696",
+    "pmcid": "PMC13175573",
+    "doi": "10.7554/eLife.109611.4.sa2",
+    "journal": "eLife",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "mechanism_gap",
+    "dominant_frame": "molecular_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "context-finding-mechanism-implication",
+    "claim_chain": [
+      "DG activity supports pattern separation with blade-specific activation patterns",
+      "Increased cognitive demand amplifies suprapyramidal blade bias and structured spatial distributions",
+      "mGC activity is required for high-demand task performance but does not determine spatial bias",
+      "abDGCs modulate overall mGC activity and blade-specific organization during high cognitive demand",
+      "Spatial organization of mGC activity reflects circuit dynamics shaped by abDGC modulatory influence"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "demonstrated",
+      "observed",
+      "found",
+      "revealed",
+      "support",
+      "suggest",
+      "remains unclear",
+      "impaired",
+      "disrupted",
+      "modulate",
+      "influence",
+      "exhibit"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State main finding with spatial/functional specificity",
+      "Provide mechanistic context or prior observations",
+      "Acknowledge limitations or alternative interpretations",
+      "Connect finding to broader circuit dynamics or functional implications",
+      "Raise open questions for future investigation"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Temporal resolution of activity labeling methods",
+      "Specificity of cognitive operations versus general task difficulty",
+      "Mechanistic basis of blade-specific activity patterns",
+      "Distinction between correlation and causation in abDGC modulation",
+      "Generalizability across behavioral paradigms"
+    ],
+    "likely_attacks": [
+      "Activity labeling integrates across temporal windows rather than capturing trial-specific events",
+      "Task difficulty changes engage multiple behavioral processes beyond pattern separation",
+      "No distinct microcircuit identified that exclusively governs SB or IB function",
+      "Blade-biased distribution persists independently of mGC excitability",
+      "Interneuron contribution to blade-specific activation remains unclear"
+    ],
+    "inference_basis": "The paper explicitly states that TRAP and c-Fos labeling integrate neuronal activity across a temporal window and primarily capture overall task engagement rather than activity linked to specific trial types. It acknowledges that the change in task parameters likely engage a complex multitude of behavioral processes including attention, motivation, reward expectation, and engagement. The authors note that no distinct, independent microcircuit has been identified that exclusively governs the function of either the SB or IB, raising questions about whether these differences arise solely from variations in afferent connectivity. They also state that the precise contribution of interneurons to blade-specific activation remains unclear. The paper notes that blade-biased distribution can persist independently of excitatory drive, suggesting it is not directly determined by mGC activity."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "our findings should be interpreted as reflecting activity patterns in the DG in response to increased task difficulty rather than a single isolated cognitive operation",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "We found that activity labeling of neurons demonstrated unique spatial distributions of active GCs which were amplified when the separation task was made more stringent",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "Suppressing mGC activity during the LS task had a major effect on performance",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "it is still not known how these spatially defined activity patterns are modulated or established",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "These findings demonstrate that high cognitive demand recruits spatially organized mGC activity and support a modulatory role for abDGCs",
+        "category": "claim"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "Blade-specific activation patterns in the dorsal DG during high-demand discrimination",
+      "category": "opening"
+    },
+    {
+      "phrase": "we used activity labeling techniques combined with a complex, automated visual spatial pattern separation task",
+      "category": "opening"
+    },
+    {
+      "phrase": "We found that activity labeling of neurons demonstrated unique spatial distributions",
+      "category": "claim"
+    },
+    {
+      "phrase": "which were amplified when the separation task was made more stringent",
+      "category": "claim"
+    },
+    {
+      "phrase": "our findings should be interpreted as reflecting",
+      "category": "hedge"
+    },
+    {
+      "phrase": "it is still not known how these spatially defined activity patterns are modulated or established",
+      "category": "limitation"
+    },
+    {
+      "phrase": "However, while blade-specific differences in activity are evident",
+      "category": "transition"
+    },
+    {
+      "phrase": "This raises an important question as to whether",
+      "category": "transition"
+    },
+    {
+      "phrase": "Future studies exploring whether",
+      "category": "implication"
+    },
+    {
+      "phrase": "will be essential to clarify the functional basis",
+      "category": "implication"
+    },
+    {
+      "phrase": "Suppressing mGC activity during the LS task had a major effect on performance",
+      "category": "claim"
+    },
+    {
+      "phrase": "most mice in the inhibited cohort failed to reach criterion",
+      "category": "claim"
+    },
+    {
+      "phrase": "Interestingly, despite this reduction in overall activation",
+      "category": "transition"
+    },
+    {
+      "phrase": "there was no clear correlation between behavioral impairment and changes in the spatial distribution",
+      "category": "claim"
+    },
+    {
+      "phrase": "Direct inhibition of mGCs therefore produced a fundamentally different outcome",
+      "category": "claim"
+    },
+    {
+      "phrase": "suggesting that it is not directly determined by mGC activity",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Our study extends these observations by demonstrating that",
+      "category": "transition"
+    },
+    {
+      "phrase": "uniquely among temporal lobe structures",
+      "category": "other"
+    },
+    {
+      "phrase": "making them uniquely positioned to influence local computation",
+      "category": "claim"
+    },
+    {
+      "phrase": "It has been proposed that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "yet their precise contribution to blade-specific activation remains unclear",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Consistent with prior behavioral work implicating the DG in pattern separation",
+      "category": "transition"
+    },
+    {
+      "phrase": "These findings demonstrate that high cognitive demand recruits spatially organized mGC activity",
+      "category": "claim"
+    },
+    {
+      "phrase": "support a modulatory role for abDGCs in shaping dentate circuit dynamics",
+      "category": "claim"
+    },
+    {
+      "phrase": "Schematic illustrating the pattern separation paradigm",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Schematic representation of the running paradigm",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Overview of successive trials in the Shaping, L, and LS steps",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Spatial distribution of TRAP-labeled cells in the infrapyramidal (IB) and suprapyramidal (SB) blades",
+      "category": "figure_legend"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, invented numbers, or author names were included. The profile accurately reflects the paper's cautious but assertive tone, its focus on circuit mechanisms, and its explicit acknowledgment of temporal integration limitations and unresolved mechanistic questions."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T12:54:12.677739+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\elife\\42132118.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

@@ -1,0 +1,241 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42048280",
+    "pmcid": "PMC13123989",
+    "doi": "10.1371/journal.pmed.1004994.r007",
+    "journal": "PLOS Medicine",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "clinical_unmet_need",
+    "dominant_frame": "clinical_outcome",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "clinical_question-cohort-result-policy",
+    "claim_chain": [
+      "It is uncommon to uncover new symptoms for any condition, especially for afflictions that have been known about for centuries",
+      "We identified 10 new prodromal symptoms strongly associated with eclampsia, with odds ratios over 10",
+      "These new symptoms were more strongly associated with eclampsia than headache, visual changes or epigastric pain",
+      "Incorporating these 10 symptoms as part of history taking may be useful as part of clinical management",
+      "The symptoms we have identified may be useful to direct who to give magnesium sulphate",
+      "Eclampsia was uncommon in the absence of any prodromal symptoms",
+      "These symptoms may be useful in deciding whether magnesium sulphate is required or could be safely withheld"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "strong",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "identified",
+      "may be",
+      "suggest",
+      "might",
+      "could be",
+      "appear to be",
+      "may mean",
+      "recruited",
+      "asked",
+      "uncovered"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "Opening statement of novelty or significance",
+      "Statement of main findings with quantitative support",
+      "Comparison to existing knowledge or practice",
+      "Clinical implications or applications",
+      "Limitations and caveats",
+      "Strengths and validation",
+      "Summary and future directions"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Recall bias and retrospective symptom assessment",
+      "Differential timing of symptom recall between groups",
+      "Generalizability beyond tertiary centers to peripheral and community settings",
+      "Validation in other populations and settings",
+      "Interventional bias from magnesium sulphate administration based on classic symptoms"
+    ],
+    "likely_attacks": [
+      "Asking about prodromal symptoms after the seizure happened rather than prospectively",
+      "Recall periods differed between groups introducing differential misclassification",
+      "Recruited from three tertiary centres limiting applicability across care settings",
+      "Clinicians may have commenced magnesium sulphate for classic symptoms but not novel ones",
+      "Those affected by eclampsia might have recalled symptoms differently due to significant neurological episode"
+    ],
+    "inference_basis": "The paper explicitly lists multiple limitations: asking about symptoms after seizure, potential recall bias, differential recall periods between groups, recruitment from tertiary centers only, and potential interventional bias. The authors state 'Our study had several limitations' and enumerate them. They also note 'Ideally, the associations between symptoms and eclampsia are validated in other populations and in different settings' and 'it is critical that applicability across care settings is assessed, specifically in peripheral and community health services.' These self-identified weaknesses form the basis for inferring likely reviewer concerns."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "may be useful as part of history taking",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "we identified 10 new prodromal symptoms strongly associated with eclampsia",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "Their presence may mean there is an elevated risk of eclampsia",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "it may be reasonable to withhold magnesium sulphate",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "Eclampsia is uncommon without any prodromal symptoms",
+        "category": "claim"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "It is uncommon to uncover new symptoms for any condition, especially for afflictions that have been known about for centuries",
+      "category": "opening"
+    },
+    {
+      "phrase": "we identified 10 new prodromal symptoms strongly associated with eclampsia",
+      "category": "claim"
+    },
+    {
+      "phrase": "with odds ratios over 10 when compared to women with preeclampsia",
+      "category": "claim"
+    },
+    {
+      "phrase": "These new symptoms were more strongly associated with eclampsia than headache, visual changes or epigastric pain",
+      "category": "claim"
+    },
+    {
+      "phrase": "Incorporating these 10 symptoms as part of history taking may be useful",
+      "category": "implication"
+    },
+    {
+      "phrase": "Their presence may suggest preeclampsia with neurological involvement",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Their presence may mean there is an elevated risk of eclampsia",
+      "category": "hedge"
+    },
+    {
+      "phrase": "While this was not intended to be a diagnostic prediction study",
+      "category": "limitation"
+    },
+    {
+      "phrase": "the symptoms we have identified may be useful to direct who to give magnesium sulphate",
+      "category": "implication"
+    },
+    {
+      "phrase": "those with preeclampsia but who are asymptomatic appear to be at very low risk",
+      "category": "claim"
+    },
+    {
+      "phrase": "Currently, there is no consensus which pregnancies complicated by preeclampsia should be offered magnesium sulphate",
+      "category": "opening"
+    },
+    {
+      "phrase": "Without reliable clinical indicators to predict eclampsia",
+      "category": "opening"
+    },
+    {
+      "phrase": "Classic prodromal symptoms of headache, visual disturbances, and epigastric pain were only modestly associated with eclampsia",
+      "category": "claim"
+    },
+    {
+      "phrase": "The absence of any prodromal symptoms may mean the eclampsia risk is very low",
+      "category": "hedge"
+    },
+    {
+      "phrase": "it may be reasonable to withhold magnesium sulphate",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Such a selective approach to offering magnesium sulphate based on the presence of symptoms may reduce numbers given the drug",
+      "category": "implication"
+    },
+    {
+      "phrase": "Our study had several limitations",
+      "category": "limitation"
+    },
+    {
+      "phrase": "we asked about prodromal symptoms after the seizure happened",
+      "category": "limitation"
+    },
+    {
+      "phrase": "a prospective screening study to find new symptoms would have been highly challenging",
+      "category": "limitation"
+    },
+    {
+      "phrase": "This may have introduced interventional bias",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Another potential limitation is the risk of recall bias",
+      "category": "limitation"
+    },
+    {
+      "phrase": "However, the relative differences in odds ratios between symptoms within groups may still be valid",
+      "category": "hedge"
+    },
+    {
+      "phrase": "This difference may introduce differential misclassification",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Ideally, the associations between symptoms and eclampsia are validated in other populations and in different settings",
+      "category": "limitation"
+    },
+    {
+      "phrase": "it is critical that applicability across care settings is assessed",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Strengths of our study were that we recruited participants within seven days",
+      "category": "transition"
+    },
+    {
+      "phrase": "We were agnostic as to which novel symptom could be associated with eclampsia, which minimised bias",
+      "category": "claim"
+    },
+    {
+      "phrase": "suggesting the pathophysiology of eclampsia is diffuse",
+      "category": "implication"
+    },
+    {
+      "phrase": "This hints at a biological gradient",
+      "category": "hedge"
+    },
+    {
+      "phrase": "these symptoms may be useful in deciding whether magnesium sulphate is required or could be safely withheld",
+      "category": "implication"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. All numeric values appear in the input. No external references, author names, or invented data were included. The profile is based solely on the provided abstract, discussion, and figure legends."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:07:54.629431+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\plos_med\\42048404.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

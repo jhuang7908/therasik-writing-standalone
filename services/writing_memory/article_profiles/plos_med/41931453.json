@@ -1,0 +1,198 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "41931453",
+    "pmcid": "PMC13048428",
+    "doi": "10.1371/journal.pmed.1005025",
+    "journal": "PLOS Medicine",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "conclusion"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "direct_problem_statement",
+    "dominant_frame": "broad_significance",
+    "tone": "policy_oriented"
+  },
+  "logic_profile": {
+    "main_pattern": "problem-gap-solution-implication",
+    "claim_chain": [
+      "The obesity epidemic emerged despite a focus on calories and fat",
+      "Hyper-palatability as a mechanism linking UPF and obesity offers little beyond recognition of weight gain pathways",
+      "There is little evidence that excessive tastiness is the problem with modern industrial food",
+      "Plaintiffs must take a clear-eyed view of forces that shaped our dysfunctional food system",
+      "A metabolic framework is needed, focused on how foods affect satiety relative to calories consumed",
+      "This framework promises to provide a strong foundation for preventive public health action"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "low",
+    "claim_strength": "strong",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "emerged",
+      "offers",
+      "linking",
+      "drive",
+      "succeed",
+      "shaped",
+      "is needed",
+      "focused",
+      "promises",
+      "provide",
+      "requires"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State the problem with historical context",
+      "Critique the prevailing conceptual framework",
+      "Assert what evidence does or does not support",
+      "Identify stakeholder requirements for action",
+      "Propose alternative framework",
+      "State implications for public health"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Evidence base for claims about hyper-palatability",
+      "Operational definitions and testable hypotheses",
+      "Clarity of proposed metabolic framework",
+      "Balance between critique and constructive proposal",
+      "Acknowledgment of complexity in food-obesity relationships"
+    ],
+    "likely_attacks": [
+      "Insufficient evidence provided for claim that there is little evidence supporting excessive tastiness",
+      "Lack of detail on what the proposed metabolic framework entails",
+      "Oversimplification of historical factors in obesity epidemic",
+      "Insufficient discussion of limitations of satiety-focused approaches"
+    ],
+    "inference_basis": "The paper makes strong negative claims about hyper-palatability ('offers little beyond', 'little evidence to support') without presenting detailed evidence in the provided sections. It proposes a metabolic framework but provides minimal operational detail. The paper critiques both scientific and policy history ('faulty science and misguided governmental policies') which could invite challenges about historical accuracy. The phrase 'promises to provide' suggests confidence in the proposed framework without presenting caveats or limitations."
+  },
+  "claim_strength_profile": {
+    "overall": "over-claiming",
+    "examples": [
+      {
+        "quoted_phrase": "The obesity epidemic emerged despite (and perhaps because of) a nearly single-minded focus on calories and the most calorie-dense nutrient, fat",
+        "category": "causal"
+      },
+      {
+        "quoted_phrase": "the notion of hyper-palatability—conceptualized as a central mechanism linking UPF and obesity—offers little beyond a recognition that some foods drive weight gain",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "there is little evidence to support the notion that the problem with modern industrial food is excessive tastiness",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "This framework promises to provide a strong foundation for preventive public health action",
+        "category": "generalization"
+      },
+      {
+        "quoted_phrase": "perhaps because of",
+        "category": "hedge"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "The obesity epidemic emerged despite",
+      "category": "opening"
+    },
+    {
+      "phrase": "a nearly single-minded focus on calories",
+      "category": "claim"
+    },
+    {
+      "phrase": "Lacking an operational definition pertaining to palatability",
+      "category": "limitation"
+    },
+    {
+      "phrase": "offers little beyond a recognition",
+      "category": "claim"
+    },
+    {
+      "phrase": "through various conscious and subconscious pathways",
+      "category": "other"
+    },
+    {
+      "phrase": "there is little evidence to support the notion",
+      "category": "claim"
+    },
+    {
+      "phrase": "the problem with modern industrial food is excessive tastiness",
+      "category": "claim"
+    },
+    {
+      "phrase": "For lawsuits to succeed",
+      "category": "transition"
+    },
+    {
+      "phrase": "plaintiffs must take a clear-eyed view",
+      "category": "claim"
+    },
+    {
+      "phrase": "the forces that shaped our dysfunctional food system",
+      "category": "other"
+    },
+    {
+      "phrase": "including faulty science and misguided governmental policies",
+      "category": "claim"
+    },
+    {
+      "phrase": "The food industry, with its legions of lawyers",
+      "category": "other"
+    },
+    {
+      "phrase": "For science to advance",
+      "category": "transition"
+    },
+    {
+      "phrase": "a metabolic framework is needed",
+      "category": "claim"
+    },
+    {
+      "phrase": "focused on how foods affect satiety relative to calories consumed",
+      "category": "claim"
+    },
+    {
+      "phrase": "This framework promises to provide a strong foundation",
+      "category": "claim"
+    },
+    {
+      "phrase": "for preventive public health action",
+      "category": "implication"
+    },
+    {
+      "phrase": "Addressing this public health crisis requires a new framework",
+      "category": "claim"
+    },
+    {
+      "phrase": "centered on the metabolic effects of food",
+      "category": "claim"
+    },
+    {
+      "phrase": "amplified controversies over its effects on obesity-related chronic disease",
+      "category": "other"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "Profile extracted from abstract and conclusion sections. The paper is a commentary/perspective piece with strong policy-oriented claims. Limited empirical detail in provided sections but sufficient text for style profiling."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:04:25.828870+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\plos_med\\41931453.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

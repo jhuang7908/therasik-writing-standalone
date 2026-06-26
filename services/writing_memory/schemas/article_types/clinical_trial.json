@@ -1,0 +1,9 @@
+{
+  "id": "clinical_trial",
+  "display": "Clinical trial report (CONSORT-oriented)",
+  "sections_required": ["abstract", "introduction", "methods", "results", "discussion"],
+  "word_targets_default": { "abstract": 300, "introduction": 600, "methods": 1500, "results": 2500, "discussion": 1200 },
+  "abstract": { "logic": "structured CONSORT: background, methods, results, conclusions", "mechanism_required": false },
+  "methods": { "emphasis": "CONSORT flow, inclusion/exclusion, primary endpoint pre-specified" },
+  "results": { "subsection_pattern": "enrollment → primary endpoint → secondary → safety" }
+}

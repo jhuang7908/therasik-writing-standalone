@@ -1,0 +1,57 @@
+# eLabFTW — open-source ELN (Module 3)
+# Official image: https://hub.docker.com/r/elabftw/elabimg/
+# Full config generator: curl -so docker-compose.yml "https://get.elabftw.net/?config"
+#
+# Prefer official generator on VPS (recommended):
+#   curl -fsSL -o docker-compose.yml "https://get.elabftw.net/?config"
+#   sed -i 's/SERVER_NAME=localhost/SERVER_NAME=lab.insynbio.com/' docker-compose.yml
+#   sed -i 's|443:443|127.0.0.1:4430:443|' docker-compose.yml
+#   docker compose up -d
+#
+# Or run: install-elabftw-on-vps.ps1
+
+name: elabftw
+
+services:
+  web:
+    image: elabftw/elabimg:stable
+    container_name: elabftw
+    restart: unless-stopped
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_NAME=elabftw
+      - DB_USER=elabftw
+      - DB_PASSWORD=change_me_elabftw_db
+      - SERVER_NAME=lab.insynbio.com
+      - TZ=UTC
+      - PHP_TIMEZONE=UTC
+    volumes:
+      - elab_data:/elabftw/web
+    ports:
+      - "127.0.0.1:4430:443"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  mysql:
+    image: mysql:8.0
+    container_name: elabftw_mysql
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=change_me_elabftw_root
+      - MYSQL_DATABASE=elabftw
+      - MYSQL_USER=elabftw
+      - MYSQL_PASSWORD=change_me_elabftw_db
+    volumes:
+      - elab_mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uelabftw", "-pchange_me_elabftw_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 8
+      start_period: 40s
+
+volumes:
+  elab_data:
+  elab_mysql:

@@ -1,0 +1,175 @@
+import pandas as pd
+
+
+ada_path = "data/immunogenicity_knowledge_base/master/ada_master_328_final_comprehensive.csv"
+df = pd.read_csv(ada_path)
+
+updates = {
+    "Adalimumab": {
+        "ada_value": "Approximately 5% (58/1062) of adult rheumatoid arthritis patients receiving HUMIRA developed low-titer antibodies to adalimumab at least once during treatment; antibodies were neutralizing in vitro. Methotrexate reduced antibody development (1% with MTX versus 12% monotherapy).",
+        "ada_value_display": "5% overall RA (58/1062); 12% monotherapy; 1% with MTX",
+        "ada_first_pct": 5.0,
+        "nab_pct": "Antibodies were neutralizing in vitro; exact NAb percentage not separately stated",
+        "assay_platform": "ELISA assay for antibodies to adalimumab",
+        "pk_efficacy_impact": "Population PK showed higher apparent clearance with anti-adalimumab antibodies; ACR20 response was lower among antibody-positive patients in every-other-week monotherapy.",
+        "evidence_source": "FDA HUMIRA prescribing information",
+        "citation_urls": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2002/adalabb123102LB.htm",
+        "ada_source_url_primary": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2002/adalabb123102LB.htm",
+        "ada_source_type_curated": "regulatory_label",
+        "ada_has_text_evidence": True,
+        "ada_source_section": "Immunogenicity section: approximately 5% (58/1062) developed low-titer anti-adalimumab antibodies; MTX reduced development from 12% monotherapy to 1%; antibody-positive patients had lower ACR20 response in every-other-week monotherapy.",
+        "verify_note": "Corrected prior unsupported 30% display to FDA-label-confirmed RA immunogenicity values.",
+    },
+    "Adebrelimab": {
+        "ada_value": "Adebrelimab PopPK analysis reported anti-drug antibody positivity in 44/222 (19.8%) patients in the pivotal study and 71/263 (27.0%) overall across two studies; ADA-positive patients had higher clearance than ADA-negative patients.",
+        "ada_value_display": "19.8% pivotal (44/222); 27.0% overall (71/263)",
+        "ada_first_pct": 19.8,
+        "nab_pct": "Not stated",
+        "assay_platform": "ADA status used as a subject-level covariate in population PK model; assay platform not stated in retrieved text",
+        "pk_efficacy_impact": "ADA-positive patients had higher clearance, but covariate effects were not clinically significant and did not warrant dose adjustment.",
+        "evidence_source": "Clinical Pharmacology & Therapeutics/PMC adebrelimab population pharmacokinetics study",
+        "citation_urls": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11247113/; https://doi.org/10.1002/psp4.13155",
+        "ada_source_url_primary": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11247113/",
+        "ada_source_type_curated": "peer_reviewed_article",
+        "ada_has_text_evidence": True,
+        "ada_source_section": "Table 1: anti-drug antibody positive 27/41 in phase I, 44/222 in pivotal study, and 71/263 overall; final PopPK model included treatment-emergent ADA on clearance.",
+        "verify_note": "Normalized source fields and corrected display from 19.9% to exact retrieved 19.8% pivotal value.",
+    },
+    "Ado-trastuzumab emtansine": {
+        "ada_value": "Among patients who received KADCYLA as a single agent for a median duration of 10 months in seven clinical trials, 5% (64/1243) tested positive for antibodies against ado-trastuzumab emtansine at one or more post-dose timepoints.",
+        "ada_value_display": "5% (64/1243)",
+        "ada_first_pct": 5.0,
+        "nab_pct": "45% (18/40) of evaluable ADA-positive patients had neutralizing antibodies",
+        "assay_platform": "Anti-drug antibody assay described in label; neutralizing antibody testing in ADA-positive evaluable samples",
+        "pk_efficacy_impact": "Low ADA occurrence prevented determination of effects on PK, PD, safety, or effectiveness; drug interference may underestimate true incidence.",
+        "evidence_source": "DailyMed/FDA KADCYLA prescribing information",
+        "citation_urls": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=23f3c1f4-0fc8-4804-a9e3-04cf25dd302e",
+        "ada_source_url_primary": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=23f3c1f4-0fc8-4804-a9e3-04cf25dd302e",
+        "ada_source_type_curated": "regulatory_label",
+        "ada_has_text_evidence": True,
+        "ada_source_section": "Immunogenicity section: 5% (64/1243) tested positive for anti-ado-trastuzumab emtansine antibodies; 45% (18/40) of evaluable ADA-positive patients had neutralizing antibodies.",
+        "verify_note": "Corrected prior 5.3%/older value to current label-confirmed 5% value.",
+    },
+    "Aducanumab": {
+        "ada_value": "Up to 0.6% (15/2689) of patients receiving ADUHELM once monthly developed anti-aducanumab-avwa antibodies during Studies 1 and 2.",
+        "ada_value_display": "0.6% (15/2689)",
+        "ada_first_pct": 0.6,
+        "nab_pct": "Neutralizing anti-aducanumab-avwa antibodies were not quantified",
+        "assay_platform": "In vitro assay for binding anti-aducanumab-avwa antibodies",
+        "pk_efficacy_impact": "Available data were too limited to determine effects on pharmacokinetics, safety, or efficacy.",
+        "evidence_source": "FDA ADUHELM prescribing information",
+        "citation_urls": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/761178s011lbl.pdf",
+        "ada_source_url_primary": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/761178s011lbl.pdf",
+        "ada_source_type_curated": "regulatory_label",
+        "ada_has_text_evidence": True,
+        "ada_source_section": "Immunogenicity section: up to 0.6% (15/2689) developed anti-aducanumab-avwa antibodies; neutralizing antibodies were not quantified.",
+        "verify_note": "Corrected prior 0.4% display to label-confirmed 0.6%.",
+    },
+    "Alemtuzumab": {
+        "ada_value": "Anti-alemtuzumab binding antibodies were detected in 62%, 67%, and 29% at months 1, 3, and 12 after Course 1, and 83%, 83%, and 75% at months 13, 15, and 24 after Course 2.",
+        "ada_value_display": "Binding antibodies up to 83%; NAb up to 94% among binding-positive samples",
+        "ada_first_pct": 83.0,
+        "nab_pct": "Neutralizing antibodies detected in 87%, 46%, and 5% of binding-positive patients after Course 1 and 94%, 88%, and 42% after Course 2",
+        "assay_platform": "ELISA and competitive binding assay for binding antibodies; flow cytometry assay for in vitro inhibition",
+        "pk_efficacy_impact": "Anti-alemtuzumab antibodies were associated with decreased concentration during Course 2; no clear effect on clinical efficacy or safety through two courses.",
+        "evidence_source": "FDA LEMTRADA prescribing information",
+        "citation_urls": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/103948s5193lbl.pdf",
+        "ada_source_url_primary": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/103948s5193lbl.pdf",
+        "ada_source_type_curated": "regulatory_label",
+        "ada_has_text_evidence": True,
+        "ada_source_section": "Immunogenicity section: binding antibodies detected at 62/67/29% after Course 1 and 83/83/75% after Course 2; neutralizing antibodies detected in 87/46/5% and 94/88/42% of binding-positive patients.",
+        "verify_note": "Corrected prior 85% display to label-confirmed maximum binding-antibody incidence of 83%.",
+    },
+    "Alirocumab": {
+        "ada_value": "In a cardiovascular outcomes trial, 5.5% (504/9091) of PRALUENT-treated patients had anti-drug antibodies detected after treatment initiation versus 1.6% (149/9097) with placebo.",
+        "ada_value_display": "5.5% ADA; 0.5% NAb",
+        "ada_first_pct": 5.5,
+        "nab_pct": "0.5% NAb in PRALUENT-treated patients; <0.1% in placebo",
+        "assay_platform": "Anti-drug antibody and neutralizing antibody assays described in label; specific platform not stated in retrieved text",
+        "pk_efficacy_impact": "LDL-C reductions were mostly similar with or without ADA, but some persistent or neutralizing ADA-positive patients had attenuated LDL-C efficacy; injection-site reactions were higher in treatment-emergent ADA-positive patients.",
+        "evidence_source": "Sanofi PRALUENT prescribing information",
+        "citation_urls": "https://products.sanofi.us/Praluent/praluent.html",
+        "ada_source_url_primary": "https://products.sanofi.us/Praluent/praluent.html",
+        "ada_source_type_curated": "regulatory_label",
+        "ada_has_text_evidence": True,
+        "ada_source_section": "Immunogenicity section: 5.5% (504/9091) ADA after treatment initiation; persistent ADA 0.7%; neutralizing antibodies 0.5%; some patients with persistent or neutralizing antibodies had attenuated LDL-C efficacy.",
+        "verify_note": "Normalized source fields and corrected prior 5.1% display to current label-confirmed 5.5%.",
+    },
+    "Amivantamab": {
+        "ada_value": "3/663 (0.5%) patients treated with RYBREVANT and evaluable for anti-drug antibodies tested positive for treatment-emergent anti-amivantamab-vmjw antibodies.",
+        "ada_value_display": "0.5% (3/663)",
+        "ada_first_pct": 0.5,
+        "nab_pct": "Not stated",
+        "assay_platform": "ADA assay described in label; specific platform not stated in retrieved text",
+        "pk_efficacy_impact": "Effect of ADA on efficacy remains unknown due to low incidence.",
+        "evidence_source": "FDA RYBREVANT prescribing information",
+        "citation_urls": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/761210s003lbl.pdf",
+        "ada_source_url_primary": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/761210s003lbl.pdf",
+        "ada_source_type_curated": "regulatory_label",
+        "ada_has_text_evidence": True,
+        "ada_source_section": "Immunogenicity section: 3 of 663 (0.5%) evaluable patients tested positive for treatment-emergent anti-amivantamab-vmjw antibodies.",
+        "verify_note": "Corrected prior 1.0% display to label-confirmed 0.5%.",
+    },
+    "Anifrolumab": {
+        "ada_value": "Treatment-emergent anti-anifrolumab-fnia antibodies were detected in 9/350 patients (2.6%) receiving SAPHNELO at the recommended intravenous regimen for up to 4 years; in the subcutaneous trial, 6/107 (5.6%) developed ADA and no neutralizing antibodies were detected.",
+        "ada_value_display": "2.6% IV recommended regimen (9/350); 5.6% SC (6/107)",
+        "ada_first_pct": 2.6,
+        "nab_pct": "No neutralizing antibodies detected in the subcutaneous trial; IV NAb not separately stated",
+        "assay_platform": "ADA assay described in label; specific platform not stated in retrieved text",
+        "pk_efficacy_impact": "Low ADA occurrence prevented determination of effects on PK, PD, safety, or effectiveness.",
+        "evidence_source": "DailyMed/FDA SAPHNELO prescribing information",
+        "citation_urls": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d6203302-2128-41a7-b0b4-0e6c0704d4dc",
+        "ada_source_url_primary": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d6203302-2128-41a7-b0b4-0e6c0704d4dc",
+        "ada_source_type_curated": "regulatory_label",
+        "ada_has_text_evidence": True,
+        "ada_source_section": "Immunogenicity section: 9/350 (2.6%) ADA at recommended IV regimen up to 4 years; 6/107 (5.6%) ADA in SC trial; no neutralizing antibodies detected in SC trial.",
+        "verify_note": "Corrected prior mixed 5.1%/2.0% display to current label-confirmed IV and SC values.",
+    },
+    "Ansuvimab": {
+        "ada_value": "No clinical ADA incidence was stated; EBANGA label states there are no data to assess the effects of potential immunogenicity on efficacy and safety in participants with Orthoebolavirus zairense infection.",
+        "ada_value_display": "No clinical ADA incidence stated",
+        "ada_first_pct": pd.NA,
+        "nab_pct": "Not stated",
+        "assay_platform": "Not stated",
+        "pk_efficacy_impact": "No data to assess immunogenicity effects on efficacy and safety in infected participants.",
+        "evidence_source": "DailyMed/FDA EBANGA prescribing information",
+        "citation_urls": "https://fda.report/DailyMed/de220c8f-ffcb-4522-a6a2-c7d6ce5de1b5",
+        "ada_source_url_primary": "https://fda.report/DailyMed/de220c8f-ffcb-4522-a6a2-c7d6ce5de1b5",
+        "ada_source_type_curated": "regulatory_label",
+        "ada_has_text_evidence": True,
+        "ada_source_section": "Immunogenicity section: no data to assess effects of potential immunogenicity on efficacy and safety in participants with Orthoebolavirus zairense infection.",
+        "verify_note": "Prior 3.0% value was not supported by retrieved EBANGA label text and was cleared.",
+    },
+    "Astegolimab": {
+        "ada_value": "Phase I studies reported postbaseline ADA rates of 14.3% (5/35) for SC SAD, 33.3% (4/12) for IV SAD, 20.8% (5/24) for SC MAD, 50.0% (3/6) for IV MAD, and 23.3% (7/30) in the Japanese SAD study. Later Phase II studies reported lower ADA incidence of 2%-7%.",
+        "ada_value_display": "Phase II 2-7%; Phase I SC 14.3-23.3%, IV 33.3-50.0%",
+        "ada_first_pct": 7.0,
+        "nab_pct": "No NAb in SAD/Japanese SAD; one MAD participant developed NAb at end-of-study without clinical consequences",
+        "assay_platform": "Electrochemiluminescence-based two-tier ADA assay on Meso Scale Discovery platform; competitive binding assay for neutralizing ADA",
+        "pk_efficacy_impact": "ADA status did not affect PK in the phase I studies and there was no indication of effects on allergic or injection-site reactions.",
+        "evidence_source": "Clinical Pharmacology in Drug Development/PMC astegolimab phase I safety, PK, and immunogenicity study; PubMed safety narrative review",
+        "citation_urls": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12489742/; https://pubmed.ncbi.nlm.nih.gov/41163220/",
+        "ada_source_url_primary": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12489742/",
+        "ada_source_pmids": "41036707; 41163220",
+        "ada_source_type_curated": "peer_reviewed_article",
+        "ada_has_text_evidence": True,
+        "ada_source_section": "Immunogenicity section: phase I ADA rates were 14.3% SC SAD, 33.3% IV SAD, 20.8% SC MAD, 50.0% IV MAD, 23.3% Japanese SAD; discussion states later Phase II studies established lower ADA incidence of 2%-7%.",
+        "verify_note": "Prior 8.0% value was replaced with source-confirmed phase-specific immunogenicity ranges.",
+    },
+}
+
+for col in set().union(*(entry.keys() for entry in updates.values())):
+    if col not in df.columns:
+        df[col] = pd.NA
+    df[col] = df[col].astype("object")
+
+for name, data in updates.items():
+    mask = df["antibody_name"].fillna("").astype(str).str.casefold() == name.casefold()
+    if mask.any():
+        for col, val in data.items():
+            df.loc[mask, col] = val
+        print(f"Updated {name}")
+    else:
+        print(f"MISSING {name}")
+
+df.to_csv(ada_path, index=False)

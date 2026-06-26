@@ -1,0 +1,204 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42153621",
+    "pmcid": "PMC13186567",
+    "doi": "10.7554/eLife.107191.3.sa3",
+    "journal": "eLife",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "mechanism_gap",
+    "dominant_frame": "molecular_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "context-finding-mechanism-implication",
+    "claim_chain": [
+      "Trypanosomes must acquire nutrients while evading immune responses",
+      "Previous model proposed receptors are sequestered in the flagellar pocket to hide from immune effectors",
+      "We investigated distribution of GPI-anchored receptors on the cell surface",
+      "Both single and double GPI-anchored TfRs are present over the whole cell surface",
+      "Two other GPI-anchored receptors are also present over the whole cell surface",
+      "Mechanisms by which trypanosome receptors are protected from antibody-mediated attack are more complex than hiding in a pocket"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "investigated",
+      "showed",
+      "indicated",
+      "suggests",
+      "observed",
+      "confirmed",
+      "resulted",
+      "provided",
+      "appears",
+      "proposed"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "Context statement about pathogen survival strategy",
+      "Description of previous model or understanding",
+      "Statement of experimental findings that challenge or extend the model",
+      "Discussion of methodological differences that explain discrepancies",
+      "Interpretation of results in light of broader mechanisms"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Reconciliation with previous conflicting reports on receptor localization",
+      "Methodological rigor in cell handling and fixation protocols",
+      "Generalizability of findings across different receptor types",
+      "Mechanistic explanation for immune evasion if receptors are surface-exposed"
+    ],
+    "likely_attacks": [
+      "Discrepancy with established literature showing flagellar pocket localization",
+      "Potential artifacts from fixation protocol differences",
+      "Incomplete explanation of how surface-exposed receptors avoid immune attack",
+      "Limited mechanistic insight into retention or trafficking mechanisms"
+    ],
+    "inference_basis": "The paper extensively discusses why experimental differences have arisen between their findings and previous reports, focusing on cell manipulation protocols before fixation. It states 'much of the previous work involved manipulations of the trypanosomes before determining either transferrin binding or TfR/HpHbR localisation' and 'providing time for the ligand bound receptors to be cleared from the cell surface'. The paper also acknowledges that 'The mechanisms by which trypanosome receptors are protected from antibody-mediated attack are more complex than hiding in a pocket', indicating awareness that their findings raise new mechanistic questions."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "The experiments presented here do not agree with this model",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "probably arose from loss of one anchor as opposed to gain in the double-anchored version",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "may provide a selective advantage possibly reducing exposure to the host adaptive immune system",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "The rapid kinetics of uptake indicates the receptor ligand complex is probably subject to the same hydrodynamic forces",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "this suggests sensitivity to the requirements at the individual",
+        "category": "causal"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "Any pathogen that has evolved to establish and maintain a long-term infection within a mammalian host must be able to acquire nutrients",
+      "category": "opening"
+    },
+    {
+      "phrase": "The main findings are:",
+      "category": "transition"
+    },
+    {
+      "phrase": "probably arose from loss of one anchor",
+      "category": "hedge"
+    },
+    {
+      "phrase": "may provide a selective advantage",
+      "category": "hedge"
+    },
+    {
+      "phrase": "possibly reducing exposure to the host adaptive immune system",
+      "category": "hedge"
+    },
+    {
+      "phrase": "The rapid kinetics of uptake indicates",
+      "category": "claim"
+    },
+    {
+      "phrase": "is probably subject to the same hydrodynamic forces",
+      "category": "hedge"
+    },
+    {
+      "phrase": "The experiments presented here do not agree with this model",
+      "category": "claim"
+    },
+    {
+      "phrase": "it is worth discussing the reasons why these experimental differences have arisen",
+      "category": "transition"
+    },
+    {
+      "phrase": "In contrast to experiments that wash cells into solutions that do not support growth",
+      "category": "transition"
+    },
+    {
+      "phrase": "It is unlikely that the distribution of TfR on the cell surface results from a retention system being overwhelmed",
+      "category": "claim"
+    },
+    {
+      "phrase": "The result was clear evidence that",
+      "category": "claim"
+    },
+    {
+      "phrase": "this suggests sensitivity to the requirements",
+      "category": "hedge"
+    },
+    {
+      "phrase": "The mechanisms by which trypanosome receptors are protected from antibody-mediated attack are more complex than hiding in a pocket",
+      "category": "implication"
+    },
+    {
+      "phrase": "Unexpectedly, initial binding of transferrin occurred over the whole cell surface",
+      "category": "claim"
+    },
+    {
+      "phrase": "This localisation was confirmed by immunofluorescence assays",
+      "category": "claim"
+    },
+    {
+      "phrase": "showed both were also whole cell surface localised",
+      "category": "claim"
+    },
+    {
+      "phrase": "Phylogenetic tree showing the relationship between",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "The tree was assembled in Geneious Prime",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Clustal W alignment of the nucleotide sequences",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "indicating the shorter ESAG7 genes probably ar",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "Predicted processing sites are indicated by yellow highlighting",
+      "category": "figure_legend"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, author names, or invented numbers were included. The profile is based solely on the provided abstract, discussion, and figure legends."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T12:57:56.183347+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\elife\\42154822.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

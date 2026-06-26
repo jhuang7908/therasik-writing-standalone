@@ -1,0 +1,247 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42090259",
+    "pmcid": "PMC13167747",
+    "doi": "10.1073/pnas.2601719123",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "field_importance",
+    "dominant_frame": "molecular_mechanism",
+    "tone": "cautious_but_assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "problem-gap-solution-implication",
+    "claim_chain": [
+      "Most resistance mechanisms are characterized in model systems and assumed to be broadly conserved, but this assumption remains largely untested across evolutionary scales",
+      "Using cotranscriptomic approach across 10 eudicot species and 72 B. cinerea isolates, we demonstrate that plant defense is not a single conserved pathway but a mosaic of conserved physiological outcomes with lineage-dependent regulatory rewiring",
+      "Only 12 orthogroups were consistently responsive across all hosts, representing a limited conserved core, while the majority of host response was defined by order- and species-specific orthogroups",
+      "Nearly three-quarters of expressed host genes showed significant isolate-dependent effects, indicating that host transcriptional responses are highly plastic and shaped by pathogen genetic diversity",
+      "These findings suggest that plant immunity to generalist pathogens is built on conserved physiological outcomes achieved through lineage-dependent regulatory mechanisms",
+      "This distinct regulatory architecture creates an immune landscape heavily modulated by specific host-isolate combinations, highlighting the necessity of integrating pathogen diversity into models of plant defense evolution"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "medium",
+    "claim_strength": "moderate",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "demonstrate",
+      "identified",
+      "suggest",
+      "indicate",
+      "reveal",
+      "highlight",
+      "remains",
+      "represents",
+      "deployed",
+      "shaped",
+      "requires",
+      "extends"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "Open with broad statement of the central goal or question being addressed",
+      "Present key finding or observation from the data",
+      "Elaborate on the mechanistic or evolutionary implications of the finding",
+      "Contrast with alternative interpretations or previous assumptions",
+      "Close with broader significance or unresolved questions requiring future investigation"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Mechanistic validation of correlational transcriptomic findings through functional experiments",
+      "Demonstration of causal links between lineage-specific transcriptional modules and specific phenotypic outputs",
+      "Clarification of whether divergent regulatory solutions directly drive conserved physiological outcomes or represent auxiliary stress-response processes",
+      "Integration of pathogen diversity into experimental design and interpretation",
+      "Temporal dynamics and spatial resolution of host-pathogen interactions beyond single timepoint bulk tissue analysis"
+    ],
+    "likely_attacks": [
+      "Findings are primarily correlational and transcriptomic data alone cannot establish causality",
+      "Single timepoint analysis may miss critical temporal dynamics of infection progression",
+      "Bulk tissue transcriptomics obscures cell-type-specific responses and spatial heterogeneity",
+      "Limited functional validation of lineage-specific defense modules",
+      "Unclear whether lineage-dependent transcriptional programs directly mediate conserved outcomes or are auxiliary processes"
+    ],
+    "inference_basis": "The paper explicitly acknowledges important interpretive limitations: 'our findings are primarily correlational; transcriptomic data alone cannot establish causality. Connecting lineage-specific transcriptional modules to specific phenotypic outputs will requir...' The authors state 'Whether these divergent regulatory solutions directly drive the conserved physiological outcomes, or whether a small, conserved core of proteins mediates the shared outcomes while lineage-dependent transcriptional programs represent auxiliary, stress-response processes, remains an open mechanistic question. Resolving this distinction in future will require targeted functional analyses.' They also note limitations of single timepoint and bulk tissue approaches in the truncated discussion section."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "we demonstrate that plant defense is not a single conserved pathway, but a mosaic of deeply conserved physiological outcomes along with extensive, lineage-dependent regulatory rewiring",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "This pattern suggests that even the conserved defense frameworks are not static but are continually reshaped through microevolutionary processes",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "These findings suggest that plant immunity to generalist pathogens is built on conserved physiological outcomes that appear to occur by evolving lineage-dependent regulatory mechanisms",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "Whether these divergent regulatory solutions directly drive the conserved physiological outcomes, or whether a small, conserved core of proteins mediates the shared outcomes while lineage-dependent transcriptional programs represent auxiliary, stress-response processes, remains an open mechanistic question",
+        "category": "limitation"
+      },
+      {
+        "quoted_phrase": "our findings are primarily correlational; transcriptomic data alone cannot establish causality",
+        "category": "limitation"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "Advancements in molecular and genomic tools have greatly expanded our understanding of plant–pathogen interactions, yet translating this knowledge into durable disease resistance remains challenging",
+      "category": "opening"
+    },
+    {
+      "phrase": "A key limitation is that most resistance mechanisms are characterized in a small number of model systems and then implicitly assumed to be broadly conserved",
+      "category": "opening"
+    },
+    {
+      "phrase": "This assumption remains largely untested across evolutionary scales",
+      "category": "claim"
+    },
+    {
+      "phrase": "we demonstrate that plant defense is not a single conserved pathway, but a mosaic of deeply conserved physiological outcomes along with extensive, lineage-dependent regulatory rewiring",
+      "category": "claim"
+    },
+    {
+      "phrase": "disease outcomes arise from specific host-by-isolate interactions rather than species-level averages",
+      "category": "claim"
+    },
+    {
+      "phrase": "The central goal of this study was to determine how conserved and divergent immune components are deployed",
+      "category": "opening"
+    },
+    {
+      "phrase": "only 12 were consistently responsive to B. cinerea across all hosts",
+      "category": "claim"
+    },
+    {
+      "phrase": "This small core represents a limited set of defenses and signaling components, indicating that while the physiological strategy of responding to necrotrophic infection is conserved, the specific genetic regulatory toolkit underlying this is divergent",
+      "category": "claim"
+    },
+    {
+      "phrase": "This pattern suggests that even the conserved defense frameworks are not static but are continually reshaped through microevolutionary processes",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Such rapid diversification is a hallmark of host–pathogen arms races",
+      "category": "generalization"
+    },
+    {
+      "phrase": "the majority of the host response was defined by order- and species-specific orthogroups",
+      "category": "claim"
+    },
+    {
+      "phrase": "These lineage-restricted genes represent independently evolved defense modules, likely shaped by ecological and pathogen-driven selection unique to each lineage",
+      "category": "hedge"
+    },
+    {
+      "phrase": "Rather than relying on a universal regulatory architecture, hosts deployed distinct regulatory solutions to achieve similar defensive outcomes",
+      "category": "claim"
+    },
+    {
+      "phrase": "evolutionary innovation in plant defense extends beyond secondary metabolism",
+      "category": "claim"
+    },
+    {
+      "phrase": "Whether these divergent regulatory solutions directly drive the conserved physiological outcomes, or whether a small, conserved core of proteins mediates the shared outcomes while lineage-dependent transcriptional programs represent auxiliary, stress-response processes, remains an open mechanistic question",
+      "category": "limitation"
+    },
+    {
+      "phrase": "Resolving this distinction in future will require targeted functional analyses to directly link specific transcriptional programs to physiological outputs",
+      "category": "implication"
+    },
+    {
+      "phrase": "Our study highlights the importance of incorporating natural pathogen diversity when dissecting host–pathogen interactions",
+      "category": "transition"
+    },
+    {
+      "phrase": "Nearly three-quarters of expressed host genes showed significant isolate-dependent effects",
+      "category": "claim"
+    },
+    {
+      "phrase": "host transcriptional responses are highly plastic and strongly shaped by pathogen genetic diversity",
+      "category": "claim"
+    },
+    {
+      "phrase": "From the host's perspective, B. cinerea therefore represents a genetically heterogeneous population rather than a uniform threat",
+      "category": "claim"
+    },
+    {
+      "phrase": "This isolate-dependent variation has important implications for how plant immunity operates in natural environments",
+      "category": "implication"
+    },
+    {
+      "phrase": "The biological basis of this extensive plasticity likely reflects the high sensitivity of the host immune system to the variable virulence repertoires deployed by B. cinerea",
+      "category": "hedge"
+    },
+    {
+      "phrase": "This implies that the host possesses a much higher resolution for sensing pathogen variation than previously appreciated",
+      "category": "causal"
+    },
+    {
+      "phrase": "the generalist host response is a collection of highly specific responses tailored to the immediate molecular context of the infection",
+      "category": "claim"
+    },
+    {
+      "phrase": "These findings provide a systems-level understanding of how plant immune systems are tuned across evolutionary scales",
+      "category": "implication"
+    },
+    {
+      "phrase": "shedding light on why resistance mechanisms often fail to translate across species and why durable resistance against generalist pathogens remains difficult to achieve",
+      "category": "implication"
+    },
+    {
+      "phrase": "However, we acknowledge important interpretive limitations inherent to our approach that define critical avenues for future research",
+      "category": "limitation"
+    },
+    {
+      "phrase": "our findings are primarily correlational; transcriptomic data alone cannot establish causality",
+      "category": "limitation"
+    },
+    {
+      "phrase": "highlighting the necessity of integrating pathogen diversity into models of plant defense evolution and resistance breeding",
+      "category": "implication"
+    },
+    {
+      "phrase": "The causal relationship between these lineage-dependent components and the conserved outcomes require further mechanistic investigation",
+      "category": "limitation"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. No external references, invented numbers, or author names were included. The profile is based solely on the provided abstract, discussion, and figure legends."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_phrase_violations": [
+    {
+      "field": "phrase_evidence",
+      "phrase": "From the host's perspective, B. cinerea therefore represents a genetically heterogeneous population rather than a uniform threat",
+      "issue": "not found in paper text"
+    }
+  ],
+  "_meta": {
+    "generated_at": "2026-05-25T13:45:53.637203+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\pnas\\42090259.json",
+    "phrase_check_violations": 1,
+    "schema_valid": true
+  }
+}

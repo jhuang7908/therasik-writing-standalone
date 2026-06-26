@@ -1,0 +1,246 @@
+{
+  "generated_at": "2026-06-04T04:50:53.014094+00:00",
+  "base": "https://write.insynbio.com",
+  "project_id": "smoke_m4_20260604",
+  "username": "smoke_ops",
+  "elapsed_s": 49.2,
+  "summary": {
+    "total": 33,
+    "pass": 31,
+    "warn": 2,
+    "fail": 0
+  },
+  "cases": [
+    {
+      "id": "F01",
+      "feature": "Account · library backend",
+      "endpoint": "GET /intelligence/library/status",
+      "status": "PASS",
+      "evidence": "backend=sqlite, count=8"
+    },
+    {
+      "id": "F02",
+      "feature": "Literature Search",
+      "endpoint": "POST /library/openalex/search",
+      "status": "PASS",
+      "evidence": "5 works; first=Multinational Study of the Efficacy and Safety of Humanized "
+    },
+    {
+      "id": "F03",
+      "feature": "Literature · 💾 Save (single)",
+      "endpoint": "POST /intelligence/library/save",
+      "status": "PASS",
+      "evidence": "id=7, inserted=False"
+    },
+    {
+      "id": "F04",
+      "feature": "Literature · 💾 Save all",
+      "endpoint": "POST /intelligence/library/save (×N)",
+      "status": "PASS",
+      "evidence": "saved 3/3 from search batch"
+    },
+    {
+      "id": "F05",
+      "feature": "Literature Database · ↻ All",
+      "endpoint": "GET /intelligence/library/list",
+      "status": "PASS",
+      "evidence": "listed=8, total_in_project=8, project=smoke_m4_20260604"
+    },
+    {
+      "id": "F06",
+      "feature": "Literature Database · semantic search",
+      "endpoint": "POST /intelligence/library/search",
+      "status": "PASS",
+      "evidence": "5 hit(s); top=Multinational Study of the Efficacy and Safety of "
+    },
+    {
+      "id": "F07",
+      "feature": "Hotspot Digest",
+      "endpoint": "POST /intelligence/digest/generate",
+      "status": "PASS",
+      "evidence": "saved_report_id=25, len=2449"
+    },
+    {
+      "id": "F08",
+      "feature": "Hotspot Digest · history",
+      "endpoint": "GET /intelligence/reports/list?kind=digest",
+      "status": "PASS",
+      "evidence": "5 digest report(s)"
+    },
+    {
+      "id": "F09",
+      "feature": "Patent Search · ODP status",
+      "endpoint": "GET /ip/config",
+      "status": "PASS",
+      "evidence": "odp=True, source=uspto_odp"
+    },
+    {
+      "id": "F10",
+      "feature": "Patent Search",
+      "endpoint": "POST /ip/patent/search",
+      "status": "PASS",
+      "evidence": "3 hits; first US 19165731; source=uspto_odp"
+    },
+    {
+      "id": "F11",
+      "feature": "Patent · 💾 Save",
+      "endpoint": "POST /intelligence/library/save (patent)",
+      "status": "PASS",
+      "evidence": "patent doc id=10"
+    },
+    {
+      "id": "F12",
+      "feature": "Patent Database",
+      "endpoint": "GET /intelligence/library/list?source=patent",
+      "status": "PASS",
+      "evidence": "1 patent row(s) in library"
+    },
+    {
+      "id": "F13",
+      "feature": "Patent · View record (in-app)",
+      "endpoint": "GET /ip/patent/detail",
+      "status": "PASS",
+      "evidence": "title=ANTI-CD27 MONOCLONAL ANTIBODY AND USE THEREOF; assignee=SHANGHAI CELGEN BIO-PHARMACEUTICAL CO., "
+    },
+    {
+      "id": "F14",
+      "feature": "Patent · Antibody sequences (ODP ST.26)",
+      "endpoint": "GET /ip/patent/sequences",
+      "status": "WARN",
+      "evidence": "sequences=0; note=No sequence listing XML in USPTO file wrapper for this application. Try a granted antibody patent, paste FASTA/ST.26 und"
+    },
+    {
+      "id": "F15",
+      "feature": "Sequence/Structure · Parse FASTA",
+      "endpoint": "POST /ip/sequence/parse",
+      "status": "PASS",
+      "evidence": "chains=2, antibody_like=2"
+    },
+    {
+      "id": "F16",
+      "feature": "Sequence → Patent lookup (keyword)",
+      "endpoint": "POST /ip/sequence/search",
+      "status": "WARN",
+      "evidence": "5 patent lead(s); note=MVP: keyword proxy only — full sequence homology search (WIPO/USPTO BLAST) plann"
+    },
+    {
+      "id": "F17",
+      "feature": "FTO Analysis",
+      "endpoint": "POST /intelligence/fto/draft",
+      "status": "PASS",
+      "evidence": "count=4, saved=26"
+    },
+    {
+      "id": "F18",
+      "feature": "FTO · history",
+      "endpoint": "GET /intelligence/reports/list?kind=fto",
+      "status": "PASS",
+      "evidence": "5 FTO report(s)"
+    },
+    {
+      "id": "F19",
+      "feature": "AI Chat (library-grounded)",
+      "endpoint": "POST /intelligence/chat",
+      "status": "PASS",
+      "evidence": "reply_len=721, sources=5"
+    },
+    {
+      "id": "F20",
+      "feature": "Literature · → Facts",
+      "endpoint": "POST /library/openalex/import_to_facts",
+      "status": "PASS",
+      "evidence": "facts count=2"
+    },
+    {
+      "id": "F21",
+      "feature": "Patent · → Facts",
+      "endpoint": "POST /ip/import_to_facts",
+      "status": "PASS",
+      "evidence": "count=2"
+    },
+    {
+      "id": "F23",
+      "feature": "Library · reference styles",
+      "endpoint": "GET /intelligence/library/styles",
+      "status": "PASS",
+      "evidence": "styles=3"
+    },
+    {
+      "id": "F24",
+      "feature": "Library · RIS import/export",
+      "endpoint": "POST import + GET export",
+      "status": "PASS",
+      "evidence": "parsed=1, export_ok=True"
+    },
+    {
+      "id": "F25",
+      "feature": "Library · format references (排版)",
+      "endpoint": "POST /intelligence/library/format",
+      "status": "PASS",
+      "evidence": "refs=7"
+    },
+    {
+      "id": "F28",
+      "feature": "Library · 亚项目 tag",
+      "endpoint": "POST /intelligence/library/tag",
+      "status": "PASS",
+      "evidence": "ids=3, updated=3, err="
+    },
+    {
+      "id": "F29",
+      "feature": "Library · 亚项目 list",
+      "endpoint": "GET /intelligence/library/subprojects",
+      "status": "PASS",
+      "evidence": "labels=['smoke-subproject']"
+    },
+    {
+      "id": "F30",
+      "feature": "Library · 杂志格式 export",
+      "endpoint": "POST /intelligence/library/format (subproject + filename)",
+      "status": "PASS",
+      "evidence": "count=3, file=references_plos_vancouver_sub.txt, err="
+    },
+    {
+      "id": "F26",
+      "feature": "Literature · Unpaywall OA",
+      "endpoint": "POST /library/openalex/search",
+      "status": "PASS",
+      "evidence": "works=3, oa_fields=True"
+    },
+    {
+      "id": "F27",
+      "feature": "Library · sync with Write",
+      "endpoint": "POST /intelligence/library/sync",
+      "status": "PASS",
+      "evidence": "to_write={'direction': 'to_write', 'project_id': 'smoke_m4_20260604', 'pushed': 0, 'updated': 7, 'skipped_non_literature': 1, 'total_intel_literature': 7}, from_write={'direction': 'from_write', 'project_id': 'smoke_m4_20260604', 'saved': 0, 'updated': 5, 'skipped_other_project': 14, 'write_entries_seen': 19}"
+    },
+    {
+      "id": "F22",
+      "feature": "Module 4 IDE shell",
+      "endpoint": "GET /intelligence",
+      "status": "PASS",
+      "evidence": "v2.5 scheduled radar markers"
+    },
+    {
+      "id": "F31",
+      "feature": "Literature Radar · status",
+      "endpoint": "GET /intelligence/radar/status",
+      "status": "PASS",
+      "evidence": "['weekly', 'monthly']"
+    },
+    {
+      "id": "F32",
+      "feature": "Literature Radar · create watch",
+      "endpoint": "POST /intelligence/radar/watches",
+      "status": "PASS",
+      "evidence": "watch_id=1, err="
+    },
+    {
+      "id": "F33",
+      "feature": "Literature Radar · run watch",
+      "endpoint": "POST /intelligence/radar/run",
+      "status": "PASS",
+      "evidence": "new=14, report=27, err="
+    }
+  ]
+}

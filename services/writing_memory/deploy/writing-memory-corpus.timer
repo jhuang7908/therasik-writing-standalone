@@ -1,0 +1,10 @@
+[Unit]
+Description=Weekly Writing Memory corpus refresh (Sunday 03:00 UTC)
+
+[Timer]
+OnCalendar=Sun *-*-* 03:00:00 UTC
+Persistent=true
+RandomizedDelaySec=900
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,76 @@
+{
+  "source": "d:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\smoke\\huNSG_QUAD_revised.json",
+  "finalized_at": "2026-05-27T03:21:11.253894+00:00",
+  "purge_log": [
+    {
+      "section": "results",
+      "n_removed": 3,
+      "samples": [
+        "Notably, ",
+        "Notably, ",
+        "Importantly, "
+      ]
+    }
+  ],
+  "lint_by_section": [
+    {
+      "section": "abstract",
+      "total": 0,
+      "by_rule": {},
+      "by_severity": {},
+      "vale_available": true,
+      "error": null,
+      "findings": []
+    },
+    {
+      "section": "introduction",
+      "total": 0,
+      "by_rule": {},
+      "by_severity": {},
+      "vale_available": true,
+      "error": null,
+      "findings": []
+    },
+    {
+      "section": "methods",
+      "total": 1,
+      "by_rule": {
+        "AbEngineCore.TripleParallel": 1
+      },
+      "by_severity": {
+        "warning": 1
+      },
+      "vale_available": true,
+      "error": null,
+      "findings": [
+        {
+          "line": 23,
+          "column": 41,
+          "check": "AbEngineCore.TripleParallel",
+          "severity": "warning",
+          "message": "AI-style triple-parallel enumeration — vary the structure.",
+          "match": "blood, spleen, and liver were "
+        }
+      ]
+    },
+    {
+      "section": "results",
+      "total": 0,
+      "by_rule": {},
+      "by_severity": {},
+      "vale_available": true,
+      "error": null,
+      "findings": []
+    },
+    {
+      "section": "discussion",
+      "total": 0,
+      "by_rule": {},
+      "by_severity": {},
+      "vale_available": true,
+      "error": null,
+      "findings": []
+    }
+  ],
+  "total_lint_findings": 1
+}

@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MuMAb4D5  | Therasik</title>
+  <!-- PDF metadata -->
+  <meta name="author" content="Therasik " />
+  <meta name="description" content="MuMAb4D5 VH/VL  — Therasik V4.4.1" />
+  <style>
+    /* ── Reset & Base ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #1a1a1a;
+      background: #fff;
+    }
+
+    /* ── Nav ──────────────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .nav-brand {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #111;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.6rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      color: #555;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: #111; }
+    .nav-links a.active { color: #111; font-weight: 600; }
+    .nav-cta {
+      font-size: 0.8rem;
+      background: #111;
+      color: #fff !important;
+      padding: 0.38rem 0.9rem;
+      border-radius: 5px;
+    }
+    .nav-cta:hover { background: #333 !important; color: #fff !important; }
+
+    /* ── Hero ─────────────────────────────────────────────────────────── */
+    .hero {
+      background: #f9fafb;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 3.5rem 2rem 3rem;
+      text-align: center;
+    }
+    .hero-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #6b7280;
+      background: #e5e7eb;
+      padding: 0.25rem 0.7rem;
+      border-radius: 20px;
+      margin-bottom: 1.1rem;
+    }
+    .hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #111;
+      max-width: 660px;
+      margin: 0 auto 1rem;
+      line-height: 1.3;
+    }
+    .hero-sub {
+      font-size: 1rem;
+      color: #6b7280;
+      max-width: 560px;
+      margin: 0 auto 1.8rem;
+    }
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.82rem;
+      color: #6b7280;
+    }
+    .hero-meta span { display: flex; align-items: center; gap: 0.35rem; }
+    .hero-meta strong { color: #374151; }
+
+    /* ── Page Layout ──────────────────────────────────────────────────── */
+    .page-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    /* ── TOC strip ────────────────────────────────────────────────────── */
+    .toc-strip {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin: 2rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.2rem;
+    }
+    .toc-strip a {
+      font-size: 0.8rem;
+      color: #4b5563;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .toc-strip a:hover { color: #111; text-decoration: underline; }
+
+    /* ── Sections ─────────────────────────────────────────────────────── */
+    .section {
+      padding-top: 3.5rem;
+      border-top: 1px solid #f3f4f6;
+      margin-top: 3.5rem;
+    }
+    .section:first-of-type { border-top: none; margin-top: 2.5rem; }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 0.5rem;
+    }
+    .section h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: #111;
+      margin-bottom: 1rem;
+    }
+    .section h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #374151;
+      margin: 1.5rem 0 0.5rem;
+    }
+    .section p, .section li {
+      font-size: 0.95rem;
+      color: #374151;
+      line-height: 1.75;
+    }
+    .section ul { margin: 0.8rem 0 0.8rem 1.3rem; }
+    .section li { margin-bottom: 0.4rem; }
+
+    /* ── Tables ───────────────────────────────────────────────────────── */
+    .tbl-wrap { overflow-x: auto; margin: 1.2rem 0; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    thead tr { background: #f3f4f6; }
+    thead th {
+      text-align: left;
+      padding: 0.55rem 0.85rem;
+      font-weight: 600;
+      font-size: 0.78rem;
+      color: #374151;
+      letter-spacing: 0.01em;
+      border-bottom: 2px solid #e5e7eb;
+    }
+    tbody td {
+      padding: 0.5rem 0.85rem;
+      border-bottom: 1px solid #f3f4f6;
+      color: #374151;
+      vertical-align: top;
+    }
+    tbody tr:hover td { background: #fafafa; }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.18rem 0.55rem;
+      border-radius: 20px;
+    }
+    .badge-selected { background: #d1fae5; color: #065f46; }
+    .badge-pass     { background: #d1fae5; color: #065f46; }
+    .badge-murine   { background: #fef3c7; color: #92400e; }
+    .badge-human    { background: #eff6ff; color: #1e40af; }
+    .badge-info     { background: #f3f4f6; color: #374151; }
+
+    /* ── Sequence blocks ──────────────────────────────────────────────── */
+    .seq-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 0.3rem;
+    }
+    .seq-block {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 0.9rem 1.1rem;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.82rem;
+      color: #1a1a1a;
+      word-break: break-all;
+      line-height: 1.8;
+      margin: 0.75rem 0;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Metric cards ─────────────────────────────────────────────────── */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+      gap: 1rem;
+      margin: 1.2rem 0;
+    }
+    .metric-card {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+    }
+    .metric-card .m-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.3rem;
+    }
+    .metric-card .m-value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #111;
+      letter-spacing: -0.02em;
+    }
+    .metric-card .m-sub {
+      font-size: 0.75rem;
+      color: #6b7280;
+      margin-top: 0.2rem;
+    }
+    .metric-card.pass      { border-left: 3px solid #10b981; }
+    .metric-card.highlight { border-left: 3px solid #3b82f6; }
+
+    /* ── Callout boxes ────────────────────────────────────────────────── */
+    .callout {
+      border-left: 3px solid #3b82f6;
+      background: #eff6ff;
+      padding: 0.85rem 1.1rem;
+      border-radius: 0 6px 6px 0;
+      margin: 1.2rem 0;
+      font-size: 0.9rem;
+      color: #1e3a5f;
+    }
+    .callout.green { border-color: #10b981; background: #ecfdf5; color: #064e3b; }
+    .callout.amber { border-color: #f59e0b; background: #fffbeb; color: #78350f; }
+
+    /* ── Footer ───────────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid #e5e7eb;
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+    footer a { color: #6b7280; text-decoration: none; }
+    footer a:hover { color: #111; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links { display: none; }
+      .hero { padding: 2.5rem 1rem 2rem; }
+      .hero h1 { font-size: 1.45rem; }
+      .page-wrap { padding: 0 1rem 3rem; }
+    }
+
+    /* ──  / PDF  ──────────────────────────────────────────────── */
+    @media print {
+      @page {
+        size: A4;
+        margin: 18mm 18mm 22mm 18mm;
+        @top-left   { content: "Therasik "; font-size: 8pt; color: #9ca3af; font-family: "Microsoft YaHei", Arial, sans-serif; }
+        @top-right  { content: "MuMAb4D5 "; font-size: 8pt; color: #9ca3af; font-family: "Microsoft YaHei", Arial, sans-serif; }
+        @bottom-left { content: "© 2026 Therasik · therasik.com · contact@therasik.com"; font-size: 7.5pt; color: #9ca3af; font-family: "Microsoft YaHei", Arial, sans-serif; }
+        @bottom-right { content: " " counter(page) " ， " counter(pages) " "; font-size: 7.5pt; color: #9ca3af; font-family: "Microsoft YaHei", Arial, sans-serif; }
+      }
+
+      /* / */
+      nav, .toc-strip, footer, .no-print,
+      a[href$="submit"], .hero-label { display: none !important; }
+
+      /*  */
+      body { background: #fff; color: #000; font-size: 10pt; line-height: 1.6; font-family: "Microsoft YaHei", "SimSun", Arial, sans-serif; }
+      .hero {
+        background: #fff;
+        border: none;
+        border-bottom: 2pt solid #111;
+        padding: 0 0 14pt 0;
+        text-align: left;
+        margin-bottom: 14pt;
+      }
+      .hero h1 { font-size: 17pt; margin-bottom: 5pt; }
+      .hero-sub { font-size: 10pt; color: #444; margin-bottom: 8pt; }
+      .hero-meta { font-size: 8.5pt; gap: 14pt; justify-content: flex-start; }
+
+      /*  */
+      .page-wrap { max-width: 100%; padding: 0; }
+
+      /*  */
+      .section { padding-top: 16pt; margin-top: 16pt; border-top: 0.5pt solid #d1d5db; }
+      .section:first-of-type { border-top: none; margin-top: 8pt; }
+      .section h2 { font-size: 13pt; margin-bottom: 6pt; }
+      .section h3 { font-size: 10.5pt; margin: 10pt 0 4pt; }
+      .section p, .section li { font-size: 9.5pt; line-height: 1.65; }
+
+      .section { page-break-inside: avoid; }
+      h2, h3 { page-break-after: avoid; }
+
+      /*  */
+      .callout {
+        border-left: 2.5pt solid #10b981;
+        background: #f0fdf4;
+        padding: 5pt 8pt;
+        font-size: 9pt;
+        margin: 6pt 0;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .callout.amber { border-color: #f59e0b; background: #fffbeb; }
+
+      /*  */
+      table { font-size: 8.5pt; page-break-inside: avoid; }
+      thead th { background: #f3f4f6; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      tbody td { padding: 3.5pt 6pt; }
+
+      /*  */
+      .seq-block {
+        font-size: 7.5pt;
+        background: #f9fafb;
+        border: 0.5pt solid #d1d5db;
+        padding: 5pt 7pt;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        word-break: break-all;
+      }
+
+      /*  */
+      .metric-grid { display: flex; flex-wrap: wrap; gap: 6pt; }
+      .metric-card {
+        flex: 1 1 120pt;
+        padding: 6pt 8pt;
+        border: 0.5pt solid #d1d5db;
+        background: #f9fafb;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .metric-card.pass { border-left: 2.5pt solid #10b981; }
+      .metric-card.highlight { border-left: 2.5pt solid #0084b4; }
+      .metric-card .m-label { font-size: 7pt; }
+      .metric-card .m-value { font-size: 14pt; }
+      .metric-card .m-sub { font-size: 7pt; }
+
+      /*  */
+      .badge { font-size: 7pt; padding: 1pt 4pt; }
+      .badge-selected { background: #d1fae5; color: #065f46; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .badge-pass     { background: #d1fae5; color: #065f46; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .badge-murine   { background: #fef3c7; color: #92400e; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .badge-human    { background: #eff6ff; color: #1e40af; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .badge-info     { background: #f3f4f6; color: #374151; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+      /* PDF  */
+      .hero::before {
+        content: "Therasik   ·  VH/VL   ·  V4.4.1";
+        display: block;
+        font-size: 8pt;
+        color: #9ca3af;
+        letter-spacing: 0.05em;
+        margin-bottom: 8pt;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ──  ────────────────────────────────────────────────────────────── -->
+<nav>
+  <a class="nav-brand" href="https://www.therasik.com">Therasik</a>
+  <ul class="nav-links">
+    <li><a href="https://www.therasik.com"></a></li>
+    <li><a href="https://www.therasik.com/Therasik_Antibody_Page.html"></a></li>
+    <li><a href="https://www.therasik.com/Therasik_Bispecific_Page.html"></a></li>
+    <li><a href="https://www.therasik.com/Therasik_CART_Page.html">CAR-T</a></li>
+    <li><a href="https://www.therasik.com/Therasik_Antibody_Page.html#humanization" class="active"></a></li>
+    <li><a href="https://www.therasik.com/Therasik_Antibody_Page.html#submit" class="nav-cta"></a></li>
+  </ul>
+</nav>
+
+<!-- ── Hero ──────────────────────────────────────────────────────────── -->
+<div class="hero">
+  <div class="hero-label"> · VH/VL </div>
+  <h1>MuMAb4D5 </h1>
+  <p class="hero-sub"> CDR ，—— 300+ 。</p>
+  <div class="hero-meta">
+    <span><strong></strong> V4.4.1</span>
+    <span><strong></strong> Therasik </span>
+    <span><strong></strong> 2026  3 </span>
+    <span><strong></strong> 38 / 38 </span>
+  </div>
+  <div class="no-print" style="margin-top:1.1rem;">
+    <button onclick="window.print" style="
+      display:inline-flex;align-items:center;gap:0.45rem;
+      background:#0084b4;color:#fff;border:none;border-radius:6px;
+      padding:0.55rem 1.1rem;font-size:0.85rem;font-weight:600;cursor:pointer;
+      letter-spacing:0.02em;font-family:inherit;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><rect x="6" y="14" width="12" height="8"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/></svg>
+       PDF
+    </button>
+    <span style="font-size:0.78rem;color:#9ca3af;margin-left:0.7rem;"> →  PDF（A4，）</span>
+  </div>
+</div>
+
+<!-- ──  ────────────────────────────────────────────────────────────── -->
+<div class="page-wrap">
+
+  <!--  -->
+  <div class="toc-strip">
+    <a href="#background"></a>
+    <a href="#segmentation"></a>
+    <a href="#germline"></a>
+    <a href="#vernier">Vernier </a>
+    <a href="#sequences"></a>
+    <a href="#structure"></a>
+    <a href="#conclusions"></a>
+  </div>
+
+  <!-- 1.  -->
+  <div class="section" id="background">
+    <div class="section-label"> 01 </div>
+    <h2></h2>
+    <p>MuMAb4D5  HER2  IV ，（Herceptin®）。 VH/VL  V4.4.1  MuMAb4D5 ， Kabat 、842 、Vernier 、， ABodyBuilder2 。</p>
+  </div>
+
+  <!-- 2.  -->
+  <div class="section" id="segmentation">
+    <div class="section-label"> 02 </div>
+    <h2>（Kabat ）</h2>
+    <p> Kabat  VH  VL  FR/CDR 。</p>
+
+    <h3>2.1  VH</h3>
+    <div class="seq-label"></div>
+    <div class="seq-block">EVQLVQSGAEVKKPGASVKVSCKASGYTFTSYNMHWVRQAPGQGLEWMGIINPSGGSTSYAQKFQGRVTMTRDTSTSTVYMELSSLRSEDTAVYYCARDQGSIRGFDYWGQGTLVTVSS</div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th></th><th>Kabat</th><th></th><th></th><th></th></tr></thead>
+        <tbody>
+          <tr><td>FR1</td><td>1–25</td><td><code>EVQLVQSGAEVKKPGASVKVSCKAS</code></td><td>25 aa</td><td><span class="badge badge-info"></span></td></tr>
+          <tr><td><strong>CDR1</strong></td><td>26–35</td><td><code>GYTFTSYNMH</code></td><td><strong>10 aa</strong></td><td><span class="badge badge-murine"> CDR</span></td></tr>
+          <tr><td>FR2</td><td>36–49</td><td><code>WVRQAPGQGLEWMG</code></td><td>14 aa</td><td><span class="badge badge-info"></span></td></tr>
+          <tr><td><strong>CDR2</strong></td><td>50–65</td><td><code>IINPSGGSTSYAQKFQ</code></td><td><strong>17 aa</strong></td><td><span class="badge badge-murine"> CDR</span></td></tr>
+          <tr><td>FR3</td><td>66–94</td><td><code>GRVTMTRDTSTSTVYMELSSLRSEDTAVYYCAR</code></td><td>29 aa</td><td><span class="badge badge-info"></span></td></tr>
+          <tr><td><strong>CDR3</strong></td><td>95–102</td><td><code>DQGSIRGFDY</code></td><td><strong>10 aa</strong></td><td><span class="badge badge-murine"> CDR</span></td></tr>
+          <tr><td>FR4</td><td>103–113</td><td><code>WGQGTLVTVSS</code></td><td>11 aa</td><td><span class="badge badge-info"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>2.2  VL</h3>
+    <div class="seq-label"></div>
+    <div class="seq-block">DIVMTQSPDSLAVTPGEQVTISCRASESVDNYGISFMNWFQQKPGKSPKLLIYRASNLESGVPDRFSGSGSGTDFTLTISSLQAEDVAVYYCQQSNEDPPTFGQGTKLEIK</div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th></th><th>Kabat</th><th></th><th></th><th></th></tr></thead>
+        <tbody>
+          <tr><td>FR1</td><td>1–23</td><td><code>DIVMTQSPDSLAVTPGEQVTISC</code></td><td>23 aa</td><td><span class="badge badge-info"></span></td></tr>
+          <tr><td><strong>CDR1</strong></td><td>24–34</td><td><code>RASESVDNYGISFMN</code></td><td><strong>15 aa</strong></td><td><span class="badge badge-murine"> CDR</span></td></tr>
+          <tr><td>FR2</td><td>35–49</td><td><code>WFQQKPGKSPKLLIY</code></td><td>15 aa</td><td><span class="badge badge-info"></span></td></tr>
+          <tr><td><strong>CDR2</strong></td><td>50–56</td><td><code>RASNLES</code></td><td><strong>7 aa</strong></td><td><span class="badge badge-murine"> CDR</span></td></tr>
+          <tr><td>FR3</td><td>57–88</td><td><code>GVPDRFSGSGSGTDFTLTISSLQAEDVAVYYC</code></td><td>32 aa</td><td><span class="badge badge-info"></span></td></tr>
+          <tr><td><strong>CDR3</strong></td><td>89–97</td><td><code>QQSNEDPPT</code></td><td><strong>9 aa</strong></td><td><span class="badge badge-murine"> CDR</span></td></tr>
+          <tr><td>FR4</td><td>98–107</td><td><code>FGQGTKLEIK</code></td><td>10 aa</td><td><span class="badge badge-info"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout amber">VL CDR1  15 aa，，。</div>
+  </div>
+
+  <!-- 3.  -->
+  <div class="section" id="germline">
+    <div class="section-label"> 03 </div>
+    <h2></h2>
+    <p> V4.4.1 ：<strong>① </strong> 842 ；<strong>② </strong>CDR （±2 aa ）；<strong>③ </strong>Vernier ；<strong>④ </strong>；<strong>⑤ </strong>VH/VL 。</p>
+
+    <h3>3.1 VH  — ：IGHV1-46*01</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th></th><th>FR </th><th>Vernier </th><th></th><th></th><th></th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>IGHV1-46*01</strong></td><td>98.6%</td><td>100%</td><td>99.44</td><td>210</td>
+            <td><span class="badge badge-selected"></span></td>
+          </tr>
+          <tr><td>IGHV1-18*01</td><td>93.0%</td><td>85.7%</td><td>88.62</td><td>38</td><td></td></tr>
+          <tr><td>IGHV1-2*01</td><td>90.1%</td><td>85.7%</td><td>87.46</td><td>39</td><td></td></tr>
+          <tr><td>IGHV1-69*01</td><td>91.5%</td><td>57.1%</td><td>70.86</td><td>123</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout green">IGHV1-46*01  842 ：FR  98.6%，Vernier （100%）。 210 ，、。</div>
+
+    <h3>3.2 VL  — ：IGKV4-1*01</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th></th><th>FR </th><th>Vernier </th><th></th><th></th><th></th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>IGKV4-1*01</strong></td><td>88.6%</td><td>85.7%</td><td>56.86</td><td>97</td>
+            <td><span class="badge badge-selected"></span></td>
+          </tr>
+          <tr><td>IGKV2-28*01</td><td>80.0%</td><td>85.7%</td><td>58.42</td><td>102</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout green">IGKV4-1*01  FR （88.6%） CDR 。 97 ，（Ipilimumab）、Casdozokitug  Denrakibart。</div>
+
+    <h3>3.3 J </h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th></th><th>J </th><th>FR4 </th></tr></thead>
+        <tbody>
+          <tr><td>VH</td><td>IGHJ1*01</td><td><code>WGQGTLVTVSS</code></td></tr>
+          <tr><td>VL</td><td>IGKJ（ IGKV4-1*01  FR4 ）</td><td><code>FGGGTKLEIK</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 4. Vernier -->
+  <div class="section" id="vernier">
+    <div class="section-label"> 04 </div>
+    <h2>Vernier </h2>
+    <p>Vernier  FR  CDR ， CDR 。 Vernier ，。</p>
+
+    <div class="metric-grid" style="margin-top:1.5rem;">
+      <div class="metric-card pass">
+        <div class="m-label">VH Vernier </div>
+        <div class="m-value">0</div>
+        <div class="m-sub">vs. IGHV1-46*01（100% ）</div>
+      </div>
+      <div class="metric-card pass">
+        <div class="m-label">VL Vernier </div>
+        <div class="m-value">0</div>
+        <div class="m-sub">vs. IGKV4-1*01</div>
+      </div>
+      <div class="metric-card pass">
+        <div class="m-label">（VH + VL）</div>
+        <div class="m-value">0</div>
+        <div class="m-sub"></div>
+      </div>
+    </div>
+
+    <div class="callout green">
+       VH Vernier  IGHV1-46*01 ，VL Vernier  IGKV4-1*01 。 CDR ，<strong></strong>。 IGHV1-46*01 —— Vernier ，，。
+    </div>
+  </div>
+
+  <!-- 5.  -->
+  <div class="section" id="sequences">
+    <div class="section-label"> 05 </div>
+    <h2>（V4.4.1， v3）</h2>
+
+    <h3>VH — ：IGHV1-46*01 &nbsp;|&nbsp; ：0</h3>
+    <div class="seq-block">QVQLVQSGAEVKKPGASVKVSCKASGYTFTSYNMHWVRQAPGQGLEWMGIINPSGGSTSYAQKFQGRVTMTRDTSTSTVYMELSSLRSEDTAVYYCARDQGSIRGFDYWGQGTLVTVSS</div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th></th><th></th><th></th></tr></thead>
+        <tbody>
+          <tr><td>FR1</td><td><code>QVQLVQSGAEVKKPGASVKVSCKAS</code></td><td><span class="badge badge-human"> IGHV1-46*01</span></td></tr>
+          <tr><td><strong>CDR1</strong></td><td><code>GYTFTSYNMH</code></td><td><span class="badge badge-murine"></span></td></tr>
+          <tr><td>FR2</td><td><code>WVRQAPGQGLEWMG</code></td><td><span class="badge badge-human"></span></td></tr>
+          <tr><td><strong>CDR2</strong></td><td><code>IINPSGGSTSYAQKFQ</code></td><td><span class="badge badge-murine"></span></td></tr>
+          <tr><td>FR3</td><td><code>GRVTMTRDTSTSTVYMELSSLRSEDTAVYYCAR</code></td><td><span class="badge badge-human"></span></td></tr>
+          <tr><td><strong>CDR3</strong></td><td><code>DQGSIRGFDY</code></td><td><span class="badge badge-murine"></span></td></tr>
+          <tr><td>FR4</td><td><code>WGQGTLVTVSS</code></td><td><span class="badge badge-human">（IGHJ1*01）</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top:1.8rem;">VL — ：IGKV4-1*01 &nbsp;|&nbsp; ：0</h3>
+    <div class="seq-block">DIVLTQSPASLAVSPGQRATITCRASESVDNYGISFMNWYQQKPGQPPKLLIYRASNLESGVPARFSGSGSGTDFTLTINPVEANDTANYYCQQSNEDPPTFGGGTKLEIK</div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th></th><th></th><th></th></tr></thead>
+        <tbody>
+          <tr><td>FR1</td><td><code>DIVLTQSPASLAVSPGQRATITC</code></td><td><span class="badge badge-human"> IGKV4-1*01</span></td></tr>
+          <tr><td><strong>CDR1</strong></td><td><code>RASESVDNYGISFMN</code></td><td><span class="badge badge-murine"></span></td></tr>
+          <tr><td>FR2</td><td><code>WYQQKPGQPPKLLIY</code></td><td><span class="badge badge-human"></span></td></tr>
+          <tr><td><strong>CDR2</strong></td><td><code>RASNLES</code></td><td><span class="badge badge-murine"></span></td></tr>
+          <tr><td>FR3</td><td><code>GVPARFSGSGSGTDFTLTINPVEANDTANYYC</code></td><td><span class="badge badge-human"></span></td></tr>
+          <tr><td><strong>CDR3</strong></td><td><code>QQSNEDPPT</code></td><td><span class="badge badge-murine"></span></td></tr>
+          <tr><td>FR4</td><td><code>FGGGTKLEIK</code></td><td><span class="badge badge-human"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top:1.8rem;"></h3>
+    <div class="metric-grid">
+      <div class="metric-card highlight">
+        <div class="m-label">VH FR </div>
+        <div class="m-value">97.5%</div>
+        <div class="m-sub">FR ：2 </div>
+      </div>
+      <div class="metric-card highlight">
+        <div class="m-label">VL FR </div>
+        <div class="m-value">86.7%</div>
+        <div class="m-sub">FR ：11 </div>
+      </div>
+      <div class="metric-card pass">
+        <div class="m-label">CDR </div>
+        <div class="m-value">100%</div>
+        <div class="m-sub"> 6  CDR </div>
+      </div>
+      <div class="metric-card pass">
+        <div class="m-label"></div>
+        <div class="m-value">0</div>
+        <div class="m-sub">VH + VL </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6.  -->
+  <div class="section" id="structure">
+    <div class="section-label"> 06 </div>
+    <h2></h2>
+    <p> Fv  <strong>ABodyBuilder2</strong>（ImmuneBuilder），， <strong>AbRef-458</strong> （n = 458 ）。</p>
+
+    <h3>6.1 VH/VL </h3>
+    <p>VH/VL ，。</p>
+
+    <div class="metric-grid" style="margin-top:0.8rem;">
+      <div class="metric-card">
+        <div class="m-label"></div>
+        <div class="m-value">80.12°</div>
+        <div class="m-sub">VH/VL </div>
+      </div>
+      <div class="metric-card">
+        <div class="m-label"> v3</div>
+        <div class="m-value">80.10°</div>
+        <div class="m-sub">VH/VL </div>
+      </div>
+      <div class="metric-card pass">
+        <div class="m-label">Δ </div>
+        <div class="m-value">0.026°</div>
+        <div class="m-sub"> &lt; 3.0° ✓</div>
+      </div>
+    </div>
+    <div class="callout green"> VH/VL （Δ = 0.026°， &lt; 3.0°）。</div>
+
+    <h3>6.2 CDR （Cα-RMSD）</h3>
+    <p>， CDR  Cα-RMSD， CDR 。</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>CDR</th><th>Δ RMSD（ v3 vs. ）</th><th></th><th></th></tr></thead>
+        <tbody>
+          <tr><td>H1</td><td>0.545 Å</td><td>&lt; 1.5 Å</td><td><span class="badge badge-pass"></span></td></tr>
+          <tr><td>H2</td><td>1.312 Å</td><td>&lt; 1.5 Å</td><td><span class="badge badge-pass"></span></td></tr>
+          <tr><td>H3</td><td>0.666 Å</td><td>&lt; 1.5 Å</td><td><span class="badge badge-pass"></span></td></tr>
+          <tr><td>L1</td><td>0.529 Å</td><td>&lt; 1.5 Å</td><td><span class="badge badge-pass"></span></td></tr>
+          <tr><td>L2</td><td>0.412 Å</td><td>&lt; 1.5 Å</td><td><span class="badge badge-pass"></span></td></tr>
+          <tr><td>L3</td><td>0.472 Å</td><td>&lt; 1.5 Å</td><td><span class="badge badge-pass"></span></td></tr>
+          <tr style="font-weight:600;"><td></td><td>1.312 Å（H2）</td><td>&lt; 1.5 Å</td><td><span class="badge badge-pass"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout green"> CDR 。H2 （1.312 Å）， 17 aa ，。</div>
+
+    <h3>6.3 </h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th></th><th></th><th></th><th></th></tr></thead>
+        <tbody>
+          <tr><td>VH/VL </td><td>Δ = 0.026°</td><td>&lt; 3.0°</td><td><span class="badge badge-pass"></span></td></tr>
+          <tr><td>CDR RMSD</td><td>1.312 Å（H2）</td><td>&lt; 1.5 Å</td><td><span class="badge badge-pass"></span></td></tr>
+          <tr style="font-weight:600;"><td></td><td>—</td><td>—</td><td><span class="badge badge-pass"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 7.  -->
+  <div class="section" id="conclusions">
+    <div class="section-label"> 07 </div>
+    <h2></h2>
+    <ul>
+      <li><strong>。</strong>VH  IGHV1-46*01（FR  98.6%，Vernier ），VL  IGKV4-1*01（FR  88.6%）， 842 ， 210  97 ，、。</li>
+      <li><strong>。</strong> Vernier ，，。</li>
+      <li><strong>CDR 。</strong> CDR（H1/H2/H3/L1/L2/L3）100% ，。</li>
+      <li><strong>。</strong>VH/VL  0.026°（ &lt; 3.0°）； CDR Cα-RMSD  1.5 Å（ 1.312 Å，H2）。。</li>
+      <li><strong>。</strong>，。</li>
+    </ul>
+
+    <div style="margin-top:2rem;padding:1.2rem 1.5rem;background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+      <div>
+        <div style="font-size:0.8rem;color:#9ca3af;margin-bottom:0.2rem;">？</div>
+        <div style="font-size:0.95rem;font-weight:600;color:#111;"> ·  ·  · </div>
+      </div>
+      <a href="https://www.therasik.com/Therasik_Antibody_Page.html#submit"
+         style="display:inline-block;background:#111;color:#fff;font-size:0.85rem;font-weight:600;padding:0.6rem 1.3rem;border-radius:6px;text-decoration:none;">
+         →
+      </a>
+    </div>
+  </div>
+
+</div><!-- /page-wrap -->
+
+<footer>
+  <p>© 2026 Therasik · <a href="https://www.therasik.com">therasik.com</a> · <a href="mailto:contact@therasik.com">contact@therasik.com</a></p>
+  <p style="margin-top:0.4rem;">Therasik  · VH/VL  V4.4.1</p>
+</footer>
+
+</body>
+</html>

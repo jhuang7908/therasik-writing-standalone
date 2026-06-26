@@ -1,0 +1,242 @@
+{
+  "schema_version": "0.1.0",
+  "source": {
+    "pmid": "42096306",
+    "pmcid": "PMC13167776",
+    "doi": "10.1073/pnas.2529856123",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "year": 2026,
+    "sections_used": [
+      "abstract",
+      "discussion",
+      "conclusion",
+      "figure_legends"
+    ]
+  },
+  "rhetoric_profile": {
+    "opening_style": "mechanism_gap",
+    "dominant_frame": "molecular_mechanism",
+    "tone": "assertive"
+  },
+  "logic_profile": {
+    "main_pattern": "context-finding-mechanism-implication",
+    "claim_chain": [
+      "RNRs catalyze ribonucleotide to deoxyribonucleotide conversion via long-range PCET by principles that remain debated",
+      "DOPA radical is stabilized by a low-barrier hydrogen bond with a delocalized proton",
+      "LBHB couples to an extended hydrogen-bonded network spanning over 10 Å",
+      "Distant mutations result in loss of radical formation as shown by EPR and structural data",
+      "LBHB exerts strong redox-tuning effect providing basis for energetically uphill radical transport",
+      "Findings support direct involvement of LBHBs in protein chemistry and importance of quantum effects in enzyme catalysis"
+    ]
+  },
+  "sentence_style_profile": {
+    "hedge_level": "low",
+    "claim_strength": "strong",
+    "avg_sentence_length": "long",
+    "preferred_verbs": [
+      "show",
+      "indicate",
+      "suggest",
+      "reveal",
+      "support",
+      "demonstrate",
+      "elucidate",
+      "find",
+      "observe",
+      "provide",
+      "result in",
+      "catalyze"
+    ]
+  },
+  "paragraph_structure_profile": {
+    "typical_pattern": [
+      "State structural observation from XFEL data",
+      "Describe QM/MM-MD simulation approach and quantum mechanical treatment",
+      "Present simulation results with quantitative distances and energetics",
+      "Compare radical state to reduced state or alternative conformations",
+      "Connect simulation findings to experimental validation (EPR, mutagenesis)",
+      "Interpret mechanistic implications for catalysis or radical transport"
+    ]
+  },
+  "reviewer_preference_profile": {
+    "likely_priorities": [
+      "Validation of computational predictions with experimental data",
+      "Quantitative agreement between simulation and crystallographic distances",
+      "Functional consequences of mutations on radical formation",
+      "Mechanistic basis for long-range radical transport",
+      "Role of nuclear quantum effects in LBHB formation"
+    ],
+    "likely_attacks": [
+      "Timescale limitations of QM/MM-MD simulations (picosecond vs microsecond)",
+      "Interpretation of isotope effects from in silico deuteration",
+      "Generalizability of LBHB mechanism to other enzyme systems",
+      "Completeness of mutagenesis panel for testing hydrogen-bond network",
+      "Alternative explanations for short O-O distances"
+    ],
+    "inference_basis": "The paper explicitly addresses simulation timescales by stating 'The in-plane water orientation is locally stable on picosecond timescales of the QM/MM-MD simulations, but globally shifts toward the native-like radical conformation in the longer classical MD simulations'. The authors hedge on isotope effects with 'in silico deuteration of the hydrogen-bonded network suggests that the proton delocalization is sensitive to isotope effects'. They acknowledge the need for experimental validation by stating mutations 'result in drastically reduced radical formation in EPR' and 'as revealed by EPR spectroscopy'. The conclusion carefully frames findings as 'provide support for' rather than proving LBHB involvement. The paper systematically compares multiple states and conformations, suggesting awareness that alternative explanations must be ruled out."
+  },
+  "claim_strength_profile": {
+    "overall": "balanced",
+    "examples": [
+      {
+        "quoted_phrase": "we have shown here using an integrative computational-experimental approach that the unique stability of the DOPA radical in the metal-free RNR (R2e) arises from a LBHB network",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "The QM/MM-MD simulations indicate a barrierless proton hopping",
+        "category": "claim"
+      },
+      {
+        "quoted_phrase": "Our simulations suggest that the conformation of the proximal water molecule next to DOPA• is essential for modulating the properties of this LBHB network",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "we further suggest that the LBHB exerts a strong redox-tuning effect",
+        "category": "hedge"
+      },
+      {
+        "quoted_phrase": "our findings provide support for the direct involvement of LBHBs in protein chemistry",
+        "category": "hedge"
+      }
+    ]
+  },
+  "phrase_evidence": [
+    {
+      "phrase": "by combining multiscale quantum and classical simulations with directed mutagenesis, X-ray crystallography, and vibrational and electron paramagnetic resonance spectroscopy",
+      "category": "opening"
+    },
+    {
+      "phrase": "we elucidate here the molecular principles underlying",
+      "category": "opening"
+    },
+    {
+      "phrase": "To understand the protonation dynamics in this network, we performed QM/MM-MD simulations",
+      "category": "transition"
+    },
+    {
+      "phrase": "To account for accurate polarization effects, we treated the entire hydrogen-bonding network and surrounding residues at the quantum mechanical level",
+      "category": "other"
+    },
+    {
+      "phrase": "The QM/MM-MD simulations indicate a barrierless proton hopping",
+      "category": "claim"
+    },
+    {
+      "phrase": "results in a delocalized proton between the two residues",
+      "category": "claim"
+    },
+    {
+      "phrase": "consistent with the XFEL data",
+      "category": "claim"
+    },
+    {
+      "phrase": "The LBHB is stabilized by coupled proton transfer reactions",
+      "category": "claim"
+    },
+    {
+      "phrase": "Our simulations suggest that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "In stark contrast to the radical state",
+      "category": "transition"
+    },
+    {
+      "phrase": "as revealed by EPR spectroscopy",
+      "category": "claim"
+    },
+    {
+      "phrase": "suggesting that the residue could have a role in",
+      "category": "hedge"
+    },
+    {
+      "phrase": "or alternatively, perturb the interaction with",
+      "category": "hedge"
+    },
+    {
+      "phrase": "also results in drastically reduced radical formation",
+      "category": "claim"
+    },
+    {
+      "phrase": "suggesting together with our EPR data that",
+      "category": "hedge"
+    },
+    {
+      "phrase": "We have shown here using an integrative computational-experimental approach that",
+      "category": "claim"
+    },
+    {
+      "phrase": "We find that a proximal water molecule could act as a molecular switch",
+      "category": "hedge"
+    },
+    {
+      "phrase": "with distant mutations resulting in the loss of radical formation as shown by",
+      "category": "claim"
+    },
+    {
+      "phrase": "we further suggest that the LBHB exerts a strong redox-tuning effect",
+      "category": "hedge"
+    },
+    {
+      "phrase": "provides a basis for the energetically uphill long-range radical transport",
+      "category": "claim"
+    },
+    {
+      "phrase": "On a general level, our findings provide support for",
+      "category": "implication"
+    },
+    {
+      "phrase": "the direct involvement of LBHBs in protein chemistry and the importance of quantum effects in enzyme catalysis",
+      "category": "implication"
+    },
+    {
+      "phrase": "by mechanistic principles that remain much debated",
+      "category": "opening"
+    },
+    {
+      "phrase": "nuclear quantum effects (NQE) further reduce the O···O distance by 0.04 Å",
+      "category": "claim"
+    },
+    {
+      "phrase": "The LBHB character is supported by the flat free energy profile",
+      "category": "claim"
+    },
+    {
+      "phrase": "while in silico deuteration of the hydrogen-bonded network suggests that the proton delocalization is sensitive to isotope effects",
+      "category": "hedge"
+    },
+    {
+      "phrase": "NQEs further decrease the DOPA–Asp88 bond distance by ca. 0.04 Å, and may thus contribute in forming the tight LBHB system",
+      "category": "hedge"
+    },
+    {
+      "phrase": "consistent with observations in the XFEL data",
+      "category": "claim"
+    },
+    {
+      "phrase": "Hydrogen-bonded network extending from DOPA• through Asp88, Lys213, His122 to Asp212, located ca. 15 Å away",
+      "category": "figure_legend"
+    },
+    {
+      "phrase": "The key proximal out-of-plane water molecule adjacent to DOPA• is depicted",
+      "category": "figure_legend"
+    }
+  ],
+  "verification_status": {
+    "overall": "verified",
+    "notes": "All extracted phrases are literal substrings from the input text. Numerical values (2.41 Å, 2.43 Å, 0.04 Å, 15 Å, >30 Å, >10 Å) appear verbatim in the input. No external references, author names, or invented data were included. The profile accurately reflects the paper's assertive yet appropriately hedged tone, its mechanism-focused framing, and its integration of computational and experimental approaches."
+  },
+  "extraction_constraints_respected": {
+    "no_external_references": true,
+    "no_invented_numbers": true,
+    "no_invented_author_names": true,
+    "phrases_from_input_only": true
+  },
+  "_meta": {
+    "generated_at": "2026-05-25T13:13:49.134013+00:00",
+    "model": "claude-sonnet-4-5",
+    "papers_path": "D:\\InSynBio-AI-Research\\Antibody_Engineer_Suite\\services\\writing_memory\\papers_raw\\pnas\\42096306.json",
+    "phrase_check_violations": 0,
+    "schema_valid": true
+  }
+}

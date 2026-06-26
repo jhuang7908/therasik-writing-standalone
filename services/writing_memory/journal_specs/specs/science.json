@@ -1,0 +1,65 @@
+{
+  "schema_version": "0.1.0",
+  "journal": { "key": "science", "display": "Science" },
+  "spec_version": "0.1.0",
+  "sourced_from": [
+    { "url": "https://www.science.org/content/page/science-information-authors", "label": "Science Information for Authors", "captured_at": null },
+    { "url": "https://www.science.org/content/page/science-editorial-policies", "label": "Science Editorial Policies", "captured_at": null }
+  ],
+  "captured_at": null,
+
+  "article_types": [
+    { "value": "Research Article", "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-information-authors" },
+    { "value": "Report", "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-information-authors" },
+    { "value": "Review", "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-information-authors" },
+    { "value": "Perspective / Policy Forum", "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-information-authors" }
+  ],
+
+  "structure": {
+    "required_sections": { "value": ["abstract","introduction","results","discussion","materials_and_methods","references_and_notes"], "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-information-authors" },
+    "optional_sections": { "value": ["one_sentence_summary","supplementary_materials","acknowledgments","author_contributions","competing_interests","data_and_materials_availability"], "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-information-authors" },
+    "one_sentence_summary": { "value": "Mandatory for Research Articles and Reports — ≤125 characters.", "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-information-authors" }
+  },
+
+  "abstract": {
+    "word_limit": { "value": 125, "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-information-authors", "notes": "Reports ≤125 words; Research Articles up to ~250 words." },
+    "structured": { "value": false, "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-information-authors" }
+  },
+
+  "main_text": {
+    "word_limit": { "value": 4500, "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-information-authors", "notes": "Research Article ≤4500 words; Report ≤2500 words. Excludes refs and SOM." },
+    "figure_count_limit": { "value": 6, "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-information-authors", "notes": "Research Article ≤6; Report ≤4." },
+    "table_count_limit": { "value": 4, "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-information-authors" },
+    "supplementary_policy": { "value": "Supplementary Materials (Materials and Methods, additional figures, tables, datasets) allowed; cited as fig./table S#.", "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-information-authors" }
+  },
+
+  "figures_tables": {
+    "figure_resolution": { "value": "≥300 dpi (halftone), ≥600 dpi (line art) at intended print size.", "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-information-authors" },
+    "color_policy": { "value": "Colour figures free of charge.", "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-information-authors" },
+    "legend_word_limit": { "value": 250, "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-information-authors" },
+    "accepted_formats": { "value": ["TIFF","EPS","PDF (vector)"], "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-information-authors" }
+  },
+
+  "declarations": {
+    "competing_interests": { "value": "Mandatory Competing Interests statement.", "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-editorial-policies" },
+    "funding_statement": { "value": "Mandatory in Acknowledgments.", "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-information-authors" },
+    "author_contributions": { "value": "Mandatory — CRediT taxonomy.", "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-editorial-policies" },
+    "ethics_statement": { "value": "Required for human/animal studies; IRB/IACUC approval IDs.", "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-editorial-policies" },
+    "consent_statement": { "value": "Required for human-subject research.", "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-editorial-policies" },
+    "reporting_checklist": { "value": "Reporting guidelines (ARRIVE, CONSORT, STROBE, PRISMA) where applicable.", "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-editorial-policies" }
+  },
+
+  "data_and_code": {
+    "data_availability": { "value": "Mandatory Data and Materials Availability statement.", "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-editorial-policies" },
+    "code_availability": { "value": "Mandatory for novel code; deposit to public repo with DOI.", "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-editorial-policies" },
+    "preferred_repositories": { "value": ["GenBank","GEO","SRA","PDB","Zenodo","Dryad"], "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-editorial-policies" },
+    "accession_required": { "value": true, "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-editorial-policies" }
+  },
+
+  "reference_style_id": "science_numbered",
+  "reference_limit": { "value": 60, "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-information-authors", "notes": "Research Article: ≤60; Report: ≤40 (incl. notes)." },
+
+  "notes": [
+    { "value": "Numbering for references includes notes; references and notes are interspersed.", "verification_status": "published_guideline", "source_url": "https://www.science.org/content/page/science-information-authors" }
+  ]
+}
