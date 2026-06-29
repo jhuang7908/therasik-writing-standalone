@@ -1,9 +1,7 @@
 name: Weekly Humanized Mice PPT & Video
 
 on:
-  schedule:
-    # Every Monday 01:00 UTC = Beijing 09:00 / Toronto 21:00 Sunday
-    - cron: "0 1 * * 1"
+  # Schedule disabled — run manually from Actions tab when needed
   workflow_dispatch:
     inputs:
       replay_bundle:
