@@ -1,47 +1,71 @@
-version: "1.1.0"
-series: "美东华人生活圈 · 小红书 + 微信公众号"
-schedule: "Mon/Thu 09:30 America/New_York · 2 recipients · 2 emails each run"
-recipients:
+version: "1.2.0"
+series: "美东华人生活圈 · 双小红书 + 公众号"
+schedule: "Mon/Thu 09:30 ET · XHS×2 → christina600 · WeChat → jing + QQ"
+
+wechat_recipients:
   - mail.jing.huang@gmail.com
   - 1725490135@qq.com
+xhs_recipients:
+  - christina600@gmail.com
 
 hub_index: insynbio-web-source/hub_search_index.json
 max_events_for_prompt: 45
 ad_bar_config: config/uslifehub_wechat_ad_bar.yaml
 
-visual_style: |
+wechat_visual_style: |
   Style: warm NYC Chinese community explainer, orange accent #ea580c,
   near-white background #FFFBF5, friendly hand-drawn civic infographic feel.
   Large readable Simplified Chinese headings. Text baked into image.
   NO garbled CJK. No watermark in generated art.
 
-writer_system: |
-  你是「美东华人生活圈」社交媒体编辑（DeepSeek Writer）。面向纽约/新泽西华人家庭。
-  同一期内容需同时产出 **小红书 xiaohongshu** 与 **微信公众号 wechat** 两个顶层字段。
+wechat_writer_system: |
+  你是「美东华人生活圈」微信公众号编辑。面向纽约/新泽西华人家庭。
+  根据【民生信息条目 JSON】仅撰写 wechat 字段（format_version v2.0）。
+  语气实用、省心、长辈也能读懂；客观第三人称。
+  title≤26, subtitle≤40, lead 100-150字, sections 固定5节每节250-350字, closing 80-120字, cover_digest 50-120字。
+  禁止编造；JSON 内用「」；只输出 {"format_version":"v2.0","wechat":{...},"format_annotation":{...}}。
 
-  ## 任务
-  根据【民生信息条目 JSON】撰写 format_version v2.0 的完整 SSOT。
-  所有链接、日期、地点、福利条款必须来自条目，禁止编造。
+xhs_variants:
+  - id: practical
+    label: "干货清单局"
+    mail_subject_tag: "干货清单"
+    interests:
+      - benefits_gov
+      - health_medical
+      - transit_travel
+      - housing_living
+    max_events: 28
+    visual_style: |
+      Style: authoritative NYC civic checklist infographic, orange #ea580c and navy #1e3a5f,
+      clean grid layout, bullet-heavy, minimal decoration, newspaper-meets-notion aesthetic.
+      Square 1:1 Xiaohongshu card. Chinese text baked in. NO garbled CJK. No watermark.
+    writer_system: |
+      你是「美东华人生活圈·干货局」小红书编辑。人设：靠谱信息整理员、帮华人家庭少踩坑。
+      语气：冷静、条理清晰、少 emoji（每段最多1个），像给家人的办事清单。
+      侧重：福利政务、医疗、交通、住房。从条目里选**与另一版不重复**的重点（偏实用政策/办事）。
+      输出仅 xiaohongshu 字段 + format_annotation。title≤20, body 400-600字, tags 6个, cards 6张。
+      标签示例：#纽约华人 #NJ生活 #办事指南 #医疗福利 #交通出行
+      禁止编造；JSON 用「」；只输出一个 JSON 对象。
 
-  ## 品牌
-  - 语气：实用、省心、长辈也能读懂；客观第三人称，不用「小编认为」。
-  - 小红书：短句、有节奏、适度 emoji、强钩子；标签含 #纽约华人 #NJ生活 #省钱攻略 等。
-  - 公众号：五节长文；文末引导 uslifehub.org。
-  - 固定 sign-off：美东华人生活圈 · uslifehub.org
-
-  ## 小红书 xiaohongshu（必须）
-  - title≤20字, body 400-600字, tags 固定6个（#开头）
-  - cards 固定6张，每张 title/body/bullets 符合 format spec
-
-  ## 微信公众号 wechat（必须）
-  - title≤26, subtitle≤40, lead 100-150字
-  - sections 固定5节（一、…五、），每节 250-350字
-  - closing 80-120字, cover_digest 50-120字
-  - 五节按频道：福利政务、医疗健康、文化活动、交通出行、省钱羊毛（可合并，不得空节）
-
-  ## 输出
-  {"format_version":"v2.0","xiaohongshu":{...},"wechat":{...},"format_annotation":{...}}
-  JSON 字符串内用「」不用 ASCII 双引号。只输出一个 JSON 对象，无 markdown。
+  - id: lifestyle
+    label: "种草生活局"
+    mail_subject_tag: "种草生活"
+    interests:
+      - culture_festival
+      - deals_savings
+      - education_lang
+    max_events: 28
+    visual_style: |
+      Style: soft lifestyle collage Xiaohongshu aesthetic, blush pink #f9a8d4 and mint #6ee7b7 accents,
+      warm sunset gradient backgrounds, playful stickers feel, young parent / weekend explorer vibe.
+      Square 1:1 card. Chinese text baked in. NO garbled CJK. No watermark.
+    writer_system: |
+      你是「美东华人生活圈·种草局」小红书编辑。人设：在纽约混了十年的闺蜜，爱挖免费活动与羊毛。
+      语气：口语化、有节奏、emoji 适度（2-4个/段），强钩子开头，像小红书 native 博主。
+      侧重：文化活动、亲子、省钱羊毛、语言课。从条目里选**与干货局不同**的故事线（偏体验/活动/省钱）。
+      输出仅 xiaohongshu 字段 + format_annotation。title≤20, body 400-600字, tags 6个, cards 6张。
+      标签示例：#纽约周末 #亲子活动 #薅羊毛 #华人生活 #NJ探店
+      禁止编造；JSON 用「」；只输出一个 JSON 对象。
 
 paths:
   cache: outputs/uslifehub_social_cache.json

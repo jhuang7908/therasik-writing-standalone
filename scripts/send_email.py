@@ -316,7 +316,8 @@ def _embed_image_cid(msg_root: MIMEMultipart, img_path: Path, cid: str,
 
 
 def send_xhs_report(article: dict, social_data: dict, img_dir: Path,
-                    recipients: list, week_tag: str, *, brand: str = "nextvivo"):
+                    recipients: list, week_tag: str, *, brand: str = "nextvivo",
+                    variant_label: str | None = None):
     """Email 2: XHS — 6 card images inline + ASCII attachments."""
     from email.mime.multipart import MIMEMultipart as MMP
 
@@ -329,7 +330,8 @@ def send_xhs_report(article: dict, social_data: dict, img_dir: Path,
         accent = "#0d9488"
     elif brand == "uslifehub":
         from_name = "美东华人生活圈"
-        subject = f"【美东华人生活圈 小红书】{week_tag} — {xhs.get('title', '民生精选')}"
+        variant_tag = f"·{variant_label}" if variant_label else ""
+        subject = f"【美东华人生活圈 小红书{variant_tag}】{week_tag} — {xhs.get('title', '民生精选')}"
         footer = "美东华人生活圈 · uslifehub.org"
         accent = "#ea580c"
     else:
@@ -392,9 +394,13 @@ def send_xhs_report(article: dict, social_data: dict, img_dir: Path,
 
 
 def send_uslifehub_xhs_report(article: dict, social_data: dict, img_dir: Path,
-                              recipients: list, week_tag: str):
+                              recipients: list, week_tag: str,
+                              *, variant_label: str | None = None):
     """美东华人生活圈 XHS delivery email."""
-    send_xhs_report(article, social_data, img_dir, recipients, week_tag, brand="uslifehub")
+    send_xhs_report(
+        article, social_data, img_dir, recipients, week_tag,
+        brand="uslifehub", variant_label=variant_label,
+    )
 
 
 def send_therasik_xhs_report(article: dict, social_data: dict, img_dir: Path,
