@@ -327,11 +327,23 @@ def send_xhs_report(article: dict, social_data: dict, img_dir: Path,
         subject = f"【Therasik 小红书】{week_tag} — {xhs.get('title', 'AI药物设计')}"
         footer = "Therasik · InSynBio — AI 驱动的抗体工程与药物设计洞察"
         accent = "#0d9488"
+    elif brand == "uslifehub":
+        from_name = "美东华人生活圈"
+        subject = f"【美东华人生活圈 小红书】{week_tag} — {xhs.get('title', '民生精选')}"
+        footer = "美东华人生活圈 · uslifehub.org"
+        accent = "#ea580c"
     else:
         from_name = "NextVivo Pipeline"
         subject = f"【NextVivo 小红书】{week_tag} — {xhs.get('title', '人源化小鼠')}"
         footer = "未来模式生物科技 · NextVivo"
         accent = "#e74c3c"
+
+    if brand == "uslifehub":
+        source_line = f"数据来源：uslifehub.org · campaign {article.get('campaign_id', week_tag)}"
+    elif brand == "therasik":
+        source_line = f"来源：{article.get('title','')} | PMID {article.get('pmid','')} | DOI {article.get('doi','')}"
+    else:
+        source_line = f"来源文章：{article.get('title','')} | PMID {article.get('pmid','')} | DOI {article.get('doi','')}"
 
     msg = MMP("related")
     msg["From"]    = f"{from_name} <{sender}>"
@@ -363,7 +375,7 @@ def send_xhs_report(article: dict, social_data: dict, img_dir: Path,
 <hr>
 <h3>6 张卡片（正文内嵌预览 + 附件可下载）</h3>{cards_html}
 <hr>
-<p style="font-size:11px;color:#888">来源文章：{article.get('title','')} | PMID {article.get('pmid','')} | DOI {article.get('doi','')}</p>
+<p style="font-size:11px;color:#888">{source_line}</p>
 <p style="font-size:11px;color:#888">{footer}</p>
 </body></html>"""
     msg.attach(MIMEText(html, "html", "utf-8"))
@@ -377,6 +389,12 @@ def send_xhs_report(article: dict, social_data: dict, img_dir: Path,
                 _attach_file(msg, img_path, f"xhs_card_{i:02d}.jpg", compress=True)
 
     _smtp_send(msg, recipients)
+
+
+def send_uslifehub_xhs_report(article: dict, social_data: dict, img_dir: Path,
+                              recipients: list, week_tag: str):
+    """美东华人生活圈 XHS delivery email."""
+    send_xhs_report(article, social_data, img_dir, recipients, week_tag, brand="uslifehub")
 
 
 def send_therasik_xhs_report(article: dict, social_data: dict, img_dir: Path,
