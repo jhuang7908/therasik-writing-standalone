@@ -318,11 +318,18 @@ def process_journal(journal: dict, outdir: Path, delay: float, verbose: bool) ->
     key = _make_key(title)
     out_file = outdir / f"{key}.json"
 
-    # Skip if already done
+    # Skip only if already fully processed (has source_url AND fetch_status==ok)
     if out_file.exists():
-        if verbose:
-            print(f"  SKIP (exists): {title}")
-        return True
+        try:
+            existing = json.loads(out_file.read_text(encoding="utf-8"))
+            if existing.get("fetch_status") == "ok" and existing.get("source_url"):
+                if verbose:
+                    print(f"  SKIP (done): {title}")
+                return True
+            if verbose:
+                print(f"  RE-PROCESS (incomplete, status={existing.get('fetch_status','?')}): {title}")
+        except Exception:
+            pass  # unreadable file → re-process
 
     if verbose:
         print(f"  Processing: {title} [{issn}]")
@@ -363,7 +370,7 @@ def process_journal(journal: dict, outdir: Path, delay: float, verbose: bool) ->
         _save(out_file, result)
         return False
 
-    result["submission_url"] = guideline_url
+    result["source_url"] = guideline_url  # used by scrape_guidelines_playwright.py
 
     # Fetch and extract requirements
     time.sleep(delay)
@@ -402,6 +409,7 @@ def _rebuild_index(outdir: Path) -> None:
                 "issn_online": data.get("issn_online", ""),
                 "publisher": data.get("publisher", ""),
                 "fetch_status": data.get("fetch_status", ""),
+                "has_source_url": bool(data.get("source_url")),
             }
         except Exception:
             pass
