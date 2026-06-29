@@ -217,13 +217,19 @@ def rebuild_index(journal_dir: Path) -> int:
             continue
         try:
             data = json.loads(f.read_text(encoding="utf-8"))
-            key  = f.stem
+            key  = data.get("key") or f.stem
+            issn = data.get("issn_print") or data.get("issn_online") or data.get("issn", "")
+            if isinstance(issn, list):
+                issn = issn[0] if issn else ""
             index[key] = {
-                "display_name":      data.get("display_name", key),
-                "issn":              data.get("issn", ""),
+                "display_name":      data.get("display_name") or data.get("title") or key,
+                "issn":              issn,
                 "publisher":         data.get("publisher", ""),
                 "submission_system": data.get("submission_system", ""),
                 "submission_url":    data.get("submission_url", ""),
+                "fetch_status":      data.get("fetch_status", ""),
+                "has_source_url":    bool(data.get("source_url") or (data.get("requirements") or {}).get("source_url")),
+                "has_guidelines":    bool(data.get("article_types")),
             }
         except Exception:
             continue

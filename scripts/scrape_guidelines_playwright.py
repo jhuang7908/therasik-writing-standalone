@@ -291,12 +291,16 @@ async def _find_guidelines_link(page: Page) -> Optional[str]:
     return candidates[0][1] if candidates else None
 
 
-async def _safe_navigate(page: Page, url: str, timeout: int = 30000) -> bool:
+async def _safe_navigate(page: Page, url: str, timeout: int = 45000) -> bool:
     """Navigate to URL, return True if successful."""
     try:
         await page.goto(url, timeout=timeout, wait_until="domcontentloaded")
-        await page.wait_for_timeout(1500)
+        await page.wait_for_timeout(2000)
         await _dismiss_cookies(page)
+        try:
+            await page.wait_for_load_state("networkidle", timeout=8000)
+        except Exception:
+            pass
         return True
     except Exception:
         return False
@@ -448,6 +452,137 @@ async def parse_generic(page: Page, url: str) -> dict:
     return result
 
 
+# ── Journal metadata helpers ───────────────────────────────────────────────────
+
+_PUBLISHER_PRIORITY = (
+    "elsevier", "springer", "nature", "wiley", "plos", "frontiers",
+    "oxford", "oup", "taylor", "cell press",
+)
+
+
+def _resolve_issn(data: dict) -> str:
+    for key in ("issn_online", "issn_print", "issn"):
+        val = data.get(key)
+        if isinstance(val, list):
+            val = val[0] if val else ""
+        if isinstance(val, str) and val.strip():
+            return val.replace("-", "").strip()
+    return ""
+
+
+def _resolve_issn_display(data: dict) -> str:
+    raw = data.get("issn_print") or data.get("issn_online") or data.get("issn")
+    if isinstance(raw, list):
+        raw = raw[0] if raw else ""
+    return raw.strip() if isinstance(raw, str) else ""
+
+
+def _journal_name(data: dict) -> str:
+    return (data.get("display_name") or data.get("title") or "").strip()
+
+
+def _has_complete_article_types(data: dict) -> bool:
+    art_types = data.get("article_types") or {}
+    if not art_types:
+        return False
+    return any(
+        v.get("max_words_main_text") or v.get("max_words_abstract")
+        for v in art_types.values()
+        if isinstance(v, dict)
+    )
+
+
+def _materialize_from_requirements(data: dict) -> tuple[dict, int]:
+    req = data.get("requirements") or {}
+    if not req:
+        return {}, 0
+
+    article_spec: dict = {}
+    word_limits = req.get("word_limits") or {}
+    if isinstance(word_limits, dict):
+        general = word_limits.get("general")
+        if general:
+            article_spec["max_words_main_text"] = general
+        elif word_limits:
+            first = next(iter(word_limits.values()))
+            if isinstance(first, int):
+                article_spec["max_words_main_text"] = first
+
+    if req.get("abstract_limit"):
+        article_spec["max_words_abstract"] = req["abstract_limit"]
+    if req.get("reference_limit"):
+        article_spec["max_references"] = req["reference_limit"]
+    if req.get("required_sections"):
+        article_spec["required_sections"] = req["required_sections"]
+
+    scraped: dict = {}
+    if article_spec:
+        scraped["article_types"] = {"Article": article_spec}
+    if req.get("citation_style"):
+        scraped["reference_style"] = req["citation_style"]
+    if req.get("figure_resolution_dpi"):
+        scraped["figure_dpi"] = req["figure_resolution_dpi"]
+        scraped["figure_format"] = [f"TIFF ({req['figure_resolution_dpi']} dpi min)"]
+    elif req.get("figure_format"):
+        scraped["figure_format"] = req["figure_format"]
+    if req.get("source_url") and not data.get("source_url"):
+        scraped["source_url"] = req["source_url"]
+
+    fields = 0
+    for art_spec in scraped.get("article_types", {}).values():
+        fields += sum(1 for v in art_spec.values() if v)
+    for key in ("reference_style", "figure_format", "figure_dpi"):
+        if scraped.get(key):
+            fields += 1
+    return scraped, fields
+
+
+def _scrape_priority(data: dict) -> int:
+    score = 0
+    if data.get("source_url"):
+        score += 120
+    if data.get("homepage"):
+        score += 60
+    if data.get("requirements"):
+        score += 50
+    if _resolve_issn(data):
+        score += 30
+    pub = (data.get("publisher") or "").lower()
+    for i, needle in enumerate(_PUBLISHER_PRIORITY):
+        if needle in pub:
+            score += 40 - i
+            break
+    if _journal_name(data):
+        score += 10
+    return score
+
+
+def _select_scrape_queue(
+    files: list[Path],
+    limit: int,
+    publisher_filter: str = "",
+) -> list[Path]:
+    candidates: list[tuple[int, Path]] = []
+    pf = publisher_filter.lower().strip()
+
+    for path in files:
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        if _has_complete_article_types(data):
+            continue
+        if pf and pf not in (data.get("publisher") or "").lower():
+            continue
+        if _scrape_priority(data) <= 0 and not _guess_guidelines_url(data):
+            continue
+        candidates.append((_scrape_priority(data), path))
+
+    candidates.sort(key=lambda x: (-x[0], x[1].name))
+    selected = [p for _, p in candidates]
+    return selected[:limit] if limit else selected
+
+
 # ── URL finders ────────────────────────────────────────────────────────────────
 
 def _guess_guidelines_url(data: dict) -> Optional[str]:
@@ -455,52 +590,72 @@ def _guess_guidelines_url(data: dict) -> Optional[str]:
     Guess the Instructions for Authors URL from journal metadata.
     Returns None if we can't construct a good candidate.
     """
-    issn      = data.get("issn", "").replace("-", "")
-    publisher = data.get("publisher", "").lower()
-    name      = data.get("display_name", "").lower()
-    sub_url   = data.get("submission_url", "")
+    issn      = _resolve_issn(data)
+    issn_disp = _resolve_issn_display(data)
+    publisher = (data.get("publisher") or "").lower()
+    name      = _journal_name(data).lower()
+    homepage  = (data.get("homepage") or "").strip()
 
-    # Elsevier
+    if homepage and any(k in homepage.lower() for k in (
+        "guide-for-authors", "for-authors", "author-guidelines",
+        "submission-guidelines", "instructions-for-authors",
+    )):
+        return homepage
+
     if "elsevier" in publisher or "cell press" in publisher:
         slug = re.sub(r"[^a-z0-9]+", "-", name).strip("-")
-        return f"https://www.elsevier.com/journals/{slug}/{data.get('issn','')}/guide-for-authors"
+        if slug and issn_disp:
+            return f"https://www.elsevier.com/journals/{slug}/{issn_disp}/guide-for-authors"
+        if slug:
+            return f"https://www.elsevier.com/journals/{slug}/guide-for-authors"
 
-    # Nature Portfolio
-    if "nature portfolio" in publisher or "nature publishing" in publisher:
-        slug = re.sub(r"[^a-z0-9]+", "-", name).strip("-")
+    if "nature portfolio" in publisher or "nature publishing" in publisher or (
+        name.startswith("nature ") or name == "nature"
+    ):
+        slug = re.sub(r"^nature\s+", "", name)
+        slug = re.sub(r"[^a-z0-9]+", "-", slug).strip("-") or "nature"
         return f"https://www.nature.com/{slug}/for-authors"
 
-    # Springer (non-Nature)
     if "springer" in publisher and "nature" not in publisher:
         if issn:
             return f"https://link.springer.com/journal/{issn}/submission-guidelines"
 
-    # Wiley
-    if "wiley" in publisher or "blackwell" in publisher:
+    if "wiley" in publisher or "blackwell" in publisher or "wolters kluwer" in publisher:
         if issn:
             return f"https://onlinelibrary.wiley.com/journal/{issn}"
 
-    # Oxford
     if "oxford" in publisher or "oup" in publisher:
         slug = re.sub(r"[^a-z0-9]+", "", name)
-        return f"https://academic.oup.com/{slug}/pages/General_Instructions"
+        if slug:
+            return f"https://academic.oup.com/{slug}/pages/General_Instructions"
 
-    # Taylor & Francis
     if "taylor" in publisher or "informa" in publisher:
         if issn:
             return f"https://www.tandfonline.com/action/authorSubmission?journalCode={issn}&page=instructions"
 
-    # Frontiers
     if "frontiers" in publisher:
         slug = re.sub(r"^frontiers\s+in\s+", "", name)
         slug = re.sub(r"[^a-z0-9]+", "-", slug).strip("-")
-        return f"https://www.frontiersin.org/journals/{slug}/for-authors"
+        if slug:
+            return f"https://www.frontiersin.org/journals/{slug}/for-authors"
 
-    # PLOS
     if "plos" in publisher or "public library" in publisher:
         slug = re.sub(r"[^a-z0-9]+", "", name.replace("plos ", "plos"))
-        return f"https://journals.{slug}.org/s/submission-guidelines"
+        if slug:
+            return f"https://journals.plos.org/{slug}/s/submission-guidelines"
 
+    return None
+
+
+def _resolve_guidelines_url(data: dict) -> Optional[str]:
+    for candidate in (
+        data.get("source_url"),
+        (data.get("requirements") or {}).get("source_url"),
+        _guess_guidelines_url(data),
+        data.get("homepage"),
+    ):
+        if isinstance(candidate, str) and candidate.startswith("http"):
+            return candidate
     return None
 
 
@@ -534,24 +689,30 @@ async def scrape_one(
 ) -> dict:
     """Scrape guidelines for one journal. Returns result dict."""
     data      = json.loads(json_path.read_text(encoding="utf-8"))
-    title     = data.get("display_name", json_path.stem)
+    title     = _journal_name(data) or json_path.stem
     publisher = data.get("publisher", "")
 
     result = {"file": json_path.name, "title": title, "status": "skipped",
                "parser": "", "fields_found": 0}
 
-    # Skip if already has article_types with word limits
-    art_types = data.get("article_types", {})
-    has_data  = any(
-        v.get("max_words_main_text") or v.get("max_words_abstract")
-        for v in art_types.values()
-    ) if art_types else False
-    if has_data:
+    if _has_complete_article_types(data):
         result["status"] = "already_complete"
         return result
 
+    promoted, promoted_fields = _materialize_from_requirements(data)
+    if promoted_fields > 0 and not dry_run:
+        for key, val in promoted.items():
+            existing = data.get(key)
+            if not existing or existing == {} or existing == []:
+                data[key] = val
+        json_path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+        result["status"] = "success"
+        result["parser"] = "requirements_promote"
+        result["fields_found"] = promoted_fields
+        return result
+
     # Get guidelines URL
-    guidelines_url = data.get("source_url") or _guess_guidelines_url(data)
+    guidelines_url = _resolve_guidelines_url(data)
     if not guidelines_url:
         result["status"] = "no_url"
         return result
@@ -560,15 +721,14 @@ async def scrape_one(
     ok = await _safe_navigate(page, guidelines_url)
     if not ok:
         # Try finding link from journal homepage
-        homepage = data.get("submission_url", "")
-        if homepage:
+        homepage = (data.get("homepage") or data.get("submission_url") or "").strip()
+        if homepage.startswith("http"):
             ok = await _safe_navigate(page, homepage)
             if ok:
-                guidelines_url = await _find_guidelines_link(page) or ""
-                if guidelines_url:
-                    if not guidelines_url.startswith("http"):
-                        from urllib.parse import urljoin
-                        guidelines_url = urljoin(homepage, guidelines_url)
+                found = await _find_guidelines_link(page) or ""
+                if found:
+                    from urllib.parse import urljoin
+                    guidelines_url = found if found.startswith("http") else urljoin(homepage, found)
                     ok = await _safe_navigate(page, guidelines_url)
 
     if not ok:
@@ -630,23 +790,10 @@ async def run_scraper(
     dry_run: bool = False,
     verbose: bool = True,
 ) -> dict:
-    files = [f for f in sorted(journal_dir.glob("*.json")) if f.name != "_index.json"]
-
-    # Filter by publisher if requested
-    if publisher_filter:
-        pf = publisher_filter.lower()
-        filtered = []
-        for f in files:
-            try:
-                d = json.loads(f.read_text(encoding="utf-8"))
-                if pf in d.get("publisher", "").lower():
-                    filtered.append(f)
-            except Exception:
-                pass
-        files = filtered
-
-    if limit:
-        files = files[:limit]
+    all_files = [f for f in sorted(journal_dir.glob("*.json")) if f.name != "_index.json"]
+    files = _select_scrape_queue(all_files, limit, publisher_filter)
+    if verbose:
+        print(f"  Queue selected: {len(files)} / {len(all_files)} journals needing guidelines")
 
     summary = {
         "total": len(files), "success": 0, "skipped": 0,
