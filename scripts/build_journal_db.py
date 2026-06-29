@@ -285,14 +285,37 @@ def crossref_journal(issn: str) -> dict:
         return {}
     try:
         msg = json.loads(data).get("message", {})
+        homepage = (msg.get("URL") or "").strip()
+        if not homepage:
+            homepage = openalex_homepage(issn)
         return {
             "publisher": msg.get("publisher", ""),
-            "homepage": msg.get("URL", ""),
+            "homepage": homepage,
             "subjects": [s.get("name", "") for s in msg.get("subjects", [])],
             "is_referenced_by_count": msg.get("is-referenced-by-count", 0),
         }
     except Exception:
         return {}
+
+
+def openalex_homepage(issn: str) -> str:
+    """Fallback homepage lookup via OpenAlex (CrossRef often lacks URL)."""
+    if not issn:
+        return ""
+    clean = issn.replace("-", "").strip()
+    display = issn if "-" in issn else clean
+    for candidate in (display, clean):
+        url = f"https://api.openalex.org/sources/issn:{candidate}"
+        data = _http_get(url)
+        if not data:
+            continue
+        try:
+            homepage = (json.loads(data).get("homepage_url") or "").strip()
+            if homepage:
+                return homepage.replace("://www.springer.com/", "://link.springer.com/")
+        except Exception:
+            continue
+    return ""
 
 
 # --------------------------------------------------------------------------- #

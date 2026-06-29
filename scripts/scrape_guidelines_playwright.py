@@ -305,9 +305,28 @@ def _crossref_homepage(issn: str) -> str:
     try:
         with urllib.request.urlopen(req, timeout=20) as resp:
             msg = json.loads(resp.read()).get("message", {})
-            return (msg.get("URL") or "").strip()
+            homepage = (msg.get("URL") or "").strip()
+            if homepage:
+                return homepage
     except Exception:
-        return ""
+        pass
+    return _openalex_homepage(issn)
+
+
+def _openalex_homepage(issn: str) -> str:
+    clean = issn.replace("-", "").strip()
+    display = issn if "-" in issn else clean
+    for candidate in (display, clean):
+        url = f"https://api.openalex.org/sources/issn:{candidate}"
+        req = urllib.request.Request(url, headers={"User-Agent": CROSSREF_UA})
+        try:
+            with urllib.request.urlopen(req, timeout=20) as resp:
+                homepage = (json.loads(resp.read()).get("homepage_url") or "").strip()
+                if homepage:
+                    return homepage.replace("://www.springer.com/", "://link.springer.com/")
+        except Exception:
+            continue
+    return ""
 
 
 async def _safe_navigate(page: Page, url: str, timeout: int = 45000) -> bool:
@@ -679,11 +698,13 @@ def _guess_guidelines_url(data: dict) -> Optional[str]:
 
 
 def _resolve_guidelines_url(data: dict) -> Optional[str]:
+    issn = _resolve_issn_display(data) or _resolve_issn(data)
     for candidate in (
         data.get("source_url"),
         (data.get("requirements") or {}).get("source_url"),
-        _guess_guidelines_url(data),
         data.get("homepage"),
+        _crossref_homepage(issn) if issn else "",
+        _guess_guidelines_url(data),
     ):
         if isinstance(candidate, str) and candidate.startswith("http"):
             return candidate
