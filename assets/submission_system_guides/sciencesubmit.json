@@ -1,0 +1,36 @@
+{
+  "description": "Science family submission system used for Science, Science Advances, Science Translational Medicine, Science Immunology, Science Signaling, and Science Robotics (AAAS).",
+  "step_by_step": [
+    "1. Create account at submit2.science.org",
+    "2. Select target journal and manuscript type",
+    "3. Upload manuscript as a SINGLE PDF for initial review (figures + legends embedded)",
+    "4. Enter structured abstract (≤ 125 words, one paragraph)",
+    "5. Enter Impact Statement (one sentence, ≤ 100 characters) — editorial assessment only",
+    "6. Upload Supplementary Materials as a single PDF",
+    "7. Upload each figure as separate high-res TIFF for production",
+    "8. Add all author information and ORCID",
+    "9. Declare all conflicts of interest",
+    "10. Submit — you receive a manuscript ID",
+    "11. For revisions: address all reviewer comments in a separate response document"
+  ],
+  "common_errors": [
+    "Main manuscript not a single PDF → Science requires PDF for initial review",
+    "Abstract > 125 words → system flags on submission",
+    "Missing Impact Statement → required field",
+    "Supplementary as multiple files → should be single PDF labelled 'Supplementary Materials'",
+    "Figure legends not in main PDF → editors need legends for review"
+  ],
+  "file_requirements": {
+    "main_document": "Single PDF (MS + figure legends + references embedded)",
+    "figures": "High-res TIFF for production; also embedded in submission PDF",
+    "supplementary": "Single PDF labelled 'Supplementary Materials'",
+    "cover_letter": "Enter in text box on submission form",
+    "max_file_size_mb": 25
+  },
+  "system_key": "ScienceSubmit",
+  "scraped_text": "",
+  "scraped_at": "2026-06-29T23:15:27.738697+00:00",
+  "source_urls": [
+    "https://www.science.org/content/page/science-information-authors"
+  ]
+}
