@@ -215,16 +215,24 @@ def _article_for_prompt(article: dict) -> dict:
     }
 
 
-def generate_social_content(article: dict, out_path: Path) -> dict:
+def generate_social_content(
+    article: dict,
+    out_path: Path,
+    *,
+    system_prompt: str | None = None,
+    ad_bar_config: Path | None = None,
+) -> dict:
     """Full pipeline: write → fact-check → fix → validate → save."""
     print("=== Social Content Pipeline ===")
     if not article.get("full_text"):
         print("  [WARN] No full_text on article; falling back to abstract only")
 
+    prompt = system_prompt or SYSTEM_PROMPT
+
     # Stage 1: DeepSeek write
     print("  [1/3] DeepSeek writing...")
     user_msg = USER_TEMPLATE.format(**_article_for_prompt(article))
-    raw = _call_deepseek(user_msg, SYSTEM_PROMPT, max_tokens=5000)
+    raw = _call_deepseek(user_msg, prompt, max_tokens=5000)
     raw = _clean_json(raw)
 
     try:
@@ -273,10 +281,13 @@ def generate_social_content(article: dict, out_path: Path) -> dict:
     # WeChat cover digest fallback + fixed ad bar
     try:
         from wechat_cover import ensure_cover_digest
-        from wechat_ad_bar import inject_ad_bar
+        from wechat_ad_bar import inject_ad_bar, load_ad_bar_config
 
         ensure_cover_digest(data.setdefault("wechat", {}))
-        inject_ad_bar(data)
+        if ad_bar_config and ad_bar_config.exists():
+            inject_ad_bar(data, load_ad_bar_config(ad_bar_config))
+        else:
+            inject_ad_bar(data)
         print("  WeChat: cover_digest + ad_bar injected")
     except Exception as e:
         print(f"  [WARN] WeChat post-process failed: {e}")

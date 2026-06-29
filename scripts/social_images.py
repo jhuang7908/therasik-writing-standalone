@@ -479,9 +479,10 @@ def generate_wechat_images(social_data: dict, out_dir: Path, *, force: bool = Fa
             print(f"    [WARN] inline {img_counter} failed: {e}")
 
 
-def generate_wechat_ad_banner(out_dir: Path, *, force: bool = False, frozen_dir: Path | None = None):
+def generate_wechat_ad_banner(out_dir: Path, *, force: bool = False, frozen_dir: Path | None = None,
+                              ad_bar_config: Path | None = None):
     """Fixed promo banner — gpt-image-2 layout + real logo overlay."""
-    from wechat_ad_bar import render_ad_banner_png
+    from wechat_ad_bar import load_ad_bar_config, render_ad_banner_png
 
     out = out_dir / "wechat_ad_bar.png"
     if _copy_frozen_wechat_asset("wechat_ad_bar.png", out, frozen_dir):
@@ -489,14 +490,16 @@ def generate_wechat_ad_banner(out_dir: Path, *, force: bool = False, frozen_dir:
     if out.exists() and not force:
         print("    ad banner: cached")
         return
+    cfg = load_ad_bar_config(ad_bar_config) if ad_bar_config and ad_bar_config.exists() else None
     print("    ad banner (gpt-image-2 bg + PIL text + in-image logo zone)...")
-    render_ad_banner_png(out, render_fn=render_gpt)
+    render_ad_banner_png(out, cfg, render_fn=render_gpt)
 
 
 def generate_all_images(social_data: dict, out_dir: Path, *, force: bool = False,
                         frozen_wechat_dir: Path | None = None,
                         slide_dir: Path | None = None,
-                        inline_sections: list[int] | None = None):
+                        inline_sections: list[int] | None = None,
+                        ad_bar_config: Path | None = None):
     """Generate all social images (XHS + WeChat cover/inline/ad).
     
     slide_dir: path to PPT slide images (slide_01.png … slide_06.png).
@@ -512,7 +515,7 @@ def generate_all_images(social_data: dict, out_dir: Path, *, force: bool = False
     generate_wechat_cover(social_data, wx_dir, force=force, frozen_dir=frozen)
     generate_wechat_images(social_data, wx_dir, force=force, frozen_dir=frozen,
                            slide_dir=slide_dir, inline_sections=inline_sections)
-    generate_wechat_ad_banner(wx_dir, force=force, frozen_dir=frozen)
+    generate_wechat_ad_banner(wx_dir, force=force, frozen_dir=frozen, ad_bar_config=ad_bar_config)
     print(f"  All social images saved to {out_dir}")
 
 

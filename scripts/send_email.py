@@ -295,17 +295,27 @@ def _embed_image_cid(msg_root: MIMEMultipart, img_path: Path, cid: str,
 
 
 def send_xhs_report(article: dict, social_data: dict, img_dir: Path,
-                    recipients: list, week_tag: str):
+                    recipients: list, week_tag: str, *, brand: str = "nextvivo"):
     """Email 2: XHS — 6 card images inline + ASCII attachments."""
     from email.mime.multipart import MIMEMultipart as MMP
 
     sender = _smtp_configs()[0]["user"]
     xhs    = social_data.get("xiaohongshu", {})
+    if brand == "therasik":
+        from_name = "Therasik Content Pipeline"
+        subject = f"【Therasik 小红书】{week_tag} — {xhs.get('title', 'AI药物设计')}"
+        footer = "Therasik · InSynBio — AI 驱动的抗体工程与药物设计洞察"
+        accent = "#0d9488"
+    else:
+        from_name = "NextVivo Pipeline"
+        subject = f"【NextVivo 小红书】{week_tag} — {xhs.get('title', '人源化小鼠')}"
+        footer = "未来模式生物科技 · NextVivo"
+        accent = "#e74c3c"
 
     msg = MMP("related")
-    msg["From"]    = f"NextVivo Pipeline <{sender}>"
+    msg["From"]    = f"{from_name} <{sender}>"
     msg["To"]      = ", ".join(recipients)
-    msg["Subject"] = f"【NextVivo 小红书】{week_tag} — {xhs.get('title','人源化小鼠')}"
+    msg["Subject"] = subject
 
     tags_str = "  ".join(xhs.get("tags", []))
     cards_html = ""
@@ -323,7 +333,7 @@ def send_xhs_report(article: dict, social_data: dict, img_dir: Path,
         )
 
     html = f"""<html><body style="font-family:Arial,sans-serif;max-width:700px;margin:auto">
-<h2 style="color:#e74c3c">📱 小红书内容 — {week_tag}</h2>
+<h2 style="color:{accent}">📱 小红书内容 — {week_tag}</h2>
 <p><b>发布标题：</b>{xhs.get('title','')}</p>
 <p><b>标签：</b>{tags_str}</p>
 <hr>
@@ -333,7 +343,7 @@ def send_xhs_report(article: dict, social_data: dict, img_dir: Path,
 <h3>6 张卡片（正文内嵌预览 + 附件可下载）</h3>{cards_html}
 <hr>
 <p style="font-size:11px;color:#888">来源文章：{article.get('title','')} | PMID {article.get('pmid','')} | DOI {article.get('doi','')}</p>
-<p style="font-size:11px;color:#888">未来模式生物科技 · NextVivo</p>
+<p style="font-size:11px;color:#888">{footer}</p>
 </body></html>"""
     msg.attach(MIMEText(html, "html", "utf-8"))
 
@@ -348,13 +358,27 @@ def send_xhs_report(article: dict, social_data: dict, img_dir: Path,
     _smtp_send(msg, recipients)
 
 
+def send_therasik_xhs_report(article: dict, social_data: dict, img_dir: Path,
+                             recipients: list, week_tag: str):
+    """Therasik-branded XHS delivery email."""
+    send_xhs_report(article, social_data, img_dir, recipients, week_tag, brand="therasik")
+
+
 def send_wechat_report(article: dict, social_data: dict, img_dir: Path,
-                       recipients: list, week_tag: str):
+                       recipients: list, week_tag: str, *, brand: str = "nextvivo"):
     """Email 3: WeChat — full article + 3 images + ad bar."""
     from wechat_ad_bar import inject_ad_bar, render_ad_bar_html
 
     sender = _smtp_configs()[0]["user"]
     wx     = social_data.get("wechat", {})
+    if brand == "therasik":
+        from_name = "Therasik Content Pipeline"
+        subject = f"【Therasik 公众号】{week_tag} — {wx.get('title', 'AI药物设计')}"
+        footer = "Therasik · InSynBio — AI 驱动的抗体工程与药物设计洞察"
+    else:
+        from_name = "NextVivo Pipeline"
+        subject = f"【NextVivo 公众号】{week_tag} — {wx.get('title', '人源化小鼠免疫评估')}"
+        footer = "未来模式生物科技 · NextVivo"
     if not wx.get("ad_bar"):
         try:
             inject_ad_bar(social_data)
@@ -367,9 +391,9 @@ def send_wechat_report(article: dict, social_data: dict, img_dir: Path,
 
     # Top-level mixed container (file attachments go here)
     msg = MMP("mixed")
-    msg["From"]    = f"NextVivo Pipeline <{sender}>"
+    msg["From"]    = f"{from_name} <{sender}>"
     msg["To"]      = ", ".join(recipients)
-    msg["Subject"] = f"【NextVivo 公众号】{week_tag} — {wx.get('title','人源化小鼠免疫评估')}"
+    msg["Subject"] = subject
 
     # Inner related: HTML + CID images (CID parts stay hidden from attachment panel)
     related = MMP("related")
@@ -430,7 +454,7 @@ def send_wechat_report(article: dict, social_data: dict, img_dir: Path,
 {render_ad_bar_html(wx.get('ad_bar') or {}, embed_cid='wechat_ad_bar' if (img_dir / 'wechat_ad_bar.png').exists() else None)}
 <hr>
 <p style="font-size:11px;color:#888">来源：{article.get('title','')} | PMID {article.get('pmid','')} | DOI {article.get('doi','')}</p>
-<p style="font-size:11px;color:#888">未来模式生物科技 · NextVivo</p>
+<p style="font-size:11px;color:#888">{footer}</p>
 </body></html>"""
     related.attach(MIMEText(html, "html", "utf-8"))
 
@@ -464,6 +488,12 @@ def send_wechat_report(article: dict, social_data: dict, img_dir: Path,
 
     _qa_check_size(msg, "WeChat")
     _smtp_send(msg, recipients)
+
+
+def send_therasik_wechat_report(article: dict, social_data: dict, img_dir: Path,
+                                recipients: list, week_tag: str):
+    """Therasik-branded WeChat delivery email."""
+    send_wechat_report(article, social_data, img_dir, recipients, week_tag, brand="therasik")
 
 
 if __name__ == "__main__":
