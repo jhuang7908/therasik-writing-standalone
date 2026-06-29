@@ -13,9 +13,10 @@ on:
         required: false
         default: '1.0'
 
-  # Also run on a schedule: first day of each month at 2am UTC
+  # Run daily at 01:00 UTC — processes ~200 journals per run
+  # At limit=200, completes all 10,453 journals in ~52 days
   schedule:
-    - cron: '0 2 1 * *'
+    - cron: '0 1 * * *'
 
 jobs:
   build:
@@ -39,7 +40,7 @@ jobs:
       - name: Run journal database builder
         run: |
           python scripts/build_journal_db.py \
-            --limit ${{ github.event.inputs.limit || '0' }} \
+            --limit ${{ github.event.inputs.limit || '200' }} \
             --delay ${{ github.event.inputs.delay || '1.0' }} \
             --verbose
         env:

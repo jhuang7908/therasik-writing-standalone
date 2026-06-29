@@ -16,9 +16,10 @@ on:
         required: false
         default: '2.5'
 
-  # Run once a week on Sunday night — fills in gaps as new journals are added
+  # Run daily at 03:00 UTC — 2 hours after build_journal_db finishes
+  # Picks up journals that build_journal_db populated that day
   schedule:
-    - cron: '0 3 * * 0'
+    - cron: '0 3 * * *'
 
 jobs:
   # ── Job 1: Journal-specific guidelines (Playwright) ───────────────────────
