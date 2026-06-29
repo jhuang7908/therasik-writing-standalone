@@ -40,11 +40,15 @@ import json
 import re
 import sys
 import time
+import urllib.parse
+import urllib.request
 from pathlib import Path
 from typing import Optional
 
 SKILL_DIR   = Path(__file__).resolve().parents[1]
 JOURNAL_DIR = SKILL_DIR / "assets" / "journal_requirements"
+CROSSREF_JOURNALS = "https://api.crossref.org/journals/{issn}"
+CROSSREF_UA = "therasik-journal-scraper/1.1 (mailto:research@therasik.io)"
 
 try:
     from playwright.async_api import async_playwright, Page, Browser, TimeoutError as PWTimeout
@@ -251,44 +255,59 @@ async def _dismiss_cookies(page: Page):
 
 async def _get_visible_text(page: Page) -> str:
     """Extract all visible text from the current page."""
-    return await page.evaluate("""() => {
+    text = await page.evaluate("""() => {
         const blocks = document.querySelectorAll(
             'article, main, .content, .article-body, ' +
             '[class*="author"], [class*="guideline"], [class*="instruction"], ' +
             '[class*="submission"], .tab-content, #tab-content, ' +
-            'section, .section'
+            'section, .section, [data-test="submission-guidelines"]'
         );
-        if (blocks.length > 0) {
-            return Array.from(blocks).map(el => el.innerText).join('\\n');
-        }
-        return document.body.innerText;
+        const joined = blocks.length > 0
+            ? Array.from(blocks).map(el => el.innerText).join('\\n')
+            : '';
+        const body = document.body ? document.body.innerText : '';
+        return joined.length > 400 ? joined : body;
     }""")
+    return text or ""
 
 
 async def _find_guidelines_link(page: Page) -> Optional[str]:
     """Find the 'Instructions for Authors' / 'Author Guidelines' link."""
     keywords = [
-        "instructions for authors", "author guidelines", "guide for authors",
-        "author instructions", "submission guidelines", "for authors",
-        "how to submit", "preparing your manuscript",
+        "submission-guidelines", "instructions for authors", "author guidelines",
+        "guide for authors", "author instructions", "submission guidelines",
+        "for authors", "how to submit", "preparing your manuscript",
     ]
     links = await page.query_selector_all("a")
     candidates: list[tuple[int, str]] = []
     for link in links:
         try:
             text  = (await link.inner_text()).strip().lower()
-            href  = await link.get_attribute("href") or ""
+            href  = (await link.get_attribute("href") or "").lower()
             score = 0
             for i, kw in enumerate(keywords):
-                if kw in text:
-                    score = len(keywords) - i
+                if kw in text or kw in href:
+                    score = len(keywords) - i + (2 if "submission-guidelines" in href else 0)
                     break
             if score:
-                candidates.append((score, href))
+                candidates.append((score, await link.get_attribute("href") or ""))
         except Exception:
             pass
     candidates.sort(reverse=True)
     return candidates[0][1] if candidates else None
+
+
+def _crossref_homepage(issn: str) -> str:
+    if not issn:
+        return ""
+    url = CROSSREF_JOURNALS.format(issn=urllib.parse.quote(issn))
+    req = urllib.request.Request(url, headers={"User-Agent": CROSSREF_UA})
+    try:
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            msg = json.loads(resp.read()).get("message", {})
+            return (msg.get("URL") or "").strip()
+    except Exception:
+        return ""
 
 
 async def _safe_navigate(page: Page, url: str, timeout: int = 45000) -> bool:
@@ -343,24 +362,34 @@ async def parse_elsevier(page: Page, url: str) -> dict:
 
 async def parse_springer(page: Page, url: str) -> dict:
     """Springer / Nature for-authors pages."""
-    # Click "Submission guidelines" or "Manuscript preparation" tabs if present
-    for tab_text in ["Submission guidelines", "Manuscript preparation", "Article types"]:
+    for tab_text in [
+        "Submission guidelines", "Instructions for Authors",
+        "Manuscript preparation", "Article types", "For authors",
+    ]:
         try:
-            tab = page.locator(f"text='{tab_text}'").first
+            tab = page.locator(f"a:has-text('{tab_text}'), button:has-text('{tab_text}')").first
             if await tab.is_visible():
                 await tab.click()
-                await page.wait_for_timeout(1000)
+                await page.wait_for_timeout(1200)
+        except Exception:
+            pass
+
+    if "submission-guidelines" not in page.url.lower():
+        try:
+            link = page.locator("a[href*='submission-guidelines']").first
+            if await link.is_visible():
+                await link.click()
+                await page.wait_for_timeout(1500)
         except Exception:
             pass
 
     text = await _get_visible_text(page)
     result = _parse_text_to_spec(text)
 
-    # Nature-specific: Reporting Summary requirement
     if re.search(r"reporting\s+summary|life\s+sciences\s+checklist", text, re.IGNORECASE):
         result["reporting_summary"] = "Required (Nature checklist)"
 
-    result["source_url"]  = url
+    result["source_url"]  = page.url
     result["parser_used"] = "springer_nature"
     return result
 
@@ -617,8 +646,10 @@ def _guess_guidelines_url(data: dict) -> Optional[str]:
         return f"https://www.nature.com/{slug}/for-authors"
 
     if "springer" in publisher and "nature" not in publisher:
-        if issn:
-            return f"https://link.springer.com/journal/{issn}/submission-guidelines"
+        # Springer journal pages use internal numeric IDs, not ISSN — resolve via homepage.
+        homepage = (data.get("homepage") or _crossref_homepage(_resolve_issn_display(data) or _resolve_issn(data))).strip()
+        if homepage:
+            return homepage
 
     if "wiley" in publisher or "blackwell" in publisher or "wolters kluwer" in publisher:
         if issn:
@@ -735,6 +766,14 @@ async def scrape_one(
         result["status"] = "navigation_failed"
         return result
 
+    if "submission-guidelines" not in page.url.lower() and "guide-for-authors" not in page.url.lower():
+        found = await _find_guidelines_link(page)
+        if found:
+            from urllib.parse import urljoin
+            next_url = found if found.startswith("http") else urljoin(page.url, found)
+            if await _safe_navigate(page, next_url):
+                guidelines_url = next_url
+
     # Parse
     parser_fn = _get_parser(guidelines_url, publisher)
     try:
@@ -755,6 +794,12 @@ async def scrape_one(
         fields += 1
 
     if fields == 0:
+        # Persist resolved guidelines URL even when regex extraction fails.
+        if not dry_run and guidelines_url:
+            data["source_url"] = page.url if ok else guidelines_url
+            data["guidelines_scrape_status"] = "partial_no_fields"
+            data["guidelines_scraped_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+            json_path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
         result["status"] = "no_data_extracted"
         return result
 

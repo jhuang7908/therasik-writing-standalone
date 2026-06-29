@@ -246,7 +246,7 @@ def download_nlm_list() -> list[dict]:
     current: dict = {}
     for line in data.splitlines():
         line = line.strip()
-        if not line:
+        if not line or line.startswith("-"):
             if current.get("title") and (current.get("issn_print") or current.get("issn_online")):
                 journals.append(current)
             current = {}
@@ -265,6 +265,9 @@ def download_nlm_list() -> list[dict]:
             }
             if key in mapping:
                 current[mapping[key]] = val
+
+    if current.get("title") and (current.get("issn_print") or current.get("issn_online")):
+        journals.append(current)
 
     print(f"Found {len(journals)} MEDLINE-indexed journals")
     return journals
