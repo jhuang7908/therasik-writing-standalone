@@ -1,12 +1,10 @@
-version: "1.2.0"
+version: "1.2.1"
 series: "美东华人生活圈 · 双小红书 + 公众号"
-schedule: "Mon/Thu 09:30 ET · XHS×2 → christina600 · WeChat → jing + QQ"
+schedule: "Mon/Thu 09:30 ET · XHS干货→christina · XHS种草→jing · WeChat→jing+QQ"
 
 wechat_recipients:
   - mail.jing.huang@gmail.com
   - 1725490135@qq.com
-xhs_recipients:
-  - christina600@gmail.com
 
 hub_index: insynbio-web-source/hub_search_index.json
 max_events_for_prompt: 45
@@ -29,6 +27,8 @@ xhs_variants:
   - id: practical
     label: "干货清单局"
     mail_subject_tag: "干货清单"
+    recipients:
+      - christina600@gmail.com
     interests:
       - benefits_gov
       - health_medical
@@ -50,6 +50,8 @@ xhs_variants:
   - id: lifestyle
     label: "种草生活局"
     mail_subject_tag: "种草生活"
+    recipients:
+      - mail.jing.huang@gmail.com
     interests:
       - culture_festival
       - deals_savings

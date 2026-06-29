@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """美东华人生活圈 — 双小红书（不同人设/画风）+ 公众号，Mon/Thu 09:30 ET。
 
-XHS ×2 → christina600@gmail.com（干货清单局 + 种草生活局）
+XHS 干货清单局 → christina600@gmail.com
+XHS 种草生活局 → mail.jing.huang@gmail.com
 WeChat → mail.jing.huang@gmail.com, 1725490135@qq.com
 
 Usage:
@@ -63,8 +64,19 @@ def _wechat_recipients(cfg: dict) -> list[str]:
     return list(cfg.get("wechat_recipients") or cfg.get("recipients") or [])
 
 
-def _xhs_recipients(cfg: dict) -> list[str]:
+def _xhs_recipients_fallback(cfg: dict) -> list[str]:
     return _parse_recipients("USLIFEHUB_XHS_RECIPIENTS", "xhs_recipients", cfg)
+
+
+def _variant_xhs_recipients(variant: dict, cfg: dict) -> list[str]:
+    vid = variant.get("id", "xhs")
+    env_key = f"USLIFEHUB_XHS_{vid.upper()}_RECIPIENTS"
+    env = os.getenv(env_key, "").strip()
+    if env:
+        return [x.strip() for x in env.replace(";", ",").split(",") if x.strip()]
+    if variant.get("recipients"):
+        return list(variant["recipients"])
+    return _xhs_recipients_fallback(cfg)
 
 
 def _out_dir(campaign_id: str) -> Path:
@@ -163,7 +175,6 @@ def main() -> int:
     _apply_logo()
     ad_bar = _setup_ad_bar(cfg)
     wechat_recipients = _wechat_recipients(cfg)
-    xhs_recipients = _xhs_recipients(cfg)
     variants = list(cfg.get("xhs_variants") or [])
     campaign_id = args.campaign_id or _campaign_id()
     out_dir = _out_dir(campaign_id)
@@ -172,7 +183,10 @@ def main() -> int:
 
     print(f"\n{'='*60}")
     print(f"  美东华人生活圈 · 双小红书 + 公众号 — {campaign_id}")
-    print(f"  XHS ({len(xhs_recipients)}): {xhs_recipients} × {len(variants)} variants")
+    for variant in variants:
+        vid = variant.get("id", "xhs")
+        rcpts = _variant_xhs_recipients(variant, cfg)
+        print(f"  XHS [{variant.get('label', vid)}] → {rcpts}")
     print(f"  WeChat ({len(wechat_recipients)}): {wechat_recipients}")
     print(f"  Deliver: XHS={do_xhs} WeChat={do_wechat}")
     print(f"{'='*60}\n")
@@ -240,27 +254,31 @@ def main() -> int:
             week_tag=campaign_id,
         )
 
-    if do_xhs and xhs_recipients:
+    if do_xhs:
         for variant in variants:
             vid = variant.get("id", "xhs")
             vpath = out_dir / f"social_xhs_{vid}.json"
             xhs_data = json.loads(vpath.read_text(encoding="utf-8"))
             tag = variant.get("mail_subject_tag") or variant.get("label") or vid
-            print(f"=== Stage: Email — 小红书 [{tag}] ===")
+            rcpts = _variant_xhs_recipients(variant, cfg)
+            if not rcpts:
+                print(f"  ⚠ Skip XHS [{tag}] — no recipients configured")
+                continue
+            print(f"=== Stage: Email — 小红书 [{tag}] → {rcpts} ===")
             send_uslifehub_xhs_report(
                 article=meta,
                 social_data=xhs_data,
                 img_dir=img_root / f"xhs_{vid}",
-                recipients=xhs_recipients,
+                recipients=rcpts,
                 week_tag=campaign_id,
                 variant_label=tag,
             )
 
-    n_xhs_mail = len(variants) if do_xhs else 0
+    n_xhs_mail = sum(1 for v in variants if _variant_xhs_recipients(v, cfg)) if do_xhs else 0
     n_wx_mail = 1 if do_wechat else 0
     print(
         f"\n✅ Done — {campaign_id}: "
-        f"{n_xhs_mail} XHS email(s) → {len(xhs_recipients)} recipient(s); "
+        f"{n_xhs_mail} XHS email(s) (per-variant routing); "
         f"{n_wx_mail} WeChat email(s) → {len(wechat_recipients)} recipient(s)"
     )
     return 0
