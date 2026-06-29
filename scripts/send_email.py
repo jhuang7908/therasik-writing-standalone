@@ -246,28 +246,49 @@ def send_weekly_report(
 def _smtp_send(msg: MIMEMultipart, recipients: list):
     """Try every available SMTP config in priority order until one succeeds."""
     configs = _smtp_configs()
-    # Override sender to the first config's user if the passed sender is empty
+    orig_from = msg.get("From", "")
     for c in configs:
         label = c.get("label", c["host"])
         print(f"  Trying {label} ({c['user']}) → {recipients}")
         try:
+            if orig_from:
+                msg.replace_header("From", orig_from)
+            else:
+                msg.replace_header("From", f"Pipeline <{c['user']}>")
             if c.get("use_ssl"):
                 with smtplib.SMTP_SSL(c["host"], c["port"]) as s:
                     s.login(c["user"], c["password"])
-                    msg.replace_header("From", f"NextVivo Pipeline <{c['user']}>")
                     s.sendmail(c["user"], recipients, msg.as_string())
             else:
                 with smtplib.SMTP(c["host"], c["port"]) as s:
                     if c.get("use_tls"):
                         s.starttls()
                     s.login(c["user"], c["password"])
-                    msg.replace_header("From", f"NextVivo Pipeline <{c['user']}>")
                     s.sendmail(c["user"], recipients, msg.as_string())
             print(f"  ✅ Email sent via {label}")
-            return
+            return True
         except Exception as e:
             print(f"  ❌ {label} failed: {e}")
     print("  ❌ All SMTP routes exhausted — email not delivered")
+    return False
+
+
+def send_community_email(
+    recipient: str,
+    subject: str,
+    html_content: str,
+    sender_name: str,
+    sender_email: str,
+) -> bool:
+    """HTML newsletter for 美东华人生活圈 subscribers."""
+    msg = MIMEMultipart("related")
+    smtp_user = _smtp_configs()[0]["user"]
+    msg["From"] = f"{sender_name} <{smtp_user}>"
+    msg["To"] = recipient
+    msg["Subject"] = subject
+    msg["Reply-To"] = sender_email
+    msg.attach(MIMEText(html_content, "html", "utf-8"))
+    return _smtp_send(msg, [recipient])
 
 
 IMG_EMBED_PX = 800   # CID inline display size (compressed JPEG)
@@ -375,10 +396,20 @@ def send_wechat_report(article: dict, social_data: dict, img_dir: Path,
         from_name = "Therasik Content Pipeline"
         subject = f"【Therasik 公众号】{week_tag} — {wx.get('title', 'AI药物设计')}"
         footer = "Therasik · InSynBio — AI 驱动的抗体工程与药物设计洞察"
+        accent = "#0d9488"
+        source_line = f"来源：{article.get('title','')} | PMID {article.get('pmid','')} | DOI {article.get('doi','')}"
+    elif brand == "uslifehub":
+        from_name = "美东华人生活圈"
+        subject = f"【美东华人生活圈 公众号】{week_tag} — {wx.get('title', '民生精选')}"
+        footer = "美东华人生活圈 · uslifehub.org"
+        accent = "#ea580c"
+        source_line = f"数据来源：uslifehub.org 民生索引 · campaign {article.get('campaign_id', week_tag)}"
     else:
         from_name = "NextVivo Pipeline"
         subject = f"【NextVivo 公众号】{week_tag} — {wx.get('title', '人源化小鼠免疫评估')}"
         footer = "未来模式生物科技 · NextVivo"
+        accent = "#1a5276"
+        source_line = f"来源：{article.get('title','')} | PMID {article.get('pmid','')} | DOI {article.get('doi','')}"
     if not wx.get("ad_bar"):
         try:
             inject_ad_bar(social_data)
@@ -439,7 +470,7 @@ def send_wechat_report(article: dict, social_data: dict, img_dir: Path,
 </div>"""
 
     html = f"""<html><body style="font-family:Arial,sans-serif;max-width:700px;margin:auto">
-<h2 style="color:#1a5276">📰 微信公众号内容 — {week_tag}</h2>
+<h2 style="color:{accent}">📰 微信公众号内容 — {week_tag}</h2>
 <p><b>标题：</b>{wx.get('title','')}</p>
 <p><b>副标题：</b>{wx.get('subtitle','')}</p>
 <p style="font-size:12px;color:#666">总字数：{total_chars} 字</p>
@@ -453,7 +484,7 @@ def send_wechat_report(article: dict, social_data: dict, img_dir: Path,
 <p style="line-height:1.8">{wx.get('closing','')}</p>
 {render_ad_bar_html(wx.get('ad_bar') or {}, embed_cid='wechat_ad_bar' if (img_dir / 'wechat_ad_bar.png').exists() else None)}
 <hr>
-<p style="font-size:11px;color:#888">来源：{article.get('title','')} | PMID {article.get('pmid','')} | DOI {article.get('doi','')}</p>
+<p style="font-size:11px;color:#888">{source_line}</p>
 <p style="font-size:11px;color:#888">{footer}</p>
 </body></html>"""
     related.attach(MIMEText(html, "html", "utf-8"))
@@ -494,6 +525,12 @@ def send_therasik_wechat_report(article: dict, social_data: dict, img_dir: Path,
                                 recipients: list, week_tag: str):
     """Therasik-branded WeChat delivery email."""
     send_wechat_report(article, social_data, img_dir, recipients, week_tag, brand="therasik")
+
+
+def send_uslifehub_wechat_report(article: dict, social_data: dict, img_dir: Path,
+                                 recipients: list, week_tag: str):
+    """美东华人生活圈 WeChat delivery package email."""
+    send_wechat_report(article, social_data, img_dir, recipients, week_tag, brand="uslifehub")
 
 
 if __name__ == "__main__":
