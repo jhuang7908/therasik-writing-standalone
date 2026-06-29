@@ -1,7 +1,9 @@
 name: Weekly Humanized Mice PPT & Video
 
 on:
-  # Schedule disabled — run manually from Actions tab when needed
+  schedule:
+    # Every Monday 01:00 UTC = Beijing 09:00 — full pipeline → mail.jing.huang@gmail.com
+    - cron: "0 1 * * 1"
   workflow_dispatch:
     inputs:
       replay_bundle:
