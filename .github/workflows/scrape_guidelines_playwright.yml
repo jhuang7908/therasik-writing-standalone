@@ -62,17 +62,7 @@ jobs:
           PYTHONUNBUFFERED: "1"
 
       - name: Commit updated journal files
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add assets/journal_requirements/
-          if git diff --cached --quiet; then
-            echo "No journal guideline changes to commit"
-            exit 0
-          fi
-          git commit -m "chore: scrape journal submission guidelines (Playwright) [skip ci]"
-          git pull --rebase origin main
-          git push origin HEAD:main
+        run: bash scripts/git_commit_push.sh "chore: scrape journal submission guidelines (Playwright) [skip ci]"
 
   # ── Job 2: Platform-level submission guides ───────────────────────────────
   scrape-platforms:
@@ -103,14 +93,4 @@ jobs:
           PYTHONUNBUFFERED: "1"
 
       - name: Commit platform guide files
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add assets/submission_system_guides/
-          if git diff --cached --quiet; then
-            echo "No platform guide changes to commit"
-            exit 0
-          fi
-          git commit -m "chore: update submission platform guides [skip ci]"
-          git pull --rebase origin main
-          git push origin HEAD:main
+        run: bash scripts/git_commit_push.sh "chore: update submission platform guides [skip ci]" "assets/submission_system_guides/"

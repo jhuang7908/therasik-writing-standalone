@@ -15,5 +15,29 @@
     "figures": "TIFF/JPEG 300dpi",
     "cover_letter": false
   },
-  "schema_version": "1.0"
+  "schema_version": "1.0",
+  "article_types": {
+    "Article": {
+      "max_words_main_text": 200,
+      "required_sections": [
+        "Abstract",
+        "Introduction",
+        "Methods",
+        "Materials and Methods",
+        "Results",
+        "Discussion",
+        "Conclusion",
+        "Acknowledgements",
+        "References",
+        "Supplementary"
+      ]
+    }
+  },
+  "reference_style": "Vancouver (numbered)",
+  "figure_format": [
+    "TIFF (300 dpi min)"
+  ],
+  "figure_dpi": 300,
+  "source_url": "https://www.frontiersin.org/journals/neural-circuits/for-authors/author-guidelines",
+  "open_access_option": true
 }

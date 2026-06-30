@@ -48,7 +48,11 @@ NLM_MEDLINE_URL = "https://ftp.ncbi.nlm.nih.gov/pubmed/J_Medline.txt"
 CROSSREF_JOURNALS = "https://api.crossref.org/journals/{issn}"
 UA = "therasik-journal-db/1.0 (mailto:research@therasik.io; for academic research)"
 
-# Keywords that indicate an "Instructions for Authors" page
+# Publishers to prioritize when building from MEDLINE (matches scrape queue)
+_BUILD_PUBLISHER_PRIORITY = (
+    "elsevier", "springer", "nature", "wiley", "plos", "frontiers",
+    "oxford", "taylor", "biomed central", "sage", "cell press",
+)
 GUIDELINE_KEYWORDS = [
     "instructions-for-authors", "instructions_for_authors",
     "author-guidelines", "author_guidelines", "authorguide",
@@ -60,6 +64,39 @@ GUIDELINE_KEYWORDS = [
     "authors/instructions", "authors/guidelines",
     "submit", "authors",
 ]
+
+
+def _load_issn_publisher_map(outdir: Path) -> dict[str, str]:
+    """Map normalized ISSN → publisher from existing journal JSON files."""
+    mapping: dict[str, str] = {}
+    for f in outdir.glob("*.json"):
+        if f.name == "_index.json":
+            continue
+        try:
+            data = json.loads(f.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        pub = (data.get("publisher") or "").strip()
+        if not pub:
+            continue
+        for key in ("issn_online", "issn_print", "issn"):
+            val = data.get(key)
+            if isinstance(val, list):
+                for item in val:
+                    if isinstance(item, str) and item.strip():
+                        mapping[item.replace("-", "")] = pub
+            elif isinstance(val, str) and val.strip():
+                mapping[val.replace("-", "")] = pub
+    return mapping
+
+
+def _build_priority(journal: dict, pub_map: dict[str, str]) -> int:
+    issn = (journal.get("issn_online") or journal.get("issn_print") or "").replace("-", "")
+    pub = pub_map.get(issn, "").lower()
+    for i, needle in enumerate(_BUILD_PUBLISHER_PRIORITY):
+        if needle in pub:
+            return 200 - i
+    return 0
 
 
 # --------------------------------------------------------------------------- #
@@ -478,8 +515,13 @@ def main() -> int:
             print(f"ISSN {args.issn} not found in MEDLINE list", file=sys.stderr)
             return 1
 
-    # Apply offset + limit
-    journals = journals[args.offset:]
+    # Apply offset + limit (priority publishers first)
+    pub_map = _load_issn_publisher_map(outdir)
+    journals.sort(
+        key=lambda j: (-_build_priority(j, pub_map), j.get("title", "").lower())
+    )
+    if args.offset:
+        journals = journals[args.offset:]
     if args.limit:
         journals = journals[:args.limit]
 

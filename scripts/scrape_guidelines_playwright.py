@@ -106,7 +106,7 @@ def _extract_word_limit(text: str) -> Optional[int]:
         m = re.search(pat, text, re.IGNORECASE)
         if m:
             n = int(m.group(1).replace(",", ""))
-            if 200 < n < 30000:
+            if 100 < n < 30000:
                 return n
     return None
 
@@ -329,16 +329,40 @@ def _openalex_homepage(issn: str) -> str:
     return ""
 
 
+def _is_blocked_text(text: str) -> bool:
+    low = text.lower()
+    return any(
+        x in low
+        for x in (
+            "problem providing the content",
+            "security verification",
+            "verify you are human",
+            "checking your browser",
+            "performing security verification",
+            "access denied",
+        )
+    )
+
+
 async def _safe_navigate(page: Page, url: str, timeout: int = 45000) -> bool:
     """Navigate to URL, return True if successful."""
     try:
         await page.goto(url, timeout=timeout, wait_until="domcontentloaded")
-        await page.wait_for_timeout(2000)
+        await page.wait_for_timeout(2500)
         await _dismiss_cookies(page)
         try:
-            await page.wait_for_load_state("networkidle", timeout=8000)
+            await page.wait_for_load_state("networkidle", timeout=10000)
         except Exception:
             pass
+        text = await _get_visible_text(page)
+        blocked = _is_blocked_text(text)
+        if blocked:
+            await page.wait_for_timeout(5000)
+            try:
+                await page.reload(wait_until="domcontentloaded", timeout=timeout)
+                await page.wait_for_timeout(4000)
+            except Exception:
+                pass
         return True
     except Exception:
         return False
@@ -349,8 +373,19 @@ async def _safe_navigate(page: Page, url: str, timeout: int = 45000) -> bool:
 async def parse_elsevier(page: Page, url: str) -> dict:
     """
     Elsevier guide-for-authors pages have structured sidebar sections.
-    URL pattern: .../guide-for-authors or elsevier.com/journals/.../guide-for-authors
+    URL pattern: .../guide-for-authors or sciencedirect.com/journal/.../publish/guide-for-authors
     """
+    if "sciencedirect.com" in page.url.lower() and "guide-for-authors" not in page.url.lower():
+        try:
+            link = page.locator(
+                "a[href*='guide-for-authors'], a:has-text('Guide for authors')"
+            ).first
+            if await link.is_visible():
+                await link.click()
+                await page.wait_for_timeout(1500)
+        except Exception:
+            pass
+
     # Try to expand all collapsed sections
     try:
         expanders = await page.query_selector_all("[class*='expandable'], [aria-expanded='false']")
@@ -415,18 +450,19 @@ async def parse_springer(page: Page, url: str) -> dict:
 
 async def parse_wiley(page: Page, url: str) -> dict:
     """Wiley Online Library journal pages."""
-    # Navigate to "For Authors" tab
-    try:
-        for_authors = page.locator("a:has-text('For Authors')").first
-        if await for_authors.is_visible():
-            await for_authors.click()
-            await page.wait_for_timeout(1500)
-    except Exception:
-        pass
+    for tab_text in ("For Authors", "Author Guidelines", "Author guidelines", "Submission"):
+        try:
+            tab = page.locator(f"a:has-text('{tab_text}')").first
+            if await tab.is_visible():
+                await tab.click()
+                await page.wait_for_timeout(1500)
+                break
+        except Exception:
+            pass
 
     text = await _get_visible_text(page)
     result = _parse_text_to_spec(text)
-    result["source_url"]  = url
+    result["source_url"]  = page.url
     result["parser_used"] = "wiley"
     return result
 
@@ -504,29 +540,116 @@ async def parse_generic(page: Page, url: str) -> dict:
 
 _PUBLISHER_PRIORITY = (
     "elsevier", "springer", "nature", "wiley", "plos", "frontiers",
-    "oxford", "oup", "taylor", "cell press",
+    "oxford", "oup", "taylor", "cell press", "biomed central", "sage",
 )
+
+# Publishers that scrape reliably in headless Playwright (batch default queue)
+_HIGH_YIELD_PUBLISHERS = (
+    "springer", "frontiers", "plos", "biomed central", "bmc",
+)
+
+# Publishers with heavy bot protection — scrape after open-access friendly sites
+_BOT_PROTECTED = (
+    "elsevier", "wiley", "cell press", "sciencedirect",
+    "oxford", "oup", "taylor", "sage",
+)
+
+# Legacy fix_journal_systems labels → scrape routing family
+_PUBLISHER_ALIASES: dict[str, str] = {
+    "kluwer": "springer",
+    "springer nature": "springer",
+    "springer-verlag": "springer",
+    "biomed central": "springer",
+    "bmc": "springer",
+    "nature portfolio": "nature",
+    "nature publishing": "nature",
+    "sage publications": "sage",
+    "sage publishers": "sage",
+    "blackwell": "wiley",
+    "wiley-blackwell": "wiley",
+    "wolters kluwer": "wiley",
+    "lippincott": "wolters kluwer",
+    "informa": "taylor",
+    "taylor & francis": "taylor",
+    "cell press": "elsevier",
+}
+
+_homepage_cache: dict[str, str] = {}
 
 
 def _resolve_issn(data: dict) -> str:
     for key in ("issn_online", "issn_print", "issn"):
         val = data.get(key)
         if isinstance(val, list):
-            val = val[0] if val else ""
+            val = next((x for x in val if isinstance(x, str) and x.strip()), "")
         if isinstance(val, str) and val.strip():
             return val.replace("-", "").strip()
     return ""
 
 
 def _resolve_issn_display(data: dict) -> str:
-    raw = data.get("issn_print") or data.get("issn_online") or data.get("issn")
-    if isinstance(raw, list):
-        raw = raw[0] if raw else ""
-    return raw.strip() if isinstance(raw, str) else ""
+    for key in ("issn_online", "issn_print", "issn"):
+        raw = data.get(key)
+        if isinstance(raw, list):
+            raw = next((x for x in raw if isinstance(x, str) and x.strip()), "")
+        if isinstance(raw, str) and raw.strip():
+            return raw.strip()
+    return ""
 
 
 def _journal_name(data: dict) -> str:
     return (data.get("display_name") or data.get("title") or "").strip()
+
+
+def _normalized_publisher(data: dict) -> str:
+    pub = (data.get("publisher") or "").lower().strip()
+    name = _journal_name(data).lower()
+    if "nature" in pub or name.startswith("nature ") or name == "nature":
+        return "nature"
+    for alias, family in _PUBLISHER_ALIASES.items():
+        if alias in pub:
+            return family
+    return pub
+
+
+def _is_duplicate_journal_file(path: Path, stems: set[str]) -> bool:
+    """Skip NLM-id suffixed duplicates when base journal file exists."""
+    stem = path.stem
+    m = re.search(r"_(\d{5,})$", stem)
+    if m:
+        base = stem[: m.start()]
+        if base in stems:
+            return True
+    return False
+
+
+def _title_slug(name: str, sep: str = "-") -> str:
+    slug = re.sub(r"[^a-z0-9]+", sep, name.lower()).strip(sep)
+    return slug
+
+
+def _springer_guidelines_from_homepage(homepage: str) -> str:
+    hp = homepage.strip().rstrip("/")
+    if not hp:
+        return ""
+    if "submission-guidelines" in hp.lower() or "for-authors" in hp.lower():
+        return hp
+    if "link.springer.com/journal/" in hp.lower():
+        return f"{hp}/submission-guidelines"
+    if "biomedcentral.com" in hp.lower():
+        return f"{hp}/submission-guidelines" if "/submission" not in hp.lower() else hp
+    return hp
+
+
+def _cached_homepage(issn: str) -> str:
+    if not issn:
+        return ""
+    key = issn.replace("-", "")
+    if key in _homepage_cache:
+        return _homepage_cache[key]
+    hp = _crossref_homepage(_resolve_issn_display({"issn": issn}) or issn)
+    _homepage_cache[key] = hp
+    return hp
 
 
 def _has_complete_article_types(data: dict) -> bool:
@@ -593,16 +716,53 @@ def _scrape_priority(data: dict) -> int:
         score += 60
     if data.get("requirements"):
         score += 50
-    if _resolve_issn(data):
+    issn = _resolve_issn(data)
+    if issn:
         score += 30
-    pub = (data.get("publisher") or "").lower()
+    pub = _normalized_publisher(data)
     for i, needle in enumerate(_PUBLISHER_PRIORITY):
         if needle in pub:
-            score += 40 - i
+            score += 80 - i * 3
             break
+    if any(b in pub for b in _BOT_PROTECTED):
+        score -= 40
     if _journal_name(data):
         score += 10
+    if _guess_guidelines_url(data, use_api=False):
+        score += 100
     return score
+
+
+def _can_scrape(data: dict, use_api: bool = False) -> bool:
+    if _has_complete_article_types(data):
+        return False
+    if data.get("guidelines_scrape_status") in ("partial_no_fields", "bot_blocked"):
+        return False
+
+    pub = _normalized_publisher(data)
+    name = _journal_name(data).lower()
+
+    if any(b in pub for b in _BOT_PROTECTED):
+        return bool(data.get("fetch_status") == "ok" and data.get("source_url"))
+
+    if pub == "nature":
+        return False
+
+    if not any(h in pub for h in _HIGH_YIELD_PUBLISHERS):
+        return bool(data.get("fetch_status") == "ok" and data.get("source_url"))
+
+    # Nature-branded titles need OpenAlex homepage — skip blind slug guesses in queue.
+    if name.startswith("nature ") and not data.get("source_url"):
+        hp = (data.get("homepage") or "").lower()
+        if "nature.com" not in hp:
+            return False
+
+    if data.get("source_url") or data.get("homepage"):
+        return True
+    if _guess_guidelines_url(data, use_api=use_api):
+        return True
+    issn = _resolve_issn(data)
+    return bool(issn and any(p in pub for p in _PUBLISHER_PRIORITY))
 
 
 def _select_scrape_queue(
@@ -622,25 +782,41 @@ def _select_scrape_queue(
             continue
         if pf and pf not in (data.get("publisher") or "").lower():
             continue
-        if _scrape_priority(data) <= 0 and not _guess_guidelines_url(data):
+        if not _can_scrape(data, use_api=False):
             continue
         candidates.append((_scrape_priority(data), path))
 
     candidates.sort(key=lambda x: (-x[0], x[1].name))
-    selected = [p for _, p in candidates]
-    return selected[:limit] if limit else selected
+    stems = {p.stem for p in files}
+    selected: list[Path] = []
+    seen_issn: set[str] = set()
+    for _, path in candidates:
+        if _is_duplicate_journal_file(path, stems):
+            continue
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+            issn = _resolve_issn(data) or path.stem
+        except Exception:
+            issn = path.stem
+        if issn in seen_issn:
+            continue
+        seen_issn.add(issn)
+        selected.append(path)
+        if limit and len(selected) >= limit:
+            break
+    return selected
 
 
 # ── URL finders ────────────────────────────────────────────────────────────────
 
-def _guess_guidelines_url(data: dict) -> Optional[str]:
+def _guess_guidelines_url(data: dict, use_api: bool = True) -> Optional[str]:
     """
     Guess the Instructions for Authors URL from journal metadata.
-    Returns None if we can't construct a good candidate.
+    When use_api=False, skips CrossRef/OpenAlex (safe for queue building).
     """
     issn      = _resolve_issn(data)
     issn_disp = _resolve_issn_display(data)
-    publisher = (data.get("publisher") or "").lower()
+    publisher = _normalized_publisher(data)
     name      = _journal_name(data).lower()
     homepage  = (data.get("homepage") or "").strip()
 
@@ -651,41 +827,47 @@ def _guess_guidelines_url(data: dict) -> Optional[str]:
         return homepage
 
     if "elsevier" in publisher or "cell press" in publisher:
-        slug = re.sub(r"[^a-z0-9]+", "-", name).strip("-")
+        slug = _title_slug(name)
         if slug and issn_disp:
             return f"https://www.elsevier.com/journals/{slug}/{issn_disp}/guide-for-authors"
         if slug:
-            return f"https://www.elsevier.com/journals/{slug}/guide-for-authors"
+            return f"https://www.sciencedirect.com/journal/{slug}/publish/guide-for-authors"
+        if issn:
+            return f"https://www.sciencedirect.com/journal/{issn}/publish/guide-for-authors"
 
-    if "nature portfolio" in publisher or "nature publishing" in publisher or (
-        name.startswith("nature ") or name == "nature"
-    ):
+    if "nature" in publisher or name.startswith("nature ") or name == "nature":
+        hp = homepage
+        if not hp and use_api and issn_disp:
+            hp = _cached_homepage(issn_disp)
+        if hp and "nature.com" in hp.lower():
+            return hp if "for-authors" in hp.lower() else f"{hp.rstrip('/')}/for-authors"
         slug = re.sub(r"^nature\s+", "", name)
-        slug = re.sub(r"[^a-z0-9]+", "-", slug).strip("-") or "nature"
+        slug = _title_slug(slug) or "nature"
         return f"https://www.nature.com/{slug}/for-authors"
 
-    if "springer" in publisher and "nature" not in publisher:
-        # Springer journal pages use internal numeric IDs, not ISSN — resolve via homepage.
-        homepage = (data.get("homepage") or _crossref_homepage(_resolve_issn_display(data) or _resolve_issn(data))).strip()
-        if homepage:
-            return homepage
+    if "springer" in publisher:
+        hp = homepage
+        if not hp and use_api and issn_disp:
+            hp = _cached_homepage(issn_disp)
+        if hp:
+            return _springer_guidelines_from_homepage(hp)
 
-    if "wiley" in publisher or "blackwell" in publisher or "wolters kluwer" in publisher:
+    if "wiley" in publisher:
         if issn:
-            return f"https://onlinelibrary.wiley.com/journal/{issn}"
+            return f"https://onlinelibrary.wiley.com/page/journal/{issn}/homepage/forauthors"
 
     if "oxford" in publisher or "oup" in publisher:
         slug = re.sub(r"[^a-z0-9]+", "", name)
         if slug:
             return f"https://academic.oup.com/{slug}/pages/General_Instructions"
 
-    if "taylor" in publisher or "informa" in publisher:
+    if "taylor" in publisher or "sage" in publisher:
         if issn:
             return f"https://www.tandfonline.com/action/authorSubmission?journalCode={issn}&page=instructions"
 
     if "frontiers" in publisher:
         slug = re.sub(r"^frontiers\s+in\s+", "", name)
-        slug = re.sub(r"[^a-z0-9]+", "-", slug).strip("-")
+        slug = _title_slug(slug)
         if slug:
             return f"https://www.frontiersin.org/journals/{slug}/for-authors"
 
@@ -703,20 +885,33 @@ def _resolve_guidelines_url(data: dict) -> Optional[str]:
         data.get("source_url"),
         (data.get("requirements") or {}).get("source_url"),
         data.get("homepage"),
-        _crossref_homepage(issn) if issn else "",
-        _guess_guidelines_url(data),
     ):
         if isinstance(candidate, str) and candidate.startswith("http"):
+            if "link.springer.com/journal/" in candidate.lower():
+                return _springer_guidelines_from_homepage(candidate)
             return candidate
+
+    guessed = _guess_guidelines_url(data, use_api=True)
+    if guessed:
+        return guessed
+
+    if issn:
+        hp = _cached_homepage(issn)
+        if hp:
+            if "link.springer.com" in hp.lower():
+                return _springer_guidelines_from_homepage(hp)
+            if any(k in hp.lower() for k in ("elsevier", "sciencedirect")):
+                return hp if "guide-for-authors" in hp.lower() else f"{hp.rstrip('/')}/guide-for-authors"
+            return hp
     return None
 
 
 def _get_parser(url: str, publisher: str):
     """Select the right parser function based on URL and publisher."""
-    url_lower = publisher.lower() + " " + url.lower()
-    if "elsevier.com" in url_lower or "cell press" in url_lower:
+    url_lower = _normalized_publisher({"publisher": publisher}) + " " + url.lower()
+    if "elsevier.com" in url_lower or "sciencedirect.com" in url_lower or "cell press" in url_lower:
         return parse_elsevier
-    if "nature.com" in url_lower or "springer" in url_lower:
+    if "nature.com" in url_lower or "springer" in url_lower or "biomedcentral.com" in url_lower:
         return parse_springer
     if "wiley" in url_lower or "onlinelibrary" in url_lower:
         return parse_wiley
@@ -787,6 +982,11 @@ async def scrape_one(
         result["status"] = "navigation_failed"
         return result
 
+    probe = await _get_visible_text(page)
+    if _is_blocked_text(probe):
+        result["status"] = "bot_blocked"
+        return result
+
     if "submission-guidelines" not in page.url.lower() and "guide-for-authors" not in page.url.lower():
         found = await _find_guidelines_link(page)
         if found:
@@ -813,6 +1013,23 @@ async def scrape_one(
         fields += 1
     if scraped.get("figure_format"):
         fields += 1
+    if scraped.get("figure_dpi"):
+        fields += 1
+
+    # Accept reference-style or section list alone as minimal success
+    if fields == 0:
+        text_probe = await _get_visible_text(page)
+        if _extract_ref_style(text_probe) or len(_extract_sections(text_probe)) >= 3:
+            scraped.setdefault("article_types", {})
+            spec = scraped["article_types"].setdefault("Article", {})
+            if _extract_ref_style(text_probe):
+                scraped["reference_style"] = _extract_ref_style(text_probe)
+            secs = _extract_sections(text_probe)
+            if len(secs) >= 3:
+                spec["required_sections"] = secs
+            fields = sum(1 for v in spec.values() if v)
+            if scraped.get("reference_style"):
+                fields += 1
 
     if fields == 0:
         # Persist resolved guidelines URL even when regex extraction fails.
@@ -868,16 +1085,23 @@ async def run_scraper(
     }
 
     async with async_playwright() as pw:
-        browser: Browser = await pw.chromium.launch(headless=headless)
+        browser: Browser = await pw.chromium.launch(
+            headless=headless,
+            args=["--disable-blink-features=AutomationControlled"],
+        )
         ctx = await browser.new_context(
             user_agent=(
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
                 "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/120.0.0.0 Safari/537.36"
+                "Chrome/122.0.0.0 Safari/537.36"
             ),
             viewport={"width": 1280, "height": 900},
+            locale="en-US",
         )
         page = await ctx.new_page()
+        await page.add_init_script(
+            "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"
+        )
 
         for i, path in enumerate(files):
             if verbose:

@@ -15,5 +15,25 @@
     "figures": "TIFF/EPS 300dpi+",
     "cover_letter": true
   },
-  "schema_version": "1.0"
+  "schema_version": "1.0",
+  "article_types": {
+    "Article": {
+      "max_words_main_text": 170,
+      "max_words_abstract": 170,
+      "required_sections": [
+        "Abstract",
+        "Introduction",
+        "Methods",
+        "Results",
+        "Discussion",
+        "Acknowledgements",
+        "Data Availability",
+        "Author Contributions",
+        "References",
+        "Supplementary"
+      ]
+    }
+  },
+  "reference_style": "Nature (numbered superscript)",
+  "source_url": "https://www.nature.com/sdata/submission-guidelines"
 }
