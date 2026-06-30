@@ -16,5 +16,28 @@
     "figures": "check journal",
     "cover_letter": null
   },
-  "schema_version": "1.0"
+  "schema_version": "1.0",
+  "article_types": {
+    "Article": {
+      "max_words_main_text": 500,
+      "max_words_abstract": 250,
+      "required_sections": [
+        "Abstract",
+        "Introduction",
+        "Methods",
+        "Materials and Methods",
+        "Results",
+        "Discussion",
+        "Acknowledgements",
+        "Data Availability",
+        "References",
+        "Supplementary"
+      ]
+    }
+  },
+  "figure_format": [
+    "TIFF (200 dpi min)"
+  ],
+  "figure_dpi": 200,
+  "source_url": "https://link.springer.com/journal/10548/submission-guidelines"
 }
