@@ -67,7 +67,7 @@ jobs:
           PYTHONUNBUFFERED: "1"
 
       - name: Commit updated journal files
-        run: bash scripts/git_commit_push.sh "chore: scrape journal submission guidelines (Playwright) [skip ci]"
+        run: 'bash scripts/git_commit_push.sh "chore: scrape journal submission guidelines (Playwright) [skip ci]"'
 
   # ── Job 2: Platform-level submission guides ───────────────────────────────
   scrape-platforms:
@@ -98,4 +98,4 @@ jobs:
           PYTHONUNBUFFERED: "1"
 
       - name: Commit platform guide files
-        run: bash scripts/git_commit_push.sh "chore: update submission platform guides [skip ci]" "assets/submission_system_guides/"
+        run: 'bash scripts/git_commit_push.sh "chore: update submission platform guides [skip ci]" "assets/submission_system_guides/"'

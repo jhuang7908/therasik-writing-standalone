@@ -60,4 +60,4 @@ jobs:
         run: python scripts/fix_journal_systems.py --report --no-crossref || true
 
       - name: Commit updated journal files
-        run: bash scripts/git_commit_push.sh "chore: fix unidentified journal submission systems [skip ci]"
+        run: 'bash scripts/git_commit_push.sh "chore: fix unidentified journal submission systems [skip ci]"'

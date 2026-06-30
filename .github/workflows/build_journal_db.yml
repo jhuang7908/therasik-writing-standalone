@@ -54,4 +54,4 @@ jobs:
           PYTHONUNBUFFERED: "1"
 
       - name: Commit results
-        run: bash scripts/git_commit_push.sh "chore: update journal requirements database [skip ci]"
+        run: 'bash scripts/git_commit_push.sh "chore: update journal requirements database [skip ci]"'
