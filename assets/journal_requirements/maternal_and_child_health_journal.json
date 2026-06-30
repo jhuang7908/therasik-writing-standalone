@@ -16,5 +16,30 @@
     "figures": "check journal",
     "cover_letter": null
   },
-  "schema_version": "1.0"
+  "schema_version": "1.0",
+  "article_types": {
+    "Article": {
+      "max_words_main_text": 2500,
+      "max_words_abstract": 250,
+      "max_references": 35,
+      "required_sections": [
+        "Abstract",
+        "Introduction",
+        "Methods",
+        "Results",
+        "Discussion",
+        "Conclusion",
+        "Acknowledgements",
+        "Conflict of Interest",
+        "References",
+        "Supplementary"
+      ]
+    }
+  },
+  "reference_style": "APA",
+  "figure_format": [
+    "TIFF (200 dpi min)"
+  ],
+  "figure_dpi": 200,
+  "source_url": "https://link.springer.com/journal/10995/submission-guidelines"
 }
