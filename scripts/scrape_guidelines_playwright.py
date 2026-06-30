@@ -344,25 +344,45 @@ def _is_blocked_text(text: str) -> bool:
     )
 
 
-async def _safe_navigate(page: Page, url: str, timeout: int = 45000) -> bool:
+async def _install_fast_routes(page: Page) -> None:
+    """Block images/fonts/analytics — cuts page load ~40%."""
+    async def _route(route):
+        if route.request.resource_type in ("image", "media", "font", "stylesheet"):
+            await route.abort()
+        else:
+            await route.continue_()
+    await page.route("**/*", _route)
+
+
+async def _setup_stealth_page(ctx, fast: bool = True) -> Page:
+    page = await ctx.new_page()
+    await page.add_init_script(
+        "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"
+    )
+    if fast:
+        await _install_fast_routes(page)
+    return page
+
+
+async def _safe_navigate(page: Page, url: str, timeout: int = 30000, *, fast: bool = True) -> bool:
     """Navigate to URL, return True if successful."""
     try:
         await page.goto(url, timeout=timeout, wait_until="domcontentloaded")
-        await page.wait_for_timeout(2500)
+        await page.wait_for_timeout(600 if fast else 2500)
         await _dismiss_cookies(page)
-        try:
-            await page.wait_for_load_state("networkidle", timeout=10000)
-        except Exception:
-            pass
-        text = await _get_visible_text(page)
-        blocked = _is_blocked_text(text)
-        if blocked:
-            await page.wait_for_timeout(5000)
+        if not fast:
             try:
-                await page.reload(wait_until="domcontentloaded", timeout=timeout)
-                await page.wait_for_timeout(4000)
+                await page.wait_for_load_state("networkidle", timeout=10000)
             except Exception:
                 pass
+            text = await _get_visible_text(page)
+            if _is_blocked_text(text):
+                await page.wait_for_timeout(5000)
+                try:
+                    await page.reload(wait_until="domcontentloaded", timeout=timeout)
+                    await page.wait_for_timeout(4000)
+                except Exception:
+                    pass
         return True
     except Exception:
         return False
@@ -416,26 +436,29 @@ async def parse_elsevier(page: Page, url: str) -> dict:
 
 async def parse_springer(page: Page, url: str) -> dict:
     """Springer / Nature for-authors pages."""
-    for tab_text in [
-        "Submission guidelines", "Instructions for Authors",
-        "Manuscript preparation", "Article types", "For authors",
-    ]:
-        try:
-            tab = page.locator(f"a:has-text('{tab_text}'), button:has-text('{tab_text}')").first
-            if await tab.is_visible():
-                await tab.click()
-                await page.wait_for_timeout(1200)
-        except Exception:
-            pass
+    on_guidelines = "submission-guidelines" in page.url.lower()
 
-    if "submission-guidelines" not in page.url.lower():
-        try:
-            link = page.locator("a[href*='submission-guidelines']").first
-            if await link.is_visible():
-                await link.click()
-                await page.wait_for_timeout(1500)
-        except Exception:
-            pass
+    if not on_guidelines:
+        for tab_text in ("Submission guidelines", "Instructions for Authors"):
+            try:
+                tab = page.locator(f"a:has-text('{tab_text}'), button:has-text('{tab_text}')").first
+                if await tab.is_visible():
+                    await tab.click()
+                    await page.wait_for_timeout(500)
+                    on_guidelines = "submission-guidelines" in page.url.lower()
+                    if on_guidelines:
+                        break
+            except Exception:
+                pass
+
+        if not on_guidelines:
+            try:
+                link = page.locator("a[href*='submission-guidelines']").first
+                if await link.is_visible():
+                    await link.click()
+                    await page.wait_for_timeout(600)
+            except Exception:
+                pass
 
     text = await _get_visible_text(page)
     result = _parse_text_to_spec(text)
@@ -964,20 +987,8 @@ async def scrape_one(
         result["status"] = "no_url"
         return result
 
-    # Navigate
-    ok = await _safe_navigate(page, guidelines_url)
-    if not ok:
-        # Try finding link from journal homepage
-        homepage = (data.get("homepage") or data.get("submission_url") or "").strip()
-        if homepage.startswith("http"):
-            ok = await _safe_navigate(page, homepage)
-            if ok:
-                found = await _find_guidelines_link(page) or ""
-                if found:
-                    from urllib.parse import urljoin
-                    guidelines_url = found if found.startswith("http") else urljoin(homepage, found)
-                    ok = await _safe_navigate(page, guidelines_url)
-
+    # Navigate (direct URL only — skip slow homepage crawl for high-yield batch)
+    ok = await _safe_navigate(page, guidelines_url, fast=True)
     if not ok:
         result["status"] = "navigation_failed"
         return result
@@ -987,12 +998,15 @@ async def scrape_one(
         result["status"] = "bot_blocked"
         return result
 
-    if "submission-guidelines" not in page.url.lower() and "guide-for-authors" not in page.url.lower():
+    if (
+        "submission-guidelines" not in page.url.lower()
+        and "guide-for-authors" not in page.url.lower()
+    ):
         found = await _find_guidelines_link(page)
         if found:
             from urllib.parse import urljoin
             next_url = found if found.startswith("http") else urljoin(page.url, found)
-            if await _safe_navigate(page, next_url):
+            if await _safe_navigate(page, next_url, fast=True):
                 guidelines_url = next_url
 
     # Parse
@@ -1003,7 +1017,8 @@ async def scrape_one(
         result["status"] = f"parse_error: {e}"
         return result
 
-    await asyncio.sleep(delay)
+    if delay > 0:
+        await asyncio.sleep(delay)
 
     # Count useful fields found
     fields = 0
@@ -1064,55 +1079,48 @@ async def scrape_one(
     return result
 
 
-async def run_scraper(
-    journal_dir: Path,
-    limit: int = 0,
-    publisher_filter: str = "",
-    delay: float = 2.0,
-    headless: bool = True,
-    dry_run: bool = False,
-    verbose: bool = True,
-) -> dict:
-    all_files = [f for f in sorted(journal_dir.glob("*.json")) if f.name != "_index.json"]
-    files = _select_scrape_queue(all_files, limit, publisher_filter)
-    if verbose:
-        print(f"  Queue selected: {len(files)} / {len(all_files)} journals needing guidelines")
+def _prewarm_url_cache(files: list[Path]) -> None:
+    """Resolve URLs before browser starts so scrape loop stays I/O-bound on pages only."""
+    for path in files:
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        if _guess_guidelines_url(data, use_api=False):
+            continue
+        issn = _resolve_issn_display(data) or _resolve_issn(data)
+        if issn and _normalized_publisher(data) in ("springer", "nature"):
+            _cached_homepage(issn)
 
-    summary = {
-        "total": len(files), "success": 0, "skipped": 0,
-        "no_url": 0, "failed": 0, "dry_run": dry_run,
-        "by_parser": {},
-    }
 
-    async with async_playwright() as pw:
-        browser: Browser = await pw.chromium.launch(
-            headless=headless,
-            args=["--disable-blink-features=AutomationControlled"],
-        )
-        ctx = await browser.new_context(
-            user_agent=(
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/122.0.0.0 Safari/537.36"
-            ),
-            viewport={"width": 1280, "height": 900},
-            locale="en-US",
-        )
-        page = await ctx.new_page()
-        await page.add_init_script(
-            "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"
-        )
+async def _worker(
+    page: Page,
+    queue: asyncio.Queue,
+    delay: float,
+    dry_run: bool,
+    summary: dict,
+    lock: asyncio.Lock,
+    verbose: bool,
+    counter: list[int],
+    total: int,
+) -> None:
+    while True:
+        path = await queue.get()
+        if path is None:
+            queue.task_done()
+            break
+        counter[0] += 1
+        idx = counter[0]
+        if verbose:
+            async with lock:
+                print(f"  [{idx}/{total}] {path.stem[:50]}", end=" ... ", flush=True)
+        try:
+            r = await scrape_one(page, path, delay=delay, dry_run=dry_run)
+        except Exception as e:
+            r = {"status": f"exception: {e}", "parser": "", "fields_found": 0, "title": path.stem}
 
-        for i, path in enumerate(files):
-            if verbose:
-                print(f"  [{i+1}/{len(files)}] {path.stem[:50]}", end=" ... ", flush=True)
-            try:
-                r = await scrape_one(page, path, delay=delay, dry_run=dry_run)
-            except Exception as e:
-                r = {"status": f"exception: {e}", "parser": "", "fields_found": 0,
-                     "title": path.stem}
-
-            status = r["status"]
+        status = r["status"]
+        async with lock:
             if status == "success":
                 summary["success"] += 1
                 p = r.get("parser", "generic")
@@ -1131,7 +1139,66 @@ async def run_scraper(
                 summary["failed"] += 1
                 if verbose:
                     print(f"✗ {status}")
+        queue.task_done()
 
+
+async def run_scraper(
+    journal_dir: Path,
+    limit: int = 0,
+    publisher_filter: str = "",
+    delay: float = 0.25,
+    workers: int = 6,
+    headless: bool = True,
+    dry_run: bool = False,
+    verbose: bool = True,
+) -> dict:
+    all_files = [f for f in sorted(journal_dir.glob("*.json")) if f.name != "_index.json"]
+    files = _select_scrape_queue(all_files, limit, publisher_filter)
+    if verbose:
+        print(f"  Queue selected: {len(files)} / {len(all_files)} journals needing guidelines")
+        print(f"  Workers: {workers}, delay: {delay}s")
+
+    _prewarm_url_cache(files)
+
+    summary = {
+        "total": len(files), "success": 0, "skipped": 0,
+        "no_url": 0, "failed": 0, "dry_run": dry_run,
+        "by_parser": {}, "workers": workers,
+    }
+    if not files:
+        return summary
+
+    workers = max(1, min(workers, len(files)))
+    queue: asyncio.Queue = asyncio.Queue()
+    for path in files:
+        queue.put_nowait(path)
+    for _ in range(workers):
+        queue.put_nowait(None)
+
+    lock = asyncio.Lock()
+    counter = [0]
+
+    async with async_playwright() as pw:
+        browser: Browser = await pw.chromium.launch(
+            headless=headless,
+            args=["--disable-blink-features=AutomationControlled"],
+        )
+        ctx = await browser.new_context(
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/122.0.0.0 Safari/537.36"
+            ),
+            viewport={"width": 1280, "height": 900},
+            locale="en-US",
+        )
+        pages = [await _setup_stealth_page(ctx, fast=True) for _ in range(workers)]
+        await asyncio.gather(*[
+            _worker(p, queue, delay, dry_run, summary, lock, verbose, counter, len(files))
+            for p in pages
+        ])
+        for p in pages:
+            await p.close()
         await browser.close()
 
     return summary
@@ -1141,7 +1208,8 @@ def main():
     parser = argparse.ArgumentParser(description="Playwright-based journal guidelines scraper")
     parser.add_argument("--limit",      type=int,   default=0,     help="Max journals to process")
     parser.add_argument("--publisher",  type=str,   default="",    help="Filter by publisher substring")
-    parser.add_argument("--delay",      type=float, default=2.0,   help="Seconds between requests")
+    parser.add_argument("--delay",      type=float, default=0.25,  help="Seconds between requests per worker")
+    parser.add_argument("--workers",    type=int,   default=6,     help="Parallel browser tabs")
     parser.add_argument("--no-headless",action="store_true",        help="Show browser window")
     parser.add_argument("--dry-run",    action="store_true",        help="Don't write files")
     parser.add_argument("--journal-dir",default=str(JOURNAL_DIR),  help="Journal JSON directory")
@@ -1162,6 +1230,7 @@ def main():
         limit=args.limit,
         publisher_filter=args.publisher,
         delay=args.delay,
+        workers=args.workers,
         headless=not args.no_headless,
         dry_run=args.dry_run,
     ))

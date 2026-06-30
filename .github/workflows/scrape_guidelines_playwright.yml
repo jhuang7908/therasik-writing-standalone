@@ -14,7 +14,11 @@ on:
       delay:
         description: 'Seconds between requests (be polite to servers)'
         required: false
-        default: '2.5'
+        default: '0.25'
+      workers:
+        description: 'Parallel browser tabs'
+        required: false
+        default: '6'
 
   # Run daily at 03:00 UTC — 2 hours after build_journal_db finishes
   # Picks up journals that build_journal_db populated that day
@@ -55,9 +59,10 @@ jobs:
       - name: Scrape journal submission guidelines
         run: |
           python scripts/scrape_guidelines_playwright.py \
-            --limit  "${{ github.event.inputs.limit  || '200' }}" \
+            --limit  "${{ github.event.inputs.limit  || '500' }}" \
             --publisher "${{ github.event.inputs.publisher || '' }}" \
-            --delay  "${{ github.event.inputs.delay  || '2.5' }}"
+            --delay  "${{ github.event.inputs.delay  || '0.25' }}" \
+            --workers "${{ github.event.inputs.workers || '6' }}"
         env:
           PYTHONUNBUFFERED: "1"
 
