@@ -61,9 +61,13 @@ jobs:
 
       - name: Sync hub template + yellow pages bundle from suite
         run: |
-          python suite/scripts/sync_hub_static_assets.py \
-            --src suite/insynbio-web-source \
-            --dst insynbio-web-source
+          if [ -d suite/insynbio-web-source ]; then
+            python suite/scripts/sync_hub_static_assets.py \
+              --src suite/insynbio-web-source \
+              --dst insynbio-web-source
+          else
+            echo "No suite/insynbio-web-source bundle found; using insynbio-website checkout directly."
+          fi
 
       - name: Verify hub HTML template exists
         run: |

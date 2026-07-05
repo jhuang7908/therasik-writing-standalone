@@ -42,6 +42,7 @@ jobs:
 
       - name: Sync hub search index for personalization
         run: |
+          mkdir -p insynbio-web-source
           cp insynbio-web-sync/hub_search_index.json insynbio-web-source/hub_search_index.json
 
       - name: Set up Python 3.11
