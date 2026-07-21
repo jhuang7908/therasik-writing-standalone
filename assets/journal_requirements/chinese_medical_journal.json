@@ -16,5 +16,28 @@
     "figures": "TIFF/EPS 300dpi+",
     "cover_letter": true
   },
-  "schema_version": "1.0"
+  "schema_version": "1.0",
+  "article_types": {
+    "Article": {
+      "max_words_main_text": 5000,
+      "max_words_abstract": 300,
+      "max_references": 15,
+      "required_sections": [
+        "Abstract",
+        "Introduction",
+        "Methods",
+        "Results",
+        "Discussion",
+        "Conclusion",
+        "Conflict of Interest",
+        "References",
+        "Supplementary"
+      ]
+    }
+  },
+  "figure_format": [
+    "TIFF (300 dpi min)"
+  ],
+  "figure_dpi": 300,
+  "source_url": "https://www.ovid.com/jnls/cmj/fulltext/10.1097/01.cm9.0001124880.05715.59~instructions-for-authors"
 }
