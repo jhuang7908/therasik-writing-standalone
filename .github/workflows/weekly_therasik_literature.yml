@@ -1,9 +1,7 @@
 name: Weekly Therasik AI Drug Design Literature
 
 on:
-  schedule:
-    # Tuesday 01:00 UTC = Beijing 09:00
-    - cron: "0 1 * * 2"
+  # Automated work has moved off GitHub Actions. Retained for manual recovery only.
   workflow_dispatch:
     inputs:
       replay_bundle:
