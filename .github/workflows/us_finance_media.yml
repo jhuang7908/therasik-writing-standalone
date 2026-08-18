@@ -1,13 +1,7 @@
 name: US Finance Media Scheduler
 
 on:
-  schedule:
-    # Daily recap @ 09:30 America/New_York (EDT=13:30 UTC / EST=14:30 UTC)
-    - cron: "30 13 * * *"
-    - cron: "30 14 * * *"
-    # XHS 2-card send Wed/Sat @ 05:30 America/New_York (EDT=09:30 UTC / EST=10:30 UTC)
-    - cron: "30 9 * * 3,6"
-    - cron: "30 10 * * 3,6"
+  # Automated work has moved off GitHub Actions. Retained for manual recovery only.
   workflow_dispatch:
     inputs:
       run_mode:
