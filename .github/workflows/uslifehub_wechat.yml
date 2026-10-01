@@ -1,10 +1,8 @@
 name: US Life Hub — XHS + WeChat (Mon/Thu)
 
 on:
-  schedule:
-    # Tue slot unused — Mon + Thu @ 09:30 America/New_York (after hub daily update)
-    - cron: "30 13 * * 1,4"
-    - cron: "30 14 * * 1,4"
+  # Scheduled execution moved to Antibody-Engineer-Suite-MVP, which owns the required GitHub Secrets.
+  # Keep this workflow for manual diagnostics only.
   workflow_dispatch:
     inputs:
       force_images:
@@ -17,7 +15,6 @@ on:
         required: false
         type: boolean
         default: false
-
 permissions:
   contents: read
 
