@@ -1,10 +1,8 @@
 name: US Life Hub — Subscriber Newsletter
 
 on:
-  schedule:
-    # Mon + Thu @ 09:00 America/New_York (EDT=13:00 UTC / EST=14:00 UTC)
-    - cron: "0 13 * * 1,4"
-    - cron: "0 14 * * 1,4"
+  # Scheduled execution moved to Antibody-Engineer-Suite-MVP, which owns the required GitHub Secrets.
+  # Keep this workflow for manual diagnostics only.
   workflow_dispatch:
     inputs:
       dry_run:
@@ -12,7 +10,6 @@ on:
         required: false
         type: boolean
         default: false
-
 permissions:
   contents: write
 
