@@ -27,6 +27,7 @@ if str(ROOT / "scripts") not in sys.path:
 
 from nyc_community_events.fetch_sources import fetch_all_sources  # noqa: E402
 from nyc_community_events.models import CommunityEvent  # noqa: E402
+from uslifehub_event_quality import descriptive_title  # noqa: E402
 from nyc_community_events.scoring import score_event  # noqa: E402
 from hub_modules_ssot import (  # noqa: E402
     HUB_MODULES,
@@ -716,7 +717,7 @@ def _to_hub_item(ev: CommunityEvent, idx: int, src: dict[str, Any] | None) -> di
     enclave = _infer_enclave_area(ev)
     area_zh, area_zht, area_en = enclave or AREA_BY_BOROUGH.get(ev.borough, AREA_BY_BOROUGH[""])
     summary = _clean_text(ev.description or f"来自{(src or {}).get('name_zh') or ev.source}的官方/正式机构页面，具体时间、地点、报名要求以官网为准。")
-    title = _clean_text(ev.title, limit=120)
+    title = _clean_text(descriptive_title({"title": ev.title, "url": ev.url}), limit=120)
     source_name = (src or {}).get("name_zh") or (src or {}).get("name_en") or ev.source
     guide_zh = (
         "1. 点击“直达官方页面”打开原始页面；<br>"
@@ -1135,7 +1136,9 @@ def build_hub_search_index(items: list[dict[str, Any]], *, generated_at: str) ->
     """Structured retrieval library: discovery, publish, event, content, location."""
     records: list[dict[str, Any]] = []
     for it in items:
-        title = str(it.get("title_zh") or "")
+        title = descriptive_title(it)
+        if not title:
+            continue  # Calendar headings and CTA labels are not retrievable events.
         summary = str(it.get("summary_zh") or "")
         loc_tag = str(it.get("location_tag_zh") or it.get("area_zh") or "")
         fi = _format_index_timestamp(it.get("first_indexed_at"))
@@ -1151,6 +1154,7 @@ def build_hub_search_index(items: list[dict[str, Any]], *, generated_at: str) ->
             "id": it.get("id"),
             "module": it.get("module"),
             "title_zh": title,
+            "title_en": str(it.get("title_en") or ""),
             "summary_zh": summary[:320],
             "location_tag_zh": loc_tag,
             "location_kind": it.get("location_kind") or "",
@@ -1158,6 +1162,7 @@ def build_hub_search_index(items: list[dict[str, Any]], *, generated_at: str) ->
             "borough": it.get("borough") or "",
             "location": venue,
             "event_date": ed,
+            "event_end_date": str(it.get("event_end_date") or it.get("end_date") or "")[:10],
             "event_time": str(it.get("event_time") or "").strip(),
             "published_at": str(it.get("published_at") or "")[:10],
             "source_published_at": sp,

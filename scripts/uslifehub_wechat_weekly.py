@@ -11,10 +11,14 @@ Usage:
   python scripts/uslifehub_wechat_weekly.py --force-images
   python scripts/uslifehub_wechat_weekly.py --xhs-only
   python scripts/uslifehub_wechat_weekly.py --wechat-only
+
+Image caches are bound to their platform JSON and image bytes by a manifest.
+Legacy/mismatched caches require a full run; --emails-only fails closed.
 """
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import shutil
@@ -26,6 +30,8 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
+
+from uslifehub_social_quality import SocialContentQualityError, validate_social_content
 
 for _env in (ROOT / "content_generation_tools" / ".env", ROOT / ".env"):
     if _env.exists():
@@ -121,7 +127,92 @@ def _setup_ad_bar(cfg: dict) -> Path:
     return ad
 
 
+_IMAGE_MANIFEST = ".content-manifest.json"
+
+
+def _content_hash(social_data: dict, platform: str) -> str:
+    # Ignore delivery metadata; bind every platform text and rendering field.
+    encoded = json.dumps(social_data[platform], ensure_ascii=False, sort_keys=True,
+                         separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def _expected_images(social_data: dict, platform: str) -> list[str]:
+    if platform == "xiaohongshu":
+        cards = social_data[platform].get("cards")
+        if not isinstance(cards, list) or not cards:
+            raise SocialContentQualityError("XHS image cache requires nonempty cards")
+        return [f"xhs_card_{i:02d}.png" for i in range(1, len(cards) + 1)]
+    sections = social_data[platform].get("sections")
+    if not isinstance(sections, list) or not sections:
+        raise SocialContentQualityError("WeChat image cache requires nonempty sections")
+    return ["wechat_cover.png", "wechat_ad_bar.png"] + [
+        f"wechat_inline_{i:02d}.png" for i in range(1, min(len(sections), 3) + 1)
+    ]
+
+
+def _image_hashes(social_data: dict, img_dir: Path, platform: str) -> dict[str, str]:
+    expected = _expected_images(social_data, platform)
+    if {p.name for p in img_dir.glob("*.png")} != set(expected):
+        raise SocialContentQualityError(f"{img_dir}: missing or unexpected images")
+    hashes = {}
+    for name in expected:
+        blob = (img_dir / name).read_bytes()
+        if not blob:
+            raise SocialContentQualityError(f"{img_dir / name}: empty image")
+        hashes[name] = hashlib.sha256(blob).hexdigest()
+    return hashes
+
+
+def _verify_image_cache(social_data: dict, img_dir: Path, platform: str) -> None:
+    try:
+        manifest = json.loads((img_dir / _IMAGE_MANIFEST).read_text(encoding="utf-8"))
+        valid = (
+            isinstance(manifest, dict)
+            and manifest.get("version") == 1
+            and manifest.get("platform") == platform
+            and manifest.get("content_sha256") == _content_hash(social_data, platform)
+            and manifest.get("image_sha256") == _image_hashes(social_data, img_dir, platform)
+        )
+    except (OSError, ValueError) as exc:
+        raise SocialContentQualityError(
+            f"{img_dir}: unverifiable image cache; run the full pipeline to rebuild images"
+        ) from exc
+    if not valid:
+        raise SocialContentQualityError(
+            f"{img_dir}: image cache does not match content; run the full pipeline to rebuild images"
+        )
+
+
+def _prepare_image_cache(social_data: dict, img_dir: Path, platform: str, force: bool) -> bool:
+    """Return True only for a fully verified reusable cache; otherwise rebuild."""
+    if not force:
+        try:
+            _verify_image_cache(social_data, img_dir, platform)
+            return True
+        except SocialContentQualityError:
+            pass
+    # Only delete this platform/variant's generated assets, not sibling variants.
+    if img_dir.exists():
+        shutil.rmtree(img_dir)
+    img_dir.mkdir(parents=True, exist_ok=True)
+    return False
+
+
+def _seal_image_cache(social_data: dict, img_dir: Path, platform: str) -> None:
+    # Generators can swallow individual image errors. Require every expected
+    # nonempty output before marking generation successful, then write atomically.
+    manifest = {"version": 1, "platform": platform,
+                "content_sha256": _content_hash(social_data, platform),
+                "image_sha256": _image_hashes(social_data, img_dir, platform)}
+    path = img_dir / _IMAGE_MANIFEST
+    temporary = path.with_suffix(".tmp")
+    temporary.write_text(json.dumps(manifest, sort_keys=True, indent=2), encoding="utf-8")
+    temporary.replace(path)
+
+
 def stage_wechat_images(social_data: dict, img_root: Path, *, force: bool, ad_bar: Path) -> None:
+    validate_social_content(social_data, source="WeChat rendering", required_fields=("wechat",))
     from social_images import (
         generate_wechat_ad_banner,
         generate_wechat_cover,
@@ -129,13 +220,14 @@ def stage_wechat_images(social_data: dict, img_root: Path, *, force: bool, ad_ba
     )
 
     wx_dir = img_root / "wechat"
-    if force and wx_dir.exists():
-        shutil.rmtree(wx_dir)
-    wx_dir.mkdir(parents=True, exist_ok=True)
+    if _prepare_image_cache(social_data, wx_dir, "wechat", force):
+        print("  WeChat images: verified content-matched cache")
+        return
     print("=== Stage: WeChat cover + inline + ad bar ===")
-    generate_wechat_cover(social_data, wx_dir, force=force)
-    generate_wechat_images(social_data, wx_dir, force=force, inline_sections=[1, 2, 3])
-    generate_wechat_ad_banner(wx_dir, force=force, ad_bar_config=ad_bar if ad_bar.exists() else None)
+    generate_wechat_cover(social_data, wx_dir, force=True)
+    generate_wechat_images(social_data, wx_dir, force=True, inline_sections=[1, 2, 3])
+    generate_wechat_ad_banner(wx_dir, force=True, ad_bar_config=ad_bar if ad_bar.exists() else None)
+    _seal_image_cache(social_data, wx_dir, "wechat")
 
 
 def stage_xhs_variant_images(
@@ -146,16 +238,48 @@ def stage_xhs_variant_images(
     *,
     force: bool,
 ) -> Path:
+    validate_social_content(social_data, source=f"XHS {variant_id} rendering", required_fields=("xiaohongshu",))
     from social_images import generate_xhs_images
 
     _apply_visual_style(variant_style, wechat=False)
     xhs_dir = img_root / f"xhs_{variant_id}"
-    if force and xhs_dir.exists():
-        shutil.rmtree(xhs_dir)
+    if _prepare_image_cache(social_data, xhs_dir, "xiaohongshu", force):
+        print(f"  XHS [{variant_id}]: verified content-matched cache")
+        return xhs_dir
     label = social_data.get("_meta", {}).get("variant_label", variant_id)
     print(f"=== Stage: XHS [{label}] 6 cards (gpt-image-2 → Nano Banana Pro) ===")
-    generate_xhs_images(social_data, xhs_dir, force=force)
+    generate_xhs_images(social_data, xhs_dir, force=True)
+    _seal_image_cache(social_data, xhs_dir, "xiaohongshu")
     return xhs_dir
+
+
+def _preflight_delivery(
+    out_dir: Path, variants: list[dict], *, do_wechat: bool, do_xhs: bool
+) -> dict[Path, dict]:
+    """Validate the whole selected batch before sending even its first email.
+
+    Return the checked payloads so delivery cannot reread a different/unchecked
+    cache file. This gate is shared by full runs and --emails-only retries.
+    """
+    selected = []
+    if do_wechat:
+        selected.append((out_dir / "social_wechat.json", "wechat"))
+    if do_xhs:
+        selected.extend(
+            (out_dir / f"social_xhs_{v.get('id', 'xhs')}.json", "xiaohongshu")
+            for v in variants
+        )
+    checked = {}
+    for path, field in selected:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        validate_social_content(data, source=str(path), required_fields=(field,))
+        checked[path] = data
+    # Check the entire image batch too, before the first email. Old JSON can be
+    # corrected while cards still contain the original fabricated claim.
+    for path, field in selected:
+        img_dir = out_dir / "social_images" / path.stem.removeprefix("social_")
+        _verify_image_cache(checked[path], img_dir, field)
+    return checked
 
 
 def main() -> int:
@@ -232,6 +356,7 @@ def main() -> int:
                 )
                 xhs_data.setdefault("_meta", {})["variant_id"] = vid
                 xhs_data["_meta"]["variant_label"] = variant.get("label", vid)
+                validate_social_content(xhs_data, source=str(vpath), required_fields=("xiaohongshu",))
                 vpath.write_text(json.dumps(xhs_data, ensure_ascii=False, indent=2), encoding="utf-8")
                 for ev in xhs_data.get("_meta", {}).get("source_event_ids") or []:
                     used_event_ids.add(str(ev))
@@ -243,8 +368,10 @@ def main() -> int:
                     force=args.force_images,
                 )
 
+    checked = _preflight_delivery(out_dir, variants, do_wechat=do_wechat, do_xhs=do_xhs)
+
     if do_wechat and wechat_recipients:
-        wechat_data = json.loads(wechat_path.read_text(encoding="utf-8"))
+        wechat_data = checked[wechat_path]
         print("=== Stage: Email — 微信公众号 ===")
         send_uslifehub_wechat_report(
             article=meta,
@@ -258,7 +385,7 @@ def main() -> int:
         for variant in variants:
             vid = variant.get("id", "xhs")
             vpath = out_dir / f"social_xhs_{vid}.json"
-            xhs_data = json.loads(vpath.read_text(encoding="utf-8"))
+            xhs_data = checked[vpath]
             tag = variant.get("mail_subject_tag") or variant.get("label") or vid
             rcpts = _variant_xhs_recipients(variant, cfg)
             if not rcpts:

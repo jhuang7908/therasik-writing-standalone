@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "updated": "2026-06-11",
+  "updated": "2026-10-09",
   "retention_days": 30,
   "horizon_days": 7,
   "scrape_timezone": "America/New_York",
@@ -48,15 +48,14 @@
     },
     {
       "id": "qpl_flushing",
-      "name_en": "Queens Public Library - Flushing Branch (Chinese Community)",
-      "name_zh": "皇后区图书馆法拉盛分馆（华人社区主要图书馆）",
+      "name_en": "Queens Public Library - Flushing Branch",
+      "name_zh": "皇后区公共图书馆法拉盛分馆",
       "category": "education",
       "type": "html_list",
       "urls": [
-        "https://www.queenslibrary.org/programs?location=flushing",
-        "https://www.queenslibrary.org/programs/new-americans",
-        "https://www.queenslibrary.org/programs/english-language-learning",
-        "https://www.queenslibrary.org/programs/citizenship"
+        "https://www.queenslibrary.org/about-us/locations/flushing",
+        "https://www.queenslibrary.org/calendar?category=calendar&fromlink=calendar&searchField=%2A&searchFilter=sm_pSsnVirtua%3A91400000",
+        "https://www.queenslibrary.org/programs-activities/adult-learners/adult-learning-centers/flushing"
       ],
       "scrape_frequency": "daily",
       "borough_scope": "Queens",
@@ -64,7 +63,7 @@
       "chinese_relevance": "high",
       "parse_module": "parsers.queens_library",
       "timeout_seconds": 30,
-      "notes": "Flushing branch is the largest Chinese-serving public library in Queens. ESL, citizenship, job readiness, Chinese New Year events."
+      "notes": "Queens Public Library Flushing branch at 41-17 Main Street. Official branch, location-filtered calendar, and adult-learning information. Class dates, registration, and seat availability must be checked on the linked official pages."
     },
     {
       "id": "qpl_elmhurst",
@@ -101,24 +100,6 @@
       "parse_module": "parsers.nypl",
       "timeout_seconds": 30,
       "notes": "Chatham Square / East Broadway — central Manhattan Chinatown. Chinese-language books, ESOL, citizenship, computer classes."
-    },
-    {
-      "id": "nypl_flushing",
-      "name_en": "NYPL - Flushing Branch (Queens Chinese Community)",
-      "name_zh": "纽约公共图书馆法拉盛分馆（皇后区华人社区）",
-      "category": "education",
-      "type": "html_list",
-      "urls": [
-        "https://www.nypl.org/locations/flushing",
-        "https://www.nypl.org/events?location=flushing"
-      ],
-      "scrape_frequency": "daily",
-      "borough_scope": "Queens",
-      "priority": 1,
-      "chinese_relevance": "high",
-      "parse_module": "parsers.nypl",
-      "timeout_seconds": 30,
-      "notes": "NYPL Flushing branch: large Chinese collection, ESL, senior programs, digital literacy."
     },
     {
       "id": "bpl_sunset_park",
