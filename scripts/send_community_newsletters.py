@@ -10,16 +10,17 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import sys
-from datetime import datetime, timedelta
+from datetime import date, datetime
+from html import escape
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 import scripts.send_email as _se
+from scripts.uslifehub_event_quality import current_date, prepare_current_event
 
 # Paths
 DATA_DIR = ROOT / "data" / "community_events"
@@ -83,8 +84,12 @@ def load_events() -> list[dict[str, Any]]:
         return []
 
 
-def filter_events_for_interests(events: list[dict[str, Any]], interests: list[str]) -> list[dict[str, Any]]:
-    """Filter and group events based on subscriber interests."""
+def filter_events_for_interests(
+    events: list[dict[str, Any]], interests: list[str], *,
+    as_of: date | datetime | None = None,
+) -> list[dict[str, Any]]:
+    """Select current, descriptive records before interest matching or freshness."""
+    today = current_date(as_of)
     if not interests:
         # If no specific interests, subscribe to all channels
         interests = list(INTEREST_KEYWORDS.keys())
@@ -93,8 +98,11 @@ def filter_events_for_interests(events: list[dict[str, Any]], interests: list[st
     seen_ids = set()
 
     # We want to match events where the event's module or title contains keywords for the subscribed interests
-    for event in events:
-        event_id = event.get("id")
+    for raw_event in events:
+        event = prepare_current_event(raw_event, as_of=today)
+        if event is None:
+            continue
+        event_id = event.get("id") or event.get("url") or event.get("title_zh")
         if event_id in seen_ids:
             continue
 
@@ -119,58 +127,19 @@ def filter_events_for_interests(events: list[dict[str, Any]], interests: list[st
             matched_events.append(event_copy)
             seen_ids.add(event_id)
 
-    # Sort matched_events by priority:
-    # 1. Freshness (Indexed within last 3 days -> Priority 0, last 7 days -> Priority 1, older -> Priority 2)
-    # 2. Event Date Relevance (Upcoming/Evergreen -> Group 0, Past -> Group 1)
-    # 3. Freshness timestamp descending (newest first)
-    today = datetime.now()
-    
-    def get_priority_key(ev: dict[str, Any]) -> tuple[int, int, float]:
-        # Priority group based on first_indexed_at
-        first_indexed_str = ev.get("first_indexed_at") or ""
-        first_indexed_dt = None
-        if first_indexed_str:
-            try:
-                first_indexed_dt = datetime.strptime(first_indexed_str[:10], "%Y-%m-%d")
-            except Exception:
-                pass
-                
-        if first_indexed_dt:
-            delta_days = (today - first_indexed_dt).days
-            if delta_days <= 3:
-                priority_group = 0  # 近三天
-            elif delta_days <= 7:
-                priority_group = 1  # 本周
-            else:
-                priority_group = 2  # 更早
-        else:
-            priority_group = 2
-            
-        # Date group based on event_date
-        event_date_str = ev.get("event_date") or ""
-        date_group = 0  # Upcoming or evergreen
-        if event_date_str:
-            try:
-                event_date_dt = datetime.strptime(event_date_str[:10], "%Y-%m-%d")
-                today_date = datetime(today.year, today.month, today.day)
-                if event_date_dt < today_date:
-                    date_group = 1  # Past event
-            except Exception:
-                pass
-                
-        # Freshness timestamp descending
-        indexed_timestamp = 0.0
-        if first_indexed_str:
-            try:
-                if len(first_indexed_str) >= 19:
-                    dt = datetime.strptime(first_indexed_str[:19], "%Y-%m-%d %H:%M:%S")
-                else:
-                    dt = datetime.strptime(first_indexed_str[:10], "%Y-%m-%d")
-                indexed_timestamp = dt.timestamp()
-            except Exception:
-                pass
-                
-        return (priority_group, date_group, -indexed_timestamp)
+    # Rank discovery freshness only AFTER current-event validation. Indexing or
+    # re-seeing an archival page must never make it an upcoming recommendation.
+    def get_priority_key(ev: dict[str, Any]) -> tuple[int, float]:
+        raw = str(ev.get("first_indexed_at") or "")
+        try:
+            indexed = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+            age = (today - current_date(indexed)).days
+            priority = 0 if 0 <= age <= 3 else 1 if 3 < age <= 7 else 2
+            # Ordinal avoids mixing machine-local time and aware timestamps.
+            timestamp = indexed.toordinal() * 86400 + indexed.hour * 3600 + indexed.minute * 60 + indexed.second
+            return (priority, -float(timestamp))
+        except ValueError:
+            return (2, 0.0)
 
     matched_events.sort(key=get_priority_key)
     return matched_events
@@ -217,10 +186,10 @@ def build_personalized_html(email: str, matched_events: list[dict[str, Any]], in
             
             # Show up to 5 items per interest to keep email concise
             for item in items[:5]:
-                title = item.get("title_zh", "").strip()
-                area = item.get("area_zh", "").strip()
-                date_str = item.get("event_date", "").strip()
-                url = item.get("url", "").strip()
+                title = escape(item.get("title_zh", "").strip())
+                area = escape(item.get("area_zh", "").strip())
+                date_str = escape(item.get("event_date", "").strip())
+                url = escape(item.get("url", "").strip(), quote=True)
                 summary = item.get("summary_zh", "").strip()
                 
                 # Clean up source types from summary
@@ -229,6 +198,8 @@ def build_personalized_html(email: str, matched_events: list[dict[str, Any]], in
                 elif "(来源类型：" in summary:
                     summary = summary.split("(来源类型：")[0].strip()
                 
+                summary = escape(summary)
+
                 meta_parts = []
                 if area:
                     meta_parts.append(area)
