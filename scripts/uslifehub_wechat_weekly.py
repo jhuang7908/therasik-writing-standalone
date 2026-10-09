@@ -127,7 +127,8 @@ def _setup_ad_bar(cfg: dict) -> Path:
     return ad
 
 
-_IMAGE_MANIFEST = ".content-manifest.json"
+# Keep non-hidden so actions/upload-artifact includes provenance with PNGs.
+_IMAGE_MANIFEST = "content-manifest.json"
 
 
 def _content_hash(social_data: dict, platform: str) -> str:
