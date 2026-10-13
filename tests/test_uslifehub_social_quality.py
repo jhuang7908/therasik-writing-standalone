@@ -56,6 +56,9 @@ class QualityRulesTests(unittest.TestCase):
             "🗽在纽约混了十年，帮你看看",
             "I have lived in New York for ten years.", "I've lived in New York for ten years.",
             "We visited the library last week.",
+            "住在纽约十年的我，帮你挖到了这些资源。",
+            "在纽约的第十年，这些免费资源千万别错过。",
+            "来纽约十年了，这些免费资源千万别错过。",
         ):
             with self.subTest(text=text), self.assertRaises(SocialContentQualityError):
                 validate_social_content(payload(text))
@@ -72,6 +75,9 @@ class QualityRulesTests(unittest.TestCase):
             "如果你在纽约生活了十年，也可以看看这些信息。",
             "我来介绍官网公布的办事步骤。我们建议先查看预约要求。",
             "我们建议你亲自核对预约信息。", "我没有去过这个活动。",
+            "我们为在纽约生活的华人整理了这份办事指南。",
+            "我们整理了在纽约生活的实用信息。",
+            "我们整理了在纽约住酒店的省钱方法。",
         ):
             with self.subTest(text=text):
                 validate_social_content(payload(text))

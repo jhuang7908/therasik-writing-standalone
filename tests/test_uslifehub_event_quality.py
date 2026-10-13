@@ -50,6 +50,48 @@ class EventQualityTests(unittest.TestCase):
     def test_year_alone_does_not_prove_future_event(self):
         self.assertIsNone(prepare_current_event(record(title_zh='2026农历新年游行'), as_of=TODAY))
 
+    def test_undated_event_detail_is_not_a_current_service(self):
+        for fields in (
+            {'title_zh': '我们的社区，我们的声音',
+             'url': 'https://www.cacf.org/events/aycan-our-community-our-voices'},
+            {'title_zh': '社区文化节', 'url': 'https://example.org/community-festival'},
+        ):
+            with self.subTest(fields=fields):
+                self.assertIsNone(prepare_current_event(record(**fields), as_of=date(2026, 10, 12)))
+
+    def test_known_event_browsing_directories_remain_services(self):
+        for url in (
+            'https://www.nycgovparks.org/events/volunteer',
+            'https://www.eventbrite.com/d/ny--flushing/chinese--events/',
+            'https://example.org/events/',
+            'https://castgny.org/en/',
+        ):
+            with self.subTest(url=url):
+                self.assertIsNotNone(prepare_current_event(record(url=url), as_of=TODAY))
+
+    def test_archive_prefixes_and_contradictory_event_years_are_excluded(self):
+        for fields in (
+            {'title_zh': '往期社区文化节'}, {'title_zh': '历史社区活动'},
+            {'title_zh': '2027 Community Gala', 'event_date': '2026-10-20'},
+            {'title_zh': '2026 Community Gala', 'event_date': '2027-10-20'},
+        ):
+            with self.subTest(fields=fields):
+                self.assertIsNone(prepare_current_event(record(**fields), as_of=TODAY))
+
+    def test_conflicting_date_aliases_require_review(self):
+        for fields in (
+            {'event_date': '2026-10-20', 'start_date': '2026-09-20'},
+            {'event_date': '2026-10-20', 'event_end_date': '2026-10-22', 'end_date': '2026-10-19'},
+            {'event_date': '2026-10-20', 'start_date': 'invalid'},
+        ):
+            with self.subTest(fields=fields):
+                self.assertIsNone(prepare_current_event(record(**fields), as_of=TODAY))
+
+    def test_matching_date_aliases_and_cross_year_event_remain_eligible(self):
+        self.assertIsNotNone(prepare_current_event(record(event_date='2026-10-20', start_date='2026-10-20'), as_of=TODAY))
+        self.assertIsNotNone(prepare_current_event(record(title_zh='2026-2027 Community Festival',
+            event_date='2026-12-31', end_date='2027-01-02'), as_of=TODAY))
+
     def test_dates_in_event_url_work_with_single_digit_month_and_day(self):
         self.assertIsNone(prepare_current_event(record(url='https://example.org/events/2026/9/2/workshop'), as_of=TODAY))
         result = prepare_current_event(record(url='https://example.org/events/2026/11/2/workshop'), as_of=TODAY)

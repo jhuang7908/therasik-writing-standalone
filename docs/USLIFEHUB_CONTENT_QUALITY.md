@@ -7,6 +7,10 @@ gate. It uses America/New_York's calendar date, never an index/discovery timesta
 as proof an event is upcoming. Past events, malformed/conflicting dates, explicit
 archives, and year-tagged events without enough date evidence are excluded from
 current recommendations. Evergreen policy/service pages remain eligible.
+An event-detail URL still needs schedule evidence when upstream labels it a
+service. Known calendar/browsing entry points remain services. Source listing
+dates survive URL-date normalization in the search index, so contradictory
+listing/URL dates, title years, or date aliases fail closed at publication.
 
 Historical records are not deleted from the hub or search index. They can still
 be used in explicitly historical writing. Search index and ingestion title
@@ -50,11 +54,28 @@ the contradictory NYPL Flushing entry, while retaining both upcoming galas with
 source-grounded descriptive titles. The replay does not claim every retained
 record is independently fact-checked or that its schedule has been reconfirmed.
 
+October 12, 2026 index replay (generated 20:25; 120 records): 49 records remain
+eligible as of October 12. The same old parade pages and false NYPL-Flushing
+entry are excluded. CACF's undated-in-index `aycan-our-community-our-voices`
+event page is excluded too; its official page identifies June 8, 2025. The
+October 30 CAREA and November 13 CACF galas retain their actual dates and
+descriptive titles. A future event in this week's selection must not be called
+an event happening this week.
+
+Pre-merge verification on October 13, 2026: 58 focused offline tests and 128
+subtests pass on Python 3.12. New regressions cover mislabeled undated events,
+source-date conflicts through ingestion/indexing, and biography wording variants
+while permitting ordinary editorial phrases about life in New York. LLM,
+image-generation, and delivery calls remain mocked. No production replay was run.
+
 ## Rollout boundary
 
-A draft PR does not update production. The private scheduled executor currently
-checks out `therasik-writing-standalone` main. After authorized review/merge, the
-next authorized generation uses these guards. This patch does not change cron,
+A PR does not update production until merged. The private newsletter and social
+executors in `Antibody-Engineer-Suite-MVP` explicitly check out
+`therasik-writing-standalone` main (verified October 13, 2026). After merge, the
+next scheduled generation uses these guards. No push or pull-request triggers
+are configured in the code repository, so merging does not itself send mail
+or run CI. This patch does not change cron,
 recipients, SMTP, API billing/limits or campaign state, and does not resend any
 already-delivered package. Existing bad cached packages fail closed and require
 review/correction and matching images before any separately authorized resend.

@@ -25,7 +25,7 @@ _EVENT_WORDS = re.compile(
 )
 _YEAR = re.compile(r'(?<!\d)((?:19|20)\d{2})(?!\d)')
 _URL_DATE = re.compile(r'/(20\d{2})/(\d{1,2})/(\d{1,2})(?:/|$)')
-_ARCHIVE = re.compile(r'^(?:历史|歷史|往期|历年|歷年|archive|historical)\b|(?:历史回顾|歷史回顧)', re.I)
+_ARCHIVE = re.compile(r'^(?:历史|歷史|往期|历年|歷年)|^(?:archive|historical)\b|(?:历史回顾|歷史回顧)', re.I)
 
 
 def current_date(as_of: date | datetime | None = None) -> date:
@@ -86,6 +86,18 @@ def _wrong_flushing_source(event: dict[str, Any]) -> bool:
     return False
 
 
+def _event_directory(url: str) -> bool:
+    """Known browsing/service entry points are not individual dated events."""
+    parsed = urlsplit(url)
+    path = unquote(parsed.path).rstrip('/').lower()
+    host = (parsed.hostname or '').lower().removeprefix('www.')
+    if path in {'', '/events', '/event', '/calendar'}:
+        return True
+    if host == 'eventbrite.com' and path.startswith('/d/'):
+        return True
+    return host == 'nycgovparks.org' and path == '/events/volunteer'
+
+
 def prepare_current_event(event: dict[str, Any], *, as_of: date | datetime | None = None) -> dict[str, Any] | None:
     """Return a publishable current/evergreen copy, or None for unsafe entries.
 
@@ -109,6 +121,11 @@ def prepare_current_event(event: dict[str, Any], *, as_of: date | datetime | Non
     if years and max(years) < today.year:
         return None
 
+    # Do not silently prefer one field when upstream aliases disagree.
+    for keys in (('event_date', 'start_date'), ('event_end_date', 'end_date')):
+        values = [_date(event[k]) for k in keys if event.get(k)]
+        if None in values or len(set(values)) > 1:
+            return None
     raw_start = event.get('event_date') or event.get('start_date') or ''
     raw_end = event.get('event_end_date') or event.get('end_date') or ''
     start, end = _date(raw_start), _date(raw_end)
@@ -123,12 +140,21 @@ def prepare_current_event(event: dict[str, Any], *, as_of: date | datetime | Non
         if start is not None and start != url_date:
             return None  # contradictory source dates need review
         start = url_date
+    source_start = event.get('source_event_date')
+    if source_start and (_date(source_start) is None or _date(source_start) != start):
+        return None  # ingestion must not erase a contradictory listing date
     if end is not None and start is not None and end < start:
         return None
+    if start is not None and years and any(y < start.year or y > (end or start).year for y in years):
+        return None  # title/URL year disagrees with the supplied event schedule
     if (end or start) is not None and (end or start) < today:
         return None
-    if start is None and end is None and (event.get('date_kind') == 'event' or years):
-        return None  # a year alone cannot establish an upcoming event
+    if start is None and end is None and (
+        str(event.get('date_kind') or '').lower() == 'event'
+        or years
+        or (event_like and not _event_directory(str(event.get('url') or '')))
+    ):
+        return None  # discovery/service labels cannot establish an event schedule
 
     result = dict(event)
     result['title_zh'] = title

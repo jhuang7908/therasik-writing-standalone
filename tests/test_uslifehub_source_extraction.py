@@ -43,6 +43,26 @@ class HubTitleExtractionTests(unittest.TestCase):
         result = build_hub_search_index([{'title_zh': '2017年春节游行', 'url': 'https://fcbainc.org/2017-lunar-new-year-parade/'}], generated_at='2026-10-08')
         self.assertEqual('2017年春节游行', result['records'][0]['title_zh'])
 
+    def test_ingestion_preserves_date_conflict_until_publication_gate(self):
+        for source_date in ('2026-09-02', 'invalid'):
+            with self.subTest(source_date=source_date):
+                event = CommunityEvent(title='Community workshop', start_date=source_date,
+                    source='cacf', url='https://example.org/events/2026/11/02/workshop')
+                item = _to_hub_item(event, 1, {'name_zh': 'CACF'})
+                index = build_hub_search_index([item], generated_at='2026-10-12')
+                self.assertEqual(source_date, index['records'][0]['source_event_date'])
+                self.assertEqual([], filter_events_for_interests(index['records'], [], as_of=date(2026, 10, 12)))
+
+    def test_matching_ingestion_date_provenance_survives(self):
+        event = CommunityEvent(title='Community workshop', start_date='2026-11-02',
+            source='cacf', url='https://example.org/events/2026/11/02/workshop')
+        item = _to_hub_item(event, 1, {'name_zh': 'CACF'})
+        item['module'] = '文化·节庆'
+        index = build_hub_search_index([item], generated_at='2026-10-12')
+        self.assertEqual('2026-11-02', index['records'][0]['source_event_date'])
+        self.assertEqual('url', index['records'][0]['event_date_source'])
+        self.assertEqual(1, len(filter_events_for_interests(index['records'], [], as_of=date(2026, 10, 12))))
+
 
 if __name__ == '__main__':
     unittest.main()

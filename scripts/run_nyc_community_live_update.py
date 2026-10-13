@@ -757,6 +757,9 @@ def _to_hub_item(ev: CommunityEvent, idx: int, src: dict[str, Any] | None) -> di
         **_hub_location_meta(ev, enclave=enclave, area_zh=area_zh, area_zht=area_zht, area_en=area_en),
         "location": _clean_text(ev.location or "", limit=160),
         "event_date": event_date,
+        # Keep listing evidence even when URL-date normalization changes the
+        # display date; publication checks must still see contradictions.
+        "source_event_date": ev.start_date if not is_service_info_url(url) else "",
         "event_time": (ev.start_time or "").strip(),
         "published_at": publish_date,
         "source_published_at": publish_raw if publish_raw and "T" in publish_raw else "",
@@ -1162,6 +1165,8 @@ def build_hub_search_index(items: list[dict[str, Any]], *, generated_at: str) ->
             "borough": it.get("borough") or "",
             "location": venue,
             "event_date": ed,
+            "source_event_date": str(it.get("source_event_date") or ""),
+            "event_date_source": str(it.get("event_date_source") or ""),
             "event_end_date": str(it.get("event_end_date") or it.get("end_date") or "")[:10],
             "event_time": str(it.get("event_time") or "").strip(),
             "published_at": str(it.get("published_at") or "")[:10],
