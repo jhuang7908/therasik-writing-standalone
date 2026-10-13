@@ -34,6 +34,7 @@ def _top_events(
             "summary_zh": (ev.get("summary_zh") or "")[:400],
             "url": ev.get("url"),
             "event_date": ev.get("event_date"),
+            "event_end_date": ev.get("event_end_date") or ev.get("end_date"),
             "first_indexed_at": ev.get("first_indexed_at"),
             "matched_interests": ev.get("matched_interests", []),
         })
@@ -49,6 +50,7 @@ def _write_llm_json(
     user_hint: str,
     required_fields: tuple[str, ...],
 ) -> dict:
+    from uslifehub_social_quality import GROUNDED_WRITING_RULES, validate_social_content
     from social_content import SPEC, _call_deepseek, _clean_json, _validate
     from wechat_ad_bar import inject_ad_bar, load_ad_bar_config
     from wechat_cover import ensure_cover_digest
@@ -59,11 +61,12 @@ def _write_llm_json(
         f"【民生信息条目 JSON】（共 {len(events)} 条，仅可引用以下内容）:\n"
         f"{json.dumps(events, ensure_ascii=False, indent=2)}"
     )
-    system = writer_system + "\n\n## 平台格式规范\n" + SPEC
+    system = writer_system + "\n\n## 平台格式规范\n" + SPEC + "\n\n" + GROUNDED_WRITING_RULES
 
     raw = _call_deepseek(user_msg, system, max_tokens=8000)
     raw = _clean_json(raw)
     data = json.loads(raw)
+    validate_social_content(data, source=str(out_path), required_fields=required_fields)
 
     for field in required_fields:
         if field not in data:
@@ -104,6 +107,8 @@ def _write_llm_json(
         "violations": violations,
     }
     data.setdefault("format_version", "v2.0")
+    # Recheck after cover/ad enrichment, before persisting anything reusable.
+    validate_social_content(data, source=str(out_path), required_fields=required_fields)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"  Saved: {out_path.name}")
